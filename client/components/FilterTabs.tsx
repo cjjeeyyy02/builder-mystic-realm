@@ -3,6 +3,8 @@ import { Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import ScreeningView from "./ScreeningView";
+import CandidateList from "./CandidateList";
 
 const tabs = [
   { id: "hiring", label: "Hiring" },
@@ -16,7 +18,7 @@ export default function FilterTabs() {
   const [activeTab, setActiveTab] = useState("hiring");
 
   return (
-    <div className="mb-8 space-y-6">
+    <div className="space-y-6">
       {/* Button Tabs */}
       <div className="w-full">
         <div className="items-center justify-center rounded-md text-muted-foreground grid w-full grid-cols-5 bg-muted p-1 h-auto">
@@ -38,7 +40,7 @@ export default function FilterTabs() {
       </div>
 
       {/* Search and Filter Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
@@ -64,6 +66,11 @@ export default function FilterTabs() {
         <Button>
           Plug and Hire
         </Button>
+      </div>
+
+      {/* Conditional Content Based on Active Tab */}
+      <div>
+        {activeTab === "screening" ? <ScreeningView /> : <CandidateList />}
       </div>
     </div>
   );
