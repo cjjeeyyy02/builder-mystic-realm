@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -96,24 +96,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
           )}
         </div>
 
-        {/* Collapse/Expand Toggle Button */}
-        <div className="p-4 border-b border-sidebar-border">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onToggleCollapse}
-            className={`${isCollapsed ? 'w-full justify-center' : 'w-full justify-start gap-2'} text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hidden lg:flex`}
-          >
-            {isCollapsed ? (
-              <PanelLeftOpen className="w-4 h-4" />
-            ) : (
-              <>
-                <PanelLeftClose className="w-4 h-4" />
-                Collapse
-              </>
-            )}
-          </Button>
-        </div>
+
 
         {/* Mobile close button */}
         <div className="lg:hidden absolute top-4 right-4">
