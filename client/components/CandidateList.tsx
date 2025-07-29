@@ -74,9 +74,9 @@ function getStatusVariant(status: string): "default" | "secondary" | "destructiv
   switch (status) {
     case "approved":
       return "default";
-    case "pending":
-      return "secondary";
-    case "review":
+    case "reject":
+      return "destructive";
+    case "queue":
       return "outline";
     default:
       return "secondary";
