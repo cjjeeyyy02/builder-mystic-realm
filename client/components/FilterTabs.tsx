@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ScreeningView from "./ScreeningView";
+import InterviewView from "./InterviewView";
 import CandidateList from "./CandidateList";
 
 const tabs = [
@@ -39,38 +40,42 @@ export default function FilterTabs() {
         </div>
       </div>
 
-      {/* Search and Filter Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
-        <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search candidates..."
-            className="pl-10"
-          />
+      {/* Search and Filter Controls - Only show for hiring and screening */}
+      {(activeTab === "hiring" || activeTab === "screening") && (
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
+          <div className="relative flex-1 max-w-sm">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search candidates..."
+              className="pl-10"
+            />
+          </div>
+          
+          <Select defaultValue="application-stage">
+            <SelectTrigger className="w-full sm:w-[200px]">
+              <SelectValue placeholder="Application Stage" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="application-stage">Application Stage</SelectItem>
+              <SelectItem value="initial-review">Initial Review</SelectItem>
+              <SelectItem value="phone-screen">Phone Screen</SelectItem>
+              <SelectItem value="technical-interview">Technical Interview</SelectItem>
+              <SelectItem value="final-round">Final Round</SelectItem>
+            </SelectContent>
+          </Select>
+          
+          <Button>
+            Plug and Hire
+          </Button>
         </div>
-        
-        <Select defaultValue="application-stage">
-          <SelectTrigger className="w-full sm:w-[200px]">
-            <SelectValue placeholder="Application Stage" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="application-stage">Application Stage</SelectItem>
-            <SelectItem value="initial-review">Initial Review</SelectItem>
-            <SelectItem value="phone-screen">Phone Screen</SelectItem>
-            <SelectItem value="technical-interview">Technical Interview</SelectItem>
-            <SelectItem value="final-round">Final Round</SelectItem>
-          </SelectContent>
-        </Select>
-        
-        <Button>
-          Plug and Hire
-        </Button>
-      </div>
+      )}
 
       {/* Conditional Content Based on Active Tab */}
       <div>
-        {activeTab === "screening" ? <ScreeningView /> : <CandidateList />}
+        {activeTab === "screening" && <ScreeningView />}
+        {activeTab === "interview" && <InterviewView />}
+        {(activeTab === "hiring" || activeTab === "activation" || activeTab === "hired") && <CandidateList />}
       </div>
     </div>
   );
