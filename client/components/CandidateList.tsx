@@ -1,4 +1,4 @@
-import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical, X, MapPin, Calendar } from "lucide-react";
+import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical, X, MapPin, Calendar, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,8 @@ interface Candidate {
   phone: string;
   companyLocation: string;
   appliedDate: string;
+  applicationStart: string;
+  applicationEnd: string;
   status: "approved" | "reject" | "queue";
   isSelected?: boolean;
   avatar?: string;
@@ -20,67 +22,79 @@ interface Candidate {
 const candidates: Candidate[] = [
   {
     id: "1",
-    name: "Sarah Jane",
+    name: "Sarah Johnson",
     position: "Operation Associate",
     email: "sarahjohnson@gmail.com",
     phone: "123-456-789",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "approved",
     isSelected: false,
   },
   {
     id: "2",
-    name: "Sarah Jane",
+    name: "Michael Chen",
     position: "Operation Associate",
     email: "michael.chen@gmail.com",
     phone: "123-456-790",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "queue",
     isSelected: true,
   },
   {
     id: "3",
-    name: "Sarah Jane",
+    name: "Emily Rodriguez",
     position: "Operation Associate",
     email: "emily.rodriguez@gmail.com",
     phone: "123-456-791",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "reject",
     isSelected: false,
   },
   {
     id: "4",
-    name: "Sarah Jane",
+    name: "David Kim",
     position: "Operation Associate",
     email: "david.kim@gmail.com",
     phone: "123-456-792",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "approved",
     isSelected: false,
   },
   {
     id: "5",
-    name: "Sarah Jane",
+    name: "Lisa Wang",
     position: "Operation Associate",
     email: "lisa.wang@gmail.com",
     phone: "123-456-793",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "queue",
     isSelected: false,
   },
   {
     id: "6",
-    name: "Sarah Jane",
+    name: "Alex Thompson",
     position: "Operation Associate",
-    email: "jane.smith@gmail.com",
+    email: "alex.thompson@gmail.com",
     phone: "123-456-794",
     companyLocation: "Hyderabad, India",
     appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "approved",
     isSelected: false,
   },
@@ -156,6 +170,14 @@ export default function CandidateList() {
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <Calendar className="w-3 h-3" />
                 <span>Applied {candidate.appliedDate}</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <FileText className="w-3 h-3" />
+                <span>Start: {candidate.applicationStart}</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <FileText className="w-3 h-3" />
+                <span>End: {candidate.applicationEnd}</span>
               </div>
             </div>
 
