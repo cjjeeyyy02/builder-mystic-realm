@@ -1,4 +1,9 @@
 import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 interface Candidate {
   id: string;
@@ -65,16 +70,16 @@ const candidates: Candidate[] = [
   },
 ];
 
-function getStatusStyle(status: string) {
+function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case "approved":
-      return "bg-emerald-50 text-emerald-700 border-emerald-200";
+      return "default";
     case "pending":
-      return "bg-amber-50 text-amber-700 border-amber-200";
+      return "secondary";
     case "review":
-      return "bg-blue-50 text-blue-700 border-blue-200";
+      return "outline";
     default:
-      return "bg-gray-50 text-gray-700 border-gray-200";
+      return "secondary";
   }
 }
 
@@ -93,77 +98,87 @@ function getStatusIcon(status: string) {
 
 export default function CandidateList() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {candidates.map((candidate) => (
-        <div
-          key={candidate.id}
-          className="bg-card border border-border rounded-lg p-5 hover:shadow-sm transition-shadow duration-200"
-        >
-          {/* Main Content Row */}
-          <div className="flex items-center justify-between">
-            {/* Left: Avatar + Basic Info */}
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20">
-                <span className="text-primary font-semibold text-sm">
-                  {candidate.name.split(' ').map(n => n[0]).join('')}
+        <Card key={candidate.id} className="hover:shadow-md transition-shadow duration-200">
+          <CardContent className="p-6">
+            {/* Main Content Row */}
+            <div className="flex items-center justify-between">
+              {/* Left: Avatar + Basic Info */}
+              <div className="flex items-center gap-4">
+                <Avatar className="h-12 w-12">
+                  <AvatarFallback className="bg-primary/10 text-primary border border-primary/20">
+                    {candidate.name.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
+                
+                <div className="space-y-1">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-semibold text-card-foreground">{candidate.name}</h3>
+                    <Badge variant={getStatusVariant(candidate.status)} className="gap-1">
+                      {getStatusIcon(candidate.status)}
+                      {candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{candidate.position}</p>
+                </div>
+              </div>
+
+              {/* Right: Actions */}
+              <div className="flex items-center gap-2">
+                <Button variant="default" size="sm" className="gap-1">
+                  <ExternalLink className="w-3 h-3" />
+                  Resume
+                </Button>
+                <Button variant="default" size="sm" className="gap-1 bg-blue-600 hover:bg-blue-700">
+                  <Send className="w-3 h-3" />
+                  Message
+                </Button>
+                <Button variant="ghost" size="sm">
+                  <MoreVertical className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            <Separator className="my-4" />
+
+            {/* Bottom Row: Experience + Contact */}
+            <div className="flex items-center justify-between">
+              {/* Left: Experience */}
+              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                <span className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  Total Experience: {candidate.totalExperience}
+                </span>
+                <span className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  Relevant Experience: {candidate.relevantExperience}
                 </span>
               </div>
-              
-              <div className="space-y-1">
-                <div className="flex items-center gap-3">
-                  <h3 className="font-semibold text-card-foreground">{candidate.name}</h3>
-                  <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium border ${getStatusStyle(candidate.status)}`}>
-                    {getStatusIcon(candidate.status)}
-                    {candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">{candidate.position}</p>
+
+              {/* Right: Contact */}
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="h-auto p-0 gap-1 hover:text-primary" 
+                  title={candidate.email}
+                >
+                  <Mail className="w-3 h-3" />
+                  <span className="hidden lg:inline">{candidate.name}</span>
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="h-auto p-0 gap-1 hover:text-primary"
+                >
+                  <Phone className="w-3 h-3" />
+                  <span>{candidate.phone}</span>
+                </Button>
               </div>
             </div>
-
-            {/* Right: Actions */}
-            <div className="flex items-center gap-2">
-              <button className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                <ExternalLink className="w-3 h-3" />
-                Resume
-              </button>
-              <button className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                <Send className="w-3 h-3" />
-                Message
-              </button>
-              <button className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-accent rounded-md transition-colors">
-                <MoreVertical className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Bottom Row: Experience + Contact */}
-          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
-            {/* Left: Experience */}
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                Total Experience: {candidate.totalExperience}
-              </span>
-              <span className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                Relevant Experience: {candidate.relevantExperience}
-              </span>
-            </div>
-
-            {/* Right: Contact */}
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer" title={candidate.email}>
-                <Mail className="w-3 h-3" />
-                <span className="hidden lg:inline">{candidate.name}</span>
-              </div>
-              <div className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
-                <Phone className="w-3 h-3" />
-                <span>{candidate.phone}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );
