@@ -159,7 +159,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <Separator className="mb-4" />
           <div className="text-xs text-sidebar-foreground/60 text-center">
-            {isCollapsed ? "©2024" : "© 2024 AI2AIM WORKSPACE"}
+            {isCollapsed ? "©" : "© AI2AIM WORKSPACE"}
           </div>
         </div>
       </div>
