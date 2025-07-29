@@ -147,31 +147,31 @@ export default function ScreeningView() {
 
                 {/* Status Action Buttons */}
                 <div className="flex items-center gap-2">
-                  <Button 
+                  <Button
                     variant={candidate.status === "approved" ? "default" : "outline"}
-                    size="sm" 
+                    size="sm"
                     className="gap-1 text-xs font-medium"
                     onClick={() => handleStatusChange(candidate.id, "approved")}
                   >
-                    <UserCheck className="w-3 h-3" />
+                    <Check className="w-3 h-3" />
                     Approve
                   </Button>
-                  <Button 
+                  <Button
                     variant={candidate.status === "queue" ? "outline" : "outline"}
-                    size="sm" 
+                    size="sm"
                     className="gap-1 text-xs font-medium"
                     onClick={() => handleStatusChange(candidate.id, "queue")}
                   >
-                    <UserClock className="w-3 h-3" />
+                    <Timer className="w-3 h-3" />
                     Queue
                   </Button>
-                  <Button 
+                  <Button
                     variant={candidate.status === "reject" ? "destructive" : "outline"}
-                    size="sm" 
+                    size="sm"
                     className="gap-1 text-xs font-medium"
                     onClick={() => handleStatusChange(candidate.id, "reject")}
                   >
-                    <UserX className="w-3 h-3" />
+                    <X className="w-3 h-3" />
                     Reject
                   </Button>
                 </div>
