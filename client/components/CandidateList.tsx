@@ -15,6 +15,7 @@ interface Candidate {
   applicationStart: string;
   applicationEnd: string;
   status: "approved" | "reject" | "queue";
+  workType: "Remote" | "On-site" | "Hybrid";
   isSelected?: boolean;
   avatar?: string;
 }
