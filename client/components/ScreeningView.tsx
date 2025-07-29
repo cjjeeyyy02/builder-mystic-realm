@@ -180,10 +180,13 @@ export default function ScreeningView() {
 
                 {/* Primary Actions */}
                 <div className="flex items-center gap-1.5">
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="gap-1 bg-blue-600 hover:bg-blue-700 text-white font-medium h-8 px-3"
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="gap-1 text-white font-medium h-8 px-3"
+                    style={{ backgroundColor: '#00CAFF' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0099CC'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00CAFF'}
                   >
                     <ExternalLink className="w-3 h-3" />
                     Resume
@@ -191,7 +194,10 @@ export default function ScreeningView() {
                   <Button
                     variant="default"
                     size="sm"
-                    className="gap-1 bg-blue-600 hover:bg-blue-700 text-white font-medium h-8 px-3"
+                    className="gap-1 text-white font-medium h-8 px-3"
+                    style={{ backgroundColor: '#00CAFF' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0099CC'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00CAFF'}
                   >
                     <Send className="w-3 h-3" />
                     Message
