@@ -32,6 +32,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "approved",
+    workType: "Remote",
     isSelected: false,
   },
   {
@@ -45,6 +46,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "queue",
+    workType: "On-site",
     isSelected: true,
   },
   {
@@ -58,6 +60,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "reject",
+    workType: "Hybrid",
     isSelected: false,
   },
   {
@@ -71,6 +74,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "approved",
+    workType: "Remote",
     isSelected: false,
   },
   {
@@ -84,6 +88,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "queue",
+    workType: "Hybrid",
     isSelected: false,
   },
   {
@@ -97,6 +102,7 @@ const candidates: Candidate[] = [
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
     status: "approved",
+    workType: "On-site",
     isSelected: false,
   },
 ];
