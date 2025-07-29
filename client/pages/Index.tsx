@@ -1,7 +1,6 @@
 import Layout from "@/components/Layout";
 import StatsCards from "@/components/StatsCards";
 import FilterTabs from "@/components/FilterTabs";
-import CandidateList from "@/components/CandidateList";
 
 export default function Index() {
   return (
@@ -13,11 +12,8 @@ export default function Index() {
         {/* Stats Cards */}
         <StatsCards />
         
-        {/* Filter Tabs and Search */}
+        {/* Filter Tabs with Conditional Content */}
         <FilterTabs />
-        
-        {/* Candidate List */}
-        <CandidateList />
       </div>
     </Layout>
   );
