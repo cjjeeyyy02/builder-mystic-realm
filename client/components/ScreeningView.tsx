@@ -1,4 +1,4 @@
-import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, X } from "lucide-react";
+import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, X, UserCheck, UserX, UserClock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -76,6 +76,11 @@ function getStatusIcon(status: string) {
 }
 
 export default function ScreeningView() {
+  const handleStatusChange = (candidateId: string, newStatus: "approved" | "reject" | "queue") => {
+    console.log(`Changing candidate ${candidateId} status to ${newStatus}`);
+    // Here you would implement the actual status change logic
+  };
+
   return (
     <div className="space-y-4">
       {screeningCandidates.map((candidate) => (
@@ -140,8 +145,39 @@ export default function ScreeningView() {
                   </div>
                 </div>
 
-                {/* Action Buttons - Properly spaced */}
-                <div className="flex items-center gap-3">
+                {/* Status Action Buttons */}
+                <div className="flex items-center gap-2">
+                  <Button 
+                    variant={candidate.status === "approved" ? "default" : "outline"}
+                    size="sm" 
+                    className="gap-1 text-xs font-medium"
+                    onClick={() => handleStatusChange(candidate.id, "approved")}
+                  >
+                    <UserCheck className="w-3 h-3" />
+                    Approve
+                  </Button>
+                  <Button 
+                    variant={candidate.status === "queue" ? "outline" : "outline"}
+                    size="sm" 
+                    className="gap-1 text-xs font-medium"
+                    onClick={() => handleStatusChange(candidate.id, "queue")}
+                  >
+                    <UserClock className="w-3 h-3" />
+                    Queue
+                  </Button>
+                  <Button 
+                    variant={candidate.status === "reject" ? "destructive" : "outline"}
+                    size="sm" 
+                    className="gap-1 text-xs font-medium"
+                    onClick={() => handleStatusChange(candidate.id, "reject")}
+                  >
+                    <UserX className="w-3 h-3" />
+                    Reject
+                  </Button>
+                </div>
+
+                {/* Original Action Buttons */}
+                <div className="flex items-center gap-2">
                   <Button 
                     variant="default" 
                     size="sm" 
