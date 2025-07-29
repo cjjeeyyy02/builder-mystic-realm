@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Search, ChevronDown, Filter, Download } from "lucide-react";
 
 const tabs = [
-  { id: "hiring", label: "Hiring", count: 1000 },
-  { id: "screening", label: "Screening", count: 500 },
-  { id: "interview", label: "Interview", count: 300 },
-  { id: "activation", label: "Activation", count: 200 },
-  { id: "hired", label: "Hired", count: 100 },
+  { id: "hiring", label: "Hiring" },
+  { id: "screening", label: "Screening" },
+  { id: "interview", label: "Interview" },
+  { id: "activation", label: "Activation" },
+  { id: "hired", label: "Hired" },
 ];
 
 export default function FilterTabs() {
@@ -20,20 +20,13 @@ export default function FilterTabs() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               activeTab === tab.id
                 ? "bg-primary text-primary-foreground shadow-sm"
                 : "text-muted-foreground hover:text-card-foreground hover:bg-accent"
             }`}
           >
             {tab.label}
-            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-              activeTab === tab.id
-                ? "bg-primary-foreground/20 text-primary-foreground"
-                : "bg-muted text-muted-foreground"
-            }`}>
-              {tab.count}
-            </span>
           </button>
         ))}
       </div>
@@ -60,15 +53,8 @@ export default function FilterTabs() {
             </select>
             <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           </div>
-        </div>
 
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 border border-border bg-card hover:bg-accent rounded-lg text-sm font-medium transition-colors">
-            <Filter className="w-4 h-4" />
-            Filters
-          </button>
-
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium transition-colors shadow-sm">
+          <button className="px-4 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium transition-colors shadow-sm">
             Plug and Hire
           </button>
         </div>
