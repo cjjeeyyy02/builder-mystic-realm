@@ -1,4 +1,4 @@
-import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, X, UserCheck, UserX, UserClock } from "lucide-react";
+import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, X, Check, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
