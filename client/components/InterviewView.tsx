@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface InterviewCandidate {
   id: string;
@@ -72,7 +79,9 @@ const interviewCandidates: InterviewCandidate[] = [
   },
 ];
 
-function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
+function getStatusVariant(
+  status: string,
+): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case "completed":
       return "default";
@@ -186,7 +195,8 @@ export default function InterviewView() {
                       >
                         {candidate.status === "in-progress"
                           ? "In-progress"
-                          : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                          : candidate.status.charAt(0).toUpperCase() +
+                            candidate.status.slice(1)}
                       </Badge>
                     </TableCell>
                   </TableRow>

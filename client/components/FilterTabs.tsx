@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import ScreeningView from "./ScreeningView";
 import InterviewView from "./InterviewView";
 import CandidateList from "./CandidateList";
@@ -51,23 +57,25 @@ export default function FilterTabs() {
               className="pl-10"
             />
           </div>
-          
+
           <Select defaultValue="application-stage">
             <SelectTrigger className="w-full sm:w-[200px]">
               <SelectValue placeholder="Application Stage" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="application-stage">Application Stage</SelectItem>
+              <SelectItem value="application-stage">
+                Application Stage
+              </SelectItem>
               <SelectItem value="initial-review">Initial Review</SelectItem>
               <SelectItem value="phone-screen">Phone Screen</SelectItem>
-              <SelectItem value="technical-interview">Technical Interview</SelectItem>
+              <SelectItem value="technical-interview">
+                Technical Interview
+              </SelectItem>
               <SelectItem value="final-round">Final Round</SelectItem>
             </SelectContent>
           </Select>
-          
-          <Button>
-            Plug and Hire
-          </Button>
+
+          <Button>Plug and Hire</Button>
         </div>
       )}
 
@@ -75,7 +83,9 @@ export default function FilterTabs() {
       <div>
         {activeTab === "screening" && <ScreeningView />}
         {activeTab === "interview" && <InterviewView />}
-        {(activeTab === "hiring" || activeTab === "activation" || activeTab === "hired") && <CandidateList />}
+        {(activeTab === "hiring" ||
+          activeTab === "activation" ||
+          activeTab === "hired") && <CandidateList />}
       </div>
     </div>
   );

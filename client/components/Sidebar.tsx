@@ -1,5 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown } from "lucide-react";
+import {
+  X,
+  Home,
+  Users,
+  FileText,
+  BarChart3,
+  Folder,
+  CreditCard,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +19,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface NavItem {
   label: string;
@@ -34,23 +49,30 @@ const navItems: NavItem[] = [
   { label: "Offboarding", path: "/offboarding", icon: LogOut },
 ];
 
-export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }: SidebarProps) {
+export default function Sidebar({
+  isOpen,
+  onClose,
+  isCollapsed,
+  onToggleCollapse,
+}: SidebarProps) {
   const location = useLocation();
 
   return (
     <TooltipProvider>
       {/* Mobile overlay */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-20 lg:hidden"
           onClick={onClose}
         />
       )}
-      
+
       {/* Sidebar */}
-      <div className={`${isCollapsed ? 'w-[80px]' : 'w-[280px] lg:w-[260px]'} bg-sidebar-background h-screen fixed left-0 top-0 z-30 transform transition-all duration-300 ease-in-out shadow-xl ${
-        isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-      }`}>
+      <div
+        className={`${isCollapsed ? "w-[80px]" : "w-[280px] lg:w-[260px]"} bg-sidebar-background h-screen fixed left-0 top-0 z-30 transform transition-all duration-300 ease-in-out shadow-xl ${
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}
+      >
         {/* Logo/Brand */}
         <div className="p-6 border-b border-sidebar-border">
           {!isCollapsed ? (
@@ -59,11 +81,13 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                 <Users className="w-5 h-5 text-primary-foreground" />
               </div>
               <div className="flex-1">
-                <h2 className="text-lg font-semibold text-sidebar-foreground">AI2AIM WORKSPACE</h2>
+                <h2 className="text-lg font-semibold text-sidebar-foreground">
+                  AI2AIM WORKSPACE
+                </h2>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="h-auto p-0 text-xs text-sidebar-foreground/60 hover:text-sidebar-foreground/80 justify-start gap-1"
                     >
                       Employee Management System
@@ -96,20 +120,23 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
           )}
         </div>
 
-
-
         {/* Mobile close button */}
         <div className="lg:hidden absolute top-4 right-4">
-          <Button variant="ghost" size="sm" onClick={onClose} className="text-sidebar-foreground">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="text-sidebar-foreground"
+          >
             <X className="w-5 h-5" />
           </Button>
         </div>
-        
+
         <div className="p-4 space-y-2">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
-            
+
             if (isCollapsed) {
               return (
                 <Tooltip key={item.path}>

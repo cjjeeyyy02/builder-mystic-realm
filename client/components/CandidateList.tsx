@@ -1,4 +1,16 @@
-import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical, X, MapPin, Calendar, FileText } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  ExternalLink,
+  Send,
+  CheckCircle,
+  Clock,
+  MoreVertical,
+  X,
+  MapPin,
+  Calendar,
+  FileText,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -107,7 +119,9 @@ const candidates: Candidate[] = [
   },
 ];
 
-function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
+function getStatusVariant(
+  status: string,
+): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case "approved":
       return "default";
@@ -137,12 +151,12 @@ export default function CandidateList() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {candidates.map((candidate) => (
-        <Card 
-          key={candidate.id} 
+        <Card
+          key={candidate.id}
           className={`group hover:shadow-lg transition-all duration-300 ${
-            candidate.isSelected 
-              ? 'ring-2 ring-primary shadow-lg' 
-              : 'hover:border-primary/30'
+            candidate.isSelected
+              ? "ring-2 ring-primary shadow-lg"
+              : "hover:border-primary/30"
           }`}
         >
           <CardContent className="p-5">
@@ -150,10 +164,13 @@ export default function CandidateList() {
             <div className="flex items-center gap-3 mb-4">
               <Avatar className="h-10 w-10">
                 <AvatarFallback className="bg-primary/10 text-primary font-medium">
-                  {candidate.name.split(' ').map(n => n[0]).join('')}
+                  {candidate.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                 </AvatarFallback>
               </Avatar>
-              
+
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-foreground text-sm leading-tight">
                   {candidate.name}
@@ -163,7 +180,10 @@ export default function CandidateList() {
                 </p>
               </div>
 
-              <Badge variant={getStatusVariant(candidate.status)} className="text-xs">
+              <Badge
+                variant={getStatusVariant(candidate.status)}
+                className="text-xs"
+              >
                 {getStatusIcon(candidate.status)}
               </Badge>
             </div>
@@ -197,10 +217,7 @@ export default function CandidateList() {
               >
                 {candidate.workType}
               </Button>
-              <Button
-                size="sm"
-                className="text-xs h-8 font-medium"
-              >
+              <Button size="sm" className="text-xs h-8 font-medium">
                 View Profile
               </Button>
             </div>
