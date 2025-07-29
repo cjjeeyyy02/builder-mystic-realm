@@ -46,7 +46,7 @@ const candidates: Candidate[] = [
     phone: "123-456-791",
     totalExperience: "5 years",
     relevantExperience: "5 years",
-    status: "pending",
+    status: "reject",
   },
   {
     id: "4",
