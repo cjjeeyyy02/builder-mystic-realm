@@ -3,7 +3,6 @@ import { Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const tabs = [
   { id: "hiring", label: "Hiring" },
@@ -18,20 +17,25 @@ export default function FilterTabs() {
 
   return (
     <div className="mb-8 space-y-6">
-      {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5 bg-muted p-1 h-auto">
+      {/* Button Tabs */}
+      <div className="w-full">
+        <div className="items-center justify-center rounded-md text-muted-foreground grid w-full grid-cols-5 bg-muted p-1 h-auto">
           {tabs.map((tab) => (
-            <TabsTrigger 
-              key={tab.id} 
-              value={tab.id}
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground py-2.5 px-4"
+            <Button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              variant="ghost"
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-2.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 py-2.5 px-4 ${
+                activeTab === tab.id
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "hover:bg-accent hover:text-accent-foreground"
+              }`}
             >
               {tab.label}
-            </TabsTrigger>
+            </Button>
           ))}
-        </TabsList>
-      </Tabs>
+        </div>
+      </div>
 
       {/* Search and Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
