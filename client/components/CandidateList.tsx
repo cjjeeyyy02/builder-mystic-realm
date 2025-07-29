@@ -190,15 +190,15 @@ export default function CandidateList() {
 
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-2">
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <Button
+                variant="outline"
+                size="sm"
                 className="text-xs h-8 font-medium"
               >
-                Remote
+                {candidate.workType}
               </Button>
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 className="text-xs h-8 font-medium"
               >
                 View Profile
