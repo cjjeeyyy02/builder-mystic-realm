@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 interface ScreeningCandidate {
   id: string;
@@ -80,60 +81,80 @@ export default function ScreeningView() {
       {screeningCandidates.map((candidate) => (
         <Card key={candidate.id} className="hover:shadow-md transition-shadow duration-200">
           <CardContent className="p-6">
+            {/* Main Content Row */}
             <div className="flex items-center justify-between">
-              {/* Left: Avatar + Basic Info */}
-              <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12">
+              {/* Left Section: Avatar + Info */}
+              <div className="flex items-center gap-4 flex-1">
+                <Avatar className="h-12 w-12 flex-shrink-0">
                   <AvatarFallback className="bg-gray-100 text-gray-600 font-medium">
                     {candidate.name.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
                 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-semibold text-card-foreground text-base">{candidate.name}</h3>
-                    <Badge variant={getStatusVariant(candidate.status)} className="gap-1 text-xs">
+                <div className="flex-1 min-w-0">
+                  {/* Name and Status Row */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="font-semibold text-card-foreground text-base leading-tight">
+                      {candidate.name}
+                    </h3>
+                    <Badge variant={getStatusVariant(candidate.status)} className="gap-1 text-xs flex-shrink-0">
                       {getStatusIcon(candidate.status)}
                       {candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{candidate.position}</p>
+
+                  {/* Position */}
+                  <p className="text-sm text-muted-foreground mb-3 leading-tight">
+                    {candidate.position}
+                  </p>
                   
-                  {/* Experience Information */}
-                  <div className="flex items-center gap-6 text-sm">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>Total Experience: {candidate.totalExperience}</span>
+                  {/* Experience Metrics - Well organized in a row */}
+                  <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                      <span className="text-sm text-muted-foreground">
+                        Total Experience: <span className="font-medium text-foreground">{candidate.totalExperience}</span>
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span>Relevant Experience: {candidate.relevantExperience}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
+                      <span className="text-sm text-muted-foreground">
+                        Relevant Experience: <span className="font-medium text-foreground">{candidate.relevantExperience}</span>
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Right: Contact + Actions */}
-              <div className="flex items-center gap-6">
-                {/* Contact Info */}
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Mail className="w-4 h-4" />
-                    <span>{candidate.email}</span>
+              {/* Right Section: Contact + Actions */}
+              <div className="flex items-center gap-6 flex-shrink-0">
+                {/* Contact Information - Properly aligned */}
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium">{candidate.email}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Phone className="w-4 h-4" />
-                    <span>{candidate.phone}</span>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Phone className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium">{candidate.phone}</span>
                   </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex items-center gap-2">
-                  <Button variant="default" size="sm" className="gap-1 bg-blue-600 hover:bg-blue-700">
+                {/* Action Buttons - Properly spaced */}
+                <div className="flex items-center gap-3">
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                  >
                     <ExternalLink className="w-3 h-3" />
                     Resume
                   </Button>
-                  <Button variant="default" size="sm" className="gap-1 bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                  >
                     <Send className="w-3 h-3" />
                     Message
                   </Button>
