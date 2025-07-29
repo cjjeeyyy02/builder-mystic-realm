@@ -1,8 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
-import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut } from "lucide-react";
+import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavItem {
   label: string;
@@ -48,9 +54,33 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Users className="w-5 h-5 text-primary-foreground" />
             </div>
-            <div>
-              <h2 className="text-lg font-semibold text-sidebar-foreground">HR Portal</h2>
-              <p className="text-xs text-sidebar-foreground/60">Management System</p>
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-sidebar-foreground">AI2AIM WORKSPACE</h2>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    className="h-auto p-0 text-xs text-sidebar-foreground/60 hover:text-sidebar-foreground/80 justify-start gap-1"
+                  >
+                    Employee Management System
+                    <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56">
+                  <DropdownMenuItem>
+                    <Users className="w-4 h-4 mr-2" />
+                    Employee Management System
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Document Management
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <BarChart3 className="w-4 h-4 mr-2" />
+                    Analytics Dashboard
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
@@ -90,7 +120,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <Separator className="mb-4" />
           <div className="text-xs text-sidebar-foreground/60 text-center">
-            © 2024 HR Portal
+            © 2024 AI2AIM WORKSPACE
           </div>
         </div>
       </div>
