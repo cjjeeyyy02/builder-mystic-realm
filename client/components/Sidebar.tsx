@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown } from "lucide-react";
+import { X, Home, Users, FileText, BarChart3, Folder, CreditCard, LogOut, ChevronDown, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NavItem {
   label: string;
@@ -19,6 +20,8 @@ interface NavItem {
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
 }
 
 const navItems: NavItem[] = [
@@ -31,11 +34,11 @@ const navItems: NavItem[] = [
   { label: "Offboarding", path: "/offboarding", icon: LogOut },
 ];
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }: SidebarProps) {
   const location = useLocation();
 
   return (
-    <>
+    <TooltipProvider>
       {/* Mobile overlay */}
       {isOpen && (
         <div 
@@ -45,44 +48,71 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       )}
       
       {/* Sidebar */}
-      <div className={`w-[280px] lg:w-[260px] bg-sidebar-background h-screen fixed left-0 top-0 z-30 transform transition-transform duration-300 ease-in-out shadow-xl ${
+      <div className={`${isCollapsed ? 'w-[80px]' : 'w-[280px] lg:w-[260px]'} bg-sidebar-background h-screen fixed left-0 top-0 z-30 transform transition-all duration-300 ease-in-out shadow-xl ${
         isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}>
         {/* Logo/Brand */}
         <div className="p-6 border-b border-sidebar-border">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Users className="w-5 h-5 text-primary-foreground" />
+          {!isCollapsed ? (
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <Users className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-lg font-semibold text-sidebar-foreground">AI2AIM WORKSPACE</h2>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      className="h-auto p-0 text-xs text-sidebar-foreground/60 hover:text-sidebar-foreground/80 justify-start gap-1"
+                    >
+                      Employee Management System
+                      <ChevronDown className="w-3 h-3" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    <DropdownMenuItem>
+                      <Users className="w-4 h-4 mr-2" />
+                      Employee Management System
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <FileText className="w-4 h-4 mr-2" />
+                      Document Management
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <BarChart3 className="w-4 h-4 mr-2" />
+                      Analytics Dashboard
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
-            <div className="flex-1">
-              <h2 className="text-lg font-semibold text-sidebar-foreground">AI2AIM WORKSPACE</h2>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    className="h-auto p-0 text-xs text-sidebar-foreground/60 hover:text-sidebar-foreground/80 justify-start gap-1"
-                  >
-                    Employee Management System
-                    <ChevronDown className="w-3 h-3" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56">
-                  <DropdownMenuItem>
-                    <Users className="w-4 h-4 mr-2" />
-                    Employee Management System
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <FileText className="w-4 h-4 mr-2" />
-                    Document Management
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <BarChart3 className="w-4 h-4 mr-2" />
-                    Analytics Dashboard
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+          ) : (
+            <div className="flex justify-center">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <Users className="w-5 h-5 text-primary-foreground" />
+              </div>
             </div>
-          </div>
+          )}
+        </div>
+
+        {/* Collapse/Expand Toggle Button */}
+        <div className="p-4 border-b border-sidebar-border">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onToggleCollapse}
+            className={`${isCollapsed ? 'w-full justify-center' : 'w-full justify-start gap-2'} text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hidden lg:flex`}
+          >
+            {isCollapsed ? (
+              <PanelLeftOpen className="w-4 h-4" />
+            ) : (
+              <>
+                <PanelLeftClose className="w-4 h-4" />
+                Collapse
+              </>
+            )}
+          </Button>
         </div>
 
         {/* Mobile close button */}
@@ -96,6 +126,32 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
+            
+            if (isCollapsed) {
+              return (
+                <Tooltip key={item.path}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={isActive ? "default" : "ghost"}
+                      className={`w-full justify-center h-12 px-3 ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                      }`}
+                      asChild
+                    >
+                      <Link to={item.path} onClick={onClose}>
+                        <Icon className="w-5 h-5" />
+                      </Link>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            }
+
             return (
               <Button
                 key={item.path}
@@ -120,10 +176,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <Separator className="mb-4" />
           <div className="text-xs text-sidebar-foreground/60 text-center">
-            © 2024 AI2AIM WORKSPACE
+            {isCollapsed ? "©2024" : "© 2024 AI2AIM WORKSPACE"}
           </div>
         </div>
       </div>
-    </>
+    </TooltipProvider>
   );
 }
