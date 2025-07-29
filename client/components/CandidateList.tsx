@@ -66,7 +66,7 @@ const candidates: Candidate[] = [
     phone: "123-456-793",
     totalExperience: "8 years",
     relevantExperience: "7 years",
-    status: "review",
+    status: "queue",
   },
 ];
 
