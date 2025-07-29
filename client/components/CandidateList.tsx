@@ -1,4 +1,4 @@
-import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical, X } from "lucide-react";
+import { Mail, Phone, ExternalLink, Send, CheckCircle, Clock, MoreVertical, X, MapPin, Calendar, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,62 +11,93 @@ interface Candidate {
   position: string;
   email: string;
   phone: string;
-  totalExperience: string;
-  relevantExperience: string;
+  companyLocation: string;
+  appliedDate: string;
+  applicationStart: string;
+  applicationEnd: string;
   status: "approved" | "reject" | "queue";
+  isSelected?: boolean;
   avatar?: string;
 }
 
 const candidates: Candidate[] = [
   {
     id: "1",
-    name: "Sarah Johnson",
-    position: "Software Engineer",
+    name: "Sarah Jane",
+    position: "Operation Associate",
     email: "sarahjohnson@gmail.com",
     phone: "123-456-789",
-    totalExperience: "6 years",
-    relevantExperience: "6 years",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "approved",
+    isSelected: false,
   },
   {
     id: "2",
-    name: "Michael Chen",
-    position: "Frontend Developer",
+    name: "Sarah Jane",
+    position: "Operation Associate",
     email: "michael.chen@gmail.com",
     phone: "123-456-790",
-    totalExperience: "4 years",
-    relevantExperience: "4 years",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "queue",
+    isSelected: true,
   },
   {
     id: "3",
-    name: "Emily Rodriguez",
-    position: "UX Designer",
+    name: "Sarah Jane",
+    position: "Operation Associate",
     email: "emily.rodriguez@gmail.com",
     phone: "123-456-791",
-    totalExperience: "5 years",
-    relevantExperience: "5 years",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "reject",
+    isSelected: false,
   },
   {
     id: "4",
-    name: "David Kim",
-    position: "Backend Developer",
+    name: "Sarah Jane",
+    position: "Operation Associate",
     email: "david.kim@gmail.com",
     phone: "123-456-792",
-    totalExperience: "7 years",
-    relevantExperience: "6 years",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "approved",
+    isSelected: false,
   },
   {
     id: "5",
-    name: "Lisa Wang",
-    position: "Product Manager",
+    name: "Sarah Jane",
+    position: "Operation Associate",
     email: "lisa.wang@gmail.com",
     phone: "123-456-793",
-    totalExperience: "8 years",
-    relevantExperience: "7 years",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
     status: "queue",
+    isSelected: false,
+  },
+  {
+    id: "6",
+    name: "Sarah Jane",
+    position: "Operation Associate",
+    email: "jane.smith@gmail.com",
+    phone: "123-456-794",
+    companyLocation: "Hyderabad, India",
+    appliedDate: "07-07-2025",
+    applicationStart: "07-02-2025",
+    applicationEnd: "07-10-2025",
+    status: "approved",
+    isSelected: false,
   },
 ];
 
@@ -98,84 +129,83 @@ function getStatusIcon(status: string) {
 
 export default function CandidateList() {
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {candidates.map((candidate) => (
-        <Card key={candidate.id} className="hover:shadow-md transition-shadow duration-200">
+        <Card 
+          key={candidate.id} 
+          className={`hover:shadow-md transition-all duration-200 ${
+            candidate.isSelected 
+              ? 'border-primary border-2 shadow-md' 
+              : 'border-border hover:border-primary/50'
+          }`}
+        >
           <CardContent className="p-6">
-            {/* Main Content Row */}
-            <div className="flex items-center justify-between">
-              {/* Left: Avatar + Basic Info */}
-              <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12">
-                  <AvatarFallback className="bg-primary/10 text-primary border border-primary/20">
-                    {candidate.name.split(' ').map(n => n[0]).join('')}
-                  </AvatarFallback>
-                </Avatar>
-                
-                <div className="space-y-1">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-semibold text-card-foreground">{candidate.name}</h3>
-                    <Badge variant={getStatusVariant(candidate.status)} className="gap-1">
-                      {getStatusIcon(candidate.status)}
-                      {candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{candidate.position}</p>
-                </div>
-              </div>
-
-              {/* Right: Actions */}
-              <div className="flex items-center gap-2">
-                <Button variant="default" size="sm" className="gap-1">
-                  <ExternalLink className="w-3 h-3" />
-                  Resume
-                </Button>
-                <Button variant="default" size="sm" className="gap-1 bg-blue-600 hover:bg-blue-700">
-                  <Send className="w-3 h-3" />
-                  Message
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <MoreVertical className="w-4 h-4" />
-                </Button>
+            {/* Header with Avatar and Info */}
+            <div className="flex items-start gap-3 mb-4">
+              <Avatar className="h-12 w-12">
+                <AvatarFallback className="bg-gray-100 text-gray-600">
+                  {candidate.name.split(' ').map(n => n[0]).join('')}
+                </AvatarFallback>
+              </Avatar>
+              
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-card-foreground text-base mb-1">
+                  {candidate.name}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  {candidate.position}
+                </p>
               </div>
             </div>
 
-            <Separator className="my-4" />
+            {/* Company Location */}
+            <div className="flex items-center gap-2 mb-3">
+              <MapPin className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                Company Location: {candidate.companyLocation}
+              </span>
+            </div>
 
-            {/* Bottom Row: Experience + Contact */}
-            <div className="flex items-center justify-between">
-              {/* Left: Experience */}
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                <span className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  Total Experience: {candidate.totalExperience}
-                </span>
-                <span className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  Relevant Experience: {candidate.relevantExperience}
+            {/* Applied Date */}
+            <div className="flex items-center gap-2 mb-3">
+              <Calendar className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                Applied: {candidate.appliedDate}
+              </span>
+            </div>
+
+            {/* Application Timeline */}
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  Application Start: {candidate.applicationStart}
                 </span>
               </div>
-
-              {/* Right: Contact */}
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-auto p-0 gap-1 hover:text-primary" 
-                  title={candidate.email}
-                >
-                  <Mail className="w-3 h-3" />
-                  <span className="hidden lg:inline">{candidate.name}</span>
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-auto p-0 gap-1 hover:text-primary"
-                >
-                  <Phone className="w-3 h-3" />
-                  <span>{candidate.phone}</span>
-                </Button>
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  Application End: {candidate.applicationEnd}
+                </span>
               </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="flex-1 text-xs h-8"
+              >
+                Remote
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="flex-1 text-xs h-8"
+              >
+                View Profile
+              </Button>
             </div>
           </CardContent>
         </Card>
