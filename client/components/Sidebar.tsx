@@ -157,10 +157,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
 
         {/* Bottom section */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <Separator className="mb-4" />
-          <div className="text-xs text-sidebar-foreground/60 text-center">
-            {isCollapsed ? "©" : "© AI2AIM WORKSPACE"}
-          </div>
+          <Separator />
         </div>
       </div>
     </TooltipProvider>
