@@ -188,10 +188,10 @@ export default function ScreeningView() {
                     <ExternalLink className="w-3 h-3" />
                     Resume
                   </Button>
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="gap-1 bg-green-600 hover:bg-green-700 text-white font-medium h-8 px-3"
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="gap-1 bg-blue-600 hover:bg-blue-700 text-white font-medium h-8 px-3"
                   >
                     <Send className="w-3 h-3" />
                     Message
