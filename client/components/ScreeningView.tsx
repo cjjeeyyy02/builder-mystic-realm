@@ -184,9 +184,9 @@ export default function ScreeningView() {
                     variant="default"
                     size="sm"
                     className="gap-1 text-white font-medium h-8 px-3"
-                    style={{ backgroundColor: '#00CAFF' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0099CC'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00CAFF'}
+                    style={{ backgroundColor: '#0065F8' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052C6'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0065F8'}
                   >
                     <ExternalLink className="w-3 h-3" />
                     Resume
@@ -195,9 +195,9 @@ export default function ScreeningView() {
                     variant="default"
                     size="sm"
                     className="gap-1 text-white font-medium h-8 px-3"
-                    style={{ backgroundColor: '#00CAFF' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0099CC'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00CAFF'}
+                    style={{ backgroundColor: '#0065F8' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052C6'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0065F8'}
                   >
                     <Send className="w-3 h-3" />
                     Message
