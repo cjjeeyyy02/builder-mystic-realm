@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import Sidebar from "./Sidebar";
-import { Menu, Bell, Search, Settings } from "lucide-react";
+import { Menu, Bell, Search, Settings, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -35,7 +35,21 @@ export default function Layout({ children }: LayoutProps) {
           >
             <Menu className="w-5 h-5" />
           </Button>
-          
+
+          {/* Collapse/Expand Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="hidden lg:flex"
+          >
+            {sidebarCollapsed ? (
+              <PanelLeftOpen className="w-5 h-5" />
+            ) : (
+              <PanelLeftClose className="w-5 h-5" />
+            )}
+          </Button>
+
           {/* Search Bar */}
           <div className="hidden md:flex items-center relative">
             <Search className="absolute left-3 w-4 h-4 text-muted-foreground" />
