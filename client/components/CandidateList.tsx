@@ -180,11 +180,11 @@ export default function CandidateList() {
               </div>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <FileText className="w-3 h-3" />
-                <span>Start: {candidate.applicationStart}</span>
+                <span>Application Start: {candidate.applicationStart}</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <FileText className="w-3 h-3" />
-                <span>End: {candidate.applicationEnd}</span>
+                <span>Application End: {candidate.applicationEnd}</span>
               </div>
             </div>
 
