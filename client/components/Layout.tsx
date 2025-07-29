@@ -13,13 +13,19 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        isCollapsed={sidebarCollapsed}
+        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
       
       {/* Header */}
-      <div className="lg:ml-[260px] h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-8 shadow-sm">
+      <div className={`${sidebarCollapsed ? 'lg:ml-[80px]' : 'lg:ml-[260px]'} h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-8 shadow-sm transition-all duration-300`}>
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
@@ -71,7 +77,7 @@ export default function Layout({ children }: LayoutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="lg:ml-[260px] p-4 lg:p-8 bg-muted/30 min-h-[calc(100vh-4rem)]">
+      <div className={`${sidebarCollapsed ? 'lg:ml-[80px]' : 'lg:ml-[260px]'} p-4 lg:p-8 bg-muted/30 min-h-[calc(100vh-4rem)] transition-all duration-300`}>
         {children}
       </div>
     </div>
