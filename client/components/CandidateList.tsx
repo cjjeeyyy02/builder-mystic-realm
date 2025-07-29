@@ -143,19 +143,19 @@ export default function CandidateList() {
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                Total: {candidate.totalExperience}
+                Total Experience: {candidate.totalExperience}
               </span>
               <span className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                Relevant: {candidate.relevantExperience}
+                Relevant Experience: {candidate.relevantExperience}
               </span>
             </div>
 
             {/* Right: Contact */}
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+              <div className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer" title={candidate.email}>
                 <Mail className="w-3 h-3" />
-                <span className="hidden lg:inline">{candidate.email}</span>
+                <span className="hidden lg:inline">{candidate.name}</span>
               </div>
               <div className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
                 <Phone className="w-3 h-3" />
