@@ -1,4 +1,6 @@
-import { Users, UserCheck, UserPlus, CheckCircle } from "lucide-react";
+import { Users, UserCheck, UserPlus, CheckCircle, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface StatCard {
   title: string;
@@ -55,27 +57,32 @@ export default function StatsCards() {
       {stats.map((stat) => {
         const Icon = stat.icon;
         return (
-          <div key={stat.title} className="bg-card p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-                <Icon className={`w-6 h-6 ${stat.color}`} />
-              </div>
+          <Card key={stat.title} className="hover:shadow-md transition-shadow duration-200">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                {stat.title}
+              </CardTitle>
               {stat.change && (
-                <span className={`text-sm font-medium px-2 py-1 rounded-full ${
-                  stat.changeType === "increase" 
-                    ? "text-emerald-600 bg-emerald-50" 
-                    : "text-red-600 bg-red-50"
-                }`}>
+                <Badge 
+                  variant={stat.changeType === "increase" ? "default" : "destructive"}
+                  className="gap-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-50"
+                >
+                  <TrendingUp className="w-3 h-3" />
                   {stat.change}
-                </span>
+                </Badge>
               )}
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-muted-foreground mb-1">{stat.title}</h3>
-              <p className="text-3xl font-bold text-card-foreground">{stat.value}</p>
-            </div>
-          </div>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-card-foreground">{stat.value}</div>
+                </div>
+                <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
+                  <Icon className={`w-6 h-6 ${stat.color}`} />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         );
       })}
     </div>
