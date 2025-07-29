@@ -13,7 +13,7 @@ interface Candidate {
   phone: string;
   totalExperience: string;
   relevantExperience: string;
-  status: "approved" | "pending" | "review";
+  status: "approved" | "reject" | "queue";
   avatar?: string;
 }
 
