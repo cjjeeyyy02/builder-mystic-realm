@@ -188,6 +188,29 @@ function getDepartmentColor(department: string): string {
   }
 }
 
+function getRoundContent(roundType: string, roundNumber: number) {
+  const content = {
+    technical: {
+      1: { name: "Coding Assessment", mode: "Online Assessment", assessment: "Written Test" },
+      2: { name: "System Design", mode: "Video Call", assessment: "Practical Test" },
+      3: { name: "Technical Deep Dive", mode: "In-Person", assessment: "Oral Interview" }
+    },
+    nontechnical: {
+      1: { name: "HR Screening", mode: "Video Call", assessment: "Oral Interview" },
+      2: { name: "Behavioral Interview", mode: "In-Person", assessment: "Oral Interview" },
+      3: { name: "Culture Fit", mode: "Video Call", assessment: "Oral Interview" }
+    },
+    final: {
+      1: { name: "Executive Interview", mode: "In-Person", assessment: "Oral Interview" },
+      2: { name: "Stakeholder Review", mode: "Video Call", assessment: "Portfolio Review" },
+      3: { name: "Final Decision", mode: "In-Person", assessment: "Case Study" }
+    }
+  };
+
+  return content[roundType as keyof typeof content]?.[roundNumber as keyof typeof content.technical] ||
+         { name: "Interview Round", mode: "Online Assessment", assessment: "Written Test" };
+}
+
 export default function InterviewView() {
   const [activeTab, setActiveTab] = useState("ongoing");
   const [activeRoundType, setActiveRoundType] = useState("technical");
