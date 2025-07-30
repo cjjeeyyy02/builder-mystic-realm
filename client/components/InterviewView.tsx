@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Mail, Plus, Edit3, Calendar, CheckCircle, XCircle } from "lucide-react";
+import { Mail, Plus, Edit3, Calendar, CheckCircle, XCircle, Clock, FileText, Users } from "lucide-react";
 
 interface InterviewCandidate {
   id: string;
@@ -527,11 +527,19 @@ export default function InterviewView() {
 
                     {/* Round List */}
                     <div className="space-y-2">
-                      {[2, 3, 4].map((round) => (
-                        <div key={round} className="bg-blue-600 text-white p-3 rounded-md flex justify-between items-center">
-                          <span className="font-medium">ROUND {round}</span>
-                          <Button size="sm" variant="ghost" className="text-white hover:bg-blue-700">
-                            <Edit3 className="w-4 h-4" />
+                      {[
+                        { number: 2, icon: Clock, label: "Technical Assessment" },
+                        { number: 3, icon: FileText, label: "Case Study Review" },
+                        { number: 4, icon: Users, label: "Panel Interview" }
+                      ].map((round) => (
+                        <div key={round.number} className="bg-blue-600 text-white px-4 py-2.5 rounded-md flex justify-between items-center text-sm">
+                          <div className="flex items-center gap-2">
+                            <round.icon className="w-4 h-4" />
+                            <span className="font-medium">ROUND {round.number}</span>
+                            <span className="text-blue-200 text-xs hidden sm:inline">- {round.label}</span>
+                          </div>
+                          <Button size="sm" variant="ghost" className="text-white hover:bg-blue-700 h-7 w-7 p-0">
+                            <Edit3 className="w-3 h-3" />
                           </Button>
                         </div>
                       ))}
