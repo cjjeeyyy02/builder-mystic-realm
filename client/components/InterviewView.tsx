@@ -389,15 +389,15 @@ export default function InterviewView() {
           </Card>
           <Card className="p-4">
             <div className="text-2xl font-bold text-orange-600">
-              {upcomingInterviews.filter(i => i.department === "Marketing").length}
+              {upcomingInterviews.filter(i => i.department === "Engineering").length}
             </div>
-            <div className="text-sm text-muted-foreground">Marketing Dept.</div>
+            <div className="text-sm text-muted-foreground">Engineering Dept.</div>
           </Card>
           <Card className="p-4">
             <div className="text-2xl font-bold text-purple-600">
-              {upcomingInterviews.filter(i => i.interviewRound.includes("Round-2")).length}
+              {upcomingInterviews.filter(i => i.interviewRound.includes("Round") || i.interviewRound.includes("Final")).length}
             </div>
-            <div className="text-sm text-muted-foreground">Round 2 Interviews</div>
+            <div className="text-sm text-muted-foreground">Advanced Rounds</div>
           </Card>
         </div>
       )}
