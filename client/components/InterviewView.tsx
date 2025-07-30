@@ -235,7 +235,8 @@ export default function InterviewView() {
       </div>
 
       {/* Conditional Interview Table */}
-      <Card className="border-0 shadow-sm overflow-hidden">
+      {activeTab !== "roundroom" && (
+        <Card className="border-0 shadow-sm overflow-hidden">
         <CardContent className="p-0">
           <Table>
             <TableHeader>
@@ -369,7 +370,8 @@ export default function InterviewView() {
             </TableBody>
           </Table>
         </CardContent>
-      </Card>
+        </Card>
+      )}
 
       {/* Round Room Interface */}
       {activeTab === "roundroom" && (
