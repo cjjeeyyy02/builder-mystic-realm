@@ -191,6 +191,7 @@ function getDepartmentColor(department: string): string {
 export default function InterviewView() {
   const [activeTab, setActiveTab] = useState("ongoing");
   const [activeRoundType, setActiveRoundType] = useState("technical");
+  const [selectedRound, setSelectedRound] = useState(1);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   return (
@@ -411,30 +412,35 @@ export default function InterviewView() {
                 {/* Left Side - Round Details */}
                 <div className="space-y-6">
                   <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-primary mb-4">ROUND 1</h3>
+                    <h3 className="text-lg font-semibold text-primary mb-4">ROUND {selectedRound}</h3>
 
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Round Name</label>
                         <input
                           type="text"
-                          defaultValue="Content Writing"
+                          defaultValue={getRoundContent(activeRoundType, selectedRound).name}
                           className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Round Type</label>
-                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
-                          <option>Non-Technical</option>
-                          <option>Technical</option>
-                          <option>Final</option>
+                        <select
+                          value={activeRoundType}
+                          onChange={(e) => setActiveRoundType(e.target.value as any)}
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
+                        >
+                          <option value="technical">Technical</option>
+                          <option value="nontechnical">Non-Technical</option>
+                          <option value="final">Final</option>
                         </select>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Interview Mode</label>
                         <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
+                          <option>{getRoundContent(activeRoundType, selectedRound).mode}</option>
                           <option>Online Assessment</option>
                           <option>In-Person</option>
                           <option>Video Call</option>
@@ -444,9 +450,12 @@ export default function InterviewView() {
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Assessment Type</label>
                         <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
+                          <option>{getRoundContent(activeRoundType, selectedRound).assessment}</option>
                           <option>Written Test</option>
                           <option>Practical Test</option>
                           <option>Oral Interview</option>
+                          <option>Portfolio Review</option>
+                          <option>Case Study</option>
                         </select>
                       </div>
 
