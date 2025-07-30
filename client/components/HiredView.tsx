@@ -155,12 +155,12 @@ export default function HiredView() {
             className="pl-10"
           />
         </div>
-        <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
+        <Select value={selectedDepartment || "all"} onValueChange={setSelectedDepartment}>
           <SelectTrigger className="w-64">
             <SelectValue placeholder="All departments" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All departments</SelectItem>
+            <SelectItem value="all">All departments</SelectItem>
             <SelectItem value="Marketing">Marketing</SelectItem>
             <SelectItem value="Operations">Operations</SelectItem>
             <SelectItem value="Content">Content</SelectItem>
