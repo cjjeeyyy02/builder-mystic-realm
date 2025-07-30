@@ -462,7 +462,7 @@ export default function InterviewView() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button className="bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20">
                       <Edit3 className="w-4 h-4 mr-2" />
                       EDIT EXISTING TEMPLATE
                     </Button>
@@ -528,15 +528,14 @@ export default function InterviewView() {
                     {/* Round List */}
                     <div className="space-y-2">
                       {[
-                        { number: 2, icon: Clock, label: "Technical Assessment" },
-                        { number: 3, icon: FileText, label: "Case Study Review" },
-                        { number: 4, icon: Users, label: "Panel Interview" }
+                        { number: 2, icon: Clock },
+                        { number: 3, icon: FileText },
+                        { number: 4, icon: Users }
                       ].map((round) => (
                         <div key={round.number} className="bg-blue-600 text-white px-4 py-2.5 rounded-md flex justify-between items-center text-sm">
                           <div className="flex items-center gap-2">
                             <round.icon className="w-4 h-4" />
                             <span className="font-medium">ROUND {round.number}</span>
-                            <span className="text-blue-200 text-xs hidden sm:inline">- {round.label}</span>
                           </div>
                           <Button size="sm" variant="ghost" className="text-white hover:bg-blue-700 h-7 w-7 p-0">
                             <Edit3 className="w-3 h-3" />
@@ -561,11 +560,11 @@ export default function InterviewView() {
 
               {/* Bottom Action Buttons */}
               <div className="flex justify-center gap-6 mt-8 pt-6 border-t border-border">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+                <Button className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-3">
                   <CheckCircle className="w-5 h-5 mr-2" />
                   APPROVE
                 </Button>
-                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3">
+                <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
                   <XCircle className="w-5 h-5 mr-2" />
                   REJECT
                 </Button>
