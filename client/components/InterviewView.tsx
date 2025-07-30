@@ -568,7 +568,7 @@ export default function InterviewView() {
       )}
 
       {/* Summary Stats */}
-      {activeTab === "ongoing" ? (
+      {activeTab !== "roundroom" && (activeTab === "ongoing" ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card className="p-4">
             <div className="text-2xl font-bold text-blue-600">
@@ -610,7 +610,7 @@ export default function InterviewView() {
             <div className="text-sm text-muted-foreground">Final Rounds</div>
           </Card>
         </div>
-      )}
+      ))}
     </div>
   );
 }
