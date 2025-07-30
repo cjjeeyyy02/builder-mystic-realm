@@ -481,6 +481,34 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
 
   return (
     <div className="space-y-6">
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-orange-600">
+            {decisionCandidates.filter(c => c.status === "pending").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Pending Decisions</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-green-600">
+            {decisionCandidates.filter(c => c.status === "approved").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Approved</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-red-600">
+            {decisionCandidates.filter(c => c.status === "declined").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Declined</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-purple-600">
+            {new Set(decisionCandidates.map(c => c.location)).size}
+          </div>
+          <div className="text-sm text-muted-foreground">Locations</div>
+        </Card>
+      </div>
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
