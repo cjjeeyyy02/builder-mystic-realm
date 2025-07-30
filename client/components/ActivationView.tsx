@@ -149,11 +149,27 @@ function getDepartmentColor(department: string): string {
 }
 
 export default function ActivationView() {
+  const [showChecklist, setShowChecklist] = useState(false);
+
+  if (showChecklist) {
+    return <ChecklistAndDocumentsView onBack={() => setShowChecklist(false)} />;
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-foreground">Employee Activation</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-2xl font-semibold text-foreground">Employee Activation</h2>
+          <Button
+            variant="outline"
+            onClick={() => setShowChecklist(true)}
+            className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            Candidate Checklist and Documents
+          </Button>
+        </div>
         <div className="text-sm text-muted-foreground">
           {activationCandidates.length} employees in activation process
         </div>
