@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, Building, Briefcase, Mail, Phone } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
+import { Calendar, User, Building, Briefcase, Mail, Phone, FileText, Download, Upload, RotateCcw, Info, Trash2, CheckCircle, Clock, AlertCircle } from "lucide-react";
 
 interface ActivationCandidate {
   id: string;
