@@ -560,16 +560,31 @@ export default function InterviewView() {
                     {/* Round List */}
                     <div className="space-y-2">
                       {[
-                        { number: 2, icon: Clock },
-                        { number: 3, icon: FileText },
-                        { number: 4, icon: Users }
+                        { number: 1, icon: Clock },
+                        { number: 2, icon: FileText },
+                        { number: 3, icon: Users }
                       ].map((round) => (
-                        <div key={round.number} className="bg-blue-600 text-white px-4 py-2.5 rounded-md flex justify-between items-center text-sm">
+                        <div
+                          key={round.number}
+                          className={`${selectedRound === round.number ? 'bg-blue-700' : 'bg-blue-600'} text-white px-4 py-2.5 rounded-md flex justify-between items-center text-sm cursor-pointer hover:bg-blue-700 transition-colors`}
+                          onClick={() => setSelectedRound(round.number)}
+                        >
                           <div className="flex items-center gap-2">
                             <round.icon className="w-4 h-4" />
                             <span className="font-medium">ROUND {round.number}</span>
+                            <span className="text-blue-200 text-xs hidden sm:inline">
+                              - {getRoundContent(activeRoundType, round.number).name}
+                            </span>
                           </div>
-                          <Button size="sm" variant="ghost" className="text-white hover:bg-blue-700 h-7 w-7 p-0">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="text-white hover:bg-blue-800 h-7 w-7 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedRound(round.number);
+                            }}
+                          >
                             <Edit3 className="w-3 h-3" />
                           </Button>
                         </div>
