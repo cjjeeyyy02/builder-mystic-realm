@@ -126,6 +126,7 @@ function getDepartmentColor(department: string): string {
 export default function HiredView() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [showDecisionRoom, setShowDecisionRoom] = useState(false);
 
   const filteredEmployees = hiredEmployees.filter(employee => {
     const matchesSearch = employee.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,11 +135,25 @@ export default function HiredView() {
     return matchesSearch && matchesDepartment;
   });
 
+  if (showDecisionRoom) {
+    return <DecisionRoomView onBack={() => setShowDecisionRoom(false)} />;
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-foreground">Hired Employees</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-2xl font-semibold text-foreground">Hired Employees</h2>
+          <Button
+            variant="outline"
+            onClick={() => setShowDecisionRoom(true)}
+            className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            Decision Room
+          </Button>
+        </div>
         <div className="text-sm text-muted-foreground">
           {filteredEmployees.length} hired employees
         </div>
