@@ -20,6 +20,16 @@ interface InterviewCandidate {
   status: "in-progress" | "completed" | "pending";
 }
 
+interface UpcomingInterview {
+  id: string;
+  sNo: number;
+  applicantName: string;
+  appliedPosition: string;
+  department: string;
+  interviewDateTime: string;
+  interviewRound: string;
+}
+
 const interviewCandidates: InterviewCandidate[] = [
   {
     id: "1",
