@@ -97,7 +97,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "Senior Software Engineer",
     department: "Engineering",
     interviewDateTime: "01-15-25 | 09:30 AM",
-    interviewRound: "System Design - Final Round",
+    interviewRound: "Technical Round 1",
   },
   {
     id: "2",
@@ -106,7 +106,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "Product Manager",
     department: "Product",
     interviewDateTime: "01-15-25 | 11:00 AM",
-    interviewRound: "Behavioral - Round 3",
+    interviewRound: "Final Round",
   },
   {
     id: "3",
@@ -115,7 +115,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "UX/UI Designer",
     department: "Design",
     interviewDateTime: "01-15-25 | 02:15 PM",
-    interviewRound: "Portfolio Review - Round 2",
+    interviewRound: "Non Technical Round 4",
   },
   {
     id: "4",
@@ -124,7 +124,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "Data Scientist",
     department: "Analytics",
     interviewDateTime: "01-16-25 | 10:45 AM",
-    interviewRound: "Technical Assessment",
+    interviewRound: "Technical Round 1",
   },
   {
     id: "5",
@@ -133,7 +133,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "Marketing Specialist",
     department: "Marketing",
     interviewDateTime: "01-16-25 | 01:30 PM",
-    interviewRound: "Case Study Presentation",
+    interviewRound: "Final Round",
   },
   {
     id: "6",
@@ -142,7 +142,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "DevOps Engineer",
     department: "Engineering",
     interviewDateTime: "01-16-25 | 03:45 PM",
-    interviewRound: "Infrastructure Design",
+    interviewRound: "Non Technical Round 4",
   },
   {
     id: "7",
@@ -151,7 +151,7 @@ const upcomingInterviews: UpcomingInterview[] = [
     appliedPosition: "Business Analyst",
     department: "Operations",
     interviewDateTime: "01-17-25 | 11:15 AM",
-    interviewRound: "Process Analysis - Round 2",
+    interviewRound: "Technical Round 1",
   },
 ];
 
