@@ -358,26 +358,49 @@ export default function InterviewView() {
       </Card>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-blue-600">
-            {interviewCandidates.filter(c => c.status === "in-progress").length}
-          </div>
-          <div className="text-sm text-muted-foreground">In Progress</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-emerald-600">
-            {interviewCandidates.filter(c => c.status === "completed").length}
-          </div>
-          <div className="text-sm text-muted-foreground">Completed</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-amber-600">
-            {interviewCandidates.filter(c => c.status === "pending").length}
-          </div>
-          <div className="text-sm text-muted-foreground">Pending</div>
-        </Card>
-      </div>
+      {activeTab === "ongoing" ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-blue-600">
+              {interviewCandidates.filter(c => c.status === "in-progress").length}
+            </div>
+            <div className="text-sm text-muted-foreground">In Progress</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-emerald-600">
+              {interviewCandidates.filter(c => c.status === "completed").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Completed</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-amber-600">
+              {interviewCandidates.filter(c => c.status === "pending").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Pending</div>
+          </Card>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-[#0065F8]">
+              {upcomingInterviews.length}
+            </div>
+            <div className="text-sm text-muted-foreground">Total Upcoming</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-orange-600">
+              {upcomingInterviews.filter(i => i.department === "Marketing").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Marketing Dept.</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-purple-600">
+              {upcomingInterviews.filter(i => i.interviewRound.includes("Round-2")).length}
+            </div>
+            <div className="text-sm text-muted-foreground">Round 2 Interviews</div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
