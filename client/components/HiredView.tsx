@@ -130,7 +130,7 @@ export default function HiredView() {
   const filteredEmployees = hiredEmployees.filter(employee => {
     const matchesSearch = employee.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          employee.appliedPosition.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = !selectedDepartment || employee.department === selectedDepartment;
+    const matchesDepartment = selectedDepartment === "all" || !selectedDepartment || employee.department === selectedDepartment;
     return matchesSearch && matchesDepartment;
   });
 
