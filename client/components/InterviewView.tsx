@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Mail } from "lucide-react";
+import { Mail, Plus, Edit3, Calendar, CheckCircle, XCircle } from "lucide-react";
 
 interface InterviewCandidate {
   id: string;
@@ -190,6 +190,8 @@ function getDepartmentColor(department: string): string {
 
 export default function InterviewView() {
   const [activeTab, setActiveTab] = useState("ongoing");
+  const [activeRoundType, setActiveRoundType] = useState("technical");
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   return (
     <div className="space-y-6">
@@ -212,12 +214,22 @@ export default function InterviewView() {
           >
             Upcoming Interview
           </Button>
+          <Button
+            variant={activeTab === "roundroom" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setActiveTab("roundroom")}
+            className="text-sm font-medium px-6 py-2"
+          >
+            Round Room
+          </Button>
         </div>
         
         <div className="text-sm text-muted-foreground">
           {activeTab === "ongoing"
             ? `${interviewCandidates.length} candidates in process`
-            : `${upcomingInterviews.length} upcoming interviews`
+            : activeTab === "upcoming"
+            ? `${upcomingInterviews.length} upcoming interviews`
+            : "Round Management System"
           }
         </div>
       </div>
