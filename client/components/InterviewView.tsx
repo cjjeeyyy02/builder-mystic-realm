@@ -191,19 +191,19 @@ function getDepartmentColor(department: string): string {
 function getRoundContent(roundType: string, roundNumber: number) {
   const content = {
     technical: {
-      1: { name: "Coding Assessment", mode: "Online Assessment", assessment: "Written Test" },
-      2: { name: "System Design", mode: "Video Call", assessment: "Practical Test" },
-      3: { name: "Technical Deep Dive", mode: "In-Person", assessment: "Oral Interview" }
+      1: { name: "Technical Round 1", mode: "Online Assessment", assessment: "Written Test" },
+      2: { name: "Technical Round 2", mode: "Video Call", assessment: "Practical Test" },
+      3: { name: "Technical Round 3", mode: "In-Person", assessment: "Oral Interview" }
     },
     nontechnical: {
-      1: { name: "HR Screening", mode: "Video Call", assessment: "Oral Interview" },
-      2: { name: "Behavioral Interview", mode: "In-Person", assessment: "Oral Interview" },
-      3: { name: "Culture Fit", mode: "Video Call", assessment: "Oral Interview" }
+      1: { name: "Non-Technical Round 1", mode: "Video Call", assessment: "Oral Interview" },
+      2: { name: "Non-Technical Round 2", mode: "In-Person", assessment: "Oral Interview" },
+      3: { name: "Non-Technical Round 3", mode: "Video Call", assessment: "Oral Interview" }
     },
     final: {
-      1: { name: "Executive Interview", mode: "In-Person", assessment: "Oral Interview" },
-      2: { name: "Stakeholder Review", mode: "Video Call", assessment: "Portfolio Review" },
-      3: { name: "Final Decision", mode: "In-Person", assessment: "Case Study" }
+      1: { name: "Final Round 1", mode: "In-Person", assessment: "Oral Interview" },
+      2: { name: "Final Round 2", mode: "Video Call", assessment: "Portfolio Review" },
+      3: { name: "Final Round 3", mode: "In-Person", assessment: "Case Study" }
     }
   };
 
