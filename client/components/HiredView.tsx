@@ -324,3 +324,355 @@ export default function HiredView() {
     </div>
   );
 }
+
+interface DecisionCandidate {
+  id: string;
+  serialNo: number;
+  name: string;
+  role: string;
+  department: string;
+  expectedDOJ: string;
+  employment: string;
+  location: string;
+  confirmedDOJ?: string;
+  status: "pending" | "approved" | "declined";
+}
+
+interface DecisionRoomViewProps {
+  onBack: () => void;
+}
+
+function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
+  const [searchCandidates, setSearchCandidates] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const decisionCandidates: DecisionCandidate[] = [
+    {
+      id: "1",
+      serialNo: 1,
+      name: "Amy Chen",
+      role: "HR Executive",
+      department: "Human Resources",
+      expectedDOJ: "07-01-2025",
+      employment: "Full-time",
+      location: "Hyderabad, India",
+      status: "pending"
+    },
+    {
+      id: "2",
+      serialNo: 2,
+      name: "Sasha Williams",
+      role: "SEO Executive",
+      department: "Marketing",
+      expectedDOJ: "07-01-2025",
+      employment: "Part-time",
+      location: "Delhi, India",
+      status: "pending"
+    },
+    {
+      id: "3",
+      serialNo: 3,
+      name: "Jimmy Rodriguez",
+      role: "Finance Manager",
+      department: "Finance",
+      expectedDOJ: "07-01-2025",
+      employment: "Freelance",
+      location: "Vancouver, Canada",
+      status: "pending"
+    },
+    {
+      id: "4",
+      serialNo: 4,
+      name: "Ren Kumar",
+      role: "Content Writer",
+      department: "Software",
+      expectedDOJ: "07-01-2025",
+      employment: "Contract",
+      location: "Finland, Europe",
+      status: "pending"
+    },
+    {
+      id: "5",
+      serialNo: 5,
+      name: "Max Thompson",
+      role: "ML Engineer",
+      department: "Software",
+      expectedDOJ: "07-01-2025",
+      employment: "Internship",
+      location: "Finland, Europe",
+      status: "pending"
+    },
+    {
+      id: "6",
+      serialNo: 6,
+      name: "Luna Martinez",
+      role: "AI Developer",
+      department: "Software",
+      expectedDOJ: "07-01-2025",
+      employment: "Full-time",
+      location: "Iceland, Europe",
+      status: "pending"
+    },
+    {
+      id: "7",
+      serialNo: 7,
+      name: "Chloe Davis",
+      role: "UI/UX Designer",
+      department: "Design",
+      expectedDOJ: "07-01-2025",
+      employment: "Part-time",
+      location: "Pune, India",
+      status: "pending"
+    },
+    {
+      id: "8",
+      serialNo: 8,
+      name: "Shruti Patel",
+      role: "HR Executive",
+      department: "Human Resources",
+      expectedDOJ: "07-01-2025",
+      employment: "Full-time",
+      location: "Hyderabad, India",
+      status: "pending"
+    }
+  ];
+
+  const filteredCandidates = decisionCandidates.filter(candidate => {
+    const matchesSearch = candidate.name.toLowerCase().includes(searchCandidates.toLowerCase()) ||
+                         candidate.role.toLowerCase().includes(searchCandidates.toLowerCase());
+    const matchesStatus = statusFilter === "all" || candidate.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+  const getEmploymentColor = (employment: string): string => {
+    switch (employment) {
+      case "Full-time":
+        return "bg-green-100 text-green-700 border-green-200";
+      case "Part-time":
+        return "bg-blue-100 text-blue-700 border-blue-200";
+      case "Contract":
+        return "bg-purple-100 text-purple-700 border-purple-200";
+      case "Freelance":
+        return "bg-orange-100 text-orange-700 border-orange-200";
+      case "Internship":
+        return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      default:
+        return "bg-gray-100 text-gray-700 border-gray-200";
+    }
+  };
+
+  const getDepartmentColor = (department: string): string => {
+    switch (department) {
+      case "Human Resources":
+        return "bg-purple-50 text-purple-700";
+      case "Marketing":
+        return "bg-orange-50 text-orange-700";
+      case "Finance":
+        return "bg-indigo-50 text-indigo-700";
+      case "Software":
+        return "bg-blue-50 text-blue-700";
+      case "Design":
+        return "bg-pink-50 text-pink-700";
+      default:
+        return "bg-gray-50 text-gray-700";
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" onClick={onBack}>
+            ← Back
+          </Button>
+          <h2 className="text-2xl font-semibold text-foreground">Decision Room</h2>
+        </div>
+        <div className="text-sm text-muted-foreground">
+          {filteredCandidates.length} candidates pending decision
+        </div>
+      </div>
+
+      {/* Search and Filter */}
+      <div className="flex gap-4">
+        <div className="flex-1 max-w-md relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            placeholder="Search candidates..."
+            value={searchCandidates}
+            onChange={(e) => setSearchCandidates(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <SelectTrigger className="w-48">
+            <SelectValue placeholder="Filter by status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Statuses</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="approved">Approved</SelectItem>
+            <SelectItem value="declined">Declined</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Decision Table */}
+      <Card className="border-0 shadow-sm overflow-hidden">
+        <CardContent className="p-0">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/30 border-b">
+                <TableHead className="w-16 text-center font-semibold text-foreground py-4">
+                  S. NO
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  NAME
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  ROLE
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  DEPT
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  EXPECTED DOJ
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  EMPLOYMENT
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  LOCATION
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  CONFIRMED DOJ
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4 text-center">
+                  ACTIONS
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredCandidates.map((candidate) => (
+                <TableRow
+                  key={candidate.id}
+                  className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                >
+                  <TableCell className="text-center font-medium text-muted-foreground py-4">
+                    {candidate.serialNo}
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                        <User className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="font-semibold text-foreground">
+                        {candidate.name}
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <div className="font-medium text-foreground">
+                      {candidate.role}
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <Badge
+                      variant="secondary"
+                      className={`font-medium ${getDepartmentColor(candidate.department)}`}
+                    >
+                      {candidate.department}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <div className="flex items-center gap-2 text-foreground font-medium">
+                      <Calendar className="w-4 h-4 text-muted-foreground" />
+                      {candidate.expectedDOJ}
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <Badge
+                      variant="outline"
+                      className={`font-medium ${getEmploymentColor(candidate.employment)}`}
+                    >
+                      {candidate.employment}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <div className="flex items-center gap-2 text-foreground">
+                      <MapPin className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm">{candidate.location}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-4">
+                    {candidate.confirmedDOJ ? (
+                      <div className="flex items-center gap-2 text-foreground font-medium">
+                        <Clock className="w-4 h-4 text-muted-foreground" />
+                        {candidate.confirmedDOJ}
+                      </div>
+                    ) : (
+                      <span className="text-muted-foreground text-sm">Pending</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="py-4">
+                    <div className="flex items-center gap-2 justify-center">
+                      <Button
+                        size="sm"
+                        className="bg-green-600 hover:bg-green-700 text-white h-8 px-3"
+                      >
+                        <CheckCircle className="w-3 h-3 mr-1" />
+                        APPROVE
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="bg-red-600 hover:bg-red-700 text-white h-8 px-3"
+                      >
+                        <XCircle className="w-3 h-3 mr-1" />
+                        DECLINE
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3"
+                      >
+                        <Mail className="w-3 h-3 mr-1" />
+                        EMAIL
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-orange-600">
+            {decisionCandidates.filter(c => c.status === "pending").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Pending Decisions</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-green-600">
+            {decisionCandidates.filter(c => c.status === "approved").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Approved</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-red-600">
+            {decisionCandidates.filter(c => c.status === "declined").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Declined</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-purple-600">
+            {new Set(decisionCandidates.map(c => c.location)).size}
+          </div>
+          <div className="text-sm text-muted-foreground">Locations</div>
+        </Card>
+      </div>
+    </div>
+  );
+}
