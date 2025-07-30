@@ -371,6 +371,200 @@ export default function InterviewView() {
         </CardContent>
       </Card>
 
+      {/* Round Room Interface */}
+      {activeTab === "roundroom" && (
+        <div className="space-y-6">
+          {/* Round Type Tabs */}
+          <div className="flex gap-2">
+            <Button
+              variant={activeRoundType === "technical" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveRoundType("technical")}
+              className="font-medium"
+            >
+              TECHNICAL
+            </Button>
+            <Button
+              variant={activeRoundType === "nontechnical" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveRoundType("nontechnical")}
+              className="font-medium"
+            >
+              NON-TECHNICAL
+            </Button>
+            <Button
+              variant={activeRoundType === "final" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveRoundType("final")}
+              className="font-medium"
+            >
+              FINAL
+            </Button>
+          </div>
+
+          {/* Round Configuration */}
+          <Card className="border-0 shadow-sm">
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Side - Round Details */}
+                <div className="space-y-6">
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                    <h3 className="text-lg font-semibold text-primary mb-4">ROUND 1</h3>
+
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">Round Name</label>
+                        <input
+                          type="text"
+                          defaultValue="Content Writing"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">Round Type</label>
+                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
+                          <option>Non-Technical</option>
+                          <option>Technical</option>
+                          <option>Final</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">Interview Mode</label>
+                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
+                          <option>Online Assessment</option>
+                          <option>In-Person</option>
+                          <option>Video Call</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">Assessment Type</label>
+                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
+                          <option>Written Test</option>
+                          <option>Practical Test</option>
+                          <option>Oral Interview</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">Round Scheduled Date</label>
+                        <input
+                          type="date"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3">
+                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-white">
+                      <Edit3 className="w-4 h-4 mr-2" />
+                      EDIT EXISTING TEMPLATE
+                    </Button>
+                    <Button className="bg-green-500 hover:bg-green-600 text-white">
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      ROUND SAVED
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Right Side - Round Actions */}
+                <div className="space-y-6">
+                  {/* Quick Actions */}
+                  <div className="flex gap-2 justify-end">
+                    <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                      YES
+                    </Button>
+                    <Button size="sm" className="bg-yellow-500 hover:bg-yellow-600 text-white">
+                      MAYBE
+                    </Button>
+                    <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
+                      NO
+                    </Button>
+                  </div>
+
+                  {/* Confirmation Dialog */}
+                  {showConfirmDialog && (
+                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                      <h4 className="text-center font-semibold text-green-800 mb-2">CONFIRMATION</h4>
+                      <p className="text-center text-green-700 mb-4">Are you sure you want to reject this candidate?</p>
+                      <div className="flex justify-center gap-3">
+                        <Button
+                          size="sm"
+                          className="bg-green-600 hover:bg-green-700 text-white"
+                          onClick={() => setShowConfirmDialog(false)}
+                        >
+                          YES
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="bg-red-600 hover:bg-red-700 text-white"
+                          onClick={() => setShowConfirmDialog(false)}
+                        >
+                          NO
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Round Management */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <h4 className="font-semibold text-foreground">Rounds Management</h4>
+                      <Button
+                        size="sm"
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                        onClick={() => setShowConfirmDialog(!showConfirmDialog)}
+                      >
+                        EMAIL ROUND
+                      </Button>
+                    </div>
+
+                    {/* Round List */}
+                    <div className="space-y-2">
+                      {[2, 3, 4].map((round) => (
+                        <div key={round} className="bg-red-500 text-white p-3 rounded-md flex justify-between items-center">
+                          <span className="font-medium">ROUND {round}</span>
+                          <Button size="sm" variant="ghost" className="text-white hover:bg-red-600">
+                            <Edit3 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button className="w-full bg-green-100 text-green-700 border border-green-300 hover:bg-green-200">
+                      <Plus className="w-4 h-4 mr-2" />
+                      ADD NEW ROUND
+                    </Button>
+                  </div>
+
+                  {/* Reschedule Button */}
+                  <Button className="w-full bg-red-500 hover:bg-red-600 text-white">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    RESCHEDULE ROUND
+                  </Button>
+                </div>
+              </div>
+
+              {/* Bottom Action Buttons */}
+              <div className="flex justify-center gap-6 mt-8 pt-6 border-t border-border">
+                <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3">
+                  <CheckCircle className="w-5 h-5 mr-2" />
+                  APPROVE
+                </Button>
+                <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
+                  <XCircle className="w-5 h-5 mr-2" />
+                  REJECT
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       {/* Summary Stats */}
       {activeTab === "ongoing" ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
