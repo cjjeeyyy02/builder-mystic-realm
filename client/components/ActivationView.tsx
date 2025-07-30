@@ -273,3 +273,256 @@ export default function ActivationView() {
     </div>
   );
 }
+
+interface DocumentItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: any;
+  status: "completed" | "under-review" | "required";
+  hasDownload?: boolean;
+  hasUpload?: boolean;
+  selected?: boolean;
+}
+
+interface ChecklistAndDocumentsViewProps {
+  onBack: () => void;
+}
+
+function ChecklistAndDocumentsView({ onBack }: ChecklistAndDocumentsViewProps) {
+  const [selectedCandidateName, setSelectedCandidateName] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedDocuments, setSelectedDocuments] = useState<string[]>([]);
+
+  const documents: DocumentItem[] = [
+    {
+      id: "1",
+      title: "Personal Identification",
+      description: "Driver's license, passport, or state ID",
+      icon: User,
+      status: "completed",
+      hasDownload: true,
+      selected: true
+    },
+    {
+      id: "2",
+      title: "Tax Forms (W-4)",
+      description: "Federal and state tax withholding forms",
+      icon: FileText,
+      status: "completed",
+      hasDownload: true,
+      selected: true
+    },
+    {
+      id: "3",
+      title: "Direct Deposit Information",
+      description: "Bank account details for payroll",
+      icon: Building,
+      status: "under-review"
+    },
+    {
+      id: "4",
+      title: "Direct Deposit Information",
+      description: "Bank account details for payroll",
+      icon: Building,
+      status: "under-review"
+    },
+    {
+      id: "5",
+      title: "Emergency Contact Form",
+      description: "Contact information for emergencies",
+      icon: Phone,
+      status: "required",
+      hasUpload: true
+    },
+    {
+      id: "6",
+      title: "Employee Handbook Acknowledgment",
+      description: "Signed acknowledgment of company policies",
+      icon: CheckCircle,
+      status: "required",
+      hasUpload: true
+    }
+  ];
+
+  const completedCount = documents.filter(doc => doc.status === "completed").length;
+  const totalCount = documents.length;
+  const progressPercentage = Math.round((completedCount / totalCount) * 100);
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "completed":
+        return <Badge className="bg-green-100 text-green-700 border-green-200">Completed</Badge>;
+      case "under-review":
+        return <Badge className="bg-blue-100 text-blue-700 border-blue-200">Under Review</Badge>;
+      case "required":
+        return <Badge className="bg-red-100 text-red-700 border-red-200">Required</Badge>;
+      default:
+        return null;
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case "completed":
+        return <CheckCircle className="w-5 h-5 text-green-600" />;
+      case "under-review":
+        return <Clock className="w-5 h-5 text-blue-600" />;
+      case "required":
+        return <AlertCircle className="w-5 h-5 text-red-600" />;
+      default:
+        return <AlertCircle className="w-5 h-5 text-gray-400" />;
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" onClick={onBack}>
+            ← Back
+          </Button>
+          <h2 className="text-2xl font-semibold text-foreground">Candidate Checklist and Documents</h2>
+        </div>
+        <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+          Activate Employee
+        </Button>
+      </div>
+
+      {/* Search and Filters */}
+      <div className="flex gap-4">
+        <div className="flex-1 max-w-md">
+          <Input
+            placeholder="Enter candidate name"
+            value={selectedCandidateName}
+            onChange={(e) => setSelectedCandidateName(e.target.value)}
+            className="w-full"
+          />
+        </div>
+        <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
+          <SelectTrigger className="w-64">
+            <SelectValue placeholder="Select department..." />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="human-resources">Human Resources</SelectItem>
+            <SelectItem value="software">Software</SelectItem>
+            <SelectItem value="marketing">Marketing</SelectItem>
+            <SelectItem value="design">Design</SelectItem>
+            <SelectItem value="finance">Finance</SelectItem>
+            <SelectItem value="operations">Operations</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Onboarding Progress */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <CheckCircle className="w-6 h-6 text-blue-600" />
+            <h3 className="text-lg font-semibold text-foreground">Onboarding Progress</h3>
+          </div>
+
+          <div className="space-y-3">
+            <div className="text-sm text-muted-foreground">
+              {completedCount} of {totalCount} required documents completed
+            </div>
+
+            <Progress value={progressPercentage} className="w-full h-3" />
+
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">{completedCount} completed</span>
+              <span className="text-muted-foreground">{progressPercentage}% done</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Required Documents */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-6">Required Documents</h3>
+
+          <div className="space-y-4">
+            {documents.map((document) => (
+              <div key={document.id} className="flex items-center gap-4 p-4 border border-border rounded-lg hover:bg-muted/30 transition-colors">
+                {/* Status Icon */}
+                <div className="flex-shrink-0">
+                  {getStatusIcon(document.status)}
+                </div>
+
+                {/* Document Icon */}
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <document.icon className="w-5 h-5 text-primary" />
+                  </div>
+                </div>
+
+                {/* Document Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h4 className="font-medium text-foreground">{document.title}</h4>
+                    {getStatusBadge(document.status)}
+                  </div>
+                  <p className="text-sm text-muted-foreground">{document.description}</p>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2">
+                  {document.status === "completed" && (
+                    <>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <Download className="w-3 h-3 mr-1" />
+                        Download
+                      </Button>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <RotateCcw className="w-3 h-3 mr-1" />
+                        Re-upload
+                      </Button>
+                    </>
+                  )}
+
+                  {document.status === "under-review" && (
+                    <>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <Info className="w-3 h-3 mr-1" />
+                      </Button>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <Download className="w-3 h-3 mr-1" />
+                        Download
+                      </Button>
+                    </>
+                  )}
+
+                  {document.status === "required" && (
+                    <Button size="sm" variant="outline" className="text-xs">
+                      <Upload className="w-3 h-3 mr-1" />
+                      Upload
+                    </Button>
+                  )}
+
+                  <Button size="sm" variant="ghost" className="text-red-600 hover:text-red-700">
+                    <Trash2 className="w-3 h-3" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Bottom Action Bar */}
+      <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <CheckCircle className="w-4 h-4 text-purple-600" />
+          <span>{selectedDocuments.length} documents selected for sending</span>
+        </div>
+
+        <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+          <Mail className="w-4 h-4 mr-2" />
+          Send Files
+        </Button>
+      </div>
+    </div>
+  );
+}
