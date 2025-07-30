@@ -462,11 +462,11 @@ export default function InterviewView() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-white">
+                    <Button className="bg-slate-600 hover:bg-slate-700 text-white">
                       <Edit3 className="w-4 h-4 mr-2" />
                       EDIT EXISTING TEMPLATE
                     </Button>
-                    <Button className="bg-green-500 hover:bg-green-600 text-white">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                       <CheckCircle className="w-4 h-4 mr-2" />
                       ROUND SAVED
                     </Button>
@@ -477,33 +477,33 @@ export default function InterviewView() {
                 <div className="space-y-6">
                   {/* Quick Actions */}
                   <div className="flex gap-2 justify-end">
-                    <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
                       YES
                     </Button>
-                    <Button size="sm" className="bg-yellow-500 hover:bg-yellow-600 text-white">
+                    <Button size="sm" className="bg-slate-500 hover:bg-slate-600 text-white">
                       MAYBE
                     </Button>
-                    <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
+                    <Button size="sm" className="bg-gray-600 hover:bg-gray-700 text-white">
                       NO
                     </Button>
                   </div>
 
                   {/* Confirmation Dialog */}
                   {showConfirmDialog && (
-                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
-                      <h4 className="text-center font-semibold text-green-800 mb-2">CONFIRMATION</h4>
-                      <p className="text-center text-green-700 mb-4">Are you sure you want to reject this candidate?</p>
+                    <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                      <h4 className="text-center font-semibold text-blue-800 mb-2">CONFIRMATION</h4>
+                      <p className="text-center text-blue-700 mb-4">Are you sure you want to reject this candidate?</p>
                       <div className="flex justify-center gap-3">
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
                           onClick={() => setShowConfirmDialog(false)}
                         >
                           YES
                         </Button>
                         <Button
                           size="sm"
-                          className="bg-red-600 hover:bg-red-700 text-white"
+                          className="bg-gray-600 hover:bg-gray-700 text-white"
                           onClick={() => setShowConfirmDialog(false)}
                         >
                           NO
@@ -528,23 +528,23 @@ export default function InterviewView() {
                     {/* Round List */}
                     <div className="space-y-2">
                       {[2, 3, 4].map((round) => (
-                        <div key={round} className="bg-red-500 text-white p-3 rounded-md flex justify-between items-center">
+                        <div key={round} className="bg-slate-600 text-white p-3 rounded-md flex justify-between items-center">
                           <span className="font-medium">ROUND {round}</span>
-                          <Button size="sm" variant="ghost" className="text-white hover:bg-red-600">
+                          <Button size="sm" variant="ghost" className="text-white hover:bg-slate-700">
                             <Edit3 className="w-4 h-4" />
                           </Button>
                         </div>
                       ))}
                     </div>
 
-                    <Button className="w-full bg-green-100 text-green-700 border border-green-300 hover:bg-green-200">
+                    <Button className="w-full bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200">
                       <Plus className="w-4 h-4 mr-2" />
                       ADD NEW ROUND
                     </Button>
                   </div>
 
                   {/* Reschedule Button */}
-                  <Button className="w-full bg-red-500 hover:bg-red-600 text-white">
+                  <Button className="w-full bg-slate-500 hover:bg-slate-600 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     RESCHEDULE ROUND
                   </Button>
@@ -553,11 +553,11 @@ export default function InterviewView() {
 
               {/* Bottom Action Buttons */}
               <div className="flex justify-center gap-6 mt-8 pt-6 border-t border-border">
-                <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
                   <CheckCircle className="w-5 h-5 mr-2" />
                   APPROVE
                 </Button>
-                <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
+                <Button className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3">
                   <XCircle className="w-5 h-5 mr-2" />
                   REJECT
                 </Button>
