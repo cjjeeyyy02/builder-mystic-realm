@@ -397,9 +397,9 @@ export default function InterviewView() {
           </Card>
           <Card className="p-4">
             <div className="text-2xl font-bold text-purple-600">
-              {upcomingInterviews.filter(i => i.interviewRound.includes("Round") || i.interviewRound.includes("Final")).length}
+              {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
             </div>
-            <div className="text-sm text-muted-foreground">Advanced Rounds</div>
+            <div className="text-sm text-muted-foreground">Final Rounds</div>
           </Card>
         </div>
       )}
