@@ -271,27 +271,6 @@ export default function ActivationView() {
         ))}
       </div>
 
-      {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-green-600">
-            {activationCandidates.filter(c => c.status === "completed").length}
-          </div>
-          <div className="text-sm text-muted-foreground">Activation Completed</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-yellow-600">
-            {activationCandidates.filter(c => c.status === "in-progress").length}
-          </div>
-          <div className="text-sm text-muted-foreground">Activation In-Progress</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-gray-600">
-            {activationCandidates.filter(c => c.status === "pending").length}
-          </div>
-          <div className="text-sm text-muted-foreground">Activation Pending</div>
-        </Card>
-      </div>
     </div>
   );
 }
