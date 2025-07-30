@@ -23,87 +23,91 @@ interface InterviewCandidate {
 const interviewCandidates: InterviewCandidate[] = [
   {
     id: "1",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "Sarah Mitchell",
+    appliedPosition: "Senior Software Engineer",
+    department: "Engineering",
+    currentRound: "Technical Assessment - Final",
     status: "in-progress",
   },
   {
     id: "2",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "James Rodriguez",
+    appliedPosition: "Product Manager",
+    department: "Product",
+    currentRound: "Behavioral Interview - Round 2",
     status: "completed",
   },
   {
     id: "3",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "Emily Chen",
+    appliedPosition: "UX Designer",
+    department: "Design",
+    currentRound: "Portfolio Review - Round 1",
     status: "pending",
   },
   {
     id: "4",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "Michael Thompson",
+    appliedPosition: "Data Analyst",
+    department: "Analytics",
+    currentRound: "Case Study Presentation",
     status: "in-progress",
   },
   {
     id: "5",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
+    applicantName: "Jessica Wang",
+    appliedPosition: "Marketing Specialist",
     department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    currentRound: "Campaign Strategy Review",
     status: "pending",
   },
   {
     id: "6",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "David Park",
+    appliedPosition: "DevOps Engineer",
+    department: "Engineering",
+    currentRound: "System Design Interview",
     status: "in-progress",
   },
   {
     id: "7",
-    applicantName: "Taylor",
-    appliedPosition: "Content Writer",
-    department: "Marketing",
-    currentRound: "Technical - Round - 2",
+    applicantName: "Amanda Foster",
+    appliedPosition: "Business Analyst",
+    department: "Operations",
+    currentRound: "Process Optimization Case",
     status: "completed",
   },
 ];
 
-function getStatusVariant(
-  status: string,
-): "default" | "secondary" | "destructive" | "outline" {
-  switch (status) {
-    case "completed":
-      return "default";
-    case "in-progress":
-      return "secondary";
-    case "pending":
-      return "outline";
-    default:
-      return "secondary";
-  }
-}
-
 function getStatusColor(status: string): string {
   switch (status) {
     case "completed":
-      return "bg-green-100 text-green-800 hover:bg-green-100";
+      return "bg-emerald-50 text-emerald-700 border-emerald-200";
     case "in-progress":
-      return "bg-blue-100 text-blue-800 hover:bg-blue-100";
+      return "bg-blue-50 text-blue-700 border-blue-200";
     case "pending":
-      return "bg-amber-100 text-amber-800 hover:bg-amber-100";
+      return "bg-amber-50 text-amber-700 border-amber-200";
     default:
-      return "bg-gray-100 text-gray-800 hover:bg-gray-100";
+      return "bg-gray-50 text-gray-700 border-gray-200";
+  }
+}
+
+function getDepartmentColor(department: string): string {
+  switch (department) {
+    case "Engineering":
+      return "bg-purple-50 text-purple-700";
+    case "Product":
+      return "bg-green-50 text-green-700";
+    case "Design":
+      return "bg-pink-50 text-pink-700";
+    case "Analytics":
+      return "bg-indigo-50 text-indigo-700";
+    case "Marketing":
+      return "bg-orange-50 text-orange-700";
+    case "Operations":
+      return "bg-teal-50 text-teal-700";
+    default:
+      return "bg-gray-50 text-gray-700";
   }
 }
 
@@ -112,100 +116,135 @@ export default function InterviewView() {
 
   return (
     <div className="space-y-6">
-      {/* Interview Tabs */}
-      <div className="flex gap-2">
-        <Button
-          variant={activeTab === "ongoing" ? "default" : "outline"}
-          size="sm"
-          onClick={() => setActiveTab("ongoing")}
-          className="text-sm font-medium"
-        >
-          Ongoing Interview
-        </Button>
-        <Button
-          variant={activeTab === "upcoming" ? "default" : "outline"}
-          size="sm"
-          onClick={() => setActiveTab("upcoming")}
-          className="text-sm font-medium"
-        >
-          Upcoming Interview
-        </Button>
+      {/* Modern Header with Tabs */}
+      <div className="flex items-center justify-between">
+        <div className="flex gap-1 p-1 bg-muted rounded-lg">
+          <Button
+            variant={activeTab === "ongoing" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setActiveTab("ongoing")}
+            className="text-sm font-medium px-6 py-2"
+          >
+            Ongoing Interview
+          </Button>
+          <Button
+            variant={activeTab === "upcoming" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setActiveTab("upcoming")}
+            className="text-sm font-medium px-6 py-2"
+          >
+            Upcoming Interview
+          </Button>
+        </div>
+        
+        <div className="text-sm text-muted-foreground">
+          {interviewCandidates.length} candidates in process
+        </div>
       </div>
 
-      {/* Interview Table */}
-      <Card className="border-0 shadow-sm">
+      {/* Professional Interview Table */}
+      <Card className="border-0 shadow-sm overflow-hidden">
         <CardContent className="p-0">
-          <div className="overflow-hidden rounded-lg border">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-muted/50">
-                  <TableHead className="w-16 text-center font-semibold text-foreground">
-                    S-No.
-                  </TableHead>
-                  <TableHead className="font-semibold text-foreground">
-                    APPLICANT NAME
-                  </TableHead>
-                  <TableHead className="font-semibold text-foreground">
-                    APPLIED POSITION
-                  </TableHead>
-                  <TableHead className="font-semibold text-foreground">
-                    DEPARTMENT
-                  </TableHead>
-                  <TableHead className="font-semibold text-foreground">
-                    CURRENT INTERVIEW ROUND
-                  </TableHead>
-                  <TableHead className="font-semibold text-foreground">
-                    INTERVIEW STATUS
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {interviewCandidates.map((candidate, index) => (
-                  <TableRow
-                    key={candidate.id}
-                    className="hover:bg-muted/30 transition-colors"
-                  >
-                    <TableCell className="text-center font-medium text-muted-foreground">
-                      {index + 1}
-                    </TableCell>
-                    <TableCell>
-                      <div className="font-medium text-foreground">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/30 border-b">
+                <TableHead className="w-16 text-center font-semibold text-foreground py-4">
+                  #
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  Candidate
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  Position
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  Department
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  Interview Round
+                </TableHead>
+                <TableHead className="font-semibold text-foreground py-4">
+                  Status
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {interviewCandidates.map((candidate, index) => (
+                <TableRow
+                  key={candidate.id}
+                  className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                >
+                  <TableCell className="text-center font-medium text-muted-foreground py-6">
+                    {index + 1}
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                        <span className="text-primary font-medium text-xs">
+                          {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                      <div className="font-semibold text-foreground">
                         {candidate.applicantName}
                       </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="text-foreground">
-                        {candidate.appliedPosition}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="text-foreground">
-                        {candidate.department}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="text-foreground">
-                        {candidate.currentRound}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Badge
-                        variant="secondary"
-                        className={`font-medium ${getStatusColor(candidate.status)}`}
-                      >
-                        {candidate.status === "in-progress"
-                          ? "In-progress"
-                          : candidate.status.charAt(0).toUpperCase() +
-                            candidate.status.slice(1)}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <div className="font-medium text-foreground">
+                      {candidate.appliedPosition}
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <Badge
+                      variant="secondary"
+                      className={`font-medium ${getDepartmentColor(candidate.department)}`}
+                    >
+                      {candidate.department}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <div className="text-foreground font-medium">
+                      {candidate.currentRound}
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <Badge
+                      variant="outline"
+                      className={`font-medium ${getStatusColor(candidate.status)}`}
+                    >
+                      {candidate.status === "in-progress"
+                        ? "In Progress"
+                        : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
+
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-blue-600">
+            {interviewCandidates.filter(c => c.status === "in-progress").length}
+          </div>
+          <div className="text-sm text-muted-foreground">In Progress</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-emerald-600">
+            {interviewCandidates.filter(c => c.status === "completed").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Completed</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-amber-600">
+            {interviewCandidates.filter(c => c.status === "pending").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Pending</div>
+        </Card>
+      </div>
     </div>
   );
 }
