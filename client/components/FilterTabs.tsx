@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import ScreeningView from "./ScreeningView";
 import InterviewView from "./InterviewView";
+import ActivationView from "./ActivationView";
 import CandidateList from "./CandidateList";
 
 const tabs = [
