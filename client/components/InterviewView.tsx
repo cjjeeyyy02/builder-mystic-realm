@@ -214,87 +214,144 @@ export default function InterviewView() {
         </div>
         
         <div className="text-sm text-muted-foreground">
-          {interviewCandidates.length} candidates in process
+          {activeTab === "ongoing"
+            ? `${interviewCandidates.length} candidates in process`
+            : `${upcomingInterviews.length} upcoming interviews`
+          }
         </div>
       </div>
 
-      {/* Professional Interview Table */}
+      {/* Conditional Interview Table */}
       <Card className="border-0 shadow-sm overflow-hidden">
         <CardContent className="p-0">
           <Table>
             <TableHeader>
               <TableRow className="bg-muted/30 border-b">
                 <TableHead className="w-16 text-center font-semibold text-foreground py-4">
-                  #
+                  {activeTab === "upcoming" ? "S-No." : "#"}
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
-                  Candidate
+                  {activeTab === "upcoming" ? "APPLICANT NAME" : "Candidate"}
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
-                  Position
+                  {activeTab === "upcoming" ? "APPLIED POSITION" : "Position"}
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
-                  Department
+                  DEPARTMENT
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
-                  Interview Round
+                  {activeTab === "upcoming" ? "INTERVIEW DATE | TIME" : "Interview Round"}
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
-                  Status
+                  {activeTab === "upcoming" ? "INTERVIEW ROUND" : "Status"}
                 </TableHead>
+                {activeTab === "upcoming" && (
+                  <TableHead className="font-semibold text-foreground py-4">
+                    QUICK UPDATE
+                  </TableHead>
+                )}
               </TableRow>
             </TableHeader>
             <TableBody>
-              {interviewCandidates.map((candidate, index) => (
-                <TableRow
-                  key={candidate.id}
-                  className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                >
-                  <TableCell className="text-center font-medium text-muted-foreground py-6">
-                    {index + 1}
-                  </TableCell>
-                  <TableCell className="py-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                        <span className="text-primary font-medium text-xs">
-                          {candidate.applicantName.split(' ').map(n => n[0]).join('')}
-                        </span>
+              {activeTab === "ongoing" ? (
+                interviewCandidates.map((candidate, index) => (
+                  <TableRow
+                    key={candidate.id}
+                    className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                  >
+                    <TableCell className="text-center font-medium text-muted-foreground py-6">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                          <span className="text-primary font-medium text-xs">
+                            {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                          </span>
+                        </div>
+                        <div className="font-semibold text-foreground">
+                          {candidate.applicantName}
+                        </div>
                       </div>
-                      <div className="font-semibold text-foreground">
-                        {candidate.applicantName}
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="font-medium text-foreground">
+                        {candidate.appliedPosition}
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell className="py-6">
-                    <div className="font-medium text-foreground">
-                      {candidate.appliedPosition}
-                    </div>
-                  </TableCell>
-                  <TableCell className="py-6">
-                    <Badge
-                      variant="secondary"
-                      className={`font-medium ${getDepartmentColor(candidate.department)}`}
-                    >
-                      {candidate.department}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="py-6">
-                    <div className="text-foreground font-medium">
-                      {candidate.currentRound}
-                    </div>
-                  </TableCell>
-                  <TableCell className="py-6">
-                    <Badge
-                      variant="outline"
-                      className={`font-medium ${getStatusColor(candidate.status)}`}
-                    >
-                      {candidate.status === "in-progress"
-                        ? "In Progress"
-                        : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <Badge
+                        variant="secondary"
+                        className={`font-medium ${getDepartmentColor(candidate.department)}`}
+                      >
+                        {candidate.department}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="text-foreground font-medium">
+                        {candidate.currentRound}
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <Badge
+                        variant="outline"
+                        className={`font-medium ${getStatusColor(candidate.status)}`}
+                      >
+                        {candidate.status === "in-progress"
+                          ? "In Progress"
+                          : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                upcomingInterviews.map((interview) => (
+                  <TableRow
+                    key={interview.id}
+                    className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                  >
+                    <TableCell className="text-center font-medium text-foreground py-6">
+                      {interview.sNo}
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="font-medium text-foreground">
+                        {interview.applicantName}
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="font-medium text-foreground">
+                        {interview.appliedPosition}
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <Badge
+                        variant="secondary"
+                        className={`font-medium ${getDepartmentColor(interview.department)}`}
+                      >
+                        {interview.department}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="text-foreground font-medium">
+                        {interview.interviewDateTime}
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <div className="text-foreground font-medium">
+                        {interview.interviewRound}
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6">
+                      <Button
+                        size="sm"
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-4 py-2"
+                      >
+                        SEND EMAIL
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
