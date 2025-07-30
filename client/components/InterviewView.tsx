@@ -345,8 +345,9 @@ export default function InterviewView() {
                     <TableCell className="py-6">
                       <Button
                         size="sm"
-                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-4 py-2"
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-3 py-1.5 text-xs h-8"
                       >
+                        <Mail className="w-3 h-3 mr-1.5" />
                         SEND EMAIL
                       </Button>
                     </TableCell>
