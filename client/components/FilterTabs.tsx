@@ -12,6 +12,7 @@ import {
 import ScreeningView from "./ScreeningView";
 import InterviewView from "./InterviewView";
 import ActivationView from "./ActivationView";
+import HiredView from "./HiredView";
 import CandidateList from "./CandidateList";
 
 const tabs = [
