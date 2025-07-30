@@ -89,6 +89,72 @@ const interviewCandidates: InterviewCandidate[] = [
   },
 ];
 
+const upcomingInterviews: UpcomingInterview[] = [
+  {
+    id: "1",
+    sNo: 1,
+    applicantName: "Taylor Anderson",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "2",
+    sNo: 2,
+    applicantName: "Taylor Johnson",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "3",
+    sNo: 3,
+    applicantName: "Taylor Smith",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "4",
+    sNo: 4,
+    applicantName: "Taylor Brown",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "5",
+    sNo: 5,
+    applicantName: "Taylor Wilson",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "6",
+    sNo: 6,
+    applicantName: "Taylor Davis",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+  {
+    id: "7",
+    sNo: 7,
+    applicantName: "Taylor Garcia",
+    appliedPosition: "Content Writer",
+    department: "Marketing",
+    interviewDateTime: "07-13-24 | 03:55 PM",
+    interviewRound: "Technical - Round-2",
+  },
+];
+
 function getStatusColor(status: string): string {
   switch (status) {
     case "completed":
