@@ -86,7 +86,8 @@ export default function FilterTabs() {
         {activeTab === "screening" && <ScreeningView />}
         {activeTab === "interview" && <InterviewView />}
         {activeTab === "activation" && <ActivationView />}
-        {(activeTab === "hiring" || activeTab === "hired") && <CandidateList />}
+        {activeTab === "hired" && <HiredView />}
+        {activeTab === "hiring" && <CandidateList />}
       </div>
     </div>
   );
