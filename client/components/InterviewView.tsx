@@ -462,7 +462,7 @@ export default function InterviewView() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button className="bg-slate-600 hover:bg-slate-700 text-white">
+                    <Button className="bg-blue-500 hover:bg-blue-600 text-white">
                       <Edit3 className="w-4 h-4 mr-2" />
                       EDIT EXISTING TEMPLATE
                     </Button>
@@ -480,10 +480,10 @@ export default function InterviewView() {
                     <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
                       YES
                     </Button>
-                    <Button size="sm" className="bg-slate-500 hover:bg-slate-600 text-white">
+                    <Button size="sm" className="bg-blue-400 hover:bg-blue-500 text-white">
                       MAYBE
                     </Button>
-                    <Button size="sm" className="bg-gray-600 hover:bg-gray-700 text-white">
+                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
                       NO
                     </Button>
                   </div>
@@ -503,7 +503,7 @@ export default function InterviewView() {
                         </Button>
                         <Button
                           size="sm"
-                          className="bg-gray-600 hover:bg-gray-700 text-white"
+                          className="bg-blue-500 hover:bg-blue-600 text-white"
                           onClick={() => setShowConfirmDialog(false)}
                         >
                           NO
@@ -528,23 +528,23 @@ export default function InterviewView() {
                     {/* Round List */}
                     <div className="space-y-2">
                       {[2, 3, 4].map((round) => (
-                        <div key={round} className="bg-slate-600 text-white p-3 rounded-md flex justify-between items-center">
+                        <div key={round} className="bg-blue-600 text-white p-3 rounded-md flex justify-between items-center">
                           <span className="font-medium">ROUND {round}</span>
-                          <Button size="sm" variant="ghost" className="text-white hover:bg-slate-700">
+                          <Button size="sm" variant="ghost" className="text-white hover:bg-blue-700">
                             <Edit3 className="w-4 h-4" />
                           </Button>
                         </div>
                       ))}
                     </div>
 
-                    <Button className="w-full bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200">
+                    <Button className="w-full bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200">
                       <Plus className="w-4 h-4 mr-2" />
                       ADD NEW ROUND
                     </Button>
                   </div>
 
                   {/* Reschedule Button */}
-                  <Button className="w-full bg-slate-500 hover:bg-slate-600 text-white">
+                  <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     RESCHEDULE ROUND
                   </Button>
@@ -557,7 +557,7 @@ export default function InterviewView() {
                   <CheckCircle className="w-5 h-5 mr-2" />
                   APPROVE
                 </Button>
-                <Button className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3">
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3">
                   <XCircle className="w-5 h-5 mr-2" />
                   REJECT
                 </Button>
