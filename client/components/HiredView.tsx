@@ -322,42 +322,6 @@ export default function HiredView() {
         </Card>
       )}
 
-      {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-emerald-600">
-            {hiredEmployees.length}
-          </div>
-          <div className="text-sm text-muted-foreground">Total Hired</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-blue-600">
-            {new Set(hiredEmployees.map(e => e.department)).size}
-          </div>
-          <div className="text-sm text-muted-foreground">Departments</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-purple-600">
-            {hiredEmployees.filter(e => {
-              const joinDate = new Date(e.dateOfJoining);
-              const thisMonth = new Date();
-              return joinDate.getMonth() === thisMonth.getMonth() && joinDate.getFullYear() === thisMonth.getFullYear();
-            }).length}
-          </div>
-          <div className="text-sm text-muted-foreground">This Month</div>
-        </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-orange-600">
-            {hiredEmployees.filter(e => {
-              const joinDate = new Date(e.dateOfJoining);
-              const oneWeekAgo = new Date();
-              oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-              return joinDate >= oneWeekAgo;
-            }).length}
-          </div>
-          <div className="text-sm text-muted-foreground">Last 7 Days</div>
-        </Card>
-      </div>
     </div>
   );
 }
