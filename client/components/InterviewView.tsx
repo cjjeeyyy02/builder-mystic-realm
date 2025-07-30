@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Mail } from "lucide-react";
 
 interface InterviewCandidate {
   id: string;
