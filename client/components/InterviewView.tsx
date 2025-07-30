@@ -219,6 +219,51 @@ export default function InterviewView() {
 
   return (
     <div className="space-y-6">
+      {/* Summary Stats */}
+      {activeTab !== "roundroom" && (activeTab === "ongoing" ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-blue-600">
+              {interviewCandidates.filter(c => c.status === "in-progress").length}
+            </div>
+            <div className="text-sm text-muted-foreground">In Progress</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-emerald-600">
+              {interviewCandidates.filter(c => c.status === "completed").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Completed</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-amber-600">
+              {interviewCandidates.filter(c => c.status === "pending").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Pending</div>
+          </Card>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-[#0065F8]">
+              {upcomingInterviews.length}
+            </div>
+            <div className="text-sm text-muted-foreground">Total Upcoming</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-orange-600">
+              {upcomingInterviews.filter(i => i.department === "Engineering").length}
+            </div>
+            <div className="text-sm text-muted-foreground">Engineering Dept.</div>
+          </Card>
+          <Card className="p-4">
+            <div className="text-2xl font-bold text-purple-600">
+              {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
+            </div>
+            <div className="text-sm text-muted-foreground">Final Rounds</div>
+          </Card>
+        </div>
+      ))}
+
       {/* Modern Header with Tabs */}
       <div className="flex items-center justify-between">
         <div className="flex gap-1 p-1 bg-muted rounded-lg">
