@@ -405,7 +405,10 @@ export default function InterviewView() {
             <Button
               variant={activeRoundType === "technical" ? "default" : "outline"}
               size="sm"
-              onClick={() => setActiveRoundType("technical")}
+              onClick={() => {
+                setActiveRoundType("technical");
+                setSelectedRound(1);
+              }}
               className="font-medium"
             >
               TECHNICAL
@@ -413,7 +416,10 @@ export default function InterviewView() {
             <Button
               variant={activeRoundType === "nontechnical" ? "default" : "outline"}
               size="sm"
-              onClick={() => setActiveRoundType("nontechnical")}
+              onClick={() => {
+                setActiveRoundType("nontechnical");
+                setSelectedRound(1);
+              }}
               className="font-medium"
             >
               NON-TECHNICAL
@@ -421,7 +427,10 @@ export default function InterviewView() {
             <Button
               variant={activeRoundType === "final" ? "default" : "outline"}
               size="sm"
-              onClick={() => setActiveRoundType("final")}
+              onClick={() => {
+                setActiveRoundType("final");
+                setSelectedRound(1);
+              }}
               className="font-medium"
             >
               FINAL
