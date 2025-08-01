@@ -42,6 +42,9 @@ import {
   CheckCircle,
   AlertCircle,
   BookOpen,
+  Share,
+  Trash2,
+  Upload,
 } from "lucide-react";
 
 interface Employee {
