@@ -1117,7 +1117,10 @@ export default function EmployeeProfile({
                   <BookOpen className="w-5 h-5" />
                   Training
                 </h3>
-                <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                <Button
+                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  onClick={() => setShowTrainingModal(true)}
+                >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Training/Certification
                 </Button>
