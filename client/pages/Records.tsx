@@ -185,6 +185,7 @@ export default function Records() {
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [skillsFilter, setSkillsFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
 
   const tabs = [
     { id: "profiles", label: "Employee Profiles", icon: Users },
