@@ -1232,11 +1232,11 @@ export default function EmployeeProfile({
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <label className="text-sm font-medium text-muted-foreground">Issued Date</label>
-                              <p className="text-foreground">{formatDate(cert.issuedDate)}</p>
+                              <p className="text-foreground">{formatTrainingDate(cert.issuedDate)}</p>
                             </div>
                             <div>
                               <label className="text-sm font-medium text-muted-foreground">Expiry Date</label>
-                              <p className="text-foreground">{formatDate(cert.expiryDate)}</p>
+                              <p className="text-foreground">{formatTrainingDate(cert.expiryDate)}</p>
                             </div>
                           </div>
                         </div>
