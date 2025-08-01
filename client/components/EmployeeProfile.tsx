@@ -632,7 +632,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Shift Schedule
                   </label>
                   {isEditing ? (
@@ -652,7 +652,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Work Email
                   </label>
                   {isEditing ? (
@@ -662,7 +662,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Work Phone / Extension
                   </label>
                   {isEditing ? (
