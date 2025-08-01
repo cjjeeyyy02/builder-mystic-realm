@@ -2287,7 +2287,7 @@ export default function EmployeeProfile({
                     value={trainingFormData.completionDate}
                     onChange={(e) => setTrainingFormData({...trainingFormData, completionDate: e.target.value})}
                   />
-                  <p className="text-xs text-muted-foreground mt-1">The date the training was completed. If Not Started or In Progress, leave the field blank</p>
+
                 </div>
               </>
             ) : (
@@ -2300,7 +2300,7 @@ export default function EmployeeProfile({
                     onChange={(e) => setTrainingFormData({...trainingFormData, certificationName: e.target.value})}
                     placeholder="Enter the official name of the certification"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">Enter the official name of the certification.</p>
+
                 </div>
 
                 <div>
@@ -2310,7 +2310,7 @@ export default function EmployeeProfile({
                     onChange={(e) => setTrainingFormData({...trainingFormData, issuedOrganization: e.target.value})}
                     placeholder="Name of the organization that issued the certification"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">Name of the organization that issued the certification.</p>
+
                 </div>
 
                 <div>
@@ -2320,7 +2320,7 @@ export default function EmployeeProfile({
                     value={trainingFormData.issuedDate}
                     onChange={(e) => setTrainingFormData({...trainingFormData, issuedDate: e.target.value})}
                   />
-                  <p className="text-xs text-muted-foreground mt-1">The date the certification was issued (format: MM-DD-YYYY).</p>
+
                 </div>
 
                 <div>
@@ -2330,7 +2330,7 @@ export default function EmployeeProfile({
                     value={trainingFormData.expirationDate}
                     onChange={(e) => setTrainingFormData({...trainingFormData, expirationDate: e.target.value})}
                   />
-                  <p className="text-xs text-muted-foreground mt-1">The date the certification expires (format: MM-DD-YYYY).</p>
+
                 </div>
               </>
             )}
