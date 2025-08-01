@@ -235,8 +235,34 @@ export default function EmployeeProfile({
   };
 
   const handleOffboarding = () => {
-    // Navigate to offboarding screen
-    console.log("Navigate to offboarding for employee:", employee.id);
+    setShowOffboardingModal(true);
+  };
+
+  const handleOffboardingSubmit = () => {
+    console.log("Processing offboarding for employee:", employee.id, offboardingData);
+    setShowOffboardingModal(false);
+    // Reset form
+    setOffboardingData({
+      reasonForLeaving: "",
+      lastWorkingDay: "",
+      handoverNotes: "",
+      systemAccessRevoked: false,
+      equipmentReturned: false,
+      exitInterviewCompleted: false
+    });
+  };
+
+  const handleOffboardingCancel = () => {
+    setShowOffboardingModal(false);
+    // Reset form
+    setOffboardingData({
+      reasonForLeaving: "",
+      lastWorkingDay: "",
+      handoverNotes: "",
+      systemAccessRevoked: false,
+      equipmentReturned: false,
+      exitInterviewCompleted: false
+    });
   };
 
   const handleTrainingFormSubmit = () => {
