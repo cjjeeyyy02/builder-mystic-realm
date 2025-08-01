@@ -48,9 +48,12 @@ const employeeData: Employee[] = [
     email: "sarah.mitchell@company.com",
     department: "Engineering",
     status: "Active",
-    skills: ["Software Development", "React", "TypeScript"],
+    skills: ["React", "TypeScript", "Node.js", "Python", "AWS", "Docker"],
     jobTitle: "Senior Software Engineer",
-    joinDate: "2023-01-15"
+    joinDate: "2023-01-15",
+    employeeId: "EMP001",
+    phone: "+1 (555) 123-4567",
+    location: "San Francisco, CA"
   },
   {
     id: "2",
@@ -60,7 +63,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["Agile Product Management", "User Research", "Analytics"],
     jobTitle: "Product Manager",
-    joinDate: "2023-03-22"
+    joinDate: "2023-03-22",
+    employeeId: "EMP002",
+    phone: "+1 (555) 234-5678",
+    location: "New York, NY"
   },
   {
     id: "3",
@@ -70,7 +76,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["UI/UX Design", "Figma", "Design Systems"],
     jobTitle: "UX Designer",
-    joinDate: "2023-02-10"
+    joinDate: "2023-02-10",
+    employeeId: "EMP003",
+    phone: "+1 (555) 345-6789",
+    location: "Seattle, WA"
   },
   {
     id: "4",
@@ -80,7 +89,10 @@ const employeeData: Employee[] = [
     status: "On Leave",
     skills: ["DevOps", "AWS", "Kubernetes"],
     jobTitle: "DevOps Engineer",
-    joinDate: "2022-11-05"
+    joinDate: "2022-11-05",
+    employeeId: "EMP004",
+    phone: "+1 (555) 456-7890",
+    location: "Austin, TX"
   },
   {
     id: "5",
@@ -90,7 +102,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["Digital Marketing", "Content Strategy", "SEO"],
     jobTitle: "Marketing Specialist",
-    joinDate: "2023-04-18"
+    joinDate: "2023-04-18",
+    employeeId: "EMP005",
+    phone: "+1 (555) 567-8901",
+    location: "Los Angeles, CA"
   },
   {
     id: "6",
@@ -100,7 +115,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["Business Analysis", "Process Optimization", "Data Analysis"],
     jobTitle: "Business Analyst",
-    joinDate: "2023-05-30"
+    joinDate: "2023-05-30",
+    employeeId: "EMP006",
+    phone: "+1 (555) 678-9012",
+    location: "Chicago, IL"
   },
   {
     id: "7",
@@ -110,7 +128,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["Software Development", "Python", "Machine Learning"],
     jobTitle: "ML Engineer",
-    joinDate: "2023-06-12"
+    joinDate: "2023-06-12",
+    employeeId: "EMP007",
+    phone: "+1 (555) 789-0123",
+    location: "Boston, MA"
   },
   {
     id: "8",
@@ -120,7 +141,10 @@ const employeeData: Employee[] = [
     status: "Active",
     skills: ["Financial Analysis", "Accounting", "Excel"],
     jobTitle: "Finance Analyst",
-    joinDate: "2023-07-08"
+    joinDate: "2023-07-08",
+    employeeId: "EMP008",
+    phone: "+1 (555) 890-1234",
+    location: "Miami, FL"
   }
 ];
 
