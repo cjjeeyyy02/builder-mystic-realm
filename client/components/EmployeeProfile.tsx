@@ -4,7 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
   ArrowLeft,
   Edit,
   Save,
@@ -23,7 +24,12 @@ import {
   Phone,
   MapPin,
   Building,
-  UserMinus
+  UserMinus,
+  Plus,
+  ChevronDown,
+  ChevronUp,
+  Target,
+  Award
 } from "lucide-react";
 
 interface Employee {
