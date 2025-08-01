@@ -204,6 +204,42 @@ export default function EmployeeProfile({
     console.log("Navigate to offboarding for employee:", employee.id);
   };
 
+  const handleTrainingFormSubmit = () => {
+    // Add the new training/certification record
+    console.log("Saving training/certification:", trainingFormData);
+    setShowTrainingModal(false);
+    // Reset form
+    setTrainingFormData({
+      type: "training",
+      trainingTitle: "",
+      trainingProvider: "",
+      status: "",
+      score: "",
+      completionDate: "",
+      certificationName: "",
+      issuedOrganization: "",
+      issuedDate: "",
+      expirationDate: ""
+    });
+  };
+
+  const handleTrainingFormCancel = () => {
+    setShowTrainingModal(false);
+    // Reset form
+    setTrainingFormData({
+      type: "training",
+      trainingTitle: "",
+      trainingProvider: "",
+      status: "",
+      score: "",
+      completionDate: "",
+      certificationName: "",
+      issuedOrganization: "",
+      issuedDate: "",
+      expirationDate: ""
+    });
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "personal":
