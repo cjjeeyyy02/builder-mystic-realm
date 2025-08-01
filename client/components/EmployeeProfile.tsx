@@ -378,7 +378,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Email Address
                   </label>
                   {isEditing ? (
@@ -396,7 +396,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Date of Birth
                   </label>
                   {isEditing ? (
@@ -408,7 +408,7 @@ export default function EmployeeProfile({
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Gender
                   </label>
                   {isEditing ? (
@@ -430,7 +430,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Marital Status
                   </label>
                   {isEditing ? (
