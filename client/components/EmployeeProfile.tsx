@@ -216,9 +216,10 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
           <Card className="border-0 shadow-sm">
             <CardContent className="p-12 text-center">
               <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                {tabs.find(tab => tab.id === activeTab)?.icon && (
-                  <tabs.find(tab => tab.id === activeTab)!.icon className="w-6 h-6 text-muted-foreground" />
-                )}
+                {(() => {
+                  const IconComponent = tabs.find(tab => tab.id === activeTab)?.icon;
+                  return IconComponent ? <IconComponent className="w-6 h-6 text-muted-foreground" /> : null;
+                })()}
               </div>
               <h3 className="text-lg font-medium text-foreground mb-2">
                 {tabs.find(tab => tab.id === activeTab)?.label}
