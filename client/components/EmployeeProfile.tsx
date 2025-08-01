@@ -188,6 +188,9 @@ export default function EmployeeProfile({
     reason: ""
   });
 
+  // Document upload modal state
+  const [showDocumentModal, setShowDocumentModal] = useState(false);
+
   const tabs = [
     { id: "personal", label: "Personal Info", icon: User },
     { id: "work", label: "Work Details", icon: Briefcase },
