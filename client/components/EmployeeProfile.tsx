@@ -1936,9 +1936,7 @@ export default function EmployeeProfile({
               <Clock className="w-5 h-5" />
               Audit Change Log
             </h3>
-            <p className="text-sm text-muted-foreground">
-              Title or label for the section displaying historical changes.
-            </p>
+
 
             {/* Change Log Entries */}
             <div className="space-y-4">
