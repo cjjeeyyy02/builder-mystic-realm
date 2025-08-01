@@ -192,6 +192,17 @@ export default function EmployeeProfile({
   // Document upload modal state
   const [showDocumentModal, setShowDocumentModal] = useState(false);
 
+  // Offboarding modal state
+  const [showOffboardingModal, setShowOffboardingModal] = useState(false);
+  const [offboardingData, setOffboardingData] = useState({
+    reasonForLeaving: "",
+    lastWorkingDay: "",
+    handoverNotes: "",
+    systemAccessRevoked: false,
+    equipmentReturned: false,
+    exitInterviewCompleted: false
+  });
+
   // Security settings state
   const [securitySettings, setSecuritySettings] = useState({
     accountActive: true,
