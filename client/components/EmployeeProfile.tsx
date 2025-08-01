@@ -963,6 +963,225 @@ export default function EmployeeProfile({
           </div>
         );
 
+      case "training":
+        const trainingRecords = [
+          {
+            id: "1",
+            trainingName: "React Advanced Patterns",
+            trainingProvider: "Tech Academy",
+            status: "Completed",
+            score: 95,
+            completionDate: "2023-08-15"
+          },
+          {
+            id: "2",
+            trainingName: "AWS Cloud Architecture",
+            trainingProvider: "Amazon Web Services",
+            status: "In Progress",
+            score: null,
+            completionDate: null
+          },
+          {
+            id: "3",
+            trainingName: "Leadership Development Program",
+            trainingProvider: "Corporate University",
+            status: "Not Started",
+            score: null,
+            completionDate: null
+          }
+        ];
+
+        const certifications = [
+          {
+            id: "1",
+            certificationName: "AWS Certified Solutions Architect",
+            issuedOrganization: "Amazon Web Services",
+            issuedDate: "2023-06-15",
+            expiryDate: "2026-06-15",
+            certificateId: "AWS-CSA-2023-001234",
+            certificateStatus: "Valid"
+          },
+          {
+            id: "2",
+            certificationName: "React Developer Certification",
+            issuedOrganization: "Meta",
+            issuedDate: "2023-03-10",
+            expiryDate: "2025-03-10",
+            certificateId: "META-RDC-2023-567890",
+            certificateStatus: "Valid"
+          },
+          {
+            id: "3",
+            certificationName: "Project Management Professional (PMP)",
+            issuedOrganization: "Project Management Institute",
+            issuedDate: "2022-01-20",
+            expiryDate: "2025-01-20",
+            certificateId: "PMI-PMP-2022-111222",
+            certificateStatus: "Expired"
+          }
+        ];
+
+        const getStatusColor = (status: string): string => {
+          switch (status) {
+            case "Completed":
+              return "bg-green-100 text-green-700 border-green-200";
+            case "In Progress":
+              return "bg-yellow-100 text-yellow-700 border-yellow-200";
+            case "Not Started":
+              return "bg-gray-100 text-gray-700 border-gray-200";
+            default:
+              return "bg-gray-100 text-gray-700 border-gray-200";
+          }
+        };
+
+        const getCertificateStatusColor = (status: string): string => {
+          switch (status) {
+            case "Valid":
+              return "bg-green-100 text-green-700 border-green-200";
+            case "Expired":
+              return "bg-red-100 text-red-700 border-red-200";
+            default:
+              return "bg-gray-100 text-gray-700 border-gray-200";
+          }
+        };
+
+        const formatDate = (dateString: string | null): string => {
+          if (!dateString) return "N/A";
+          const date = new Date(dateString);
+          return date.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+          });
+        };
+
+        return (
+          <div className="space-y-8">
+            {/* Training Section */}
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <BookOpen className="w-5 h-5" />
+                  Training
+                </h3>
+                <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Training/Certification
+                </Button>
+              </div>
+
+              <div className="space-y-4">
+                {trainingRecords.map((training) => (
+                  <Card key={training.id} className="border border-border">
+                    <CardContent className="p-6">
+                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Training Name</label>
+                          <p className="font-semibold text-foreground">{training.trainingName}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Training Provider</label>
+                          <p className="text-foreground">{training.trainingProvider}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Status</label>
+                          <Badge variant="outline" className={getStatusColor(training.status)}>
+                            {training.status}
+                          </Badge>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Score</label>
+                          <p className="text-foreground">{training.score ? `${training.score}%` : "N/A"}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Completion Date</label>
+                          <p className="text-foreground">{formatDate(training.completionDate)}</p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline">
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Industry Certifications Section */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+                <Award className="w-5 h-5" />
+                Industry Certifications
+              </h3>
+
+              <div className="space-y-4">
+                {certifications.map((cert) => (
+                  <Card key={cert.id} className="border border-border">
+                    <CardContent className="p-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Certification Info */}
+                        <div className="space-y-4">
+                          <div>
+                            <label className="text-sm font-medium text-muted-foreground">Certification Name</label>
+                            <p className="font-semibold text-foreground">{cert.certificationName}</p>
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium text-muted-foreground">Issued Organization</label>
+                            <p className="text-foreground">{cert.issuedOrganization}</p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label className="text-sm font-medium text-muted-foreground">Issued Date</label>
+                              <p className="text-foreground">{formatDate(cert.issuedDate)}</p>
+                            </div>
+                            <div>
+                              <label className="text-sm font-medium text-muted-foreground">Expiry Date</label>
+                              <p className="text-foreground">{formatDate(cert.expiryDate)}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Certificate Details & Actions */}
+                        <div className="space-y-4">
+                          <div>
+                            <label className="text-sm font-medium text-muted-foreground">Certificate ID</label>
+                            <p className="text-foreground font-mono text-sm">{cert.certificateId}</p>
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium text-muted-foreground">Certificate Status</label>
+                            <div className="flex items-center gap-2">
+                              <Badge variant="outline" className={getCertificateStatusColor(cert.certificateStatus)}>
+                                {cert.certificateStatus === "Valid" ? (
+                                  <CheckCircle className="w-3 h-3 mr-1" />
+                                ) : (
+                                  <AlertCircle className="w-3 h-3 mr-1" />
+                                )}
+                                {cert.certificateStatus}
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="flex gap-2 pt-2">
+                            <Button size="sm" variant="outline" className="flex-1">
+                              <Eye className="w-3 h-3 mr-2" />
+                              View Certificate
+                            </Button>
+                            <Button size="sm" variant="outline" className="flex-1">
+                              <Download className="w-3 h-3 mr-2" />
+                              Download Certificate
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
       default:
         return (
           <Card className="border-0 shadow-sm">
