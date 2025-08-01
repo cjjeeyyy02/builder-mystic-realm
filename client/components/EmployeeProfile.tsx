@@ -501,7 +501,7 @@ export default function EmployeeProfile({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Position
                   </label>
                   {isEditing ? (
@@ -511,7 +511,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Department
                   </label>
                   {isEditing ? (
@@ -533,7 +533,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Reporting Manager
                   </label>
                   {isEditing ? (
@@ -543,7 +543,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Employment Status
                   </label>
                   {isEditing ? (
