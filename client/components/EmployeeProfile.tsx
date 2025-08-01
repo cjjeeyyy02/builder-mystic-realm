@@ -1193,7 +1193,7 @@ export default function EmployeeProfile({
                         </div>
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Completion Date</label>
-                          <p className="text-foreground">{formatDate(training.completionDate)}</p>
+                          <p className="text-foreground">{formatTrainingDate(training.completionDate)}</p>
                         </div>
                         <div className="flex gap-2">
                           <Button size="sm" variant="outline">
