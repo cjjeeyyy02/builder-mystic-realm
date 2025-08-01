@@ -1364,9 +1364,7 @@ export default function EmployeeProfile({
                       {attendanceData.totalWorkingDays}
                     </div>
                     <div className="text-sm font-medium text-muted-foreground">Total Working Days</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Scheduled workdays in the period
-                    </div>
+
                   </CardContent>
                 </Card>
 
@@ -1376,9 +1374,7 @@ export default function EmployeeProfile({
                       {attendanceData.daysPresent}
                     </div>
                     <div className="text-sm font-medium text-muted-foreground">Days Present</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Days employee was present at work
-                    </div>
+
                   </CardContent>
                 </Card>
 
@@ -1388,9 +1384,7 @@ export default function EmployeeProfile({
                       {attendanceData.daysAbsent}
                     </div>
                     <div className="text-sm font-medium text-muted-foreground">Days Absent</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Days employee was absent
-                    </div>
+
                   </CardContent>
                 </Card>
 
@@ -1400,9 +1394,7 @@ export default function EmployeeProfile({
                       {attendanceData.lateArrivals}
                     </div>
                     <div className="text-sm font-medium text-muted-foreground">Late Arrivals</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Instances of late arrival
-                    </div>
+
                   </CardContent>
                 </Card>
               </div>
