@@ -1753,6 +1753,293 @@ export default function EmployeeProfile({
           </div>
         );
 
+      case "security":
+        const handleSecurityToggle = (setting: string, value: boolean) => {
+          setSecuritySettings(prev => ({
+            ...prev,
+            [setting]: value
+          }));
+          console.log(`Security setting changed: ${setting} = ${value}`);
+        };
+
+        const handleSecurityAction = (action: string) => {
+          console.log(`Security action: ${action}`);
+          // Here you would implement the actual functionality
+        };
+
+        return (
+          <div className="space-y-8">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Shield className="w-5 h-5" />
+              Access & Security
+            </h3>
+
+            {/* Account Settings */}
+            <div className="space-y-6">
+              <Card className="border border-border">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold mb-6">Account Settings</h4>
+
+                  <div className="space-y-6">
+                    {/* Account Active */}
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <label className="text-sm font-medium">
+                          Account Active <span className="text-red-500">*</span>
+                        </label>
+                        <p className="text-xs text-muted-foreground">
+                          Indicates whether the employee's account is active and can access the system. If the toggle is OFF, the account is inactive and cannot access the system.
+                        </p>
+                      </div>
+                      <Switch
+                        checked={securitySettings.accountActive}
+                        onCheckedChange={(checked) => handleSecurityToggle('accountActive', checked)}
+                      />
+                    </div>
+
+                    {/* HR Access */}
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <label className="text-sm font-medium">HR Access</label>
+                        <p className="text-xs text-muted-foreground">
+                          Grants permission to access HR-related management features.
+                        </p>
+                      </div>
+                      <Switch
+                        checked={securitySettings.hrAccess}
+                        onCheckedChange={(checked) => handleSecurityToggle('hrAccess', checked)}
+                      />
+                    </div>
+
+                    {/* Admin Rights */}
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <label className="text-sm font-medium">Admin Rights</label>
+                        <p className="text-xs text-muted-foreground">
+                          Grants full administrative privileges within the system.
+                        </p>
+                      </div>
+                      <Switch
+                        checked={securitySettings.adminRights}
+                        onCheckedChange={(checked) => handleSecurityToggle('adminRights', checked)}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Security Actions */}
+              <Card className="border border-border">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold mb-6">Security Actions</h4>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <label className="text-sm font-medium">Reset Password</label>
+                        <p className="text-xs text-muted-foreground">
+                          Allows the user or admin to reset the employee's password.
+                        </p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        onClick={() => handleSecurityAction('resetPassword')}
+                        className="text-orange-600 border-orange-200 hover:bg-orange-50"
+                      >
+                        Reset Password
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <label className="text-sm font-medium">Generate New User ID</label>
+                        <p className="text-xs text-muted-foreground">
+                          Generates a new unique user ID for the employee.
+                        </p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        onClick={() => handleSecurityAction('generateUserId')}
+                        className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                      >
+                        Generate New User ID
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Current Security Status */}
+              <Card className="border border-border bg-muted/30">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold mb-4">Current Security Status</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <div className="font-medium text-muted-foreground">Account Status</div>
+                      <Badge variant="outline" className={securitySettings.accountActive ? "bg-green-50 text-green-700 border-green-200" : "bg-red-50 text-red-700 border-red-200"}>
+                        {securitySettings.accountActive ? "Active" : "Inactive"}
+                      </Badge>
+                    </div>
+                    <div>
+                      <div className="font-medium text-muted-foreground">HR Access</div>
+                      <Badge variant="outline" className={securitySettings.hrAccess ? "bg-blue-50 text-blue-700 border-blue-200" : "bg-gray-50 text-gray-700 border-gray-200"}>
+                        {securitySettings.hrAccess ? "Enabled" : "Disabled"}
+                      </Badge>
+                    </div>
+                    <div>
+                      <div className="font-medium text-muted-foreground">Admin Rights</div>
+                      <Badge variant="outline" className={securitySettings.adminRights ? "bg-purple-50 text-purple-700 border-purple-200" : "bg-gray-50 text-gray-700 border-gray-200"}>
+                        {securitySettings.adminRights ? "Granted" : "Not Granted"}
+                      </Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        );
+
+      case "changelog":
+        const auditChangeLog = [
+          {
+            id: "1",
+            description: "Updated employee salary from $90,000 to $95,000",
+            reason: "Annual performance review and salary adjustment",
+            changedBy: "Michael Rodriguez (HR Manager)",
+            date: "2024-01-15"
+          },
+          {
+            id: "2",
+            description: "Changed department from Product to Engineering",
+            reason: "Employee role change and team restructuring",
+            changedBy: "Sarah Johnson (Department Head)",
+            date: "2023-11-10"
+          },
+          {
+            id: "3",
+            description: "Updated employee status from Probationary to Active",
+            reason: "Successful completion of probation period",
+            changedBy: "System Auto-Update",
+            date: "2023-07-15"
+          },
+          {
+            id: "4",
+            description: "Modified work location from Remote to Head Office",
+            reason: "Company policy change - return to office mandate",
+            changedBy: "Michael Rodriguez (HR Manager)",
+            date: "2023-09-01"
+          },
+          {
+            id: "5",
+            description: "Updated emergency contact information",
+            reason: "Employee requested personal information update",
+            changedBy: "Emma Wilson (Self-Service)",
+            date: "2023-12-05"
+          },
+          {
+            id: "6",
+            description: "Added new skill: AWS Cloud Architecture",
+            reason: "Employee completed certification training",
+            changedBy: "Training System",
+            date: "2023-08-20"
+          }
+        ];
+
+        const formatChangeDate = (dateString: string): string => {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+          });
+        };
+
+        return (
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              Audit Change Log
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Title or label for the section displaying historical changes.
+            </p>
+
+            {/* Change Log Entries */}
+            <div className="space-y-4">
+              {auditChangeLog.map((entry) => (
+                <Card key={entry.id} className="border border-border">
+                  <CardContent className="p-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                      {/* Description of change */}
+                      <div className="lg:col-span-2">
+                        <label className="text-sm font-medium text-muted-foreground">Description of change</label>
+                        <p className="font-semibold text-foreground mt-1">{entry.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Entry describing a change event, including who made the change.
+                        </p>
+                      </div>
+
+                      {/* Reason for change */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Reason for change</label>
+                        <p className="text-foreground mt-1">{entry.reason}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Explanation or justification for the change made.
+                        </p>
+                      </div>
+
+                      {/* Date */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Date</label>
+                        <p className="text-foreground mt-1">{formatChangeDate(entry.date)}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          The date on which each change or event occurred.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Changed by */}
+                    <div className="mt-4 pt-4 border-t">
+                      <label className="text-sm font-medium text-muted-foreground">Changed by</label>
+                      <p className="text-foreground mt-1">{entry.changedBy}</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Name or role of the person or system that made the change.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Summary Card */}
+            <Card className="border border-border bg-muted/30">
+              <CardContent className="p-6">
+                <h4 className="font-semibold mb-4">Change Log Summary</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-blue-600">
+                      {auditChangeLog.length}
+                    </div>
+                    <div className="text-muted-foreground">Total Changes</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-green-600">
+                      {auditChangeLog.filter(entry => entry.changedBy.includes('System')).length}
+                    </div>
+                    <div className="text-muted-foreground">System Changes</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-purple-600">
+                      {auditChangeLog.filter(entry => !entry.changedBy.includes('System')).length}
+                    </div>
+                    <div className="text-muted-foreground">Manual Changes</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
       default:
         return (
           <Card className="border-0 shadow-sm">
