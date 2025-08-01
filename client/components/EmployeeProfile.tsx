@@ -1639,7 +1639,7 @@ export default function EmployeeProfile({
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Document Title</label>
                         <p className="font-semibold text-foreground">{document.documentTitle}</p>
-                        <p className="text-xs text-muted-foreground mt-1">The name of the document (e.g., Employment Contract, Tax Forms).</p>
+
                       </div>
 
                       {/* File Type */}
@@ -1648,21 +1648,21 @@ export default function EmployeeProfile({
                         <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                           {document.fileType}
                         </Badge>
-                        <p className="text-xs text-muted-foreground mt-1">The format of the file (e.g., PDF, DOCX).</p>
+
                       </div>
 
                       {/* File Size */}
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">File Size</label>
                         <p className="text-foreground">{document.fileSize}</p>
-                        <p className="text-xs text-muted-foreground mt-1">The size of the file, typically in KB or MB.</p>
+
                       </div>
 
                       {/* Upload Date */}
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Upload Date</label>
                         <p className="text-foreground">{formatDate(document.uploadDate)}</p>
-                        <p className="text-xs text-muted-foreground mt-1">The date the document was uploaded to the system (MM-DD-YYYY).</p>
+
                       </div>
 
                       {/* Action Buttons */}
