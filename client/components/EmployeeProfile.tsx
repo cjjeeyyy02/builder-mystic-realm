@@ -2208,6 +2208,118 @@ export default function EmployeeProfile({
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Upload Document Modal */}
+      <Dialog open={showDocumentModal} onOpenChange={setShowDocumentModal}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Upload Document</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6 pt-4">
+            {/* Document Title */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Document Title <span className="text-red-500">*</span>
+              </label>
+              <Input
+                placeholder="Enter the name of the document (e.g., Employment Contract, Tax Forms)"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                The name of the document (e.g., Employment Contract, Tax Forms).
+              </p>
+            </div>
+
+            {/* File Upload */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Select File <span className="text-red-500">*</span>
+              </label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-600 mb-2">
+                  Click to upload or drag and drop
+                </p>
+                <p className="text-xs text-gray-500">
+                  PDF, DOCX, DOC, XLS, XLSX files up to 10MB
+                </p>
+                <Input
+                  type="file"
+                  className="hidden"
+                  accept=".pdf,.docx,.doc,.xls,.xlsx"
+                />
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                The format of the file (e.g., PDF, DOCX). File size will be automatically calculated.
+              </p>
+            </div>
+
+            {/* Document Category */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Document Category</label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select category (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="employment">Employment Documents</SelectItem>
+                  <SelectItem value="tax">Tax Documents</SelectItem>
+                  <SelectItem value="benefits">Benefits & Insurance</SelectItem>
+                  <SelectItem value="performance">Performance Reviews</SelectItem>
+                  <SelectItem value="training">Training & Certifications</SelectItem>
+                  <SelectItem value="personal">Personal Documents</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground mt-1">
+                Optional category to help organize documents.
+              </p>
+            </div>
+
+            {/* Access Permissions */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Access Permissions</label>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <input type="checkbox" id="canPreview" className="rounded" defaultChecked />
+                  <label htmlFor="canPreview" className="text-sm">Allow preview</label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <input type="checkbox" id="canDownload" className="rounded" defaultChecked />
+                  <label htmlFor="canDownload" className="text-sm">Allow download</label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <input type="checkbox" id="canShare" className="rounded" />
+                  <label htmlFor="canShare" className="text-sm">Allow sharing with others</label>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Configure what actions users can perform on this document.
+              </p>
+            </div>
+
+            {/* Form Actions */}
+            <div className="flex gap-3 pt-4 border-t">
+              <Button
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                onClick={() => {
+                  console.log("Uploading document...");
+                  setShowDocumentModal(false);
+                }}
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                Upload Document
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowDocumentModal(false)}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
