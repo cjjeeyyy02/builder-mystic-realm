@@ -1607,14 +1607,7 @@ export default function EmployeeProfile({
           }
         ];
 
-        const formatDate = (dateString: string): string => {
-          const date = new Date(dateString);
-          return date.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
-          });
-        };
+
 
         const handleDocumentAction = (action: string, docId: string, docTitle: string) => {
           console.log(`${action} action for document:`, docId, docTitle);
