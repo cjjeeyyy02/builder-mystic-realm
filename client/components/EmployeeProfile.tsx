@@ -2473,9 +2473,7 @@ export default function EmployeeProfile({
               <Input
                 placeholder="Enter the name of the document (e.g., Employment Contract, Tax Forms)"
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                The name of the document (e.g., Employment Contract, Tax Forms).
-              </p>
+
             </div>
 
             {/* File Upload */}
@@ -2497,9 +2495,7 @@ export default function EmployeeProfile({
                   accept=".pdf,.docx,.doc,.xls,.xlsx"
                 />
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                The format of the file (e.g., PDF, DOCX). File size will be automatically calculated.
-              </p>
+
             </div>
 
             {/* Document Category */}
@@ -2519,9 +2515,7 @@ export default function EmployeeProfile({
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-xs text-muted-foreground mt-1">
-                Optional category to help organize documents.
-              </p>
+
             </div>
 
             {/* Access Permissions */}
@@ -2541,9 +2535,7 @@ export default function EmployeeProfile({
                   <label htmlFor="canShare" className="text-sm">Allow sharing with others</label>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Configure what actions users can perform on this document.
-              </p>
+
             </div>
 
             {/* Form Actions */}
