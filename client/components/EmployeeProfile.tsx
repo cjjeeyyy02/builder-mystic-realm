@@ -2224,7 +2224,7 @@ export default function EmployeeProfile({
                   <SelectItem value="certification">Certification</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-xs text-muted-foreground mt-1">Specifies whether training or certification</p>
+
             </div>
 
             {/* Conditional Form Fields */}
@@ -2238,7 +2238,7 @@ export default function EmployeeProfile({
                     onChange={(e) => setTrainingFormData({...trainingFormData, trainingTitle: e.target.value})}
                     placeholder="The name or title of the training session"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">The name or title of the training session.</p>
+
                 </div>
 
                 <div>
@@ -2248,7 +2248,7 @@ export default function EmployeeProfile({
                     onChange={(e) => setTrainingFormData({...trainingFormData, trainingProvider: e.target.value})}
                     placeholder="The organization or individual offering it"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">The organization or individual offering it.</p>
+
                 </div>
 
                 <div>
@@ -2266,7 +2266,7 @@ export default function EmployeeProfile({
                       <SelectItem value="Completed">Completed</SelectItem>
                     </SelectContent>
                   </Select>
-                  <p className="text-xs text-muted-foreground mt-1">Indicates the current progress or state.</p>
+
                 </div>
 
                 <div>
@@ -2277,7 +2277,7 @@ export default function EmployeeProfile({
                     onChange={(e) => setTrainingFormData({...trainingFormData, score: e.target.value})}
                     placeholder="Numeric value representing performance"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">Numeric value representing performance.</p>
+
                 </div>
 
                 <div>
