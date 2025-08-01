@@ -1625,9 +1625,7 @@ export default function EmployeeProfile({
                 Upload Document
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Header. Shows the real-time count of uploaded documents. The number e.g. ({employeeDocuments.length}) updates automatically when documents are added or deleted.
-            </p>
+
 
             {/* Documents List */}
             <div className="space-y-4">
