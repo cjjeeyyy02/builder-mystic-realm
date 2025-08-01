@@ -1425,6 +1425,162 @@ export default function EmployeeProfile({
       <Card className="border-0 shadow-sm">
         <CardContent className="p-8">{renderTabContent()}</CardContent>
       </Card>
+
+      {/* Training/Certification Modal */}
+      <Dialog open={showTrainingModal} onOpenChange={setShowTrainingModal}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Add Training/Certification</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6 pt-4">
+            {/* Type Selection */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Type</label>
+              <Select
+                value={trainingFormData.type}
+                onValueChange={(value) => {
+                  setTrainingFormData({...trainingFormData, type: value});
+                  setTrainingFormType(value as "training" | "certification");
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="training">Training</SelectItem>
+                  <SelectItem value="certification">Certification</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground mt-1">Specifies whether training or certification</p>
+            </div>
+
+            {/* Conditional Form Fields */}
+            {trainingFormType === "training" ? (
+              // Training Form Fields
+              <>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Training Title <span className="text-red-500">*</span></label>
+                  <Input
+                    value={trainingFormData.trainingTitle}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, trainingTitle: e.target.value})}
+                    placeholder="The name or title of the training session"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">The name or title of the training session.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Training Provider</label>
+                  <Input
+                    value={trainingFormData.trainingProvider}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, trainingProvider: e.target.value})}
+                    placeholder="The organization or individual offering it"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">The organization or individual offering it.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Status <span className="text-red-500">*</span></label>
+                  <Select
+                    value={trainingFormData.status}
+                    onValueChange={(value) => setTrainingFormData({...trainingFormData, status: value})}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Not Started">Not Started</SelectItem>
+                      <SelectItem value="In Progress">In Progress</SelectItem>
+                      <SelectItem value="Completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-muted-foreground mt-1">Indicates the current progress or state.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Score</label>
+                  <Input
+                    type="number"
+                    value={trainingFormData.score}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, score: e.target.value})}
+                    placeholder="Numeric value representing performance"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Numeric value representing performance.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Completion Date</label>
+                  <Input
+                    type="date"
+                    value={trainingFormData.completionDate}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, completionDate: e.target.value})}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">The date the training was completed. If Not Started or In Progress, leave the field blank</p>
+                </div>
+              </>
+            ) : (
+              // Certification Form Fields
+              <>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Certification Name <span className="text-red-500">*</span></label>
+                  <Input
+                    value={trainingFormData.certificationName}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, certificationName: e.target.value})}
+                    placeholder="Enter the official name of the certification"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Enter the official name of the certification.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Issued Organization</label>
+                  <Input
+                    value={trainingFormData.issuedOrganization}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, issuedOrganization: e.target.value})}
+                    placeholder="Name of the organization that issued the certification"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Name of the organization that issued the certification.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Issued Date</label>
+                  <Input
+                    type="date"
+                    value={trainingFormData.issuedDate}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, issuedDate: e.target.value})}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">The date the certification was issued (format: MM-DD-YYYY).</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Expiration Date</label>
+                  <Input
+                    type="date"
+                    value={trainingFormData.expirationDate}
+                    onChange={(e) => setTrainingFormData({...trainingFormData, expirationDate: e.target.value})}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">The date the certification expires (format: MM-DD-YYYY).</p>
+                </div>
+              </>
+            )}
+
+            {/* Form Actions */}
+            <div className="flex gap-3 pt-4 border-t">
+              <Button
+                onClick={handleTrainingFormSubmit}
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+              >
+                Save
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleTrainingFormCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
