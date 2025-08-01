@@ -1413,9 +1413,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <div className="text-sm font-medium text-muted-foreground">Attendance Rate</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          (Days Present / Total Working Days) × 100
-                        </div>
+
                       </div>
                       <div className="text-2xl font-bold text-blue-600">
                         {attendanceData.attendanceRate}%
@@ -1435,9 +1433,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <div className="text-sm font-medium text-muted-foreground">Punctuality Rate</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          ((Total Working Days - Late Arrivals) / Total Working Days) × 100
-                        </div>
+
                       </div>
                       <div className="text-2xl font-bold text-green-600">
                         {attendanceData.punctualityRate}%
