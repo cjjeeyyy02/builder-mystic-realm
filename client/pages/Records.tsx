@@ -375,7 +375,7 @@ export default function Records() {
                 )}
               </div>
 
-              <Button className="w-full" size="sm">
+              <Button className="w-full" size="sm" onClick={() => setSelectedEmployee(employee)}>
                 <Eye className="w-3 h-3 mr-2" />
                 View Profile
               </Button>
