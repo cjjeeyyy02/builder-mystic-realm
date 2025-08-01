@@ -175,6 +175,16 @@ export default function EmployeeProfile({
     expirationDate: ""
   });
 
+  // Leave request modal state
+  const [showLeaveModal, setShowLeaveModal] = useState(false);
+  const [leaveFormData, setLeaveFormData] = useState({
+    leaveType: "",
+    fromDate: "",
+    toDate: "",
+    approverName: "",
+    reason: ""
+  });
+
   const tabs = [
     { id: "personal", label: "Personal Info", icon: User },
     { id: "work", label: "Work Details", icon: Briefcase },
