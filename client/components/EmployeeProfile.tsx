@@ -192,6 +192,13 @@ export default function EmployeeProfile({
   // Document upload modal state
   const [showDocumentModal, setShowDocumentModal] = useState(false);
 
+  // Security settings state
+  const [securitySettings, setSecuritySettings] = useState({
+    accountActive: true,
+    hrAccess: false,
+    adminRights: false
+  });
+
   const tabs = [
     { id: "personal", label: "Personal Info", icon: User },
     { id: "work", label: "Work Details", icon: Briefcase },
