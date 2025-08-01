@@ -2385,9 +2385,7 @@ export default function EmployeeProfile({
                   <SelectItem value="Study">Study</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-xs text-muted-foreground mt-1">
-                Dropdown menu to select the type of leave (e.g., Annual, Sick, etc.).
-              </p>
+
             </div>
 
             {/* From Date - Required */}
@@ -2400,9 +2398,7 @@ export default function EmployeeProfile({
                 value={leaveFormData.fromDate}
                 onChange={(e) => setLeaveFormData({...leaveFormData, fromDate: e.target.value})}
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                The start date of the leave period.
-              </p>
+
             </div>
 
             {/* To Date - Required */}
@@ -2415,9 +2411,7 @@ export default function EmployeeProfile({
                 value={leaveFormData.toDate}
                 onChange={(e) => setLeaveFormData({...leaveFormData, toDate: e.target.value})}
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                The end date of the leave period.
-              </p>
+
             </div>
 
             {/* Approver Name - Optional */}
@@ -2428,9 +2422,7 @@ export default function EmployeeProfile({
                 onChange={(e) => setLeaveFormData({...leaveFormData, approverName: e.target.value})}
                 placeholder="Enter the name of the person responsible for approving"
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                Name of the person responsible for approving the leave request.
-              </p>
+
             </div>
 
             {/* Reason - Optional */}
@@ -2442,9 +2434,7 @@ export default function EmployeeProfile({
                 placeholder="Optional explanation or justification for the leave"
                 rows={3}
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                Optional explanation or justification for the leave.
-              </p>
+
             </div>
 
             {/* Form Actions */}
