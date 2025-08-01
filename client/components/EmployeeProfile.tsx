@@ -4,7 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   ArrowLeft,
   Edit,
@@ -29,7 +35,7 @@ import {
   ChevronDown,
   ChevronUp,
   Target,
-  Award
+  Award,
 } from "lucide-react";
 
 interface Employee {
@@ -53,7 +59,7 @@ interface EmployeeProfileProps {
 }
 
 const getInitials = (fullName: string): string => {
-  const names = fullName.split(' ');
+  const names = fullName.split(" ");
   if (names.length >= 2) {
     return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
   }
@@ -75,30 +81,77 @@ const getStatusColor = (status: string): string => {
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    month: '2-digit',
-    day: '2-digit',
-    year: 'numeric'
+  return date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
   });
 };
 
-export default function EmployeeProfile({ employee, onBack }: EmployeeProfileProps) {
+export default function EmployeeProfile({
+  employee,
+  onBack,
+}: EmployeeProfileProps) {
   const [activeTab, setActiveTab] = useState("personal");
   const [isEditing, setIsEditing] = useState(false);
   const [editedEmployee, setEditedEmployee] = useState(employee);
 
   // Skills state
   const [skills, setSkills] = useState([
-    { name: "React", experience: "4 years", endorsements: 12, level: "Expert", editable: true, endorsable: true },
-    { name: "TypeScript", experience: "3 years", endorsements: 8, level: "Advanced", editable: true, endorsable: true },
-    { name: "Node.js", experience: "3 years", endorsements: 6, level: "Advanced", editable: true, endorsable: true },
-    { name: "Python", experience: "2 years", endorsements: 4, level: "Intermediate", editable: true, endorsable: true },
-    { name: "AWS", experience: "2 years", endorsements: 5, level: "Intermediate", editable: true, endorsable: true },
-    { name: "Docker", experience: "1 year", endorsements: 3, level: "Beginner", editable: true, endorsable: true }
+    {
+      name: "React",
+      experience: "4 years",
+      endorsements: 12,
+      level: "Expert",
+      editable: true,
+      endorsable: true,
+    },
+    {
+      name: "TypeScript",
+      experience: "3 years",
+      endorsements: 8,
+      level: "Advanced",
+      editable: true,
+      endorsable: true,
+    },
+    {
+      name: "Node.js",
+      experience: "3 years",
+      endorsements: 6,
+      level: "Advanced",
+      editable: true,
+      endorsable: true,
+    },
+    {
+      name: "Python",
+      experience: "2 years",
+      endorsements: 4,
+      level: "Intermediate",
+      editable: true,
+      endorsable: true,
+    },
+    {
+      name: "AWS",
+      experience: "2 years",
+      endorsements: 5,
+      level: "Intermediate",
+      editable: true,
+      endorsable: true,
+    },
+    {
+      name: "Docker",
+      experience: "1 year",
+      endorsements: 3,
+      level: "Beginner",
+      editable: true,
+      endorsable: true,
+    },
   ]);
 
   // Performance reviews state
-  const [expandedQuarters, setExpandedQuarters] = useState<string[]>(["q3-2023"]);
+  const [expandedQuarters, setExpandedQuarters] = useState<string[]>([
+    "q3-2023",
+  ]);
 
   const tabs = [
     { id: "personal", label: "Personal Info", icon: User },
@@ -110,7 +163,7 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
     { id: "attendance", label: "Leave & Attendance", icon: Calendar },
     { id: "documents", label: "Documents", icon: FileText },
     { id: "security", label: "Access & Security", icon: Shield },
-    { id: "changelog", label: "Change Log", icon: Clock }
+    { id: "changelog", label: "Change Log", icon: Clock },
   ];
 
   const handleSave = () => {
@@ -138,40 +191,64 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">First Name</label>
+                  <label className="block text-sm font-medium mb-2">
+                    First Name
+                  </label>
                   {isEditing ? (
                     <Input
-                      value={editedEmployee.fullName.split(' ')[0]}
+                      value={editedEmployee.fullName.split(" ")[0]}
                       onChange={(e) => {
-                        const names = editedEmployee.fullName.split(' ');
+                        const names = editedEmployee.fullName.split(" ");
                         names[0] = e.target.value;
-                        setEditedEmployee({...editedEmployee, fullName: names.join(' ')});
+                        setEditedEmployee({
+                          ...editedEmployee,
+                          fullName: names.join(" "),
+                        });
                       }}
                     />
                   ) : (
-                    <p className="text-foreground">{employee.fullName.split(' ')[0]}</p>
+                    <p className="text-foreground">
+                      {employee.fullName.split(" ")[0]}
+                    </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Last Name</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Last Name
+                  </label>
                   {isEditing ? (
                     <Input
-                      value={editedEmployee.fullName.split(' ').slice(1).join(' ')}
+                      value={editedEmployee.fullName
+                        .split(" ")
+                        .slice(1)
+                        .join(" ")}
                       onChange={(e) => {
-                        const firstName = editedEmployee.fullName.split(' ')[0];
-                        setEditedEmployee({...editedEmployee, fullName: `${firstName} ${e.target.value}`});
+                        const firstName = editedEmployee.fullName.split(" ")[0];
+                        setEditedEmployee({
+                          ...editedEmployee,
+                          fullName: `${firstName} ${e.target.value}`,
+                        });
                       }}
                     />
                   ) : (
-                    <p className="text-foreground">{employee.fullName.split(' ').slice(1).join(' ')}</p>
+                    <p className="text-foreground">
+                      {employee.fullName.split(" ").slice(1).join(" ")}
+                    </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Phone</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Phone
+                  </label>
                   {isEditing ? (
                     <Input
                       value={editedEmployee.phone}
-                      onChange={(e) => setEditedEmployee({...editedEmployee, phone: e.target.value})}
+                      onChange={(e) =>
+                        setEditedEmployee({
+                          ...editedEmployee,
+                          phone: e.target.value,
+                        })
+                      }
                       placeholder="+1 (416) 123-4567"
                     />
                   ) : (
@@ -179,26 +256,41 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Address</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Address
+                  </label>
                   {isEditing ? (
                     <Textarea placeholder="Full residential address" />
                   ) : (
-                    <p className="text-foreground">123 Main Street, Apt 4B<br />San Francisco, CA 94102</p>
+                    <p className="text-foreground">
+                      123 Main Street, Apt 4B
+                      <br />
+                      San Francisco, CA 94102
+                    </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email Address</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Email Address
+                  </label>
                   {isEditing ? (
                     <Input
                       value={editedEmployee.email}
-                      onChange={(e) => setEditedEmployee({...editedEmployee, email: e.target.value})}
+                      onChange={(e) =>
+                        setEditedEmployee({
+                          ...editedEmployee,
+                          email: e.target.value,
+                        })
+                      }
                     />
                   ) : (
                     <p className="text-foreground">{employee.email}</p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Date of Birth</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Date of Birth
+                  </label>
                   {isEditing ? (
                     <Input type="date" defaultValue="1990-03-15" />
                   ) : (
@@ -208,7 +300,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Gender</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Gender
+                  </label>
                   {isEditing ? (
                     <Select defaultValue="female">
                       <SelectTrigger>
@@ -218,7 +312,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                         <SelectItem value="male">Male</SelectItem>
                         <SelectItem value="female">Female</SelectItem>
                         <SelectItem value="non-binary">Non-Binary</SelectItem>
-                        <SelectItem value="prefer-not-to-say">Prefer Not to Say</SelectItem>
+                        <SelectItem value="prefer-not-to-say">
+                          Prefer Not to Say
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   ) : (
@@ -226,7 +322,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Marital Status</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Marital Status
+                  </label>
                   {isEditing ? (
                     <Select defaultValue="single">
                       <SelectTrigger>
@@ -244,7 +342,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Nationality</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Nationality
+                  </label>
                   {isEditing ? (
                     <Input defaultValue="United States" />
                   ) : (
@@ -252,18 +352,32 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Emergency Contact</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Emergency Contact
+                  </label>
                   {isEditing ? (
                     <div className="space-y-2">
-                      <Input placeholder="Contact Person" defaultValue="John Mitchell" />
-                      <Input placeholder="Contact Number" defaultValue="+1 (555) 987-6543" />
+                      <Input
+                        placeholder="Contact Person"
+                        defaultValue="John Mitchell"
+                      />
+                      <Input
+                        placeholder="Contact Number"
+                        defaultValue="+1 (555) 987-6543"
+                      />
                       <Input placeholder="Relationship" defaultValue="Father" />
                     </div>
                   ) : (
                     <div className="text-foreground">
-                      <p><strong>Contact Person:</strong> John Mitchell</p>
-                      <p><strong>Contact Number:</strong> +1 (555) 987-6543</p>
-                      <p><strong>Relationship:</strong> Father</p>
+                      <p>
+                        <strong>Contact Person:</strong> John Mitchell
+                      </p>
+                      <p>
+                        <strong>Contact Number:</strong> +1 (555) 987-6543
+                      </p>
+                      <p>
+                        <strong>Relationship:</strong> Father
+                      </p>
                     </div>
                   )}
                 </div>
@@ -279,7 +393,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Position</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Position
+                  </label>
                   {isEditing ? (
                     <Input defaultValue={employee.jobTitle} />
                   ) : (
@@ -287,7 +403,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Department</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Department
+                  </label>
                   {isEditing ? (
                     <Select defaultValue={employee.department.toLowerCase()}>
                       <SelectTrigger>
@@ -307,7 +425,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Reporting Manager</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Reporting Manager
+                  </label>
                   {isEditing ? (
                     <Input defaultValue="Michael Rodriguez" />
                   ) : (
@@ -315,15 +435,23 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Employment Status</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Employment Status
+                  </label>
                   {isEditing ? (
-                    <Select defaultValue={employee.status.toLowerCase().replace(' ', '-')}>
+                    <Select
+                      defaultValue={employee.status
+                        .toLowerCase()
+                        .replace(" ", "-")}
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="active">Active</SelectItem>
-                        <SelectItem value="probationary">Probationary</SelectItem>
+                        <SelectItem value="probationary">
+                          Probationary
+                        </SelectItem>
                         <SelectItem value="resigned">Resigned</SelectItem>
                         <SelectItem value="terminated">Terminated</SelectItem>
                         <SelectItem value="on-leave">On-Leave</SelectItem>
@@ -334,7 +462,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Employment Type</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Employment Type
+                  </label>
                   {isEditing ? (
                     <Select defaultValue="full-time">
                       <SelectTrigger>
@@ -351,17 +481,23 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Date Hired</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Date Hired
+                  </label>
                   {isEditing ? (
                     <Input type="date" defaultValue={employee.joinDate} />
                   ) : (
-                    <p className="text-foreground">{formatDate(employee.joinDate)}</p>
+                    <p className="text-foreground">
+                      {formatDate(employee.joinDate)}
+                    </p>
                   )}
                 </div>
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Probation End Date</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Probation End Date
+                  </label>
                   {isEditing ? (
                     <Input type="date" defaultValue="2023-07-15" />
                   ) : (
@@ -369,7 +505,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Work Location / Site</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Work Location / Site
+                  </label>
                   {isEditing ? (
                     <Select defaultValue="head-office">
                       <SelectTrigger>
@@ -386,7 +524,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Shift Schedule</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Shift Schedule
+                  </label>
                   {isEditing ? (
                     <Select defaultValue="day">
                       <SelectTrigger>
@@ -404,7 +544,9 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Work Email</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Work Email
+                  </label>
                   {isEditing ? (
                     <Input defaultValue={employee.email} />
                   ) : (
@@ -412,11 +554,15 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Work Phone / Extension</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Work Phone / Extension
+                  </label>
                   {isEditing ? (
                     <Input defaultValue="+1 (555) 123-4567 ext. 1234" />
                   ) : (
-                    <p className="text-foreground">+1 (555) 123-4567 ext. 1234</p>
+                    <p className="text-foreground">
+                      +1 (555) 123-4567 ext. 1234
+                    </p>
                   )}
                 </div>
               </div>
@@ -440,25 +586,41 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                   <CardContent className="p-4">
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Skill Name</label>
-                        <p className="font-semibold text-foreground">{skill.name}</p>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Skill Name
+                        </label>
+                        <p className="font-semibold text-foreground">
+                          {skill.name}
+                        </p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Experience</label>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Experience
+                        </label>
                         <p className="text-foreground">{skill.experience}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Endorsements</label>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Endorsements
+                        </label>
                         <p className="text-foreground">{skill.endorsements}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Skill Level</label>
-                        <Badge variant="secondary" className={
-                          skill.level === "Expert" ? "bg-green-100 text-green-700" :
-                          skill.level === "Advanced" ? "bg-blue-100 text-blue-700" :
-                          skill.level === "Intermediate" ? "bg-yellow-100 text-yellow-700" :
-                          "bg-gray-100 text-gray-700"
-                        }>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Skill Level
+                        </label>
+                        <Badge
+                          variant="secondary"
+                          className={
+                            skill.level === "Expert"
+                              ? "bg-green-100 text-green-700"
+                              : skill.level === "Advanced"
+                                ? "bg-blue-100 text-blue-700"
+                                : skill.level === "Intermediate"
+                                  ? "bg-yellow-100 text-yellow-700"
+                                  : "bg-gray-100 text-gray-700"
+                          }
+                        >
                           {skill.level}
                         </Badge>
                       </div>
@@ -493,7 +655,7 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             source: "Base Salary",
             type: "Pay Rate Change",
             currency: "USD",
-            jobTitle: "Senior Software Engineer"
+            jobTitle: "Senior Software Engineer",
           },
           {
             date: "07-01-2022",
@@ -504,8 +666,8 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             source: "Base Salary",
             type: "Promotion",
             currency: "USD",
-            jobTitle: "Software Engineer"
-          }
+            jobTitle: "Software Engineer",
+          },
         ];
 
         return (
@@ -517,17 +679,29 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label className="text-sm font-medium text-muted-foreground">Base Salary</label>
-                    <p className="text-2xl font-bold text-foreground">$95,000</p>
+                    <label className="text-sm font-medium text-muted-foreground">
+                      Base Salary
+                    </label>
+                    <p className="text-2xl font-bold text-foreground">
+                      $95,000
+                    </p>
                     <p className="text-sm text-muted-foreground">per month</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-muted-foreground">Last Review</label>
-                    <p className="text-lg font-semibold text-foreground">01-15-2023</p>
+                    <label className="text-sm font-medium text-muted-foreground">
+                      Last Review
+                    </label>
+                    <p className="text-lg font-semibold text-foreground">
+                      01-15-2023
+                    </p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-muted-foreground">Next Review</label>
-                    <p className="text-lg font-semibold text-foreground">01-15-2024</p>
+                    <label className="text-sm font-medium text-muted-foreground">
+                      Next Review
+                    </label>
+                    <p className="text-lg font-semibold text-foreground">
+                      01-15-2024
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -535,48 +709,76 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
 
             {/* Compensation History */}
             <div>
-              <h4 className="text-md font-semibold mb-4">Compensation History</h4>
+              <h4 className="text-md font-semibold mb-4">
+                Compensation History
+              </h4>
               <div className="space-y-4">
                 {compensationHistory.map((record, index) => (
                   <Card key={index} className="border border-border">
                     <CardContent className="p-4">
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-sm">
                         <div>
-                          <label className="font-medium text-muted-foreground">Date of Change</label>
+                          <label className="font-medium text-muted-foreground">
+                            Date of Change
+                          </label>
                           <p className="text-foreground">{record.date}</p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Amount</label>
-                          <p className="text-green-600 font-semibold">{record.amount}</p>
+                          <label className="font-medium text-muted-foreground">
+                            Amount
+                          </label>
+                          <p className="text-green-600 font-semibold">
+                            {record.amount}
+                          </p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Salary Amount</label>
-                          <p className="text-foreground font-semibold">{record.salaryAmount}</p>
+                          <label className="font-medium text-muted-foreground">
+                            Salary Amount
+                          </label>
+                          <p className="text-foreground font-semibold">
+                            {record.salaryAmount}
+                          </p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Change Amount</label>
-                          <p className="text-foreground">{record.changeAmount}</p>
+                          <label className="font-medium text-muted-foreground">
+                            Change Amount
+                          </label>
+                          <p className="text-foreground">
+                            {record.changeAmount}
+                          </p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Change %</label>
-                          <p className="text-foreground">{record.changePercent}</p>
+                          <label className="font-medium text-muted-foreground">
+                            Change %
+                          </label>
+                          <p className="text-foreground">
+                            {record.changePercent}
+                          </p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Type</label>
+                          <label className="font-medium text-muted-foreground">
+                            Type
+                          </label>
                           <p className="text-foreground">{record.type}</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-3 pt-3 border-t">
                         <div>
-                          <label className="font-medium text-muted-foreground">Source</label>
+                          <label className="font-medium text-muted-foreground">
+                            Source
+                          </label>
                           <p className="text-foreground">{record.source}</p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Currency</label>
+                          <label className="font-medium text-muted-foreground">
+                            Currency
+                          </label>
                           <p className="text-foreground">{record.currency}</p>
                         </div>
                         <div>
-                          <label className="font-medium text-muted-foreground">Job Title</label>
+                          <label className="font-medium text-muted-foreground">
+                            Job Title
+                          </label>
                           <p className="text-foreground">{record.jobTitle}</p>
                         </div>
                       </div>
@@ -594,33 +796,75 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             id: "q3-2023",
             quarter: "Q3 2023",
             goals: [
-              { id: 1, title: "Complete React Migration Project", status: "Completed", rating: "4.5/5" },
-              { id: 2, title: "Mentor 2 Junior Developers", status: "Completed", rating: "4.8/5" },
-              { id: 3, title: "Improve Code Review Process", status: "In Progress", rating: "4.0/5" },
-              { id: 4, title: "Lead Architecture Design Sessions", status: "Completed", rating: "4.7/5" },
-              { id: 5, title: "Enhance Team Documentation", status: "Not Started", rating: "N/A" }
+              {
+                id: 1,
+                title: "Complete React Migration Project",
+                status: "Completed",
+                rating: "4.5/5",
+              },
+              {
+                id: 2,
+                title: "Mentor 2 Junior Developers",
+                status: "Completed",
+                rating: "4.8/5",
+              },
+              {
+                id: 3,
+                title: "Improve Code Review Process",
+                status: "In Progress",
+                rating: "4.0/5",
+              },
+              {
+                id: 4,
+                title: "Lead Architecture Design Sessions",
+                status: "Completed",
+                rating: "4.7/5",
+              },
+              {
+                id: 5,
+                title: "Enhance Team Documentation",
+                status: "Not Started",
+                rating: "N/A",
+              },
             ],
             overallRating: "4.5/5",
-            managerFeedback: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership on the React migration project was outstanding, and her mentoring of junior developers shows strong leadership potential. She proactively improved our code review process and led several successful architecture sessions. Areas for growth include completing the documentation enhancement initiative in the next quarter."
+            managerFeedback:
+              "Sarah has consistently delivered exceptional work this quarter. Her technical leadership on the React migration project was outstanding, and her mentoring of junior developers shows strong leadership potential. She proactively improved our code review process and led several successful architecture sessions. Areas for growth include completing the documentation enhancement initiative in the next quarter.",
           },
           {
             id: "q2-2023",
             quarter: "Q2 2023",
             goals: [
-              { id: 1, title: "Optimize Application Performance", status: "Completed", rating: "4.2/5" },
-              { id: 2, title: "Implement Testing Framework", status: "Completed", rating: "4.6/5" },
-              { id: 3, title: "Cross-team Collaboration Initiative", status: "Completed", rating: "4.3/5" }
+              {
+                id: 1,
+                title: "Optimize Application Performance",
+                status: "Completed",
+                rating: "4.2/5",
+              },
+              {
+                id: 2,
+                title: "Implement Testing Framework",
+                status: "Completed",
+                rating: "4.6/5",
+              },
+              {
+                id: 3,
+                title: "Cross-team Collaboration Initiative",
+                status: "Completed",
+                rating: "4.3/5",
+              },
             ],
             overallRating: "4.4/5",
-            managerFeedback: "Excellent performance in Q2. Sarah successfully optimized our application performance by 25% and implemented a comprehensive testing framework that improved our code quality significantly."
-          }
+            managerFeedback:
+              "Excellent performance in Q2. Sarah successfully optimized our application performance by 25% and implemented a comprehensive testing framework that improved our code quality significantly.",
+          },
         ];
 
         const toggleQuarter = (quarterId: string) => {
-          setExpandedQuarters(prev =>
+          setExpandedQuarters((prev) =>
             prev.includes(quarterId)
-              ? prev.filter(id => id !== quarterId)
-              : [...prev, quarterId]
+              ? prev.filter((id) => id !== quarterId)
+              : [...prev, quarterId],
           );
         };
 
@@ -637,15 +881,18 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                       onClick={() => toggleQuarter(review.id)}
                     >
                       <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">{review.quarter}</h4>
+                        <h4 className="text-lg font-semibold">
+                          {review.quarter}
+                        </h4>
                         <div className="flex items-center gap-4">
                           <Badge className="bg-blue-100 text-blue-700">
                             Overall: {review.overallRating}
                           </Badge>
-                          {expandedQuarters.includes(review.id) ?
-                            <ChevronUp className="w-5 h-5" /> :
+                          {expandedQuarters.includes(review.id) ? (
+                            <ChevronUp className="w-5 h-5" />
+                          ) : (
                             <ChevronDown className="w-5 h-5" />
-                          }
+                          )}
                         </div>
                       </div>
                     </div>
@@ -660,16 +907,26 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                           </h5>
                           <div className="space-y-3">
                             {review.goals.map((goal) => (
-                              <div key={goal.id} className="flex items-center justify-between p-3 bg-muted/20 rounded-lg">
+                              <div
+                                key={goal.id}
+                                className="flex items-center justify-between p-3 bg-muted/20 rounded-lg"
+                              >
                                 <div className="flex-1">
-                                  <p className="font-medium">Goal {goal.id}: {goal.title}</p>
+                                  <p className="font-medium">
+                                    Goal {goal.id}: {goal.title}
+                                  </p>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                  <Badge variant="outline" className={
-                                    goal.status === "Completed" ? "bg-green-50 text-green-700 border-green-200" :
-                                    goal.status === "In Progress" ? "bg-yellow-50 text-yellow-700 border-yellow-200" :
-                                    "bg-gray-50 text-gray-700 border-gray-200"
-                                  }>
+                                  <Badge
+                                    variant="outline"
+                                    className={
+                                      goal.status === "Completed"
+                                        ? "bg-green-50 text-green-700 border-green-200"
+                                        : goal.status === "In Progress"
+                                          ? "bg-yellow-50 text-yellow-700 border-yellow-200"
+                                          : "bg-gray-50 text-gray-700 border-gray-200"
+                                    }
+                                  >
                                     {goal.status}
                                   </Badge>
                                   <span className="text-sm font-medium min-w-[60px]">
@@ -683,9 +940,13 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
 
                         {/* Manager Feedback */}
                         <div className="mt-6">
-                          <h5 className="font-semibold mb-3">Manager Feedback</h5>
+                          <h5 className="font-semibold mb-3">
+                            Manager Feedback
+                          </h5>
                           <div className="p-4 bg-blue-50 rounded-lg">
-                            <p className="text-foreground leading-relaxed">{review.managerFeedback}</p>
+                            <p className="text-foreground leading-relaxed">
+                              {review.managerFeedback}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -703,12 +964,16 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             <CardContent className="p-12 text-center">
               <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                 {(() => {
-                  const IconComponent = tabs.find(tab => tab.id === activeTab)?.icon;
-                  return IconComponent ? <IconComponent className="w-6 h-6 text-muted-foreground" /> : null;
+                  const IconComponent = tabs.find(
+                    (tab) => tab.id === activeTab,
+                  )?.icon;
+                  return IconComponent ? (
+                    <IconComponent className="w-6 h-6 text-muted-foreground" />
+                  ) : null;
                 })()}
               </div>
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {tabs.find(tab => tab.id === activeTab)?.label}
+                {tabs.find((tab) => tab.id === activeTab)?.label}
               </h3>
               <p className="text-muted-foreground">
                 This section is under development
@@ -728,12 +993,17 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Records
           </Button>
-          <h1 className="text-3xl font-semibold text-foreground">Employee Profile</h1>
+          <h1 className="text-3xl font-semibold text-foreground">
+            Employee Profile
+          </h1>
         </div>
         <div className="flex items-center gap-3">
           {isEditing ? (
             <>
-              <Button onClick={handleSave} className="bg-green-600 hover:bg-green-700 text-white">
+              <Button
+                onClick={handleSave}
+                className="bg-green-600 hover:bg-green-700 text-white"
+              >
                 <Save className="w-4 h-4 mr-2" />
                 Save Changes
               </Button>
@@ -748,7 +1018,11 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Profile
               </Button>
-              <Button variant="outline" onClick={handleOffboarding} className="text-red-600 border-red-200 hover:bg-red-50">
+              <Button
+                variant="outline"
+                onClick={handleOffboarding}
+                className="text-red-600 border-red-200 hover:bg-red-50"
+              >
                 <UserMinus className="w-4 h-4 mr-2" />
                 Offboarding Employee
               </Button>
@@ -776,14 +1050,21 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-2xl font-bold text-foreground">{employee.fullName}</h2>
-                    <Badge variant="outline" className={`font-bold ${getStatusColor(employee.status)}`}>
+                    <h2 className="text-2xl font-bold text-foreground">
+                      {employee.fullName}
+                    </h2>
+                    <Badge
+                      variant="outline"
+                      className={`font-bold ${getStatusColor(employee.status)}`}
+                    >
                       {employee.status}
                     </Badge>
                   </div>
-                  <p className="text-lg text-muted-foreground font-medium">{employee.jobTitle}</p>
+                  <p className="text-lg text-muted-foreground font-medium">
+                    {employee.jobTitle}
+                  </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm">
                     <Mail className="w-4 h-4 text-muted-foreground" />
@@ -809,7 +1090,11 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
                 <h3 className="font-semibold text-foreground">Skills</h3>
                 <div className="flex flex-wrap gap-2">
                   {employee.skills.map((skill, index) => (
-                    <Badge key={index} variant="secondary" className="bg-blue-50 text-blue-700">
+                    <Badge
+                      key={index}
+                      variant="secondary"
+                      className="bg-blue-50 text-blue-700"
+                    >
                       {skill}
                     </Badge>
                   ))}
@@ -819,13 +1104,21 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
               {/* Column 3 - Employee ID & Join Date */}
               <div className="space-y-6">
                 <div className="text-center bg-muted/30 rounded-lg p-4">
-                  <div className="text-sm text-muted-foreground font-medium">Employee ID</div>
-                  <div className="text-lg font-bold text-foreground">{employee.employeeId}</div>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Employee ID
+                  </div>
+                  <div className="text-lg font-bold text-foreground">
+                    {employee.employeeId}
+                  </div>
                 </div>
-                
+
                 <div className="text-center bg-muted/30 rounded-lg p-4">
-                  <div className="text-sm text-muted-foreground font-medium">Joined</div>
-                  <div className="text-lg font-bold text-foreground">{formatDate(employee.joinDate)}</div>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Joined
+                  </div>
+                  <div className="text-lg font-bold text-foreground">
+                    {formatDate(employee.joinDate)}
+                  </div>
                 </div>
               </div>
             </div>
@@ -850,9 +1143,7 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
 
       {/* Tab Content */}
       <Card className="border-0 shadow-sm">
-        <CardContent className="p-8">
-          {renderTabContent()}
-        </CardContent>
+        <CardContent className="p-8">{renderTabContent()}</CardContent>
       </Card>
     </div>
   );

@@ -5,8 +5,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Search,
   Grid3X3,
@@ -23,7 +34,7 @@ import {
   Trash2,
   Users,
   FolderOpen,
-  Settings
+  Settings,
 } from "lucide-react";
 
 interface Employee {
@@ -53,7 +64,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-01-15",
     employeeId: "EMP001",
     phone: "+1 (555) 123-4567",
-    location: "San Francisco, CA"
+    location: "San Francisco, CA",
   },
   {
     id: "2",
@@ -66,7 +77,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-03-22",
     employeeId: "EMP002",
     phone: "+1 (555) 234-5678",
-    location: "New York, NY"
+    location: "New York, NY",
   },
   {
     id: "3",
@@ -79,7 +90,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-02-10",
     employeeId: "EMP003",
     phone: "+1 (555) 345-6789",
-    location: "Seattle, WA"
+    location: "Seattle, WA",
   },
   {
     id: "4",
@@ -92,7 +103,7 @@ const employeeData: Employee[] = [
     joinDate: "2022-11-05",
     employeeId: "EMP004",
     phone: "+1 (555) 456-7890",
-    location: "Austin, TX"
+    location: "Austin, TX",
   },
   {
     id: "5",
@@ -105,7 +116,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-04-18",
     employeeId: "EMP005",
     phone: "+1 (555) 567-8901",
-    location: "Los Angeles, CA"
+    location: "Los Angeles, CA",
   },
   {
     id: "6",
@@ -118,7 +129,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-05-30",
     employeeId: "EMP006",
     phone: "+1 (555) 678-9012",
-    location: "Chicago, IL"
+    location: "Chicago, IL",
   },
   {
     id: "7",
@@ -131,7 +142,7 @@ const employeeData: Employee[] = [
     joinDate: "2023-06-12",
     employeeId: "EMP007",
     phone: "+1 (555) 789-0123",
-    location: "Boston, MA"
+    location: "Boston, MA",
   },
   {
     id: "8",
@@ -144,8 +155,8 @@ const employeeData: Employee[] = [
     joinDate: "2023-07-08",
     employeeId: "EMP008",
     phone: "+1 (555) 890-1234",
-    location: "Miami, FL"
-  }
+    location: "Miami, FL",
+  },
 ];
 
 function getStatusColor(status: string): string {
@@ -185,34 +196,43 @@ export default function Records() {
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [skillsFilter, setSkillsFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
+    null,
+  );
 
   const tabs = [
     { id: "profiles", label: "Employee Profiles", icon: Users },
     { id: "org-chart", label: "Organizational Chart", icon: Users },
     { id: "documents", label: "Document Center", icon: FolderOpen },
-    { id: "config", label: "System Configuration", icon: Settings }
+    { id: "config", label: "System Configuration", icon: Settings },
   ];
 
-  const filteredEmployees = employeeData.filter(employee => {
-    const matchesSearch = 
+  const filteredEmployees = employeeData.filter((employee) => {
+    const matchesSearch =
       employee.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.department.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesDepartment = departmentFilter === "all" || employee.department === departmentFilter;
-    const matchesSkills = skillsFilter === "all" || employee.skills.some(skill => 
-      skill.toLowerCase().includes(skillsFilter.toLowerCase())
-    );
-    const matchesStatus = statusFilter === "all" || employee.status === statusFilter;
-    
+
+    const matchesDepartment =
+      departmentFilter === "all" || employee.department === departmentFilter;
+    const matchesSkills =
+      skillsFilter === "all" ||
+      employee.skills.some((skill) =>
+        skill.toLowerCase().includes(skillsFilter.toLowerCase()),
+      );
+    const matchesStatus =
+      statusFilter === "all" || employee.status === statusFilter;
+
     return matchesSearch && matchesDepartment && matchesSkills && matchesStatus;
   });
 
   const renderEmployeeCard = (employee: Employee) => {
     if (viewMode === "list") {
       return (
-        <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-shadow">
+        <Card
+          key={employee.id}
+          className="border-0 shadow-sm hover:shadow-md transition-shadow"
+        >
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               {/* Left side - Employee Details */}
@@ -222,7 +242,9 @@ export default function Records() {
                 </div>
                 <div className="space-y-3 flex-1">
                   <div>
-                    <h3 className="font-semibold text-foreground text-lg">{employee.fullName}</h3>
+                    <h3 className="font-semibold text-foreground text-lg">
+                      {employee.fullName}
+                    </h3>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                       <Mail className="w-4 h-4" />
                       {employee.email}
@@ -245,12 +267,19 @@ export default function Records() {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {employee.skills.slice(0, 3).map((skill, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                      <Badge
+                        key={index}
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700"
+                      >
                         {skill}
                       </Badge>
                     ))}
                     {employee.skills.length > 3 && (
-                      <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                      <Badge
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700"
+                      >
                         +{employee.skills.length - 3} more
                       </Badge>
                     )}
@@ -261,13 +290,15 @@ export default function Records() {
               {/* Right side - Job Info & Actions */}
               <div className="flex items-center gap-6">
                 <div className="text-right">
-                  <div className="font-medium text-foreground">{employee.jobTitle}</div>
+                  <div className="font-medium text-foreground">
+                    {employee.jobTitle}
+                  </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                     <Calendar className="w-4 h-4" />
                     Joined {new Date(employee.joinDate).toLocaleDateString()}
                   </div>
                 </div>
-                
+
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -275,7 +306,9 @@ export default function Records() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem onClick={() => setSelectedEmployee(employee)}>
+                    <DropdownMenuItem
+                      onClick={() => setSelectedEmployee(employee)}
+                    >
                       <Eye className="w-4 h-4 mr-2" />
                       View Profile
                     </DropdownMenuItem>
@@ -301,7 +334,10 @@ export default function Records() {
     } else {
       // Grid View
       return (
-        <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-shadow">
+        <Card
+          key={employee.id}
+          className="border-0 shadow-sm hover:shadow-md transition-shadow"
+        >
           <CardContent className="p-6">
             <div className="space-y-4">
               <div className="flex items-start justify-between">
@@ -310,8 +346,12 @@ export default function Records() {
                     <User className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">{employee.fullName}</h3>
-                    <p className="text-sm text-muted-foreground">{employee.jobTitle}</p>
+                    <h3 className="font-semibold text-foreground">
+                      {employee.fullName}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {employee.jobTitle}
+                    </p>
                   </div>
                 </div>
                 <DropdownMenu>
@@ -336,7 +376,7 @@ export default function Records() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="text-sm text-muted-foreground flex items-center gap-2">
                   <Mail className="w-3 h-3" />
@@ -364,18 +404,29 @@ export default function Records() {
 
               <div className="flex flex-wrap gap-1">
                 {employee.skills.slice(0, 2).map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="text-xs bg-gray-100 text-gray-700"
+                  >
                     {skill}
                   </Badge>
                 ))}
                 {employee.skills.length > 2 && (
-                  <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                  <Badge
+                    variant="secondary"
+                    className="text-xs bg-gray-100 text-gray-700"
+                  >
                     +{employee.skills.length - 2}
                   </Badge>
                 )}
               </div>
 
-              <Button className="w-full" size="sm" onClick={() => setSelectedEmployee(employee)}>
+              <Button
+                className="w-full"
+                size="sm"
+                onClick={() => setSelectedEmployee(employee)}
+              >
                 <Eye className="w-3 h-3 mr-2" />
                 View Profile
               </Button>
@@ -402,9 +453,12 @@ export default function Records() {
                   className="pl-10"
                 />
               </div>
-              
+
               <div className="flex gap-3">
-                <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                <Select
+                  value={departmentFilter}
+                  onValueChange={setDepartmentFilter}
+                >
                   <SelectTrigger className="w-48">
                     <SelectValue placeholder="Department" />
                   </SelectTrigger>
@@ -424,10 +478,16 @@ export default function Records() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Skills</SelectItem>
-                    <SelectItem value="Software Development">Software Development</SelectItem>
-                    <SelectItem value="Agile Product Management">Agile Product Management</SelectItem>
+                    <SelectItem value="Software Development">
+                      Software Development
+                    </SelectItem>
+                    <SelectItem value="Agile Product Management">
+                      Agile Product Management
+                    </SelectItem>
                     <SelectItem value="UI/UX Design">UI/UX Design</SelectItem>
-                    <SelectItem value="Digital Marketing">Digital Marketing</SelectItem>
+                    <SelectItem value="Digital Marketing">
+                      Digital Marketing
+                    </SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -473,11 +533,13 @@ export default function Records() {
             </div>
 
             {/* Employee Profiles */}
-            <div className={
-              viewMode === "grid" 
-                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-                : "space-y-4"
-            }>
+            <div
+              className={
+                viewMode === "grid"
+                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                  : "space-y-4"
+              }
+            >
               {filteredEmployees.map(renderEmployeeCard)}
             </div>
 
@@ -485,7 +547,9 @@ export default function Records() {
               <Card className="border-0 shadow-sm">
                 <CardContent className="p-12 text-center">
                   <User className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-foreground mb-2">No employees found</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-2">
+                    No employees found
+                  </h3>
                   <p className="text-muted-foreground">
                     Try adjusting your search criteria or filters
                   </p>
@@ -494,46 +558,52 @@ export default function Records() {
             )}
           </div>
         );
-      
+
       case "org-chart":
         return (
           <Card className="border-0 shadow-sm">
             <CardContent className="p-12 text-center">
               <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">Organizational Chart</h3>
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                Organizational Chart
+              </h3>
               <p className="text-muted-foreground">
                 View and manage the company's hierarchical structure
               </p>
             </CardContent>
           </Card>
         );
-      
+
       case "documents":
         return (
           <Card className="border-0 shadow-sm">
             <CardContent className="p-12 text-center">
               <FolderOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">Document Center</h3>
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                Document Center
+              </h3>
               <p className="text-muted-foreground">
                 Access employee-related documents and compliance records
               </p>
             </CardContent>
           </Card>
         );
-      
+
       case "config":
         return (
           <Card className="border-0 shadow-sm">
             <CardContent className="p-12 text-center">
               <Settings className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">System Configuration</h3>
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                System Configuration
+              </h3>
               <p className="text-muted-foreground">
                 Customize form fields, templates, and system settings
               </p>
             </CardContent>
           </Card>
         );
-      
+
       default:
         return null;
     }
@@ -556,7 +626,9 @@ export default function Records() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-semibold text-foreground">Employee Records</h1>
+          <h1 className="text-3xl font-semibold text-foreground">
+            Employee Records
+          </h1>
           <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
             <User className="w-4 h-4 mr-2" />
             Add Employee
