@@ -1553,6 +1553,205 @@ export default function EmployeeProfile({
           </div>
         );
 
+      case "documents":
+        const employeeDocuments = [
+          {
+            id: "1",
+            documentTitle: "Employment Contract",
+            fileType: "PDF",
+            fileSize: "2.4 MB",
+            uploadDate: "2023-01-15",
+            canPreview: true,
+            canDownload: true,
+            canShare: false
+          },
+          {
+            id: "2",
+            documentTitle: "Tax Forms (W-2)",
+            fileType: "PDF",
+            fileSize: "1.8 MB",
+            uploadDate: "2023-12-31",
+            canPreview: true,
+            canDownload: true,
+            canShare: true
+          },
+          {
+            id: "3",
+            documentTitle: "Performance Review 2023",
+            fileType: "DOCX",
+            fileSize: "856 KB",
+            uploadDate: "2023-11-20",
+            canPreview: false,
+            canDownload: true,
+            canShare: false
+          },
+          {
+            id: "4",
+            documentTitle: "Benefits Enrollment",
+            fileType: "PDF",
+            fileSize: "3.1 MB",
+            uploadDate: "2023-03-10",
+            canPreview: true,
+            canDownload: true,
+            canShare: true
+          },
+          {
+            id: "5",
+            documentTitle: "Training Certificate",
+            fileType: "PDF",
+            fileSize: "1.2 MB",
+            uploadDate: "2023-08-15",
+            canPreview: true,
+            canDownload: true,
+            canShare: false
+          }
+        ];
+
+        const formatDate = (dateString: string): string => {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+          });
+        };
+
+        const handleDocumentAction = (action: string, docId: string, docTitle: string) => {
+          console.log(`${action} action for document:`, docId, docTitle);
+        };
+
+        return (
+          <div className="space-y-6">
+            {/* Header with Document Count */}
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                Employee Documents ({employeeDocuments.length})
+              </h3>
+              <Button
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                onClick={() => setShowDocumentModal(true)}
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                Upload Document
+              </Button>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Header. Shows the real-time count of uploaded documents. The number e.g. ({employeeDocuments.length}) updates automatically when documents are added or deleted.
+            </p>
+
+            {/* Documents List */}
+            <div className="space-y-4">
+              {employeeDocuments.map((document) => (
+                <Card key={document.id} className="border border-border">
+                  <CardContent className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+                      {/* Document Title */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Document Title</label>
+                        <p className="font-semibold text-foreground">{document.documentTitle}</p>
+                        <p className="text-xs text-muted-foreground mt-1">The name of the document (e.g., Employment Contract, Tax Forms).</p>
+                      </div>
+
+                      {/* File Type */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">File Type</label>
+                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                          {document.fileType}
+                        </Badge>
+                        <p className="text-xs text-muted-foreground mt-1">The format of the file (e.g., PDF, DOCX).</p>
+                      </div>
+
+                      {/* File Size */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">File Size</label>
+                        <p className="text-foreground">{document.fileSize}</p>
+                        <p className="text-xs text-muted-foreground mt-1">The size of the file, typically in KB or MB.</p>
+                      </div>
+
+                      {/* Upload Date */}
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Upload Date</label>
+                        <p className="text-foreground">{formatDate(document.uploadDate)}</p>
+                        <p className="text-xs text-muted-foreground mt-1">The date the document was uploaded to the system (MM-DD-YYYY).</p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex flex-wrap gap-2">
+                        {/* Preview Button */}
+                        {document.canPreview && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleDocumentAction("preview", document.id, document.documentTitle)}
+                            className="flex items-center gap-1"
+                          >
+                            <Eye className="w-3 h-3" />
+                            Preview
+                          </Button>
+                        )}
+
+                        {/* Download Button */}
+                        {document.canDownload && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleDocumentAction("download", document.id, document.documentTitle)}
+                            className="flex items-center gap-1"
+                          >
+                            <Download className="w-3 h-3" />
+                            Download
+                          </Button>
+                        )}
+                      </div>
+
+                      {/* Additional Actions */}
+                      <div className="flex gap-2">
+                        {/* Share Button */}
+                        {document.canShare && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleDocumentAction("share", document.id, document.documentTitle)}
+                            className="flex items-center gap-1"
+                          >
+                            <Share className="w-3 h-3" />
+                            Share
+                          </Button>
+                        )}
+
+                        {/* Delete Button */}
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDocumentAction("delete", document.id, document.documentTitle)}
+                          className="flex items-center gap-1 text-red-600 border-red-200 hover:bg-red-50"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Helper Text */}
+            <Card className="border border-border bg-muted/30">
+              <CardContent className="p-4">
+                <h4 className="font-semibold mb-2">Document Actions</h4>
+                <div className="text-sm text-muted-foreground space-y-1">
+                  <p><strong>Preview Button:</strong> Indicates whether the document can be previewed directly in the interface.</p>
+                  <p><strong>Download Button:</strong> Indicates whether the document can be downloaded.</p>
+                  <p><strong>Share Button:</strong> Indicates whether the document can be shared with others.</p>
+                  <p><strong>Delete Icon:</strong> Allows users to remove that specific file.</p>
+                  <p><strong>Upload Document Button:</strong> Allows users to upload a new document to the system.</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
       default:
         return (
           <Card className="border-0 shadow-sm">
