@@ -1952,27 +1952,21 @@ export default function EmployeeProfile({
                       <div className="lg:col-span-2">
                         <label className="text-sm font-medium text-muted-foreground">Description of change</label>
                         <p className="font-semibold text-foreground mt-1">{entry.description}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Entry describing a change event, including who made the change.
-                        </p>
+
                       </div>
 
                       {/* Reason for change */}
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Reason for change</label>
                         <p className="text-foreground mt-1">{entry.reason}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Explanation or justification for the change made.
-                        </p>
+
                       </div>
 
                       {/* Date */}
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Date</label>
                         <p className="text-foreground mt-1">{formatChangeDate(entry.date)}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          The date on which each change or event occurred.
-                        </p>
+
                       </div>
                     </div>
 
@@ -1980,9 +1974,7 @@ export default function EmployeeProfile({
                     <div className="mt-4 pt-4 border-t">
                       <label className="text-sm font-medium text-muted-foreground">Changed by</label>
                       <p className="text-foreground mt-1">{entry.changedBy}</p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Name or role of the person or system that made the change.
-                      </p>
+
                     </div>
                   </CardContent>
                 </Card>
