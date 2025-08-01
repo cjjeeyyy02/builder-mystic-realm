@@ -35,6 +35,9 @@ interface Employee {
   skills: string[];
   jobTitle: string;
   joinDate: string;
+  employeeId: string;
+  phone: string;
+  location: string;
   avatar?: string;
 }
 
