@@ -425,15 +425,6 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
         );
 
       case "skills":
-        const [skills, setSkills] = useState([
-          { name: "React", experience: "4 years", endorsements: 12, level: "Expert", editable: true, endorsable: true },
-          { name: "TypeScript", experience: "3 years", endorsements: 8, level: "Advanced", editable: true, endorsable: true },
-          { name: "Node.js", experience: "3 years", endorsements: 6, level: "Advanced", editable: true, endorsable: true },
-          { name: "Python", experience: "2 years", endorsements: 4, level: "Intermediate", editable: true, endorsable: true },
-          { name: "AWS", experience: "2 years", endorsements: 5, level: "Intermediate", editable: true, endorsable: true },
-          { name: "Docker", experience: "1 year", endorsements: 3, level: "Beginner", editable: true, endorsable: true }
-        ]);
-
         return (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
