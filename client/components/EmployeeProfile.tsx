@@ -1890,6 +1890,119 @@ export default function EmployeeProfile({
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Request Leave Modal */}
+      <Dialog open={showLeaveModal} onOpenChange={setShowLeaveModal}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Request Leave</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6 pt-4">
+            {/* Leave Type - Required Dropdown */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Leave Type <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={leaveFormData.leaveType}
+                onValueChange={(value) => setLeaveFormData({...leaveFormData, leaveType: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select leave type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Annual">Annual</SelectItem>
+                  <SelectItem value="Sick">Sick</SelectItem>
+                  <SelectItem value="Personal">Personal</SelectItem>
+                  <SelectItem value="Maternity">Maternity</SelectItem>
+                  <SelectItem value="Paternity">Paternity</SelectItem>
+                  <SelectItem value="Emergency">Emergency</SelectItem>
+                  <SelectItem value="Bereavement">Bereavement</SelectItem>
+                  <SelectItem value="Study">Study</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground mt-1">
+                Dropdown menu to select the type of leave (e.g., Annual, Sick, etc.).
+              </p>
+            </div>
+
+            {/* From Date - Required */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                From Date <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="date"
+                value={leaveFormData.fromDate}
+                onChange={(e) => setLeaveFormData({...leaveFormData, fromDate: e.target.value})}
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                The start date of the leave period.
+              </p>
+            </div>
+
+            {/* To Date - Required */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                To Date <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="date"
+                value={leaveFormData.toDate}
+                onChange={(e) => setLeaveFormData({...leaveFormData, toDate: e.target.value})}
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                The end date of the leave period.
+              </p>
+            </div>
+
+            {/* Approver Name - Optional */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Approver Name</label>
+              <Input
+                value={leaveFormData.approverName}
+                onChange={(e) => setLeaveFormData({...leaveFormData, approverName: e.target.value})}
+                placeholder="Enter the name of the person responsible for approving"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Name of the person responsible for approving the leave request.
+              </p>
+            </div>
+
+            {/* Reason - Optional */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Reason</label>
+              <Textarea
+                value={leaveFormData.reason}
+                onChange={(e) => setLeaveFormData({...leaveFormData, reason: e.target.value})}
+                placeholder="Optional explanation or justification for the leave"
+                rows={3}
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Optional explanation or justification for the leave.
+              </p>
+            </div>
+
+            {/* Form Actions */}
+            <div className="flex gap-3 pt-4 border-t">
+              <Button
+                onClick={handleLeaveFormSubmit}
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                disabled={!leaveFormData.leaveType || !leaveFormData.fromDate || !leaveFormData.toDate}
+              >
+                Submit Request
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleLeaveFormCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
