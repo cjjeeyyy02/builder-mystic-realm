@@ -539,6 +539,18 @@ export default function Records() {
     }
   };
 
+  // Show employee profile if one is selected
+  if (selectedEmployee) {
+    return (
+      <Layout>
+        <EmployeeProfile
+          employee={selectedEmployee}
+          onBack={() => setSelectedEmployee(null)}
+        />
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="space-y-6">
