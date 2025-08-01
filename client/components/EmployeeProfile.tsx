@@ -589,8 +589,6 @@ export default function EmployeeProfile({ employee, onBack }: EmployeeProfilePro
         );
 
       case "performance":
-        const [expandedQuarters, setExpandedQuarters] = useState<string[]>(["q3-2023"]);
-
         const performanceReviews = [
           {
             id: "q3-2023",
