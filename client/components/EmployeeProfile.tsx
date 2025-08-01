@@ -36,6 +36,11 @@ import {
   ChevronUp,
   Target,
   Award,
+  Download,
+  Eye,
+  CheckCircle,
+  AlertCircle,
+  BookOpen,
 } from "lucide-react";
 
 interface Employee {
