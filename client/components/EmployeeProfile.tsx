@@ -159,6 +159,22 @@ export default function EmployeeProfile({
     "q3-2023",
   ]);
 
+  // Training modal state
+  const [showTrainingModal, setShowTrainingModal] = useState(false);
+  const [trainingFormType, setTrainingFormType] = useState<"training" | "certification">("training");
+  const [trainingFormData, setTrainingFormData] = useState({
+    type: "training",
+    trainingTitle: "",
+    trainingProvider: "",
+    status: "",
+    score: "",
+    completionDate: "",
+    certificationName: "",
+    issuedOrganization: "",
+    issuedDate: "",
+    expirationDate: ""
+  });
+
   const tabs = [
     { id: "personal", label: "Personal Info", icon: User },
     { id: "work", label: "Work Details", icon: Briefcase },
