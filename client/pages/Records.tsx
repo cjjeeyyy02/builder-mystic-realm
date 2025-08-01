@@ -275,7 +275,7 @@ export default function Records() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedEmployee(employee)}>
                       <Eye className="w-4 h-4 mr-2" />
                       View Profile
                     </DropdownMenuItem>
