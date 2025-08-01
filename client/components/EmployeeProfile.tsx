@@ -1238,6 +1238,276 @@ export default function EmployeeProfile({
           </div>
         );
 
+      case "attendance":
+        const attendanceData = {
+          totalWorkingDays: 22,
+          daysPresent: 20,
+          daysAbsent: 2,
+          lateArrivals: 1,
+          attendanceRate: 90.9,
+          punctualityRate: 95.5
+        };
+
+        const leaveHistory = [
+          {
+            id: "1",
+            leavePeriod: "03-15-2024 – 03-17-2024",
+            approvedBy: "Michael Rodriguez",
+            leaveStatus: "Approved",
+            numberOfDays: 3,
+            leaveType: "Sick Leave"
+          },
+          {
+            id: "2",
+            leavePeriod: "01-08-2024 – 01-12-2024",
+            approvedBy: "Michael Rodriguez",
+            leaveStatus: "Approved",
+            numberOfDays: 5,
+            leaveType: "Annual Leave"
+          },
+          {
+            id: "3",
+            leavePeriod: "04-22-2024 – 04-22-2024",
+            approvedBy: "Michael Rodriguez",
+            leaveStatus: "Under Review",
+            numberOfDays: 1,
+            leaveType: "Personal Leave"
+          },
+          {
+            id: "4",
+            leavePeriod: "05-10-2024 – 05-14-2024",
+            approvedBy: "",
+            leaveStatus: "Rejected",
+            numberOfDays: 5,
+            leaveType: "Annual Leave"
+          }
+        ];
+
+        const getLeaveStatusColor = (status: string): string => {
+          switch (status) {
+            case "Approved":
+              return "bg-green-100 text-green-700 border-green-200";
+            case "Under Review":
+              return "bg-yellow-100 text-yellow-700 border-yellow-200";
+            case "Rejected":
+              return "bg-red-100 text-red-700 border-red-200";
+            case "Cancelled":
+              return "bg-gray-100 text-gray-700 border-gray-200";
+            default:
+              return "bg-gray-100 text-gray-700 border-gray-200";
+          }
+        };
+
+        return (
+          <div className="space-y-8">
+            {/* Attendance Overview */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+                <Calendar className="w-5 h-5" />
+                Attendance Overview (2024)
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="border border-border">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-2xl font-bold text-blue-600 mb-2">
+                      {attendanceData.totalWorkingDays}
+                    </div>
+                    <div className="text-sm font-medium text-muted-foreground">Total Working Days</div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Scheduled workdays in the period
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border border-border">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-2xl font-bold text-green-600 mb-2">
+                      {attendanceData.daysPresent}
+                    </div>
+                    <div className="text-sm font-medium text-muted-foreground">Days Present</div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Days employee was present at work
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border border-border">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-2xl font-bold text-red-600 mb-2">
+                      {attendanceData.daysAbsent}
+                    </div>
+                    <div className="text-sm font-medium text-muted-foreground">Days Absent</div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Days employee was absent
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border border-border">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-2xl font-bold text-orange-600 mb-2">
+                      {attendanceData.lateArrivals}
+                    </div>
+                    <div className="text-sm font-medium text-muted-foreground">Late Arrivals</div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Instances of late arrival
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Performance Metrics */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5" />
+                Performance Metrics
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="border border-border bg-blue-50">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <div className="text-sm font-medium text-muted-foreground">Attendance Rate</div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          (Days Present / Total Working Days) × 100
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-blue-600">
+                        {attendanceData.attendanceRate}%
+                      </div>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${attendanceData.attendanceRate}%` }}
+                      ></div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border border-border bg-green-50">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <div className="text-sm font-medium text-muted-foreground">Punctuality Rate</div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          ((Total Working Days - Late Arrivals) / Total Working Days) × 100
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-green-600">
+                        {attendanceData.punctualityRate}%
+                      </div>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${attendanceData.punctualityRate}%` }}
+                      ></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Leave History */}
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <FileText className="w-5 h-5" />
+                  Leave History
+                </h3>
+                <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Request Leave
+                </Button>
+              </div>
+
+              <div className="space-y-4">
+                {leaveHistory.map((leave) => (
+                  <Card key={leave.id} className="border border-border">
+                    <CardContent className="p-6">
+                      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Leave Period</label>
+                          <p className="font-semibold text-foreground">{leave.leavePeriod}</p>
+                          <p className="text-xs text-muted-foreground mt-1">Start and end dates (MM-DD-YYYY – MM-DD-YYYY)</p>
+                        </div>
+
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Approved By</label>
+                          <p className="text-foreground">{leave.approvedBy || "N/A"}</p>
+                          <p className="text-xs text-muted-foreground mt-1">Manager or approver (First Name Last Name)</p>
+                        </div>
+
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Leave Status</label>
+                          <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>
+                            {leave.leaveStatus}
+                          </Badge>
+                          <p className="text-xs text-muted-foreground mt-1">Approved, Under Review, Rejected, or Cancelled</p>
+                        </div>
+
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Number of Days</label>
+                          <p className="text-foreground font-semibold">{leave.numberOfDays} {leave.numberOfDays === 1 ? 'day' : 'days'}</p>
+                          <p className="text-xs text-muted-foreground mt-1">Total days covered by leave</p>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline">
+                            <Eye className="w-3 h-3 mr-1" />
+                            View
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            <Edit className="w-3 h-3 mr-1" />
+                            Edit
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Leave Summary */}
+              <Card className="border border-border bg-muted/30 mt-6">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold mb-4">Leave Summary (2024)</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-green-600">
+                        {leaveHistory.filter(l => l.leaveStatus === "Approved").length}
+                      </div>
+                      <div className="text-muted-foreground">Approved Leaves</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-yellow-600">
+                        {leaveHistory.filter(l => l.leaveStatus === "Under Review").length}
+                      </div>
+                      <div className="text-muted-foreground">Under Review</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-red-600">
+                        {leaveHistory.filter(l => l.leaveStatus === "Rejected").length}
+                      </div>
+                      <div className="text-muted-foreground">Rejected</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-blue-600">
+                        {leaveHistory.filter(l => l.leaveStatus === "Approved").reduce((sum, l) => sum + l.numberOfDays, 0)}
+                      </div>
+                      <div className="text-muted-foreground">Total Days Taken</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        );
+
       default:
         return (
           <Card className="border-0 shadow-sm">
