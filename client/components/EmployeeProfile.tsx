@@ -1455,7 +1455,10 @@ export default function EmployeeProfile({
                   <FileText className="w-5 h-5" />
                   Leave History
                 </h3>
-                <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                <Button
+                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  onClick={() => setShowLeaveModal(true)}
+                >
                   <Plus className="w-4 h-4 mr-2" />
                   Request Leave
                 </Button>
