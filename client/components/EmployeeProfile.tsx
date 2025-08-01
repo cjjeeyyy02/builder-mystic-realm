@@ -1474,13 +1474,13 @@ export default function EmployeeProfile({
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Leave Period</label>
                           <p className="font-semibold text-foreground">{leave.leavePeriod}</p>
-                          <p className="text-xs text-muted-foreground mt-1">Start and end dates (MM-DD-YYYY – MM-DD-YYYY)</p>
+
                         </div>
 
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Approved By</label>
                           <p className="text-foreground">{leave.approvedBy || "N/A"}</p>
-                          <p className="text-xs text-muted-foreground mt-1">Manager or approver (First Name Last Name)</p>
+
                         </div>
 
                         <div>
@@ -1488,13 +1488,13 @@ export default function EmployeeProfile({
                           <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>
                             {leave.leaveStatus}
                           </Badge>
-                          <p className="text-xs text-muted-foreground mt-1">Approved, Under Review, Rejected, or Cancelled</p>
+
                         </div>
 
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Number of Days</label>
                           <p className="text-foreground font-semibold">{leave.numberOfDays} {leave.numberOfDays === 1 ? 'day' : 'days'}</p>
-                          <p className="text-xs text-muted-foreground mt-1">Total days covered by leave</p>
+
                         </div>
 
                         <div className="flex gap-2">
