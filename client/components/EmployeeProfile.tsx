@@ -1775,9 +1775,7 @@ export default function EmployeeProfile({
                         <label className="text-sm font-medium">
                           Account Active <span className="text-red-500">*</span>
                         </label>
-                        <p className="text-xs text-muted-foreground">
-                          Indicates whether the employee's account is active and can access the system. If the toggle is OFF, the account is inactive and cannot access the system.
-                        </p>
+
                       </div>
                       <Switch
                         checked={securitySettings.accountActive}
@@ -1789,9 +1787,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <label className="text-sm font-medium">HR Access</label>
-                        <p className="text-xs text-muted-foreground">
-                          Grants permission to access HR-related management features.
-                        </p>
+
                       </div>
                       <Switch
                         checked={securitySettings.hrAccess}
@@ -1803,9 +1799,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <label className="text-sm font-medium">Admin Rights</label>
-                        <p className="text-xs text-muted-foreground">
-                          Grants full administrative privileges within the system.
-                        </p>
+
                       </div>
                       <Switch
                         checked={securitySettings.adminRights}
@@ -1825,9 +1819,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <label className="text-sm font-medium">Reset Password</label>
-                        <p className="text-xs text-muted-foreground">
-                          Allows the user or admin to reset the employee's password.
-                        </p>
+
                       </div>
                       <Button
                         variant="outline"
@@ -1841,9 +1833,7 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <label className="text-sm font-medium">Generate New User ID</label>
-                        <p className="text-xs text-muted-foreground">
-                          Generates a new unique user ID for the employee.
-                        </p>
+
                       </div>
                       <Button
                         variant="outline"
