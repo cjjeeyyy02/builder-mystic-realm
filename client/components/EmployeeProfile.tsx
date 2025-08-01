@@ -250,6 +250,32 @@ export default function EmployeeProfile({
     });
   };
 
+  const handleLeaveFormSubmit = () => {
+    // Add the new leave request
+    console.log("Submitting leave request:", leaveFormData);
+    setShowLeaveModal(false);
+    // Reset form
+    setLeaveFormData({
+      leaveType: "",
+      fromDate: "",
+      toDate: "",
+      approverName: "",
+      reason: ""
+    });
+  };
+
+  const handleLeaveFormCancel = () => {
+    setShowLeaveModal(false);
+    // Reset form
+    setLeaveFormData({
+      leaveType: "",
+      fromDate: "",
+      toDate: "",
+      approverName: "",
+      reason: ""
+    });
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "personal":
