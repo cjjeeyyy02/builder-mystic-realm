@@ -2593,6 +2593,182 @@ export default function EmployeeProfile({
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Offboarding Modal */}
+      <Dialog open={showOffboardingModal} onOpenChange={setShowOffboardingModal}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold text-red-600">
+              Offboard Employee: {employee.fullName}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6 pt-4">
+            {/* Basic Offboarding Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Reason for Leaving */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Reason for Leaving <span className="text-red-500">*</span>
+                </label>
+                <Select
+                  value={offboardingData.reasonForLeaving}
+                  onValueChange={(value) => setOffboardingData({...offboardingData, reasonForLeaving: value})}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select the reason for the employee's departure" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="resignation">Resignation</SelectItem>
+                    <SelectItem value="retirement">Retirement</SelectItem>
+                    <SelectItem value="termination">Termination</SelectItem>
+                    <SelectItem value="contract-end">Contract End</SelectItem>
+                    <SelectItem value="layoff">Layoff</SelectItem>
+                    <SelectItem value="mutual-agreement">Mutual Agreement</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Last Working Day */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Last Working Day <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="date"
+                  value={offboardingData.lastWorkingDay}
+                  onChange={(e) => setOffboardingData({...offboardingData, lastWorkingDay: e.target.value})}
+                />
+              </div>
+            </div>
+
+            {/* Handover Notes */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Handover Notes
+              </label>
+              <Textarea
+                value={offboardingData.handoverNotes}
+                onChange={(e) => setOffboardingData({...offboardingData, handoverNotes: e.target.value})}
+                placeholder="Notes detailing responsibilities and tasks handed over before departure"
+                rows={4}
+              />
+            </div>
+
+            {/* Offboarding Checklist */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">
+                Offboarding Checklist
+              </h4>
+
+              <div className="space-y-4">
+                {/* System Access Revoked */}
+                <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                  <input
+                    type="checkbox"
+                    id="systemAccessRevoked"
+                    checked={offboardingData.systemAccessRevoked}
+                    onChange={(e) => setOffboardingData({...offboardingData, systemAccessRevoked: e.target.checked})}
+                    className="mt-1 rounded border-gray-300"
+                  />
+                  <div className="flex-1">
+                    <label htmlFor="systemAccessRevoked" className="text-sm font-medium text-gray-700">
+                      System Access Revoked
+                    </label>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Checklist item to confirm system access has been disabled.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Equipment Returned */}
+                <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                  <input
+                    type="checkbox"
+                    id="equipmentReturned"
+                    checked={offboardingData.equipmentReturned}
+                    onChange={(e) => setOffboardingData({...offboardingData, equipmentReturned: e.target.checked})}
+                    className="mt-1 rounded border-gray-300"
+                  />
+                  <div className="flex-1">
+                    <label htmlFor="equipmentReturned" className="text-sm font-medium text-gray-700">
+                      Equipment Returned
+                    </label>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Checklist item to confirm all company equipment has been returned.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Exit Interview Completed */}
+                <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                  <input
+                    type="checkbox"
+                    id="exitInterviewCompleted"
+                    checked={offboardingData.exitInterviewCompleted}
+                    onChange={(e) => setOffboardingData({...offboardingData, exitInterviewCompleted: e.target.checked})}
+                    className="mt-1 rounded border-gray-300"
+                  />
+                  <div className="flex-1">
+                    <label htmlFor="exitInterviewCompleted" className="text-sm font-medium text-gray-700">
+                      Exit Interview Completed
+                    </label>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Checklist item to confirm the exit interview has been conducted.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Current Progress Summary */}
+            <Card className="border border-orange-200 bg-orange-50">
+              <CardContent className="p-4">
+                <h4 className="font-semibold text-orange-800 mb-3">Offboarding Progress</h4>
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-orange-600">
+                      {[offboardingData.systemAccessRevoked, offboardingData.equipmentReturned, offboardingData.exitInterviewCompleted].filter(Boolean).length}/3
+                    </div>
+                    <div className="text-orange-700">Tasks Completed</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-blue-600">
+                      {offboardingData.reasonForLeaving && offboardingData.lastWorkingDay ? "Complete" : "Pending"}
+                    </div>
+                    <div className="text-orange-700">Basic Information</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-green-600">
+                      {offboardingData.handoverNotes ? "Added" : "Optional"}
+                    </div>
+                    <div className="text-orange-700">Handover Notes</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Form Actions */}
+            <div className="flex gap-3 pt-4 border-t">
+              <Button
+                onClick={handleOffboardingSubmit}
+                className="bg-red-600 hover:bg-red-700 text-white"
+                disabled={!offboardingData.reasonForLeaving || !offboardingData.lastWorkingDay}
+              >
+                <UserMinus className="w-4 h-4 mr-2" />
+                Complete Offboarding
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleOffboardingCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
