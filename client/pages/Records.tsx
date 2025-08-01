@@ -1,20 +1,21 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import EmployeeProfile from "@/components/EmployeeProfile";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { 
-  Search, 
-  Grid3X3, 
-  List, 
-  MoreVertical, 
-  User, 
-  Mail, 
-  Building, 
-  Calendar, 
+import {
+  Search,
+  Grid3X3,
+  List,
+  MoreVertical,
+  User,
+  Mail,
+  Building,
+  Calendar,
   Briefcase,
   Eye,
   Edit,
