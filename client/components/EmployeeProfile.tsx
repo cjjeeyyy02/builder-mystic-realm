@@ -2755,10 +2755,10 @@ export default function EmployeeProfile({
             </Card>
 
             {/* Form Actions */}
-            <div className="flex gap-3 pt-4 border-t">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
               <Button
                 onClick={handleOffboardingSubmit}
-                className="bg-red-600 hover:bg-red-700 text-white"
+                className="bg-red-600 hover:bg-red-700 text-white flex-1 sm:flex-none"
                 disabled={!offboardingData.reasonForLeaving || !offboardingData.lastWorkingDay}
               >
                 <UserMinus className="w-4 h-4 mr-2" />
@@ -2767,6 +2767,7 @@ export default function EmployeeProfile({
               <Button
                 variant="outline"
                 onClick={handleOffboardingCancel}
+                className="flex-1 sm:flex-none"
               >
                 Cancel
               </Button>
