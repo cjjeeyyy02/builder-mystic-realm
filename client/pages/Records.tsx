@@ -605,6 +605,20 @@ export default function Records() {
     );
   }
 
+  // Show document center if selected
+  if (showDocumentCenter) {
+    return (
+      <Layout>
+        <DocumentCenter
+          onBack={() => {
+            setShowDocumentCenter(false);
+            setActiveTab("profiles");
+          }}
+        />
+      </Layout>
+    );
+  }
+
   // Show employee profile if one is selected
   if (selectedEmployee) {
     return (
