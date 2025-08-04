@@ -568,19 +568,8 @@ export default function Records() {
         return null;
 
       case "documents":
-        return (
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-12 text-center">
-              <FolderOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">
-                Document Center
-              </h3>
-              <p className="text-muted-foreground">
-                Access employee-related documents and compliance records
-              </p>
-            </CardContent>
-          </Card>
-        );
+        setShowDocumentCenter(true);
+        return null;
 
       case "config":
         return (
