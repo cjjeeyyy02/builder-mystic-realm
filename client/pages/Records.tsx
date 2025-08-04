@@ -202,6 +202,7 @@ export default function Records() {
     null,
   );
   const [showOrgChart, setShowOrgChart] = useState(false);
+  const [showDocumentCenter, setShowDocumentCenter] = useState(false);
 
   const tabs = [
     { id: "profiles", label: "Employee Profiles", icon: Users },
