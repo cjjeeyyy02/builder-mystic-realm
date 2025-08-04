@@ -600,6 +600,20 @@ export default function Records() {
     }
   };
 
+  // Show organizational chart if selected
+  if (showOrgChart) {
+    return (
+      <Layout>
+        <OrganizationalChart
+          onBack={() => {
+            setShowOrgChart(false);
+            setActiveTab("profiles");
+          }}
+        />
+      </Layout>
+    );
+  }
+
   // Show employee profile if one is selected
   if (selectedEmployee) {
     return (
