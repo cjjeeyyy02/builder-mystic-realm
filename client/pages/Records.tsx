@@ -562,19 +562,8 @@ export default function Records() {
         );
 
       case "org-chart":
-        return (
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-12 text-center">
-              <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">
-                Organizational Chart
-              </h3>
-              <p className="text-muted-foreground">
-                View and manage the company's hierarchical structure
-              </p>
-            </CardContent>
-          </Card>
-        );
+        setShowOrgChart(true);
+        return null;
 
       case "documents":
         return (
