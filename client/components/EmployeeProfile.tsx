@@ -2302,25 +2302,26 @@ export default function EmployeeProfile({
 
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Score</label>
-                  <Input
-                    type="number"
-                    value={trainingFormData.score}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, score: e.target.value})}
-                    placeholder="Numeric value representing performance"
-                  />
+                {/* Score and Completion Date - Responsive Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Score</label>
+                    <Input
+                      type="number"
+                      value={trainingFormData.score}
+                      onChange={(e) => setTrainingFormData({...trainingFormData, score: e.target.value})}
+                      placeholder="Numeric value representing performance"
+                    />
+                  </div>
 
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Completion Date</label>
-                  <Input
-                    type="date"
-                    value={trainingFormData.completionDate}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, completionDate: e.target.value})}
-                  />
-
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Completion Date</label>
+                    <Input
+                      type="date"
+                      value={trainingFormData.completionDate}
+                      onChange={(e) => setTrainingFormData({...trainingFormData, completionDate: e.target.value})}
+                    />
+                  </div>
                 </div>
               </>
             ) : (
