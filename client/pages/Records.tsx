@@ -610,6 +610,20 @@ export default function Records() {
     );
   }
 
+  // Show system configuration if selected
+  if (showSystemConfig) {
+    return (
+      <Layout>
+        <SystemConfiguration
+          onBack={() => {
+            setShowSystemConfig(false);
+            setActiveTab("profiles");
+          }}
+        />
+      </Layout>
+    );
+  }
+
   // Show employee profile if one is selected
   if (selectedEmployee) {
     return (
