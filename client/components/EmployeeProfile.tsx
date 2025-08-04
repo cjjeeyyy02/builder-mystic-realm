@@ -2394,7 +2394,7 @@ export default function EmployeeProfile({
             <DialogTitle>Request Leave</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-6 pt-4">
+          <div className="space-y-4 pt-4 px-1">
             {/* Leave Type - Required Dropdown */}
             <div>
               <label className="block text-sm font-medium mb-2">
