@@ -2731,7 +2731,7 @@ export default function EmployeeProfile({
             <Card className="border border-orange-200 bg-orange-50">
               <CardContent className="p-4">
                 <h4 className="font-semibold text-orange-800 mb-3">Offboarding Progress</h4>
-                <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
                     <div className="text-lg font-bold text-orange-600">
                       {[offboardingData.systemAccessRevoked, offboardingData.equipmentReturned, offboardingData.exitInterviewCompleted].filter(Boolean).length}/3
