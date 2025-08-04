@@ -2347,24 +2347,25 @@ export default function EmployeeProfile({
 
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Issued Date</label>
-                  <Input
-                    type="date"
-                    value={trainingFormData.issuedDate}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, issuedDate: e.target.value})}
-                  />
+                {/* Certification Dates - Responsive Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Issued Date</label>
+                    <Input
+                      type="date"
+                      value={trainingFormData.issuedDate}
+                      onChange={(e) => setTrainingFormData({...trainingFormData, issuedDate: e.target.value})}
+                    />
+                  </div>
 
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Expiration Date</label>
-                  <Input
-                    type="date"
-                    value={trainingFormData.expirationDate}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, expirationDate: e.target.value})}
-                  />
-
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Expiration Date</label>
+                    <Input
+                      type="date"
+                      value={trainingFormData.expirationDate}
+                      onChange={(e) => setTrainingFormData({...trainingFormData, expirationDate: e.target.value})}
+                    />
+                  </div>
                 </div>
               </>
             )}
