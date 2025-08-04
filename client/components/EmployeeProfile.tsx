@@ -2608,9 +2608,9 @@ export default function EmployeeProfile({
             </DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-6 pt-4">
+          <div className="space-y-4 pt-4 px-1">
             {/* Basic Offboarding Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Reason for Leaving */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
