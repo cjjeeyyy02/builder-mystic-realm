@@ -2371,16 +2371,17 @@ export default function EmployeeProfile({
             )}
 
             {/* Form Actions */}
-            <div className="flex gap-3 pt-4 border-t">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
               <Button
                 onClick={handleTrainingFormSubmit}
-                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white flex-1 sm:flex-none"
               >
                 Save
               </Button>
               <Button
                 variant="outline"
                 onClick={handleTrainingFormCancel}
+                className="flex-1 sm:flex-none"
               >
                 Cancel
               </Button>
