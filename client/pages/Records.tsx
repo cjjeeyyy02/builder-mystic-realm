@@ -574,19 +574,8 @@ export default function Records() {
         return null;
 
       case "config":
-        return (
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-12 text-center">
-              <Settings className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">
-                System Configuration
-              </h3>
-              <p className="text-muted-foreground">
-                Customize form fields, templates, and system settings
-              </p>
-            </CardContent>
-          </Card>
-        );
+        setShowSystemConfig(true);
+        return null;
 
       default:
         return null;
