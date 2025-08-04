@@ -2688,7 +2688,7 @@ export default function EmployeeProfile({
                 </div>
 
                 {/* Equipment Returned */}
-                <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-start space-x-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
                   <input
                     type="checkbox"
                     id="equipmentReturned"
