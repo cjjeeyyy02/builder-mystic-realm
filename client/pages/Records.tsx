@@ -200,6 +200,7 @@ export default function Records() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
     null,
   );
+  const [showOrgChart, setShowOrgChart] = useState(false);
 
   const tabs = [
     { id: "profiles", label: "Employee Profiles", icon: Users },
