@@ -97,7 +97,36 @@ export default function ScreeningView() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-green-600">
+            {screeningCandidates.filter(c => c.status === "approved").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Approved</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-red-600">
+            {screeningCandidates.filter(c => c.status === "reject").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Rejected</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-yellow-600">
+            {screeningCandidates.filter(c => c.status === "queue").length}
+          </div>
+          <div className="text-sm text-muted-foreground">In Queue</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-blue-600">
+            {screeningCandidates.length}
+          </div>
+          <div className="text-sm text-muted-foreground">Total Candidates</div>
+        </Card>
+      </div>
+
+      {/* Screening Candidates */}
       {screeningCandidates.map((candidate) => (
         <Card
           key={candidate.id}
