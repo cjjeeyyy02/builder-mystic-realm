@@ -2475,10 +2475,10 @@ export default function EmployeeProfile({
             </div>
 
             {/* Form Actions */}
-            <div className="flex gap-3 pt-4 border-t">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
               <Button
                 onClick={handleLeaveFormSubmit}
-                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white flex-1 sm:flex-none"
                 disabled={!leaveFormData.leaveType || !leaveFormData.fromDate || !leaveFormData.toDate}
               >
                 Submit Request
@@ -2486,6 +2486,7 @@ export default function EmployeeProfile({
               <Button
                 variant="outline"
                 onClick={handleLeaveFormCancel}
+                className="flex-1 sm:flex-none"
               >
                 Cancel
               </Button>
