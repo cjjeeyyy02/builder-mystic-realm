@@ -2238,7 +2238,7 @@ export default function EmployeeProfile({
             <DialogTitle>Add Training/Certification</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-6 pt-4">
+          <div className="space-y-4 pt-4 px-1">
             {/* Type Selection */}
             <div>
               <label className="block text-sm font-medium mb-2">Type</label>
