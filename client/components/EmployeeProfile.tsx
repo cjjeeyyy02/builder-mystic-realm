@@ -2667,9 +2667,9 @@ export default function EmployeeProfile({
                 Offboarding Checklist
               </h4>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {/* System Access Revoked */}
-                <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-start space-x-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
                   <input
                     type="checkbox"
                     id="systemAccessRevoked"
