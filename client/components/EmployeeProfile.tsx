@@ -2601,7 +2601,7 @@ export default function EmployeeProfile({
 
       {/* Offboarding Modal */}
       <Dialog open={showOffboardingModal} onOpenChange={setShowOffboardingModal}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-semibold text-red-600">
               Offboard Employee: {employee.fullName}
