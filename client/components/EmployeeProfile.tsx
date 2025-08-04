@@ -2421,30 +2421,31 @@ export default function EmployeeProfile({
 
             </div>
 
-            {/* From Date - Required */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                From Date <span className="text-red-500">*</span>
-              </label>
-              <Input
-                type="date"
-                value={leaveFormData.fromDate}
-                onChange={(e) => setLeaveFormData({...leaveFormData, fromDate: e.target.value})}
-              />
+            {/* Date Range - Responsive Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* From Date - Required */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  From Date <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="date"
+                  value={leaveFormData.fromDate}
+                  onChange={(e) => setLeaveFormData({...leaveFormData, fromDate: e.target.value})}
+                />
+              </div>
 
-            </div>
-
-            {/* To Date - Required */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                To Date <span className="text-red-500">*</span>
-              </label>
-              <Input
-                type="date"
-                value={leaveFormData.toDate}
-                onChange={(e) => setLeaveFormData({...leaveFormData, toDate: e.target.value})}
-              />
-
+              {/* To Date - Required */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  To Date <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="date"
+                  value={leaveFormData.toDate}
+                  onChange={(e) => setLeaveFormData({...leaveFormData, toDate: e.target.value})}
+                />
+              </div>
             </div>
 
             {/* Approver Name - Optional */}
