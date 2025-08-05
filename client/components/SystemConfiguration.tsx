@@ -236,18 +236,38 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
   };
 
   const addCustomField = () => {
-    const newField = {
-      id: `cf-${Date.now()}`,
+    setShowAddFieldModal(true);
+  };
+
+  const handleAddField = () => {
+    if (newField.name.trim()) {
+      const fieldToAdd = {
+        id: `cf-${Date.now()}`,
+        ...newField,
+      };
+      setConfig(prev => ({
+        ...prev,
+        customFields: [...prev.customFields, fieldToAdd],
+      }));
+      setHasChanges(true);
+      setNewField({
+        name: "",
+        type: "text",
+        section: "Personal Info",
+        required: false,
+      });
+      setShowAddFieldModal(false);
+    }
+  };
+
+  const handleCancelAddField = () => {
+    setNewField({
       name: "",
       type: "text",
       section: "Personal Info",
       required: false,
-    };
-    setConfig(prev => ({
-      ...prev,
-      customFields: [...prev.customFields, newField],
-    }));
-    setHasChanges(true);
+    });
+    setShowAddFieldModal(false);
   };
 
   const removeCustomField = (id: string) => {
