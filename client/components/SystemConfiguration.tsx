@@ -387,113 +387,149 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Security Settings</h3>
-            
-            <div className="space-y-6">
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold mb-4">Password Policy</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Minimum Password Length <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        type="number"
-                        min="6"
-                        max="32"
-                        value={config.security.passwordMinLength}
-                        onChange={(e) => handleConfigChange("security", "passwordMinLength", parseInt(e.target.value))}
-                      />
-                    </div>
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <label className="text-sm font-semibold text-gray-700">
-                          Require Password Complexity
-                        </label>
-                        <p className="text-xs text-gray-500 mt-1">
-                          Uppercase, lowercase, numbers, and special characters
-                        </p>
-                      </div>
-                      <Switch
-                        checked={config.security.passwordComplexity}
-                        onCheckedChange={(checked) => handleConfigChange("security", "passwordComplexity", checked)}
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Session Timeout */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Session Timeout (minutes) <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="number"
+                  min="5"
+                  max="480"
+                  value={config.security.sessionTimeout}
+                  onChange={(e) => handleConfigChange("security", "sessionTimeout", parseInt(e.target.value))}
+                  placeholder="Enter session timeout in minutes"
+                />
+              </div>
 
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold mb-4">Session Management</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Session Timeout (minutes) <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        type="number"
-                        min="5"
-                        max="480"
-                        value={config.security.sessionTimeout}
-                        onChange={(e) => handleConfigChange("security", "sessionTimeout", parseInt(e.target.value))}
-                      />
-                    </div>
+              {/* Max Login Attempts */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Max Login Attempts <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={config.security.loginAttempts}
+                  onChange={(e) => handleConfigChange("security", "loginAttempts", parseInt(e.target.value))}
+                  placeholder="Enter maximum login attempts"
+                />
+              </div>
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <label className="text-sm font-semibold text-gray-700">
-                          Two-Factor Authentication
-                        </label>
-                        <p className="text-xs text-gray-500 mt-1">
-                          Require additional verification for login
-                        </p>
-                      </div>
-                      <Switch
-                        checked={config.security.twoFactorAuth}
-                        onCheckedChange={(checked) => handleConfigChange("security", "twoFactorAuth", checked)}
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Minimum Password Length */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Minimum Password Length <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="number"
+                  min="6"
+                  max="32"
+                  value={config.security.passwordMinLength}
+                  onChange={(e) => handleConfigChange("security", "passwordMinLength", parseInt(e.target.value))}
+                  placeholder="Enter minimum password length"
+                />
+              </div>
 
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold mb-4">Account Security</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Max Login Attempts <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        type="number"
-                        min="1"
-                        max="10"
-                        value={config.security.loginAttempts}
-                        onChange={(e) => handleConfigChange("security", "loginAttempts", parseInt(e.target.value))}
-                      />
-                    </div>
+              {/* API Key */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  API Key
+                </label>
+                <div className="relative">
+                  <Input
+                    type="text"
+                    value={config.security.apiKey}
+                    onChange={(e) => handleConfigChange("security", "apiKey", e.target.value)}
+                    placeholder="Enter API key"
+                    className="font-mono text-sm"
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 px-2"
+                    onClick={() => {
+                      const newKey = `sk-${Math.random().toString(36).substring(2, 15)}${Math.random().toString(36).substring(2, 15)}`;
+                      handleConfigChange("security", "apiKey", newKey);
+                    }}
+                  >
+                    Generate
+                  </Button>
+                </div>
+              </div>
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <label className="text-sm font-semibold text-gray-700">
-                          Account Lockout
-                        </label>
-                        <p className="text-xs text-gray-500 mt-1">
-                          Lock account after failed login attempts
-                        </p>
-                      </div>
-                      <Switch
-                        checked={config.security.accountLockout}
-                        onCheckedChange={(checked) => handleConfigChange("security", "accountLockout", checked)}
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Two-Factor Authentication Required */}
+              <div className="flex items-center justify-between p-4 border rounded-lg">
+                <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Two-Factor Authentication Required
+                  </label>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Require additional verification for all user logins
+                  </p>
+                </div>
+                <Switch
+                  checked={config.security.twoFactorAuth}
+                  onCheckedChange={(checked) => handleConfigChange("security", "twoFactorAuth", checked)}
+                />
+              </div>
+
+              {/* Allow Remote Login */}
+              <div className="flex items-center justify-between p-4 border rounded-lg">
+                <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Allow Remote Login
+                  </label>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Allow users to login from any location
+                  </p>
+                </div>
+                <Switch
+                  checked={config.security.allowRemoteLogin}
+                  onCheckedChange={(checked) => handleConfigChange("security", "allowRemoteLogin", checked)}
+                />
+              </div>
+
+              {/* Require Uppercase Letters */}
+              <div className="flex items-center justify-between p-4 border rounded-lg md:col-span-2">
+                <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Require Uppercase Letters
+                  </label>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Passwords must contain at least one uppercase letter
+                  </p>
+                </div>
+                <Switch
+                  checked={config.security.requireUppercase}
+                  onCheckedChange={(checked) => handleConfigChange("security", "requireUppercase", checked)}
+                />
+              </div>
             </div>
+
+            {/* Security Status Summary */}
+            <Card className="border border-border bg-muted/30">
+              <CardContent className="p-6">
+                <h4 className="font-semibold mb-4">Current Security Status</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.security.twoFactorAuth ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                    <span>Two-Factor Auth: {config.security.twoFactorAuth ? 'Enabled' : 'Disabled'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.security.allowRemoteLogin ? 'bg-yellow-500' : 'bg-green-500'}`}></div>
+                    <span>Remote Login: {config.security.allowRemoteLogin ? 'Allowed' : 'Restricted'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.security.requireUppercase ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                    <span>Password Policy: {config.security.requireUppercase ? 'Strong' : 'Basic'}</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
 
