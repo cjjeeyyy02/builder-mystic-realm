@@ -132,7 +132,7 @@ const defaultConfig: ConfigurationState = {
   customFields: [
     {
       id: "cf-001",
-      name: "Employee Badge Number",
+      name: "Emergency Contact 2",
       type: "text",
       section: "Personal Info",
       required: false,
@@ -144,6 +144,14 @@ const defaultConfig: ConfigurationState = {
       section: "Security",
       required: true,
       options: ["Public", "Confidential", "Secret", "Top Secret"],
+    },
+    {
+      id: "cf-003",
+      name: "Preferred Work Schedule",
+      type: "dropdown",
+      section: "Work Details",
+      required: false,
+      options: ["9 AM - 5 PM", "10 AM - 6 PM", "Flexible", "Remote", "Hybrid"],
     },
   ],
   userRoles: [
