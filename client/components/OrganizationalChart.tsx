@@ -889,7 +889,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                       <SelectValue placeholder="Select manager" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">No Manager</SelectItem>
+                      <SelectItem value="none">No Manager</SelectItem>
                       {employees
                         .filter(emp => emp.id !== selectedEmployee.id)
                         .map(emp => (
