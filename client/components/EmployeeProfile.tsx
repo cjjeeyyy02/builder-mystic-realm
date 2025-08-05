@@ -511,10 +511,14 @@ export default function EmployeeProfile({
                           className="pl-10"
                         />
                       </div>
-                      <Input
-                        placeholder="Contact Number"
-                        defaultValue="+1 (555) 987-6543"
-                      />
+                      <div className="relative">
+                        <Phone className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <Input
+                          placeholder="Contact Number"
+                          defaultValue="+1 (555) 987-6543"
+                          className="pl-10"
+                        />
+                      </div>
                       <Input placeholder="Relationship" defaultValue="Father" />
                     </div>
                   ) : (
