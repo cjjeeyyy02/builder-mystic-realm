@@ -1203,7 +1203,7 @@ export default function SystemConfiguration({
                     Add Role
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-lg">
+                <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Create New User Role</DialogTitle>
                     <DialogDescription>
