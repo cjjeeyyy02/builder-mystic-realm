@@ -646,10 +646,26 @@ export default function Records() {
           <h1 className="text-3xl font-semibold text-foreground">
             Employee Records
           </h1>
-          <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
-            <User className="w-4 h-4 mr-2" />
-            Add Employee
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => console.log("Importing employee data...")}
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              Import
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => console.log("Exporting employee data...")}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Export
+            </Button>
+            <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+              <User className="w-4 h-4 mr-2" />
+              Add Employee
+            </Button>
+          </div>
         </div>
 
         {/* Navigation Tabs */}
