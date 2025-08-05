@@ -336,6 +336,41 @@ export default function EmployeeProfile({
     });
   };
 
+  const handleSkillFormSubmit = () => {
+    // Add the new skill to the skills array
+    const newSkill = {
+      name: skillFormData.skillName,
+      experience: skillFormData.experience,
+      endorsements: 0,
+      level: skillFormData.proficiencyLevel,
+      editable: true,
+      endorsable: true,
+    };
+
+    setSkills(prev => [...prev, newSkill]);
+    console.log("Adding new skill:", newSkill);
+    setShowSkillModal(false);
+
+    // Reset form
+    setSkillFormData({
+      skillName: "",
+      category: "",
+      proficiencyLevel: "",
+      experience: ""
+    });
+  };
+
+  const handleSkillFormCancel = () => {
+    setShowSkillModal(false);
+    // Reset form
+    setSkillFormData({
+      skillName: "",
+      category: "",
+      proficiencyLevel: "",
+      experience: ""
+    });
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "personal":
