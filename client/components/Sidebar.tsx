@@ -125,8 +125,12 @@ export default function Sidebar({
                             <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">Employee Management</p>
-                            <p className="text-xs text-slate-500">HR & Personnel</p>
+                            <p className="font-medium text-sm">
+                              Employee Management
+                            </p>
+                            <p className="text-xs text-slate-500">
+                              HR & Personnel
+                            </p>
                           </div>
                         </div>
                       </DropdownMenuItem>
@@ -136,8 +140,12 @@ export default function Sidebar({
                             <FileText className="w-4 h-4 text-green-600 dark:text-green-400" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">Document Management</p>
-                            <p className="text-xs text-slate-500">Files & Records</p>
+                            <p className="font-medium text-sm">
+                              Document Management
+                            </p>
+                            <p className="text-xs text-slate-500">
+                              Files & Records
+                            </p>
                           </div>
                         </div>
                       </DropdownMenuItem>
@@ -147,8 +155,12 @@ export default function Sidebar({
                             <BarChart3 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">Analytics Dashboard</p>
-                            <p className="text-xs text-slate-500">Reports & Insights</p>
+                            <p className="font-medium text-sm">
+                              Analytics Dashboard
+                            </p>
+                            <p className="text-xs text-slate-500">
+                              Reports & Insights
+                            </p>
                           </div>
                         </div>
                       </DropdownMenuItem>
@@ -167,7 +179,9 @@ export default function Sidebar({
                 </TooltipTrigger>
                 <TooltipContent side="right">
                   <p className="font-semibold">AI2AIM WORKSPACE</p>
-                  <p className="text-xs text-slate-500">Employee Management System</p>
+                  <p className="text-xs text-slate-500">
+                    Employee Management System
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -189,7 +203,6 @@ export default function Sidebar({
         {/* Navigation */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-1">
-
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
