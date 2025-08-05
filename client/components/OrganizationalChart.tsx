@@ -763,6 +763,226 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* View Employee Modal */}
+      <Dialog open={showViewModal} onOpenChange={setShowViewModal}>
+        <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Employee Details</DialogTitle>
+          </DialogHeader>
+          {selectedEmployee && (
+            <div className="space-y-6 pt-4">
+              {/* Employee Header */}
+              <div className="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20">
+                  <User className="w-8 h-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-foreground">{selectedEmployee.fullName}</h3>
+                  <p className="text-lg text-muted-foreground">{selectedEmployee.position}</p>
+                  <Badge variant="outline" className={`mt-1 ${getDepartmentColor(selectedEmployee.department)}`}>
+                    {selectedEmployee.department}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Employee Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Email</label>
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-foreground">{selectedEmployee.email}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Phone</label>
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-foreground">{selectedEmployee.phone}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Location</label>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-foreground">{selectedEmployee.location}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Employee ID</label>
+                    <span className="text-foreground font-mono">{selectedEmployee.id}</span>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Department</label>
+                    <div className="flex items-center gap-2">
+                      <Building className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-foreground">{selectedEmployee.department}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">Direct Reports</label>
+                    <span className="text-foreground">{selectedEmployee.directReports.length} employee{selectedEmployee.directReports.length !== 1 ? 's' : ''}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Manager Information */}
+              {selectedEmployee.managerId && (
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">Reports To</label>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-foreground">
+                        {employees.find(emp => emp.id === selectedEmployee.managerId)?.fullName}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {employees.find(emp => emp.id === selectedEmployee.managerId)?.position}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex gap-3 pt-4 border-t">
+                <Button
+                  onClick={() => {
+                    setShowViewModal(false);
+                    setShowEditModal(true);
+                  }}
+                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                >
+                  <Edit className="w-4 h-4 mr-2" />
+                  Edit Employee
+                </Button>
+                <Button variant="outline" onClick={() => setShowViewModal(false)}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Employee Modal */}
+      <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
+        <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Employee</DialogTitle>
+          </DialogHeader>
+          {selectedEmployee && (
+            <div className="space-y-6 pt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <Input defaultValue={selectedEmployee.fullName} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Position <span className="text-red-500">*</span>
+                  </label>
+                  <Input defaultValue={selectedEmployee.position} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Department <span className="text-red-500">*</span>
+                  </label>
+                  <Select defaultValue={selectedEmployee.department}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Executive">Executive</SelectItem>
+                      <SelectItem value="Engineering">Engineering</SelectItem>
+                      <SelectItem value="Finance">Finance</SelectItem>
+                      <SelectItem value="Marketing">Marketing</SelectItem>
+                      <SelectItem value="Human Resources">Human Resources</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Reports To
+                  </label>
+                  <Select defaultValue={selectedEmployee.managerId || ""}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select manager" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">No Manager</SelectItem>
+                      {employees
+                        .filter(emp => emp.id !== selectedEmployee.id)
+                        .map(emp => (
+                          <SelectItem key={emp.id} value={emp.id}>
+                            {emp.fullName} - {emp.position}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <Input type="email" defaultValue={selectedEmployee.email} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone
+                  </label>
+                  <Input defaultValue={selectedEmployee.phone} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Location
+                  </label>
+                  <Input defaultValue={selectedEmployee.location} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Employee ID
+                  </label>
+                  <Input defaultValue={selectedEmployee.id} disabled className="bg-gray-50" />
+                </div>
+              </div>
+
+              <div className="text-sm text-muted-foreground bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <p><strong>Note:</strong> Changes to employee hierarchy may affect direct reports and organizational structure. Please review carefully before saving.</p>
+              </div>
+
+              <div className="flex gap-3 pt-4 border-t">
+                <Button className="bg-green-600 hover:bg-green-700 text-white">
+                  <Edit className="w-4 h-4 mr-2" />
+                  Save Changes
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowEditModal(false);
+                    setShowViewModal(true);
+                  }}
+                >
+                  Back to View
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowEditModal(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
