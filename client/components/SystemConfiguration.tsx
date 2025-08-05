@@ -1196,10 +1196,117 @@ export default function SystemConfiguration({
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">User Roles & Permissions</h3>
-              <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Role
-              </Button>
+              <Dialog open={showAddRoleModal} onOpenChange={setShowAddRoleModal}>
+                <DialogTrigger asChild>
+                  <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Role
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-lg">
+                  <DialogHeader>
+                    <DialogTitle>Create New User Role</DialogTitle>
+                    <DialogDescription>
+                      Define a new user role with specific permissions and access levels.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Role Name <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        value={newRole.name}
+                        onChange={(e) => setNewRole(prev => ({ ...prev, name: e.target.value }))}
+                        placeholder="Enter role name (e.g., Marketing Manager)"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Description
+                      </label>
+                      <Textarea
+                        value={newRole.description}
+                        onChange={(e) => setNewRole(prev => ({ ...prev, description: e.target.value }))}
+                        placeholder="Describe the role responsibilities and purpose"
+                        rows={3}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">
+                        Permissions <span className="text-red-500">*</span>
+                      </label>
+                      <div className="grid grid-cols-2 gap-3">
+                        {[
+                          { id: "read", label: "Read Access", desc: "View data and content" },
+                          { id: "write", label: "Write Access", desc: "Create and edit content" },
+                          { id: "delete", label: "Delete Access", desc: "Remove data and content" },
+                          { id: "configure", label: "Configure System", desc: "Modify system settings" },
+                          { id: "user_management", label: "User Management", desc: "Manage user accounts" },
+                          { id: "employee_management", label: "Employee Management", desc: "Manage employee data" },
+                          { id: "reports", label: "Generate Reports", desc: "Create and view reports" },
+                          { id: "analytics", label: "Analytics Access", desc: "View analytics and insights" },
+                        ].map((permission) => (
+                          <div
+                            key={permission.id}
+                            className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                              newRole.permissions.includes(permission.id)
+                                ? "border-blue-500 bg-blue-50"
+                                : "border-gray-200 hover:border-gray-300"
+                            }`}
+                            onClick={() => togglePermission(permission.id)}
+                          >
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                checked={newRole.permissions.includes(permission.id)}
+                                onChange={() => togglePermission(permission.id)}
+                                className="rounded"
+                              />
+                              <div>
+                                <div className="text-sm font-medium">{permission.label}</div>
+                                <div className="text-xs text-gray-500">{permission.desc}</div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      {newRole.permissions.length === 0 && (
+                        <p className="text-sm text-red-500 mt-2">Please select at least one permission.</p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700">
+                          Active Status
+                        </label>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Users with this role can access the system
+                        </p>
+                      </div>
+                      <Switch
+                        checked={newRole.active}
+                        onCheckedChange={(checked) => setNewRole(prev => ({ ...prev, active: checked }))}
+                      />
+                    </div>
+                  </div>
+                  <DialogFooter className="flex gap-2">
+                    <Button variant="outline" onClick={handleCancelAddRole}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleAddRole}
+                      disabled={!newRole.name.trim() || newRole.permissions.length === 0}
+                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                    >
+                      Create Role
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
 
             <div className="space-y-4">
