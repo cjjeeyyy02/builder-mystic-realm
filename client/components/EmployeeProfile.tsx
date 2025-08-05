@@ -1249,9 +1249,11 @@ export default function EmployeeProfile({
                         </div>
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Status</label>
-                          <Badge variant="outline" className={getStatusColor(training.status)}>
-                            {training.status}
-                          </Badge>
+                          <div className="mt-1">
+                            <Badge variant="outline" className={getStatusColor(training.status)}>
+                              {training.status}
+                            </Badge>
+                          </div>
                         </div>
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Score</label>
