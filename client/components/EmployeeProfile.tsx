@@ -2835,6 +2835,118 @@ export default function EmployeeProfile({
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Add New Skill Modal */}
+      <Dialog open={showSkillModal} onOpenChange={setShowSkillModal}>
+        <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Add New Skill</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4 md:space-y-6 pt-4">
+            {/* Skill Name */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Skill Name <span className="text-red-500">*</span>
+              </label>
+              <Input
+                placeholder="Enter skill name (e.g., React, Python, Project Management)"
+                value={skillFormData.skillName}
+                onChange={(e) => setSkillFormData({...skillFormData, skillName: e.target.value})}
+              />
+            </div>
+
+            {/* Category */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Category
+              </label>
+              <Select
+                value={skillFormData.category}
+                onValueChange={(value) => setSkillFormData({...skillFormData, category: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select category (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="technical">Technical Skills</SelectItem>
+                  <SelectItem value="programming">Programming Languages</SelectItem>
+                  <SelectItem value="frameworks">Frameworks & Libraries</SelectItem>
+                  <SelectItem value="tools">Tools & Software</SelectItem>
+                  <SelectItem value="cloud">Cloud & Infrastructure</SelectItem>
+                  <SelectItem value="soft">Soft Skills</SelectItem>
+                  <SelectItem value="leadership">Leadership & Management</SelectItem>
+                  <SelectItem value="communication">Communication</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Proficiency Level */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Proficiency Level <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={skillFormData.proficiencyLevel}
+                onValueChange={(value) => setSkillFormData({...skillFormData, proficiencyLevel: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select proficiency level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Beginner">Beginner - Basic understanding</SelectItem>
+                  <SelectItem value="Intermediate">Intermediate - Working knowledge</SelectItem>
+                  <SelectItem value="Advanced">Advanced - Strong proficiency</SelectItem>
+                  <SelectItem value="Expert">Expert - Deep expertise</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Experience */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Years of Experience
+              </label>
+              <Select
+                value={skillFormData.experience}
+                onValueChange={(value) => setSkillFormData({...skillFormData, experience: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select experience (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="< 1 year">Less than 1 year</SelectItem>
+                  <SelectItem value="1 year">1 year</SelectItem>
+                  <SelectItem value="2 years">2 years</SelectItem>
+                  <SelectItem value="3 years">3 years</SelectItem>
+                  <SelectItem value="4 years">4 years</SelectItem>
+                  <SelectItem value="5+ years">5+ years</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Form Actions */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white flex-1 sm:flex-none"
+                onClick={handleSkillFormSubmit}
+                disabled={!skillFormData.skillName || !skillFormData.proficiencyLevel}
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Skill
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 sm:flex-none"
+                onClick={handleSkillFormCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
