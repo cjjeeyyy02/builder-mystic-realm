@@ -189,13 +189,6 @@ export default function Sidebar({
         {/* Navigation */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-1">
-            {!isCollapsed && (
-              <div className="px-3 mb-4">
-                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  Navigation
-                </p>
-              </div>
-            )}
 
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
