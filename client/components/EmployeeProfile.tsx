@@ -192,6 +192,15 @@ export default function EmployeeProfile({
   // Document upload modal state
   const [showDocumentModal, setShowDocumentModal] = useState(false);
 
+  // Add skill modal state
+  const [showSkillModal, setShowSkillModal] = useState(false);
+  const [skillFormData, setSkillFormData] = useState({
+    skillName: "",
+    category: "",
+    proficiencyLevel: "",
+    experience: ""
+  });
+
   // Offboarding modal state
   const [showOffboardingModal, setShowOffboardingModal] = useState(false);
   const [offboardingData, setOffboardingData] = useState({
