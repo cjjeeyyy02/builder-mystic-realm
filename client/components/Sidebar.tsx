@@ -74,48 +74,102 @@ export default function Sidebar({
         }`}
       >
         {/* Logo/Brand */}
-        <div className="p-6 border-b border-sidebar-border">
+        <div className="p-6 border-b border-sidebar-border bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-800 dark:to-slate-900">
           {!isCollapsed ? (
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Users className="w-5 h-5 text-primary-foreground" />
+            <div className="space-y-4">
+              {/* Company Logo and Name */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-primary/20">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h1 className="text-xl font-bold text-slate-800 dark:text-white tracking-tight">
+                    AI2AIM
+                  </h1>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    WORKSPACE
+                  </p>
+                </div>
               </div>
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold text-sidebar-foreground">
-                  AI2AIM WORKSPACE
-                </h2>
+
+              {/* System Selector */}
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-3 shadow-sm border border-slate-200 dark:border-slate-700">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="h-auto p-0 text-xs text-sidebar-foreground/60 hover:text-sidebar-foreground/80 justify-start gap-1"
+                      className="w-full h-auto p-0 justify-between hover:bg-slate-50 dark:hover:bg-slate-700 rounded-md px-2 py-2"
                     >
-                      Employee Management System
-                      <ChevronDown className="w-3 h-3" />
+                      <div className="flex items-center gap-2 text-left">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                            Employee Management
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            System
+                          </p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-4 h-4 text-slate-400" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-56">
-                    <DropdownMenuItem>
-                      <Users className="w-4 h-4 mr-2" />
-                      Employee Management System
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <FileText className="w-4 h-4 mr-2" />
-                      Document Management
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <BarChart3 className="w-4 h-4 mr-2" />
-                      Analytics Dashboard
-                    </DropdownMenuItem>
+                  <DropdownMenuContent align="start" className="w-64 mt-2">
+                    <div className="p-2">
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">
+                        Available Systems
+                      </div>
+                      <DropdownMenuItem className="rounded-md p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                            <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">Employee Management</p>
+                            <p className="text-xs text-slate-500">HR & Personnel</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="rounded-md p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                            <FileText className="w-4 h-4 text-green-600 dark:text-green-400" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">Document Management</p>
+                            <p className="text-xs text-slate-500">Files & Records</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="rounded-md p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                            <BarChart3 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">Analytics Dashboard</p>
+                            <p className="text-xs text-slate-500">Reports & Insights</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    </div>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
             </div>
           ) : (
             <div className="flex justify-center">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Users className="w-5 h-5 text-primary-foreground" />
-              </div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-primary/20">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                  <p className="font-semibold">AI2AIM WORKSPACE</p>
+                  <p className="text-xs text-slate-500">Employee Management System</p>
+                </TooltipContent>
+              </Tooltip>
             </div>
           )}
         </div>
