@@ -35,6 +35,11 @@ import {
   Phone,
   MapPin,
   User,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+  Maximize,
+  Minimize,
 } from "lucide-react";
 
 interface OrgEmployee {
@@ -230,6 +235,11 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [employees, setEmployees] = useState(organizationalData);
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Filter employees based on search and department
   const filteredEmployees = employees.filter((employee) => {
@@ -342,11 +352,21 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
 
               {/* Action buttons */}
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleViewEmployee(employee)}
+                  className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
+                >
                   <Eye className="w-3 h-3 mr-1" />
                   View
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleEditEmployee(employee)}
+                  className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+                >
                   <Edit className="w-3 h-3 mr-1" />
                   Edit
                 </Button>
@@ -389,17 +409,40 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
     return (
       <div key={employee.id} className="flex flex-col items-center">
         {/* Employee box */}
-        <Card className="border-2 border-primary/30 bg-white shadow-md min-w-[200px] max-w-[200px]">
-          <CardContent className="p-4 text-center">
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-              <User className="w-6 h-6 text-primary" />
+        <Card className="border-2 border-primary/30 bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 min-w-[220px] max-w-[220px] group cursor-pointer">
+          <CardContent className="p-5 text-center relative">
+            <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-primary/20">
+              <User className="w-7 h-7 text-primary" />
             </div>
-            <h4 className="font-bold text-sm text-foreground mb-1">
+            <h4 className="font-bold text-sm text-foreground mb-1 line-clamp-2">
               {employee.fullName}
             </h4>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
               {employee.position}
             </p>
+            <Badge variant="outline" className={`text-xs ${getDepartmentColor(employee.department)} mb-2`}>
+              {employee.department}
+            </Badge>
+
+            {/* Action buttons on hover */}
+            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center gap-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => handleViewEmployee(employee)}
+                className="bg-white/90 hover:bg-white shadow-md"
+              >
+                <Eye className="w-3 h-3" />
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => handleEditEmployee(employee)}
+                className="bg-white/90 hover:bg-white shadow-md"
+              >
+                <Edit className="w-3 h-3" />
+              </Button>
+            </div>
           </CardContent>
         </Card>
 
@@ -438,6 +481,32 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
 
   const handleAddEmployee = () => {
     setShowAddEmployeeModal(true);
+  };
+
+  const handleViewEmployee = (employee: OrgEmployee) => {
+    setSelectedEmployee(employee);
+    setShowViewModal(true);
+  };
+
+  const handleEditEmployee = (employee: OrgEmployee) => {
+    setSelectedEmployee(employee);
+    setShowEditModal(true);
+  };
+
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.2, 2));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.2, 0.5));
+  };
+
+  const handleResetZoom = () => {
+    setZoomLevel(1);
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
   };
 
   return (
@@ -481,7 +550,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               />
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
                 <SelectTrigger className="w-48">
                   <SelectValue placeholder="Filter by Department" />
@@ -496,6 +565,39 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                 </SelectContent>
               </Select>
 
+              {/* Zoom Controls */}
+              {viewMode === "chart" && (
+                <div className="flex items-center gap-2 border rounded-lg p-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleZoomOut}
+                    disabled={zoomLevel <= 0.5}
+                  >
+                    <ZoomOut className="w-4 h-4" />
+                  </Button>
+                  <span className="text-sm font-medium px-2 min-w-[60px] text-center">
+                    {Math.round(zoomLevel * 100)}%
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleZoomIn}
+                    disabled={zoomLevel >= 2}
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleResetZoom}
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
+
+              {/* View Mode Toggle */}
               {viewMode === "hierarchical" ? (
                 <Button
                   variant="outline"
@@ -503,7 +605,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   className="whitespace-nowrap"
                 >
                   <Users className="w-4 h-4 mr-2" />
-                  View Chart
+                  Chart View
                 </Button>
               ) : (
                 <Button
@@ -512,27 +614,61 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   className="whitespace-nowrap"
                 >
                   <X className="w-4 h-4 mr-2" />
-                  Exit Chart View
+                  List View
                 </Button>
               )}
+
+              {/* Fullscreen Toggle */}
+              <Button
+                variant="outline"
+                onClick={toggleFullscreen}
+                className="whitespace-nowrap"
+              >
+                {isFullscreen ? (
+                  <Minimize className="w-4 h-4 mr-2" />
+                ) : (
+                  <Maximize className="w-4 h-4 mr-2" />
+                )}
+                {isFullscreen ? "Exit" : "Fullscreen"}
+              </Button>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Organizational Chart Content */}
-      <Card className="border-0 shadow-sm">
-        <CardContent className="p-6">
+      <Card className={`border-0 shadow-sm ${isFullscreen ? 'fixed inset-0 z-50 rounded-none' : ''}`}>
+        <CardContent className={`${isFullscreen ? 'h-full overflow-auto' : 'p-6'}`}>
           {viewMode === "hierarchical" ? (
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold mb-6">Hierarchical View</h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold">List View</h2>
+                <div className="text-sm text-muted-foreground">
+                  {filteredEmployees.length} employees
+                </div>
+              </div>
               {getRootEmployees().map(employee => renderHierarchicalNode(employee))}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <h2 className="text-xl font-semibold mb-6 text-center">Chart View</h2>
-              <div className="min-w-fit p-8">
-                {getRootEmployees().map(employee => renderChartNode(employee))}
+            <div className="h-full">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold">Organization Chart</h2>
+                <div className="text-sm text-muted-foreground">
+                  Zoom: {Math.round(zoomLevel * 100)}% | {filteredEmployees.length} employees
+                </div>
+              </div>
+              <div className="overflow-auto h-full bg-gradient-to-br from-gray-50 to-white rounded-lg border">
+                <div
+                  className="min-w-fit p-8 transform-gpu transition-transform duration-200 ease-in-out"
+                  style={{
+                    transform: `scale(${zoomLevel})`,
+                    transformOrigin: 'top left'
+                  }}
+                >
+                  <div className="flex flex-col items-center space-y-12">
+                    {getRootEmployees().map(employee => renderChartNode(employee))}
+                  </div>
+                </div>
               </div>
             </div>
           )}
