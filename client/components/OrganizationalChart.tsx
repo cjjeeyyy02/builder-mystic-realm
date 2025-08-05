@@ -438,16 +438,16 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
         {directReports.length > 0 && (
           <>
             {/* Vertical line down */}
-            <div className="w-0.5 h-8 bg-muted-foreground/30" />
-            
+            <div className="w-0.5 h-6 bg-muted-foreground/30" />
+
             {/* Horizontal line */}
             {directReports.length > 1 && (
-              <div className="h-0.5 bg-muted-foreground/30 relative" 
-                   style={{ width: `${(directReports.length - 1) * 220}px` }} />
+              <div className="h-0.5 bg-muted-foreground/30 relative"
+                   style={{ width: `${(directReports.length - 1) * 180}px` }} />
             )}
-            
+
             {/* Direct reports */}
-            <div className="flex gap-8 mt-8">
+            <div className="flex gap-6 mt-6">
               {directReports.map(report => (
                 <div key={report.id} className="flex flex-col items-center">
                   {/* Vertical line up */}
