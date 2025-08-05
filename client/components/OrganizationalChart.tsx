@@ -244,9 +244,21 @@ export default function OrganizationalChart({
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showAddReportModal, setShowAddReportModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(
     null,
   );
+  const [selectedManager, setSelectedManager] = useState<OrgEmployee | null>(
+    null,
+  );
+  const [addReportFormData, setAddReportFormData] = useState({
+    fullName: "",
+    position: "",
+    department: "",
+    email: "",
+    phone: "",
+    location: "",
+  });
   const [zoomLevel, setZoomLevel] = useState(0.8);
 
   // Filter employees based on search and department
