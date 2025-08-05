@@ -10,7 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -227,15 +232,21 @@ const organizationalData: OrgEmployee[] = [
   },
 ];
 
-export default function OrganizationalChart({ onBack }: OrganizationalChartProps) {
-  const [viewMode, setViewMode] = useState<"hierarchical" | "chart">("hierarchical");
+export default function OrganizationalChart({
+  onBack,
+}: OrganizationalChartProps) {
+  const [viewMode, setViewMode] = useState<"hierarchical" | "chart">(
+    "hierarchical",
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [employees, setEmployees] = useState(organizationalData);
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(
+    null,
+  );
   const [zoomLevel, setZoomLevel] = useState(0.8);
 
   // Filter employees based on search and department
@@ -253,21 +264,21 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
 
   // Get root employees (those without a manager)
   const getRootEmployees = () => {
-    return filteredEmployees.filter(emp => !emp.managerId);
+    return filteredEmployees.filter((emp) => !emp.managerId);
   };
 
   // Get direct reports for an employee
   const getDirectReports = (employeeId: string) => {
-    return filteredEmployees.filter(emp => emp.managerId === employeeId);
+    return filteredEmployees.filter((emp) => emp.managerId === employeeId);
   };
 
   // Toggle expand/collapse for an employee
   const toggleExpanded = (employeeId: string) => {
-    setEmployees(prev => prev.map(emp => 
-      emp.id === employeeId 
-        ? { ...emp, isExpanded: !emp.isExpanded }
-        : emp
-    ));
+    setEmployees((prev) =>
+      prev.map((emp) =>
+        emp.id === employeeId ? { ...emp, isExpanded: !emp.isExpanded } : emp,
+      ),
+    );
   };
 
   // Get department color
@@ -302,7 +313,10 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               {/* Left side - Employee info */}
               <div className="flex items-center gap-4 flex-1">
                 {/* Expand/Collapse button */}
-                <div className="flex items-center gap-2" style={{ marginLeft: `${depth * 20}px` }}>
+                <div
+                  className="flex items-center gap-2"
+                  style={{ marginLeft: `${depth * 20}px` }}
+                >
                   {hasReports ? (
                     <Button
                       variant="ghost"
@@ -319,7 +333,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   ) : (
                     <div className="w-6" />
                   )}
-                  
+
                   {/* Employee avatar */}
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                     <User className="w-5 h-5 text-primary" />
@@ -335,12 +349,16 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                     {employee.position}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <Badge variant="outline" className={`text-xs ${getDepartmentColor(employee.department)}`}>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs ${getDepartmentColor(employee.department)}`}
+                    >
                       {employee.department}
                     </Badge>
                     {hasReports && (
                       <span className="text-xs text-muted-foreground">
-                        {directReports.length} direct report{directReports.length !== 1 ? 's' : ''}
+                        {directReports.length} direct report
+                        {directReports.length !== 1 ? "s" : ""}
                       </span>
                     )}
                   </div>
@@ -383,7 +401,9 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
         {/* Render direct reports if expanded */}
         {hasReports && isExpanded && (
           <div className="ml-8 border-l-2 border-muted pl-4">
-            {directReports.map(report => renderHierarchicalNode(report, depth + 1))}
+            {directReports.map((report) =>
+              renderHierarchicalNode(report, depth + 1),
+            )}
           </div>
         )}
       </div>
@@ -408,7 +428,10 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
             <p className="text-xs text-muted-foreground mb-1 line-clamp-2">
               {employee.position}
             </p>
-            <Badge variant="outline" className={`text-xs ${getDepartmentColor(employee.department)} mb-1 scale-90`}>
+            <Badge
+              variant="outline"
+              className={`text-xs ${getDepartmentColor(employee.department)} mb-1 scale-90`}
+            >
               {employee.department}
             </Badge>
 
@@ -442,13 +465,15 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
 
             {/* Horizontal line */}
             {directReports.length > 1 && (
-              <div className="h-0.5 bg-muted-foreground/30 relative"
-                   style={{ width: `${(directReports.length - 1) * 140}px` }} />
+              <div
+                className="h-0.5 bg-muted-foreground/30 relative"
+                style={{ width: `${(directReports.length - 1) * 140}px` }}
+              />
             )}
 
             {/* Direct reports */}
             <div className="flex gap-4 mt-4">
-              {directReports.map(report => (
+              {directReports.map((report) => (
                 <div key={report.id} className="flex flex-col items-center">
                   {/* Vertical line up */}
                   <div className="w-0.5 h-4 bg-muted-foreground/30" />
@@ -482,11 +507,11 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
   };
 
   const handleZoomIn = () => {
-    setZoomLevel(prev => Math.min(prev + 0.2, 2));
+    setZoomLevel((prev) => Math.min(prev + 0.2, 2));
   };
 
   const handleZoomOut = () => {
-    setZoomLevel(prev => Math.max(prev - 0.2, 0.5));
+    setZoomLevel((prev) => Math.max(prev - 0.2, 0.5));
   };
 
   const handleResetZoom = () => {
@@ -535,7 +560,10 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
             </div>
 
             <div className="flex gap-3 flex-wrap">
-              <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+              <Select
+                value={departmentFilter}
+                onValueChange={setDepartmentFilter}
+              >
                 <SelectTrigger className="w-48">
                   <SelectValue placeholder="Filter by Department" />
                 </SelectTrigger>
@@ -545,7 +573,9 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <SelectItem value="Engineering">Engineering</SelectItem>
                   <SelectItem value="Finance">Finance</SelectItem>
                   <SelectItem value="Marketing">Marketing</SelectItem>
-                  <SelectItem value="Human Resources">Human Resources</SelectItem>
+                  <SelectItem value="Human Resources">
+                    Human Resources
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -571,11 +601,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   >
                     <ZoomIn className="w-4 h-4" />
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleResetZoom}
-                  >
+                  <Button variant="ghost" size="sm" onClick={handleResetZoom}>
                     <RotateCcw className="w-4 h-4" />
                   </Button>
                 </div>
@@ -601,8 +627,6 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   List View
                 </Button>
               )}
-
-
             </div>
           </div>
         </CardContent>
@@ -619,14 +643,17 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   {filteredEmployees.length} employees
                 </div>
               </div>
-              {getRootEmployees().map(employee => renderHierarchicalNode(employee))}
+              {getRootEmployees().map((employee) =>
+                renderHierarchicalNode(employee),
+              )}
             </div>
           ) : (
             <div className="h-full">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">Organization Chart</h2>
                 <div className="text-sm text-muted-foreground">
-                  Zoom: {Math.round(zoomLevel * 100)}% | {filteredEmployees.length} employees
+                  Zoom: {Math.round(zoomLevel * 100)}% |{" "}
+                  {filteredEmployees.length} employees
                 </div>
               </div>
               <div className="overflow-auto h-full bg-gradient-to-br from-gray-50 to-white rounded-lg border">
@@ -634,11 +661,13 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   className="w-full h-full flex items-center justify-center p-4 transform-gpu transition-transform duration-200 ease-in-out"
                   style={{
                     transform: `scale(${zoomLevel})`,
-                    transformOrigin: 'center center'
+                    transformOrigin: "center center",
                   }}
                 >
                   <div className="flex flex-col items-center space-y-6">
-                    {getRootEmployees().map(employee => renderChartNode(employee))}
+                    {getRootEmployees().map((employee) =>
+                      renderChartNode(employee),
+                    )}
                   </div>
                 </div>
               </div>
@@ -648,7 +677,10 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
       </Card>
 
       {/* Add Employee Modal */}
-      <Dialog open={showAddEmployeeModal} onOpenChange={setShowAddEmployeeModal}>
+      <Dialog
+        open={showAddEmployeeModal}
+        onOpenChange={setShowAddEmployeeModal}
+      >
         <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Add New Employee</DialogTitle>
@@ -681,7 +713,9 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                     <SelectItem value="Engineering">Engineering</SelectItem>
                     <SelectItem value="Finance">Finance</SelectItem>
                     <SelectItem value="Marketing">Marketing</SelectItem>
-                    <SelectItem value="Human Resources">Human Resources</SelectItem>
+                    <SelectItem value="Human Resources">
+                      Human Resources
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -694,7 +728,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                     <SelectValue placeholder="Select manager" />
                   </SelectTrigger>
                   <SelectContent>
-                    {employees.map(emp => (
+                    {employees.map((emp) => (
                       <SelectItem key={emp.id} value={emp.id}>
                         {emp.fullName} - {emp.position}
                       </SelectItem>
@@ -717,7 +751,11 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
             </div>
 
             <div className="text-sm text-muted-foreground bg-blue-50 p-4 rounded-lg">
-              <p>Complete employee profile information including Personal Info, Work Details, Skills, Compensation, and Training sections will be available after initial creation.</p>
+              <p>
+                Complete employee profile information including Personal Info,
+                Work Details, Skills, Compensation, and Training sections will
+                be available after initial creation.
+              </p>
             </div>
 
             <div className="flex gap-3 pt-4 border-t">
@@ -725,8 +763,8 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                 <Plus className="w-4 h-4 mr-2" />
                 Create Employee
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={() => setShowAddEmployeeModal(false)}
               >
                 Cancel
@@ -750,9 +788,16 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <User className="w-8 h-8 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-foreground">{selectedEmployee.fullName}</h3>
-                  <p className="text-lg text-muted-foreground">{selectedEmployee.position}</p>
-                  <Badge variant="outline" className={`mt-1 ${getDepartmentColor(selectedEmployee.department)}`}>
+                  <h3 className="text-xl font-bold text-foreground">
+                    {selectedEmployee.fullName}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">
+                    {selectedEmployee.position}
+                  </p>
+                  <Badge
+                    variant="outline"
+                    className={`mt-1 ${getDepartmentColor(selectedEmployee.department)}`}
+                  >
                     {selectedEmployee.department}
                   </Badge>
                 </div>
@@ -762,42 +807,67 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Email</label>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Email
+                    </label>
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-foreground">{selectedEmployee.email}</span>
+                      <span className="text-foreground">
+                        {selectedEmployee.email}
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Phone</label>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Phone
+                    </label>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-foreground">{selectedEmployee.phone}</span>
+                      <span className="text-foreground">
+                        {selectedEmployee.phone}
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Location</label>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Location
+                    </label>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-foreground">{selectedEmployee.location}</span>
+                      <span className="text-foreground">
+                        {selectedEmployee.location}
+                      </span>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Employee ID</label>
-                    <span className="text-foreground font-mono">{selectedEmployee.id}</span>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Employee ID
+                    </label>
+                    <span className="text-foreground font-mono">
+                      {selectedEmployee.id}
+                    </span>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Department</label>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Department
+                    </label>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-foreground">{selectedEmployee.department}</span>
+                      <span className="text-foreground">
+                        {selectedEmployee.department}
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-1">Direct Reports</label>
-                    <span className="text-foreground">{selectedEmployee.directReports.length} employee{selectedEmployee.directReports.length !== 1 ? 's' : ''}</span>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
+                      Direct Reports
+                    </label>
+                    <span className="text-foreground">
+                      {selectedEmployee.directReports.length} employee
+                      {selectedEmployee.directReports.length !== 1 ? "s" : ""}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -805,17 +875,27 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               {/* Manager Information */}
               {selectedEmployee.managerId && (
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <label className="block text-sm font-medium text-muted-foreground mb-2">Reports To</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    Reports To
+                  </label>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                       <User className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <div className="font-medium text-foreground">
-                        {employees.find(emp => emp.id === selectedEmployee.managerId)?.fullName}
+                        {
+                          employees.find(
+                            (emp) => emp.id === selectedEmployee.managerId,
+                          )?.fullName
+                        }
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {employees.find(emp => emp.id === selectedEmployee.managerId)?.position}
+                        {
+                          employees.find(
+                            (emp) => emp.id === selectedEmployee.managerId,
+                          )?.position
+                        }
                       </div>
                     </div>
                   </div>
@@ -833,7 +913,10 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <Edit className="w-4 h-4 mr-2" />
                   Edit Employee
                 </Button>
-                <Button variant="outline" onClick={() => setShowViewModal(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowViewModal(false)}
+                >
                   Close
                 </Button>
               </div>
@@ -876,7 +959,9 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                       <SelectItem value="Engineering">Engineering</SelectItem>
                       <SelectItem value="Finance">Finance</SelectItem>
                       <SelectItem value="Marketing">Marketing</SelectItem>
-                      <SelectItem value="Human Resources">Human Resources</SelectItem>
+                      <SelectItem value="Human Resources">
+                        Human Resources
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -891,8 +976,8 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                     <SelectContent>
                       <SelectItem value="none">No Manager</SelectItem>
                       {employees
-                        .filter(emp => emp.id !== selectedEmployee.id)
-                        .map(emp => (
+                        .filter((emp) => emp.id !== selectedEmployee.id)
+                        .map((emp) => (
                           <SelectItem key={emp.id} value={emp.id}>
                             {emp.fullName} - {emp.position}
                           </SelectItem>
@@ -922,12 +1007,20 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Employee ID
                   </label>
-                  <Input defaultValue={selectedEmployee.id} disabled className="bg-gray-50" />
+                  <Input
+                    defaultValue={selectedEmployee.id}
+                    disabled
+                    className="bg-gray-50"
+                  />
                 </div>
               </div>
 
               <div className="text-sm text-muted-foreground bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <p><strong>Note:</strong> Changes to employee hierarchy may affect direct reports and organizational structure. Please review carefully before saving.</p>
+                <p>
+                  <strong>Note:</strong> Changes to employee hierarchy may
+                  affect direct reports and organizational structure. Please
+                  review carefully before saving.
+                </p>
               </div>
 
               <div className="flex gap-3 pt-4 border-t">

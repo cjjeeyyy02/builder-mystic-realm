@@ -12,7 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   ArrowLeft,
   Edit,
@@ -165,7 +171,9 @@ export default function EmployeeProfile({
 
   // Training modal state
   const [showTrainingModal, setShowTrainingModal] = useState(false);
-  const [trainingFormType, setTrainingFormType] = useState<"training" | "certification">("training");
+  const [trainingFormType, setTrainingFormType] = useState<
+    "training" | "certification"
+  >("training");
   const [trainingFormData, setTrainingFormData] = useState({
     type: "training",
     trainingTitle: "",
@@ -176,7 +184,7 @@ export default function EmployeeProfile({
     certificationName: "",
     issuedOrganization: "",
     issuedDate: "",
-    expirationDate: ""
+    expirationDate: "",
   });
 
   // Leave request modal state
@@ -186,7 +194,7 @@ export default function EmployeeProfile({
     fromDate: "",
     toDate: "",
     approverName: "",
-    reason: ""
+    reason: "",
   });
 
   // Document upload modal state
@@ -198,7 +206,7 @@ export default function EmployeeProfile({
     skillName: "",
     category: "",
     proficiencyLevel: "",
-    experience: ""
+    experience: "",
   });
 
   // Offboarding modal state
@@ -209,14 +217,14 @@ export default function EmployeeProfile({
     handoverNotes: "",
     systemAccessRevoked: false,
     equipmentReturned: false,
-    exitInterviewCompleted: false
+    exitInterviewCompleted: false,
   });
 
   // Security settings state
   const [securitySettings, setSecuritySettings] = useState({
     accountActive: true,
     hrAccess: false,
-    adminRights: false
+    adminRights: false,
   });
 
   const tabs = [
@@ -248,7 +256,11 @@ export default function EmployeeProfile({
   };
 
   const handleOffboardingSubmit = () => {
-    console.log("Processing offboarding for employee:", employee.id, offboardingData);
+    console.log(
+      "Processing offboarding for employee:",
+      employee.id,
+      offboardingData,
+    );
     setShowOffboardingModal(false);
     // Reset form
     setOffboardingData({
@@ -257,7 +269,7 @@ export default function EmployeeProfile({
       handoverNotes: "",
       systemAccessRevoked: false,
       equipmentReturned: false,
-      exitInterviewCompleted: false
+      exitInterviewCompleted: false,
     });
   };
 
@@ -270,7 +282,7 @@ export default function EmployeeProfile({
       handoverNotes: "",
       systemAccessRevoked: false,
       equipmentReturned: false,
-      exitInterviewCompleted: false
+      exitInterviewCompleted: false,
     });
   };
 
@@ -289,7 +301,7 @@ export default function EmployeeProfile({
       certificationName: "",
       issuedOrganization: "",
       issuedDate: "",
-      expirationDate: ""
+      expirationDate: "",
     });
   };
 
@@ -306,7 +318,7 @@ export default function EmployeeProfile({
       certificationName: "",
       issuedOrganization: "",
       issuedDate: "",
-      expirationDate: ""
+      expirationDate: "",
     });
   };
 
@@ -320,7 +332,7 @@ export default function EmployeeProfile({
       fromDate: "",
       toDate: "",
       approverName: "",
-      reason: ""
+      reason: "",
     });
   };
 
@@ -332,7 +344,7 @@ export default function EmployeeProfile({
       fromDate: "",
       toDate: "",
       approverName: "",
-      reason: ""
+      reason: "",
     });
   };
 
@@ -347,7 +359,7 @@ export default function EmployeeProfile({
       endorsable: true,
     };
 
-    setSkills(prev => [...prev, newSkill]);
+    setSkills((prev) => [...prev, newSkill]);
     console.log("Adding new skill:", newSkill);
     setShowSkillModal(false);
 
@@ -356,7 +368,7 @@ export default function EmployeeProfile({
       skillName: "",
       category: "",
       proficiencyLevel: "",
-      experience: ""
+      experience: "",
     });
   };
 
@@ -367,7 +379,7 @@ export default function EmployeeProfile({
       skillName: "",
       category: "",
       proficiencyLevel: "",
-      experience: ""
+      experience: "",
     });
   };
 
@@ -576,15 +588,24 @@ export default function EmployeeProfile({
                     <div className="text-foreground space-y-2">
                       <p className="flex items-center gap-2">
                         <User className="w-4 h-4 text-gray-400" />
-                        <span className="font-semibold">Contact Person:</span> John Mitchell
+                        <span className="font-semibold">
+                          Contact Person:
+                        </span>{" "}
+                        John Mitchell
                       </p>
                       <p className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-gray-400" />
-                        <span className="font-semibold">Contact Number:</span> +1 (555) 987-6543
+                        <span className="font-semibold">
+                          Contact Number:
+                        </span>{" "}
+                        +1 (555) 987-6543
                       </p>
                       <p className="flex items-center gap-2">
                         <User className="w-4 h-4 text-gray-400" />
-                        <span className="font-semibold">Relationship:</span> Father
+                        <span className="font-semibold">
+                          Relationship:
+                        </span>{" "}
+                        Father
                       </p>
                     </div>
                   )}
@@ -1179,7 +1200,7 @@ export default function EmployeeProfile({
             trainingProvider: "Tech Academy",
             status: "Completed",
             score: 95,
-            completionDate: "2023-08-15"
+            completionDate: "2023-08-15",
           },
           {
             id: "2",
@@ -1187,7 +1208,7 @@ export default function EmployeeProfile({
             trainingProvider: "Amazon Web Services",
             status: "In Progress",
             score: null,
-            completionDate: null
+            completionDate: null,
           },
           {
             id: "3",
@@ -1195,8 +1216,8 @@ export default function EmployeeProfile({
             trainingProvider: "Corporate University",
             status: "Not Started",
             score: null,
-            completionDate: null
-          }
+            completionDate: null,
+          },
         ];
 
         const certifications = [
@@ -1207,7 +1228,7 @@ export default function EmployeeProfile({
             issuedDate: "2023-06-15",
             expiryDate: "2026-06-15",
             certificateId: "AWS-CSA-2023-001234",
-            certificateStatus: "Valid"
+            certificateStatus: "Valid",
           },
           {
             id: "2",
@@ -1216,7 +1237,7 @@ export default function EmployeeProfile({
             issuedDate: "2023-03-10",
             expiryDate: "2025-03-10",
             certificateId: "META-RDC-2023-567890",
-            certificateStatus: "Valid"
+            certificateStatus: "Valid",
           },
           {
             id: "3",
@@ -1225,8 +1246,8 @@ export default function EmployeeProfile({
             issuedDate: "2022-01-20",
             expiryDate: "2025-01-20",
             certificateId: "PMI-PMP-2022-111222",
-            certificateStatus: "Expired"
-          }
+            certificateStatus: "Expired",
+          },
         ];
 
         const getStatusColor = (status: string): string => {
@@ -1256,10 +1277,10 @@ export default function EmployeeProfile({
         const formatTrainingDate = (dateString: string | null): string => {
           if (!dateString) return "N/A";
           const date = new Date(dateString);
-          return date.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
+          return date.toLocaleDateString("en-US", {
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric",
           });
         };
 
@@ -1287,28 +1308,49 @@ export default function EmployeeProfile({
                     <CardContent className="p-6">
                       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Training Name</label>
-                          <p className="font-semibold text-foreground">{training.trainingName}</p>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Training Name
+                          </label>
+                          <p className="font-semibold text-foreground">
+                            {training.trainingName}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Training Provider</label>
-                          <p className="text-foreground">{training.trainingProvider}</p>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Training Provider
+                          </label>
+                          <p className="text-foreground">
+                            {training.trainingProvider}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Status</label>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Status
+                          </label>
                           <div className="mt-1">
-                            <Badge variant="outline" className={getStatusColor(training.status)}>
+                            <Badge
+                              variant="outline"
+                              className={getStatusColor(training.status)}
+                            >
                               {training.status}
                             </Badge>
                           </div>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Score</label>
-                          <p className="text-foreground">{training.score ? `${training.score}%` : "N/A"}</p>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Score
+                          </label>
+                          <p className="text-foreground">
+                            {training.score ? `${training.score}%` : "N/A"}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Completion Date</label>
-                          <p className="text-foreground">{formatTrainingDate(training.completionDate)}</p>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Completion Date
+                          </label>
+                          <p className="text-foreground">
+                            {formatTrainingDate(training.completionDate)}
+                          </p>
                         </div>
                         <div className="flex gap-2">
                           <Button size="sm" variant="outline">
@@ -1337,21 +1379,37 @@ export default function EmployeeProfile({
                         {/* Certification Info */}
                         <div className="space-y-4">
                           <div>
-                            <label className="text-sm font-medium text-muted-foreground">Certification Name</label>
-                            <p className="font-semibold text-foreground">{cert.certificationName}</p>
+                            <label className="text-sm font-medium text-muted-foreground">
+                              Certification Name
+                            </label>
+                            <p className="font-semibold text-foreground">
+                              {cert.certificationName}
+                            </p>
                           </div>
                           <div>
-                            <label className="text-sm font-medium text-muted-foreground">Issued Organization</label>
-                            <p className="text-foreground">{cert.issuedOrganization}</p>
+                            <label className="text-sm font-medium text-muted-foreground">
+                              Issued Organization
+                            </label>
+                            <p className="text-foreground">
+                              {cert.issuedOrganization}
+                            </p>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div>
-                              <label className="text-sm font-medium text-muted-foreground">Issued Date</label>
-                              <p className="text-foreground">{formatTrainingDate(cert.issuedDate)}</p>
+                              <label className="text-sm font-medium text-muted-foreground">
+                                Issued Date
+                              </label>
+                              <p className="text-foreground">
+                                {formatTrainingDate(cert.issuedDate)}
+                              </p>
                             </div>
                             <div>
-                              <label className="text-sm font-medium text-muted-foreground">Expiry Date</label>
-                              <p className="text-foreground">{formatTrainingDate(cert.expiryDate)}</p>
+                              <label className="text-sm font-medium text-muted-foreground">
+                                Expiry Date
+                              </label>
+                              <p className="text-foreground">
+                                {formatTrainingDate(cert.expiryDate)}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -1359,13 +1417,24 @@ export default function EmployeeProfile({
                         {/* Certificate Details & Actions */}
                         <div className="space-y-4">
                           <div>
-                            <label className="text-sm font-medium text-muted-foreground">Certificate ID</label>
-                            <p className="text-foreground font-mono text-sm">{cert.certificateId}</p>
+                            <label className="text-sm font-medium text-muted-foreground">
+                              Certificate ID
+                            </label>
+                            <p className="text-foreground font-mono text-sm">
+                              {cert.certificateId}
+                            </p>
                           </div>
                           <div>
-                            <label className="text-sm font-medium text-muted-foreground">Certificate Status</label>
+                            <label className="text-sm font-medium text-muted-foreground">
+                              Certificate Status
+                            </label>
                             <div className="flex items-center gap-2">
-                              <Badge variant="outline" className={getCertificateStatusColor(cert.certificateStatus)}>
+                              <Badge
+                                variant="outline"
+                                className={getCertificateStatusColor(
+                                  cert.certificateStatus,
+                                )}
+                              >
                                 {cert.certificateStatus === "Valid" ? (
                                   <CheckCircle className="w-3 h-3 mr-1" />
                                 ) : (
@@ -1376,11 +1445,19 @@ export default function EmployeeProfile({
                             </div>
                           </div>
                           <div className="flex gap-2 pt-2">
-                            <Button size="sm" variant="outline" className="flex-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                            >
                               <Eye className="w-3 h-3 mr-2" />
                               View Certificate
                             </Button>
-                            <Button size="sm" variant="outline" className="flex-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                            >
                               <Download className="w-3 h-3 mr-2" />
                               Download Certificate
                             </Button>
@@ -1402,7 +1479,7 @@ export default function EmployeeProfile({
           daysAbsent: 2,
           lateArrivals: 1,
           attendanceRate: 90.9,
-          punctualityRate: 95.5
+          punctualityRate: 95.5,
         };
 
         const leaveHistory = [
@@ -1412,7 +1489,7 @@ export default function EmployeeProfile({
             approvedBy: "Michael Rodriguez",
             leaveStatus: "Approved",
             numberOfDays: 3,
-            leaveType: "Sick Leave"
+            leaveType: "Sick Leave",
           },
           {
             id: "2",
@@ -1420,7 +1497,7 @@ export default function EmployeeProfile({
             approvedBy: "Michael Rodriguez",
             leaveStatus: "Approved",
             numberOfDays: 5,
-            leaveType: "Annual Leave"
+            leaveType: "Annual Leave",
           },
           {
             id: "3",
@@ -1428,7 +1505,7 @@ export default function EmployeeProfile({
             approvedBy: "Michael Rodriguez",
             leaveStatus: "Under Review",
             numberOfDays: 1,
-            leaveType: "Personal Leave"
+            leaveType: "Personal Leave",
           },
           {
             id: "4",
@@ -1436,8 +1513,8 @@ export default function EmployeeProfile({
             approvedBy: "",
             leaveStatus: "Rejected",
             numberOfDays: 5,
-            leaveType: "Annual Leave"
-          }
+            leaveType: "Annual Leave",
+          },
         ];
 
         const getLeaveStatusColor = (status: string): string => {
@@ -1470,8 +1547,9 @@ export default function EmployeeProfile({
                     <div className="text-2xl font-bold text-blue-600 mb-2">
                       {attendanceData.totalWorkingDays}
                     </div>
-                    <div className="text-sm font-medium text-muted-foreground">Total Working Days</div>
-
+                    <div className="text-sm font-medium text-muted-foreground">
+                      Total Working Days
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -1480,8 +1558,9 @@ export default function EmployeeProfile({
                     <div className="text-2xl font-bold text-green-600 mb-2">
                       {attendanceData.daysPresent}
                     </div>
-                    <div className="text-sm font-medium text-muted-foreground">Days Present</div>
-
+                    <div className="text-sm font-medium text-muted-foreground">
+                      Days Present
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -1490,8 +1569,9 @@ export default function EmployeeProfile({
                     <div className="text-2xl font-bold text-red-600 mb-2">
                       {attendanceData.daysAbsent}
                     </div>
-                    <div className="text-sm font-medium text-muted-foreground">Days Absent</div>
-
+                    <div className="text-sm font-medium text-muted-foreground">
+                      Days Absent
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -1500,8 +1580,9 @@ export default function EmployeeProfile({
                     <div className="text-2xl font-bold text-orange-600 mb-2">
                       {attendanceData.lateArrivals}
                     </div>
-                    <div className="text-sm font-medium text-muted-foreground">Late Arrivals</div>
-
+                    <div className="text-sm font-medium text-muted-foreground">
+                      Late Arrivals
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -1519,8 +1600,9 @@ export default function EmployeeProfile({
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <div className="text-sm font-medium text-muted-foreground">Attendance Rate</div>
-
+                        <div className="text-sm font-medium text-muted-foreground">
+                          Attendance Rate
+                        </div>
                       </div>
                       <div className="text-2xl font-bold text-blue-600">
                         {attendanceData.attendanceRate}%
@@ -1539,8 +1621,9 @@ export default function EmployeeProfile({
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <div className="text-sm font-medium text-muted-foreground">Punctuality Rate</div>
-
+                        <div className="text-sm font-medium text-muted-foreground">
+                          Punctuality Rate
+                        </div>
                       </div>
                       <div className="text-2xl font-bold text-green-600">
                         {attendanceData.punctualityRate}%
@@ -1579,30 +1662,45 @@ export default function EmployeeProfile({
                     <CardContent className="p-6">
                       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Leave Period</label>
-                          <p className="font-semibold text-foreground">{leave.leavePeriod}</p>
-
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Leave Period
+                          </label>
+                          <p className="font-semibold text-foreground">
+                            {leave.leavePeriod}
+                          </p>
                         </div>
 
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Approved By</label>
-                          <p className="text-foreground">{leave.approvedBy || "N/A"}</p>
-
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Approved By
+                          </label>
+                          <p className="text-foreground">
+                            {leave.approvedBy || "N/A"}
+                          </p>
                         </div>
 
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Leave Status</label>
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Leave Status
+                          </label>
                           <div className="mt-1">
-                            <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>
+                            <Badge
+                              variant="outline"
+                              className={getLeaveStatusColor(leave.leaveStatus)}
+                            >
                               {leave.leaveStatus}
                             </Badge>
                           </div>
                         </div>
 
                         <div>
-                          <label className="text-sm font-medium text-muted-foreground">Number of Days</label>
-                          <p className="text-foreground font-semibold">{leave.numberOfDays} {leave.numberOfDays === 1 ? 'day' : 'days'}</p>
-
+                          <label className="text-sm font-medium text-muted-foreground">
+                            Number of Days
+                          </label>
+                          <p className="text-foreground font-semibold">
+                            {leave.numberOfDays}{" "}
+                            {leave.numberOfDays === 1 ? "day" : "days"}
+                          </p>
                         </div>
 
                         <div className="flex gap-2">
@@ -1628,27 +1726,45 @@ export default function EmployeeProfile({
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                     <div className="text-center">
                       <div className="text-lg font-bold text-green-600">
-                        {leaveHistory.filter(l => l.leaveStatus === "Approved").length}
+                        {
+                          leaveHistory.filter(
+                            (l) => l.leaveStatus === "Approved",
+                          ).length
+                        }
                       </div>
-                      <div className="text-muted-foreground">Approved Leaves</div>
+                      <div className="text-muted-foreground">
+                        Approved Leaves
+                      </div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-yellow-600">
-                        {leaveHistory.filter(l => l.leaveStatus === "Under Review").length}
+                        {
+                          leaveHistory.filter(
+                            (l) => l.leaveStatus === "Under Review",
+                          ).length
+                        }
                       </div>
                       <div className="text-muted-foreground">Under Review</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-red-600">
-                        {leaveHistory.filter(l => l.leaveStatus === "Rejected").length}
+                        {
+                          leaveHistory.filter(
+                            (l) => l.leaveStatus === "Rejected",
+                          ).length
+                        }
                       </div>
                       <div className="text-muted-foreground">Rejected</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-blue-600">
-                        {leaveHistory.filter(l => l.leaveStatus === "Approved").reduce((sum, l) => sum + l.numberOfDays, 0)}
+                        {leaveHistory
+                          .filter((l) => l.leaveStatus === "Approved")
+                          .reduce((sum, l) => sum + l.numberOfDays, 0)}
                       </div>
-                      <div className="text-muted-foreground">Total Days Taken</div>
+                      <div className="text-muted-foreground">
+                        Total Days Taken
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -1667,7 +1783,7 @@ export default function EmployeeProfile({
             uploadDate: "2023-01-15",
             canPreview: true,
             canDownload: true,
-            canShare: false
+            canShare: false,
           },
           {
             id: "2",
@@ -1677,7 +1793,7 @@ export default function EmployeeProfile({
             uploadDate: "2023-12-31",
             canPreview: true,
             canDownload: true,
-            canShare: true
+            canShare: true,
           },
           {
             id: "3",
@@ -1687,7 +1803,7 @@ export default function EmployeeProfile({
             uploadDate: "2023-11-20",
             canPreview: false,
             canDownload: true,
-            canShare: false
+            canShare: false,
           },
           {
             id: "4",
@@ -1697,7 +1813,7 @@ export default function EmployeeProfile({
             uploadDate: "2023-03-10",
             canPreview: true,
             canDownload: true,
-            canShare: true
+            canShare: true,
           },
           {
             id: "5",
@@ -1707,13 +1823,15 @@ export default function EmployeeProfile({
             uploadDate: "2023-08-15",
             canPreview: true,
             canDownload: true,
-            canShare: false
-          }
+            canShare: false,
+          },
         ];
 
-
-
-        const handleDocumentAction = (action: string, docId: string, docTitle: string) => {
+        const handleDocumentAction = (
+          action: string,
+          docId: string,
+          docTitle: string,
+        ) => {
           console.log(`${action} action for document:`, docId, docTitle);
         };
 
@@ -1734,7 +1852,6 @@ export default function EmployeeProfile({
               </Button>
             </div>
 
-
             {/* Documents List */}
             <div className="space-y-4">
               {employeeDocuments.map((document) => (
@@ -1743,16 +1860,24 @@ export default function EmployeeProfile({
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                       {/* Document Title */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Document Title</label>
-                        <p className="font-semibold text-foreground">{document.documentTitle}</p>
-
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Document Title
+                        </label>
+                        <p className="font-semibold text-foreground">
+                          {document.documentTitle}
+                        </p>
                       </div>
 
                       {/* File Type */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">File Type</label>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          File Type
+                        </label>
                         <div className="mt-1">
-                          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                          <Badge
+                            variant="outline"
+                            className="bg-blue-50 text-blue-700 border-blue-200"
+                          >
                             {document.fileType}
                           </Badge>
                         </div>
@@ -1760,16 +1885,20 @@ export default function EmployeeProfile({
 
                       {/* File Size */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">File Size</label>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          File Size
+                        </label>
                         <p className="text-foreground">{document.fileSize}</p>
-
                       </div>
 
                       {/* Upload Date */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Upload Date</label>
-                        <p className="text-foreground">{formatDate(document.uploadDate)}</p>
-
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Upload Date
+                        </label>
+                        <p className="text-foreground">
+                          {formatDate(document.uploadDate)}
+                        </p>
                       </div>
 
                       {/* Action Buttons */}
@@ -1779,7 +1908,13 @@ export default function EmployeeProfile({
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleDocumentAction("preview", document.id, document.documentTitle)}
+                            onClick={() =>
+                              handleDocumentAction(
+                                "preview",
+                                document.id,
+                                document.documentTitle,
+                              )
+                            }
                             className="flex items-center gap-1"
                           >
                             <Eye className="w-3 h-3" />
@@ -1792,7 +1927,13 @@ export default function EmployeeProfile({
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleDocumentAction("download", document.id, document.documentTitle)}
+                            onClick={() =>
+                              handleDocumentAction(
+                                "download",
+                                document.id,
+                                document.documentTitle,
+                              )
+                            }
                             className="flex items-center gap-1"
                           >
                             <Download className="w-3 h-3" />
@@ -1808,7 +1949,13 @@ export default function EmployeeProfile({
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleDocumentAction("share", document.id, document.documentTitle)}
+                            onClick={() =>
+                              handleDocumentAction(
+                                "share",
+                                document.id,
+                                document.documentTitle,
+                              )
+                            }
                             className="flex items-center gap-1"
                           >
                             <Share className="w-3 h-3" />
@@ -1820,7 +1967,13 @@ export default function EmployeeProfile({
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => handleDocumentAction("delete", document.id, document.documentTitle)}
+                          onClick={() =>
+                            handleDocumentAction(
+                              "delete",
+                              document.id,
+                              document.documentTitle,
+                            )
+                          }
                           className="flex items-center gap-1 text-red-600 border-red-200 hover:bg-red-50"
                         >
                           <Trash2 className="w-3 h-3" />
@@ -1831,16 +1984,14 @@ export default function EmployeeProfile({
                 </Card>
               ))}
             </div>
-
-
           </div>
         );
 
       case "security":
         const handleSecurityToggle = (setting: string, value: boolean) => {
-          setSecuritySettings(prev => ({
+          setSecuritySettings((prev) => ({
             ...prev,
-            [setting]: value
+            [setting]: value,
           }));
           console.log(`Security setting changed: ${setting} = ${value}`);
         };
@@ -1870,11 +2021,12 @@ export default function EmployeeProfile({
                         <label className="text-sm font-medium">
                           Account Active <span className="text-red-500">*</span>
                         </label>
-
                       </div>
                       <Switch
                         checked={securitySettings.accountActive}
-                        onCheckedChange={(checked) => handleSecurityToggle('accountActive', checked)}
+                        onCheckedChange={(checked) =>
+                          handleSecurityToggle("accountActive", checked)
+                        }
                       />
                     </div>
 
@@ -1882,23 +2034,27 @@ export default function EmployeeProfile({
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <label className="text-sm font-medium">HR Access</label>
-
                       </div>
                       <Switch
                         checked={securitySettings.hrAccess}
-                        onCheckedChange={(checked) => handleSecurityToggle('hrAccess', checked)}
+                        onCheckedChange={(checked) =>
+                          handleSecurityToggle("hrAccess", checked)
+                        }
                       />
                     </div>
 
                     {/* Admin Rights */}
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <label className="text-sm font-medium">Admin Rights</label>
-
+                        <label className="text-sm font-medium">
+                          Admin Rights
+                        </label>
                       </div>
                       <Switch
                         checked={securitySettings.adminRights}
-                        onCheckedChange={(checked) => handleSecurityToggle('adminRights', checked)}
+                        onCheckedChange={(checked) =>
+                          handleSecurityToggle("adminRights", checked)
+                        }
                       />
                     </div>
                   </div>
@@ -1913,12 +2069,13 @@ export default function EmployeeProfile({
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <label className="text-sm font-medium">Reset Password</label>
-
+                        <label className="text-sm font-medium">
+                          Reset Password
+                        </label>
                       </div>
                       <Button
                         variant="outline"
-                        onClick={() => handleSecurityAction('resetPassword')}
+                        onClick={() => handleSecurityAction("resetPassword")}
                         className="text-orange-600 border-orange-200 hover:bg-orange-50"
                       >
                         Reset Password
@@ -1927,12 +2084,13 @@ export default function EmployeeProfile({
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <label className="text-sm font-medium">Generate New User ID</label>
-
+                        <label className="text-sm font-medium">
+                          Generate New User ID
+                        </label>
                       </div>
                       <Button
                         variant="outline"
-                        onClick={() => handleSecurityAction('generateUserId')}
+                        onClick={() => handleSecurityAction("generateUserId")}
                         className="text-blue-600 border-blue-200 hover:bg-blue-50"
                       >
                         Generate New User ID
@@ -1945,24 +2103,55 @@ export default function EmployeeProfile({
               {/* Current Security Status */}
               <Card className="border border-border bg-muted/30">
                 <CardContent className="p-6">
-                  <h4 className="font-semibold mb-4">Current Security Status</h4>
+                  <h4 className="font-semibold mb-4">
+                    Current Security Status
+                  </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     <div>
-                      <div className="font-medium text-muted-foreground">Account Status</div>
-                      <Badge variant="outline" className={securitySettings.accountActive ? "bg-green-50 text-green-700 border-green-200" : "bg-red-50 text-red-700 border-red-200"}>
+                      <div className="font-medium text-muted-foreground">
+                        Account Status
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className={
+                          securitySettings.accountActive
+                            ? "bg-green-50 text-green-700 border-green-200"
+                            : "bg-red-50 text-red-700 border-red-200"
+                        }
+                      >
                         {securitySettings.accountActive ? "Active" : "Inactive"}
                       </Badge>
                     </div>
                     <div>
-                      <div className="font-medium text-muted-foreground">HR Access</div>
-                      <Badge variant="outline" className={securitySettings.hrAccess ? "bg-blue-50 text-blue-700 border-blue-200" : "bg-gray-50 text-gray-700 border-gray-200"}>
+                      <div className="font-medium text-muted-foreground">
+                        HR Access
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className={
+                          securitySettings.hrAccess
+                            ? "bg-blue-50 text-blue-700 border-blue-200"
+                            : "bg-gray-50 text-gray-700 border-gray-200"
+                        }
+                      >
                         {securitySettings.hrAccess ? "Enabled" : "Disabled"}
                       </Badge>
                     </div>
                     <div>
-                      <div className="font-medium text-muted-foreground">Admin Rights</div>
-                      <Badge variant="outline" className={securitySettings.adminRights ? "bg-purple-50 text-purple-700 border-purple-200" : "bg-gray-50 text-gray-700 border-gray-200"}>
-                        {securitySettings.adminRights ? "Granted" : "Not Granted"}
+                      <div className="font-medium text-muted-foreground">
+                        Admin Rights
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className={
+                          securitySettings.adminRights
+                            ? "bg-purple-50 text-purple-700 border-purple-200"
+                            : "bg-gray-50 text-gray-700 border-gray-200"
+                        }
+                      >
+                        {securitySettings.adminRights
+                          ? "Granted"
+                          : "Not Granted"}
                       </Badge>
                     </div>
                   </div>
@@ -1979,51 +2168,51 @@ export default function EmployeeProfile({
             description: "Updated employee salary from $90,000 to $95,000",
             reason: "Annual performance review and salary adjustment",
             changedBy: "Michael Rodriguez (HR Manager)",
-            date: "2024-01-15"
+            date: "2024-01-15",
           },
           {
             id: "2",
             description: "Changed department from Product to Engineering",
             reason: "Employee role change and team restructuring",
             changedBy: "Sarah Johnson (Department Head)",
-            date: "2023-11-10"
+            date: "2023-11-10",
           },
           {
             id: "3",
             description: "Updated employee status from Probationary to Active",
             reason: "Successful completion of probation period",
             changedBy: "System Auto-Update",
-            date: "2023-07-15"
+            date: "2023-07-15",
           },
           {
             id: "4",
             description: "Modified work location from Remote to Head Office",
             reason: "Company policy change - return to office mandate",
             changedBy: "Michael Rodriguez (HR Manager)",
-            date: "2023-09-01"
+            date: "2023-09-01",
           },
           {
             id: "5",
             description: "Updated emergency contact information",
             reason: "Employee requested personal information update",
             changedBy: "Emma Wilson (Self-Service)",
-            date: "2023-12-05"
+            date: "2023-12-05",
           },
           {
             id: "6",
             description: "Added new skill: AWS Cloud Architecture",
             reason: "Employee completed certification training",
             changedBy: "Training System",
-            date: "2023-08-20"
-          }
+            date: "2023-08-20",
+          },
         ];
 
         const formatChangeDate = (dateString: string): string => {
           const date = new Date(dateString);
-          return date.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
+          return date.toLocaleDateString("en-US", {
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric",
           });
         };
 
@@ -2034,7 +2223,6 @@ export default function EmployeeProfile({
               Audit Change Log
             </h3>
 
-
             {/* Change Log Entries */}
             <div className="space-y-4">
               {auditChangeLog.map((entry) => (
@@ -2043,31 +2231,39 @@ export default function EmployeeProfile({
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                       {/* Description of change */}
                       <div className="lg:col-span-2">
-                        <label className="text-sm font-medium text-muted-foreground">Description of change</label>
-                        <p className="font-semibold text-foreground mt-1">{entry.description}</p>
-
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Description of change
+                        </label>
+                        <p className="font-semibold text-foreground mt-1">
+                          {entry.description}
+                        </p>
                       </div>
 
                       {/* Reason for change */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Reason for change</label>
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Reason for change
+                        </label>
                         <p className="text-foreground mt-1">{entry.reason}</p>
-
                       </div>
 
                       {/* Date */}
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Date</label>
-                        <p className="text-foreground mt-1">{formatChangeDate(entry.date)}</p>
-
+                        <label className="text-sm font-medium text-muted-foreground">
+                          Date
+                        </label>
+                        <p className="text-foreground mt-1">
+                          {formatChangeDate(entry.date)}
+                        </p>
                       </div>
                     </div>
 
                     {/* Changed by */}
                     <div className="mt-4 pt-4 border-t">
-                      <label className="text-sm font-medium text-muted-foreground">Changed by</label>
+                      <label className="text-sm font-medium text-muted-foreground">
+                        Changed by
+                      </label>
                       <p className="text-foreground mt-1">{entry.changedBy}</p>
-
                     </div>
                   </CardContent>
                 </Card>
@@ -2087,13 +2283,21 @@ export default function EmployeeProfile({
                   </div>
                   <div className="text-center">
                     <div className="text-lg font-bold text-green-600">
-                      {auditChangeLog.filter(entry => entry.changedBy.includes('System')).length}
+                      {
+                        auditChangeLog.filter((entry) =>
+                          entry.changedBy.includes("System"),
+                        ).length
+                      }
                     </div>
                     <div className="text-muted-foreground">System Changes</div>
                   </div>
                   <div className="text-center">
                     <div className="text-lg font-bold text-purple-600">
-                      {auditChangeLog.filter(entry => !entry.changedBy.includes('System')).length}
+                      {
+                        auditChangeLog.filter(
+                          (entry) => !entry.changedBy.includes("System"),
+                        ).length
+                      }
                     </div>
                     <div className="text-muted-foreground">Manual Changes</div>
                   </div>
@@ -2304,7 +2508,7 @@ export default function EmployeeProfile({
               <Select
                 value={trainingFormData.type}
                 onValueChange={(value) => {
-                  setTrainingFormData({...trainingFormData, type: value});
+                  setTrainingFormData({ ...trainingFormData, type: value });
                   setTrainingFormType(value as "training" | "certification");
                 }}
               >
@@ -2316,7 +2520,6 @@ export default function EmployeeProfile({
                   <SelectItem value="certification">Certification</SelectItem>
                 </SelectContent>
               </Select>
-
             </div>
 
             {/* Conditional Form Fields */}
@@ -2324,30 +2527,49 @@ export default function EmployeeProfile({
               // Training Form Fields
               <>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Training Title <span className="text-red-500">*</span></label>
+                  <label className="block text-sm font-medium mb-2">
+                    Training Title <span className="text-red-500">*</span>
+                  </label>
                   <Input
                     value={trainingFormData.trainingTitle}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, trainingTitle: e.target.value})}
+                    onChange={(e) =>
+                      setTrainingFormData({
+                        ...trainingFormData,
+                        trainingTitle: e.target.value,
+                      })
+                    }
                     placeholder="The name or title of the training session"
                   />
-
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Training Provider</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Training Provider
+                  </label>
                   <Input
                     value={trainingFormData.trainingProvider}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, trainingProvider: e.target.value})}
+                    onChange={(e) =>
+                      setTrainingFormData({
+                        ...trainingFormData,
+                        trainingProvider: e.target.value,
+                      })
+                    }
                     placeholder="The organization or individual offering it"
                   />
-
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Status <span className="text-red-500">*</span></label>
+                  <label className="block text-sm font-medium mb-2">
+                    Status <span className="text-red-500">*</span>
+                  </label>
                   <Select
                     value={trainingFormData.status}
-                    onValueChange={(value) => setTrainingFormData({...trainingFormData, status: value})}
+                    onValueChange={(value) =>
+                      setTrainingFormData({
+                        ...trainingFormData,
+                        status: value,
+                      })
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
@@ -2358,27 +2580,40 @@ export default function EmployeeProfile({
                       <SelectItem value="Completed">Completed</SelectItem>
                     </SelectContent>
                   </Select>
-
                 </div>
 
                 {/* Score and Completion Date - Responsive Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Score</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Score
+                    </label>
                     <Input
                       type="number"
                       value={trainingFormData.score}
-                      onChange={(e) => setTrainingFormData({...trainingFormData, score: e.target.value})}
+                      onChange={(e) =>
+                        setTrainingFormData({
+                          ...trainingFormData,
+                          score: e.target.value,
+                        })
+                      }
                       placeholder="Numeric value representing performance"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Completion Date</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Completion Date
+                    </label>
                     <Input
                       type="date"
                       value={trainingFormData.completionDate}
-                      onChange={(e) => setTrainingFormData({...trainingFormData, completionDate: e.target.value})}
+                      onChange={(e) =>
+                        setTrainingFormData({
+                          ...trainingFormData,
+                          completionDate: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -2387,42 +2622,68 @@ export default function EmployeeProfile({
               // Certification Form Fields
               <>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Certification Name <span className="text-red-500">*</span></label>
+                  <label className="block text-sm font-medium mb-2">
+                    Certification Name <span className="text-red-500">*</span>
+                  </label>
                   <Input
                     value={trainingFormData.certificationName}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, certificationName: e.target.value})}
+                    onChange={(e) =>
+                      setTrainingFormData({
+                        ...trainingFormData,
+                        certificationName: e.target.value,
+                      })
+                    }
                     placeholder="Enter the official name of the certification"
                   />
-
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Issued Organization</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Issued Organization
+                  </label>
                   <Input
                     value={trainingFormData.issuedOrganization}
-                    onChange={(e) => setTrainingFormData({...trainingFormData, issuedOrganization: e.target.value})}
+                    onChange={(e) =>
+                      setTrainingFormData({
+                        ...trainingFormData,
+                        issuedOrganization: e.target.value,
+                      })
+                    }
                     placeholder="Name of the organization that issued the certification"
                   />
-
                 </div>
 
                 {/* Certification Dates - Responsive Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Issued Date</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Issued Date
+                    </label>
                     <Input
                       type="date"
                       value={trainingFormData.issuedDate}
-                      onChange={(e) => setTrainingFormData({...trainingFormData, issuedDate: e.target.value})}
+                      onChange={(e) =>
+                        setTrainingFormData({
+                          ...trainingFormData,
+                          issuedDate: e.target.value,
+                        })
+                      }
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Expiration Date</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Expiration Date
+                    </label>
                     <Input
                       type="date"
                       value={trainingFormData.expirationDate}
-                      onChange={(e) => setTrainingFormData({...trainingFormData, expirationDate: e.target.value})}
+                      onChange={(e) =>
+                        setTrainingFormData({
+                          ...trainingFormData,
+                          expirationDate: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -2464,7 +2725,9 @@ export default function EmployeeProfile({
               </label>
               <Select
                 value={leaveFormData.leaveType}
-                onValueChange={(value) => setLeaveFormData({...leaveFormData, leaveType: value})}
+                onValueChange={(value) =>
+                  setLeaveFormData({ ...leaveFormData, leaveType: value })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select leave type" />
@@ -2480,7 +2743,6 @@ export default function EmployeeProfile({
                   <SelectItem value="Study">Study</SelectItem>
                 </SelectContent>
               </Select>
-
             </div>
 
             {/* Date Range - Responsive Grid */}
@@ -2493,7 +2755,12 @@ export default function EmployeeProfile({
                 <Input
                   type="date"
                   value={leaveFormData.fromDate}
-                  onChange={(e) => setLeaveFormData({...leaveFormData, fromDate: e.target.value})}
+                  onChange={(e) =>
+                    setLeaveFormData({
+                      ...leaveFormData,
+                      fromDate: e.target.value,
+                    })
+                  }
                 />
               </div>
 
@@ -2505,20 +2772,31 @@ export default function EmployeeProfile({
                 <Input
                   type="date"
                   value={leaveFormData.toDate}
-                  onChange={(e) => setLeaveFormData({...leaveFormData, toDate: e.target.value})}
+                  onChange={(e) =>
+                    setLeaveFormData({
+                      ...leaveFormData,
+                      toDate: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
 
             {/* Approver Name - Optional */}
             <div>
-              <label className="block text-sm font-medium mb-2">Approver Name</label>
+              <label className="block text-sm font-medium mb-2">
+                Approver Name
+              </label>
               <Input
                 value={leaveFormData.approverName}
-                onChange={(e) => setLeaveFormData({...leaveFormData, approverName: e.target.value})}
+                onChange={(e) =>
+                  setLeaveFormData({
+                    ...leaveFormData,
+                    approverName: e.target.value,
+                  })
+                }
                 placeholder="Enter the name of the person responsible for approving"
               />
-
             </div>
 
             {/* Reason - Optional */}
@@ -2526,11 +2804,12 @@ export default function EmployeeProfile({
               <label className="block text-sm font-medium mb-2">Reason</label>
               <Textarea
                 value={leaveFormData.reason}
-                onChange={(e) => setLeaveFormData({...leaveFormData, reason: e.target.value})}
+                onChange={(e) =>
+                  setLeaveFormData({ ...leaveFormData, reason: e.target.value })
+                }
                 placeholder="Optional explanation or justification for the leave"
                 rows={3}
               />
-
             </div>
 
             {/* Form Actions */}
@@ -2538,7 +2817,11 @@ export default function EmployeeProfile({
               <Button
                 onClick={handleLeaveFormSubmit}
                 className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white flex-1 sm:flex-none"
-                disabled={!leaveFormData.leaveType || !leaveFormData.fromDate || !leaveFormData.toDate}
+                disabled={
+                  !leaveFormData.leaveType ||
+                  !leaveFormData.fromDate ||
+                  !leaveFormData.toDate
+                }
               >
                 Submit Request
               </Button>
@@ -2567,10 +2850,7 @@ export default function EmployeeProfile({
               <label className="block text-sm font-medium mb-2">
                 Document Title <span className="text-red-500">*</span>
               </label>
-              <Input
-                placeholder="Enter the name of the document (e.g., Employment Contract, Tax Forms)"
-              />
-
+              <Input placeholder="Enter the name of the document (e.g., Employment Contract, Tax Forms)" />
             </div>
 
             {/* File Upload */}
@@ -2592,47 +2872,70 @@ export default function EmployeeProfile({
                   accept=".pdf,.docx,.doc,.xls,.xlsx"
                 />
               </div>
-
             </div>
 
             {/* Document Category */}
             <div>
-              <label className="block text-sm font-medium mb-2">Document Category</label>
+              <label className="block text-sm font-medium mb-2">
+                Document Category
+              </label>
               <Select>
                 <SelectTrigger>
                   <SelectValue placeholder="Select category (optional)" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="employment">Employment Documents</SelectItem>
+                  <SelectItem value="employment">
+                    Employment Documents
+                  </SelectItem>
                   <SelectItem value="tax">Tax Documents</SelectItem>
                   <SelectItem value="benefits">Benefits & Insurance</SelectItem>
-                  <SelectItem value="performance">Performance Reviews</SelectItem>
-                  <SelectItem value="training">Training & Certifications</SelectItem>
+                  <SelectItem value="performance">
+                    Performance Reviews
+                  </SelectItem>
+                  <SelectItem value="training">
+                    Training & Certifications
+                  </SelectItem>
                   <SelectItem value="personal">Personal Documents</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
-
             </div>
 
             {/* Access Permissions */}
             <div>
-              <label className="block text-sm font-medium mb-2">Access Permissions</label>
+              <label className="block text-sm font-medium mb-2">
+                Access Permissions
+              </label>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <input type="checkbox" id="canPreview" className="rounded" defaultChecked />
-                  <label htmlFor="canPreview" className="text-sm">Allow preview</label>
+                  <input
+                    type="checkbox"
+                    id="canPreview"
+                    className="rounded"
+                    defaultChecked
+                  />
+                  <label htmlFor="canPreview" className="text-sm">
+                    Allow preview
+                  </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <input type="checkbox" id="canDownload" className="rounded" defaultChecked />
-                  <label htmlFor="canDownload" className="text-sm">Allow download</label>
+                  <input
+                    type="checkbox"
+                    id="canDownload"
+                    className="rounded"
+                    defaultChecked
+                  />
+                  <label htmlFor="canDownload" className="text-sm">
+                    Allow download
+                  </label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <input type="checkbox" id="canShare" className="rounded" />
-                  <label htmlFor="canShare" className="text-sm">Allow sharing with others</label>
+                  <label htmlFor="canShare" className="text-sm">
+                    Allow sharing with others
+                  </label>
                 </div>
               </div>
-
             </div>
 
             {/* Form Actions */}
@@ -2660,7 +2963,10 @@ export default function EmployeeProfile({
       </Dialog>
 
       {/* Offboarding Modal */}
-      <Dialog open={showOffboardingModal} onOpenChange={setShowOffboardingModal}>
+      <Dialog
+        open={showOffboardingModal}
+        onOpenChange={setShowOffboardingModal}
+      >
         <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-semibold text-red-600">
@@ -2678,7 +2984,12 @@ export default function EmployeeProfile({
                 </label>
                 <Select
                   value={offboardingData.reasonForLeaving}
-                  onValueChange={(value) => setOffboardingData({...offboardingData, reasonForLeaving: value})}
+                  onValueChange={(value) =>
+                    setOffboardingData({
+                      ...offboardingData,
+                      reasonForLeaving: value,
+                    })
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select the reason for the employee's departure" />
@@ -2689,7 +3000,9 @@ export default function EmployeeProfile({
                     <SelectItem value="termination">Termination</SelectItem>
                     <SelectItem value="contract-end">Contract End</SelectItem>
                     <SelectItem value="layoff">Layoff</SelectItem>
-                    <SelectItem value="mutual-agreement">Mutual Agreement</SelectItem>
+                    <SelectItem value="mutual-agreement">
+                      Mutual Agreement
+                    </SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -2703,7 +3016,12 @@ export default function EmployeeProfile({
                 <Input
                   type="date"
                   value={offboardingData.lastWorkingDay}
-                  onChange={(e) => setOffboardingData({...offboardingData, lastWorkingDay: e.target.value})}
+                  onChange={(e) =>
+                    setOffboardingData({
+                      ...offboardingData,
+                      lastWorkingDay: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -2715,7 +3033,12 @@ export default function EmployeeProfile({
               </label>
               <Textarea
                 value={offboardingData.handoverNotes}
-                onChange={(e) => setOffboardingData({...offboardingData, handoverNotes: e.target.value})}
+                onChange={(e) =>
+                  setOffboardingData({
+                    ...offboardingData,
+                    handoverNotes: e.target.value,
+                  })
+                }
                 placeholder="Notes detailing responsibilities and tasks handed over before departure"
                 rows={4}
               />
@@ -2734,11 +3057,19 @@ export default function EmployeeProfile({
                     type="checkbox"
                     id="systemAccessRevoked"
                     checked={offboardingData.systemAccessRevoked}
-                    onChange={(e) => setOffboardingData({...offboardingData, systemAccessRevoked: e.target.checked})}
+                    onChange={(e) =>
+                      setOffboardingData({
+                        ...offboardingData,
+                        systemAccessRevoked: e.target.checked,
+                      })
+                    }
                     className="mt-1 rounded border-gray-300"
                   />
                   <div className="flex-1">
-                    <label htmlFor="systemAccessRevoked" className="text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="systemAccessRevoked"
+                      className="text-sm font-medium text-gray-700"
+                    >
                       System Access Revoked
                     </label>
                     <p className="text-xs text-gray-500 mt-1">
@@ -2753,15 +3084,24 @@ export default function EmployeeProfile({
                     type="checkbox"
                     id="equipmentReturned"
                     checked={offboardingData.equipmentReturned}
-                    onChange={(e) => setOffboardingData({...offboardingData, equipmentReturned: e.target.checked})}
+                    onChange={(e) =>
+                      setOffboardingData({
+                        ...offboardingData,
+                        equipmentReturned: e.target.checked,
+                      })
+                    }
                     className="mt-1 rounded border-gray-300"
                   />
                   <div className="flex-1">
-                    <label htmlFor="equipmentReturned" className="text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="equipmentReturned"
+                      className="text-sm font-medium text-gray-700"
+                    >
                       Equipment Returned
                     </label>
                     <p className="text-xs text-gray-500 mt-1">
-                      Checklist item to confirm all company equipment has been returned.
+                      Checklist item to confirm all company equipment has been
+                      returned.
                     </p>
                   </div>
                 </div>
@@ -2772,15 +3112,24 @@ export default function EmployeeProfile({
                     type="checkbox"
                     id="exitInterviewCompleted"
                     checked={offboardingData.exitInterviewCompleted}
-                    onChange={(e) => setOffboardingData({...offboardingData, exitInterviewCompleted: e.target.checked})}
+                    onChange={(e) =>
+                      setOffboardingData({
+                        ...offboardingData,
+                        exitInterviewCompleted: e.target.checked,
+                      })
+                    }
                     className="mt-1 rounded border-gray-300"
                   />
                   <div className="flex-1">
-                    <label htmlFor="exitInterviewCompleted" className="text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="exitInterviewCompleted"
+                      className="text-sm font-medium text-gray-700"
+                    >
                       Exit Interview Completed
                     </label>
                     <p className="text-xs text-gray-500 mt-1">
-                      Checklist item to confirm the exit interview has been conducted.
+                      Checklist item to confirm the exit interview has been
+                      conducted.
                     </p>
                   </div>
                 </div>
@@ -2790,17 +3139,29 @@ export default function EmployeeProfile({
             {/* Current Progress Summary */}
             <Card className="border border-orange-200 bg-orange-50">
               <CardContent className="p-4">
-                <h4 className="font-semibold text-orange-800 mb-3">Offboarding Progress</h4>
+                <h4 className="font-semibold text-orange-800 mb-3">
+                  Offboarding Progress
+                </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
                     <div className="text-lg font-bold text-orange-600">
-                      {[offboardingData.systemAccessRevoked, offboardingData.equipmentReturned, offboardingData.exitInterviewCompleted].filter(Boolean).length}/3
+                      {
+                        [
+                          offboardingData.systemAccessRevoked,
+                          offboardingData.equipmentReturned,
+                          offboardingData.exitInterviewCompleted,
+                        ].filter(Boolean).length
+                      }
+                      /3
                     </div>
                     <div className="text-orange-700">Tasks Completed</div>
                   </div>
                   <div className="text-center">
                     <div className="text-lg font-bold text-blue-600">
-                      {offboardingData.reasonForLeaving && offboardingData.lastWorkingDay ? "Complete" : "Pending"}
+                      {offboardingData.reasonForLeaving &&
+                      offboardingData.lastWorkingDay
+                        ? "Complete"
+                        : "Pending"}
                     </div>
                     <div className="text-orange-700">Basic Information</div>
                   </div>
@@ -2819,7 +3180,10 @@ export default function EmployeeProfile({
               <Button
                 onClick={handleOffboardingSubmit}
                 className="bg-red-600 hover:bg-red-700 text-white flex-1 sm:flex-none"
-                disabled={!offboardingData.reasonForLeaving || !offboardingData.lastWorkingDay}
+                disabled={
+                  !offboardingData.reasonForLeaving ||
+                  !offboardingData.lastWorkingDay
+                }
               >
                 <UserMinus className="w-4 h-4 mr-2" />
                 Complete Offboarding
@@ -2852,30 +3216,41 @@ export default function EmployeeProfile({
               <Input
                 placeholder="Enter skill name (e.g., React, Python, Project Management)"
                 value={skillFormData.skillName}
-                onChange={(e) => setSkillFormData({...skillFormData, skillName: e.target.value})}
+                onChange={(e) =>
+                  setSkillFormData({
+                    ...skillFormData,
+                    skillName: e.target.value,
+                  })
+                }
               />
             </div>
 
             {/* Category */}
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Category
-              </label>
+              <label className="block text-sm font-medium mb-2">Category</label>
               <Select
                 value={skillFormData.category}
-                onValueChange={(value) => setSkillFormData({...skillFormData, category: value})}
+                onValueChange={(value) =>
+                  setSkillFormData({ ...skillFormData, category: value })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select category (optional)" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="technical">Technical Skills</SelectItem>
-                  <SelectItem value="programming">Programming Languages</SelectItem>
-                  <SelectItem value="frameworks">Frameworks & Libraries</SelectItem>
+                  <SelectItem value="programming">
+                    Programming Languages
+                  </SelectItem>
+                  <SelectItem value="frameworks">
+                    Frameworks & Libraries
+                  </SelectItem>
                   <SelectItem value="tools">Tools & Software</SelectItem>
                   <SelectItem value="cloud">Cloud & Infrastructure</SelectItem>
                   <SelectItem value="soft">Soft Skills</SelectItem>
-                  <SelectItem value="leadership">Leadership & Management</SelectItem>
+                  <SelectItem value="leadership">
+                    Leadership & Management
+                  </SelectItem>
                   <SelectItem value="communication">Communication</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
@@ -2889,16 +3264,29 @@ export default function EmployeeProfile({
               </label>
               <Select
                 value={skillFormData.proficiencyLevel}
-                onValueChange={(value) => setSkillFormData({...skillFormData, proficiencyLevel: value})}
+                onValueChange={(value) =>
+                  setSkillFormData({
+                    ...skillFormData,
+                    proficiencyLevel: value,
+                  })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select proficiency level" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Beginner">Beginner - Basic understanding</SelectItem>
-                  <SelectItem value="Intermediate">Intermediate - Working knowledge</SelectItem>
-                  <SelectItem value="Advanced">Advanced - Strong proficiency</SelectItem>
-                  <SelectItem value="Expert">Expert - Deep expertise</SelectItem>
+                  <SelectItem value="Beginner">
+                    Beginner - Basic understanding
+                  </SelectItem>
+                  <SelectItem value="Intermediate">
+                    Intermediate - Working knowledge
+                  </SelectItem>
+                  <SelectItem value="Advanced">
+                    Advanced - Strong proficiency
+                  </SelectItem>
+                  <SelectItem value="Expert">
+                    Expert - Deep expertise
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -2910,7 +3298,9 @@ export default function EmployeeProfile({
               </label>
               <Select
                 value={skillFormData.experience}
-                onValueChange={(value) => setSkillFormData({...skillFormData, experience: value})}
+                onValueChange={(value) =>
+                  setSkillFormData({ ...skillFormData, experience: value })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select experience (optional)" />
@@ -2931,7 +3321,9 @@ export default function EmployeeProfile({
               <Button
                 className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white flex-1 sm:flex-none"
                 onClick={handleSkillFormSubmit}
-                disabled={!skillFormData.skillName || !skillFormData.proficiencyLevel}
+                disabled={
+                  !skillFormData.skillName || !skillFormData.proficiencyLevel
+                }
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Skill
