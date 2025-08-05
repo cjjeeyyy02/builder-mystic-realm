@@ -332,11 +332,11 @@ export default function SystemConfiguration({
   };
 
   const togglePermission = (permission: string) => {
-    setNewRole(prev => ({
+    setNewRole((prev) => ({
       ...prev,
       permissions: prev.permissions.includes(permission)
-        ? prev.permissions.filter(p => p !== permission)
-        : [...prev.permissions, permission]
+        ? prev.permissions.filter((p) => p !== permission)
+        : [...prev.permissions, permission],
     }));
   };
 
@@ -1195,10 +1195,18 @@ export default function SystemConfiguration({
         return (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold">User Roles & Permissions</h3>
-              <Dialog open={showAddRoleModal} onOpenChange={setShowAddRoleModal}>
+              <h3 className="text-lg font-semibold">
+                User Roles & Permissions
+              </h3>
+              <Dialog
+                open={showAddRoleModal}
+                onOpenChange={setShowAddRoleModal}
+              >
                 <DialogTrigger asChild>
-                  <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <Button
+                    onClick={addRole}
+                    className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Role
                   </Button>
@@ -1207,7 +1215,8 @@ export default function SystemConfiguration({
                   <DialogHeader>
                     <DialogTitle>Create New User Role</DialogTitle>
                     <DialogDescription>
-                      Define a new user role with specific permissions and access levels.
+                      Define a new user role with specific permissions and
+                      access levels.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-6">
@@ -1217,7 +1226,12 @@ export default function SystemConfiguration({
                       </label>
                       <Input
                         value={newRole.name}
-                        onChange={(e) => setNewRole(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setNewRole((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         placeholder="Enter role name (e.g., Marketing Manager)"
                       />
                     </div>
@@ -1228,7 +1242,12 @@ export default function SystemConfiguration({
                       </label>
                       <Textarea
                         value={newRole.description}
-                        onChange={(e) => setNewRole(prev => ({ ...prev, description: e.target.value }))}
+                        onChange={(e) =>
+                          setNewRole((prev) => ({
+                            ...prev,
+                            description: e.target.value,
+                          }))
+                        }
                         placeholder="Describe the role responsibilities and purpose"
                         rows={3}
                       />
@@ -1240,14 +1259,46 @@ export default function SystemConfiguration({
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {[
-                          { id: "read", label: "Read Access", desc: "View data and content" },
-                          { id: "write", label: "Write Access", desc: "Create and edit content" },
-                          { id: "delete", label: "Delete Access", desc: "Remove data and content" },
-                          { id: "configure", label: "Configure System", desc: "Modify system settings" },
-                          { id: "user_management", label: "User Management", desc: "Manage user accounts" },
-                          { id: "employee_management", label: "Employee Management", desc: "Manage employee data" },
-                          { id: "reports", label: "Generate Reports", desc: "Create and view reports" },
-                          { id: "analytics", label: "Analytics Access", desc: "View analytics and insights" },
+                          {
+                            id: "read",
+                            label: "Read Access",
+                            desc: "View data and content",
+                          },
+                          {
+                            id: "write",
+                            label: "Write Access",
+                            desc: "Create and edit content",
+                          },
+                          {
+                            id: "delete",
+                            label: "Delete Access",
+                            desc: "Remove data and content",
+                          },
+                          {
+                            id: "configure",
+                            label: "Configure System",
+                            desc: "Modify system settings",
+                          },
+                          {
+                            id: "user_management",
+                            label: "User Management",
+                            desc: "Manage user accounts",
+                          },
+                          {
+                            id: "employee_management",
+                            label: "Employee Management",
+                            desc: "Manage employee data",
+                          },
+                          {
+                            id: "reports",
+                            label: "Generate Reports",
+                            desc: "Create and view reports",
+                          },
+                          {
+                            id: "analytics",
+                            label: "Analytics Access",
+                            desc: "View analytics and insights",
+                          },
                         ].map((permission) => (
                           <div
                             key={permission.id}
@@ -1261,20 +1312,28 @@ export default function SystemConfiguration({
                             <div className="flex items-center space-x-2">
                               <input
                                 type="checkbox"
-                                checked={newRole.permissions.includes(permission.id)}
+                                checked={newRole.permissions.includes(
+                                  permission.id,
+                                )}
                                 onChange={() => togglePermission(permission.id)}
                                 className="rounded"
                               />
                               <div>
-                                <div className="text-sm font-medium">{permission.label}</div>
-                                <div className="text-xs text-gray-500">{permission.desc}</div>
+                                <div className="text-sm font-medium">
+                                  {permission.label}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {permission.desc}
+                                </div>
                               </div>
                             </div>
                           </div>
                         ))}
                       </div>
                       {newRole.permissions.length === 0 && (
-                        <p className="text-sm text-red-500 mt-2">Please select at least one permission.</p>
+                        <p className="text-sm text-red-500 mt-2">
+                          Please select at least one permission.
+                        </p>
                       )}
                     </div>
 
@@ -1289,7 +1348,9 @@ export default function SystemConfiguration({
                       </div>
                       <Switch
                         checked={newRole.active}
-                        onCheckedChange={(checked) => setNewRole(prev => ({ ...prev, active: checked }))}
+                        onCheckedChange={(checked) =>
+                          setNewRole((prev) => ({ ...prev, active: checked }))
+                        }
                       />
                     </div>
                   </div>
@@ -1299,7 +1360,9 @@ export default function SystemConfiguration({
                     </Button>
                     <Button
                       onClick={handleAddRole}
-                      disabled={!newRole.name.trim() || newRole.permissions.length === 0}
+                      disabled={
+                        !newRole.name.trim() || newRole.permissions.length === 0
+                      }
                       className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
                     >
                       Create Role
@@ -1315,17 +1378,26 @@ export default function SystemConfiguration({
                   <CardContent className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                       <div className="md:col-span-2">
-                        <h4 className="font-semibold text-lg text-gray-900">{role.name}</h4>
-                        <p className="text-sm text-gray-600 mt-1">{role.description}</p>
+                        <h4 className="font-semibold text-lg text-gray-900">
+                          {role.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {role.description}
+                        </p>
                       </div>
 
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">{role.numberOfUsers}</div>
+                        <div className="text-2xl font-bold text-blue-600">
+                          {role.numberOfUsers}
+                        </div>
                         <div className="text-xs text-gray-500">Users</div>
                       </div>
 
                       <div className="text-center">
-                        <Badge variant={role.active ? "default" : "secondary"} className="text-xs">
+                        <Badge
+                          variant={role.active ? "default" : "secondary"}
+                          className="text-xs"
+                        >
                           {role.active ? "Active" : "Inactive"}
                         </Badge>
                       </div>
@@ -1333,7 +1405,11 @@ export default function SystemConfiguration({
                       <div>
                         <div className="flex flex-wrap gap-1">
                           {role.permissions.slice(0, 3).map((permission) => (
-                            <Badge key={permission} variant="outline" className="text-xs">
+                            <Badge
+                              key={permission}
+                              variant="outline"
+                              className="text-xs"
+                            >
                               {permission.replace("_", " ")}
                             </Badge>
                           ))}
@@ -1346,7 +1422,11 @@ export default function SystemConfiguration({
                       </div>
 
                       <div className="flex items-center gap-2 justify-end">
-                        <Button variant="outline" size="sm" className="text-blue-600 border-blue-200 hover:bg-blue-50">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                        >
                           <Edit className="w-3 h-3 mr-1" />
                           Edit
                         </Button>
@@ -1371,9 +1451,16 @@ export default function SystemConfiguration({
               <Card className="border-2 border-dashed border-gray-300">
                 <CardContent className="p-8 text-center">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h4 className="text-lg font-semibold text-gray-600 mb-2">No User Roles</h4>
-                  <p className="text-gray-500 mb-4">Create user roles to manage permissions and access levels.</p>
-                  <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <h4 className="text-lg font-semibold text-gray-600 mb-2">
+                    No User Roles
+                  </h4>
+                  <p className="text-gray-500 mb-4">
+                    Create user roles to manage permissions and access levels.
+                  </p>
+                  <Button
+                    onClick={addRole}
+                    className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Your First Role
                   </Button>
