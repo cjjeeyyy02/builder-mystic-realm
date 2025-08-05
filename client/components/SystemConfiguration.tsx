@@ -186,7 +186,9 @@ const defaultConfig: ConfigurationState = {
   },
 };
 
-export default function SystemConfiguration({ onBack }: SystemConfigurationProps) {
+export default function SystemConfiguration({
+  onBack,
+}: SystemConfigurationProps) {
   const [activeTab, setActiveTab] = useState("general");
   const [config, setConfig] = useState<ConfigurationState>(defaultConfig);
   const [hasChanges, setHasChanges] = useState(false);
@@ -208,8 +210,12 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
     { id: "branding", label: "Branding", icon: Palette },
   ];
 
-  const handleConfigChange = (section: keyof ConfigurationState, field: string, value: any) => {
-    setConfig(prev => ({
+  const handleConfigChange = (
+    section: keyof ConfigurationState,
+    field: string,
+    value: any,
+  ) => {
+    setConfig((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
@@ -245,7 +251,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         id: `cf-${Date.now()}`,
         ...newField,
       };
-      setConfig(prev => ({
+      setConfig((prev) => ({
         ...prev,
         customFields: [...prev.customFields, fieldToAdd],
       }));
@@ -271,9 +277,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
   };
 
   const removeCustomField = (id: string) => {
-    setConfig(prev => ({
+    setConfig((prev) => ({
       ...prev,
-      customFields: prev.customFields.filter(field => field.id !== id),
+      customFields: prev.customFields.filter((field) => field.id !== id),
     }));
     setHasChanges(true);
   };
@@ -284,7 +290,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">General Settings</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -292,7 +298,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Input
                   value={config.general.companyName}
-                  onChange={(e) => handleConfigChange("general", "companyName", e.target.value)}
+                  onChange={(e) =>
+                    handleConfigChange("general", "companyName", e.target.value)
+                  }
                   placeholder="Enter company name"
                 />
               </div>
@@ -304,7 +312,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 <Input
                   type="email"
                   value={config.general.companyEmail}
-                  onChange={(e) => handleConfigChange("general", "companyEmail", e.target.value)}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "general",
+                      "companyEmail",
+                      e.target.value,
+                    )
+                  }
                   placeholder="Enter company email address"
                 />
               </div>
@@ -315,7 +329,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Textarea
                   value={config.general.companyAddress}
-                  onChange={(e) => handleConfigChange("general", "companyAddress", e.target.value)}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "general",
+                      "companyAddress",
+                      e.target.value,
+                    )
+                  }
                   placeholder="Enter complete company address"
                   rows={3}
                 />
@@ -328,7 +348,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 <Input
                   type="url"
                   value={config.general.website}
-                  onChange={(e) => handleConfigChange("general", "website", e.target.value)}
+                  onChange={(e) =>
+                    handleConfigChange("general", "website", e.target.value)
+                  }
                   placeholder="https://www.company.com"
                 />
               </div>
@@ -339,17 +361,29 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Select
                   value={config.general.timeZone}
-                  onValueChange={(value) => handleConfigChange("general", "timeZone", value)}
+                  onValueChange={(value) =>
+                    handleConfigChange("general", "timeZone", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select time zone" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="UTC-8 (Pacific Time)">UTC-8 (Pacific Time)</SelectItem>
-                    <SelectItem value="UTC-7 (Mountain Time)">UTC-7 (Mountain Time)</SelectItem>
-                    <SelectItem value="UTC-6 (Central Time)">UTC-6 (Central Time)</SelectItem>
-                    <SelectItem value="UTC-5 (Eastern Time)">UTC-5 (Eastern Time)</SelectItem>
-                    <SelectItem value="UTC+0 (Greenwich Time)">UTC+0 (Greenwich Time)</SelectItem>
+                    <SelectItem value="UTC-8 (Pacific Time)">
+                      UTC-8 (Pacific Time)
+                    </SelectItem>
+                    <SelectItem value="UTC-7 (Mountain Time)">
+                      UTC-7 (Mountain Time)
+                    </SelectItem>
+                    <SelectItem value="UTC-6 (Central Time)">
+                      UTC-6 (Central Time)
+                    </SelectItem>
+                    <SelectItem value="UTC-5 (Eastern Time)">
+                      UTC-5 (Eastern Time)
+                    </SelectItem>
+                    <SelectItem value="UTC+0 (Greenwich Time)">
+                      UTC+0 (Greenwich Time)
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -360,15 +394,23 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Select
                   value={config.general.dateFormat}
-                  onValueChange={(value) => handleConfigChange("general", "dateFormat", value)}
+                  onValueChange={(value) =>
+                    handleConfigChange("general", "dateFormat", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select date format" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="MM-DD-YYYY">MM-DD-YYYY (12-31-2024)</SelectItem>
-                    <SelectItem value="DD-MM-YYYY">DD-MM-YYYY (31-12-2024)</SelectItem>
-                    <SelectItem value="YYYY-MM-DD">YYYY-MM-DD (2024-12-31)</SelectItem>
+                    <SelectItem value="MM-DD-YYYY">
+                      MM-DD-YYYY (12-31-2024)
+                    </SelectItem>
+                    <SelectItem value="DD-MM-YYYY">
+                      DD-MM-YYYY (31-12-2024)
+                    </SelectItem>
+                    <SelectItem value="YYYY-MM-DD">
+                      YYYY-MM-DD (2024-12-31)
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -379,7 +421,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Select
                   value={config.general.language}
-                  onValueChange={(value) => handleConfigChange("general", "language", value)}
+                  onValueChange={(value) =>
+                    handleConfigChange("general", "language", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select language" />
@@ -400,7 +444,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Input
                   value={config.general.workingHours}
-                  onChange={(e) => handleConfigChange("general", "workingHours", e.target.value)}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "general",
+                      "workingHours",
+                      e.target.value,
+                    )
+                  }
                   placeholder="e.g., 9:00 AM - 5:00 PM"
                 />
               </div>
@@ -411,7 +461,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Select
                   value={config.general.fiscalYearStart}
-                  onValueChange={(value) => handleConfigChange("general", "fiscalYearStart", value)}
+                  onValueChange={(value) =>
+                    handleConfigChange("general", "fiscalYearStart", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select fiscal year start" />
@@ -437,14 +489,21 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
               {/* Session Timeout */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Session Timeout (minutes) <span className="text-red-500">*</span>
+                  Session Timeout (minutes){" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="number"
                   min="5"
                   max="480"
                   value={config.security.sessionTimeout}
-                  onChange={(e) => handleConfigChange("security", "sessionTimeout", parseInt(e.target.value))}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "security",
+                      "sessionTimeout",
+                      parseInt(e.target.value),
+                    )
+                  }
                   placeholder="Enter session timeout in minutes"
                 />
               </div>
@@ -459,7 +518,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                   min="1"
                   max="10"
                   value={config.security.loginAttempts}
-                  onChange={(e) => handleConfigChange("security", "loginAttempts", parseInt(e.target.value))}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "security",
+                      "loginAttempts",
+                      parseInt(e.target.value),
+                    )
+                  }
                   placeholder="Enter maximum login attempts"
                 />
               </div>
@@ -467,14 +532,21 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
               {/* Minimum Password Length */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Minimum Password Length <span className="text-red-500">*</span>
+                  Minimum Password Length{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="number"
                   min="6"
                   max="32"
                   value={config.security.passwordMinLength}
-                  onChange={(e) => handleConfigChange("security", "passwordMinLength", parseInt(e.target.value))}
+                  onChange={(e) =>
+                    handleConfigChange(
+                      "security",
+                      "passwordMinLength",
+                      parseInt(e.target.value),
+                    )
+                  }
                   placeholder="Enter minimum password length"
                 />
               </div>
@@ -488,7 +560,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                   <Input
                     type="text"
                     value={config.security.apiKey}
-                    onChange={(e) => handleConfigChange("security", "apiKey", e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("security", "apiKey", e.target.value)
+                    }
                     placeholder="Enter API key"
                     className="font-mono text-sm"
                   />
@@ -518,7 +592,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </div>
                 <Switch
                   checked={config.security.twoFactorAuth}
-                  onCheckedChange={(checked) => handleConfigChange("security", "twoFactorAuth", checked)}
+                  onCheckedChange={(checked) =>
+                    handleConfigChange("security", "twoFactorAuth", checked)
+                  }
                 />
               </div>
 
@@ -534,7 +610,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </div>
                 <Switch
                   checked={config.security.allowRemoteLogin}
-                  onCheckedChange={(checked) => handleConfigChange("security", "allowRemoteLogin", checked)}
+                  onCheckedChange={(checked) =>
+                    handleConfigChange("security", "allowRemoteLogin", checked)
+                  }
                 />
               </div>
 
@@ -550,7 +628,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </div>
                 <Switch
                   checked={config.security.requireUppercase}
-                  onCheckedChange={(checked) => handleConfigChange("security", "requireUppercase", checked)}
+                  onCheckedChange={(checked) =>
+                    handleConfigChange("security", "requireUppercase", checked)
+                  }
                 />
               </div>
             </div>
@@ -561,16 +641,33 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 <h4 className="font-semibold mb-4">Current Security Status</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.security.twoFactorAuth ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                    <span>Two-Factor Auth: {config.security.twoFactorAuth ? 'Enabled' : 'Disabled'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.security.twoFactorAuth ? "bg-green-500" : "bg-red-500"}`}
+                    ></div>
+                    <span>
+                      Two-Factor Auth:{" "}
+                      {config.security.twoFactorAuth ? "Enabled" : "Disabled"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.security.allowRemoteLogin ? 'bg-yellow-500' : 'bg-green-500'}`}></div>
-                    <span>Remote Login: {config.security.allowRemoteLogin ? 'Allowed' : 'Restricted'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.security.allowRemoteLogin ? "bg-yellow-500" : "bg-green-500"}`}
+                    ></div>
+                    <span>
+                      Remote Login:{" "}
+                      {config.security.allowRemoteLogin
+                        ? "Allowed"
+                        : "Restricted"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.security.requireUppercase ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
-                    <span>Password Policy: {config.security.requireUppercase ? 'Strong' : 'Basic'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.security.requireUppercase ? "bg-green-500" : "bg-yellow-500"}`}
+                    ></div>
+                    <span>
+                      Password Policy:{" "}
+                      {config.security.requireUppercase ? "Strong" : "Basic"}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -602,7 +699,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     </div>
                     <Switch
                       checked={config.notifications.emailNotifications}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "emailNotifications", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "emailNotifications",
+                          checked,
+                        )
+                      }
                     />
                   </div>
 
@@ -618,7 +721,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     </div>
                     <Switch
                       checked={config.notifications.newEmployeeAlerts}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "newEmployeeAlerts", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "newEmployeeAlerts",
+                          checked,
+                        )
+                      }
                       disabled={!config.notifications.emailNotifications}
                     />
                   </div>
@@ -635,7 +744,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     </div>
                     <Switch
                       checked={config.notifications.documentUploadAlerts}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "documentUploadAlerts", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "documentUploadAlerts",
+                          checked,
+                        )
+                      }
                       disabled={!config.notifications.emailNotifications}
                     />
                   </div>
@@ -652,7 +767,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     </div>
                     <Switch
                       checked={config.notifications.systemMaintenanceAlerts}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "systemMaintenanceAlerts", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "systemMaintenanceAlerts",
+                          checked,
+                        )
+                      }
                       disabled={!config.notifications.emailNotifications}
                     />
                   </div>
@@ -679,7 +800,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     </div>
                     <Switch
                       checked={config.notifications.weeklyReports}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "weeklyReports", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "weeklyReports",
+                          checked,
+                        )
+                      }
                       disabled={!config.notifications.emailNotifications}
                     />
                   </div>
@@ -691,12 +818,19 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                         Monthly Reports
                       </label>
                       <p className="text-xs text-gray-500 mt-1">
-                        Send comprehensive monthly reports on the 1st of each month
+                        Send comprehensive monthly reports on the 1st of each
+                        month
                       </p>
                     </div>
                     <Switch
                       checked={config.notifications.monthlyReports}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "monthlyReports", checked)}
+                      onCheckedChange={(checked) =>
+                        handleConfigChange(
+                          "notifications",
+                          "monthlyReports",
+                          checked,
+                        )
+                      }
                       disabled={!config.notifications.emailNotifications}
                     />
                   </div>
@@ -707,31 +841,75 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
             {/* Notification Status Summary */}
             <Card className="border border-border bg-muted/30">
               <CardContent className="p-6">
-                <h4 className="font-semibold mb-4">Current Notification Status</h4>
+                <h4 className="font-semibold mb-4">
+                  Current Notification Status
+                </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.emailNotifications ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                    <span>Email: {config.notifications.emailNotifications ? 'Enabled' : 'Disabled'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.emailNotifications ? "bg-green-500" : "bg-red-500"}`}
+                    ></div>
+                    <span>
+                      Email:{" "}
+                      {config.notifications.emailNotifications
+                        ? "Enabled"
+                        : "Disabled"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.newEmployeeAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                    <span>Employee Alerts: {config.notifications.newEmployeeAlerts ? 'Active' : 'Inactive'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.newEmployeeAlerts ? "bg-green-500" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      Employee Alerts:{" "}
+                      {config.notifications.newEmployeeAlerts
+                        ? "Active"
+                        : "Inactive"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.documentUploadAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                    <span>Document Alerts: {config.notifications.documentUploadAlerts ? 'Active' : 'Inactive'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.documentUploadAlerts ? "bg-green-500" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      Document Alerts:{" "}
+                      {config.notifications.documentUploadAlerts
+                        ? "Active"
+                        : "Inactive"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.systemMaintenanceAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                    <span>Maintenance Alerts: {config.notifications.systemMaintenanceAlerts ? 'Active' : 'Inactive'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.systemMaintenanceAlerts ? "bg-green-500" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      Maintenance Alerts:{" "}
+                      {config.notifications.systemMaintenanceAlerts
+                        ? "Active"
+                        : "Inactive"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.weeklyReports ? 'bg-blue-500' : 'bg-gray-400'}`}></div>
-                    <span>Weekly Reports: {config.notifications.weeklyReports ? 'Enabled' : 'Disabled'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.weeklyReports ? "bg-blue-500" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      Weekly Reports:{" "}
+                      {config.notifications.weeklyReports
+                        ? "Enabled"
+                        : "Disabled"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${config.notifications.monthlyReports ? 'bg-blue-500' : 'bg-gray-400'}`}></div>
-                    <span>Monthly Reports: {config.notifications.monthlyReports ? 'Enabled' : 'Disabled'}</span>
+                    <div
+                      className={`w-3 h-3 rounded-full ${config.notifications.monthlyReports ? "bg-blue-500" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      Monthly Reports:{" "}
+                      {config.notifications.monthlyReports
+                        ? "Enabled"
+                        : "Disabled"}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -744,9 +922,15 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Custom Fields</h3>
-              <Dialog open={showAddFieldModal} onOpenChange={setShowAddFieldModal}>
+              <Dialog
+                open={showAddFieldModal}
+                onOpenChange={setShowAddFieldModal}
+              >
                 <DialogTrigger asChild>
-                  <Button onClick={addCustomField} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <Button
+                    onClick={addCustomField}
+                    className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Field
                   </Button>
@@ -765,7 +949,12 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                       </label>
                       <Input
                         value={newField.name}
-                        onChange={(e) => setNewField(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setNewField((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         placeholder="Enter field name"
                       />
                     </div>
@@ -776,7 +965,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                       </label>
                       <Select
                         value={newField.type}
-                        onValueChange={(value) => setNewField(prev => ({ ...prev, type: value }))}
+                        onValueChange={(value) =>
+                          setNewField((prev) => ({ ...prev, type: value }))
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue />
@@ -798,14 +989,20 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                       </label>
                       <Select
                         value={newField.section}
-                        onValueChange={(value) => setNewField(prev => ({ ...prev, section: value }))}
+                        onValueChange={(value) =>
+                          setNewField((prev) => ({ ...prev, section: value }))
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Personal Info">Personal Info</SelectItem>
-                          <SelectItem value="Work Details">Work Details</SelectItem>
+                          <SelectItem value="Personal Info">
+                            Personal Info
+                          </SelectItem>
+                          <SelectItem value="Work Details">
+                            Work Details
+                          </SelectItem>
                           <SelectItem value="Security">Security</SelectItem>
                           <SelectItem value="Additional">Additional</SelectItem>
                         </SelectContent>
@@ -817,9 +1014,17 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                         type="checkbox"
                         id="new-field-required"
                         checked={newField.required}
-                        onChange={(e) => setNewField(prev => ({ ...prev, required: e.target.checked }))}
+                        onChange={(e) =>
+                          setNewField((prev) => ({
+                            ...prev,
+                            required: e.target.checked,
+                          }))
+                        }
                       />
-                      <label htmlFor="new-field-required" className="text-sm font-medium">
+                      <label
+                        htmlFor="new-field-required"
+                        className="text-sm font-medium"
+                      >
                         Required Field
                       </label>
                     </div>
@@ -847,19 +1052,30 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     <div className="flex items-center justify-between">
                       <div className="flex-1 space-y-2">
                         <div className="flex items-center gap-3">
-                          <h4 className="font-semibold text-lg">{field.name}</h4>
+                          <h4 className="font-semibold text-lg">
+                            {field.name}
+                          </h4>
                           <Badge variant="outline" className="text-xs">
                             {field.type}
                           </Badge>
-                          <Badge variant={field.required ? "default" : "secondary"} className="text-xs">
+                          <Badge
+                            variant={field.required ? "default" : "secondary"}
+                            className="text-xs"
+                          >
                             {field.required ? "Required" : "Optional"}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600">Section: {field.section}</p>
+                        <p className="text-sm text-gray-600">
+                          Section: {field.section}
+                        </p>
                         {field.options && (
                           <div className="flex flex-wrap gap-1 mt-2">
                             {field.options.map((option, idx) => (
-                              <Badge key={idx} variant="outline" className="text-xs">
+                              <Badge
+                                key={idx}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {option}
                               </Badge>
                             ))}
@@ -894,9 +1110,17 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
               <Card className="border-2 border-dashed border-gray-300">
                 <CardContent className="p-8 text-center">
                   <Database className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h4 className="text-lg font-semibold text-gray-600 mb-2">No Custom Fields</h4>
-                  <p className="text-gray-500 mb-4">Add custom fields to collect additional employee information.</p>
-                  <Button onClick={addCustomField} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                  <h4 className="text-lg font-semibold text-gray-600 mb-2">
+                    No Custom Fields
+                  </h4>
+                  <p className="text-gray-500 mb-4">
+                    Add custom fields to collect additional employee
+                    information.
+                  </p>
+                  <Button
+                    onClick={addCustomField}
+                    className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Your First Field
                   </Button>
@@ -910,7 +1134,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">User Roles & Permissions</h3>
-            
+
             <div className="space-y-4">
               {config.userRoles.map((role) => (
                 <Card key={role.id} className="border border-border">
@@ -919,24 +1143,34 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <h4 className="font-semibold text-lg">{role.name}</h4>
-                          <Badge variant={role.active ? "default" : "secondary"}>
+                          <Badge
+                            variant={role.active ? "default" : "secondary"}
+                          >
                             {role.active ? "Active" : "Inactive"}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">{role.description}</p>
-                        
+                        <p className="text-sm text-gray-600 mb-4">
+                          {role.description}
+                        </p>
+
                         <div>
-                          <label className="text-sm font-semibold text-gray-700 mb-2 block">Permissions</label>
+                          <label className="text-sm font-semibold text-gray-700 mb-2 block">
+                            Permissions
+                          </label>
                           <div className="flex flex-wrap gap-2">
                             {role.permissions.map((permission) => (
-                              <Badge key={permission} variant="outline" className="text-xs">
-                                {permission.replace('_', ' ')}
+                              <Badge
+                                key={permission}
+                                variant="outline"
+                                className="text-xs"
+                              >
+                                {permission.replace("_", " ")}
                               </Badge>
                             ))}
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
                         <Button variant="outline" size="sm">
                           <Edit className="w-3 h-3 mr-1" />
@@ -945,10 +1179,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                         <Switch
                           checked={role.active}
                           onCheckedChange={(checked) => {
-                            const updatedRoles = config.userRoles.map(r =>
-                              r.id === role.id ? { ...r, active: checked } : r
+                            const updatedRoles = config.userRoles.map((r) =>
+                              r.id === role.id ? { ...r, active: checked } : r,
                             );
-                            setConfig(prev => ({ ...prev, userRoles: updatedRoles }));
+                            setConfig((prev) => ({
+                              ...prev,
+                              userRoles: updatedRoles,
+                            }));
                             setHasChanges(true);
                           }}
                         />
@@ -965,7 +1202,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Branding & Appearance</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -974,7 +1211,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                   <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                   <p className="text-sm text-gray-600">Upload company logo</p>
-                  <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 2MB</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    PNG, JPG up to 2MB
+                  </p>
                 </div>
               </div>
 
@@ -986,12 +1225,24 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                   <Input
                     type="color"
                     value={config.branding.primaryColor}
-                    onChange={(e) => handleConfigChange("branding", "primaryColor", e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "branding",
+                        "primaryColor",
+                        e.target.value,
+                      )
+                    }
                     className="w-16 h-10 p-1"
                   />
                   <Input
                     value={config.branding.primaryColor}
-                    onChange={(e) => handleConfigChange("branding", "primaryColor", e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "branding",
+                        "primaryColor",
+                        e.target.value,
+                      )
+                    }
                     placeholder="#0065F8"
                     className="flex-1"
                   />
@@ -1006,12 +1257,24 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                   <Input
                     type="color"
                     value={config.branding.secondaryColor}
-                    onChange={(e) => handleConfigChange("branding", "secondaryColor", e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "branding",
+                        "secondaryColor",
+                        e.target.value,
+                      )
+                    }
                     className="w-16 h-10 p-1"
                   />
                   <Input
                     value={config.branding.secondaryColor}
-                    onChange={(e) => handleConfigChange("branding", "secondaryColor", e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "branding",
+                        "secondaryColor",
+                        e.target.value,
+                      )
+                    }
                     placeholder="#64748B"
                     className="flex-1"
                   />
@@ -1024,7 +1287,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </label>
                 <Select
                   value={config.branding.fontFamily}
-                  onValueChange={(value) => handleConfigChange("branding", "fontFamily", value)}
+                  onValueChange={(value) =>
+                    handleConfigChange("branding", "fontFamily", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -1046,7 +1311,9 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
               </label>
               <Textarea
                 value={config.branding.customCss}
-                onChange={(e) => handleConfigChange("branding", "customCss", e.target.value)}
+                onChange={(e) =>
+                  handleConfigChange("branding", "customCss", e.target.value)
+                }
                 placeholder="/* Add custom CSS styles here */"
                 rows={8}
                 className="font-mono text-sm"
@@ -1084,7 +1351,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
             <Download className="w-4 h-4 mr-2" />
             Export Config
           </Button>
-          <Button 
+          <Button
             onClick={handleSaveChanges}
             disabled={!hasChanges}
             className="bg-green-600 hover:bg-green-700 text-white disabled:opacity-50"
@@ -1102,7 +1369,8 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
             <div className="flex items-center gap-2 text-orange-800">
               <AlertCircle className="w-4 h-4" />
               <span className="text-sm font-medium">
-                You have unsaved changes. Don't forget to save your configuration.
+                You have unsaved changes. Don't forget to save your
+                configuration.
               </span>
             </div>
           </CardContent>
@@ -1126,9 +1394,7 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
 
       {/* Tab Content */}
       <Card className="border-0 shadow-sm">
-        <CardContent className="p-8">
-          {renderTabContent()}
-        </CardContent>
+        <CardContent className="p-8">{renderTabContent()}</CardContent>
       </Card>
 
       {/* Help Information */}
@@ -1139,8 +1405,10 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
             <div className="text-sm text-blue-800">
               <p className="font-medium mb-1">Configuration Help</p>
               <p>
-                Fields marked with an asterisk (*) are required. Changes will only take effect after clicking "Save Changes". 
-                You can export your current configuration as a backup or import previously saved settings.
+                Fields marked with an asterisk (*) are required. Changes will
+                only take effect after clicking "Save Changes". You can export
+                your current configuration as a backup or import previously
+                saved settings.
               </p>
             </div>
           </div>
