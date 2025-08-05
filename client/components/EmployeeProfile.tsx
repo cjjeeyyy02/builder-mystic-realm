@@ -487,7 +487,7 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-900 mb-2">
                     Nationality
                   </label>
                   {isEditing ? (
