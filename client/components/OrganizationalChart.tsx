@@ -236,7 +236,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [zoomLevel, setZoomLevel] = useState(0.8);
 
   // Filter employees based on search and department
   const filteredEmployees = employees.filter((employee) => {
