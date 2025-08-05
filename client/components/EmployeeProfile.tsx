@@ -748,7 +748,10 @@ export default function EmployeeProfile({
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Skills Summary</h3>
-              <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+              <Button
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                onClick={() => setShowSkillModal(true)}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Add New Skill
               </Button>
