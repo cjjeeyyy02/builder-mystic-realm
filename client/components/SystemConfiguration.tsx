@@ -90,6 +90,7 @@ interface ConfigurationState {
     description: string;
     permissions: string[];
     active: boolean;
+    numberOfUsers: number;
   }>;
   branding: {
     companyLogo: string;
