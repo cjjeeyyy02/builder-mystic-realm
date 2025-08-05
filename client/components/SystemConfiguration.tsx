@@ -1055,9 +1055,6 @@ export default function SystemConfiguration({
                           <h4 className="font-semibold text-lg">
                             {field.name}
                           </h4>
-                          <Badge variant="outline" className="text-xs">
-                            {field.type}
-                          </Badge>
                           <Badge
                             variant={field.required ? "default" : "secondary"}
                             className="text-xs"
