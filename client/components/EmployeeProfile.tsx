@@ -529,15 +529,18 @@ export default function EmployeeProfile({
                       </div>
                     </div>
                   ) : (
-                    <div className="text-foreground">
-                      <p>
-                        <strong>Contact Person:</strong> John Mitchell
+                    <div className="text-foreground space-y-2">
+                      <p className="flex items-center gap-2">
+                        <User className="w-4 h-4 text-gray-400" />
+                        <span className="font-semibold">Contact Person:</span> John Mitchell
                       </p>
-                      <p>
-                        <strong>Contact Number:</strong> +1 (555) 987-6543
+                      <p className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-gray-400" />
+                        <span className="font-semibold">Contact Number:</span> +1 (555) 987-6543
                       </p>
-                      <p>
-                        <strong>Relationship:</strong> Father
+                      <p className="flex items-center gap-2">
+                        <User className="w-4 h-4 text-gray-400" />
+                        <span className="font-semibold">Relationship:</span> Father
                       </p>
                     </div>
                   )}
