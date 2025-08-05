@@ -252,6 +252,42 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Company Email <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="email"
+                  value={config.general.companyEmail}
+                  onChange={(e) => handleConfigChange("general", "companyEmail", e.target.value)}
+                  placeholder="Enter company email address"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Company Address
+                </label>
+                <Textarea
+                  value={config.general.companyAddress}
+                  onChange={(e) => handleConfigChange("general", "companyAddress", e.target.value)}
+                  placeholder="Enter complete company address"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Website
+                </label>
+                <Input
+                  type="url"
+                  value={config.general.website}
+                  onChange={(e) => handleConfigChange("general", "website", e.target.value)}
+                  placeholder="https://www.company.com"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Time Zone <span className="text-red-500">*</span>
                 </label>
                 <Select
