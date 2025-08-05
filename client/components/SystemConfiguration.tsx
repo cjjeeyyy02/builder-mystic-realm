@@ -191,6 +191,13 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
   const [config, setConfig] = useState<ConfigurationState>(defaultConfig);
   const [hasChanges, setHasChanges] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showAddFieldModal, setShowAddFieldModal] = useState(false);
+  const [newField, setNewField] = useState({
+    name: "",
+    type: "text",
+    section: "Personal Info",
+    required: false,
+  });
 
   const tabs = [
     { id: "general", label: "General", icon: Settings },
