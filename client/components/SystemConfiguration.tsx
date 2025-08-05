@@ -103,12 +103,13 @@ const defaultConfig: ConfigurationState = {
     fiscalYearStart: "January",
   },
   security: {
-    passwordMinLength: 8,
-    passwordComplexity: true,
     sessionTimeout: 30,
-    twoFactorAuth: false,
     loginAttempts: 3,
-    accountLockout: true,
+    passwordMinLength: 8,
+    twoFactorAuth: false,
+    allowRemoteLogin: true,
+    requireUppercase: true,
+    apiKey: "sk-1234567890abcdef1234567890abcdef",
   },
   notifications: {
     emailNotifications: true,
