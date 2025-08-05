@@ -1158,68 +1158,85 @@ export default function SystemConfiguration({
       case "user-roles":
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold">User Roles & Permissions</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">User Roles & Permissions</h3>
+              <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Role
+              </Button>
+            </div>
 
             <div className="space-y-4">
               {config.userRoles.map((role) => (
                 <Card key={role.id} className="border border-border">
                   <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h4 className="font-semibold text-lg">{role.name}</h4>
-                          <Badge
-                            variant={role.active ? "default" : "secondary"}
-                          >
-                            {role.active ? "Active" : "Inactive"}
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          {role.description}
-                        </p>
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+                      <div className="md:col-span-2">
+                        <h4 className="font-semibold text-lg text-gray-900">{role.name}</h4>
+                        <p className="text-sm text-gray-600 mt-1">{role.description}</p>
+                      </div>
 
-                        <div>
-                          <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                            Permissions
-                          </label>
-                          <div className="flex flex-wrap gap-2">
-                            {role.permissions.map((permission) => (
-                              <Badge
-                                key={permission}
-                                variant="outline"
-                                className="text-xs"
-                              >
-                                {permission.replace("_", " ")}
-                              </Badge>
-                            ))}
-                          </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-blue-600">{role.numberOfUsers}</div>
+                        <div className="text-xs text-gray-500">Users</div>
+                      </div>
+
+                      <div className="text-center">
+                        <Badge variant={role.active ? "default" : "secondary"} className="text-xs">
+                          {role.active ? "Active" : "Inactive"}
+                        </Badge>
+                      </div>
+
+                      <div>
+                        <div className="flex flex-wrap gap-1">
+                          {role.permissions.slice(0, 3).map((permission) => (
+                            <Badge key={permission} variant="outline" className="text-xs">
+                              {permission.replace("_", " ")}
+                            </Badge>
+                          ))}
+                          {role.permissions.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{role.permissions.length - 3} more
+                            </Badge>
+                          )}
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm">
+                      <div className="flex items-center gap-2 justify-end">
+                        <Button variant="outline" size="sm" className="text-blue-600 border-blue-200 hover:bg-blue-50">
                           <Edit className="w-3 h-3 mr-1" />
                           Edit
                         </Button>
-                        <Switch
-                          checked={role.active}
-                          onCheckedChange={(checked) => {
-                            const updatedRoles = config.userRoles.map((r) =>
-                              r.id === role.id ? { ...r, active: checked } : r,
-                            );
-                            setConfig((prev) => ({
-                              ...prev,
-                              userRoles: updatedRoles,
-                            }));
-                            setHasChanges(true);
-                          }}
-                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => removeRole(role.id)}
+                          className="text-red-600 border-red-200 hover:bg-red-50"
+                          disabled={role.name === "Administrator"}
+                        >
+                          <Trash2 className="w-3 h-3 mr-1" />
+                          Delete
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
+
+            {config.userRoles.length === 0 && (
+              <Card className="border-2 border-dashed border-gray-300">
+                <CardContent className="p-8 text-center">
+                  <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold text-gray-600 mb-2">No User Roles</h4>
+                  <p className="text-gray-500 mb-4">Create user roles to manage permissions and access levels.</p>
+                  <Button onClick={addRole} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Your First Role
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
           </div>
         );
 
