@@ -397,7 +397,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
     return (
       <div key={employee.id} className="flex flex-col items-center">
         {/* Employee box */}
-        <Card className="border-2 border-primary/30 bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 min-w-[220px] max-w-[220px] group cursor-pointer">
+        <Card className="border-2 border-primary/30 bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 min-w-[180px] max-w-[180px] group cursor-pointer">
           <CardContent className="p-5 text-center relative">
             <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-primary/20">
               <User className="w-7 h-7 text-primary" />
