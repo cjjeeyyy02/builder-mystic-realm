@@ -519,12 +519,12 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
             <Download className="w-4 h-4 mr-2" />
             Export
           </Button>
-          <Button 
+          <Button
             className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             onClick={handleAddEmployee}
           >
             <Plus className="w-4 h-4 mr-2" />
-            Add Employee
+            Add Report
           </Button>
         </div>
       </div>
