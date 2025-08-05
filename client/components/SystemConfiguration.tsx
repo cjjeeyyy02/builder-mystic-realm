@@ -60,11 +60,11 @@ interface ConfigurationState {
   };
   notifications: {
     emailNotifications: boolean;
-    browserNotifications: boolean;
-    smsNotifications: boolean;
-    documentExpiry: boolean;
-    performanceReminders: boolean;
-    systemMaintenance: boolean;
+    newEmployeeAlerts: boolean;
+    documentUploadAlerts: boolean;
+    systemMaintenanceAlerts: boolean;
+    weeklyReports: boolean;
+    monthlyReports: boolean;
   };
   customFields: Array<{
     id: string;
