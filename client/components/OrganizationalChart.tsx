@@ -449,7 +449,7 @@ export default function OrganizationalChart({
             </Badge>
 
             {/* Action buttons on hover */}
-            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center gap-2">
+            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center gap-1">
               <Button
                 size="sm"
                 variant="secondary"
@@ -465,6 +465,14 @@ export default function OrganizationalChart({
                 className="bg-white/90 hover:bg-white shadow-md"
               >
                 <Edit className="w-3 h-3" />
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => handleAddReport(employee)}
+                className="bg-white/90 hover:bg-white shadow-md"
+              >
+                <Plus className="w-3 h-3" />
               </Button>
             </div>
           </CardContent>
