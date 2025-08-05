@@ -504,10 +504,6 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
     setZoomLevel(1);
   };
 
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
   return (
     <div className="space-y-6">
       {/* Header */}
