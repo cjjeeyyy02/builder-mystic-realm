@@ -40,6 +40,9 @@ interface SystemConfigurationProps {
 interface ConfigurationState {
   general: {
     companyName: string;
+    companyEmail: string;
+    companyAddress: string;
+    website: string;
     timeZone: string;
     dateFormat: string;
     language: string;
