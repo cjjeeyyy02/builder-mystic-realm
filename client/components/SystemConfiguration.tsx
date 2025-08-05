@@ -296,19 +296,48 @@ export default function SystemConfiguration({
   };
 
   const addRole = () => {
-    const newRole = {
-      id: `role-${Date.now()}`,
-      name: "New Role",
-      description: "Enter role description",
-      permissions: ["read"],
+    setShowAddRoleModal(true);
+  };
+
+  const handleAddRole = () => {
+    if (newRole.name.trim() && newRole.permissions.length > 0) {
+      const roleToAdd = {
+        id: `role-${Date.now()}`,
+        ...newRole,
+        numberOfUsers: 0,
+      };
+      setConfig((prev) => ({
+        ...prev,
+        userRoles: [...prev.userRoles, roleToAdd],
+      }));
+      setHasChanges(true);
+      setNewRole({
+        name: "",
+        description: "",
+        permissions: [],
+        active: true,
+      });
+      setShowAddRoleModal(false);
+    }
+  };
+
+  const handleCancelAddRole = () => {
+    setNewRole({
+      name: "",
+      description: "",
+      permissions: [],
       active: true,
-      numberOfUsers: 0,
-    };
-    setConfig((prev) => ({
+    });
+    setShowAddRoleModal(false);
+  };
+
+  const togglePermission = (permission: string) => {
+    setNewRole(prev => ({
       ...prev,
-      userRoles: [...prev.userRoles, newRole],
+      permissions: prev.permissions.includes(permission)
+        ? prev.permissions.filter(p => p !== permission)
+        : [...prev.permissions, permission]
     }));
-    setHasChanges(true);
   };
 
   const removeRole = (id: string) => {
