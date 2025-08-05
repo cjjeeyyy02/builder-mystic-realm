@@ -162,6 +162,7 @@ const defaultConfig: ConfigurationState = {
       description: "Full system access and configuration rights",
       permissions: ["read", "write", "delete", "configure", "user_management"],
       active: true,
+      numberOfUsers: 3,
     },
     {
       id: "role-002",
@@ -169,6 +170,7 @@ const defaultConfig: ConfigurationState = {
       description: "Human resources management and employee data access",
       permissions: ["read", "write", "employee_management"],
       active: true,
+      numberOfUsers: 12,
     },
     {
       id: "role-003",
@@ -176,6 +178,7 @@ const defaultConfig: ConfigurationState = {
       description: "Basic access to own profile and company information",
       permissions: ["read"],
       active: true,
+      numberOfUsers: 156,
     },
   ],
   branding: {
