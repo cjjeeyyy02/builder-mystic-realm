@@ -1545,10 +1545,11 @@ export default function EmployeeProfile({
 
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">Leave Status</label>
-                          <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>
-                            {leave.leaveStatus}
-                          </Badge>
-
+                          <div className="mt-1">
+                            <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>
+                              {leave.leaveStatus}
+                            </Badge>
+                          </div>
                         </div>
 
                         <div>
