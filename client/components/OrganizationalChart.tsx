@@ -884,7 +884,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Reports To
                   </label>
-                  <Select defaultValue={selectedEmployee.managerId || ""}>
+                  <Select defaultValue={selectedEmployee.managerId || "none"}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select manager" />
                     </SelectTrigger>
