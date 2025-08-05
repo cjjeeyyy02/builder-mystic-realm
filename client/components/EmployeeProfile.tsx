@@ -2509,12 +2509,12 @@ export default function EmployeeProfile({
 
       {/* Upload Document Modal */}
       <Dialog open={showDocumentModal} onOpenChange={setShowDocumentModal}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Upload Document</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-6 pt-4">
+          <div className="space-y-4 md:space-y-6 pt-4">
             {/* Document Title */}
             <div>
               <label className="block text-sm font-medium mb-2">
