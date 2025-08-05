@@ -367,23 +367,14 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                   <Edit className="w-3 h-3 mr-1" />
                   Edit
                 </Button>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      <MoreVertical className="w-3 h-3" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                      <Mail className="w-3 h-3 mr-2" />
-                      Send Email
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <UserMinus className="w-3 h-3 mr-2" />
-                      Reassign Reports
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+                >
+                  <Plus className="w-3 h-3 mr-1" />
+                  Add Report
+                </Button>
               </div>
             </div>
           </CardContent>
