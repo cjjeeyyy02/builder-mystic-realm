@@ -631,13 +631,13 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               </div>
               <div className="overflow-auto h-full bg-gradient-to-br from-gray-50 to-white rounded-lg border">
                 <div
-                  className="min-w-fit p-8 transform-gpu transition-transform duration-200 ease-in-out"
+                  className="w-full h-full flex items-center justify-center p-4 transform-gpu transition-transform duration-200 ease-in-out"
                   style={{
                     transform: `scale(${zoomLevel})`,
-                    transformOrigin: 'top left'
+                    transformOrigin: 'center center'
                   }}
                 >
-                  <div className="flex flex-col items-center space-y-12">
+                  <div className="flex flex-col items-center space-y-8">
                     {getRootEmployees().map(employee => renderChartNode(employee))}
                   </div>
                 </div>
