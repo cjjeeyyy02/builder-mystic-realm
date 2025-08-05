@@ -613,19 +613,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                 </Button>
               )}
 
-              {/* Fullscreen Toggle */}
-              <Button
-                variant="outline"
-                onClick={toggleFullscreen}
-                className="whitespace-nowrap"
-              >
-                {isFullscreen ? (
-                  <Minimize className="w-4 h-4 mr-2" />
-                ) : (
-                  <Maximize className="w-4 h-4 mr-2" />
-                )}
-                {isFullscreen ? "Exit" : "Fullscreen"}
-              </Button>
+
             </div>
           </div>
         </CardContent>
