@@ -1133,6 +1133,169 @@ export default function OrganizationalChart({
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Add Report Modal */}
+      <Dialog open={showAddReportModal} onOpenChange={setShowAddReportModal}>
+        <DialogContent className="w-[95vw] max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              Add Report {selectedManager && `to ${selectedManager.fullName}`}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6 pt-4">
+            {/* Manager Info */}
+            {selectedManager && (
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20">
+                    <User className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">
+                      Reporting to: {selectedManager.fullName}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {selectedManager.position} - {selectedManager.department}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Employee Form */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="Enter full name"
+                  value={addReportFormData.fullName}
+                  onChange={(e) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      fullName: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Position <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="Enter job position"
+                  value={addReportFormData.position}
+                  onChange={(e) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      position: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Department <span className="text-red-500">*</span>
+                </label>
+                <Select
+                  value={addReportFormData.department}
+                  onValueChange={(value) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      department: value,
+                    })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Executive">Executive</SelectItem>
+                    <SelectItem value="Engineering">Engineering</SelectItem>
+                    <SelectItem value="Finance">Finance</SelectItem>
+                    <SelectItem value="Marketing">Marketing</SelectItem>
+                    <SelectItem value="Human Resources">Human Resources</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="email"
+                  placeholder="Enter email address"
+                  value={addReportFormData.email}
+                  onChange={(e) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      email: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone
+                </label>
+                <Input
+                  placeholder="Enter phone number"
+                  value={addReportFormData.phone}
+                  onChange={(e) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      phone: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Location
+                </label>
+                <Input
+                  placeholder="Enter work location"
+                  value={addReportFormData.location}
+                  onChange={(e) =>
+                    setAddReportFormData({
+                      ...addReportFormData,
+                      location: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="text-sm text-muted-foreground bg-green-50 p-4 rounded-lg border border-green-200">
+              <p>
+                <strong>Note:</strong> This employee will be added as a direct
+                report to {selectedManager?.fullName}. You can edit additional
+                details after creation.
+              </p>
+            </div>
+
+            <div className="flex gap-3 pt-4 border-t">
+              <Button
+                onClick={handleAddReportSubmit}
+                disabled={
+                  !addReportFormData.fullName ||
+                  !addReportFormData.position ||
+                  !addReportFormData.department ||
+                  !addReportFormData.email
+                }
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Report
+              </Button>
+              <Button variant="outline" onClick={handleAddReportCancel}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
