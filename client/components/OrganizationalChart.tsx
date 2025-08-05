@@ -400,6 +400,7 @@ export default function OrganizationalChart({
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => handleAddReport(employee)}
                   className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
                 >
                   <Plus className="w-3 h-3 mr-1" />
