@@ -497,7 +497,8 @@ export default function EmployeeProfile({
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
                     Emergency Contact
                   </label>
                   {isEditing ? (
