@@ -530,6 +530,70 @@ export default function OrganizationalChart({
     setZoomLevel(1);
   };
 
+  const handleAddReport = (manager: OrgEmployee) => {
+    setSelectedManager(manager);
+    setShowAddReportModal(true);
+  };
+
+  const handleAddReportSubmit = () => {
+    if (!selectedManager) return;
+
+    // Generate new employee ID
+    const newId = `emp-${Date.now()}`;
+
+    // Create new employee object
+    const newEmployee: OrgEmployee = {
+      id: newId,
+      fullName: addReportFormData.fullName,
+      position: addReportFormData.position,
+      department: addReportFormData.department,
+      email: addReportFormData.email,
+      phone: addReportFormData.phone,
+      location: addReportFormData.location,
+      managerId: selectedManager.id,
+      directReports: [],
+      level: selectedManager.level + 1,
+      isExpanded: false,
+    };
+
+    // Add new employee to employees array
+    setEmployees(prev => [...prev, newEmployee]);
+
+    // Update manager's direct reports
+    setEmployees(prev => prev.map(emp =>
+      emp.id === selectedManager.id
+        ? { ...emp, directReports: [...emp.directReports, newId] }
+        : emp
+    ));
+
+    // Close modal and reset form
+    setShowAddReportModal(false);
+    setSelectedManager(null);
+    setAddReportFormData({
+      fullName: "",
+      position: "",
+      department: "",
+      email: "",
+      phone: "",
+      location: "",
+    });
+
+    console.log("New report added to:", selectedManager.fullName, newEmployee);
+  };
+
+  const handleAddReportCancel = () => {
+    setShowAddReportModal(false);
+    setSelectedManager(null);
+    setAddReportFormData({
+      fullName: "",
+      position: "",
+      department: "",
+      email: "",
+      phone: "",
+      location: "",
+    });
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
