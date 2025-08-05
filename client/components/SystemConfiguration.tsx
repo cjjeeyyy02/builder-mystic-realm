@@ -204,6 +204,13 @@ export default function SystemConfiguration({
     section: "Personal Info",
     required: false,
   });
+  const [showAddRoleModal, setShowAddRoleModal] = useState(false);
+  const [newRole, setNewRole] = useState({
+    name: "",
+    description: "",
+    permissions: [] as string[],
+    active: true,
+  });
 
   const tabs = [
     { id: "general", label: "General", icon: Settings },
