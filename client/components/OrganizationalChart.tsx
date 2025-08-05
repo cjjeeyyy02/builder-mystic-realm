@@ -445,9 +445,8 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="outline" onClick={onBack}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Records
+          <Button variant="outline" onClick={onBack} className="w-10 h-10 p-0">
+            <ArrowLeft className="w-4 h-4" />
           </Button>
           <h1 className="text-3xl font-semibold text-foreground">
             Organizational Chart
