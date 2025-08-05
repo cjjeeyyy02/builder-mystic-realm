@@ -50,12 +50,13 @@ interface ConfigurationState {
     fiscalYearStart: string;
   };
   security: {
-    passwordMinLength: number;
-    passwordComplexity: boolean;
     sessionTimeout: number;
-    twoFactorAuth: boolean;
     loginAttempts: number;
-    accountLockout: boolean;
+    passwordMinLength: number;
+    twoFactorAuth: boolean;
+    allowRemoteLogin: boolean;
+    requireUppercase: boolean;
+    apiKey: string;
   };
   notifications: {
     emailNotifications: boolean;
