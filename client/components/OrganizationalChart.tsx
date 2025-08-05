@@ -637,7 +637,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
                     transformOrigin: 'center center'
                   }}
                 >
-                  <div className="flex flex-col items-center space-y-8">
+                  <div className="flex flex-col items-center space-y-6">
                     {getRootEmployees().map(employee => renderChartNode(employee))}
                   </div>
                 </div>
