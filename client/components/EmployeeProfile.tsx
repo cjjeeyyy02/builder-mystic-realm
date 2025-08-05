@@ -1704,10 +1704,11 @@ export default function EmployeeProfile({
                       {/* File Type */}
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">File Type</label>
-                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                          {document.fileType}
-                        </Badge>
-
+                        <div className="mt-1">
+                          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                            {document.fileType}
+                          </Badge>
+                        </div>
                       </div>
 
                       {/* File Size */}
