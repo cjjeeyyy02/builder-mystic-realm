@@ -31,6 +31,7 @@ import {
   Trash2,
   Edit,
   Info,
+  X,
 } from "lucide-react";
 
 interface SystemConfigurationProps {
