@@ -186,54 +186,65 @@ export default function Sidebar({
           </Button>
         </div>
 
-        <div className="p-4 space-y-2">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
-            const Icon = item.icon;
+        {/* Navigation */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4 space-y-1">
+            {!isCollapsed && (
+              <div className="px-3 mb-4">
+                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  Navigation
+                </p>
+              </div>
+            )}
 
-            if (isCollapsed) {
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              const Icon = item.icon;
+
+              if (isCollapsed) {
+                return (
+                  <Tooltip key={item.path}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        className={`w-full justify-center h-12 px-3 rounded-lg transition-all duration-200 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground shadow-lg ring-2 ring-primary/20"
+                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
+                        }`}
+                        asChild
+                      >
+                        <Link to={item.path} onClick={onClose}>
+                          <Icon className="w-5 h-5" />
+                        </Link>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="right">
+                      <p className="font-medium">{item.label}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              }
+
               return (
-                <Tooltip key={item.path}>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant={isActive ? "default" : "ghost"}
-                      className={`w-full justify-center h-12 px-3 ${
-                        isActive
-                          ? "bg-primary text-primary-foreground shadow-md"
-                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                      }`}
-                      asChild
-                    >
-                      <Link to={item.path} onClick={onClose}>
-                        <Icon className="w-5 h-5" />
-                      </Link>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">
-                    <p>{item.label}</p>
-                  </TooltipContent>
-                </Tooltip>
+                <Button
+                  key={item.path}
+                  variant="ghost"
+                  className={`w-full justify-start gap-3 h-11 px-3 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-lg ring-2 ring-primary/20 font-semibold"
+                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
+                  }`}
+                  asChild
+                >
+                  <Link to={item.path} onClick={onClose}>
+                    <Icon className="w-5 h-5" />
+                    <span className="font-medium">{item.label}</span>
+                  </Link>
+                </Button>
               );
-            }
-
-            return (
-              <Button
-                key={item.path}
-                variant={isActive ? "default" : "ghost"}
-                className={`w-full justify-start gap-3 h-auto py-3 px-4 ${
-                  isActive
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                }`}
-                asChild
-              >
-                <Link to={item.path} onClick={onClose}>
-                  <Icon className="w-5 h-5" />
-                  {item.label}
-                </Link>
-              </Button>
-            );
-          })}
+            })}
+          </div>
         </div>
 
         {/* Bottom section */}
