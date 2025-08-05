@@ -503,10 +503,14 @@ export default function EmployeeProfile({
                   </label>
                   {isEditing ? (
                     <div className="space-y-2">
-                      <Input
-                        placeholder="Contact Person"
-                        defaultValue="John Mitchell"
-                      />
+                      <div className="relative">
+                        <User className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <Input
+                          placeholder="Contact Person"
+                          defaultValue="John Mitchell"
+                          className="pl-10"
+                        />
+                      </div>
                       <Input
                         placeholder="Contact Number"
                         defaultValue="+1 (555) 987-6543"
