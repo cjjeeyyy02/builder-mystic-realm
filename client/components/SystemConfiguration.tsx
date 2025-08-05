@@ -92,6 +92,9 @@ interface ConfigurationState {
 const defaultConfig: ConfigurationState = {
   general: {
     companyName: "AI2AIM WORKSPACE",
+    companyEmail: "contact@ai2aim.com",
+    companyAddress: "123 Business Avenue, Suite 100, New York, NY 10001",
+    website: "https://www.ai2aim.com",
     timeZone: "UTC-5 (Eastern Time)",
     dateFormat: "MM-DD-YYYY",
     language: "English (US)",
