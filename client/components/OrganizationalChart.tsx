@@ -620,8 +620,8 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
       </Card>
 
       {/* Organizational Chart Content */}
-      <Card className={`border-0 shadow-sm ${isFullscreen ? 'fixed inset-0 z-50 rounded-none' : ''}`}>
-        <CardContent className={`${isFullscreen ? 'h-full overflow-auto' : 'p-6'}`}>
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-6">
           {viewMode === "hierarchical" ? (
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-6">
