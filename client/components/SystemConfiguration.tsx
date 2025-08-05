@@ -288,6 +288,30 @@ export default function SystemConfiguration({
     setHasChanges(true);
   };
 
+  const addRole = () => {
+    const newRole = {
+      id: `role-${Date.now()}`,
+      name: "New Role",
+      description: "Enter role description",
+      permissions: ["read"],
+      active: true,
+      numberOfUsers: 0,
+    };
+    setConfig((prev) => ({
+      ...prev,
+      userRoles: [...prev.userRoles, newRole],
+    }));
+    setHasChanges(true);
+  };
+
+  const removeRole = (id: string) => {
+    setConfig((prev) => ({
+      ...prev,
+      userRoles: prev.userRoles.filter((role) => role.id !== id),
+    }));
+    setHasChanges(true);
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "general":
