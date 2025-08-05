@@ -451,7 +451,7 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
               {directReports.map(report => (
                 <div key={report.id} className="flex flex-col items-center">
                   {/* Vertical line up */}
-                  <div className="w-0.5 h-6 bg-muted-foreground/30" />
+                  <div className="w-0.5 h-4 bg-muted-foreground/30" />
                   {renderChartNode(report, depth + 1)}
                 </div>
               ))}
