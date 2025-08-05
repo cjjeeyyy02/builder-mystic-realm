@@ -744,102 +744,137 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Custom Fields</h3>
-              <Button onClick={addCustomField} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Custom Field
-              </Button>
+              <Dialog open={showAddFieldModal} onOpenChange={setShowAddFieldModal}>
+                <DialogTrigger asChild>
+                  <Button onClick={addCustomField} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Field
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Add Custom Field</DialogTitle>
+                    <DialogDescription>
+                      Create a new custom field for employee profiles.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Field Name <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        value={newField.name}
+                        onChange={(e) => setNewField(prev => ({ ...prev, name: e.target.value }))}
+                        placeholder="Enter field name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Field Type <span className="text-red-500">*</span>
+                      </label>
+                      <Select
+                        value={newField.type}
+                        onValueChange={(value) => setNewField(prev => ({ ...prev, type: value }))}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="text">Text</SelectItem>
+                          <SelectItem value="number">Number</SelectItem>
+                          <SelectItem value="email">Email</SelectItem>
+                          <SelectItem value="date">Date</SelectItem>
+                          <SelectItem value="dropdown">Dropdown</SelectItem>
+                          <SelectItem value="checkbox">Checkbox</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Section <span className="text-red-500">*</span>
+                      </label>
+                      <Select
+                        value={newField.section}
+                        onValueChange={(value) => setNewField(prev => ({ ...prev, section: value }))}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Personal Info">Personal Info</SelectItem>
+                          <SelectItem value="Work Details">Work Details</SelectItem>
+                          <SelectItem value="Security">Security</SelectItem>
+                          <SelectItem value="Additional">Additional</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id="new-field-required"
+                        checked={newField.required}
+                        onChange={(e) => setNewField(prev => ({ ...prev, required: e.target.checked }))}
+                      />
+                      <label htmlFor="new-field-required" className="text-sm font-medium">
+                        Required Field
+                      </label>
+                    </div>
+                  </div>
+                  <DialogFooter className="flex gap-2">
+                    <Button variant="outline" onClick={handleCancelAddField}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleAddField}
+                      disabled={!newField.name.trim()}
+                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                    >
+                      Add Field
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
-            
+
             <div className="space-y-4">
               {config.customFields.map((field, index) => (
                 <Card key={field.id} className="border border-border">
                   <CardContent className="p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Field Name <span className="text-red-500">*</span>
-                        </label>
-                        <Input
-                          value={field.name}
-                          onChange={(e) => {
-                            const updatedFields = [...config.customFields];
-                            updatedFields[index].name = e.target.value;
-                            setConfig(prev => ({ ...prev, customFields: updatedFields }));
-                            setHasChanges(true);
-                          }}
-                          placeholder="Enter field name"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Field Type <span className="text-red-500">*</span>
-                        </label>
-                        <Select
-                          value={field.type}
-                          onValueChange={(value) => {
-                            const updatedFields = [...config.customFields];
-                            updatedFields[index].type = value;
-                            setConfig(prev => ({ ...prev, customFields: updatedFields }));
-                            setHasChanges(true);
-                          }}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="text">Text</SelectItem>
-                            <SelectItem value="number">Number</SelectItem>
-                            <SelectItem value="email">Email</SelectItem>
-                            <SelectItem value="date">Date</SelectItem>
-                            <SelectItem value="dropdown">Dropdown</SelectItem>
-                            <SelectItem value="checkbox">Checkbox</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Section <span className="text-red-500">*</span>
-                        </label>
-                        <Select
-                          value={field.section}
-                          onValueChange={(value) => {
-                            const updatedFields = [...config.customFields];
-                            updatedFields[index].section = value;
-                            setConfig(prev => ({ ...prev, customFields: updatedFields }));
-                            setHasChanges(true);
-                          }}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Personal Info">Personal Info</SelectItem>
-                            <SelectItem value="Work Details">Work Details</SelectItem>
-                            <SelectItem value="Security">Security</SelectItem>
-                            <SelectItem value="Additional">Additional</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="checkbox"
-                            id={`required-${field.id}`}
-                            checked={field.required}
-                            onChange={(e) => {
-                              const updatedFields = [...config.customFields];
-                              updatedFields[index].required = e.target.checked;
-                              setConfig(prev => ({ ...prev, customFields: updatedFields }));
-                              setHasChanges(true);
-                            }}
-                          />
-                          <label htmlFor={`required-${field.id}`} className="text-sm font-medium">
-                            Required
-                          </label>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 space-y-2">
+                        <div className="flex items-center gap-3">
+                          <h4 className="font-semibold text-lg">{field.name}</h4>
+                          <Badge variant="outline" className="text-xs">
+                            {field.type}
+                          </Badge>
+                          <Badge variant={field.required ? "default" : "secondary"} className="text-xs">
+                            {field.required ? "Required" : "Optional"}
+                          </Badge>
                         </div>
+                        <p className="text-sm text-gray-600">Section: {field.section}</p>
+                        {field.options && (
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {field.options.map((option, idx) => (
+                              <Badge key={idx} variant="outline" className="text-xs">
+                                {option}
+                              </Badge>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                        >
+                          <Edit className="w-3 h-3 mr-1" />
+                          Edit
+                        </Button>
                         <Button
                           variant="outline"
                           size="sm"
@@ -854,6 +889,20 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                 </Card>
               ))}
             </div>
+
+            {config.customFields.length === 0 && (
+              <Card className="border-2 border-dashed border-gray-300">
+                <CardContent className="p-8 text-center">
+                  <Database className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold text-gray-600 mb-2">No Custom Fields</h4>
+                  <p className="text-gray-500 mb-4">Add custom fields to collect additional employee information.</p>
+                  <Button onClick={addCustomField} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Your First Field
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
           </div>
         );
 
