@@ -398,17 +398,17 @@ export default function OrganizationalChart({ onBack }: OrganizationalChartProps
       <div key={employee.id} className="flex flex-col items-center">
         {/* Employee box */}
         <Card className="border-2 border-primary/30 bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 min-w-[140px] max-w-[140px] group cursor-pointer">
-          <CardContent className="p-5 text-center relative">
-            <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-primary/20">
-              <User className="w-7 h-7 text-primary" />
+          <CardContent className="p-3 text-center relative">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-2 border-2 border-primary/20">
+              <User className="w-5 h-5 text-primary" />
             </div>
-            <h4 className="font-bold text-sm text-foreground mb-1 line-clamp-2">
+            <h4 className="font-bold text-xs text-foreground mb-1 line-clamp-2">
               {employee.fullName}
             </h4>
-            <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
+            <p className="text-xs text-muted-foreground mb-1 line-clamp-2">
               {employee.position}
             </p>
-            <Badge variant="outline" className={`text-xs ${getDepartmentColor(employee.department)} mb-2`}>
+            <Badge variant="outline" className={`text-xs ${getDepartmentColor(employee.department)} mb-1 scale-90`}>
               {employee.department}
             </Badge>
 
