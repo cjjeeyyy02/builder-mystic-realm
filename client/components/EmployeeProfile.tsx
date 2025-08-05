@@ -336,7 +336,7 @@ export default function EmployeeProfile({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-900 mb-2">
                     First Name
                   </label>
                   {isEditing ? (
