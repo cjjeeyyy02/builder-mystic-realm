@@ -113,11 +113,11 @@ const defaultConfig: ConfigurationState = {
   },
   notifications: {
     emailNotifications: true,
-    browserNotifications: true,
-    smsNotifications: false,
-    documentExpiry: true,
-    performanceReminders: true,
-    systemMaintenance: true,
+    newEmployeeAlerts: true,
+    documentUploadAlerts: true,
+    systemMaintenanceAlerts: true,
+    weeklyReports: false,
+    monthlyReports: true,
   },
   customFields: [
     {
