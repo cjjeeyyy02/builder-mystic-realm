@@ -1238,7 +1238,7 @@ export default function SystemConfiguration({
                       <label className="block text-sm font-semibold text-gray-700 mb-3">
                         Permissions <span className="text-red-500">*</span>
                       </label>
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {[
                           { id: "read", label: "Read Access", desc: "View data and content" },
                           { id: "write", label: "Write Access", desc: "Create and edit content" },
