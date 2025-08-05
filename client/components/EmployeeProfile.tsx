@@ -1785,19 +1785,7 @@ export default function EmployeeProfile({
               ))}
             </div>
 
-            {/* Helper Text */}
-            <Card className="border border-border bg-muted/30">
-              <CardContent className="p-4">
-                <h4 className="font-semibold mb-2">Document Actions</h4>
-                <div className="text-sm text-muted-foreground space-y-1">
-                  <p><strong>Preview Button:</strong> Indicates whether the document can be previewed directly in the interface.</p>
-                  <p><strong>Download Button:</strong> Indicates whether the document can be downloaded.</p>
-                  <p><strong>Share Button:</strong> Indicates whether the document can be shared with others.</p>
-                  <p><strong>Delete Icon:</strong> Allows users to remove that specific file.</p>
-                  <p><strong>Upload Document Button:</strong> Allows users to upload a new document to the system.</p>
-                </div>
-              </CardContent>
-            </Card>
+
           </div>
         );
 
