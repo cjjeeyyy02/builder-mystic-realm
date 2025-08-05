@@ -38,6 +38,8 @@ import {
   Users,
   FolderOpen,
   Settings,
+  Upload,
+  Download,
 } from "lucide-react";
 
 interface Employee {
