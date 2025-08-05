@@ -38,8 +38,6 @@ import {
   ZoomIn,
   ZoomOut,
   RotateCcw,
-  Maximize,
-  Minimize,
 } from "lucide-react";
 
 interface OrgEmployee {
