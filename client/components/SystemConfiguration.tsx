@@ -537,15 +537,23 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Notification Settings</h3>
-            
+
             <Card className="border border-border">
               <CardContent className="p-6">
-                <h4 className="font-semibold mb-4">Notification Channels</h4>
+                <h4 className="font-semibold mb-4 flex items-center gap-2">
+                  <Bell className="w-5 h-5" />
+                  Email Notification Settings
+                </h4>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  {/* Enable Email Notifications */}
+                  <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Email Notifications</label>
-                      <p className="text-xs text-gray-500 mt-1">Send notifications via email</p>
+                      <label className="text-sm font-semibold text-gray-700">
+                        Enable Email Notifications
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Master switch for all email notifications
+                      </p>
                     </div>
                     <Switch
                       checked={config.notifications.emailNotifications}
@@ -553,25 +561,54 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  {/* New Employee Alerts */}
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Browser Notifications</label>
-                      <p className="text-xs text-gray-500 mt-1">Show notifications in browser</p>
+                      <label className="text-sm font-semibold text-gray-700">
+                        New Employee Alerts
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Notify when new employees are added to the system
+                      </p>
                     </div>
                     <Switch
-                      checked={config.notifications.browserNotifications}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "browserNotifications", checked)}
+                      checked={config.notifications.newEmployeeAlerts}
+                      onCheckedChange={(checked) => handleConfigChange("notifications", "newEmployeeAlerts", checked)}
+                      disabled={!config.notifications.emailNotifications}
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  {/* Document Upload Alerts */}
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">SMS Notifications</label>
-                      <p className="text-xs text-gray-500 mt-1">Send critical notifications via SMS</p>
+                      <label className="text-sm font-semibold text-gray-700">
+                        Document Upload Alerts
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Notify when documents are uploaded or updated
+                      </p>
                     </div>
                     <Switch
-                      checked={config.notifications.smsNotifications}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "smsNotifications", checked)}
+                      checked={config.notifications.documentUploadAlerts}
+                      onCheckedChange={(checked) => handleConfigChange("notifications", "documentUploadAlerts", checked)}
+                      disabled={!config.notifications.emailNotifications}
+                    />
+                  </div>
+
+                  {/* System Maintenance Alerts */}
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                    <div>
+                      <label className="text-sm font-semibold text-gray-700">
+                        System Maintenance Alerts
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Notify about scheduled system maintenance and downtime
+                      </p>
+                    </div>
+                    <Switch
+                      checked={config.notifications.systemMaintenanceAlerts}
+                      onCheckedChange={(checked) => handleConfigChange("notifications", "systemMaintenanceAlerts", checked)}
+                      disabled={!config.notifications.emailNotifications}
                     />
                   </div>
                 </div>
@@ -580,39 +617,76 @@ export default function SystemConfiguration({ onBack }: SystemConfigurationProps
 
             <Card className="border border-border">
               <CardContent className="p-6">
-                <h4 className="font-semibold mb-4">Notification Types</h4>
+                <h4 className="font-semibold mb-4 flex items-center gap-2">
+                  <Info className="w-5 h-5" />
+                  Automated Reports
+                </h4>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  {/* Weekly Reports */}
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Document Expiry Alerts</label>
-                      <p className="text-xs text-gray-500 mt-1">Notify when documents are expiring</p>
+                      <label className="text-sm font-semibold text-gray-700">
+                        Weekly Reports
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Send weekly summary reports every Monday
+                      </p>
                     </div>
                     <Switch
-                      checked={config.notifications.documentExpiry}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "documentExpiry", checked)}
+                      checked={config.notifications.weeklyReports}
+                      onCheckedChange={(checked) => handleConfigChange("notifications", "weeklyReports", checked)}
+                      disabled={!config.notifications.emailNotifications}
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  {/* Monthly Reports */}
+                  <div className="flex items-center justify-between p-4 border rounded-lg">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Performance Review Reminders</label>
-                      <p className="text-xs text-gray-500 mt-1">Remind about upcoming performance reviews</p>
+                      <label className="text-sm font-semibold text-gray-700">
+                        Monthly Reports
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Send comprehensive monthly reports on the 1st of each month
+                      </p>
                     </div>
                     <Switch
-                      checked={config.notifications.performanceReminders}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "performanceReminders", checked)}
+                      checked={config.notifications.monthlyReports}
+                      onCheckedChange={(checked) => handleConfigChange("notifications", "monthlyReports", checked)}
+                      disabled={!config.notifications.emailNotifications}
                     />
                   </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <label className="text-sm font-semibold text-gray-700">System Maintenance Alerts</label>
-                      <p className="text-xs text-gray-500 mt-1">Notify about scheduled maintenance</p>
-                    </div>
-                    <Switch
-                      checked={config.notifications.systemMaintenance}
-                      onCheckedChange={(checked) => handleConfigChange("notifications", "systemMaintenance", checked)}
-                    />
+            {/* Notification Status Summary */}
+            <Card className="border border-border bg-muted/30">
+              <CardContent className="p-6">
+                <h4 className="font-semibold mb-4">Current Notification Status</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.emailNotifications ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                    <span>Email: {config.notifications.emailNotifications ? 'Enabled' : 'Disabled'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.newEmployeeAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                    <span>Employee Alerts: {config.notifications.newEmployeeAlerts ? 'Active' : 'Inactive'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.documentUploadAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                    <span>Document Alerts: {config.notifications.documentUploadAlerts ? 'Active' : 'Inactive'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.systemMaintenanceAlerts ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                    <span>Maintenance Alerts: {config.notifications.systemMaintenanceAlerts ? 'Active' : 'Inactive'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.weeklyReports ? 'bg-blue-500' : 'bg-gray-400'}`}></div>
+                    <span>Weekly Reports: {config.notifications.weeklyReports ? 'Enabled' : 'Disabled'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${config.notifications.monthlyReports ? 'bg-blue-500' : 'bg-gray-400'}`}></div>
+                    <span>Monthly Reports: {config.notifications.monthlyReports ? 'Enabled' : 'Disabled'}</span>
                   </div>
                 </div>
               </CardContent>
