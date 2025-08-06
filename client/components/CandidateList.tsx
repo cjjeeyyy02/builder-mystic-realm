@@ -159,83 +159,128 @@ function getStatusIcon(status: string) {
   }
 }
 
-export default function CandidateList() {
+export default function CandidateList({ searchQuery = "", selectedStage = "all" }: CandidateListProps) {
+  // Filter candidates based on search query and selected stage
+  const filteredCandidates = candidates.filter((candidate) => {
+    const matchesSearch = searchQuery === "" ||
+      candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      candidate.position.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      candidate.email.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStage = selectedStage === "all" || candidate.stage === selectedStage;
+
+    return matchesSearch && matchesStage;
+  });
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {candidates.map((candidate) => (
-        <Card
-          key={candidate.id}
-          className={`group hover:shadow-lg transition-all duration-300 ${
-            candidate.isSelected
-              ? "ring-2 ring-primary shadow-lg"
-              : "hover:border-primary/30"
-          }`}
-        >
-          <CardContent className="p-5">
-            {/* Header Section */}
-            <div className="flex items-center gap-3 mb-4">
-              <Avatar className="h-10 w-10">
-                <AvatarFallback className="bg-primary/10 text-primary font-medium">
-                  {candidate.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </AvatarFallback>
-              </Avatar>
+    <div className="space-y-4">
+      {/* Filter Results Summary */}
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-gray-600">
+          Showing {filteredCandidates.length} of {candidates.length} candidates
+          {selectedStage !== "all" && ` in ${selectedStage} stage`}
+          {searchQuery && ` matching "${searchQuery}"`}
+        </p>
+        {selectedStage !== "all" && (
+          <Badge variant="outline" className="text-xs">
+            {selectedStage.charAt(0).toUpperCase() + selectedStage.slice(1)} Stage
+          </Badge>
+        )}
+      </div>
 
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-foreground text-sm leading-tight">
-                  {candidate.name}
-                </h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {candidate.position}
-                </p>
+      {/* Candidates Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
+          <Card
+            key={candidate.id}
+            className={`group hover:shadow-lg transition-all duration-300 ${
+              candidate.isSelected
+                ? "ring-2 ring-primary shadow-lg"
+                : "hover:border-primary/30"
+            }`}
+          >
+            <CardContent className="p-5">
+              {/* Header Section */}
+              <div className="flex items-center gap-3 mb-4">
+                <Avatar className="h-10 w-10">
+                  <AvatarFallback className="bg-primary/10 text-primary font-medium">
+                    {candidate.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-foreground text-sm leading-tight">
+                    {candidate.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {candidate.position}
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-end gap-1">
+                  <Badge
+                    variant={getStatusVariant(candidate.status)}
+                    className="text-xs"
+                  >
+                    {getStatusIcon(candidate.status)}
+                  </Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {candidate.stage}
+                  </Badge>
+                </div>
               </div>
 
-              <Badge
-                variant={getStatusVariant(candidate.status)}
-                className="text-xs"
-              >
-                {getStatusIcon(candidate.status)}
-              </Badge>
+              {/* Info Section */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <MapPin className="w-3 h-3" />
+                  <span>{candidate.companyLocation}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Calendar className="w-3 h-3" />
+                  <span>Applied {candidate.appliedDate}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <FileText className="w-3 h-3" />
+                  <span>Application Start: {candidate.applicationStart}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <FileText className="w-3 h-3" />
+                  <span>Application End: {candidate.applicationEnd}</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs h-8 font-medium"
+                >
+                  {candidate.workType}
+                </Button>
+                <Button size="sm" className="text-xs h-8 font-medium">
+                  View Profile
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )) : (
+          <div className="col-span-full flex flex-col items-center justify-center py-12 text-center">
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+              <FileText className="w-8 h-8 text-gray-400" />
             </div>
-
-            {/* Info Section */}
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <MapPin className="w-3 h-3" />
-                <span>{candidate.companyLocation}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Calendar className="w-3 h-3" />
-                <span>Applied {candidate.appliedDate}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <FileText className="w-3 h-3" />
-                <span>Application Start: {candidate.applicationStart}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <FileText className="w-3 h-3" />
-                <span>Application End: {candidate.applicationEnd}</span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs h-8 font-medium"
-              >
-                {candidate.workType}
-              </Button>
-              <Button size="sm" className="text-xs h-8 font-medium">
-                View Profile
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+            <h3 className="text-lg font-semibold text-gray-600 mb-2">No candidates found</h3>
+            <p className="text-gray-500 max-w-sm">
+              {searchQuery ? `No candidates match "${searchQuery}"` : `No candidates in ${selectedStage} stage`}
+              {searchQuery && selectedStage !== "all" && ` in ${selectedStage} stage`}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
