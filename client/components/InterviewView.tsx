@@ -976,13 +976,13 @@ export default function InterviewView() {
                         key={round.id}
                         className="hover:bg-muted/20 transition-colors border-b border-border/40"
                       >
-                        <TableCell className="py-6">
-                          <div className="font-medium text-foreground">
+                        <TableCell className="py-4">
+                          <div className="font-medium text-foreground text-xs">
                             {round.roundHeader}
                           </div>
                         </TableCell>
-                        <TableCell className="py-6">
-                          <div className="font-medium text-foreground">
+                        <TableCell className="py-4">
+                          <div className="font-medium text-foreground text-xs">
                             {round.roundName}
                           </div>
                           {round.testDescription && (
@@ -991,13 +991,13 @@ export default function InterviewView() {
                             </div>
                           )}
                         </TableCell>
-                        <TableCell className="py-6">
+                        <TableCell className="py-4">
                           <Badge variant="outline" className="text-xs">
                             {round.interviewMode.replace('-', ' ')}
                           </Badge>
                         </TableCell>
-                        <TableCell className="py-6">
-                          <div className="text-sm">
+                        <TableCell className="py-4">
+                          <div className="text-xs">
                             <div className="font-medium">{round.scheduledDate}</div>
                             <div className="text-gray-500">{round.scheduledTime}</div>
                           </div>
