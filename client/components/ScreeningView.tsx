@@ -175,6 +175,8 @@ function getStatusVariant(
       return "destructive";
     case "queue":
       return "outline";
+    case "pending":
+      return "secondary";
     default:
       return "secondary";
   }
