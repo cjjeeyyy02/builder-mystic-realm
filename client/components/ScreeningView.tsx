@@ -194,12 +194,29 @@ function getStatusIcon(status: string) {
 }
 
 export default function ScreeningView() {
+  const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const [screeningNotes, setScreeningNotes] = useState("");
+
   const handleStatusChange = (
     candidateId: string,
     newStatus: "approved" | "reject" | "queue",
   ) => {
     console.log(`Changing candidate ${candidateId} status to ${newStatus}`);
     // Here you would implement the actual status change logic
+  };
+
+  const handleViewResume = (candidate: ScreeningCandidate) => {
+    setSelectedCandidate(candidate);
+    setShowResumeModal(true);
+  };
+
+  const handleDownloadResume = (candidate: ScreeningCandidate) => {
+    if (candidate.resumeUrl) {
+      // Simulate download
+      console.log(`Downloading resume for ${candidate.name}`);
+      // In a real implementation, you would trigger an actual download
+    }
   };
 
   return (
