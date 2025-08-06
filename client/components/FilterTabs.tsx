@@ -178,7 +178,264 @@ export default function FilterTabs() {
             </SelectContent>
           </Select>
 
-          <Button>Plug and Hire</Button>
+          <Dialog open={showPlugAndHireModal} onOpenChange={setShowPlugAndHireModal}>
+            <DialogTrigger asChild>
+              <Button onClick={handlePlugAndHire} className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
+                <Download className="w-4 h-4 mr-2" />
+                Plug and Hire
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Download className="w-5 h-5" />
+                  Plug and Hire - Auto Sync Candidates
+                </DialogTitle>
+                <DialogDescription>
+                  Automatically import candidate profiles from multiple job platforms and career pages into your EMS system.
+                </DialogDescription>
+              </DialogHeader>
+
+              {!syncResults ? (
+                <div className="space-y-6">
+                  {/* Source Selection */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Select Job Sources</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {jobSources.map((source) => {
+                        const Icon = source.icon;
+                        const isSelected = selectedSources.includes(source.id);
+                        return (
+                          <Card
+                            key={source.id}
+                            className={`cursor-pointer transition-all ${
+                              isSelected ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
+                            } ${!source.connected ? "opacity-60" : ""}`}
+                            onClick={() => source.connected && toggleSource(source.id)}
+                          >
+                            <CardContent className="p-4">
+                              <div className="flex items-start gap-3">
+                                <div className={`p-2 rounded-lg ${isSelected ? "bg-blue-200" : "bg-gray-100"}`}>
+                                  <Icon className={`w-5 h-5 ${isSelected ? "text-blue-700" : "text-gray-600"}`} />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <h4 className="font-semibold">{source.name}</h4>
+                                    <Badge
+                                      variant={source.connected ? "default" : "secondary"}
+                                      className="text-xs"
+                                    >
+                                      {source.connected ? "Connected" : "Not Connected"}
+                                    </Badge>
+                                  </div>
+                                  <p className="text-sm text-gray-600 mb-2">{source.description}</p>
+                                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                                    <Users className="w-3 h-3" />
+                                    <span>{source.candidateCount} candidates available</span>
+                                  </div>
+                                </div>
+                                {source.connected && (
+                                  <input
+                                    type="checkbox"
+                                    checked={isSelected}
+                                    onChange={() => toggleSource(source.id)}
+                                    className="mt-1"
+                                  />
+                                )}
+                              </div>
+                              {!source.connected && (
+                                <div className="mt-3 pt-3 border-t">
+                                  <Button variant="outline" size="sm" className="w-full">
+                                    <Link className="w-3 h-3 mr-1" />
+                                    Connect Account
+                                  </Button>
+                                </div>
+                              )}
+                            </CardContent>
+                          </Card>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Field Mapping Preview */}
+                  {selectedSources.length > 0 && (
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4">Field Mapping Preview</h3>
+                      <Card>
+                        <CardContent className="p-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <h4 className="font-medium mb-2">Source Fields</h4>
+                              <ul className="space-y-1 text-gray-600">
+                                <li>• Full Name</li>
+                                <li>• Email Address</li>
+                                <li>• Phone Number</li>
+                                <li>• Resume/CV</li>
+                                <li>• Location</li>
+                                <li>• Experience Level</li>
+                              </ul>
+                            </div>
+                            <div className="flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                  <MapPin className="w-4 h-4 text-blue-600" />
+                                </div>
+                                <span className="text-xs text-gray-500">Auto Mapping</span>
+                              </div>
+                            </div>
+                            <div>
+                              <h4 className="font-medium mb-2">EMS Fields</h4>
+                              <ul className="space-y-1 text-gray-600">
+                                <li>• Employee Name</li>
+                                <li>• Contact Email</li>
+                                <li>• Contact Number</li>
+                                <li>• Document Upload</li>
+                                <li>• Work Location</li>
+                                <li>• Position Level</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  )}
+
+                  {/* Sync Settings */}
+                  {selectedSources.length > 0 && (
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4">Sync Settings</h3>
+                      <Card>
+                        <CardContent className="p-4 space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <label className="font-medium">Skip Duplicates</label>
+                              <p className="text-sm text-gray-600">Avoid importing candidates that already exist in the system</p>
+                            </div>
+                            <Switch defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <label className="font-medium">Auto-assign Application Stage</label>
+                              <p className="text-sm text-gray-600">Automatically set imported candidates to "Screening" stage</p>
+                            </div>
+                            <Switch defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <label className="font-medium">Send Welcome Email</label>
+                              <p className="text-sm text-gray-600">Automatically send welcome emails to new candidates</p>
+                            </div>
+                            <Switch />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                /* Sync Results */
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">Sync Completed Successfully!</h3>
+                    <p className="text-gray-600">Candidate profiles have been imported and mapped to your EMS system.</p>
+                  </div>
+
+                  {/* Results Summary */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold text-blue-600">{syncResults.totalCandidates}</div>
+                        <div className="text-sm text-gray-600">Total Processed</div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold text-green-600">{syncResults.newCandidates}</div>
+                        <div className="text-sm text-gray-600">New Candidates</div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold text-orange-600">{syncResults.updatedProfiles}</div>
+                        <div className="text-sm text-gray-600">Updated Profiles</div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold text-gray-600">{syncResults.duplicatesSkipped}</div>
+                        <div className="text-sm text-gray-600">Duplicates Skipped</div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Source Breakdown */}
+                  <div>
+                    <h4 className="font-semibold mb-3">Import Breakdown by Source</h4>
+                    <div className="space-y-3">
+                      {syncResults.sources.map((source: any, index: number) => (
+                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <span className="font-medium">{source.name}</span>
+                          <span className="text-sm text-gray-600">
+                            {source.imported} of {source.total} candidates imported
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Sync Progress */}
+              {isSyncing && (
+                <div className="space-y-4">
+                  <div className="text-center">
+                    <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-blue-600" />
+                    <p className="font-medium">Syncing candidate profiles...</p>
+                    <p className="text-sm text-gray-600">This may take a few minutes depending on the number of candidates.</p>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>Progress</span>
+                      <span>{syncProgress}%</span>
+                    </div>
+                    <Progress value={syncProgress} className="h-2" />
+                  </div>
+                </div>
+              )}
+
+              <DialogFooter className="flex gap-2">
+                {!syncResults && !isSyncing && (
+                  <>
+                    <Button variant="outline" onClick={() => setShowPlugAndHireModal(false)}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={startSync}
+                      disabled={selectedSources.length === 0}
+                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Start Sync ({selectedSources.length} sources)
+                    </Button>
+                  </>
+                )}
+                {syncResults && (
+                  <>
+                    <Button variant="outline" onClick={resetSync}>
+                      Sync More Sources
+                    </Button>
+                    <Button onClick={() => setShowPlugAndHireModal(false)}>
+                      Close
+                    </Button>
+                  </>
+                )}
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
 
