@@ -49,6 +49,20 @@ interface Candidate {
   stage: "screening" | "interview" | "activation" | "hired";
   isSelected?: boolean;
   avatar?: string;
+  // Enhanced profile information
+  summary?: string;
+  experience?: string;
+  education?: string;
+  skills?: string[];
+  certifications?: string[];
+  previousCompany?: string;
+  salaryExpectation?: string;
+  availability?: string;
+  linkedinUrl?: string;
+  resumeUrl?: string;
+  coverLetterUrl?: string;
+  portfolioUrl?: string;
+  rating?: number;
 }
 
 interface CandidateListProps {
