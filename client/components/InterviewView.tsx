@@ -525,462 +525,683 @@ export default function InterviewView() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Summary Stats */}
-      {activeTab !== "roundroom" && (activeTab === "ongoing" ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-blue-600">
-              {interviewCandidates.filter(c => c.status === "in-progress").length}
-            </div>
-            <div className="text-sm text-muted-foreground">In Progress</div>
-          </Card>
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-emerald-600">
-              {interviewCandidates.filter(c => c.status === "completed").length}
-            </div>
-            <div className="text-sm text-muted-foreground">Completed</div>
-          </Card>
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-amber-600">
-              {interviewCandidates.filter(c => c.status === "pending").length}
-            </div>
-            <div className="text-sm text-muted-foreground">Pending</div>
-          </Card>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-[#0065F8]">
-              {upcomingInterviews.length}
-            </div>
-            <div className="text-sm text-muted-foreground">Total Upcoming</div>
-          </Card>
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-orange-600">
-              {upcomingInterviews.filter(i => i.department === "Engineering").length}
-            </div>
-            <div className="text-sm text-muted-foreground">Engineering Dept.</div>
-          </Card>
-          <Card className="p-4">
-            <div className="text-2xl font-bold text-purple-600">
-              {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
-            </div>
-            <div className="text-sm text-muted-foreground">Final Rounds</div>
-          </Card>
-        </div>
-      ))}
-
-      {/* Modern Header with Tabs */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1 p-1 bg-muted rounded-lg">
+    <div className="flex gap-6 h-[calc(100vh-200px)]">
+      {/* Left Side Panel */}
+      <div className="w-80 flex-shrink-0 space-y-4">
+        {/* Main Panel Tabs */}
+        <div className="flex flex-col gap-2">
           <Button
-            variant={activeTab === "ongoing" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setActiveTab("ongoing")}
-            className="text-sm font-medium px-6 py-2"
+            variant={activeMainTab === "interview-status" ? "default" : "outline"}
+            className="w-full justify-start"
+            onClick={() => setActiveMainTab("interview-status")}
           >
-            Ongoing Interview
+            <Users className="w-4 h-4 mr-2" />
+            Interview Status
           </Button>
           <Button
-            variant={activeTab === "upcoming" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setActiveTab("upcoming")}
-            className="text-sm font-medium px-6 py-2"
+            variant={activeMainTab === "rounds-room" ? "default" : "outline"}
+            className="w-full justify-start"
+            onClick={() => setActiveMainTab("rounds-room")}
           >
-            Upcoming Interview
-          </Button>
-          <Button
-            variant={activeTab === "roundroom" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setActiveTab("roundroom")}
-            className="text-sm font-medium px-6 py-2"
-          >
-            Round Room
+            <Settings className="w-4 h-4 mr-2" />
+            Rounds Room
           </Button>
         </div>
-        
-        <div className="text-sm text-muted-foreground">
-          {activeTab === "ongoing"
-            ? `${interviewCandidates.length} candidates in process`
-            : activeTab === "upcoming"
-            ? `${upcomingInterviews.length} upcoming interviews`
-            : "Round Management System"
-          }
-        </div>
-      </div>
 
-      {/* Conditional Interview Table */}
-      {activeTab !== "roundroom" && (
-        <Card className="border-0 shadow-sm overflow-hidden">
-        <CardContent className="p-0">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-muted/30 border-b">
-                <TableHead className="w-16 text-center font-semibold text-foreground py-4">
-                  {activeTab === "upcoming" ? "S-No." : "#"}
-                </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
-                  {activeTab === "upcoming" ? "APPLICANT NAME" : "Candidate"}
-                </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
-                  {activeTab === "upcoming" ? "APPLIED POSITION" : "Position"}
-                </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
-                  DEPARTMENT
-                </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
-                  {activeTab === "upcoming" ? "INTERVIEW DATE | TIME" : "Interview Round"}
-                </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
-                  {activeTab === "upcoming" ? "INTERVIEW ROUND" : "Status"}
-                </TableHead>
-                {activeTab === "upcoming" && (
-                  <TableHead className="font-semibold text-foreground py-4">
-                    QUICK UPDATE
-                  </TableHead>
-                )}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {activeTab === "ongoing" ? (
-                interviewCandidates.map((candidate, index) => (
-                  <TableRow
-                    key={candidate.id}
-                    className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                  >
-                    <TableCell className="text-center font-medium text-muted-foreground py-6">
-                      {index + 1}
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                          <span className="text-primary font-medium text-xs">
-                            {candidate.applicantName.split(' ').map(n => n[0]).join('')}
-                          </span>
-                        </div>
-                        <div className="font-semibold text-foreground">
-                          {candidate.applicantName}
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="font-medium text-foreground">
-                        {candidate.appliedPosition}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <Badge
-                        variant="secondary"
-                        className={`font-medium ${getDepartmentColor(candidate.department)}`}
-                      >
-                        {candidate.department}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="text-foreground font-medium">
-                        {candidate.currentRound}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <Badge
-                        variant="outline"
-                        className={`font-medium ${getStatusColor(candidate.status)}`}
-                      >
-                        {candidate.status === "in-progress"
-                          ? "In Progress"
-                          : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                upcomingInterviews.map((interview) => (
-                  <TableRow
-                    key={interview.id}
-                    className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                  >
-                    <TableCell className="text-center font-medium text-foreground py-6">
-                      {interview.sNo}
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="font-medium text-foreground">
-                        {interview.applicantName}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="font-medium text-foreground">
-                        {interview.appliedPosition}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <Badge
-                        variant="secondary"
-                        className={`font-medium ${getDepartmentColor(interview.department)}`}
-                      >
-                        {interview.department}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="text-foreground font-medium">
-                        {interview.interviewDateTime}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <div className="text-foreground font-medium">
-                        {interview.interviewRound}
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-6">
-                      <Button
-                        size="sm"
-                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-3 py-1.5 text-xs h-8"
-                      >
-                        <Mail className="w-3 h-3 mr-1.5" />
-                        SEND EMAIL
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </CardContent>
-        </Card>
-      )}
-
-      {/* Round Room Interface */}
-      {activeTab === "roundroom" && (
-        <div className="space-y-6">
-          {/* Round Type Tabs */}
-          <div className="flex gap-2">
-            <Button
-              variant={activeRoundType === "technical" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setActiveRoundType("technical");
-                setSelectedRound(1);
-              }}
-              className="font-medium"
-            >
-              TECHNICAL
-            </Button>
-            <Button
-              variant={activeRoundType === "nontechnical" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setActiveRoundType("nontechnical");
-                setSelectedRound(1);
-              }}
-              className="font-medium"
-            >
-              NON-TECHNICAL
-            </Button>
-            <Button
-              variant={activeRoundType === "final" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setActiveRoundType("final");
-                setSelectedRound(1);
-              }}
-              className="font-medium"
-            >
-              FINAL
-            </Button>
+        {/* Search Bar */}
+        {activeMainTab === "interview-status" && (
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              placeholder="Search by name, email, job title..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pl-10"
+            />
           </div>
+        )}
 
-          {/* Round Configuration */}
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Side - Round Details */}
-                <div className="space-y-6">
-                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-primary mb-4">ROUND {selectedRound}</h3>
-
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Round Name</label>
-                        <input
-                          type="text"
-                          defaultValue={getRoundContent(activeRoundType, selectedRound).name}
-                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Round Type</label>
-                        <select
-                          value={activeRoundType}
-                          onChange={(e) => setActiveRoundType(e.target.value as any)}
-                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        >
-                          <option value="technical">Technical</option>
-                          <option value="nontechnical">Non-Technical</option>
-                          <option value="final">Final</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Interview Mode</label>
-                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
-                          <option>{getRoundContent(activeRoundType, selectedRound).mode}</option>
-                          <option>Online Assessment</option>
-                          <option>In-Person</option>
-                          <option>Video Call</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Assessment Type</label>
-                        <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20">
-                          <option>{getRoundContent(activeRoundType, selectedRound).assessment}</option>
-                          <option>Written Test</option>
-                          <option>Practical Test</option>
-                          <option>Oral Interview</option>
-                          <option>Portfolio Review</option>
-                          <option>Case Study</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Round Scheduled Date</label>
-                        <input
-                          type="date"
-                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <Button className="bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20">
-                      <Edit3 className="w-4 h-4 mr-2" />
-                      EDIT EXISTING TEMPLATE
-                    </Button>
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                      <CheckCircle className="w-4 h-4 mr-2" />
-                      ROUND SAVED
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Right Side - Round Actions */}
-                <div className="space-y-6">
-                  {/* Quick Actions */}
-                  <div className="flex gap-2 justify-end">
-                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
-                      YES
-                    </Button>
-                    <Button size="sm" className="bg-blue-400 hover:bg-blue-500 text-white">
-                      MAYBE
-                    </Button>
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
-                      NO
-                    </Button>
-                  </div>
-
-                  {/* Confirmation Dialog */}
-                  {showConfirmDialog && (
-                    <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
-                      <h4 className="text-center font-semibold text-blue-800 mb-2">CONFIRMATION</h4>
-                      <p className="text-center text-blue-700 mb-4">Are you sure you want to reject this candidate?</p>
-                      <div className="flex justify-center gap-3">
-                        <Button
-                          size="sm"
-                          className="bg-blue-600 hover:bg-blue-700 text-white"
-                          onClick={() => setShowConfirmDialog(false)}
-                        >
-                          YES
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="bg-blue-500 hover:bg-blue-600 text-white"
-                          onClick={() => setShowConfirmDialog(false)}
-                        >
-                          NO
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Round Management */}
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <h4 className="font-semibold text-foreground">Rounds Management</h4>
-                      <Button
-                        size="sm"
-                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
-                        onClick={() => setShowConfirmDialog(!showConfirmDialog)}
-                      >
-                        EMAIL ROUND
-                      </Button>
-                    </div>
-
-                    {/* Round List */}
-                    <div className="space-y-2">
-                      {[
-                        { number: 1, icon: Clock },
-                        { number: 2, icon: FileText },
-                        { number: 3, icon: Users }
-                      ].map((round) => (
-                        <div
-                          key={round.number}
-                          className={`${selectedRound === round.number ? 'bg-blue-700' : 'bg-blue-600'} text-white px-4 py-2.5 rounded-md flex justify-between items-center text-sm cursor-pointer hover:bg-blue-700 transition-colors`}
-                          onClick={() => setSelectedRound(round.number)}
-                        >
-                          <div className="flex items-center gap-2">
-                            <round.icon className="w-4 h-4" />
-                            <span className="font-medium">ROUND {round.number}</span>
-                            <span className="text-blue-200 text-xs hidden sm:inline">
-                              - {getRoundContent(activeRoundType, round.number).name}
-                            </span>
-                          </div>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="text-white hover:bg-blue-800 h-7 w-7 p-0"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedRound(round.number);
-                            }}
-                          >
-                            <Edit3 className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-
-                    <Button className="w-full bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200">
-                      <Plus className="w-4 h-4 mr-2" />
-                      ADD NEW ROUND
-                    </Button>
-                  </div>
-
-                  {/* Reschedule Button */}
-                  <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    RESCHEDULE ROUND
+        {/* Rounds Room Configuration Panel */}
+        {activeMainTab === "rounds-room" && (
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-semibold mb-4">Round Categories</h3>
+              <div className="space-y-2">
+                {adminConfig.technical.enabled && (
+                  <Button
+                    variant={activeRoundType === "technical" ? "default" : "outline"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveRoundType("technical")}
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    {adminConfig.technical.name}
                   </Button>
-                </div>
+                )}
+                {adminConfig.nonTechnical.enabled && (
+                  <Button
+                    variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveRoundType("non-technical")}
+                  >
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    {adminConfig.nonTechnical.name}
+                  </Button>
+                )}
+                {adminConfig.final.enabled && (
+                  <Button
+                    variant={activeRoundType === "final" ? "default" : "outline"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveRoundType("final")}
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    {adminConfig.final.name}
+                  </Button>
+                )}
               </div>
 
-              {/* Bottom Action Buttons */}
-              <div className="flex justify-center gap-6 mt-8 pt-6 border-t border-border">
-                <Button className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-3">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  APPROVE
-                </Button>
-                <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                  <XCircle className="w-5 h-5 mr-2" />
-                  REJECT
-                </Button>
+              <Button
+                className="w-full mt-4 bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                onClick={() => {
+                  resetForm();
+                  setShowRoundModal(true);
+                }}
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add New Round
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Rounds List for Current Type */}
+        {activeMainTab === "rounds-room" && (
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-semibold mb-4">
+                {adminConfig[activeRoundType]?.name} Rounds
+              </h3>
+              <div className="space-y-2">
+                {getFilteredRounds().map((round) => (
+                  <div
+                    key={round.id}
+                    className="p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-sm">{round.roundHeader}</span>
+                        <Badge
+                          variant={round.status === "completed" ? "default" : "secondary"}
+                          className="text-xs"
+                        >
+                          {round.status === "completed" ? (
+                            <CheckCircle className="w-3 h-3 mr-1" />
+                          ) : (
+                            <Clock className="w-3 h-3 mr-1" />
+                          )}
+                          {round.status}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleEditRound(round)}
+                          className="h-6 w-6 p-0"
+                        >
+                          <Edit3 className="w-3 h-3" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleDeleteRound(round.id)}
+                          className="h-6 w-6 p-0 text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 mb-2">{round.roundName}</p>
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <span>{round.scheduledDate} at {round.scheduledTime}</span>
+                      <span>{round.candidates.length} candidates</span>
+                    </div>
+                  </div>
+                ))}
+
+                {getFilteredRounds().length === 0 && (
+                  <div className="text-center py-6 text-gray-500">
+                    <Clock className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">No rounds created yet</p>
+                    <p className="text-xs">Click "Add New Round" to get started</p>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 space-y-6 overflow-y-auto">
+        {activeMainTab === "interview-status" && (
+          <>
+            {/* Interview Status Header with Tabs */}
+            <div className="flex items-center justify-between">
+              <div className="flex gap-1 p-1 bg-muted rounded-lg">
+                <Button
+                  variant={activeInterviewTab === "ongoing" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveInterviewTab("ongoing")}
+                  className="text-sm font-medium px-6 py-2"
+                >
+                  Ongoing Interview
+                </Button>
+                <Button
+                  variant={activeInterviewTab === "upcoming" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveInterviewTab("upcoming")}
+                  className="text-sm font-medium px-6 py-2"
+                >
+                  Upcoming Interview
+                </Button>
+              </div>
+
+              <div className="text-sm text-muted-foreground">
+                {filteredCandidates.length} candidate{filteredCandidates.length !== 1 ? 's' : ''} found
+              </div>
+            </div>
+
+            {/* Summary Stats */}
+            {activeInterviewTab === "ongoing" ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-blue-600">
+                    {filteredCandidates.filter(c => c.status === "in-progress").length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">In Progress</div>
+                </Card>
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-emerald-600">
+                    {filteredCandidates.filter(c => c.status === "completed").length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Completed</div>
+                </Card>
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-amber-600">
+                    {filteredCandidates.filter(c => c.status === "pending").length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Pending</div>
+                </Card>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-[#0065F8]">
+                    {upcomingInterviews.length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Total Upcoming</div>
+                </Card>
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-orange-600">
+                    {upcomingInterviews.filter(i => i.department === "Engineering").length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Engineering Dept.</div>
+                </Card>
+                <Card className="p-4">
+                  <div className="text-2xl font-bold text-purple-600">
+                    {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Final Rounds</div>
+                </Card>
+              </div>
+            )}
+
+            {/* Interview Table */}
+            <Card className="border-0 shadow-sm overflow-hidden">
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-muted/30 border-b">
+                      <TableHead className="w-16 text-center font-semibold text-foreground py-4">
+                        {activeInterviewTab === "upcoming" ? "S-No." : "#"}
+                      </TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">
+                        CANDIDATE NAME
+                      </TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">
+                        POSITION
+                      </TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">
+                        DEPARTMENT
+                      </TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">
+                        {activeInterviewTab === "upcoming" ? "INTERVIEW DATE | TIME" : "Interview Round"}
+                      </TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">
+                        {activeInterviewTab === "upcoming" ? "INTERVIEW ROUND" : "Status"}
+                      </TableHead>
+                      {activeInterviewTab === "upcoming" && (
+                        <TableHead className="font-semibold text-foreground py-4">
+                          QUICK UPDATE
+                        </TableHead>
+                      )}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {activeInterviewTab === "ongoing" ? (
+                      filteredCandidates.map((candidate, index) => (
+                        <TableRow
+                          key={candidate.id}
+                          className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                        >
+                          <TableCell className="text-center font-medium text-muted-foreground py-6">
+                            {index + 1}
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <span className="text-primary font-medium text-xs">
+                                  {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                                </span>
+                              </div>
+                              <div>
+                                <div className="font-semibold text-foreground">
+                                  {candidate.applicantName}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {candidate.email}
+                                </div>
+                              </div>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="font-medium text-foreground">
+                              {candidate.appliedPosition}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <Badge
+                              variant="secondary"
+                              className={`font-medium ${getDepartmentColor(candidate.department)}`}
+                            >
+                              {candidate.department}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="text-foreground font-medium">
+                              {candidate.currentRound}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <Badge
+                              variant="outline"
+                              className={`font-medium ${getStatusColor(candidate.status)}`}
+                            >
+                              {candidate.status === "in-progress"
+                                ? "In Progress"
+                                : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                            </Badge>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      upcomingInterviews.map((interview) => (
+                        <TableRow
+                          key={interview.id}
+                          className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                        >
+                          <TableCell className="text-center font-medium text-foreground py-6">
+                            {interview.sNo}
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="font-medium text-foreground">
+                              {interview.applicantName}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="font-medium text-foreground">
+                              {interview.appliedPosition}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <Badge
+                              variant="secondary"
+                              className={`font-medium ${getDepartmentColor(interview.department)}`}
+                            >
+                              {interview.department}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="text-foreground font-medium">
+                              {interview.interviewDateTime}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <div className="text-foreground font-medium">
+                              {interview.interviewRound}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-6">
+                            <Button
+                              size="sm"
+                              className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-3 py-1.5 text-xs h-8"
+                            >
+                              <Mail className="w-3 h-3 mr-1.5" />
+                              SEND EMAIL
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </>
+        )}
+
+        {/* Rounds Room Main Content */}
+        {activeMainTab === "rounds-room" && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold">
+                {adminConfig[activeRoundType]?.name} Rounds Management
+              </h2>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-sm">
+                  {getFilteredRounds().length} rounds configured
+                </Badge>
+                <Badge
+                  variant="default"
+                  className="text-sm bg-green-100 text-green-700 border-green-200"
+                >
+                  {getFilteredRounds().filter(r => r.status === "completed").length} completed
+                </Badge>
+              </div>
+            </div>
+
+            {/* Rounds Table */}
+            <Card className="border-0 shadow-sm overflow-hidden">
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-muted/30 border-b">
+                      <TableHead className="font-semibold text-foreground py-4">Round Header</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Round Name</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Interview Mode</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Scheduled Date/Time</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Status</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Candidates</TableHead>
+                      <TableHead className="font-semibold text-foreground py-4">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {getFilteredRounds().map((round) => (
+                      <TableRow
+                        key={round.id}
+                        className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                      >
+                        <TableCell className="py-6">
+                          <div className="font-medium text-foreground">
+                            {round.roundHeader}
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <div className="font-medium text-foreground">
+                            {round.roundName}
+                          </div>
+                          {round.testDescription && (
+                            <div className="text-xs text-gray-500 mt-1">
+                              {round.testDescription}
+                            </div>
+                          )}
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <Badge variant="outline" className="text-xs">
+                            {round.interviewMode.replace('-', ' ')}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <div className="text-sm">
+                            <div className="font-medium">{round.scheduledDate}</div>
+                            <div className="text-gray-500">{round.scheduledTime}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => toggleRoundStatus(round.id)}
+                            className="p-0"
+                          >
+                            <Badge
+                              variant={round.status === "completed" ? "default" : "secondary"}
+                              className="text-xs cursor-pointer hover:opacity-80"
+                            >
+                              {round.status === "completed" ? (
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                              ) : (
+                                <Clock className="w-3 h-3 mr-1" />
+                              )}
+                              {round.status}
+                            </Badge>
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <div className="text-sm font-medium text-blue-600">
+                            {round.candidates.length} assigned
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-6">
+                          <div className="flex items-center gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleEmailRound(round)}
+                              className="text-xs"
+                            >
+                              <Send className="w-3 h-3 mr-1" />
+                              Email
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleEditRound(round)}
+                              className="text-xs"
+                            >
+                              <Edit3 className="w-3 h-3 mr-1" />
+                              Edit
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleRescheduleRound(round)}
+                              className="text-xs"
+                            >
+                              <RotateCcw className="w-3 h-3 mr-1" />
+                              Reschedule
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleDeleteRound(round.id)}
+                              className="text-xs text-red-600 hover:text-red-700"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+
+                {getFilteredRounds().length === 0 && (
+                  <div className="text-center py-12">
+                    <Clock className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+                    <h3 className="text-lg font-semibold text-gray-600 mb-2">
+                      No {adminConfig[activeRoundType]?.name} Rounds Yet
+                    </h3>
+                    <p className="text-gray-500 mb-4">
+                      Create your first {activeRoundType} round to get started with the interview process.
+                    </p>
+                    <Button
+                      onClick={() => {
+                        resetForm();
+                        setShowRoundModal(true);
+                      }}
+                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Create First Round
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+
+      {/* Add/Edit Round Modal */}
+      <Dialog open={showRoundModal} onOpenChange={setShowRoundModal}>
+        <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {isEditing ? "Edit Interview Round" : "Add New Interview Round"}
+            </DialogTitle>
+            <DialogDescription>
+              Configure the interview round details and settings.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Round Header <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  value={roundForm.roundHeader}
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundHeader: e.target.value }))}
+                  placeholder="e.g., Round 1, Round 2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Round Name <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  value={roundForm.roundName}
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundName: e.target.value }))}
+                  placeholder="e.g., Technical Assessment"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Round Type <span className="text-red-500">*</span>
+                </label>
+                <Select
+                  value={roundForm.roundType}
+                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, roundType: value }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="technical">Technical</SelectItem>
+                    <SelectItem value="non-technical">Non-Technical</SelectItem>
+                    <SelectItem value="final">Final</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Interview Mode <span className="text-red-500">*</span>
+                </label>
+                <Select
+                  value={roundForm.interviewMode}
+                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, interviewMode: value }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="online-assessment">Online Assessment</SelectItem>
+                    <SelectItem value="video-call">Video Call</SelectItem>
+                    <SelectItem value="in-person">In-Person</SelectItem>
+                    <SelectItem value="oral-assessment">Oral Assessment</SelectItem>
+                    <SelectItem value="group-assessment">Group Assessment</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Test Description
+              </label>
+              <Textarea
+                value={roundForm.testDescription}
+                onChange={(e) => setRoundForm(prev => ({ ...prev, testDescription: e.target.value }))}
+                placeholder="Optional description of the test associated with the round"
+                rows={3}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Round Scheduled Date <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="date"
+                  value={roundForm.scheduledDate}
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledDate: e.target.value }))}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Round Schedule Time <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="time"
+                  value={roundForm.scheduledTime}
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledTime: e.target.value }))}
+                />
+              </div>
+            </div>
+
+            {/* File Upload Section */}
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Attach Test Files
+              </label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-600">Upload test documents or files</p>
+                <p className="text-xs text-gray-500 mt-1">DOC, PDF, Excel, JPG, PNG, MP4, MP5</p>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2">
+            <Button variant="outline" onClick={() => setShowRoundModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={isEditing ? handleUpdateRound : handleCreateRound}
+              disabled={!roundForm.roundName || !roundForm.scheduledDate || !roundForm.scheduledTime}
+              className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+            >
+              {isEditing ? "Save Round" : "Add Round"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
