@@ -511,23 +511,23 @@ export default function ScreeningView() {
                   {/* Work Experience */}
                   {selectedCandidate.workHistory && selectedCandidate.workHistory.length > 0 && (
                     <Card>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
                           <Briefcase className="w-4 h-4" />
                           Work Experience
                         </h3>
-                        <div className="space-y-4">
+                        <div className="space-y-3 sm:space-y-4">
                           {selectedCandidate.workHistory.map((job, index) => (
-                            <div key={index} className="border-l-2 border-blue-200 pl-4 pb-4">
-                              <div className="flex items-start justify-between mb-2">
-                                <div>
-                                  <h4 className="font-medium text-sm">{job.position}</h4>
+                            <div key={index} className="border-l-2 border-blue-200 pl-3 sm:pl-4 pb-3 sm:pb-4">
+                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
+                                <div className="flex-1">
+                                  <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
                                   <div className="flex items-center gap-2 text-xs text-gray-600">
-                                    <Building className="w-3 h-3" />
-                                    <span>{job.company}</span>
+                                    <Building className="w-3 h-3 flex-shrink-0" />
+                                    <span className="truncate">{job.company}</span>
                                   </div>
                                 </div>
-                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">
                                   {job.duration}
                                 </span>
                               </div>
