@@ -619,9 +619,9 @@ export default function ScreeningView() {
 
                   {/* Candidate Details */}
                   <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3">Candidate Details</h4>
-                      <div className="space-y-3 text-sm">
+                    <CardContent className="p-3 sm:p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Candidate Details</h4>
+                      <div className="space-y-3 text-xs sm:text-sm">
                         <div>
                           <label className="text-gray-600 text-xs">Salary Expectation</label>
                           <p className="font-medium">{selectedCandidate.salaryExpectation}</p>
@@ -648,13 +648,13 @@ export default function ScreeningView() {
 
                   {/* Screening Notes */}
                   <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3">Screening Notes</h4>
+                    <CardContent className="p-3 sm:p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
                       <Textarea
                         placeholder="Add your screening notes here..."
                         value={screeningNotes}
                         onChange={(e) => setScreeningNotes(e.target.value)}
-                        className="min-h-[100px] text-sm"
+                        className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm"
                       />
                     </CardContent>
                   </Card>
