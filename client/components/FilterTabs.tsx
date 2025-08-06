@@ -59,6 +59,8 @@ export default function FilterTabs() {
               type="text"
               placeholder="Search candidates..."
               className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
