@@ -594,23 +594,23 @@ export default function ScreeningView() {
 
                   {/* Quick Actions */}
                   <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3">Quick Actions</h4>
+                    <CardContent className="p-3 sm:p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
                       <div className="space-y-2">
                         <Button
                           size="sm"
-                          className="w-full justify-start"
+                          className="w-full justify-start text-xs sm:text-sm"
                           onClick={() => handleDownloadResume(selectedCandidate)}
                         >
-                          <Download className="w-4 h-4 mr-2" />
+                          <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Download Resume
                         </Button>
-                        <Button variant="outline" size="sm" className="w-full justify-start">
-                          <Send className="w-4 h-4 mr-2" />
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                          <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Send Message
                         </Button>
-                        <Button variant="outline" size="sm" className="w-full justify-start">
-                          <Calendar className="w-4 h-4 mr-2" />
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Schedule Interview
                         </Button>
                       </div>
