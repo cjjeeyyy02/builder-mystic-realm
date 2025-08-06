@@ -295,14 +295,20 @@ export default function ScreeningView() {
                     <h3 className="font-semibold text-foreground text-lg leading-tight truncate">
                       {candidate.name}
                     </h3>
-                    <Badge
-                      variant={getStatusVariant(candidate.status)}
-                      className="gap-1 text-xs font-medium flex-shrink-0"
-                    >
-                      {getStatusIcon(candidate.status)}
-                      {candidate.status.charAt(0).toUpperCase() +
-                        candidate.status.slice(1)}
-                    </Badge>
+                    {candidate.status !== "pending" ? (
+                      <Badge
+                        variant={getStatusVariant(candidate.status)}
+                        className="gap-1 text-xs font-medium flex-shrink-0"
+                      >
+                        {getStatusIcon(candidate.status)}
+                        {candidate.status.charAt(0).toUpperCase() +
+                          candidate.status.slice(1)}
+                      </Badge>
+                    ) : (
+                      <span className="text-xs text-gray-500 italic">
+                        Pending Review
+                      </span>
+                    )}
                   </div>
                   <p className="text-sm text-muted-foreground font-medium">
                     {candidate.position}
