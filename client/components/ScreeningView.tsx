@@ -68,31 +68,100 @@ const screeningCandidates: ScreeningCandidate[] = [
     id: "1",
     name: "Emily Rodriguez",
     position: "UX Designer",
-    email: "Emily Rodriguez",
+    email: "emily.rodriguez@gmail.com",
     phone: "123-456-791",
     totalExperience: "5 years",
     relevantExperience: "5 years",
     status: "reject",
+    resumeUrl: "/documents/emily-rodriguez-resume.pdf",
+    summary: "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
+    education: "Master's in Human-Computer Interaction, Stanford University",
+    workHistory: [
+      {
+        company: "TechCorp Solutions",
+        position: "Senior UX Designer",
+        duration: "2022 - Present",
+        description: "Led design for mobile banking app used by 2M+ users. Improved user satisfaction by 40% through redesign initiative."
+      },
+      {
+        company: "Design Studio Inc",
+        position: "UX Designer",
+        duration: "2020 - 2022",
+        description: "Designed web applications for e-commerce clients. Conducted user research and usability testing."
+      }
+    ],
+    skills: ["Figma", "Sketch", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+    certifications: ["Google UX Design Certificate", "Adobe Certified Expert"],
+    location: "San Francisco, CA",
+    salaryExpectation: "$95,000 - $110,000",
+    availability: "2 weeks notice",
+    rating: 4.2,
   },
   {
     id: "2",
     name: "David Kim",
     position: "Backend Developer",
-    email: "David Kim",
+    email: "david.kim@gmail.com",
     phone: "123-456-792",
     totalExperience: "7 years",
     relevantExperience: "6 years",
     status: "approved",
+    resumeUrl: "/documents/david-kim-resume.pdf",
+    summary: "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
+    education: "Bachelor's in Computer Science, UC Berkeley",
+    workHistory: [
+      {
+        company: "CloudTech Inc",
+        position: "Senior Backend Developer",
+        duration: "2021 - Present",
+        description: "Architected microservices handling 10M+ requests daily. Reduced system latency by 60% through optimization."
+      },
+      {
+        company: "StartupXYZ",
+        position: "Backend Developer",
+        duration: "2019 - 2021",
+        description: "Built RESTful APIs and implemented real-time features using WebSocket technology."
+      }
+    ],
+    skills: ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Redis", "GraphQL"],
+    certifications: ["AWS Solutions Architect", "Google Cloud Professional"],
+    location: "Seattle, WA",
+    salaryExpectation: "$120,000 - $140,000",
+    availability: "Immediate",
+    rating: 4.8,
   },
   {
     id: "3",
     name: "Lisa Wang",
     position: "Product Manager",
-    email: "Lisa Wang",
+    email: "lisa.wang@gmail.com",
     phone: "123-456-793",
     totalExperience: "8 years",
     relevantExperience: "7 years",
     status: "queue",
+    resumeUrl: "/documents/lisa-wang-resume.pdf",
+    summary: "Strategic Product Manager with 8 years of experience driving product vision and execution. Proven track record of launching successful products and managing cross-functional teams.",
+    education: "MBA from Wharton, BS in Engineering from MIT",
+    workHistory: [
+      {
+        company: "Product Innovations Corp",
+        position: "Senior Product Manager",
+        duration: "2020 - Present",
+        description: "Led product strategy for B2B SaaS platform. Increased customer retention by 35% and drove $5M ARR growth."
+      },
+      {
+        company: "Tech Giant Co",
+        position: "Product Manager",
+        duration: "2018 - 2020",
+        description: "Managed consumer mobile app with 1M+ users. Collaborated with engineering and design teams on feature development."
+      }
+    ],
+    skills: ["Product Strategy", "Agile/Scrum", "Data Analysis", "A/B Testing", "Roadmap Planning", "Stakeholder Management"],
+    certifications: ["Certified Scrum Product Owner", "Google Analytics Certified"],
+    location: "New York, NY",
+    salaryExpectation: "$140,000 - $160,000",
+    availability: "1 month notice",
+    rating: 4.6,
   },
 ];
 
