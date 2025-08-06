@@ -66,6 +66,7 @@ const candidates: Candidate[] = [
     applicationEnd: "07-10-2025",
     status: "queue",
     workType: "On-site",
+    stage: "interview",
     isSelected: true,
   },
   {
@@ -80,6 +81,7 @@ const candidates: Candidate[] = [
     applicationEnd: "07-10-2025",
     status: "reject",
     workType: "Hybrid",
+    stage: "activation",
     isSelected: false,
   },
   {
@@ -94,6 +96,7 @@ const candidates: Candidate[] = [
     applicationEnd: "07-10-2025",
     status: "approved",
     workType: "Remote",
+    stage: "hired",
     isSelected: false,
   },
   {
@@ -108,6 +111,7 @@ const candidates: Candidate[] = [
     applicationEnd: "07-10-2025",
     status: "queue",
     workType: "Hybrid",
+    stage: "screening",
     isSelected: false,
   },
   {
@@ -122,6 +126,7 @@ const candidates: Candidate[] = [
     applicationEnd: "07-10-2025",
     status: "approved",
     workType: "On-site",
+    stage: "interview",
     isSelected: false,
   },
 ];
