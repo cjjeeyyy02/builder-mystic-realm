@@ -457,23 +457,23 @@ export default function ScreeningView() {
               </DialogHeader>
 
               <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 h-[calc(95vh-180px)] overflow-hidden">
-                {/* Left Panel - Resume Content */}
-                <div className="flex-1 overflow-y-auto space-y-6 pr-4">
+                {/* Main Panel - Resume Content */}
+                <div className="flex-1 overflow-y-auto space-y-4 sm:space-y-6 px-4 sm:px-6 xl:pr-4">
                   {/* Quick Info Bar */}
-                  <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
                     <div className="text-center">
-                      <Briefcase className="w-6 h-6 text-blue-600 mx-auto mb-1" />
-                      <div className="font-semibold text-sm">{selectedCandidate.totalExperience}</div>
+                      <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.totalExperience}</div>
                       <div className="text-xs text-gray-600">Total Experience</div>
                     </div>
                     <div className="text-center">
-                      <MapPin className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                      <div className="font-semibold text-sm">{selectedCandidate.location}</div>
+                      <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.location}</div>
                       <div className="text-xs text-gray-600">Location</div>
                     </div>
                     <div className="text-center">
-                      <Calendar className="w-6 h-6 text-orange-600 mx-auto mb-1" />
-                      <div className="font-semibold text-sm">{selectedCandidate.availability}</div>
+                      <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.availability}</div>
                       <div className="text-xs text-gray-600">Availability</div>
                     </div>
                   </div>
