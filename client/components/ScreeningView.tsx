@@ -45,6 +45,22 @@ interface ScreeningCandidate {
   totalExperience: string;
   relevantExperience: string;
   status: "approved" | "reject" | "queue";
+  // Enhanced resume data
+  resumeUrl?: string;
+  summary?: string;
+  education?: string;
+  workHistory?: Array<{
+    company: string;
+    position: string;
+    duration: string;
+    description: string;
+  }>;
+  skills?: string[];
+  certifications?: string[];
+  location?: string;
+  salaryExpectation?: string;
+  availability?: string;
+  rating?: number;
 }
 
 const screeningCandidates: ScreeningCandidate[] = [
