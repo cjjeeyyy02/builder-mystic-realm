@@ -25,6 +25,8 @@ const tabs = [
 
 export default function FilterTabs() {
   const [activeTab, setActiveTab] = useState("hiring");
+  const [selectedStage, setSelectedStage] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="space-y-6">
