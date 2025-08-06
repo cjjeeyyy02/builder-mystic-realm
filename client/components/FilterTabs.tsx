@@ -83,11 +83,11 @@ export default function FilterTabs() {
 
       {/* Conditional Content Based on Active Tab */}
       <div>
-        {activeTab === "screening" && <ScreeningView />}
-        {activeTab === "interview" && <InterviewView />}
-        {activeTab === "activation" && <ActivationView />}
-        {activeTab === "hired" && <HiredView />}
-        {activeTab === "hiring" && <CandidateList />}
+        {activeTab === "screening" && <ScreeningView searchQuery={searchQuery} selectedStage={selectedStage} />}
+        {activeTab === "interview" && <InterviewView searchQuery={searchQuery} selectedStage={selectedStage} />}
+        {activeTab === "activation" && <ActivationView searchQuery={searchQuery} selectedStage={selectedStage} />}
+        {activeTab === "hired" && <HiredView searchQuery={searchQuery} selectedStage={selectedStage} />}
+        {activeTab === "hiring" && <CandidateList searchQuery={searchQuery} selectedStage={selectedStage} />}
       </div>
     </div>
   );
