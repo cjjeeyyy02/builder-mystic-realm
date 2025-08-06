@@ -661,34 +661,34 @@ export default function ScreeningView() {
 
                   {/* Status Actions */}
                   <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3">Update Status</h4>
+                    <CardContent className="p-3 sm:p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
                       <div className="space-y-2">
                         <Button
                           variant={selectedCandidate.status === "approved" ? "default" : "outline"}
                           size="sm"
-                          className="w-full justify-start"
+                          className="w-full justify-start text-xs sm:text-sm"
                           onClick={() => handleStatusChange(selectedCandidate.id, "approved")}
                         >
-                          <CheckCircle className="w-4 h-4 mr-2" />
+                          <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Approve for Next Round
                         </Button>
                         <Button
                           variant={selectedCandidate.status === "queue" ? "secondary" : "outline"}
                           size="sm"
-                          className="w-full justify-start"
+                          className="w-full justify-start text-xs sm:text-sm"
                           onClick={() => handleStatusChange(selectedCandidate.id, "queue")}
                         >
-                          <Clock className="w-4 h-4 mr-2" />
+                          <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Put in Queue
                         </Button>
                         <Button
                           variant={selectedCandidate.status === "reject" ? "destructive" : "outline"}
                           size="sm"
-                          className="w-full justify-start"
+                          className="w-full justify-start text-xs sm:text-sm"
                           onClick={() => handleStatusChange(selectedCandidate.id, "reject")}
                         >
-                          <X className="w-4 h-4 mr-2" />
+                          <X className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Reject Application
                         </Button>
                       </div>
@@ -697,20 +697,20 @@ export default function ScreeningView() {
                 </div>
               </div>
 
-              <DialogFooter className="flex gap-2">
-                <Button variant="outline" onClick={() => setShowResumeModal(false)}>
+              <DialogFooter className="flex flex-col sm:flex-row gap-2 p-4 sm:p-6 border-t">
+                <Button variant="outline" onClick={() => setShowResumeModal(false)} className="text-xs sm:text-sm">
                   Close
                 </Button>
                 <Button
                   variant="outline"
-                  className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                  className="text-blue-600 border-blue-200 hover:bg-blue-50 text-xs sm:text-sm"
                   onClick={() => handleDownloadResume(selectedCandidate)}
                 >
-                  <Download className="w-4 h-4 mr-2" />
+                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Download Resume
                 </Button>
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                  <CheckCircle className="w-4 h-4 mr-2" />
+                <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Approve Candidate
                 </Button>
               </DialogFooter>
