@@ -501,9 +501,9 @@ export default function ScreeningView() {
                   {/* Professional Summary */}
                   {selectedCandidate.summary && (
                     <Card>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3">Professional Summary</h3>
-                        <p className="text-gray-700 text-sm leading-relaxed">{selectedCandidate.summary}</p>
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Professional Summary</h3>
+                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{selectedCandidate.summary}</p>
                       </CardContent>
                     </Card>
                   )}
