@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Mail,
   Phone,
@@ -10,6 +11,14 @@ import {
   MapPin,
   Calendar,
   FileText,
+  User,
+  Download,
+  Star,
+  Award,
+  Briefcase,
+  GraduationCap,
+  Globe,
+  Building,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
