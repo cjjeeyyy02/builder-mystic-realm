@@ -44,7 +44,7 @@ interface ScreeningCandidate {
   phone: string;
   totalExperience: string;
   relevantExperience: string;
-  status: "approved" | "reject" | "queue";
+  status: "approved" | "reject" | "queue" | "pending";
   // Enhanced resume data
   resumeUrl?: string;
   summary?: string;
