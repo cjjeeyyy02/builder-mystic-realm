@@ -382,10 +382,147 @@ function getRoundContent(roundType: string, roundNumber: number) {
 }
 
 export default function InterviewView() {
-  const [activeTab, setActiveTab] = useState("ongoing");
-  const [activeRoundType, setActiveRoundType] = useState("technical");
-  const [selectedRound, setSelectedRound] = useState(1);
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  // Main Panel States
+  const [activeMainTab, setActiveMainTab] = useState("interview-status");
+  const [activeInterviewTab, setActiveInterviewTab] = useState("ongoing");
+
+  // Rounds Room States
+  const [activeRoundType, setActiveRoundType] = useState<"technical" | "non-technical" | "final">("technical");
+  const [rounds, setRounds] = useState<InterviewRound[]>(defaultInterviewRounds);
+  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(null);
+  const [showRoundModal, setShowRoundModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  // Search and Filter States
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
+
+  // Form States
+  const [roundForm, setRoundForm] = useState({
+    roundHeader: "",
+    roundName: "",
+    roundType: "technical" as "technical" | "non-technical" | "final",
+    interviewMode: "online-assessment" as "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment",
+    testDescription: "",
+    scheduledDate: "",
+    scheduledTime: "",
+  });
+
+  // Search functionality with fuzzy matching
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setFilteredCandidates(interviewCandidates);
+      return;
+    }
+
+    const filtered = interviewCandidates.filter(candidate => {
+      const searchTerms = query.toLowerCase().split(' ');
+      const candidateText = `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
+
+      return searchTerms.every(term => {
+        // Fuzzy matching - allow partial matches and typos
+        return candidateText.includes(term) ||
+               candidateText.split(' ').some(word =>
+                 word.startsWith(term) ||
+                 word.includes(term.substring(0, Math.max(2, term.length - 1)))
+               );
+      });
+    });
+
+    setFilteredCandidates(filtered);
+  };
+
+  // Get filtered rounds based on active type
+  const getFilteredRounds = () => {
+    return rounds.filter(round => round.roundType === activeRoundType);
+  };
+
+  // CRUD Operations
+  const handleCreateRound = () => {
+    const newRound: InterviewRound = {
+      id: `${activeRoundType}-${Date.now()}`,
+      roundHeader: roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
+      roundName: roundForm.roundName,
+      roundType: activeRoundType,
+      interviewMode: roundForm.interviewMode,
+      testDescription: roundForm.testDescription,
+      attachedFiles: [],
+      scheduledDate: roundForm.scheduledDate,
+      scheduledTime: roundForm.scheduledTime,
+      status: "incomplete",
+      candidates: [],
+    };
+
+    setRounds(prev => [...prev, newRound]);
+    resetForm();
+    setShowRoundModal(false);
+  };
+
+  const handleUpdateRound = () => {
+    if (!selectedRound) return;
+
+    setRounds(prev => prev.map(round =>
+      round.id === selectedRound.id
+        ? { ...round, ...roundForm }
+        : round
+    ));
+
+    resetForm();
+    setSelectedRound(null);
+    setIsEditing(false);
+    setShowRoundModal(false);
+  };
+
+  const handleDeleteRound = (roundId: string) => {
+    setRounds(prev => prev.filter(round => round.id !== roundId));
+  };
+
+  const handleEditRound = (round: InterviewRound) => {
+    setSelectedRound(round);
+    setRoundForm({
+      roundHeader: round.roundHeader,
+      roundName: round.roundName,
+      roundType: round.roundType,
+      interviewMode: round.interviewMode,
+      testDescription: round.testDescription || "",
+      scheduledDate: round.scheduledDate,
+      scheduledTime: round.scheduledTime,
+    });
+    setIsEditing(true);
+    setShowRoundModal(true);
+  };
+
+  const handleEmailRound = (round: InterviewRound) => {
+    console.log(`Sending email for round: ${round.roundName}`);
+    // Email notification logic would go here
+  };
+
+  const handleRescheduleRound = (round: InterviewRound) => {
+    handleEditRound(round);
+  };
+
+  const toggleRoundStatus = (roundId: string) => {
+    setRounds(prev => prev.map(round =>
+      round.id === roundId
+        ? { ...round, status: round.status === "completed" ? "incomplete" : "completed" }
+        : round
+    ));
+  };
+
+  const resetForm = () => {
+    setRoundForm({
+      roundHeader: "",
+      roundName: "",
+      roundType: activeRoundType,
+      interviewMode: "online-assessment",
+      testDescription: "",
+      scheduledDate: "",
+      scheduledTime: "",
+    });
+    setSelectedRound(null);
+    setIsEditing(false);
+  };
 
   return (
     <div className="space-y-6">
