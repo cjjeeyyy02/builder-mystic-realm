@@ -526,8 +526,8 @@ export default function InterviewView() {
 
   return (
     <div className={activeMainTab === "interview-status" ? "space-y-6" : "flex gap-6 h-[calc(100vh-200px)]"}>
-      {/* Left Side Panel */}
-      <div className="w-80 flex-shrink-0 space-y-4">
+      {/* Left Side Panel - Hidden when Interview Status is active */}
+      <div className={`w-80 flex-shrink-0 space-y-4 ${activeMainTab === "interview-status" ? "hidden" : ""}`}>
         {/* Main Panel Tabs and Search Bar in One Row */}
         <div className="flex gap-2 items-center">
           <Button
