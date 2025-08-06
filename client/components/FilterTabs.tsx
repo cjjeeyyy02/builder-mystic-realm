@@ -62,20 +62,16 @@ export default function FilterTabs() {
             />
           </div>
 
-          <Select defaultValue="application-stage">
+          <Select value={selectedStage} onValueChange={setSelectedStage}>
             <SelectTrigger className="w-full sm:w-[200px]">
               <SelectValue placeholder="Application Stage" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="application-stage">
-                Application Stage
-              </SelectItem>
-              <SelectItem value="initial-review">Initial Review</SelectItem>
-              <SelectItem value="phone-screen">Phone Screen</SelectItem>
-              <SelectItem value="technical-interview">
-                Technical Interview
-              </SelectItem>
-              <SelectItem value="final-round">Final Round</SelectItem>
+              <SelectItem value="all">All Stages</SelectItem>
+              <SelectItem value="screening">Screening</SelectItem>
+              <SelectItem value="interview">Interview</SelectItem>
+              <SelectItem value="activation">Activation</SelectItem>
+              <SelectItem value="hired">Hired</SelectItem>
             </SelectContent>
           </Select>
 
