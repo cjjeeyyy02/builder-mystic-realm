@@ -528,38 +528,40 @@ export default function InterviewView() {
     <div className="flex gap-6 h-[calc(100vh-200px)]">
       {/* Left Side Panel */}
       <div className="w-80 flex-shrink-0 space-y-4">
-        {/* Main Panel Tabs */}
-        <div className="flex gap-2">
-          <Button
-            variant={activeMainTab === "interview-status" ? "default" : "outline"}
-            className="flex-1 justify-start"
-            onClick={() => setActiveMainTab("interview-status")}
-          >
-            <Users className="w-4 h-4 mr-2" />
-            Interview Status
-          </Button>
-          <Button
-            variant={activeMainTab === "rounds-room" ? "default" : "outline"}
-            className="flex-1 justify-start"
-            onClick={() => setActiveMainTab("rounds-room")}
-          >
-            <Settings className="w-4 h-4 mr-2" />
-            Rounds Room
-          </Button>
-        </div>
-
-        {/* Search Bar */}
-        {activeMainTab === "interview-status" && (
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <Input
-              placeholder="Search by name, email, job title..."
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="pl-10"
-            />
+        {/* Main Panel Tabs and Search Bar */}
+        <div className="space-y-3">
+          <div className="flex gap-2">
+            <Button
+              variant={activeMainTab === "interview-status" ? "default" : "outline"}
+              className="flex-1 justify-start"
+              onClick={() => setActiveMainTab("interview-status")}
+            >
+              <Users className="w-4 h-4 mr-2" />
+              Interview Status
+            </Button>
+            <Button
+              variant={activeMainTab === "rounds-room" ? "default" : "outline"}
+              className="flex-1 justify-start"
+              onClick={() => setActiveMainTab("rounds-room")}
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Rounds Room
+            </Button>
           </div>
-        )}
+
+          {/* Search Bar */}
+          {activeMainTab === "interview-status" && (
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                placeholder="Search by name, email, job title..."
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          )}
+        </div>
 
         {/* Rounds Room Configuration Panel */}
         {activeMainTab === "rounds-room" && (
