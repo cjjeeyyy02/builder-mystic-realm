@@ -28,8 +28,14 @@ interface Candidate {
   applicationEnd: string;
   status: "approved" | "reject" | "queue";
   workType: "Remote" | "On-site" | "Hybrid";
+  stage: "screening" | "interview" | "activation" | "hired";
   isSelected?: boolean;
   avatar?: string;
+}
+
+interface CandidateListProps {
+  searchQuery?: string;
+  selectedStage?: string;
 }
 
 const candidates: Candidate[] = [
