@@ -194,6 +194,7 @@ function getStatusIcon(status: string) {
 }
 
 export default function ScreeningView() {
+  const [candidates, setCandidates] = useState<ScreeningCandidate[]>(screeningCandidates);
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
@@ -202,8 +203,18 @@ export default function ScreeningView() {
     candidateId: string,
     newStatus: "approved" | "reject" | "queue",
   ) => {
-    console.log(`Changing candidate ${candidateId} status to ${newStatus}`);
-    // Here you would implement the actual status change logic
+    setCandidates(prevCandidates =>
+      prevCandidates.map(candidate =>
+        candidate.id === candidateId
+          ? { ...candidate, status: newStatus }
+          : candidate
+      )
+    );
+
+    // Update selected candidate if it's currently open in modal
+    if (selectedCandidate && selectedCandidate.id === candidateId) {
+      setSelectedCandidate(prev => prev ? { ...prev, status: newStatus } : null);
+    }
   };
 
   const handleViewResume = (candidate: ScreeningCandidate) => {
