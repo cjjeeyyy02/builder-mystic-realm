@@ -684,8 +684,40 @@ export default function InterviewView() {
         )}
       </div>
 
+      {/* Top Controls for Interview Status */}
+      {activeMainTab === "interview-status" && (
+        <div className="flex gap-2 items-center mb-6">
+          <Button
+            variant="default"
+            className="justify-start whitespace-nowrap"
+          >
+            <Users className="w-4 h-4 mr-2" />
+            Interview Status
+          </Button>
+          <Button
+            variant="outline"
+            className="justify-start whitespace-nowrap"
+            onClick={() => setActiveMainTab("rounds-room")}
+          >
+            <Settings className="w-4 h-4 mr-2" />
+            Rounds Room
+          </Button>
+
+          {/* Search Bar */}
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              placeholder="Search by name, email, job title..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Main Content Area */}
-      <div className="flex-1 space-y-6 overflow-y-auto">
+      <div className={`space-y-6 overflow-y-auto ${activeMainTab === "interview-status" ? "w-full" : "flex-1"}`}>
         {activeMainTab === "interview-status" && (
           <>
             {/* Interview Status Header with Tabs */}
