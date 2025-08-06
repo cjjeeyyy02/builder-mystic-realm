@@ -965,7 +965,7 @@ export default function InterviewView() {
                 <Table>
                   <TableHeader>
                     <TableRow className="bg-muted/30 border-b">
-                      <TableHead className="font-medium text-foreground py-3 text-xs">Round Header</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Round</TableHead>
                       <TableHead className="font-medium text-foreground py-3 text-xs">Round Name</TableHead>
                       <TableHead className="font-medium text-foreground py-3 text-xs">Interview Mode</TableHead>
                       <TableHead className="font-medium text-foreground py-3 text-xs">Scheduled Date/Time</TableHead>
