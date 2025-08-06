@@ -54,6 +54,8 @@ interface InterviewCandidate {
   department: string;
   currentRound: string;
   status: "in-progress" | "completed" | "pending";
+  email?: string;
+  phone?: string;
 }
 
 interface UpcomingInterview {
@@ -64,6 +66,44 @@ interface UpcomingInterview {
   department: string;
   interviewDateTime: string;
   interviewRound: string;
+}
+
+interface InterviewRound {
+  id: string;
+  roundHeader: string;
+  roundName: string;
+  roundType: "technical" | "non-technical" | "final";
+  interviewMode: "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment";
+  testDescription?: string;
+  attachedFiles: string[];
+  scheduledDate: string;
+  scheduledTime: string;
+  status: "completed" | "incomplete";
+  candidates: string[];
+}
+
+interface AdminConfig {
+  technical: {
+    enabled: boolean;
+    name: string;
+    roundName: boolean;
+    roundType: boolean;
+    interviewMode: boolean;
+  };
+  nonTechnical: {
+    enabled: boolean;
+    name: string;
+    roundName: boolean;
+    roundType: boolean;
+    interviewMode: boolean;
+  };
+  final: {
+    enabled: boolean;
+    name: string;
+    roundName: boolean;
+    roundType: boolean;
+    interviewMode: boolean;
+  };
 }
 
 const interviewCandidates: InterviewCandidate[] = [
