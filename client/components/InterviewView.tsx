@@ -961,13 +961,13 @@ export default function InterviewView() {
                 <Table>
                   <TableHeader>
                     <TableRow className="bg-muted/30 border-b">
-                      <TableHead className="font-semibold text-foreground py-4">Round Header</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Round Name</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Interview Mode</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Scheduled Date/Time</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Status</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Candidates</TableHead>
-                      <TableHead className="font-semibold text-foreground py-4">Actions</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Round Header</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Round Name</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Interview Mode</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Scheduled Date/Time</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Status</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Candidates</TableHead>
+                      <TableHead className="font-medium text-foreground py-3 text-xs">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
