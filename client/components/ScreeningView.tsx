@@ -237,7 +237,7 @@ export default function ScreeningView() {
   return (
     <div className="space-y-6">
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <Card className="p-4">
           <div className="text-2xl font-bold text-green-600">
             {candidates.filter(c => c.status === "approved").length}
@@ -255,6 +255,12 @@ export default function ScreeningView() {
             {candidates.filter(c => c.status === "queue").length}
           </div>
           <div className="text-sm text-muted-foreground">In Queue</div>
+        </Card>
+        <Card className="p-4">
+          <div className="text-2xl font-bold text-gray-600">
+            {candidates.filter(c => c.status === "pending").length}
+          </div>
+          <div className="text-sm text-muted-foreground">Pending Review</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-blue-600">
