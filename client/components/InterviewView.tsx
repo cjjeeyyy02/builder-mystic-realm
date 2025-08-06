@@ -939,16 +939,16 @@ export default function InterviewView() {
         {activeMainTab === "rounds-room" && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">
+              <h2 className="text-lg font-medium">
                 {adminConfig[activeRoundType]?.name} Rounds Management
               </h2>
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className="text-sm">
+                <Badge variant="outline" className="text-xs">
                   {getFilteredRounds().length} rounds configured
                 </Badge>
                 <Badge
                   variant="default"
-                  className="text-sm bg-green-100 text-green-700 border-green-200"
+                  className="text-xs bg-green-100 text-green-700 border-green-200"
                 >
                   {getFilteredRounds().filter(r => r.status === "completed").length} completed
                 </Badge>
