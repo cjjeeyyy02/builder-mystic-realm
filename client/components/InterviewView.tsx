@@ -547,18 +547,22 @@ export default function InterviewView() {
             Rounds Room
           </Button>
 
-          {/* Search Bar */}
-          {activeMainTab === "interview-status" && (
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <Input
-                placeholder="Search by name, email, job title..."
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-          )}
+          {/* Search Bar - Only shown when Interview Status is active */}
+          <div className="relative flex-1">
+            {activeMainTab === "interview-status" ? (
+              <>
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Input
+                  placeholder="Search by name, email, job title..."
+                  value={searchQuery}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  className="pl-10"
+                />
+              </>
+            ) : (
+              <div className="h-10" /> // Maintain spacing when rounds room is active
+            )}
+          </div>
         </div>
 
         {/* Content based on active tab */}
