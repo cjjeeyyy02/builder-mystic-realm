@@ -40,6 +40,12 @@ export default function FilterTabs() {
   const [activeTab, setActiveTab] = useState("hiring");
   const [selectedStage, setSelectedStage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showPlugAndHireModal, setShowPlugAndHireModal] = useState(false);
+  const [selectedSources, setSelectedSources] = useState<string[]>([]);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncProgress, setSyncProgress] = useState(0);
+  const [syncResults, setSyncResults] = useState<any>(null);
 
   return (
     <div className="space-y-6">
