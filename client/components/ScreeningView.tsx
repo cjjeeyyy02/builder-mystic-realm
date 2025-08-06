@@ -105,7 +105,7 @@ const screeningCandidates: ScreeningCandidate[] = [
     phone: "123-456-792",
     totalExperience: "7 years",
     relevantExperience: "6 years",
-    status: "approved",
+    status: "pending",
     resumeUrl: "/documents/david-kim-resume.pdf",
     summary: "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
     education: "Bachelor's in Computer Science, UC Berkeley",
