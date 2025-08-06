@@ -215,6 +215,14 @@ function getStatusIcon(status: string) {
 }
 
 export default function CandidateList({ searchQuery = "", selectedStage = "all" }: CandidateListProps) {
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [showProfile, setShowProfile] = useState(false);
+
+  const handleViewProfile = (candidate: Candidate) => {
+    setSelectedCandidate(candidate);
+    setShowProfile(true);
+  };
+
   // Filter candidates based on search query and selected stage
   const filteredCandidates = candidates.filter((candidate) => {
     const matchesSearch = searchQuery === "" ||
