@@ -429,24 +429,26 @@ export default function ScreeningView() {
 
       {/* Resume Viewer Modal */}
       <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
-        <DialogContent className="w-[95vw] max-w-6xl max-h-[90vh] overflow-hidden">
+        <DialogContent className="w-[95vw] max-w-7xl h-[95vh] overflow-hidden p-0">
           {selectedCandidate && (
             <>
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-3">
-                  <FileText className="w-6 h-6 text-blue-600" />
-                  <div>
-                    <h2 className="text-xl font-bold">{selectedCandidate.name} - Resume</h2>
-                    <p className="text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
+              <DialogHeader className="p-4 sm:p-6 border-b">
+                <DialogTitle className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <div className="flex items-center gap-3">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+                    <div>
+                      <h2 className="text-lg sm:text-xl font-bold">{selectedCandidate.name} - Resume</h2>
+                      <p className="text-xs sm:text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
+                    </div>
                   </div>
-                  <div className="ml-auto flex items-center gap-2">
+                  <div className="flex items-center gap-2 sm:ml-auto">
                     {selectedCandidate.rating && (
                       <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 text-yellow-500" />
-                        <span className="text-sm font-medium">{selectedCandidate.rating}/5</span>
+                        <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+                        <span className="text-xs sm:text-sm font-medium">{selectedCandidate.rating}/5</span>
                       </div>
                     )}
-                    <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-sm">
+                    <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-xs sm:text-sm">
                       {getStatusIcon(selectedCandidate.status)}
                       <span className="ml-1">{selectedCandidate.status}</span>
                     </Badge>
@@ -454,7 +456,7 @@ export default function ScreeningView() {
                 </DialogTitle>
               </DialogHeader>
 
-              <div className="flex gap-6 h-[70vh]">
+              <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 h-[calc(95vh-180px)] overflow-hidden">
                 {/* Left Panel - Resume Content */}
                 <div className="flex-1 overflow-y-auto space-y-6 pr-4">
                   {/* Quick Info Bar */}
