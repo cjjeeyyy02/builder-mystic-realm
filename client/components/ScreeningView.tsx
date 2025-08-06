@@ -480,18 +480,18 @@ export default function ScreeningView() {
 
                   {/* Contact Information */}
                   <Card>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold mb-3 flex items-center gap-2">
+                    <CardContent className="p-3 sm:p-4">
+                      <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
                         <User className="w-4 h-4" />
                         Contact Information
                       </h3>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                         <div className="flex items-center gap-2">
-                          <Mail className="w-4 h-4 text-gray-500" />
-                          <span>{selectedCandidate.email}</span>
+                          <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
+                          <span className="truncate">{selectedCandidate.email}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Phone className="w-4 h-4 text-gray-500" />
+                          <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
                           <span>{selectedCandidate.phone}</span>
                         </div>
                       </div>
