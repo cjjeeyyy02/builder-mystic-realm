@@ -542,12 +542,12 @@ export default function ScreeningView() {
                   {/* Education */}
                   {selectedCandidate.education && (
                     <Card>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
                           <GraduationCap className="w-4 h-4" />
                           Education
                         </h3>
-                        <p className="text-sm text-gray-700">{selectedCandidate.education}</p>
+                        <p className="text-xs sm:text-sm text-gray-700">{selectedCandidate.education}</p>
                       </CardContent>
                     </Card>
                   )}
@@ -555,9 +555,9 @@ export default function ScreeningView() {
                   {/* Skills */}
                   {selectedCandidate.skills && selectedCandidate.skills.length > 0 && (
                     <Card>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3">Skills & Technologies</h3>
-                        <div className="flex flex-wrap gap-2">
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Skills & Technologies</h3>
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
                           {selectedCandidate.skills.map((skill, index) => (
                             <Badge key={index} variant="secondary" className="text-xs">
                               {skill}
@@ -571,12 +571,12 @@ export default function ScreeningView() {
                   {/* Certifications */}
                   {selectedCandidate.certifications && selectedCandidate.certifications.length > 0 && (
                     <Card>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
                           <Award className="w-4 h-4" />
                           Certifications
                         </h3>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
                           {selectedCandidate.certifications.map((cert, index) => (
                             <Badge key={index} variant="outline" className="text-xs">
                               {cert}
