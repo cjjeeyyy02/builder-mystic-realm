@@ -426,6 +426,296 @@ export default function ScreeningView() {
           </CardContent>
         </Card>
       ))}
+
+      {/* Resume Viewer Modal */}
+      <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
+        <DialogContent className="w-[95vw] max-w-6xl max-h-[90vh] overflow-hidden">
+          {selectedCandidate && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-3">
+                  <FileText className="w-6 h-6 text-blue-600" />
+                  <div>
+                    <h2 className="text-xl font-bold">{selectedCandidate.name} - Resume</h2>
+                    <p className="text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
+                  </div>
+                  <div className="ml-auto flex items-center gap-2">
+                    {selectedCandidate.rating && (
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-yellow-500" />
+                        <span className="text-sm font-medium">{selectedCandidate.rating}/5</span>
+                      </div>
+                    )}
+                    <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-sm">
+                      {getStatusIcon(selectedCandidate.status)}
+                      <span className="ml-1">{selectedCandidate.status}</span>
+                    </Badge>
+                  </div>
+                </DialogTitle>
+              </DialogHeader>
+
+              <div className="flex gap-6 h-[70vh]">
+                {/* Left Panel - Resume Content */}
+                <div className="flex-1 overflow-y-auto space-y-6 pr-4">
+                  {/* Quick Info Bar */}
+                  <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center">
+                      <Briefcase className="w-6 h-6 text-blue-600 mx-auto mb-1" />
+                      <div className="font-semibold text-sm">{selectedCandidate.totalExperience}</div>
+                      <div className="text-xs text-gray-600">Total Experience</div>
+                    </div>
+                    <div className="text-center">
+                      <MapPin className="w-6 h-6 text-green-600 mx-auto mb-1" />
+                      <div className="font-semibold text-sm">{selectedCandidate.location}</div>
+                      <div className="text-xs text-gray-600">Location</div>
+                    </div>
+                    <div className="text-center">
+                      <Calendar className="w-6 h-6 text-orange-600 mx-auto mb-1" />
+                      <div className="font-semibold text-sm">{selectedCandidate.availability}</div>
+                      <div className="text-xs text-gray-600">Availability</div>
+                    </div>
+                  </div>
+
+                  {/* Contact Information */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold mb-3 flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        Contact Information
+                      </h3>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="flex items-center gap-2">
+                          <Mail className="w-4 h-4 text-gray-500" />
+                          <span>{selectedCandidate.email}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-gray-500" />
+                          <span>{selectedCandidate.phone}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Professional Summary */}
+                  {selectedCandidate.summary && (
+                    <Card>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3">Professional Summary</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed">{selectedCandidate.summary}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Work Experience */}
+                  {selectedCandidate.workHistory && selectedCandidate.workHistory.length > 0 && (
+                    <Card>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                          <Briefcase className="w-4 h-4" />
+                          Work Experience
+                        </h3>
+                        <div className="space-y-4">
+                          {selectedCandidate.workHistory.map((job, index) => (
+                            <div key={index} className="border-l-2 border-blue-200 pl-4 pb-4">
+                              <div className="flex items-start justify-between mb-2">
+                                <div>
+                                  <h4 className="font-medium text-sm">{job.position}</h4>
+                                  <div className="flex items-center gap-2 text-xs text-gray-600">
+                                    <Building className="w-3 h-3" />
+                                    <span>{job.company}</span>
+                                  </div>
+                                </div>
+                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                                  {job.duration}
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Education */}
+                  {selectedCandidate.education && (
+                    <Card>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                          <GraduationCap className="w-4 h-4" />
+                          Education
+                        </h3>
+                        <p className="text-sm text-gray-700">{selectedCandidate.education}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Skills */}
+                  {selectedCandidate.skills && selectedCandidate.skills.length > 0 && (
+                    <Card>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3">Skills & Technologies</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedCandidate.skills.map((skill, index) => (
+                            <Badge key={index} variant="secondary" className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Certifications */}
+                  {selectedCandidate.certifications && selectedCandidate.certifications.length > 0 && (
+                    <Card>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3 flex items-center gap-2">
+                          <Award className="w-4 h-4" />
+                          Certifications
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedCandidate.certifications.map((cert, index) => (
+                            <Badge key={index} variant="outline" className="text-xs">
+                              {cert}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
+
+                {/* Right Panel - Screening Tools */}
+                <div className="w-80 border-l pl-6 space-y-4">
+                  <h3 className="font-semibold text-lg">Screening Assessment</h3>
+
+                  {/* Quick Actions */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3">Quick Actions</h4>
+                      <div className="space-y-2">
+                        <Button
+                          size="sm"
+                          className="w-full justify-start"
+                          onClick={() => handleDownloadResume(selectedCandidate)}
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Download Resume
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start">
+                          <Send className="w-4 h-4 mr-2" />
+                          Send Message
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          Schedule Interview
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Candidate Details */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3">Candidate Details</h4>
+                      <div className="space-y-3 text-sm">
+                        <div>
+                          <label className="text-gray-600 text-xs">Salary Expectation</label>
+                          <p className="font-medium">{selectedCandidate.salaryExpectation}</p>
+                        </div>
+                        <div>
+                          <label className="text-gray-600 text-xs">Total Experience</label>
+                          <p className="font-medium">{selectedCandidate.totalExperience}</p>
+                        </div>
+                        <div>
+                          <label className="text-gray-600 text-xs">Relevant Experience</label>
+                          <p className="font-medium">{selectedCandidate.relevantExperience}</p>
+                        </div>
+                        <div>
+                          <label className="text-gray-600 text-xs">Current Status</label>
+                          <div className="mt-1">
+                            <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-xs">
+                              {selectedCandidate.status}
+                            </Badge>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Screening Notes */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3">Screening Notes</h4>
+                      <Textarea
+                        placeholder="Add your screening notes here..."
+                        value={screeningNotes}
+                        onChange={(e) => setScreeningNotes(e.target.value)}
+                        className="min-h-[100px] text-sm"
+                      />
+                    </CardContent>
+                  </Card>
+
+                  {/* Status Actions */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3">Update Status</h4>
+                      <div className="space-y-2">
+                        <Button
+                          variant={selectedCandidate.status === "approved" ? "default" : "outline"}
+                          size="sm"
+                          className="w-full justify-start"
+                          onClick={() => handleStatusChange(selectedCandidate.id, "approved")}
+                        >
+                          <CheckCircle className="w-4 h-4 mr-2" />
+                          Approve for Next Round
+                        </Button>
+                        <Button
+                          variant={selectedCandidate.status === "queue" ? "secondary" : "outline"}
+                          size="sm"
+                          className="w-full justify-start"
+                          onClick={() => handleStatusChange(selectedCandidate.id, "queue")}
+                        >
+                          <Clock className="w-4 h-4 mr-2" />
+                          Put in Queue
+                        </Button>
+                        <Button
+                          variant={selectedCandidate.status === "reject" ? "destructive" : "outline"}
+                          size="sm"
+                          className="w-full justify-start"
+                          onClick={() => handleStatusChange(selectedCandidate.id, "reject")}
+                        >
+                          <X className="w-4 h-4 mr-2" />
+                          Reject Application
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              <DialogFooter className="flex gap-2">
+                <Button variant="outline" onClick={() => setShowResumeModal(false)}>
+                  Close
+                </Button>
+                <Button
+                  variant="outline"
+                  className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                  onClick={() => handleDownloadResume(selectedCandidate)}
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Resume
+                </Button>
+                <Button className="bg-green-600 hover:bg-green-700 text-white">
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Approve Candidate
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
