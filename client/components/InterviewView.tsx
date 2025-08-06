@@ -561,7 +561,7 @@ export default function InterviewView() {
           )}
         </div>
 
-        {/* Rounds Room Configuration Panel */}
+        {/* Content based on active tab */}
         {activeMainTab === "rounds-room" && (
           <Card>
             <CardContent className="p-4">
@@ -613,7 +613,6 @@ export default function InterviewView() {
           </Card>
         )}
 
-        {/* Rounds List for Current Type */}
         {activeMainTab === "rounds-room" && (
           <Card>
             <CardContent className="p-4">
