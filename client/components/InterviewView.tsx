@@ -1002,7 +1002,7 @@ export default function InterviewView() {
                             <div className="text-gray-500">{round.scheduledTime}</div>
                           </div>
                         </TableCell>
-                        <TableCell className="py-6">
+                        <TableCell className="py-4">
                           <Button
                             variant="ghost"
                             size="sm"
@@ -1014,55 +1014,55 @@ export default function InterviewView() {
                               className="text-xs cursor-pointer hover:opacity-80"
                             >
                               {round.status === "completed" ? (
-                                <CheckCircle className="w-3 h-3 mr-1" />
+                                <CheckCircle className="w-2 h-2 mr-1" />
                               ) : (
-                                <Clock className="w-3 h-3 mr-1" />
+                                <Clock className="w-2 h-2 mr-1" />
                               )}
                               {round.status}
                             </Badge>
                           </Button>
                         </TableCell>
-                        <TableCell className="py-6">
-                          <div className="text-sm font-medium text-blue-600">
+                        <TableCell className="py-4">
+                          <div className="text-xs font-medium text-blue-600">
                             {round.candidates.length} assigned
                           </div>
                         </TableCell>
-                        <TableCell className="py-6">
-                          <div className="flex items-center gap-2">
+                        <TableCell className="py-4">
+                          <div className="flex items-center gap-1">
                             <Button
                               size="sm"
                               variant="outline"
                               onClick={() => handleEmailRound(round)}
-                              className="text-xs"
+                              className="text-xs h-6 px-2"
                             >
-                              <Send className="w-3 h-3 mr-1" />
+                              <Send className="w-2 h-2 mr-1" />
                               Email
                             </Button>
                             <Button
                               size="sm"
                               variant="outline"
                               onClick={() => handleEditRound(round)}
-                              className="text-xs"
+                              className="text-xs h-6 px-2"
                             >
-                              <Edit3 className="w-3 h-3 mr-1" />
+                              <Edit3 className="w-2 h-2 mr-1" />
                               Edit
                             </Button>
                             <Button
                               size="sm"
                               variant="outline"
                               onClick={() => handleRescheduleRound(round)}
-                              className="text-xs"
+                              className="text-xs h-6 px-2"
                             >
-                              <RotateCcw className="w-3 h-3 mr-1" />
+                              <RotateCcw className="w-2 h-2 mr-1" />
                               Reschedule
                             </Button>
                             <Button
                               size="sm"
                               variant="outline"
                               onClick={() => handleDeleteRound(round.id)}
-                              className="text-xs text-red-600 hover:text-red-700"
+                              className="text-xs h-6 px-2 text-red-600 hover:text-red-700"
                             >
-                              <Trash2 className="w-3 h-3" />
+                              <Trash2 className="w-2 h-2" />
                             </Button>
                           </div>
                         </TableCell>
