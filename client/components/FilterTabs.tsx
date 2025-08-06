@@ -47,6 +47,88 @@ export default function FilterTabs() {
   const [syncProgress, setSyncProgress] = useState(0);
   const [syncResults, setSyncResults] = useState<any>(null);
 
+  const jobSources = [
+    {
+      id: "linkedin",
+      name: "LinkedIn",
+      icon: Linkedin,
+      description: "Import candidates from LinkedIn talent pool",
+      connected: true,
+      candidateCount: 45,
+    },
+    {
+      id: "indeed",
+      name: "Indeed",
+      icon: Globe,
+      description: "Sync applications from Indeed postings",
+      connected: false,
+      candidateCount: 23,
+    },
+    {
+      id: "internal",
+      name: "Internal Career Page",
+      icon: Users,
+      description: "Import from company career portal",
+      connected: true,
+      candidateCount: 18,
+    },
+    {
+      id: "monster",
+      name: "Monster.com",
+      icon: Globe,
+      description: "Access Monster job board applications",
+      connected: false,
+      candidateCount: 12,
+    },
+  ];
+
+  const toggleSource = (sourceId: string) => {
+    setSelectedSources(prev =>
+      prev.includes(sourceId)
+        ? prev.filter(id => id !== sourceId)
+        : [...prev, sourceId]
+    );
+  };
+
+  const handlePlugAndHire = () => {
+    setShowPlugAndHireModal(true);
+  };
+
+  const startSync = async () => {
+    setIsSyncing(true);
+    setSyncProgress(0);
+
+    // Simulate sync process
+    for (let i = 0; i <= 100; i += 10) {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setSyncProgress(i);
+    }
+
+    // Mock sync results
+    setSyncResults({
+      totalCandidates: 98,
+      newCandidates: 23,
+      updatedProfiles: 15,
+      duplicatesSkipped: 8,
+      sources: selectedSources.map(id => {
+        const source = jobSources.find(s => s.id === id);
+        return {
+          name: source?.name,
+          imported: Math.floor(Math.random() * source!.candidateCount),
+          total: source?.candidateCount,
+        };
+      }),
+    });
+
+    setIsSyncing(false);
+  };
+
+  const resetSync = () => {
+    setSyncResults(null);
+    setSyncProgress(0);
+    setSelectedSources([]);
+  };
+
   return (
     <div className="space-y-6">
       {/* Button Tabs */}
