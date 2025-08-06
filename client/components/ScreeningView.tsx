@@ -138,7 +138,7 @@ const screeningCandidates: ScreeningCandidate[] = [
     phone: "123-456-793",
     totalExperience: "8 years",
     relevantExperience: "7 years",
-    status: "queue",
+    status: "pending",
     resumeUrl: "/documents/lisa-wang-resume.pdf",
     summary: "Strategic Product Manager with 8 years of experience driving product vision and execution. Proven track record of launching successful products and managing cross-functional teams.",
     education: "MBA from Wharton, BS in Engineering from MIT",
