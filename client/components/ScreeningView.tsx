@@ -372,21 +372,39 @@ export default function ScreeningView() {
 
                 {/* Primary Actions */}
                 <div className="flex items-center gap-1.5">
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="gap-1 text-white font-medium h-8 px-3"
-                    style={{ backgroundColor: "#0065F8" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor = "#0052C6")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.backgroundColor = "#0065F8")
-                    }
-                  >
-                    <ExternalLink className="w-3 h-3" />
-                    Resume
-                  </Button>
+                  <div className="flex items-center">
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none"
+                      style={{ backgroundColor: "#0065F8" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#0052C6")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#0065F8")
+                      }
+                      onClick={() => handleViewResume(candidate)}
+                    >
+                      <Eye className="w-3 h-3" />
+                      View Resume
+                    </Button>
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="gap-1 text-white font-medium h-8 px-2 rounded-l-none border-l border-white/20"
+                      style={{ backgroundColor: "#0065F8" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#0052C6")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#0065F8")
+                      }
+                      onClick={() => handleDownloadResume(candidate)}
+                    >
+                      <Download className="w-3 h-3" />
+                    </Button>
+                  </div>
                   <Button
                     variant="default"
                     size="sm"
