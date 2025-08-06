@@ -529,10 +529,10 @@ export default function InterviewView() {
       {/* Left Side Panel */}
       <div className="w-80 flex-shrink-0 space-y-4">
         {/* Main Panel Tabs */}
-        <div className="flex flex-col gap-2">
+        <div className="flex gap-2">
           <Button
             variant={activeMainTab === "interview-status" ? "default" : "outline"}
-            className="w-full justify-start"
+            className="flex-1 justify-start"
             onClick={() => setActiveMainTab("interview-status")}
           >
             <Users className="w-4 h-4 mr-2" />
@@ -540,7 +540,7 @@ export default function InterviewView() {
           </Button>
           <Button
             variant={activeMainTab === "rounds-room" ? "default" : "outline"}
-            className="w-full justify-start"
+            className="flex-1 justify-start"
             onClick={() => setActiveMainTab("rounds-room")}
           >
             <Settings className="w-4 h-4 mr-2" />
