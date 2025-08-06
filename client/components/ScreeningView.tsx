@@ -190,6 +190,8 @@ function getStatusIcon(status: string) {
       return <X className="w-3 h-3" />;
     case "queue":
       return <Clock className="w-3 h-3" />;
+    case "pending":
+      return <Clock className="w-3 h-3" />;
     default:
       return <Clock className="w-3 h-3" />;
   }
