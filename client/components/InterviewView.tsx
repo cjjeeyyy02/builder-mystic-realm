@@ -620,26 +620,26 @@ export default function InterviewView() {
         {activeMainTab === "rounds-room" && (
           <Card>
             <CardContent className="p-4">
-              <h3 className="font-semibold mb-4">
+              <h3 className="font-medium text-sm mb-3">
                 {adminConfig[activeRoundType]?.name} Rounds
               </h3>
               <div className="space-y-2">
                 {getFilteredRounds().map((round) => (
                   <div
                     key={round.id}
-                    className="p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                    className="p-2 border rounded-lg hover:bg-gray-50 transition-colors"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-sm">{round.roundHeader}</span>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-1">
+                        <span className="font-medium text-xs">{round.roundHeader}</span>
                         <Badge
                           variant={round.status === "completed" ? "default" : "secondary"}
                           className="text-xs"
                         >
                           {round.status === "completed" ? (
-                            <CheckCircle className="w-3 h-3 mr-1" />
+                            <CheckCircle className="w-2 h-2 mr-1" />
                           ) : (
-                            <Clock className="w-3 h-3 mr-1" />
+                            <Clock className="w-2 h-2 mr-1" />
                           )}
                           {round.status}
                         </Badge>
@@ -649,32 +649,32 @@ export default function InterviewView() {
                           size="sm"
                           variant="ghost"
                           onClick={() => handleEditRound(round)}
-                          className="h-6 w-6 p-0"
+                          className="h-5 w-5 p-0"
                         >
-                          <Edit3 className="w-3 h-3" />
+                          <Edit3 className="w-2 h-2" />
                         </Button>
                         <Button
                           size="sm"
                           variant="ghost"
                           onClick={() => handleDeleteRound(round.id)}
-                          className="h-6 w-6 p-0 text-red-600 hover:text-red-700"
+                          className="h-5 w-5 p-0 text-red-600 hover:text-red-700"
                         >
-                          <Trash2 className="w-3 h-3" />
+                          <Trash2 className="w-2 h-2" />
                         </Button>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-600 mb-2">{round.roundName}</p>
+                    <p className="text-xs text-gray-600 mb-1">{round.roundName}</p>
                     <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span>{round.scheduledDate} at {round.scheduledTime}</span>
-                      <span>{round.candidates.length} candidates</span>
+                      <span className="text-xs">{round.scheduledDate} at {round.scheduledTime}</span>
+                      <span className="text-xs">{round.candidates.length} candidates</span>
                     </div>
                   </div>
                 ))}
 
                 {getFilteredRounds().length === 0 && (
-                  <div className="text-center py-6 text-gray-500">
-                    <Clock className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">No rounds created yet</p>
+                  <div className="text-center py-4 text-gray-500">
+                    <Clock className="w-6 h-6 mx-auto mb-2 opacity-50" />
+                    <p className="text-xs">No rounds created yet</p>
                     <p className="text-xs">Click "Add New Round" to get started</p>
                   </div>
                 )}
