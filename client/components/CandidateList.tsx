@@ -325,7 +325,11 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 >
                   {candidate.workType}
                 </Button>
-                <Button size="sm" className="text-xs h-8 font-medium">
+                <Button
+                  size="sm"
+                  className="text-xs h-8 font-medium"
+                  onClick={() => handleViewProfile(candidate)}
+                >
                   View Profile
                 </Button>
               </div>
