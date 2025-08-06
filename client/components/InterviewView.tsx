@@ -568,49 +568,49 @@ export default function InterviewView() {
         {/* Content based on active tab */}
         {activeMainTab === "rounds-room" && (
           <Card>
-            <CardContent className="p-4">
-              <h3 className="font-semibold mb-4">Round Categories</h3>
-              <div className="space-y-2">
+            <CardContent className="p-3">
+              <h3 className="font-medium text-sm mb-3">Round Categories</h3>
+              <div className="space-y-1">
                 {adminConfig.technical.enabled && (
                   <Button
                     variant={activeRoundType === "technical" ? "default" : "outline"}
-                    className="w-full justify-start"
+                    className="w-full justify-start text-xs h-8"
                     onClick={() => setActiveRoundType("technical")}
                   >
-                    <FileText className="w-4 h-4 mr-2" />
+                    <FileText className="w-3 h-3 mr-2" />
                     {adminConfig.technical.name}
                   </Button>
                 )}
                 {adminConfig.nonTechnical.enabled && (
                   <Button
                     variant={activeRoundType === "non-technical" ? "default" : "outline"}
-                    className="w-full justify-start"
+                    className="w-full justify-start text-xs h-8"
                     onClick={() => setActiveRoundType("non-technical")}
                   >
-                    <MessageSquare className="w-4 h-4 mr-2" />
+                    <MessageSquare className="w-3 h-3 mr-2" />
                     {adminConfig.nonTechnical.name}
                   </Button>
                 )}
                 {adminConfig.final.enabled && (
                   <Button
                     variant={activeRoundType === "final" ? "default" : "outline"}
-                    className="w-full justify-start"
+                    className="w-full justify-start text-xs h-8"
                     onClick={() => setActiveRoundType("final")}
                   >
-                    <CheckCircle className="w-4 h-4 mr-2" />
+                    <CheckCircle className="w-3 h-3 mr-2" />
                     {adminConfig.final.name}
                   </Button>
                 )}
               </div>
 
               <Button
-                className="w-full mt-4 bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                className="w-full mt-3 bg-[#0065F8] hover:bg-[#0065F8]/90 text-white text-xs h-8"
                 onClick={() => {
                   resetForm();
                   setShowRoundModal(true);
                 }}
               >
-                <Plus className="w-4 h-4 mr-2" />
+                <Plus className="w-3 h-3 mr-2" />
                 Add New Round
               </Button>
             </CardContent>
