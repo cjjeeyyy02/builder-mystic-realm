@@ -114,6 +114,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Engineering",
     currentRound: "Technical Assessment - Final",
     status: "in-progress",
+    email: "sarah.mitchell@email.com",
+    phone: "+1 (555) 123-4567",
   },
   {
     id: "2",
@@ -122,6 +124,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Product",
     currentRound: "Behavioral Interview - Round 2",
     status: "completed",
+    email: "james.rodriguez@email.com",
+    phone: "+1 (555) 234-5678",
   },
   {
     id: "3",
@@ -130,6 +134,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Design",
     currentRound: "Portfolio Review - Round 1",
     status: "pending",
+    email: "emily.chen@email.com",
+    phone: "+1 (555) 345-6789",
   },
   {
     id: "4",
@@ -138,6 +144,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Analytics",
     currentRound: "Case Study Presentation",
     status: "in-progress",
+    email: "michael.thompson@email.com",
+    phone: "+1 (555) 456-7890",
   },
   {
     id: "5",
@@ -146,6 +154,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Marketing",
     currentRound: "Campaign Strategy Review",
     status: "pending",
+    email: "jessica.wang@email.com",
+    phone: "+1 (555) 567-8901",
   },
   {
     id: "6",
@@ -154,6 +164,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Engineering",
     currentRound: "System Design Interview",
     status: "in-progress",
+    email: "david.park@email.com",
+    phone: "+1 (555) 678-9012",
   },
   {
     id: "7",
@@ -162,6 +174,8 @@ const interviewCandidates: InterviewCandidate[] = [
     department: "Operations",
     currentRound: "Process Optimization Case",
     status: "completed",
+    email: "amanda.foster@email.com",
+    phone: "+1 (555) 789-0123",
   },
 ];
 
