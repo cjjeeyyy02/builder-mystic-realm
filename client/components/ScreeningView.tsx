@@ -588,9 +588,9 @@ export default function ScreeningView() {
                   )}
                 </div>
 
-                {/* Right Panel - Screening Tools */}
-                <div className="w-80 border-l pl-6 space-y-4">
-                  <h3 className="font-semibold text-lg">Screening Assessment</h3>
+                {/* Screening Tools Panel */}
+                <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3 sm:space-y-4">
+                  <h3 className="font-semibold text-base sm:text-lg">Screening Assessment</h3>
 
                   {/* Quick Actions */}
                   <Card>
