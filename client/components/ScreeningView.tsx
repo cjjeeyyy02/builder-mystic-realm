@@ -261,7 +261,7 @@ export default function ScreeningView() {
       </div>
 
       {/* Screening Candidates */}
-      {screeningCandidates.map((candidate) => (
+      {candidates.map((candidate) => (
         <Card
           key={candidate.id}
           className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
