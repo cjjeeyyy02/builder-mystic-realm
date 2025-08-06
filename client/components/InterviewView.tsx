@@ -691,6 +691,7 @@ export default function InterviewView() {
         <div className="flex gap-2 items-center mb-6">
           <Button
             variant="default"
+            size="default"
             className="justify-start whitespace-nowrap"
           >
             <Users className="w-4 h-4 mr-2" />
@@ -698,6 +699,7 @@ export default function InterviewView() {
           </Button>
           <Button
             variant="outline"
+            size="default"
             className="justify-start whitespace-nowrap"
             onClick={() => setActiveMainTab("rounds-room")}
           >
