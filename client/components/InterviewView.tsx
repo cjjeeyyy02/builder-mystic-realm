@@ -179,6 +179,87 @@ const interviewCandidates: InterviewCandidate[] = [
   },
 ];
 
+// Admin Panel Configuration (simulated)
+const adminConfig: AdminConfig = {
+  technical: {
+    enabled: true,
+    name: "Technical",
+    roundName: true,
+    roundType: true,
+    interviewMode: true,
+  },
+  nonTechnical: {
+    enabled: true,
+    name: "Non-Technical",
+    roundName: true,
+    roundType: true,
+    interviewMode: true,
+  },
+  final: {
+    enabled: true,
+    name: "Final",
+    roundName: true,
+    roundType: true,
+    interviewMode: true,
+  },
+};
+
+// Sample Interview Rounds
+const defaultInterviewRounds: InterviewRound[] = [
+  {
+    id: "tech-1",
+    roundHeader: "Round 1",
+    roundName: "Technical Assessment",
+    roundType: "technical",
+    interviewMode: "online-assessment",
+    testDescription: "Core programming concepts and problem-solving skills",
+    attachedFiles: ["technical-test.pdf", "coding-guidelines.doc"],
+    scheduledDate: "2025-01-20",
+    scheduledTime: "09:00",
+    status: "incomplete",
+    candidates: ["1", "4", "6"],
+  },
+  {
+    id: "tech-2",
+    roundHeader: "Round 2",
+    roundName: "System Design Interview",
+    roundType: "technical",
+    interviewMode: "video-call",
+    testDescription: "Architecture design and scalability concepts",
+    attachedFiles: ["system-design-template.pdf"],
+    scheduledDate: "2025-01-22",
+    scheduledTime: "14:00",
+    status: "incomplete",
+    candidates: ["1", "6"],
+  },
+  {
+    id: "nt-1",
+    roundHeader: "Round 1",
+    roundName: "Behavioral Interview",
+    roundType: "non-technical",
+    interviewMode: "video-call",
+    testDescription: "Cultural fit and communication skills assessment",
+    attachedFiles: [],
+    scheduledDate: "2025-01-21",
+    scheduledTime: "10:30",
+    status: "incomplete",
+    candidates: ["2", "3", "5"],
+  },
+  {
+    id: "final-1",
+    roundHeader: "Round 1",
+    roundName: "Executive Interview",
+    roundType: "final",
+    interviewMode: "in-person",
+    testDescription: "Final leadership and strategic thinking evaluation",
+    attachedFiles: ["executive-interview-guide.pdf"],
+    scheduledDate: "2025-01-25",
+    scheduledTime: "15:00",
+    status: "incomplete",
+    candidates: ["2"],
+  },
+];
+
 const upcomingInterviews: UpcomingInterview[] = [
   {
     id: "1",
