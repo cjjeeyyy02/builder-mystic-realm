@@ -333,9 +333,12 @@ export default function FilterTabs() {
 
               {!syncResults ? (
                 <div className="space-y-6">
-                  {/* Source Selection */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Select Job Sources</h3>
+                  {/* Auto-Sync Mode */}
+                  {hireMode === "auto-sync" && (
+                    <>
+                      {/* Source Selection */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Select Job Sources</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {jobSources.map((source) => {
                         const Icon = source.icon;
@@ -465,6 +468,228 @@ export default function FilterTabs() {
                           </div>
                         </CardContent>
                       </Card>
+                    </div>
+                  )}
+                    </>
+                  )}
+
+                  {/* File Upload Mode */}
+                  {hireMode === "file-upload" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Upload CSV/Excel File</h3>
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                          {!uploadedFile ? (
+                            <>
+                              <FileSpreadsheet className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                              <h4 className="text-lg font-semibold mb-2">Upload Candidate File</h4>
+                              <p className="text-gray-600 mb-4">Choose a CSV or Excel file containing candidate information</p>
+                              <input
+                                type="file"
+                                accept=".csv,.xlsx,.xls"
+                                onChange={handleFileUpload}
+                                className="hidden"
+                                id="file-upload"
+                              />
+                              <label htmlFor="file-upload">
+                                <Button variant="outline" className="cursor-pointer" asChild>
+                                  <span>
+                                    <Upload className="w-4 h-4 mr-2" />
+                                    Choose File
+                                  </span>
+                                </Button>
+                              </label>
+                              <p className="text-xs text-gray-500 mt-2">Supported formats: CSV, XLSX, XLS (Max 10MB)</p>
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                              <h4 className="text-lg font-semibold mb-2">File Ready for Import</h4>
+                              <p className="text-gray-600 mb-2">{uploadedFile.name}</p>
+                              <p className="text-sm text-gray-500">File size: {(uploadedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setUploadedFile(null)}
+                                className="mt-3"
+                              >
+                                Choose Different File
+                              </Button>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {uploadedFile && (
+                        <div>
+                          <h3 className="text-lg font-semibold mb-4">Expected File Format</h3>
+                          <Card>
+                            <CardContent className="p-4">
+                              <div className="text-sm">
+                                <p className="font-medium mb-2">Your CSV/Excel file should contain these columns:</p>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <ul className="space-y-1 text-gray-600">
+                                    <li>• Full Name (required)</li>
+                                    <li>• Email Address (required)</li>
+                                    <li>• Phone Number</li>
+                                    <li>• Position/Role</li>
+                                  </ul>
+                                  <ul className="space-y-1 text-gray-600">
+                                    <li>• Department</li>
+                                    <li>• Experience Level</li>
+                                    <li>• Location</li>
+                                    <li>• Resume URL (optional)</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Individual Entry Mode */}
+                  {hireMode === "individual" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Add Individual Candidate</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Full Name <span className="text-red-500">*</span>
+                            </label>
+                            <Input
+                              value={individualForm.name}
+                              onChange={(e) => handleIndividualFormChange("name", e.target.value)}
+                              placeholder="Enter candidate's full name"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Email Address <span className="text-red-500">*</span>
+                            </label>
+                            <Input
+                              type="email"
+                              value={individualForm.email}
+                              onChange={(e) => handleIndividualFormChange("email", e.target.value)}
+                              placeholder="candidate@email.com"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Phone Number
+                            </label>
+                            <Input
+                              value={individualForm.phone}
+                              onChange={(e) => handleIndividualFormChange("phone", e.target.value)}
+                              placeholder="+1 (555) 123-4567"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Position/Role
+                            </label>
+                            <Input
+                              value={individualForm.position}
+                              onChange={(e) => handleIndividualFormChange("position", e.target.value)}
+                              placeholder="e.g., Software Engineer"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Department
+                            </label>
+                            <Select
+                              value={individualForm.department}
+                              onValueChange={(value) => handleIndividualFormChange("department", value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select department" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="engineering">Engineering</SelectItem>
+                                <SelectItem value="product">Product</SelectItem>
+                                <SelectItem value="design">Design</SelectItem>
+                                <SelectItem value="marketing">Marketing</SelectItem>
+                                <SelectItem value="sales">Sales</SelectItem>
+                                <SelectItem value="hr">Human Resources</SelectItem>
+                                <SelectItem value="finance">Finance</SelectItem>
+                                <SelectItem value="operations">Operations</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Experience Level
+                            </label>
+                            <Select
+                              value={individualForm.experience}
+                              onValueChange={(value) => handleIndividualFormChange("experience", value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select experience level" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="entry">Entry Level (0-2 years)</SelectItem>
+                                <SelectItem value="mid">Mid Level (3-5 years)</SelectItem>
+                                <SelectItem value="senior">Senior Level (6-10 years)</SelectItem>
+                                <SelectItem value="lead">Lead/Principal (10+ years)</SelectItem>
+                                <SelectItem value="executive">Executive</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="md:col-span-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Location
+                            </label>
+                            <Input
+                              value={individualForm.location}
+                              onChange={(e) => handleIndividualFormChange("location", e.target.value)}
+                              placeholder="City, State/Country"
+                            />
+                          </div>
+                          <div className="md:col-span-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Resume/CV
+                            </label>
+                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                              {!individualForm.resume ? (
+                                <>
+                                  <input
+                                    type="file"
+                                    accept=".pdf,.doc,.docx"
+                                    onChange={handleResumeUpload}
+                                    className="hidden"
+                                    id="resume-upload"
+                                  />
+                                  <label htmlFor="resume-upload" className="cursor-pointer">
+                                    <div className="text-center">
+                                      <FileText className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                                      <p className="text-sm text-gray-600">Click to upload resume</p>
+                                      <p className="text-xs text-gray-500">PDF, DOC, DOCX (Max 5MB)</p>
+                                    </div>
+                                  </label>
+                                </>
+                              ) : (
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center">
+                                    <FileText className="w-5 h-5 text-green-600 mr-2" />
+                                    <span className="text-sm font-medium">{individualForm.resume.name}</span>
+                                  </div>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setIndividualForm(prev => ({ ...prev, resume: null }))}
+                                  >
+                                    Remove
+                                  </Button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
