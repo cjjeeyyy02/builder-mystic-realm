@@ -23,7 +23,7 @@ import {
   Wifi,
   WifiOff,
   Calendar,
-  Target
+  Target,
 } from "lucide-react";
 
 interface MetricData {
@@ -63,26 +63,37 @@ const userRoles: { [key: string]: UserRole } = {
     id: "admin",
     name: "Administrator",
     permissions: ["full_access"],
-    visibleMetrics: ["all"]
+    visibleMetrics: ["all"],
   },
   hr_manager: {
-    id: "hr_manager", 
+    id: "hr_manager",
     name: "HR Manager",
     permissions: ["hr_access"],
-    visibleMetrics: ["totalEmployees", "activeCandidates", "pendingOnboarding", "onProbation", "offboarding"]
+    visibleMetrics: [
+      "totalEmployees",
+      "activeCandidates",
+      "pendingOnboarding",
+      "onProbation",
+      "offboarding",
+    ],
   },
   department_head: {
     id: "department_head",
-    name: "Department Head", 
+    name: "Department Head",
     permissions: ["department_access"],
-    visibleMetrics: ["totalEmployees", "averagePerformance", "pendingTasks", "completedTasks"]
+    visibleMetrics: [
+      "totalEmployees",
+      "averagePerformance",
+      "pendingTasks",
+      "completedTasks",
+    ],
   },
   employee: {
     id: "employee",
     name: "Employee",
     permissions: ["limited_access"],
-    visibleMetrics: ["pendingTasks", "completedTasks"]
-  }
+    visibleMetrics: ["pendingTasks", "completedTasks"],
+  },
 };
 
 // Simulated current user (this would come from authentication context)
@@ -91,8 +102,10 @@ const currentUserRole = "admin"; // Change this to test different roles
 // Simulated Unified Metrics API
 const fetchMetricsAPI = async (): Promise<DashboardMetrics> => {
   // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, Math.random() * 1000 + 500));
-  
+  await new Promise((resolve) =>
+    setTimeout(resolve, Math.random() * 1000 + 500),
+  );
+
   // Simulate occasional API failures (10% chance)
   if (Math.random() < 0.1) {
     throw new Error("API temporarily unavailable");
@@ -107,7 +120,7 @@ const fetchMetricsAPI = async (): Promise<DashboardMetrics> => {
     onProbation: 3 + Math.floor(Math.random() * 2),
     offboarding: 5 + Math.floor(Math.random() * 3),
     completedTasks: 156 + Math.floor(Math.random() * 20),
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
   };
 };
 
@@ -116,7 +129,9 @@ export default function Dashboard() {
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [connectionStatus, setConnectionStatus] = useState<"online" | "offline" | "error">("online");
+  const [connectionStatus, setConnectionStatus] = useState<
+    "online" | "offline" | "error"
+  >("online");
   const [retryAttempts, setRetryAttempts] = useState(0);
   const [failedMetrics, setFailedMetrics] = useState<string[]>([]);
 
@@ -124,31 +139,37 @@ export default function Dashboard() {
   const currentRole = userRoles[currentUserRole];
   const canViewAllMetrics = currentRole.visibleMetrics.includes("all");
 
-  const fetchMetricsWithRetry = useCallback(async (attemptCount = 0): Promise<void> => {
-    try {
-      setIsLoading(attemptCount === 0);
-      const data = await fetchMetricsAPI();
-      setMetrics(data);
-      setLastUpdated(new Date());
-      setConnectionStatus("online");
-      setRetryAttempts(0);
-      setFailedMetrics([]);
-    } catch (error) {
-      console.error("Metrics API failed:", error);
-      setRetryAttempts(attemptCount + 1);
-      
-      if (attemptCount < 2) {
-        // Retry up to 3 times (0, 1, 2)
-        setTimeout(() => fetchMetricsWithRetry(attemptCount + 1), 1000 * (attemptCount + 1));
-      } else {
-        // All retries failed
-        setConnectionStatus("error");
-        setFailedMetrics(["all"]);
+  const fetchMetricsWithRetry = useCallback(
+    async (attemptCount = 0): Promise<void> => {
+      try {
+        setIsLoading(attemptCount === 0);
+        const data = await fetchMetricsAPI();
+        setMetrics(data);
+        setLastUpdated(new Date());
+        setConnectionStatus("online");
+        setRetryAttempts(0);
+        setFailedMetrics([]);
+      } catch (error) {
+        console.error("Metrics API failed:", error);
+        setRetryAttempts(attemptCount + 1);
+
+        if (attemptCount < 2) {
+          // Retry up to 3 times (0, 1, 2)
+          setTimeout(
+            () => fetchMetricsWithRetry(attemptCount + 1),
+            1000 * (attemptCount + 1),
+          );
+        } else {
+          // All retries failed
+          setConnectionStatus("error");
+          setFailedMetrics(["all"]);
+        }
+      } finally {
+        setIsLoading(false);
       }
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+    },
+    [],
+  );
 
   // Initial fetch and auto-refresh setup
   useEffect(() => {
@@ -175,10 +196,10 @@ export default function Dashboard() {
         icon: <Users className="w-6 h-6" />,
         route: "/records",
         color: "bg-blue-50 text-blue-700",
-        description: "Total active employees in the organization"
+        description: "Total active employees in the organization",
       },
       {
-        id: "activeCandidates", 
+        id: "activeCandidates",
         title: "Active Candidates",
         value: metrics.activeCandidates,
         change: 8,
@@ -186,7 +207,7 @@ export default function Dashboard() {
         icon: <UserCheck className="w-6 h-6" />,
         route: "/records", // This would be candidates page
         color: "bg-green-50 text-green-700",
-        description: "Candidates currently in the recruitment process"
+        description: "Candidates currently in the recruitment process",
       },
       {
         id: "averagePerformance",
@@ -197,7 +218,7 @@ export default function Dashboard() {
         icon: <TrendingUp className="w-6 h-6" />,
         route: "/performance",
         color: "bg-purple-50 text-purple-700",
-        description: "Organization-wide performance rating"
+        description: "Organization-wide performance rating",
       },
       {
         id: "pendingTasks",
@@ -206,18 +227,18 @@ export default function Dashboard() {
         icon: <Clock className="w-6 h-6" />,
         route: "/dashboard", // This would be tasks page
         color: "bg-amber-50 text-amber-700",
-        description: "Tasks awaiting completion"
+        description: "Tasks awaiting completion",
       },
       {
         id: "pendingOnboarding",
-        title: "Pending Onboarding", 
+        title: "Pending Onboarding",
         value: metrics.pendingOnboarding,
         change: -2,
         changeType: "decrease",
         icon: <UserPlus className="w-6 h-6" />,
         route: "/",
         color: "bg-indigo-50 text-indigo-700",
-        description: "New hires pending onboarding completion"
+        description: "New hires pending onboarding completion",
       },
       {
         id: "onProbation",
@@ -226,7 +247,7 @@ export default function Dashboard() {
         icon: <AlertTriangle className="w-6 h-6" />,
         route: "/records",
         color: "bg-orange-50 text-orange-700",
-        description: "Employees currently on probationary period"
+        description: "Employees currently on probationary period",
       },
       {
         id: "offboarding",
@@ -237,7 +258,7 @@ export default function Dashboard() {
         icon: <UserMinus className="w-6 h-6" />,
         route: "/offboarding",
         color: "bg-red-50 text-red-700",
-        description: "Employees in offboarding process"
+        description: "Employees in offboarding process",
       },
       {
         id: "completedTasks",
@@ -248,8 +269,8 @@ export default function Dashboard() {
         icon: <CheckCircle className="w-6 h-6" />,
         route: "/dashboard", // This would be tasks page
         color: "bg-emerald-50 text-emerald-700",
-        description: "Successfully completed tasks this month"
-      }
+        description: "Successfully completed tasks this month",
+      },
     ];
 
     // Filter metrics based on user role
@@ -257,8 +278,8 @@ export default function Dashboard() {
       return allMetrics;
     }
 
-    return allMetrics.filter(metric => 
-      currentRole.visibleMetrics.includes(metric.id)
+    return allMetrics.filter((metric) =>
+      currentRole.visibleMetrics.includes(metric.id),
     );
   };
 
@@ -268,7 +289,7 @@ export default function Dashboard() {
 
   const formatLastUpdated = (date: Date | null): string => {
     if (!date) return "Never";
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
   const getChangeIcon = (changeType?: "increase" | "decrease" | "neutral") => {
@@ -299,7 +320,9 @@ export default function Dashboard() {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">EMS Dashboard</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                EMS Dashboard
+              </h1>
               <p className="text-gray-600 mt-1">Loading workforce metrics...</p>
             </div>
             <div className="flex items-center space-x-2">
@@ -328,10 +351,14 @@ export default function Dashboard() {
           {/* Dashboard Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">EMS Dashboard</h1>
-              <p className="text-gray-600 mt-1">Real-time workforce metrics and insights</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                EMS Dashboard
+              </h1>
+              <p className="text-gray-600 mt-1">
+                Real-time workforce metrics and insights
+              </p>
             </div>
-            
+
             <div className="flex items-center space-x-4">
               {/* Connection Status */}
               <div className="flex items-center space-x-2">
@@ -342,12 +369,20 @@ export default function Dashboard() {
                 ) : (
                   <RefreshCw className="w-4 h-4 text-amber-600 animate-spin" />
                 )}
-                <span className={`text-sm ${
-                  connectionStatus === "online" ? "text-green-600" : 
-                  connectionStatus === "error" ? "text-red-600" : "text-amber-600"
-                }`}>
-                  {connectionStatus === "online" ? "Connected" : 
-                   connectionStatus === "error" ? "Connection Error" : "Connecting..."}
+                <span
+                  className={`text-sm ${
+                    connectionStatus === "online"
+                      ? "text-green-600"
+                      : connectionStatus === "error"
+                        ? "text-red-600"
+                        : "text-amber-600"
+                  }`}
+                >
+                  {connectionStatus === "online"
+                    ? "Connected"
+                    : connectionStatus === "error"
+                      ? "Connection Error"
+                      : "Connecting..."}
                 </span>
               </div>
 
@@ -369,7 +404,8 @@ export default function Dashboard() {
             <div className="flex items-center space-x-2">
               <RefreshCw className="w-4 h-4 text-blue-600" />
               <span className="text-sm text-blue-800">
-                Dashboard auto-refreshes every 5 minutes • Next update in: {lastUpdated ? "4:30" : "Loading..."}
+                Dashboard auto-refreshes every 5 minutes • Next update in:{" "}
+                {lastUpdated ? "4:30" : "Loading..."}
               </span>
             </div>
           </div>
@@ -381,15 +417,18 @@ export default function Dashboard() {
                 <div className="flex items-center space-x-2">
                   <WifiOff className="w-5 h-5 text-red-600" />
                   <div>
-                    <h3 className="text-sm font-medium text-red-800">Connection Error</h3>
+                    <h3 className="text-sm font-medium text-red-800">
+                      Connection Error
+                    </h3>
                     <p className="text-sm text-red-600">
-                      Failed to fetch metrics after {retryAttempts} attempts. Some data may be temporarily unavailable.
+                      Failed to fetch metrics after {retryAttempts} attempts.
+                      Some data may be temporarily unavailable.
                     </p>
                   </div>
                 </div>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => fetchMetricsWithRetry()}
                   className="border-red-200 text-red-700 hover:bg-red-50"
                 >
@@ -405,37 +444,50 @@ export default function Dashboard() {
             {getMetricCards().map((metric) => (
               <Tooltip key={metric.id}>
                 <TooltipTrigger asChild>
-                  <Card 
+                  <Card
                     className="p-6 cursor-pointer hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
                     onClick={() => handleMetricClick(metric.route)}
                   >
                     <CardContent className="p-0">
-                      {failedMetrics.includes("all") || failedMetrics.includes(metric.id) ? (
+                      {failedMetrics.includes("all") ||
+                      failedMetrics.includes(metric.id) ? (
                         <div className="text-center py-4">
                           <WifiOff className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">Data temporarily unavailable</p>
+                          <p className="text-sm text-gray-500">
+                            Data temporarily unavailable
+                          </p>
                         </div>
                       ) : (
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-2">
-                              <p className="text-sm font-medium text-gray-600">{metric.title}</p>
+                              <p className="text-sm font-medium text-gray-600">
+                                {metric.title}
+                              </p>
                               <div className={`p-2 rounded-lg ${metric.color}`}>
                                 {metric.icon}
                               </div>
                             </div>
-                            
+
                             <div className="flex items-center justify-between">
-                              <span className="text-2xl font-bold text-gray-900">{metric.value}</span>
+                              <span className="text-2xl font-bold text-gray-900">
+                                {metric.value}
+                              </span>
                               {metric.change && (
-                                <div className={`flex items-center text-sm ${getChangeColor(metric.changeType)}`}>
-                                  <span className="mr-1">{getChangeIcon(metric.changeType)}</span>
+                                <div
+                                  className={`flex items-center text-sm ${getChangeColor(metric.changeType)}`}
+                                >
+                                  <span className="mr-1">
+                                    {getChangeIcon(metric.changeType)}
+                                  </span>
                                   <span>{Math.abs(metric.change)}</span>
                                 </div>
                               )}
                             </div>
-                            
-                            <p className="text-xs text-gray-500 mt-1">{metric.description}</p>
+
+                            <p className="text-xs text-gray-500 mt-1">
+                              {metric.description}
+                            </p>
                           </div>
                         </div>
                       )}
@@ -448,7 +500,9 @@ export default function Dashboard() {
                     <p className="text-xs text-gray-400">
                       🕒 Last Updated: {formatLastUpdated(lastUpdated)}
                     </p>
-                    <p className="text-xs text-gray-400 mt-1">Click to view details</p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Click to view details
+                    </p>
                   </div>
                 </TooltipContent>
               </Tooltip>
@@ -461,8 +515,9 @@ export default function Dashboard() {
               <div className="flex items-center space-x-2">
                 <Target className="w-4 h-4 text-amber-600" />
                 <span className="text-sm text-amber-800">
-                  You're viewing metrics based on your role: <strong>{currentRole.name}</strong>. 
-                  Contact your administrator for additional access.
+                  You're viewing metrics based on your role:{" "}
+                  <strong>{currentRole.name}</strong>. Contact your
+                  administrator for additional access.
                 </span>
               </div>
             </div>
@@ -473,15 +528,27 @@ export default function Dashboard() {
             <Card className="p-6">
               <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
               <div className="space-y-2">
-                <Button variant="outline" className="w-full justify-start" onClick={() => navigate("/")}>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => navigate("/")}
+                >
                   <UserPlus className="w-4 h-4 mr-2" />
                   New Employee Onboarding
                 </Button>
-                <Button variant="outline" className="w-full justify-start" onClick={() => navigate("/offboarding")}>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => navigate("/offboarding")}
+                >
                   <UserMinus className="w-4 h-4 mr-2" />
                   Start Offboarding Process
                 </Button>
-                <Button variant="outline" className="w-full justify-start" onClick={() => navigate("/performance")}>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => navigate("/performance")}
+                >
                   <TrendingUp className="w-4 h-4 mr-2" />
                   Performance Review
                 </Button>
@@ -493,7 +560,11 @@ export default function Dashboard() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">API Status</span>
-                  <Badge variant={connectionStatus === "online" ? "default" : "destructive"}>
+                  <Badge
+                    variant={
+                      connectionStatus === "online" ? "default" : "destructive"
+                    }
+                  >
                     {connectionStatus === "online" ? "Operational" : "Error"}
                   </Badge>
                 </div>
@@ -520,11 +591,15 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Visible Metrics</span>
                   <Badge variant="outline">
-                    {canViewAllMetrics ? "All" : `${getMetricCards().length} of 8`}
+                    {canViewAllMetrics
+                      ? "All"
+                      : `${getMetricCards().length} of 8`}
                   </Badge>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Permission Level</span>
+                  <span className="text-sm text-gray-600">
+                    Permission Level
+                  </span>
                   <Badge variant={canViewAllMetrics ? "default" : "secondary"}>
                     {canViewAllMetrics ? "Full Access" : "Limited"}
                   </Badge>
