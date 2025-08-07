@@ -187,10 +187,6 @@ export default function Offboarding() {
     filterData(searchQuery, statusFilter);
   }, []);
 
-  const handleBackClick = () => {
-    // This would typically navigate back to the main dashboard
-    window.history.back();
-  };
 
   return (
     <Layout>
