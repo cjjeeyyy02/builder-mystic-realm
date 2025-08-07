@@ -1305,6 +1305,96 @@ export default function InterviewView() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Candidate Assignment Modal */}
+      <Dialog open={showCandidateModal} onOpenChange={setShowCandidateModal}>
+        <DialogContent className="w-[95vw] max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              Assign Candidates to {selectedRoundForAssignment?.roundName}
+            </DialogTitle>
+            <DialogDescription>
+              Select candidates to assign to this interview round.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="grid gap-3">
+              {interviewCandidates.map((candidate) => (
+                <div
+                  key={candidate.id}
+                  className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
+                >
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedCandidates.includes(candidate.id)}
+                      onChange={() => handleCandidateToggle(candidate.id)}
+                      className="w-4 h-4 text-blue-600"
+                    />
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                      <span className="text-primary font-medium text-xs">
+                        {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">
+                        {candidate.applicantName}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {candidate.appliedPosition} • {candidate.department}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Badge
+                      variant="outline"
+                      className={`text-xs ${getStatusColor(candidate.status)}`}
+                    >
+                      {candidate.status}
+                    </Badge>
+                    {getAssignedRounds(candidate.id).length > 0 && (
+                      <Badge variant="secondary" className="text-xs">
+                        {getAssignedRounds(candidate.id).length} rounds assigned
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {selectedCandidates.length > 0 && (
+              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-sm font-medium text-blue-800">
+                  {selectedCandidates.length} candidate(s) selected
+                </p>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {selectedCandidates.map((candidateId) => {
+                    const candidate = getCandidateById(candidateId);
+                    return candidate ? (
+                      <Badge key={candidateId} variant="secondary" className="text-xs">
+                        {candidate.applicantName}
+                      </Badge>
+                    ) : null;
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter className="flex gap-2">
+            <Button variant="outline" onClick={() => setShowCandidateModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveCandidateAssignment}
+              className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+            >
+              Assign {selectedCandidates.length} Candidate(s)
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
