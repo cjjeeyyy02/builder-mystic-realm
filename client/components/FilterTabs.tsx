@@ -139,6 +139,82 @@ export default function FilterTabs() {
     setSyncResults(null);
     setSyncProgress(0);
     setSelectedSources([]);
+    setHireMode("auto-sync");
+    setUploadedFile(null);
+    setIndividualForm({
+      name: "",
+      email: "",
+      phone: "",
+      position: "",
+      department: "",
+      experience: "",
+      location: "",
+      resume: null
+    });
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && (file.type.includes("csv") || file.type.includes("excel") || file.type.includes("spreadsheet"))) {
+      setUploadedFile(file);
+    }
+  };
+
+  const handleIndividualFormChange = (field: string, value: string) => {
+    setIndividualForm(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setIndividualForm(prev => ({ ...prev, resume: file }));
+    }
+  };
+
+  const processFileUpload = async () => {
+    setIsSyncing(true);
+    setSyncProgress(0);
+
+    // Simulate file processing
+    for (let i = 0; i <= 100; i += 20) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setSyncProgress(i);
+    }
+
+    // Mock results for file upload
+    setSyncResults({
+      totalCandidates: 45,
+      newCandidates: 41,
+      updatedProfiles: 4,
+      duplicatesSkipped: 3,
+      source: "CSV/Excel File",
+      fileName: uploadedFile?.name
+    });
+
+    setIsSyncing(false);
+  };
+
+  const submitIndividualCandidate = async () => {
+    setIsSyncing(true);
+    setSyncProgress(0);
+
+    // Simulate individual candidate processing
+    for (let i = 0; i <= 100; i += 25) {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setSyncProgress(i);
+    }
+
+    // Mock results for individual entry
+    setSyncResults({
+      totalCandidates: 1,
+      newCandidates: 1,
+      updatedProfiles: 0,
+      duplicatesSkipped: 0,
+      source: "Individual Entry",
+      candidateName: individualForm.name
+    });
+
+    setIsSyncing(false);
   };
 
   return (
