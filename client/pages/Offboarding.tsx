@@ -193,7 +193,8 @@ export default function Offboarding() {
   };
 
   return (
-    <div className="space-y-6">
+    <Layout>
+      <div className="space-y-6">
       {/* Header with Back Button and Navigation */}
       <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
         <div className="flex items-center justify-between">
@@ -461,6 +462,7 @@ export default function Offboarding() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </Layout>
   );
 }
