@@ -529,6 +529,45 @@ export default function InterviewView() {
     setIsEditing(false);
   };
 
+  // Candidate Assignment Functions
+  const handleAssignCandidates = (round: InterviewRound) => {
+    setSelectedRoundForAssignment(round);
+    setSelectedCandidates(round.candidates);
+    setShowCandidateModal(true);
+  };
+
+  const handleCandidateToggle = (candidateId: string) => {
+    setSelectedCandidates(prev =>
+      prev.includes(candidateId)
+        ? prev.filter(id => id !== candidateId)
+        : [...prev, candidateId]
+    );
+  };
+
+  const handleSaveCandidateAssignment = () => {
+    if (!selectedRoundForAssignment) return;
+
+    setRounds(prev => prev.map(round =>
+      round.id === selectedRoundForAssignment.id
+        ? { ...round, candidates: selectedCandidates }
+        : round
+    ));
+
+    setShowCandidateModal(false);
+    setSelectedRoundForAssignment(null);
+    setSelectedCandidates([]);
+  };
+
+  // Get candidate details by ID
+  const getCandidateById = (id: string) => {
+    return interviewCandidates.find(candidate => candidate.id === id);
+  };
+
+  // Get assigned rounds for a candidate
+  const getAssignedRounds = (candidateId: string) => {
+    return rounds.filter(round => round.candidates.includes(candidateId));
+  };
+
   return (
     <div className={activeMainTab === "interview-status" ? "space-y-6" : "flex gap-[72px] h-[calc(100vh-200px)]"}>
       {/* Left Side Panel - Hidden when Interview Status is active */}
