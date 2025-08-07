@@ -34,7 +34,8 @@ import {
   Calendar,
   FileText,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  ArrowLeft
 } from "lucide-react";
 
 interface OffboardingEmployee {
