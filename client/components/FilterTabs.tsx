@@ -741,16 +741,34 @@ export default function FilterTabs() {
 
                   {/* Source Breakdown */}
                   <div>
-                    <h4 className="font-semibold mb-3">Import Breakdown by Source</h4>
+                    <h4 className="font-semibold mb-3">Import Details</h4>
                     <div className="space-y-3">
-                      {syncResults.sources.map((source: any, index: number) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="font-medium">{source.name}</span>
+                      {hireMode === "auto-sync" && syncResults.sources && (
+                        syncResults.sources.map((source: any, index: number) => (
+                          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span className="font-medium">{source.name}</span>
+                            <span className="text-sm text-gray-600">
+                              {source.imported} of {source.total} candidates imported
+                            </span>
+                          </div>
+                        ))
+                      )}
+                      {hireMode === "file-upload" && (
+                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <span className="font-medium">Source: {syncResults.source}</span>
                           <span className="text-sm text-gray-600">
-                            {source.imported} of {source.total} candidates imported
+                            File: {syncResults.fileName}
                           </span>
                         </div>
-                      ))}
+                      )}
+                      {hireMode === "individual" && (
+                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <span className="font-medium">Source: {syncResults.source}</span>
+                          <span className="text-sm text-gray-600">
+                            Candidate: {syncResults.candidateName}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
