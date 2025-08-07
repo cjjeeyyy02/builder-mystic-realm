@@ -46,6 +46,18 @@ export default function FilterTabs() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncProgress, setSyncProgress] = useState(0);
   const [syncResults, setSyncResults] = useState<any>(null);
+  const [hireMode, setHireMode] = useState<"auto-sync" | "file-upload" | "individual">("auto-sync");
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [individualForm, setIndividualForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    department: "",
+    experience: "",
+    location: "",
+    resume: null as File | null
+  });
 
   const jobSources = [
     {
