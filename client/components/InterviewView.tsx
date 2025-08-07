@@ -914,6 +914,17 @@ export default function InterviewView() {
                             <div className="text-foreground font-medium">
                               {candidate.currentRound}
                             </div>
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {getAssignedRounds(candidate.id).map((round) => (
+                                <Badge
+                                  key={round.id}
+                                  variant="outline"
+                                  className="text-xs bg-blue-50 text-blue-700 border-blue-200"
+                                >
+                                  {round.roundName}
+                                </Badge>
+                              ))}
+                            </div>
                           </TableCell>
                           <TableCell className="py-6">
                             <Badge
