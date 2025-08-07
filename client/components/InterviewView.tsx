@@ -408,6 +408,11 @@ export default function InterviewView() {
     scheduledTime: "",
   });
 
+  // Candidate Assignment States
+  const [showCandidateModal, setShowCandidateModal] = useState(false);
+  const [selectedRoundForAssignment, setSelectedRoundForAssignment] = useState<InterviewRound | null>(null);
+  const [selectedCandidates, setSelectedCandidates] = useState<string[]>([]);
+
   // Search functionality with fuzzy matching
   const handleSearch = (query: string) => {
     setSearchQuery(query);
