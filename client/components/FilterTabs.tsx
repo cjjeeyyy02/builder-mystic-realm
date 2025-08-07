@@ -773,14 +773,36 @@ export default function FilterTabs() {
                     <Button variant="outline" onClick={() => setShowPlugAndHireModal(false)}>
                       Cancel
                     </Button>
-                    <Button
-                      onClick={startSync}
-                      disabled={selectedSources.length === 0}
-                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Start Sync ({selectedSources.length} sources)
-                    </Button>
+                    {hireMode === "auto-sync" && (
+                      <Button
+                        onClick={startSync}
+                        disabled={selectedSources.length === 0}
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                      >
+                        <Download className="w-4 h-4 mr-2" />
+                        Start Sync ({selectedSources.length} sources)
+                      </Button>
+                    )}
+                    {hireMode === "file-upload" && (
+                      <Button
+                        onClick={processFileUpload}
+                        disabled={!uploadedFile}
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                      >
+                        <Upload className="w-4 h-4 mr-2" />
+                        Import File
+                      </Button>
+                    )}
+                    {hireMode === "individual" && (
+                      <Button
+                        onClick={submitIndividualCandidate}
+                        disabled={!individualForm.name || !individualForm.email}
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                      >
+                        <UserPlus className="w-4 h-4 mr-2" />
+                        Add Candidate
+                      </Button>
+                    )}
                   </>
                 )}
                 {syncResults && (
