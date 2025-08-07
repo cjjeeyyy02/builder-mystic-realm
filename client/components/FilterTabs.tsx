@@ -277,12 +277,59 @@ export default function FilterTabs() {
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <Download className="w-5 h-5" />
-                  Plug and Hire - Auto Sync Candidates
+                  Plug and Hire - Import Candidates
                 </DialogTitle>
                 <DialogDescription>
-                  Automatically import candidate profiles from multiple job platforms and career pages into your EMS system.
+                  Import candidate profiles using auto-sync from job platforms, CSV/Excel upload, or individual entry.
                 </DialogDescription>
               </DialogHeader>
+
+              {/* Mode Selection */}
+              {!syncResults && !isSyncing && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Select Import Method</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Card
+                      className={`cursor-pointer transition-all ${
+                        hireMode === "auto-sync" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
+                      }`}
+                      onClick={() => setHireMode("auto-sync")}
+                    >
+                      <CardContent className="p-4 text-center">
+                        <Download className={`w-8 h-8 mx-auto mb-2 ${hireMode === "auto-sync" ? "text-blue-600" : "text-gray-600"}`} />
+                        <h4 className="font-semibold mb-1">Auto-Sync</h4>
+                        <p className="text-sm text-gray-600">Import from job platforms</p>
+                      </CardContent>
+                    </Card>
+
+                    <Card
+                      className={`cursor-pointer transition-all ${
+                        hireMode === "file-upload" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
+                      }`}
+                      onClick={() => setHireMode("file-upload")}
+                    >
+                      <CardContent className="p-4 text-center">
+                        <FileSpreadsheet className={`w-8 h-8 mx-auto mb-2 ${hireMode === "file-upload" ? "text-blue-600" : "text-gray-600"}`} />
+                        <h4 className="font-semibold mb-1">CSV/Excel Upload</h4>
+                        <p className="text-sm text-gray-600">Bulk import from file</p>
+                      </CardContent>
+                    </Card>
+
+                    <Card
+                      className={`cursor-pointer transition-all ${
+                        hireMode === "individual" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
+                      }`}
+                      onClick={() => setHireMode("individual")}
+                    >
+                      <CardContent className="p-4 text-center">
+                        <UserPlus className={`w-8 h-8 mx-auto mb-2 ${hireMode === "individual" ? "text-blue-600" : "text-gray-600"}`} />
+                        <h4 className="font-semibold mb-1">Individual Entry</h4>
+                        <p className="text-sm text-gray-600">Add one candidate manually</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              )}
 
               {!syncResults ? (
                 <div className="space-y-6">
