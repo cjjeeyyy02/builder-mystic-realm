@@ -199,16 +199,6 @@ export default function Offboarding() {
       <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleBackClick}
-              className="flex items-center"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </Button>
-
             <div className="flex space-x-1">
               <Button
                 variant={activeTab === "offboarding" ? "default" : "ghost"}
