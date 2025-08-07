@@ -1080,6 +1080,15 @@ export default function InterviewView() {
                             <Button
                               size="sm"
                               variant="outline"
+                              onClick={() => handleAssignCandidates(round)}
+                              className="text-xs h-6 px-2 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
+                            >
+                              <Users className="w-2 h-2 mr-1" />
+                              Assign
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
                               onClick={() => handleEmailRound(round)}
                               className="text-xs h-6 px-2"
                             >
