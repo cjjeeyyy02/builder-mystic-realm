@@ -288,45 +288,36 @@ export default function FilterTabs() {
               {!syncResults && !isSyncing && (
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Select Import Method</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Card
-                      className={`cursor-pointer transition-all ${
-                        hireMode === "auto-sync" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
-                      }`}
+                  <div className="flex gap-2 justify-center">
+                    <Button
+                      variant={hireMode === "auto-sync" ? "default" : "outline"}
+                      size="sm"
                       onClick={() => setHireMode("auto-sync")}
+                      className="flex items-center gap-2"
                     >
-                      <CardContent className="p-4 text-center">
-                        <Download className={`w-8 h-8 mx-auto mb-2 ${hireMode === "auto-sync" ? "text-blue-600" : "text-gray-600"}`} />
-                        <h4 className="font-semibold mb-1">Auto-Sync</h4>
-                        <p className="text-sm text-gray-600">Import from job platforms</p>
-                      </CardContent>
-                    </Card>
+                      <Download className="w-4 h-4" />
+                      Auto-Sync
+                    </Button>
 
-                    <Card
-                      className={`cursor-pointer transition-all ${
-                        hireMode === "file-upload" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
-                      }`}
+                    <Button
+                      variant={hireMode === "file-upload" ? "default" : "outline"}
+                      size="sm"
                       onClick={() => setHireMode("file-upload")}
+                      className="flex items-center gap-2"
                     >
-                      <CardContent className="p-4 text-center">
-                        <FileSpreadsheet className={`w-8 h-8 mx-auto mb-2 ${hireMode === "file-upload" ? "text-blue-600" : "text-gray-600"}`} />
-                        <h4 className="font-semibold mb-1">CSV/Excel Upload</h4>
-                        <p className="text-sm text-gray-600">Bulk import from file</p>
-                      </CardContent>
-                    </Card>
+                      <FileSpreadsheet className="w-4 h-4" />
+                      CSV/Excel Upload
+                    </Button>
 
-                    <Card
-                      className={`cursor-pointer transition-all ${
-                        hireMode === "individual" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
-                      }`}
+                    <Button
+                      variant={hireMode === "individual" ? "default" : "outline"}
+                      size="sm"
                       onClick={() => setHireMode("individual")}
+                      className="flex items-center gap-2"
                     >
-                      <CardContent className="p-4 text-center">
-                        <UserPlus className={`w-8 h-8 mx-auto mb-2 ${hireMode === "individual" ? "text-blue-600" : "text-gray-600"}`} />
-                        <h4 className="font-semibold mb-1">Individual Entry</h4>
-                        <p className="text-sm text-gray-600">Add one candidate manually</p>
-                      </CardContent>
-                    </Card>
+                      <UserPlus className="w-4 h-4" />
+                      Individual Entry
+                    </Button>
                   </div>
                 </div>
               )}
