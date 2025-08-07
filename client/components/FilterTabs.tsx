@@ -700,8 +700,15 @@ export default function FilterTabs() {
                     <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">Sync Completed Successfully!</h3>
-                    <p className="text-gray-600">Candidate profiles have been imported and mapped to your EMS system.</p>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {hireMode === "individual" ? "Candidate Added Successfully!" : "Import Completed Successfully!"}
+                    </h3>
+                    <p className="text-gray-600">
+                      {hireMode === "individual"
+                        ? "The candidate has been added to your EMS system."
+                        : "Candidate profiles have been imported and mapped to your EMS system."
+                      }
+                    </p>
                   </div>
 
                   {/* Results Summary */}
