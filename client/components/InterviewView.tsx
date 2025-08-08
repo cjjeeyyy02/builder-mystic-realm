@@ -853,15 +853,6 @@ export default function InterviewView() {
                       <Button
                         variant="outline"
                         className="w-full justify-start text-xs h-9 font-medium border-2"
-                        onClick={() => handleAssignmentFilterChange("missing")}
-                      >
-                        <AlertTriangle className="w-4 h-4 mr-3" />
-                        Show Missing Assignments
-                      </Button>
-
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start text-xs h-9 font-medium border-2"
                         onClick={() => setShowTemplateModal(true)}
                       >
                         <Copy className="w-4 h-4 mr-3" />
