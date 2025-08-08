@@ -943,17 +943,8 @@ export default function InterviewView() {
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-muted/30 border-b">
-                          <TableHead className="w-12 text-center">
-                            <Checkbox
-                              checked={selectedCandidatesForAssignment.length === filteredCandidates.length && filteredCandidates.length > 0}
-                              onCheckedChange={(checked) => {
-                                if (checked) {
-                                  setSelectedCandidatesForAssignment(filteredCandidates.map(c => c.id));
-                                } else {
-                                  setSelectedCandidatesForAssignment([]);
-                                }
-                              }}
-                            />
+                          <TableHead className="w-16 text-center font-semibold text-foreground py-4">
+                            #
                           </TableHead>
                           <TableHead className="font-semibold text-foreground py-4">
                             CANDIDATE NAME
@@ -969,9 +960,6 @@ export default function InterviewView() {
                           </TableHead>
                           <TableHead className="font-semibold text-foreground py-4">
                             STATUS
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            ACTIONS
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -1569,7 +1557,7 @@ export default function InterviewView() {
                         {round.roundName}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {round.roundType} �� {round.interviewMode}
+                        {round.roundType} • {round.interviewMode}
                       </div>
                       <div className="text-xs text-gray-500">
                         {round.scheduledDate} at {round.scheduledTime}
