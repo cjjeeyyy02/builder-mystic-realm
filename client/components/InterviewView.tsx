@@ -721,7 +721,11 @@ export default function InterviewView() {
                     onClick={() => setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)}
                     className="h-8 w-8 p-0 hover:bg-muted"
                   >
-                    <Settings className={`w-4 h-4 transition-transform duration-200 ${isQuickActionsSidebarOpen ? 'rotate-0' : 'rotate-180'}`} />
+                    {isQuickActionsSidebarOpen ? (
+                      <PanelLeftClose className="w-4 h-4" />
+                    ) : (
+                      <Menu className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
 
