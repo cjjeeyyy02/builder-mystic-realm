@@ -68,7 +68,7 @@ interface InterviewCandidate {
   applicantName: string;
   appliedPosition: string;
   department: string;
-  currentRound: string;
+  currentRound: "Technical Assessment Round 1" | "Technical Round 2" | "Non Technical Round 2";
   status: "in-progress" | "completed" | "pending";
   email?: string;
   phone?: string;
@@ -906,7 +906,7 @@ export default function InterviewView() {
                             DEPARTMENT
                           </TableHead>
                           <TableHead className="font-semibold text-foreground py-4">
-                            ROUND PROGRESS
+                            CURRENT INTERVIEW ROUND
                           </TableHead>
                           <TableHead className="font-semibold text-foreground py-4">
                             STATUS
@@ -959,43 +959,12 @@ export default function InterviewView() {
                                 </Badge>
                               </TableCell>
                               <TableCell className="py-6">
-                                <div className="space-y-2">
-                                  <div className="flex items-center gap-2">
-                                    {isMissingRounds ? (
-                                      <div className="flex items-center gap-2 text-red-600">
-                                        <AlertTriangle className="w-4 h-4" />
-                                        <span className="text-sm font-medium">No rounds assigned</span>
-                                      </div>
-                                    ) : (
-                                      <>
-                                        <div className="flex gap-1">
-                                          {candidate.assignedRounds?.map((roundId) => {
-                                            const round = rounds.find(r => r.id === roundId);
-                                            return round ? (
-                                              <Badge key={roundId} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                                                <Check className="w-3 h-3 mr-1" />
-                                                {round.roundName}
-                                              </Badge>
-                                            ) : null;
-                                          })}
-                                        </div>
-                                        {candidate.missingRounds && candidate.missingRounds.length > 0 && (
-                                          <div className="flex gap-1">
-                                            {candidate.missingRounds.map((roundId) => {
-                                              const round = rounds.find(r => r.id === roundId);
-                                              return round ? (
-                                                <Badge key={roundId} variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
-                                                  <AlertTriangle className="w-3 h-3 mr-1" />
-                                                  {round.roundName}
-                                                </Badge>
-                                              ) : null;
-                                            })}
-                                          </div>
-                                        )}
-                                      </>
-                                    )}
-                                  </div>
-                                </div>
+                                <Badge
+                                  variant="outline"
+                                  className="font-medium bg-blue-50 text-blue-700 border-blue-200"
+                                >
+                                  {candidate.currentRound}
+                                </Badge>
                               </TableCell>
                               <TableCell className="py-6">
                                 <Badge
