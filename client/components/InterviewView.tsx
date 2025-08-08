@@ -595,6 +595,7 @@ export default function InterviewView() {
 
   // Assignment Functions
   const handleBulkAssign = () => {
+    if (activeMainTab !== "rounds-room") return;
     setShowBulkAssignModal(true);
   };
 
@@ -631,6 +632,7 @@ export default function InterviewView() {
   };
 
   const handleTemplateAssign = (template: RoundTemplate) => {
+    if (activeMainTab !== "rounds-room") return;
     setSelectedTemplate(template);
     setShowTemplateModal(true);
   };
@@ -756,7 +758,7 @@ export default function InterviewView() {
                       <Button
                         onClick={handleBulkAssign}
                         className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
-                        disabled={selectedCandidatesForAssignment.length === 0}
+                        disabled={selectedCandidatesForAssignment.length === 0 || activeMainTab !== "rounds-room"}
                       >
                         <UserPlus className="w-4 h-4 mr-3" />
                         Assign Rounds to Candidates
@@ -765,7 +767,7 @@ export default function InterviewView() {
                       <Button
                         variant="outline"
                         className="w-full justify-start text-xs h-9 font-medium border-2"
-                        onClick={() => setShowTemplateModal(true)}
+                        onClick={() => activeMainTab === "rounds-room" && setShowTemplateModal(true)}
                       >
                         <Copy className="w-4 h-4 mr-3" />
                         Use Round Templates
