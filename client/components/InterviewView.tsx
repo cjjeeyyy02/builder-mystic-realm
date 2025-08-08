@@ -58,7 +58,9 @@ import {
   Target,
   Copy,
   ArrowRight,
-  Check
+  Check,
+  Menu,
+  PanelLeftClose
 } from "lucide-react";
 
 interface InterviewCandidate {
