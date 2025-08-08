@@ -28,7 +28,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import {
   Mail,
   Plus,
@@ -55,7 +60,7 @@ import {
   ArrowRight,
   Check,
   Menu,
-  PanelLeftClose,
+  PanelLeftClose
 } from "lucide-react";
 
 interface InterviewCandidate {
@@ -86,12 +91,7 @@ interface InterviewRound {
   roundHeader: string;
   roundName: string;
   roundType: "technical" | "non-technical" | "final";
-  interviewMode:
-    | "online-assessment"
-    | "video-call"
-    | "in-person"
-    | "oral-assessment"
-    | "group-assessment";
+  interviewMode: "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment";
   testDescription?: string;
   attachedFiles: string[];
   scheduledDate: string;
@@ -311,30 +311,10 @@ const roundTemplates: RoundTemplate[] = [
     name: "Software Engineer Template",
     description: "Complete interview process for software engineering roles",
     rounds: [
-      {
-        roundName: "Technical Screening",
-        roundType: "technical",
-        interviewMode: "online-assessment",
-        order: 1,
-      },
-      {
-        roundName: "System Design",
-        roundType: "technical",
-        interviewMode: "video-call",
-        order: 2,
-      },
-      {
-        roundName: "Behavioral Interview",
-        roundType: "non-technical",
-        interviewMode: "video-call",
-        order: 3,
-      },
-      {
-        roundName: "Final Interview",
-        roundType: "final",
-        interviewMode: "in-person",
-        order: 4,
-      },
+      { roundName: "Technical Screening", roundType: "technical", interviewMode: "online-assessment", order: 1 },
+      { roundName: "System Design", roundType: "technical", interviewMode: "video-call", order: 2 },
+      { roundName: "Behavioral Interview", roundType: "non-technical", interviewMode: "video-call", order: 3 },
+      { roundName: "Final Interview", roundType: "final", interviewMode: "in-person", order: 4 },
     ],
   },
   {
@@ -342,24 +322,9 @@ const roundTemplates: RoundTemplate[] = [
     name: "Product Manager Template",
     description: "Interview process for product management roles",
     rounds: [
-      {
-        roundName: "Product Case Study",
-        roundType: "non-technical",
-        interviewMode: "video-call",
-        order: 1,
-      },
-      {
-        roundName: "Strategy Discussion",
-        roundType: "non-technical",
-        interviewMode: "video-call",
-        order: 2,
-      },
-      {
-        roundName: "Executive Review",
-        roundType: "final",
-        interviewMode: "in-person",
-        order: 3,
-      },
+      { roundName: "Product Case Study", roundType: "non-technical", interviewMode: "video-call", order: 1 },
+      { roundName: "Strategy Discussion", roundType: "non-technical", interviewMode: "video-call", order: 2 },
+      { roundName: "Executive Review", roundType: "final", interviewMode: "in-person", order: 3 },
     ],
   },
   {
@@ -367,24 +332,9 @@ const roundTemplates: RoundTemplate[] = [
     name: "Designer Template",
     description: "Interview process for design roles",
     rounds: [
-      {
-        roundName: "Portfolio Review",
-        roundType: "non-technical",
-        interviewMode: "video-call",
-        order: 1,
-      },
-      {
-        roundName: "Design Challenge",
-        roundType: "technical",
-        interviewMode: "video-call",
-        order: 2,
-      },
-      {
-        roundName: "Team Fit Interview",
-        roundType: "final",
-        interviewMode: "in-person",
-        order: 3,
-      },
+      { roundName: "Portfolio Review", roundType: "non-technical", interviewMode: "video-call", order: 1 },
+      { roundName: "Design Challenge", roundType: "technical", interviewMode: "video-call", order: 2 },
+      { roundName: "Team Fit Interview", roundType: "final", interviewMode: "in-person", order: 3 },
     ],
   },
 ];
@@ -493,48 +443,31 @@ export default function InterviewView() {
   const [activeInterviewTab, setActiveInterviewTab] = useState("ongoing");
 
   // Rounds Room States
-  const [activeRoundType, setActiveRoundType] = useState<
-    "technical" | "non-technical" | "final"
-  >("technical");
-  const [rounds, setRounds] = useState<InterviewRound[]>(
-    defaultInterviewRounds,
-  );
-  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(
-    null,
-  );
+  const [activeRoundType, setActiveRoundType] = useState<"technical" | "non-technical" | "final">("technical");
+  const [rounds, setRounds] = useState<InterviewRound[]>(defaultInterviewRounds);
+  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(null);
   const [showRoundModal, setShowRoundModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   // Assignment States
   const [showBulkAssignModal, setShowBulkAssignModal] = useState(false);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
-  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] =
-    useState<string[]>([]);
-  const [selectedTemplate, setSelectedTemplate] =
-    useState<RoundTemplate | null>(null);
+  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] = useState<string[]>([]);
+  const [selectedTemplate, setSelectedTemplate] = useState<RoundTemplate | null>(null);
   const [bulkSelectedRounds, setBulkSelectedRounds] = useState<string[]>([]);
 
   // Search and Filter States
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredCandidates, setFilteredCandidates] =
-    useState(interviewCandidates);
-  const [assignmentFilter, setAssignmentFilter] = useState<
-    "all" | "missing" | "partial" | "complete"
-  >("all");
-  const [isQuickActionsSidebarOpen, setIsQuickActionsSidebarOpen] =
-    useState(true);
+  const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
+  const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
+  const [isQuickActionsSidebarOpen, setIsQuickActionsSidebarOpen] = useState(true);
 
   // Form States
   const [roundForm, setRoundForm] = useState({
     roundHeader: "",
     roundName: "",
     roundType: "technical" as "technical" | "non-technical" | "final",
-    interviewMode: "online-assessment" as
-      | "online-assessment"
-      | "video-call"
-      | "in-person"
-      | "oral-assessment"
-      | "group-assessment",
+    interviewMode: "online-assessment" as "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment",
     testDescription: "",
     scheduledDate: "",
     scheduledTime: "",
@@ -551,24 +484,16 @@ export default function InterviewView() {
 
     // Apply search filter
     if (query.trim()) {
-      candidates = candidates.filter((candidate) => {
-        const searchTerms = query.toLowerCase().split(" ");
-        const candidateText =
-          `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
+      candidates = candidates.filter(candidate => {
+        const searchTerms = query.toLowerCase().split(' ');
+        const candidateText = `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
 
-        return searchTerms.every((term) => {
-          return (
-            candidateText.includes(term) ||
-            candidateText
-              .split(" ")
-              .some(
-                (word) =>
-                  word.startsWith(term) ||
-                  word.includes(
-                    term.substring(0, Math.max(2, term.length - 1)),
-                  ),
-              )
-          );
+        return searchTerms.every(term => {
+          return candidateText.includes(term) ||
+                 candidateText.split(' ').some(word =>
+                   word.startsWith(term) ||
+                   word.includes(term.substring(0, Math.max(2, term.length - 1)))
+                 );
         });
       });
     }
@@ -576,47 +501,34 @@ export default function InterviewView() {
     // Apply assignment filter
     switch (filter) {
       case "missing":
-        candidates = candidates.filter(
-          (c) => !c.assignedRounds || c.assignedRounds.length === 0,
-        );
+        candidates = candidates.filter(c => !c.assignedRounds || c.assignedRounds.length === 0);
         break;
       case "partial":
-        candidates = candidates.filter(
-          (c) =>
-            c.missingRounds &&
-            c.missingRounds.length > 0 &&
-            c.assignedRounds &&
-            c.assignedRounds.length > 0,
-        );
+        candidates = candidates.filter(c => c.missingRounds && c.missingRounds.length > 0 && c.assignedRounds && c.assignedRounds.length > 0);
         break;
       case "complete":
-        candidates = candidates.filter(
-          (c) => !c.missingRounds || c.missingRounds.length === 0,
-        );
+        candidates = candidates.filter(c => !c.missingRounds || c.missingRounds.length === 0);
         break;
     }
 
     setFilteredCandidates(candidates);
   };
 
-  const handleAssignmentFilterChange = (
-    filter: "all" | "missing" | "partial" | "complete",
-  ) => {
+  const handleAssignmentFilterChange = (filter: "all" | "missing" | "partial" | "complete") => {
     setAssignmentFilter(filter);
     filterCandidates(searchQuery, filter);
   };
 
   // Get filtered rounds based on active type
   const getFilteredRounds = () => {
-    return rounds.filter((round) => round.roundType === activeRoundType);
+    return rounds.filter(round => round.roundType === activeRoundType);
   };
 
   // CRUD Operations
   const handleCreateRound = () => {
     const newRound: InterviewRound = {
       id: `${activeRoundType}-${Date.now()}`,
-      roundHeader:
-        roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
+      roundHeader: roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
       roundName: roundForm.roundName,
       roundType: activeRoundType,
       interviewMode: roundForm.interviewMode,
@@ -628,7 +540,7 @@ export default function InterviewView() {
       candidates: [],
     };
 
-    setRounds((prev) => [...prev, newRound]);
+    setRounds(prev => [...prev, newRound]);
     resetForm();
     setShowRoundModal(false);
   };
@@ -636,11 +548,11 @@ export default function InterviewView() {
   const handleUpdateRound = () => {
     if (!selectedRound) return;
 
-    setRounds((prev) =>
-      prev.map((round) =>
-        round.id === selectedRound.id ? { ...round, ...roundForm } : round,
-      ),
-    );
+    setRounds(prev => prev.map(round =>
+      round.id === selectedRound.id
+        ? { ...round, ...roundForm }
+        : round
+    ));
 
     resetForm();
     setSelectedRound(null);
@@ -649,7 +561,7 @@ export default function InterviewView() {
   };
 
   const handleDeleteRound = (roundId: string) => {
-    setRounds((prev) => prev.filter((round) => round.id !== roundId));
+    setRounds(prev => prev.filter(round => round.id !== roundId));
   };
 
   const handleEditRound = (round: InterviewRound) => {
@@ -687,37 +599,30 @@ export default function InterviewView() {
   };
 
   const handleCandidateSelectionToggle = (candidateId: string) => {
-    setSelectedCandidatesForAssignment((prev) =>
+    setSelectedCandidatesForAssignment(prev =>
       prev.includes(candidateId)
-        ? prev.filter((id) => id !== candidateId)
-        : [...prev, candidateId],
+        ? prev.filter(id => id !== candidateId)
+        : [...prev, candidateId]
     );
   };
 
   const handleRoundSelectionToggle = (roundId: string) => {
-    setBulkSelectedRounds((prev) =>
+    setBulkSelectedRounds(prev =>
       prev.includes(roundId)
-        ? prev.filter((id) => id !== roundId)
-        : [...prev, roundId],
+        ? prev.filter(id => id !== roundId)
+        : [...prev, roundId]
     );
   };
 
   const handleBulkAssignmentSave = () => {
     // Update rounds to include selected candidates
-    setRounds((prev) =>
-      prev.map((round) => {
-        if (bulkSelectedRounds.includes(round.id)) {
-          const newCandidates = [
-            ...new Set([
-              ...round.candidates,
-              ...selectedCandidatesForAssignment,
-            ]),
-          ];
-          return { ...round, candidates: newCandidates };
-        }
-        return round;
-      }),
-    );
+    setRounds(prev => prev.map(round => {
+      if (bulkSelectedRounds.includes(round.id)) {
+        const newCandidates = [...new Set([...round.candidates, ...selectedCandidatesForAssignment])];
+        return { ...round, candidates: newCandidates };
+      }
+      return round;
+    }));
 
     // Reset states
     setShowBulkAssignModal(false);
@@ -731,11 +636,10 @@ export default function InterviewView() {
   };
 
   const applyTemplate = () => {
-    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0)
-      return;
+    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0) return;
 
     // Create rounds from template if they don't exist
-    const newRounds = selectedTemplate.rounds.map((templateRound) => ({
+    const newRounds = selectedTemplate.rounds.map(templateRound => ({
       id: `${templateRound.roundType}-${Date.now()}-${templateRound.order}`,
       roundHeader: `Round ${templateRound.order}`,
       roundName: templateRound.roundName,
@@ -749,7 +653,7 @@ export default function InterviewView() {
       candidates: selectedCandidatesForAssignment,
     }));
 
-    setRounds((prev) => [...prev, ...newRounds]);
+    setRounds(prev => [...prev, ...newRounds]);
     setShowTemplateModal(false);
     setSelectedTemplate(null);
     setSelectedCandidatesForAssignment([]);
@@ -757,12 +661,12 @@ export default function InterviewView() {
 
   // Get candidate details by ID
   const getCandidateById = (id: string) => {
-    return interviewCandidates.find((candidate) => candidate.id === id);
+    return interviewCandidates.find(candidate => candidate.id === id);
   };
 
   // Get assigned rounds for a candidate
   const getAssignedRounds = (candidateId: string) => {
-    return rounds.filter((round) => round.candidates.includes(candidateId));
+    return rounds.filter(round => round.candidates.includes(candidateId));
   };
 
   // Get round progress for a candidate
@@ -770,17 +674,12 @@ export default function InterviewView() {
     const assigned = candidate.assignedRounds?.length || 0;
     const missing = candidate.missingRounds?.length || 0;
     const total = assigned + missing;
-    return {
-      assigned,
-      missing,
-      total,
-      completion: total > 0 ? (assigned / total) * 100 : 0,
-    };
+    return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
   };
 
   return (
     <div className="space-y-6">
-      {/* Navigation Tabs - Fixed styling */}
+      {/* Navigation Tabs with Search */}
       <div className="border-b border-border">
         <div className="flex items-center justify-between">
           <Tabs
@@ -805,7 +704,7 @@ export default function InterviewView() {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-
+          
           {/* Search Bar */}
           <div className="relative w-80">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -819,71 +718,67 @@ export default function InterviewView() {
         </div>
       </div>
 
-      {/* Quick Actions Sidebar - Available in both tabs */}
-      {(activeMainTab === "interview-status" || activeMainTab === "rounds-room") && (
-        <div className="flex gap-6 h-[calc(100vh-200px)]">
-          {/* Sidebar */}
-          <div
-            className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
-          >
-            <Card className="h-fit sticky top-0">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-4">
-                  {isQuickActionsSidebarOpen && (
-                    <h3 className="font-semibold text-sm flex items-center gap-2">
-                      <Target className="w-4 h-4" />
-                      Quick Actions
-                    </h3>
-                  )}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() =>
-                      setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)
-                    }
-                    className="h-8 w-8 p-0 hover:bg-muted"
-                  >
-                    {isQuickActionsSidebarOpen ? (
-                      <PanelLeftClose className="w-4 h-4" />
-                    ) : (
-                      <Menu className="w-4 h-4" />
-                    )}
-                  </Button>
-                </div>
-
+      {/* Main Layout with Quick Actions Sidebar */}
+      <div className="flex gap-6 h-[calc(100vh-200px)]">
+        {/* Quick Actions Sidebar - Available in both tabs */}
+        <div
+          className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
+        >
+          <Card className="h-fit sticky top-0">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-4">
                 {isQuickActionsSidebarOpen && (
-                  <>
-                    <div className="space-y-3">
-                      <Button
-                        onClick={handleBulkAssign}
-                        className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
-                        disabled={selectedCandidatesForAssignment.length === 0}
-                      >
-                        <UserPlus className="w-4 h-4 mr-3" />
-                        Assign Rounds to Candidates
-                      </Button>
+                  <h3 className="font-semibold text-sm flex items-center gap-2">
+                    <Target className="w-4 h-4" />
+                    Quick Actions
+                  </h3>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() =>
+                    setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)
+                  }
+                  className="h-8 w-8 p-0 hover:bg-muted"
+                >
+                  {isQuickActionsSidebarOpen ? (
+                    <PanelLeftClose className="w-4 h-4" />
+                  ) : (
+                    <Menu className="w-4 h-4" />
+                  )}
+                </Button>
+              </div>
 
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start text-xs h-9 font-medium border-2"
-                        onClick={() => setShowTemplateModal(true)}
-                      >
-                        <Copy className="w-4 h-4 mr-3" />
-                        Use Round Templates
-                      </Button>
-                    </div>
+              {isQuickActionsSidebarOpen && (
+                <>
+                  <div className="space-y-3">
+                    <Button
+                      onClick={handleBulkAssign}
+                      className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
+                      disabled={selectedCandidatesForAssignment.length === 0}
+                    >
+                      <UserPlus className="w-4 h-4 mr-3" />
+                      Assign Rounds to Candidates
+                    </Button>
 
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start text-xs h-9 font-medium border-2"
+                      onClick={() => setShowTemplateModal(true)}
+                    >
+                      <Copy className="w-4 h-4 mr-3" />
+                      Use Round Templates
+                    </Button>
+                  </div>
+
+                  {activeMainTab === "interview-status" && (
                     <div className="mt-8">
                       <h4 className="font-medium text-sm mb-3 text-muted-foreground">
                         Assignment Filters
                       </h4>
                       <div className="space-y-1">
                         {[
-                          {
-                            value: "all",
-                            label: "All Candidates",
-                            icon: Users,
-                          },
+                          { value: "all", label: "All Candidates", icon: Users },
                           {
                             value: "missing",
                             label: "Missing Rounds",
@@ -924,38 +819,88 @@ export default function InterviewView() {
                         })}
                       </div>
                     </div>
+                  )}
 
+                  <div className="mt-8">
+                    <h4 className="font-medium text-sm mb-3 text-muted-foreground">
+                      Round Templates
+                    </h4>
+                    <div className="space-y-1">
+                      {roundTemplates.map((template) => (
+                        <Button
+                          key={template.id}
+                          variant="ghost"
+                          size="sm"
+                          className="w-full justify-start text-xs h-8 font-normal"
+                          onClick={() => handleTemplateAssign(template)}
+                        >
+                          <FileText className="w-3 h-3 mr-2" />
+                          {template.name}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {activeMainTab === "rounds-room" && (
                     <div className="mt-8">
                       <h4 className="font-medium text-sm mb-3 text-muted-foreground">
-                        Round Templates
+                        Round Categories
                       </h4>
                       <div className="space-y-1">
-                        {roundTemplates.map((template) => (
-                          <Button
-                            key={template.id}
-                            variant="ghost"
-                            size="sm"
-                            className="w-full justify-start text-xs h-8 font-normal"
-                            onClick={() => handleTemplateAssign(template)}
+                        {adminConfig.technical.enabled && (
+                          <Badge
+                            variant={activeRoundType === "technical" ? "default" : "outline"}
+                            className="w-full justify-start text-xs h-8 cursor-pointer"
+                            onClick={() => setActiveRoundType("technical")}
                           >
                             <FileText className="w-3 h-3 mr-2" />
-                            {template.name}
-                          </Button>
-                        ))}
+                            {adminConfig.technical.name}
+                          </Badge>
+                        )}
+                        {adminConfig.nonTechnical.enabled && (
+                          <Badge
+                            variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                            className="w-full justify-start text-xs h-8 cursor-pointer"
+                            onClick={() => setActiveRoundType("non-technical")}
+                          >
+                            <MessageSquare className="w-3 h-3 mr-2" />
+                            {adminConfig.nonTechnical.name}
+                          </Badge>
+                        )}
+                        {adminConfig.final.enabled && (
+                          <Badge
+                            variant={activeRoundType === "final" ? "default" : "outline"}
+                            className="w-full justify-start text-xs h-8 cursor-pointer"
+                            onClick={() => setActiveRoundType("final")}
+                          >
+                            <CheckCircle className="w-3 h-3 mr-2" />
+                            {adminConfig.final.name}
+                          </Badge>
+                        )}
                       </div>
-                    </div>
-                  </>
-                )}
-              </CardContent>
-            </Card>
-          </div>
 
-          {/* Main Content */}
-          <div className="flex-1 overflow-y-auto">
-            <Tabs
-              value={activeInterviewTab}
-              onValueChange={setActiveInterviewTab}
-            >
+                      <Button
+                        className="w-full mt-3 bg-[#0065F8] hover:bg-[#0065F8]/90 text-white text-xs h-8"
+                        onClick={() => {
+                          resetForm();
+                          setShowRoundModal(true);
+                        }}
+                      >
+                        <Plus className="w-3 h-3 mr-2" />
+                        Add New Round
+                      </Button>
+                    </div>
+                  )}
+                </>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 overflow-y-auto">
+          {activeMainTab === "interview-status" && (
+            <Tabs value={activeInterviewTab} onValueChange={setActiveInterviewTab}>
               <div className="mb-6">
                 <TabsList className="bg-muted">
                   <TabsTrigger value="ongoing">Ongoing Interview</TabsTrigger>
@@ -968,49 +913,27 @@ export default function InterviewView() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-blue-600">
-                      {
-                        filteredCandidates.filter(
-                          (c) => c.status === "in-progress",
-                        ).length
-                      }
+                      {filteredCandidates.filter(c => c.status === "in-progress").length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      In Progress
-                    </div>
+                    <div className="text-sm text-muted-foreground">In Progress</div>
                   </Card>
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-emerald-600">
-                      {
-                        filteredCandidates.filter(
-                          (c) => c.status === "completed",
-                        ).length
-                      }
+                      {filteredCandidates.filter(c => c.status === "completed").length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Completed
-                    </div>
+                    <div className="text-sm text-muted-foreground">Completed</div>
                   </Card>
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-amber-600">
-                      {
-                        filteredCandidates.filter((c) => c.status === "pending")
-                          .length
-                      }
+                      {filteredCandidates.filter(c => c.status === "pending").length}
                     </div>
                     <div className="text-sm text-muted-foreground">Pending</div>
                   </Card>
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-red-600">
-                      {
-                        filteredCandidates.filter(
-                          (c) =>
-                            !c.assignedRounds || c.assignedRounds.length === 0,
-                        ).length
-                      }
+                      {filteredCandidates.filter(c => !c.assignedRounds || c.assignedRounds.length === 0).length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Missing Assignments
-                    </div>
+                    <div className="text-sm text-muted-foreground">Missing Assignments</div>
                   </Card>
                 </div>
 
@@ -1022,16 +945,10 @@ export default function InterviewView() {
                         <TableRow className="bg-muted/30 border-b">
                           <TableHead className="w-12 text-center">
                             <Checkbox
-                              checked={
-                                selectedCandidatesForAssignment.length ===
-                                  filteredCandidates.length &&
-                                filteredCandidates.length > 0
-                              }
+                              checked={selectedCandidatesForAssignment.length === filteredCandidates.length && filteredCandidates.length > 0}
                               onCheckedChange={(checked) => {
                                 if (checked) {
-                                  setSelectedCandidatesForAssignment(
-                                    filteredCandidates.map((c) => c.id),
-                                  );
+                                  setSelectedCandidatesForAssignment(filteredCandidates.map(c => c.id));
                                 } else {
                                   setSelectedCandidatesForAssignment([]);
                                 }
@@ -1061,37 +978,26 @@ export default function InterviewView() {
                       <TableBody>
                         {filteredCandidates.map((candidate, index) => {
                           const progress = getRoundProgress(candidate);
-                          const isMissingRounds =
-                            !candidate.assignedRounds ||
-                            candidate.assignedRounds.length === 0;
-
+                          const isMissingRounds = !candidate.assignedRounds || candidate.assignedRounds.length === 0;
+                          
                           return (
                             <TableRow
                               key={candidate.id}
                               className={`hover:bg-muted/20 transition-colors border-b border-border/40 ${
-                                isMissingRounds
-                                  ? "bg-red-50 border-red-200"
-                                  : ""
+                                isMissingRounds ? "bg-red-50 border-red-200" : ""
                               }`}
                             >
                               <TableCell className="text-center">
                                 <Checkbox
-                                  checked={selectedCandidatesForAssignment.includes(
-                                    candidate.id,
-                                  )}
-                                  onCheckedChange={() =>
-                                    handleCandidateSelectionToggle(candidate.id)
-                                  }
+                                  checked={selectedCandidatesForAssignment.includes(candidate.id)}
+                                  onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
                                 />
                               </TableCell>
                               <TableCell className="py-6">
                                 <div className="flex items-center gap-3">
                                   <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                                     <span className="text-primary font-medium text-xs">
-                                      {candidate.applicantName
-                                        .split(" ")
-                                        .map((n) => n[0])
-                                        .join("")}
+                                      {candidate.applicantName.split(' ').map(n => n[0]).join('')}
                                     </span>
                                   </div>
                                   <div>
@@ -1123,54 +1029,34 @@ export default function InterviewView() {
                                     {isMissingRounds ? (
                                       <div className="flex items-center gap-2 text-red-600">
                                         <AlertTriangle className="w-4 h-4" />
-                                        <span className="text-sm font-medium">
-                                          No rounds assigned
-                                        </span>
+                                        <span className="text-sm font-medium">No rounds assigned</span>
                                       </div>
                                     ) : (
                                       <>
                                         <div className="flex gap-1">
-                                          {candidate.assignedRounds?.map(
-                                            (roundId) => {
-                                              const round = rounds.find(
-                                                (r) => r.id === roundId,
-                                              );
+                                          {candidate.assignedRounds?.map((roundId) => {
+                                            const round = rounds.find(r => r.id === roundId);
+                                            return round ? (
+                                              <Badge key={roundId} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                                                <Check className="w-3 h-3 mr-1" />
+                                                {round.roundName}
+                                              </Badge>
+                                            ) : null;
+                                          })}
+                                        </div>
+                                        {candidate.missingRounds && candidate.missingRounds.length > 0 && (
+                                          <div className="flex gap-1">
+                                            {candidate.missingRounds.map((roundId) => {
+                                              const round = rounds.find(r => r.id === roundId);
                                               return round ? (
-                                                <Badge
-                                                  key={roundId}
-                                                  variant="outline"
-                                                  className="text-xs bg-green-50 text-green-700 border-green-200"
-                                                >
-                                                  <Check className="w-3 h-3 mr-1" />
+                                                <Badge key={roundId} variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
+                                                  <AlertTriangle className="w-3 h-3 mr-1" />
                                                   {round.roundName}
                                                 </Badge>
                                               ) : null;
-                                            },
-                                          )}
-                                        </div>
-                                        {candidate.missingRounds &&
-                                          candidate.missingRounds.length >
-                                            0 && (
-                                            <div className="flex gap-1">
-                                              {candidate.missingRounds.map(
-                                                (roundId) => {
-                                                  const round = rounds.find(
-                                                    (r) => r.id === roundId,
-                                                  );
-                                                  return round ? (
-                                                    <Badge
-                                                      key={roundId}
-                                                      variant="outline"
-                                                      className="text-xs bg-red-50 text-red-700 border-red-200"
-                                                    >
-                                                      <AlertTriangle className="w-3 h-3 mr-1" />
-                                                      {round.roundName}
-                                                    </Badge>
-                                                  ) : null;
-                                                },
-                                              )}
-                                            </div>
-                                          )}
+                                            })}
+                                          </div>
+                                        )}
                                       </>
                                     )}
                                   </div>
@@ -1183,26 +1069,17 @@ export default function InterviewView() {
                                 >
                                   {candidate.status === "in-progress"
                                     ? "In Progress"
-                                    : candidate.status.charAt(0).toUpperCase() +
-                                      candidate.status.slice(1)}
+                                    : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
                                 </Badge>
                               </TableCell>
                               <TableCell className="py-6">
                                 <div className="flex gap-2">
                                   <Button
                                     size="sm"
-                                    variant={
-                                      isMissingRounds ? "default" : "outline"
-                                    }
-                                    className={
-                                      isMissingRounds
-                                        ? "bg-primary hover:bg-primary/90 text-white"
-                                        : ""
-                                    }
+                                    variant={isMissingRounds ? "default" : "outline"}
+                                    className={isMissingRounds ? "bg-primary hover:bg-primary/90 text-white" : ""}
                                     onClick={() => {
-                                      setSelectedCandidatesForAssignment([
-                                        candidate.id,
-                                      ]);
+                                      setSelectedCandidatesForAssignment([candidate.id]);
                                       handleBulkAssign();
                                     }}
                                   >
@@ -1227,33 +1104,19 @@ export default function InterviewView() {
                     <div className="text-2xl font-bold text-[#0065F8]">
                       {upcomingInterviews.length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Total Upcoming
-                    </div>
+                    <div className="text-sm text-muted-foreground">Total Upcoming</div>
                   </Card>
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-orange-600">
-                      {
-                        upcomingInterviews.filter(
-                          (i) => i.department === "Engineering",
-                        ).length
-                      }
+                      {upcomingInterviews.filter(i => i.department === "Engineering").length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Engineering Dept.
-                    </div>
+                    <div className="text-sm text-muted-foreground">Engineering Dept.</div>
                   </Card>
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-purple-600">
-                      {
-                        upcomingInterviews.filter((i) =>
-                          i.interviewRound.includes("Final"),
-                        ).length
-                      }
+                      {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Final Rounds
-                    </div>
+                    <div className="text-sm text-muted-foreground">Final Rounds</div>
                   </Card>
                 </div>
 
@@ -1340,330 +1203,161 @@ export default function InterviewView() {
                 </Card>
               </TabsContent>
             </Tabs>
-          </div>
-        </div>
-      )}
+          )}
 
-      {/* Rounds Room Content */}
-      {activeMainTab === "rounds-room" && (
-        <div className="flex gap-6 h-[calc(100vh-200px)]">
-          {/* Left Side Panel */}
-          <div className="w-80 flex-shrink-0 space-y-4">
-            <Card>
-              <CardContent className="p-3">
-                <h3 className="font-medium text-sm mb-3">Round Categories</h3>
-                <div className="space-y-1">
-                  {adminConfig.technical.enabled && (
-                    <Badge
-                      variant={
-                        activeRoundType === "technical" ? "default" : "outline"
-                      }
-                      className="w-full justify-start text-xs h-8 cursor-pointer"
-                      onClick={() => setActiveRoundType("technical")}
-                    >
-                      <FileText className="w-3 h-3 mr-2" />
-                      {adminConfig.technical.name}
-                    </Badge>
-                  )}
-                  {adminConfig.nonTechnical.enabled && (
-                    <Badge
-                      variant={
-                        activeRoundType === "non-technical"
-                          ? "default"
-                          : "outline"
-                      }
-                      className="w-full justify-start text-xs h-8 cursor-pointer"
-                      onClick={() => setActiveRoundType("non-technical")}
-                    >
-                      <MessageSquare className="w-3 h-3 mr-2" />
-                      {adminConfig.nonTechnical.name}
-                    </Badge>
-                  )}
-                  {adminConfig.final.enabled && (
-                    <Badge
-                      variant={
-                        activeRoundType === "final" ? "default" : "outline"
-                      }
-                      className="w-full justify-start text-xs h-8 cursor-pointer"
-                      onClick={() => setActiveRoundType("final")}
-                    >
-                      <CheckCircle className="w-3 h-3 mr-2" />
-                      {adminConfig.final.name}
-                    </Badge>
-                  )}
+          {activeMainTab === "rounds-room" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-medium">
+                  {adminConfig[activeRoundType]?.name} Rounds Management
+                </h2>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    {getFilteredRounds().length} rounds configured
+                  </Badge>
+                  <Badge
+                    variant="default"
+                    className="text-xs bg-green-100 text-green-700 border-green-200"
+                  >
+                    {getFilteredRounds().filter(r => r.status === "completed").length} completed
+                  </Badge>
                 </div>
+              </div>
 
-                <Button
-                  className="w-full mt-3 bg-[#0065F8] hover:bg-[#0065F8]/90 text-white text-xs h-8"
-                  onClick={() => {
-                    resetForm();
-                    setShowRoundModal(true);
-                  }}
-                >
-                  <Plus className="w-3 h-3 mr-2" />
-                  Add New Round
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-4">
-                <h3 className="font-medium text-sm mb-3">
-                  {adminConfig[activeRoundType]?.name} Rounds
-                </h3>
-                <div className="space-y-2">
-                  {getFilteredRounds().map((round) => (
-                    <div
-                      key={round.id}
-                      className="p-2 border rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <div className="flex items-center gap-1">
-                          <span className="font-medium text-xs">
-                            {round.roundHeader}
-                          </span>
-                          <Badge
-                            variant={
-                              round.status === "completed"
-                                ? "default"
-                                : "secondary"
-                            }
-                            className="text-xs"
-                          >
-                            {round.status === "completed" ? (
-                              <CheckCircle className="w-2 h-2 mr-1" />
-                            ) : (
-                              <Clock className="w-2 h-2 mr-1" />
+              {/* Rounds Table */}
+              <Card className="border-0 shadow-sm overflow-hidden">
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-muted/30 border-b">
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Round</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Round Name</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Interview Mode</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Scheduled Date/Time</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Status</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Candidates</TableHead>
+                        <TableHead className="font-medium text-foreground py-3 text-xs">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {getFilteredRounds().map((round) => (
+                        <TableRow
+                          key={round.id}
+                          className="hover:bg-muted/20 transition-colors border-b border-border/40"
+                        >
+                          <TableCell className="py-4">
+                            <div className="font-medium text-foreground text-xs">
+                              {round.roundHeader}
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <div className="font-medium text-foreground text-xs">
+                              {round.roundName}
+                            </div>
+                            {round.testDescription && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                {round.testDescription}
+                              </div>
                             )}
-                            {round.status}
-                          </Badge>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleEditRound(round)}
-                            className="h-5 w-5 p-0"
-                          >
-                            <Edit3 className="w-2 h-2" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleDeleteRound(round.id)}
-                            className="h-5 w-5 p-0 text-red-600 hover:text-red-700"
-                          >
-                            <Trash2 className="w-2 h-2" />
-                          </Button>
-                        </div>
-                      </div>
-                      <p className="text-xs text-gray-600 mb-1">
-                        {round.roundName}
-                      </p>
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span className="text-xs">
-                          {round.scheduledDate} at {round.scheduledTime}
-                        </span>
-                        <span className="text-xs">
-                          {round.candidates.length} candidates
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <Badge variant="outline" className="text-xs">
+                              {round.interviewMode.replace('-', ' ')}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <div className="text-xs">
+                              <div className="font-medium">{round.scheduledDate}</div>
+                              <div className="text-gray-500">{round.scheduledTime}</div>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <Badge
+                              variant={round.status === "completed" ? "default" : "secondary"}
+                              className="text-xs cursor-pointer hover:opacity-80"
+                            >
+                              {round.status === "completed" ? (
+                                <CheckCircle className="w-2 h-2 mr-1" />
+                              ) : (
+                                <Clock className="w-2 h-2 mr-1" />
+                              )}
+                              {round.status}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <div className="text-xs font-medium text-blue-600">
+                              {round.candidates.length} assigned
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-4">
+                            <div className="flex items-center gap-1">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-xs h-6 px-2 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
+                              >
+                                <Users className="w-2 h-2 mr-1" />
+                                Assign
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-xs h-6 px-2"
+                              >
+                                <Send className="w-2 h-2 mr-1" />
+                                Email
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleEditRound(round)}
+                                className="text-xs h-6 px-2"
+                              >
+                                <Edit3 className="w-2 h-2 mr-1" />
+                                Edit
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleDeleteRound(round.id)}
+                                className="text-xs h-6 px-2 text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="w-2 h-2" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
 
                   {getFilteredRounds().length === 0 && (
-                    <div className="text-center py-4 text-gray-500">
-                      <Clock className="w-6 h-6 mx-auto mb-2 opacity-50" />
-                      <p className="text-xs">No rounds created yet</p>
-                      <p className="text-xs">
-                        Click "Add New Round" to get started
+                    <div className="text-center py-12">
+                      <Clock className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+                      <h3 className="text-lg font-semibold text-gray-600 mb-2">
+                        No {adminConfig[activeRoundType]?.name} Rounds Yet
+                      </h3>
+                      <p className="text-gray-500 mb-4">
+                        Create your first {activeRoundType} round to get started with the interview process.
                       </p>
+                      <Button
+                        onClick={() => {
+                          resetForm();
+                          setShowRoundModal(true);
+                        }}
+                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Create First Round
+                      </Button>
                     </div>
                   )}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Main Content Area */}
-          <div className="flex-1 space-y-6 overflow-y-auto">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">
-                {adminConfig[activeRoundType]?.name} Rounds Management
-              </h2>
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="text-xs">
-                  {getFilteredRounds().length} rounds configured
-                </Badge>
-                <Badge
-                  variant="default"
-                  className="text-xs bg-green-100 text-green-700 border-green-200"
-                >
-                  {
-                    getFilteredRounds().filter((r) => r.status === "completed")
-                      .length
-                  }{" "}
-                  completed
-                </Badge>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-
-            {/* Rounds Table */}
-            <Card className="border-0 shadow-sm overflow-hidden">
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-muted/30 border-b">
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Round
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Round Name
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Interview Mode
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Scheduled Date/Time
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Status
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Candidates
-                      </TableHead>
-                      <TableHead className="font-medium text-foreground py-3 text-xs">
-                        Actions
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {getFilteredRounds().map((round) => (
-                      <TableRow
-                        key={round.id}
-                        className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                      >
-                        <TableCell className="py-4">
-                          <div className="font-medium text-foreground text-xs">
-                            {round.roundHeader}
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <div className="font-medium text-foreground text-xs">
-                            {round.roundName}
-                          </div>
-                          {round.testDescription && (
-                            <div className="text-xs text-gray-500 mt-1">
-                              {round.testDescription}
-                            </div>
-                          )}
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <Badge variant="outline" className="text-xs">
-                            {round.interviewMode.replace("-", " ")}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <div className="text-xs">
-                            <div className="font-medium">
-                              {round.scheduledDate}
-                            </div>
-                            <div className="text-gray-500">
-                              {round.scheduledTime}
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <Badge
-                            variant={
-                              round.status === "completed"
-                                ? "default"
-                                : "secondary"
-                            }
-                            className="text-xs cursor-pointer hover:opacity-80"
-                          >
-                            {round.status === "completed" ? (
-                              <CheckCircle className="w-2 h-2 mr-1" />
-                            ) : (
-                              <Clock className="w-2 h-2 mr-1" />
-                            )}
-                            {round.status}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <div className="text-xs font-medium text-blue-600">
-                            {round.candidates.length} assigned
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4">
-                          <div className="flex items-center gap-1">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="text-xs h-6 px-2 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
-                            >
-                              <Users className="w-2 h-2 mr-1" />
-                              Assign
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="text-xs h-6 px-2"
-                            >
-                              <Send className="w-2 h-2 mr-1" />
-                              Email
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleEditRound(round)}
-                              className="text-xs h-6 px-2"
-                            >
-                              <Edit3 className="w-2 h-2 mr-1" />
-                              Edit
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleDeleteRound(round.id)}
-                              className="text-xs h-6 px-2 text-red-600 hover:text-red-700"
-                            >
-                              <Trash2 className="w-2 h-2" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-
-                {getFilteredRounds().length === 0 && (
-                  <div className="text-center py-12">
-                    <Clock className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                    <h3 className="text-lg font-semibold text-gray-600 mb-2">
-                      No {adminConfig[activeRoundType]?.name} Rounds Yet
-                    </h3>
-                    <p className="text-gray-500 mb-4">
-                      Create your first {activeRoundType} round to get started
-                      with the interview process.
-                    </p>
-                    <Button
-                      onClick={() => {
-                        resetForm();
-                        setShowRoundModal(true);
-                      }}
-                      className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Create First Round
-                    </Button>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Add/Edit Round Modal */}
       <Dialog open={showRoundModal} onOpenChange={setShowRoundModal}>
@@ -1685,12 +1379,7 @@ export default function InterviewView() {
                 </label>
                 <Input
                   value={roundForm.roundHeader}
-                  onChange={(e) =>
-                    setRoundForm((prev) => ({
-                      ...prev,
-                      roundHeader: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundHeader: e.target.value }))}
                   placeholder="e.g., Round 1, Round 2"
                 />
               </div>
@@ -1700,12 +1389,7 @@ export default function InterviewView() {
                 </label>
                 <Input
                   value={roundForm.roundName}
-                  onChange={(e) =>
-                    setRoundForm((prev) => ({
-                      ...prev,
-                      roundName: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundName: e.target.value }))}
                   placeholder="e.g., Technical Assessment"
                 />
               </div>
@@ -1718,9 +1402,7 @@ export default function InterviewView() {
                 </label>
                 <Select
                   value={roundForm.roundType}
-                  onValueChange={(value: any) =>
-                    setRoundForm((prev) => ({ ...prev, roundType: value }))
-                  }
+                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, roundType: value }))}
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -1738,25 +1420,17 @@ export default function InterviewView() {
                 </label>
                 <Select
                   value={roundForm.interviewMode}
-                  onValueChange={(value: any) =>
-                    setRoundForm((prev) => ({ ...prev, interviewMode: value }))
-                  }
+                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, interviewMode: value }))}
                 >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="online-assessment">
-                      Online Assessment
-                    </SelectItem>
+                    <SelectItem value="online-assessment">Online Assessment</SelectItem>
                     <SelectItem value="video-call">Video Call</SelectItem>
                     <SelectItem value="in-person">In-Person</SelectItem>
-                    <SelectItem value="oral-assessment">
-                      Oral Assessment
-                    </SelectItem>
-                    <SelectItem value="group-assessment">
-                      Group Assessment
-                    </SelectItem>
+                    <SelectItem value="oral-assessment">Oral Assessment</SelectItem>
+                    <SelectItem value="group-assessment">Group Assessment</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -1768,12 +1442,7 @@ export default function InterviewView() {
               </label>
               <Textarea
                 value={roundForm.testDescription}
-                onChange={(e) =>
-                  setRoundForm((prev) => ({
-                    ...prev,
-                    testDescription: e.target.value,
-                  }))
-                }
+                onChange={(e) => setRoundForm(prev => ({ ...prev, testDescription: e.target.value }))}
                 placeholder="Optional description of the test associated with the round"
                 rows={3}
               />
@@ -1787,12 +1456,7 @@ export default function InterviewView() {
                 <Input
                   type="date"
                   value={roundForm.scheduledDate}
-                  onChange={(e) =>
-                    setRoundForm((prev) => ({
-                      ...prev,
-                      scheduledDate: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledDate: e.target.value }))}
                 />
               </div>
               <div>
@@ -1802,12 +1466,7 @@ export default function InterviewView() {
                 <Input
                   type="time"
                   value={roundForm.scheduledTime}
-                  onChange={(e) =>
-                    setRoundForm((prev) => ({
-                      ...prev,
-                      scheduledTime: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledTime: e.target.value }))}
                 />
               </div>
             </div>
@@ -1819,12 +1478,8 @@ export default function InterviewView() {
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">
-                  Upload test documents or files
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  DOC, PDF, Excel, JPG, PNG, MP4, MP5
-                </p>
+                <p className="text-sm text-gray-600">Upload test documents or files</p>
+                <p className="text-xs text-gray-500 mt-1">DOC, PDF, Excel, JPG, PNG, MP4, MP5</p>
               </div>
             </div>
           </div>
@@ -1835,11 +1490,7 @@ export default function InterviewView() {
             </Button>
             <Button
               onClick={isEditing ? handleUpdateRound : handleCreateRound}
-              disabled={
-                !roundForm.roundName ||
-                !roundForm.scheduledDate ||
-                !roundForm.scheduledTime
-              }
+              disabled={!roundForm.roundName || !roundForm.scheduledDate || !roundForm.scheduledTime}
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               {isEditing ? "Save Round" : "Add Round"}
@@ -1852,7 +1503,9 @@ export default function InterviewView() {
       <Dialog open={showBulkAssignModal} onOpenChange={setShowBulkAssignModal}>
         <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Bulk Assign Rounds to Candidates</DialogTitle>
+            <DialogTitle>
+              Bulk Assign Rounds to Candidates
+            </DialogTitle>
             <DialogDescription>
               Select candidates and rounds to create bulk assignments.
             </DialogDescription>
@@ -1861,10 +1514,7 @@ export default function InterviewView() {
           <div className="grid grid-cols-2 gap-6">
             {/* Candidates Selection */}
             <div>
-              <h3 className="font-semibold mb-4">
-                Select Candidates ({selectedCandidatesForAssignment.length}{" "}
-                selected)
-              </h3>
+              <h3 className="font-semibold mb-4">Select Candidates ({selectedCandidatesForAssignment.length} selected)</h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {interviewCandidates.map((candidate) => (
                   <div
@@ -1872,19 +1522,12 @@ export default function InterviewView() {
                     className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50"
                   >
                     <Checkbox
-                      checked={selectedCandidatesForAssignment.includes(
-                        candidate.id,
-                      )}
-                      onCheckedChange={() =>
-                        handleCandidateSelectionToggle(candidate.id)
-                      }
+                      checked={selectedCandidatesForAssignment.includes(candidate.id)}
+                      onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
                     />
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                       <span className="text-primary font-medium text-xs">
-                        {candidate.applicantName
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                        {candidate.applicantName.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -1910,9 +1553,7 @@ export default function InterviewView() {
 
             {/* Rounds Selection */}
             <div>
-              <h3 className="font-semibold mb-4">
-                Select Rounds ({bulkSelectedRounds.length} selected)
-              </h3>
+              <h3 className="font-semibold mb-4">Select Rounds ({bulkSelectedRounds.length} selected)</h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {rounds.map((round) => (
                   <div
@@ -1921,16 +1562,14 @@ export default function InterviewView() {
                   >
                     <Checkbox
                       checked={bulkSelectedRounds.includes(round.id)}
-                      onCheckedChange={() =>
-                        handleRoundSelectionToggle(round.id)
-                      }
+                      onCheckedChange={() => handleRoundSelectionToggle(round.id)}
                     />
                     <div className="flex-1">
                       <div className="font-semibold text-foreground text-sm">
                         {round.roundName}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {round.roundType} • {round.interviewMode}
+                        {round.roundType} �� {round.interviewMode}
                       </div>
                       <div className="text-xs text-gray-500">
                         {round.scheduledDate} at {round.scheduledTime}
@@ -1941,9 +1580,7 @@ export default function InterviewView() {
                         {round.candidates.length} assigned
                       </Badge>
                       <Badge
-                        variant={
-                          round.status === "completed" ? "default" : "secondary"
-                        }
+                        variant={round.status === "completed" ? "default" : "secondary"}
                         className="text-xs"
                       >
                         {round.status}
@@ -1956,39 +1593,23 @@ export default function InterviewView() {
           </div>
 
           {/* Summary */}
-          {selectedCandidatesForAssignment.length > 0 &&
-            bulkSelectedRounds.length > 0 && (
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-medium text-blue-800 mb-2">
-                  Assignment Summary
-                </h4>
-                <p className="text-sm text-blue-700">
-                  You are about to assign{" "}
-                  <strong>{bulkSelectedRounds.length} rounds</strong> to{" "}
-                  <strong>
-                    {selectedCandidatesForAssignment.length} candidates
-                  </strong>
-                  . This will create{" "}
-                  {selectedCandidatesForAssignment.length *
-                    bulkSelectedRounds.length}{" "}
-                  new assignments.
-                </p>
-              </div>
-            )}
+          {selectedCandidatesForAssignment.length > 0 && bulkSelectedRounds.length > 0 && (
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <h4 className="font-medium text-blue-800 mb-2">Assignment Summary</h4>
+              <p className="text-sm text-blue-700">
+                You are about to assign <strong>{bulkSelectedRounds.length} rounds</strong> to <strong>{selectedCandidatesForAssignment.length} candidates</strong>.
+                This will create {selectedCandidatesForAssignment.length * bulkSelectedRounds.length} new assignments.
+              </p>
+            </div>
+          )}
 
           <DialogFooter className="flex gap-2">
-            <Button
-              variant="outline"
-              onClick={() => setShowBulkAssignModal(false)}
-            >
+            <Button variant="outline" onClick={() => setShowBulkAssignModal(false)}>
               Cancel
             </Button>
             <Button
               onClick={handleBulkAssignmentSave}
-              disabled={
-                selectedCandidatesForAssignment.length === 0 ||
-                bulkSelectedRounds.length === 0
-              }
+              disabled={selectedCandidatesForAssignment.length === 0 || bulkSelectedRounds.length === 0}
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <UserPlus className="w-4 h-4 mr-2" />
@@ -2004,8 +1625,7 @@ export default function InterviewView() {
           <DialogHeader>
             <DialogTitle>Use Round Templates</DialogTitle>
             <DialogDescription>
-              Apply pre-defined round templates to streamline your interview
-              process.
+              Apply pre-defined round templates to streamline your interview process.
             </DialogDescription>
           </DialogHeader>
 
@@ -2027,32 +1647,22 @@ export default function InterviewView() {
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-sm">
-                            {template.name}
-                          </h4>
-                          <p className="text-sm text-gray-600 mb-3">
-                            {template.description}
-                          </p>
+                          <h4 className="font-semibold text-sm">{template.name}</h4>
+                          <p className="text-sm text-gray-600 mb-3">{template.description}</p>
                           <div className="flex flex-wrap gap-2">
                             {template.rounds.map((round, index) => (
-                              <Badge
-                                key={index}
-                                variant="outline"
-                                className="text-xs"
-                              >
+                              <Badge key={index} variant="outline" className="text-xs">
                                 {round.order}. {round.roundName}
                               </Badge>
                             ))}
                           </div>
                         </div>
                         <div className="flex items-center">
-                          <div
-                            className={`w-4 h-4 rounded-full border-2 ${
-                              selectedTemplate?.id === template.id
-                                ? "border-primary bg-primary"
-                                : "border-gray-300"
-                            }`}
-                          >
+                          <div className={`w-4 h-4 rounded-full border-2 ${
+                            selectedTemplate?.id === template.id 
+                              ? "border-primary bg-primary" 
+                              : "border-gray-300"
+                          }`}>
                             {selectedTemplate?.id === template.id && (
                               <Check className="w-2 h-2 text-white m-0.5" />
                             )}
@@ -2068,9 +1678,7 @@ export default function InterviewView() {
             {/* Candidate Selection for Template */}
             {selectedTemplate && (
               <div>
-                <h3 className="font-semibold mb-4">
-                  Select Candidates for Template
-                </h3>
+                <h3 className="font-semibold mb-4">Select Candidates for Template</h3>
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {interviewCandidates.map((candidate) => (
                     <div
@@ -2079,20 +1687,13 @@ export default function InterviewView() {
                       onClick={() => handleCandidateSelectionToggle(candidate.id)}
                     >
                       <Checkbox
-                        checked={selectedCandidatesForAssignment.includes(
-                          candidate.id,
-                        )}
-                        onCheckedChange={() =>
-                          handleCandidateSelectionToggle(candidate.id)
-                        }
+                        checked={selectedCandidatesForAssignment.includes(candidate.id)}
+                        onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
                         onClick={(e) => e.stopPropagation()}
                       />
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                         <span className="text-primary font-medium text-xs">
-                          {candidate.applicantName
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
+                          {candidate.applicantName.split(" ").map((n) => n[0]).join("")}
                         </span>
                       </div>
                       <div className="flex-1">
@@ -2112,24 +1713,16 @@ export default function InterviewView() {
             {/* Template Preview */}
             {selectedTemplate && (
               <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-medium mb-3">
-                  Template Preview: {selectedTemplate.name}
-                </h4>
+                <h4 className="font-medium mb-3">Template Preview: {selectedTemplate.name}</h4>
                 <div className="space-y-2">
                   {selectedTemplate.rounds.map((round, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-medium text-xs">
-                          {round.order}
-                        </span>
+                        <span className="text-primary font-medium text-xs">{round.order}</span>
                       </div>
                       <div className="flex-1">
-                        <div className="text-sm font-medium">
-                          {round.roundName}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {round.roundType} • {round.interviewMode}
-                        </div>
+                        <div className="text-sm font-medium">{round.roundName}</div>
+                        <div className="text-xs text-gray-500">{round.roundType} • {round.interviewMode}</div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-gray-400" />
                     </div>
@@ -2140,22 +1733,16 @@ export default function InterviewView() {
           </div>
 
           <DialogFooter className="flex gap-2">
-            <Button
-              variant="outline"
-              onClick={() => {
-                setShowTemplateModal(false);
-                setSelectedTemplate(null);
-                setSelectedCandidatesForAssignment([]);
-              }}
-            >
+            <Button variant="outline" onClick={() => {
+              setShowTemplateModal(false);
+              setSelectedTemplate(null);
+              setSelectedCandidatesForAssignment([]);
+            }}>
               Cancel
             </Button>
             <Button
               onClick={applyTemplate}
-              disabled={
-                !selectedTemplate ||
-                selectedCandidatesForAssignment.length === 0
-              }
+              disabled={!selectedTemplate || selectedCandidatesForAssignment.length === 0}
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <Copy className="w-4 h-4 mr-2" />
