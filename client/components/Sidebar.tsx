@@ -253,35 +253,6 @@ export default function Sidebar({
           </div>
         </div>
 
-        {/* Bottom section */}
-        <div className="border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
-          {!isCollapsed ? (
-            <div className="p-4">
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 rounded-lg p-3 border border-blue-100 dark:border-slate-600">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                    <Badge className="w-3 h-3 bg-white text-blue-600 text-xs font-bold">
-                      v
-                    </Badge>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
-                      System Status
-                    </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      All services online
-                    </p>
-                  </div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="p-4 flex justify-center">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            </div>
-          )}
-        </div>
       </div>
     </TooltipProvider>
   );
