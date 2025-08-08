@@ -956,22 +956,11 @@ export default function InterviewView() {
               value={activeInterviewTab}
               onValueChange={setActiveInterviewTab}
             >
-              <div className="flex items-center justify-between mb-6">
+              <div className="mb-6">
                 <TabsList className="bg-muted">
                   <TabsTrigger value="ongoing">Ongoing Interview</TabsTrigger>
                   <TabsTrigger value="upcoming">Upcoming Interview</TabsTrigger>
                 </TabsList>
-
-                {/* Search Bar */}
-                <div className="relative w-80">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <Input
-                    placeholder="Search by name, email, job title..."
-                    value={searchQuery}
-                    onChange={(e) => handleSearch(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
               </div>
 
               <TabsContent value="ongoing" className="space-y-6">
