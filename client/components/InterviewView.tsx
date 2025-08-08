@@ -2075,7 +2075,8 @@ export default function InterviewView() {
                   {interviewCandidates.map((candidate) => (
                     <div
                       key={candidate.id}
-                      className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50"
+                      className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                      onClick={() => handleCandidateSelectionToggle(candidate.id)}
                     >
                       <Checkbox
                         checked={selectedCandidatesForAssignment.includes(
@@ -2084,6 +2085,7 @@ export default function InterviewView() {
                         onCheckedChange={() =>
                           handleCandidateSelectionToggle(candidate.id)
                         }
+                        onClick={(e) => e.stopPropagation()}
                       />
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                         <span className="text-primary font-medium text-xs">
