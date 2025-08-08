@@ -720,128 +720,78 @@ export default function InterviewView() {
 
       {/* Main Layout */}
       <div className={`${activeMainTab === "rounds-room" ? "flex gap-6" : ""} h-[calc(100vh-200px)]`}>
-        {/* Quick Actions Sidebar - Available in both tabs */}
-        <div
-          className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
-        >
-          <Card className="h-fit sticky top-0">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                {isQuickActionsSidebarOpen && (
-                  <h3 className="font-semibold text-sm flex items-center gap-2">
-                    <Target className="w-4 h-4" />
-                    Quick Actions
-                  </h3>
-                )}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() =>
-                    setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)
-                  }
-                  className="h-8 w-8 p-0 hover:bg-muted"
-                >
-                  {isQuickActionsSidebarOpen ? (
-                    <PanelLeftClose className="w-4 h-4" />
-                  ) : (
-                    <Menu className="w-4 h-4" />
+        {/* Quick Actions Sidebar - Only available in rounds-room tab */}
+        {activeMainTab === "rounds-room" && (
+          <div
+            className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
+          >
+            <Card className="h-fit sticky top-0">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-4">
+                  {isQuickActionsSidebarOpen && (
+                    <h3 className="font-semibold text-sm flex items-center gap-2">
+                      <Target className="w-4 h-4" />
+                      Quick Actions
+                    </h3>
                   )}
-                </Button>
-              </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() =>
+                      setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)
+                    }
+                    className="h-8 w-8 p-0 hover:bg-muted"
+                  >
+                    {isQuickActionsSidebarOpen ? (
+                      <PanelLeftClose className="w-4 h-4" />
+                    ) : (
+                      <Menu className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
 
-              {isQuickActionsSidebarOpen && (
-                <>
-                  <div className="space-y-3">
-                    <Button
-                      onClick={handleBulkAssign}
-                      className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
-                      disabled={selectedCandidatesForAssignment.length === 0}
-                    >
-                      <UserPlus className="w-4 h-4 mr-3" />
-                      Assign Rounds to Candidates
-                    </Button>
+                {isQuickActionsSidebarOpen && (
+                  <>
+                    <div className="space-y-3">
+                      <Button
+                        onClick={handleBulkAssign}
+                        className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
+                        disabled={selectedCandidatesForAssignment.length === 0}
+                      >
+                        <UserPlus className="w-4 h-4 mr-3" />
+                        Assign Rounds to Candidates
+                      </Button>
 
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-xs h-9 font-medium border-2"
-                      onClick={() => setShowTemplateModal(true)}
-                    >
-                      <Copy className="w-4 h-4 mr-3" />
-                      Use Round Templates
-                    </Button>
-                  </div>
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start text-xs h-9 font-medium border-2"
+                        onClick={() => setShowTemplateModal(true)}
+                      >
+                        <Copy className="w-4 h-4 mr-3" />
+                        Use Round Templates
+                      </Button>
+                    </div>
 
-                  {activeMainTab === "interview-status" && (
                     <div className="mt-8">
                       <h4 className="font-medium text-sm mb-3 text-muted-foreground">
-                        Assignment Filters
+                        Round Templates
                       </h4>
                       <div className="space-y-1">
-                        {[
-                          { value: "all", label: "All Candidates", icon: Users },
-                          {
-                            value: "missing",
-                            label: "Missing Rounds",
-                            icon: AlertTriangle,
-                          },
-                          {
-                            value: "partial",
-                            label: "Partial Assignment",
-                            icon: Clock,
-                          },
-                          {
-                            value: "complete",
-                            label: "Fully Assigned",
-                            icon: CheckCircle,
-                          },
-                        ].map((filter) => {
-                          const Icon = filter.icon;
-                          return (
-                            <Button
-                              key={filter.value}
-                              variant={
-                                assignmentFilter === filter.value
-                                  ? "secondary"
-                                  : "ghost"
-                              }
-                              size="sm"
-                              className="w-full justify-start text-xs h-8 font-normal"
-                              onClick={() =>
-                                handleAssignmentFilterChange(
-                                  filter.value as any,
-                                )
-                              }
-                            >
-                              <Icon className="w-3 h-3 mr-2" />
-                              {filter.label}
-                            </Button>
-                          );
-                        })}
+                        {roundTemplates.map((template) => (
+                          <Button
+                            key={template.id}
+                            variant="ghost"
+                            size="sm"
+                            className="w-full justify-start text-xs h-8 font-normal"
+                            onClick={() => handleTemplateAssign(template)}
+                          >
+                            <FileText className="w-3 h-3 mr-2" />
+                            {template.name}
+                          </Button>
+                        ))}
                       </div>
                     </div>
-                  )}
 
-                  <div className="mt-8">
-                    <h4 className="font-medium text-sm mb-3 text-muted-foreground">
-                      Round Templates
-                    </h4>
-                    <div className="space-y-1">
-                      {roundTemplates.map((template) => (
-                        <Button
-                          key={template.id}
-                          variant="ghost"
-                          size="sm"
-                          className="w-full justify-start text-xs h-8 font-normal"
-                          onClick={() => handleTemplateAssign(template)}
-                        >
-                          <FileText className="w-3 h-3 mr-2" />
-                          {template.name}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {activeMainTab === "rounds-room" && (
                     <div className="mt-8">
                       <h4 className="font-medium text-sm mb-3 text-muted-foreground">
                         Round Categories
@@ -890,12 +840,12 @@ export default function InterviewView() {
                         Add New Round
                       </Button>
                     </div>
-                  )}
-                </>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Main Content */}
         <div className={`${activeMainTab === "rounds-room" ? "flex-1" : "w-full"} overflow-y-auto`}>
