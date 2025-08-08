@@ -718,8 +718,8 @@ export default function InterviewView() {
         </div>
       </div>
 
-      {/* Main Layout with Quick Actions Sidebar */}
-      <div className="flex gap-6 h-[calc(100vh-200px)]">
+      {/* Main Layout */}
+      <div className={`${activeMainTab === "rounds-room" ? "flex gap-6" : ""} h-[calc(100vh-200px)]`}>
         {/* Quick Actions Sidebar - Available in both tabs */}
         <div
           className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
