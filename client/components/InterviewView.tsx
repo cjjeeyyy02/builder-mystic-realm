@@ -975,11 +975,8 @@ export default function InterviewView() {
                                 isMissingRounds ? "bg-red-50 border-red-200" : ""
                               }`}
                             >
-                              <TableCell className="text-center">
-                                <Checkbox
-                                  checked={selectedCandidatesForAssignment.includes(candidate.id)}
-                                  onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
-                                />
+                              <TableCell className="text-center font-medium text-muted-foreground py-6">
+                                {index + 1}
                               </TableCell>
                               <TableCell className="py-6">
                                 <div className="flex items-center gap-3">
