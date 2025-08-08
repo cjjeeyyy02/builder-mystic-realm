@@ -711,30 +711,30 @@ export default function InterviewView() {
                 </h3>
                 
                 <div className="space-y-2">
-                  <Button 
+                  <Button
                     onClick={handleBulkAssign}
-                    className="w-full justify-start text-sm h-10 bg-primary hover:bg-primary/90"
+                    className="w-full justify-start text-xs h-8 bg-primary hover:bg-primary/90"
                     disabled={selectedCandidatesForAssignment.length === 0}
                   >
-                    <UserPlus className="w-4 h-4 mr-2" />
+                    <UserPlus className="w-3 h-3 mr-2" />
                     Assign Rounds to Candidates
                   </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start text-sm h-10"
+
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-xs h-8"
                     onClick={() => handleAssignmentFilterChange("missing")}
                   >
-                    <AlertTriangle className="w-4 h-4 mr-2" />
+                    <AlertTriangle className="w-3 h-3 mr-2" />
                     Show Missing Assignments
                   </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start text-sm h-10"
+
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-xs h-8"
                     onClick={() => setShowTemplateModal(true)}
                   >
-                    <Copy className="w-4 h-4 mr-2" />
+                    <Copy className="w-3 h-3 mr-2" />
                     Use Round Templates
                   </Button>
                 </div>
