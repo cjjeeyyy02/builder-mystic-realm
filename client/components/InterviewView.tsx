@@ -808,12 +808,12 @@ export default function InterviewView() {
 
       {/* Quick Actions Sidebar - Only visible in Interview Status */}
       {activeMainTab === "interview-status" && (
-        <div className="flex gap-6">
+        <div className="flex gap-6 h-[calc(100vh-200px)]">
           {/* Sidebar */}
           <div
             className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? "w-80" : "w-12"} flex-shrink-0`}
           >
-            <Card className="h-fit">
+            <Card className="h-fit sticky top-0">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   {isQuickActionsSidebarOpen && (
