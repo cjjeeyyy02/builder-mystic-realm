@@ -701,94 +701,110 @@ export default function InterviewView() {
 
       {/* Quick Actions Sidebar - Only visible in Interview Status */}
       {activeMainTab === "interview-status" && (
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="flex gap-6">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Card>
+          <div className={`transition-all duration-300 ${isQuickActionsSidebarOpen ? 'w-80' : 'w-12'} flex-shrink-0`}>
+            <Card className="h-fit">
               <CardContent className="p-4">
-                <h3 className="font-semibold text-sm mb-4 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
-                  Quick Actions
-                </h3>
-                
-                <div className="space-y-2">
+                <div className="flex items-center justify-between mb-4">
+                  {isQuickActionsSidebarOpen && (
+                    <h3 className="font-semibold text-sm flex items-center gap-2">
+                      <Target className="w-4 h-4" />
+                      Quick Actions
+                    </h3>
+                  )}
                   <Button
-                    onClick={handleBulkAssign}
-                    className="w-full justify-start text-xs h-8 bg-primary hover:bg-primary/90"
-                    disabled={selectedCandidatesForAssignment.length === 0}
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsQuickActionsSidebarOpen(!isQuickActionsSidebarOpen)}
+                    className="h-8 w-8 p-0 hover:bg-muted"
                   >
-                    <UserPlus className="w-3 h-3 mr-2" />
-                    Assign Rounds to Candidates
-                  </Button>
-
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-xs h-8"
-                    onClick={() => handleAssignmentFilterChange("missing")}
-                  >
-                    <AlertTriangle className="w-3 h-3 mr-2" />
-                    Show Missing Assignments
-                  </Button>
-
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-xs h-8"
-                    onClick={() => setShowTemplateModal(true)}
-                  >
-                    <Copy className="w-3 h-3 mr-2" />
-                    Use Round Templates
+                    <Settings className={`w-4 h-4 transition-transform duration-200 ${isQuickActionsSidebarOpen ? 'rotate-0' : 'rotate-180'}`} />
                   </Button>
                 </div>
 
-                <div className="mt-6">
-                  <h4 className="font-medium text-sm mb-3">Assignment Filters</h4>
-                  <div className="flex flex-col gap-1">
-                    {[
-                      { value: "all", label: "All Candidates", icon: Users },
-                      { value: "missing", label: "Missing Rounds", icon: AlertTriangle },
-                      { value: "partial", label: "Partial Assignment", icon: Clock },
-                      { value: "complete", label: "Fully Assigned", icon: CheckCircle },
-                    ].map((filter) => {
-                      const Icon = filter.icon;
-                      return (
-                        <Button
-                          key={filter.value}
-                          variant={assignmentFilter === filter.value ? "secondary" : "ghost"}
-                          size="sm"
-                          className="justify-start text-xs h-8"
-                          onClick={() => handleAssignmentFilterChange(filter.value as any)}
-                        >
-                          <Icon className="w-3 h-3 mr-2" />
-                          {filter.label}
-                        </Button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <h4 className="font-medium text-sm mb-3">Round Templates</h4>
-                  <div className="space-y-1">
-                    {roundTemplates.map((template) => (
+                {isQuickActionsSidebarOpen && (
+                  <>
+                    <div className="space-y-3">
                       <Button
-                        key={template.id}
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start text-xs h-8"
-                        onClick={() => handleTemplateAssign(template)}
+                        onClick={handleBulkAssign}
+                        className="w-full justify-start text-xs h-9 bg-primary hover:bg-primary/90 font-medium"
+                        disabled={selectedCandidatesForAssignment.length === 0}
                       >
-                        <FileText className="w-3 h-3 mr-2" />
-                        {template.name}
+                        <UserPlus className="w-4 h-4 mr-3" />
+                        Assign Rounds to Candidates
                       </Button>
-                    ))}
-                  </div>
-                </div>
+
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start text-xs h-9 font-medium border-2"
+                        onClick={() => handleAssignmentFilterChange("missing")}
+                      >
+                        <AlertTriangle className="w-4 h-4 mr-3" />
+                        Show Missing Assignments
+                      </Button>
+
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start text-xs h-9 font-medium border-2"
+                        onClick={() => setShowTemplateModal(true)}
+                      >
+                        <Copy className="w-4 h-4 mr-3" />
+                        Use Round Templates
+                      </Button>
+                    </div>
+
+                    <div className="mt-8">
+                      <h4 className="font-medium text-sm mb-3 text-muted-foreground">Assignment Filters</h4>
+                      <div className="space-y-1">
+                        {[
+                          { value: "all", label: "All Candidates", icon: Users },
+                          { value: "missing", label: "Missing Rounds", icon: AlertTriangle },
+                          { value: "partial", label: "Partial Assignment", icon: Clock },
+                          { value: "complete", label: "Fully Assigned", icon: CheckCircle },
+                        ].map((filter) => {
+                          const Icon = filter.icon;
+                          return (
+                            <Button
+                              key={filter.value}
+                              variant={assignmentFilter === filter.value ? "secondary" : "ghost"}
+                              size="sm"
+                              className="w-full justify-start text-xs h-8 font-normal"
+                              onClick={() => handleAssignmentFilterChange(filter.value as any)}
+                            >
+                              <Icon className="w-3 h-3 mr-2" />
+                              {filter.label}
+                            </Button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="mt-8">
+                      <h4 className="font-medium text-sm mb-3 text-muted-foreground">Round Templates</h4>
+                      <div className="space-y-1">
+                        {roundTemplates.map((template) => (
+                          <Button
+                            key={template.id}
+                            variant="ghost"
+                            size="sm"
+                            className="w-full justify-start text-xs h-8 font-normal"
+                            onClick={() => handleTemplateAssign(template)}
+                          >
+                            <FileText className="w-3 h-3 mr-2" />
+                            {template.name}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="flex-1">
             <Tabs value={activeInterviewTab} onValueChange={setActiveInterviewTab}>
               <div className="flex items-center justify-between mb-6">
                 <TabsList className="bg-muted">
