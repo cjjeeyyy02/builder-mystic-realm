@@ -458,6 +458,7 @@ export default function InterviewView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
+  const [isQuickActionsSidebarOpen, setIsQuickActionsSidebarOpen] = useState(true);
 
   // Form States
   const [roundForm, setRoundForm] = useState({
