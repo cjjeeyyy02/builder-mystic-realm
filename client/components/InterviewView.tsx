@@ -782,28 +782,41 @@ export default function InterviewView() {
     <div className="space-y-6">
       {/* Navigation Tabs - Fixed styling */}
       <div className="border-b border-border">
-        <Tabs
-          value={activeMainTab}
-          onValueChange={setActiveMainTab}
-          className="w-full"
-        >
-          <TabsList className="h-auto p-0 bg-transparent border-0">
-            <TabsTrigger
-              value="interview-status"
-              className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
-            >
-              <Users className="w-4 h-4 mr-2" />
-              Interview Status
-            </TabsTrigger>
-            <TabsTrigger
-              value="rounds-room"
-              className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
-            >
-              <Settings className="w-4 h-4 mr-2" />
-              Rounds Room
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="flex items-center justify-between">
+          <Tabs
+            value={activeMainTab}
+            onValueChange={setActiveMainTab}
+            className="flex-1"
+          >
+            <TabsList className="h-auto p-0 bg-transparent border-0">
+              <TabsTrigger
+                value="interview-status"
+                className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
+              >
+                <Users className="w-4 h-4 mr-2" />
+                Interview Status
+              </TabsTrigger>
+              <TabsTrigger
+                value="rounds-room"
+                className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Rounds Room
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          {/* Search Bar */}
+          <div className="relative w-80">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              placeholder="Search by name, email, job title..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Quick Actions Sidebar - Only visible in Interview Status */}
