@@ -194,8 +194,8 @@ const interviewCandidates: InterviewCandidate[] = [
     status: "pending",
     email: "jessica.wang@email.com",
     phone: "+1 (555) 567-8901",
-    assignedRounds: [],
-    missingRounds: ["nt-1", "final-1"],
+    assignedRounds: ["nt-1"],
+    missingRounds: [],
   },
   {
     id: "6",
@@ -860,7 +860,7 @@ export default function InterviewView() {
 
               <TabsContent value="ongoing" className="space-y-6">
                 {/* Summary Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Card className="p-4">
                     <div className="text-2xl font-bold text-blue-600">
                       {filteredCandidates.filter(c => c.status === "in-progress").length}
@@ -878,12 +878,6 @@ export default function InterviewView() {
                       {filteredCandidates.filter(c => c.status === "pending").length}
                     </div>
                     <div className="text-sm text-muted-foreground">Pending</div>
-                  </Card>
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-red-600">
-                      {filteredCandidates.filter(c => !c.assignedRounds || c.assignedRounds.length === 0).length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Missing Assignments</div>
                   </Card>
                 </div>
 
