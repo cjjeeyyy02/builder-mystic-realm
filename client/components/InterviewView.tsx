@@ -959,12 +959,9 @@ export default function InterviewView() {
                                 </Badge>
                               </TableCell>
                               <TableCell className="py-6">
-                                <Badge
-                                  variant="outline"
-                                  className="font-medium bg-blue-50 text-blue-700 border-blue-200"
-                                >
+                                <div className="text-foreground font-medium">
                                   {candidate.currentRound}
-                                </Badge>
+                                </div>
                               </TableCell>
                               <TableCell className="py-6">
                                 <Badge
