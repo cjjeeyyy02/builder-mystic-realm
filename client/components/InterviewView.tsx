@@ -898,7 +898,7 @@ export default function InterviewView() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className={`${activeMainTab === "rounds-room" ? "flex-1" : "w-full"} overflow-y-auto`}>
           {activeMainTab === "interview-status" && (
             <Tabs value={activeInterviewTab} onValueChange={setActiveInterviewTab}>
               <div className="mb-6">
