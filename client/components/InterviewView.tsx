@@ -1057,22 +1057,6 @@ export default function InterviewView() {
                                     : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
                                 </Badge>
                               </TableCell>
-                              <TableCell className="py-6">
-                                <div className="flex gap-2">
-                                  <Button
-                                    size="sm"
-                                    variant={isMissingRounds ? "default" : "outline"}
-                                    className={isMissingRounds ? "bg-primary hover:bg-primary/90 text-white" : ""}
-                                    onClick={() => {
-                                      setSelectedCandidatesForAssignment([candidate.id]);
-                                      handleBulkAssign();
-                                    }}
-                                  >
-                                    <UserPlus className="w-3 h-3 mr-1" />
-                                    Assign Rounds
-                                  </Button>
-                                </div>
-                              </TableCell>
                             </TableRow>
                           );
                         })}
