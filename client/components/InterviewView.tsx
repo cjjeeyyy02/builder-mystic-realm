@@ -819,8 +819,8 @@ export default function InterviewView() {
         </div>
       </div>
 
-      {/* Quick Actions Sidebar - Only visible in Interview Status */}
-      {activeMainTab === "interview-status" && (
+      {/* Quick Actions Sidebar - Available in both tabs */}
+      {(activeMainTab === "interview-status" || activeMainTab === "rounds-room") && (
         <div className="flex gap-6 h-[calc(100vh-200px)]">
           {/* Sidebar */}
           <div
