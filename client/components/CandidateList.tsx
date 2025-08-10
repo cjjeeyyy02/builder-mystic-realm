@@ -264,8 +264,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         )}
       </div>
 
-      {/* Candidates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Candidates List */}
+      <div className="space-y-4">
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
