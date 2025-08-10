@@ -277,68 +277,80 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
           >
             <CardContent className="p-6">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                {/* Candidate Info */}
-                <div className="lg:col-span-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                      <User className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="space-y-2 flex-1">
-                      <div>
-                        <div className="text-sm text-muted-foreground font-medium">Candidate:</div>
-                        <div className="font-semibold text-foreground text-lg">{candidate.name}</div>
+                {/* Left Section - Candidate Details */}
+                <div className="lg:col-span-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Basic Info */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLICANT NAME:</span>
+                        <span className="font-semibold text-foreground">{candidate.name}</span>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground font-medium">Applied Position:</div>
-                        <div className="font-medium text-foreground">{candidate.position}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLIED POSITION:</span>
+                        <span className="font-medium text-foreground">{candidate.position}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">COMPANY LOCATION:</span>
+                        <span className="text-foreground">{candidate.companyLocation}</span>
+                      </div>
+                    </div>
+
+                    {/* Application Details */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">JOB TYPE:</span>
+                        <span className="text-foreground">{candidate.workType}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLIED:</span>
+                        <span className="text-foreground">{candidate.appliedDate}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLICATION PERIOD:</span>
+                        <span className="text-foreground text-xs">{candidate.applicationStart} - {candidate.applicationEnd}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Location & Dates */}
-                <div className="lg:col-span-3 space-y-3">
-                  <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Location:</div>
-                    <div className="flex items-center gap-2 text-foreground font-medium">
-                      <MapPin className="w-4 h-4 text-muted-foreground" />
-                      {candidate.companyLocation}
+                {/* Right Section - Status & Actions */}
+                <div className="lg:col-span-4">
+                  <div className="flex flex-col gap-3">
+                    {/* Status Row */}
+                    <div className="flex flex-wrap gap-2">
+                      <Badge
+                        variant={getStatusVariant(candidate.status)}
+                        className="font-medium text-xs uppercase"
+                      >
+                        STATUS: {candidate.status}
+                      </Badge>
+                      <Badge variant="secondary" className={`font-medium text-xs uppercase ${getDepartmentColor(candidate.workType)}`}>
+                        {candidate.workType}
+                      </Badge>
                     </div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Applied Date:</div>
-                    <div className="flex items-center gap-2 text-foreground font-medium">
-                      <Calendar className="w-4 h-4 text-muted-foreground" />
-                      {candidate.appliedDate}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Status & Actions */}
-                <div className="lg:col-span-4 space-y-3">
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="flex-1" onClick={() => handleViewProfile(candidate)}>
-                      <User className="w-3 h-3 mr-1" />
-                      View Profile
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Mail className="w-3 h-3 mr-1" />
-                      Contact
-                    </Button>
-                  </div>
-
-                  <div className="flex justify-between items-center">
-                    <Badge variant="secondary" className={`font-medium ${getDepartmentColor(candidate.workType)}`}>
-                      <Building className="w-3 h-3 mr-1" />
-                      {candidate.workType}
-                    </Badge>
-                    <Badge
-                      variant={getStatusVariant(candidate.status)}
-                      className="font-medium px-3 py-1"
+                    {/* Action Button */}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-xs font-medium uppercase tracking-wide"
+                      onClick={() => handleViewProfile(candidate)}
                     >
-                      {getStatusIcon(candidate.status)}
-                      <span className="ml-1">{candidate.status.toUpperCase()}</span>
-                    </Badge>
+                      VIEW PROFILE
+                    </Button>
+
+                    {/* Application Stage */}
+                    <div className="space-y-1">
+                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLICATION START:</div>
+                      <div className="text-xs text-foreground">{candidate.applicationStart}</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">APPLICATION CLOSED:</div>
+                      <div className="text-xs text-foreground">{candidate.applicationEnd}</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mt-2">CURRENT APPLICATION STAGE:</div>
+                      <Badge variant="secondary" className="text-xs font-medium uppercase">
+                        {candidate.stage}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
               </div>
