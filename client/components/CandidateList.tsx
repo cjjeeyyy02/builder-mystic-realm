@@ -256,82 +256,78 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`group hover:shadow-lg transition-all duration-300 rounded-none ${
+            className={`border-0 shadow-sm hover:shadow-md transition-shadow ${
               candidate.isSelected
                 ? "ring-2 ring-primary shadow-lg"
-                : "hover:border-primary/30"
+                : ""
             }`}
           >
-            <CardContent className="p-5">
-              {/* Header Section */}
-              <div className="flex items-center gap-3 mb-4">
-                <Avatar className="h-10 w-10">
-                  <AvatarFallback className="bg-primary/10 text-primary font-medium">
-                    {candidate.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground text-sm leading-tight">
-                    {candidate.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    {candidate.position}
-                  </p>
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                {/* Candidate Info */}
+                <div className="lg:col-span-5">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                      <User className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="space-y-2 flex-1">
+                      <div>
+                        <div className="text-sm text-muted-foreground font-medium">Candidate:</div>
+                        <div className="font-semibold text-foreground text-lg">{candidate.name}</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-muted-foreground font-medium">Applied Position:</div>
+                        <div className="font-medium text-foreground">{candidate.position}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex flex-col items-end gap-1">
-                  <Badge
-                    variant={getStatusVariant(candidate.status)}
-                    className="text-xs"
-                  >
-                    {getStatusIcon(candidate.status)}
-                  </Badge>
-                  <Badge variant="secondary" className="text-xs">
-                    {candidate.stage}
-                  </Badge>
+                {/* Location & Dates */}
+                <div className="lg:col-span-3 space-y-3">
+                  <div>
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Location:</div>
+                    <div className="flex items-center gap-2 text-foreground font-medium">
+                      <MapPin className="w-4 h-4 text-muted-foreground" />
+                      {candidate.companyLocation}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Applied Date:</div>
+                    <div className="flex items-center gap-2 text-foreground font-medium">
+                      <Calendar className="w-4 h-4 text-muted-foreground" />
+                      {candidate.appliedDate}
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Info Section */}
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <MapPin className="w-3 h-3" />
-                  <span>{candidate.companyLocation}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Calendar className="w-3 h-3" />
-                  <span>Applied {candidate.appliedDate}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <FileText className="w-3 h-3" />
-                  <span>Application Start: {candidate.applicationStart}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <FileText className="w-3 h-3" />
-                  <span>Application End: {candidate.applicationEnd}</span>
-                </div>
-              </div>
+                {/* Status & Actions */}
+                <div className="lg:col-span-4 space-y-3">
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="outline" className="flex-1" onClick={() => handleViewProfile(candidate)}>
+                      <User className="w-3 h-3 mr-1" />
+                      View Profile
+                    </Button>
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <Mail className="w-3 h-3 mr-1" />
+                      Contact
+                    </Button>
+                  </div>
 
-              {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-xs h-8 font-medium"
-                >
-                  {candidate.workType}
-                </Button>
-                <Button
-                  size="sm"
-                  className="text-xs h-8 font-medium"
-                  onClick={() => handleViewProfile(candidate)}
-                >
-                  View Profile
-                </Button>
+                  <div className="flex justify-between items-center">
+                    <Badge variant="secondary" className={`font-medium ${getDepartmentColor(candidate.workType)}`}>
+                      <Building className="w-3 h-3 mr-1" />
+                      {candidate.workType}
+                    </Badge>
+                    <Badge
+                      variant={getStatusVariant(candidate.status)}
+                      className="font-medium px-3 py-1"
+                    >
+                      {getStatusIcon(candidate.status)}
+                      <span className="ml-1">{candidate.status.toUpperCase()}</span>
+                    </Badge>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
