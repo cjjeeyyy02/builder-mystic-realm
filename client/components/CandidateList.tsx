@@ -214,6 +214,19 @@ function getStatusIcon(status: string) {
   }
 }
 
+function getDepartmentColor(workType: string): string {
+  switch (workType) {
+    case "Remote":
+      return "bg-blue-50 text-blue-700";
+    case "On-site":
+      return "bg-green-50 text-green-700";
+    case "Hybrid":
+      return "bg-purple-50 text-purple-700";
+    default:
+      return "bg-gray-50 text-gray-700";
+  }
+}
+
 export default function CandidateList({ searchQuery = "", selectedStage = "all" }: CandidateListProps) {
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
   const [showProfile, setShowProfile] = useState(false);
