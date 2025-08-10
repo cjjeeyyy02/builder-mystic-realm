@@ -111,7 +111,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: 'Roboto', 'Poppins', system-ui, -apple-system, sans-serif;
     font-feature-settings: "cv11", "ss01";
     font-variation-settings: "opsz" 32;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Roboto', system-ui, -apple-system, sans-serif;
   }
 }
