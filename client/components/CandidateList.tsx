@@ -276,58 +276,58 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
             }`}
           >
             <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
                 {/* Left Section - Candidate Details */}
                 <div className="lg:col-span-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Basic Info */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">APPLICANT NAME</span>
-                        <div className="text-lg font-bold text-gray-900">{candidate.name}</div>
+                    <div className="space-y-5">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">APPLICANT NAME</span>
+                        <div className="text-xl font-bold text-slate-900 leading-tight">{candidate.name}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">APPLIED POSITION</span>
-                        <div className="text-sm font-medium text-gray-700">{candidate.position}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">APPLIED POSITION</span>
+                        <div className="text-[15px] font-semibold text-slate-800 leading-snug">{candidate.position}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">COMPANY LOCATION</span>
-                        <div className="text-sm text-gray-600">{candidate.companyLocation}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">COMPANY LOCATION</span>
+                        <div className="text-[14px] font-medium text-slate-700 leading-relaxed">{candidate.companyLocation}</div>
                       </div>
                     </div>
 
                     {/* Application Details */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">JOB TYPE</span>
-                        <div className="text-sm text-gray-600">{candidate.workType}</div>
+                    <div className="space-y-5">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">JOB TYPE</span>
+                        <div className="text-[14px] font-medium text-slate-700 leading-relaxed">{candidate.workType}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">APPLIED</span>
-                        <div className="text-sm text-gray-600">{candidate.appliedDate}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">APPLIED</span>
+                        <div className="text-[14px] font-medium text-slate-700 leading-relaxed">{candidate.appliedDate}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">APPLICATION PERIOD</span>
-                        <div className="text-xs text-gray-500">{candidate.applicationStart} - {candidate.applicationEnd}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">APPLICATION PERIOD</span>
+                        <div className="text-[13px] font-medium text-slate-600 leading-relaxed">{candidate.applicationStart} - {candidate.applicationEnd}</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right Section - Status & Actions */}
-                <div className="lg:col-span-1 border-l border-gray-100 lg:pl-6">
-                  <div className="space-y-4">
+                <div className="lg:col-span-1 border-l border-slate-200 lg:pl-8">
+                  <div className="space-y-6">
                     {/* Status Badges */}
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <Badge
                         variant={getStatusVariant(candidate.status)}
-                        className="font-semibold text-xs uppercase tracking-wide px-3 py-1"
+                        className="font-bold text-[11px] uppercase tracking-[0.1em] px-4 py-2 h-auto"
                       >
                         {candidate.status}
                       </Badge>
                       <Badge
                         variant="secondary"
-                        className={`font-medium text-xs uppercase tracking-wide px-3 py-1 ${getDepartmentColor(candidate.workType)}`}
+                        className={`font-semibold text-[11px] uppercase tracking-[0.1em] px-4 py-2 h-auto ${getDepartmentColor(candidate.workType)}`}
                       >
                         {candidate.workType}
                       </Badge>
@@ -337,25 +337,25 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full text-xs font-semibold uppercase tracking-wider border-gray-300 hover:bg-gray-50"
+                      className="w-full text-[11px] font-bold uppercase tracking-[0.1em] border-slate-300 hover:bg-slate-50 hover:border-slate-400 h-10"
                       onClick={() => handleViewProfile(candidate)}
                     >
                       VIEW PROFILE
                     </Button>
 
                     {/* Application Timeline */}
-                    <div className="pt-2 border-t border-gray-100 space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">START DATE</span>
-                        <div className="text-xs text-gray-600">{candidate.applicationStart}</div>
+                    <div className="pt-4 border-t border-slate-200 space-y-4">
+                      <div className="space-y-1.5">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">START DATE</span>
+                        <div className="text-[13px] font-medium text-slate-700 leading-relaxed">{candidate.applicationStart}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">END DATE</span>
-                        <div className="text-xs text-gray-600">{candidate.applicationEnd}</div>
+                      <div className="space-y-1.5">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">END DATE</span>
+                        <div className="text-[13px] font-medium text-slate-700 leading-relaxed">{candidate.applicationEnd}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">CURRENT STAGE</span>
-                        <Badge variant="secondary" className="text-xs font-medium uppercase tracking-wide">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.1em] leading-none">CURRENT STAGE</span>
+                        <Badge variant="secondary" className="text-[11px] font-semibold uppercase tracking-[0.1em] px-3 py-1 h-auto">
                           {candidate.stage}
                         </Badge>
                       </div>
