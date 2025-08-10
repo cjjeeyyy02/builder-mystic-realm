@@ -256,7 +256,7 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`group hover:shadow-lg transition-all duration-300 ${
+            className={`group hover:shadow-lg transition-all duration-300 rounded-none ${
               candidate.isSelected
                 ? "ring-2 ring-primary shadow-lg"
                 : "hover:border-primary/30"
