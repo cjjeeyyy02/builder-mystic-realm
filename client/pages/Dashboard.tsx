@@ -287,37 +287,37 @@ export default function Dashboard() {
                 </Card>
               </div>
 
-              {/* Sales Report */}
+              {/* HR Metrics */}
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Sales Report</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">HR Metrics</h3>
                     <MoreHorizontal className="w-4 h-4 text-gray-400" />
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Product Launched (833)</span>
-                        <span className="text-xs text-gray-500">100</span>
+                        <span className="text-sm font-medium text-gray-900">Employee Satisfaction (89%)</span>
+                        <span className="text-xs text-gray-500">248</span>
                       </div>
-                      <Progress value={85} className="h-2" />
+                      <Progress value={89} className="h-2" />
                     </div>
-                    
+
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Ongoing Product (12)</span>
-                        <span className="text-xs text-gray-500">200</span>
+                        <span className="text-sm font-medium text-gray-900">Training Completion (76%)</span>
+                        <span className="text-xs text-gray-500">188</span>
                       </div>
-                      <Progress value={60} className="h-2" />
+                      <Progress value={76} className="h-2" />
                     </div>
-                    
+
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Product Sold (404)</span>
-                        <span className="text-xs text-gray-500">300</span>
+                        <span className="text-sm font-medium text-gray-900">Performance Reviews (94%)</span>
+                        <span className="text-xs text-gray-500">233</span>
                       </div>
-                      <Progress value={75} className="h-2" />
+                      <Progress value={94} className="h-2" />
                     </div>
                   </div>
                 </CardContent>
