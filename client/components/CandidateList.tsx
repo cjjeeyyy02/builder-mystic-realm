@@ -140,6 +140,7 @@ const candidates: Candidate[] = [
     status: "reject",
     workType: "Hybrid",
     stage: "activation",
+    applicationStatus: "close",
     isSelected: false,
   },
   {
