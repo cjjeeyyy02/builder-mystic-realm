@@ -244,41 +244,44 @@ export default function Dashboard() {
                     
                     <div className="mb-4">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-2xl font-bold text-gray-900">$193,000</span>
-                        <div className="flex items-center text-green-600 text-sm">
-                          <ArrowUpRight className="w-4 h-4 mr-1" />
-                          +35% from last month
-                        </div>
+                        <span className="text-sm text-gray-600">Employee Count by Department</span>
                       </div>
-                      <div className="flex items-center space-x-4 text-xs">
-                        <div className="flex items-center space-x-1">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                          <span className="text-gray-600">Income</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span className="text-gray-600">Expenses</span>
+                    </div>
+
+                    {/* Department Distribution Chart */}
+                    <div className="flex items-center justify-center mb-6">
+                      <div className="relative w-40 h-40">
+                        {/* Placeholder for donut chart - could be replaced with actual chart library */}
+                        <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
+                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
+                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
+                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Simple Bar Chart */}
-                    <div className="flex items-end justify-between h-32 space-x-2">
-                      {salesData.map((data, index) => (
-                        <div key={index} className="flex flex-col items-center space-y-1 flex-1">
-                          <div className="flex flex-col justify-end h-20 w-full space-y-1">
-                            <div 
-                              className="bg-blue-600 rounded-t"
-                              style={{ height: `${(data.income / 60) * 100}%` }}
-                            ></div>
-                            <div 
-                              className="bg-green-500 rounded-b"
-                              style={{ height: `${(data.expenses / 60) * 100}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-xs text-gray-600">{data.month}</span>
-                        </div>
-                      ))}
+                    {/* Department Legend */}
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <span className="text-gray-600">Engineering</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
+                        <span className="text-gray-600">HR</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                        <span className="text-gray-600">Marketing</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <span className="text-gray-600">Finance</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
+                        <span className="text-gray-600">Sales</span>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
