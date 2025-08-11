@@ -433,19 +433,74 @@ export default function Dashboard() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
                   <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
 
-                  <div className="mb-4">
-                    <div className="flex items-center space-x-2 mb-2">
+                  {/* Legend */}
+                  <div className="flex items-center justify-center space-x-6 mb-6 mt-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-green-500 rounded"></div>
+                      <span className="text-xs text-gray-600">New Hires</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-red-500 rounded"></div>
+                      <span className="text-xs text-gray-600">Exits</span>
                     </div>
                   </div>
 
-                  {/* Chart placeholder area */}
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="relative w-40 h-40">
-                      {/* Placeholder for donut chart - could be replaced with actual chart library */}
-                      <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
+                  {/* Bar Chart */}
+                  <div className="relative h-48">
+                    {/* Y-axis labels */}
+                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
+                      <span>25</span>
+                      <span>20</span>
+                      <span>15</span>
+                      <span>10</span>
+                      <span>5</span>
+                      <span>0</span>
+                    </div>
+
+                    {/* Chart area */}
+                    <div className="ml-6 h-full">
+                      {/* Grid lines */}
+                      <div className="absolute inset-0 ml-6">
+                        {[0, 20, 40, 60, 80, 100].map((percent) => (
+                          <div
+                            key={percent}
+                            className="absolute w-full border-t border-gray-100"
+                            style={{ bottom: `${percent}%` }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Bars */}
+                      <div className="flex items-end justify-between h-full relative z-10">
+                        {employeeGrowthData.map((data, index) => {
+                          const maxValue = 25; // Maximum value for scaling
+                          const newHireHeight = (data.newHires / maxValue) * 100;
+                          const exitHeight = (data.exits / maxValue) * 100;
+
+                          return (
+                            <div key={data.month} className="flex flex-col items-center space-y-1">
+                              {/* Bars container */}
+                              <div className="flex space-x-0.5 items-end h-40">
+                                {/* New Hires bar */}
+                                <div
+                                  className="bg-green-500 w-3 rounded-t transition-all duration-300 hover:bg-green-600"
+                                  style={{ height: `${newHireHeight}%` }}
+                                  title={`New Hires: ${data.newHires}`}
+                                />
+                                {/* Exits bar */}
+                                <div
+                                  className="bg-red-500 w-3 rounded-t transition-all duration-300 hover:bg-red-600"
+                                  style={{ height: `${exitHeight}%` }}
+                                  title={`Exits: ${data.exits}`}
+                                />
+                              </div>
+                              {/* Month label */}
+                              <span className="text-xs text-gray-600 mt-2">
+                                {data.month}
+                              </span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
