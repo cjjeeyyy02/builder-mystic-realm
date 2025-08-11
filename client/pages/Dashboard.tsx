@@ -295,96 +295,143 @@ export default function Dashboard() {
               <div className="grid grid-cols-1 gap-6">
                 {/* Company Events */}
                 <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
-                      <div className="flex items-center space-x-2">
-                        <Button variant="ghost" size="sm" className="text-xs text-gray-600 hover:text-gray-800">
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-between mb-8">
+                      <div>
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">Company Events</h3>
+                        <p className="text-sm text-gray-600">Company Upcoming events and activities</p>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2">
                           List
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-xs text-white bg-blue-500 hover:bg-blue-600">
-                          Calendar 2
-                        </Button>
-                        <Button variant="ghost" size="sm" className="text-xs text-blue-600 hover:text-blue-800">
-                          View all events
+                        <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-800 px-4 py-2">
+                          Calendar
                         </Button>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      {/* Event Card 1 */}
-                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                        <div className="mb-4">
-                          <h4 className="font-semibold text-gray-900 text-sm mb-3">Tech Summer 2024</h4>
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            <Badge className="text-xs px-2 py-1 bg-gray-100 text-gray-700 border-0">#techvent</Badge>
-                            <Badge className="text-xs px-2 py-1 bg-teal-100 text-teal-700 border-0">Conference</Badge>
-                            <Badge className="text-xs px-2 py-1 bg-blue-100 text-blue-700 border-0">AZANA</Badge>
-                          </div>
-                          <p className="text-xs text-gray-600 mb-4 leading-relaxed">
-                            Join us for the biggest Tech event of the year featuring innovative and industry insights.
-                          </p>
-                        </div>
+                    <div className="space-y-6">
+                      {/* Event Card 1 - Tech Summer 2024 */}
+                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="mb-4">
+                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Tech Summer 2024</h4>
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                <Badge className="text-xs px-3 py-1 bg-blue-100 text-blue-700 border-0">Awaited</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-teal-100 text-teal-700 border-0">Conference</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-gray-100 text-gray-700 border-0">Workshop</Badge>
+                              </div>
+                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
+                                Join us for the biggest Tech event discussing innovative and industry insights
+                              </p>
+                            </div>
 
-                        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-1">
-                              <Calendar className="w-3 h-3" />
-                              <span>June, 27 2025</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <MapPin className="w-3 h-3" />
-                              <span>Grand Convention Center</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <Users className="w-3 h-3" />
-                              <span>250 Attendees</span>
+                            <div className="flex items-center space-x-6 text-sm text-gray-500">
+                              <div className="flex items-center space-x-2">
+                                <Calendar className="w-4 h-4" />
+                                <span>29/06/2024</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <MapPin className="w-4 h-4" />
+                                <span>Grand Convention Center</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Users className="w-4 h-4" />
+                                <span>2520 Attendees</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="flex justify-end">
-                          <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
-                            Share to Forum
-                          </Button>
+                          <div className="ml-6">
+                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
+                              <Calendar className="w-4 h-4 mr-2" />
+                              Going to Event
+                            </Button>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Event Card 2 */}
-                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                        <div className="mb-4">
-                          <h4 className="font-semibold text-gray-900 text-sm mb-3">Tech Summer 2024</h4>
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            <Badge className="text-xs px-2 py-1 bg-gray-100 text-gray-700 border-0">#techvent</Badge>
-                            <Badge className="text-xs px-2 py-1 bg-teal-100 text-teal-700 border-0">Conference</Badge>
-                            <Badge className="text-xs px-2 py-1 bg-blue-100 text-blue-700 border-0">AZANA</Badge>
-                          </div>
-                          <p className="text-xs text-gray-600 mb-4 leading-relaxed">
-                            Join us for the biggest Tech event of the year featuring innovative and industry insights.
-                          </p>
-                        </div>
+                      {/* Event Card 2 - Team Building Workshop */}
+                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="mb-4">
+                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Team Building and Innovation Workshop</h4>
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                <Badge className="text-xs px-3 py-1 bg-orange-100 text-orange-700 border-0">Registration Due</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-green-100 text-green-700 border-0">Innovation</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-blue-100 text-blue-700 border-0">Awaited</Badge>
+                              </div>
+                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
+                                Collaboration Workshop focusing on innovation methodologies and Team dynamics
+                              </p>
+                            </div>
 
-                        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-1">
-                              <Calendar className="w-3 h-3" />
-                              <span>June, 27 2025</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <MapPin className="w-3 h-3" />
-                              <span>Grand Convention Center</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <Users className="w-3 h-3" />
-                              <span>250 Attendees</span>
+                            <div className="flex items-center space-x-6 text-sm text-gray-500">
+                              <div className="flex items-center space-x-2">
+                                <Calendar className="w-4 h-4" />
+                                <span>15/07/2024</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <MapPin className="w-4 h-4" />
+                                <span>Training Center</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Users className="w-4 h-4" />
+                                <span>156 Attendees</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="flex justify-end">
-                          <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
-                            Share to Forum
-                          </Button>
+                          <div className="ml-6">
+                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
+                              <Calendar className="w-4 h-4 mr-2" />
+                              Going to Event
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Event Card 3 - Holiday Celebration */}
+                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="mb-4">
+                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Holiday Celebration and Award Night</h4>
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                <Badge className="text-xs px-3 py-1 bg-purple-100 text-purple-700 border-0">Creative</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-pink-100 text-pink-700 border-0">Social</Badge>
+                                <Badge className="text-xs px-3 py-1 bg-yellow-100 text-yellow-700 border-0">Awards</Badge>
+                              </div>
+                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
+                                Annual Celebration and Award ceremony, dinner and entertainment
+                              </p>
+                            </div>
+
+                            <div className="flex items-center space-x-6 text-sm text-gray-500">
+                              <div className="flex items-center space-x-2">
+                                <Calendar className="w-4 h-4" />
+                                <span>20/12/2024</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <MapPin className="w-4 h-4" />
+                                <span>Skyline Rooftop</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Users className="w-4 h-4" />
+                                <span>65 Attendees</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="ml-6">
+                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
+                              <Calendar className="w-4 h-4 mr-2" />
+                              Going to Event
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </div>
