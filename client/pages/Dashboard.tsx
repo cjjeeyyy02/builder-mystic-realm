@@ -299,56 +299,49 @@ export default function Dashboard() {
 
             {/* Right Column */}
             <div className="col-span-4 space-y-6">
-              {/* Performance Chart */}
+              {/* Department Distribution */}
               <Card>
                 <CardContent className="p-6">
-                  <div className="text-center">
-                    <div className="relative w-40 h-40 mx-auto mb-4">
-                      {/* Donut Chart Placeholder */}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Distribution</h3>
+
+                  <div className="mb-4">
+                    <div className="text-sm text-gray-600 mb-2">Employee Count by Department</div>
+                  </div>
+
+                  {/* Department Distribution Chart */}
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative w-40 h-40">
+                      {/* Placeholder for donut chart - could be replaced with actual chart library */}
                       <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-orange-400 border-r-green-500 border-b-green-500 transform -rotate-45"></div>
-                        <div className="absolute inset-4 bg-white rounded-full flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="text-2xl font-bold text-gray-900">565K</div>
-                            <div className="text-xs text-gray-500">Total Count</div>
-                          </div>
-                        </div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
                       </div>
                     </div>
-                    
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                          <span className="text-gray-600">16%</span>
-                        </div>
-                        <span className="font-medium">23%</span>
-                      </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span className="text-gray-600">68%</span>
-                        </div>
-                      </div>
+                  </div>
+
+                  {/* Department Legend */}
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                      <span className="text-gray-600">Engineering</span>
                     </div>
-                    
-                    <div className="mt-4 text-xs text-gray-500">
-                      <div className="flex items-center justify-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                          <span>Income</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                          <span>Expenses</span>
-                        </div>
-                      </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
+                      <span className="text-gray-600">HR</span>
                     </div>
-                    
-                    <p className="text-xs text-gray-500 mt-4">
-                      Here are some tips on how to improve your score.
-                    </p>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                      <span className="text-gray-600">Marketing</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
+                      <span className="text-gray-600">Finance</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
+                      <span className="text-gray-600">Sales</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
