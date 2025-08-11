@@ -29,6 +29,7 @@ import {
   BarChart3,
   FileText,
   Zap,
+  MapPin,
 } from "lucide-react";
 
 export default function Dashboard() {
