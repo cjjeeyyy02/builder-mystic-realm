@@ -648,17 +648,6 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
               </div>
 
               <DialogFooter className="flex gap-2">
-                <Button variant="outline" onClick={() => setShowProfile(false)}>
-                  Close
-                </Button>
-                <Button variant="outline" className="text-green-600 border-green-200 hover:bg-green-50">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Approve
-                </Button>
-                <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
-                  <X className="w-4 h-4 mr-2" />
-                  Reject
-                </Button>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                   <Send className="w-4 h-4 mr-2" />
                   Send Message
