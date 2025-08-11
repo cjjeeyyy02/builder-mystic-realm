@@ -211,7 +211,87 @@ export default function Dashboard() {
                 </Card>
               </div>
 
-              {/* Transaction and Revenue Row */}
+              {/* Employee Growth Trend - Full Width */}
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
+                  <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
+
+                  {/* Legend */}
+                  <div className="flex items-center justify-center space-x-6 mb-6 mt-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-green-500 rounded"></div>
+                      <span className="text-xs text-gray-600">New Hires</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-red-500 rounded"></div>
+                      <span className="text-xs text-gray-600">Exits</span>
+                    </div>
+                  </div>
+
+                  {/* Bar Chart */}
+                  <div className="relative h-48">
+                    {/* Y-axis labels */}
+                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
+                      <span>25</span>
+                      <span>20</span>
+                      <span>15</span>
+                      <span>10</span>
+                      <span>5</span>
+                      <span>0</span>
+                    </div>
+
+                    {/* Chart area */}
+                    <div className="ml-6 h-full">
+                      {/* Grid lines */}
+                      <div className="absolute inset-0 ml-6">
+                        {[0, 20, 40, 60, 80, 100].map((percent) => (
+                          <div
+                            key={percent}
+                            className="absolute w-full border-t border-gray-100"
+                            style={{ bottom: `${percent}%` }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Bars */}
+                      <div className="flex items-end justify-between h-full relative z-10">
+                        {employeeGrowthData.map((data, index) => {
+                          const maxValue = 25; // Maximum value for scaling
+                          const newHireHeight = (data.newHires / maxValue) * 100;
+                          const exitHeight = (data.exits / maxValue) * 100;
+
+                          return (
+                            <div key={data.month} className="flex flex-col items-center space-y-1">
+                              {/* Bars container */}
+                              <div className="flex space-x-0.5 items-end h-40">
+                                {/* New Hires bar */}
+                                <div
+                                  className="bg-green-500 w-3 rounded-t transition-all duration-300 hover:bg-green-600"
+                                  style={{ height: `${newHireHeight}%` }}
+                                  title={`New Hires: ${data.newHires}`}
+                                />
+                                {/* Exits bar */}
+                                <div
+                                  className="bg-red-500 w-3 rounded-t transition-all duration-300 hover:bg-red-600"
+                                  style={{ height: `${exitHeight}%` }}
+                                  title={`Exits: ${data.exits}`}
+                                />
+                              </div>
+                              {/* Month label */}
+                              <span className="text-xs text-gray-600 mt-2">
+                                {data.month}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Recent Activities and Company Events Row */}
               <div className="grid grid-cols-2 gap-6">
                 {/* Recent Activities */}
                 <Card>
@@ -260,197 +340,116 @@ export default function Dashboard() {
                   </CardContent>
                 </Card>
 
-                {/* Employee Growth Trend */}
+                {/* Company Events */}
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
-                    <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
-
-                    {/* Legend */}
-                    <div className="flex items-center justify-center space-x-6 mb-6 mt-4">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green-500 rounded"></div>
-                        <span className="text-xs text-gray-600">New Hires</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-red-500 rounded"></div>
-                        <span className="text-xs text-gray-600">Exits</span>
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
+                      <div className="flex items-center space-x-3">
+                        <Button variant="ghost" size="sm" className="text-xs text-gray-600">
+                          List
+                        </Button>
+                        <Button variant="ghost" size="sm" className="text-xs text-blue-600 bg-blue-50">
+                          Calendar 2
+                        </Button>
+                        <Button variant="ghost" size="sm" className="text-xs text-blue-600">
+                          View all events
+                        </Button>
                       </div>
                     </div>
 
-                    {/* Bar Chart */}
-                    <div className="relative h-48">
-                      {/* Y-axis labels */}
-                      <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
-                        <span>25</span>
-                        <span>20</span>
-                        <span>15</span>
-                        <span>10</span>
-                        <span>5</span>
-                        <span>0</span>
-                      </div>
-
-                      {/* Chart area */}
-                      <div className="ml-6 h-full">
-                        {/* Grid lines */}
-                        <div className="absolute inset-0 ml-6">
-                          {[0, 20, 40, 60, 80, 100].map((percent) => (
-                            <div
-                              key={percent}
-                              className="absolute w-full border-t border-gray-100"
-                              style={{ bottom: `${percent}%` }}
-                            />
-                          ))}
+                    <div className="space-y-4">
+                      {/* Event Card 1 */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <div className="mb-3">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
+                              #techvent
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
+                              Conference
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
+                              AZANA
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-gray-600 mb-3 leading-relaxed">
+                            Join us for the biggest Tech event of the year featuring innovative and industry insights.
+                          </p>
                         </div>
 
-                        {/* Bars */}
-                        <div className="flex items-end justify-between h-full relative z-10">
-                          {employeeGrowthData.map((data, index) => {
-                            const maxValue = 25; // Maximum value for scaling
-                            const newHireHeight = (data.newHires / maxValue) * 100;
-                            const exitHeight = (data.exits / maxValue) * 100;
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center space-x-1">
+                              <Calendar className="w-3 h-3" />
+                              <span>June, 27 2025</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <MapPin className="w-3 h-3" />
+                              <span>Grand Convention Center</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Users className="w-3 h-3" />
+                              <span>250 Attendees</span>
+                            </div>
+                          </div>
+                        </div>
 
-                            return (
-                              <div key={data.month} className="flex flex-col items-center space-y-1">
-                                {/* Bars container */}
-                                <div className="flex space-x-0.5 items-end h-40">
-                                  {/* New Hires bar */}
-                                  <div
-                                    className="bg-green-500 w-3 rounded-t transition-all duration-300 hover:bg-green-600"
-                                    style={{ height: `${newHireHeight}%` }}
-                                    title={`New Hires: ${data.newHires}`}
-                                  />
-                                  {/* Exits bar */}
-                                  <div
-                                    className="bg-red-500 w-3 rounded-t transition-all duration-300 hover:bg-red-600"
-                                    style={{ height: `${exitHeight}%` }}
-                                    title={`Exits: ${data.exits}`}
-                                  />
-                                </div>
-                                {/* Month label */}
-                                <span className="text-xs text-gray-600 mt-2">
-                                  {data.month}
-                                </span>
-                              </div>
-                            );
-                          })}
+                        <div className="flex justify-end">
+                          <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
+                            Share to Forum
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Event Card 2 */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <div className="mb-3">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
+                              #techvent
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
+                              Conference
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
+                              AZANA
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-gray-600 mb-3 leading-relaxed">
+                            Join us for the biggest Tech event of the year featuring innovative and industry insights.
+                          </p>
+                        </div>
+
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center space-x-1">
+                              <Calendar className="w-3 h-3" />
+                              <span>June, 27 2025</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <MapPin className="w-3 h-3" />
+                              <span>Grand Convention Center</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Users className="w-3 h-3" />
+                              <span>250 Attendees</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-end">
+                          <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
+                            Share to Forum
+                          </Button>
                         </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-
               </div>
-
-              {/* Company Events */}
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
-                    <div className="flex items-center space-x-3">
-                      <Button variant="ghost" size="sm" className="text-xs text-gray-600">
-                        List
-                      </Button>
-                      <Button variant="ghost" size="sm" className="text-xs text-blue-600 bg-blue-50">
-                        Calendar 2
-                      </Button>
-                      <Button variant="ghost" size="sm" className="text-xs text-blue-600">
-                        View all events
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    {/* Event Card 1 */}
-                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                      <div className="mb-3">
-                        <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
-                            #techvent
-                          </Badge>
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
-                            Conference
-                          </Badge>
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
-                            AZANA
-                          </Badge>
-                        </div>
-                        <p className="text-xs text-gray-600 mb-3 leading-relaxed">
-                          Join us for the biggest Tech event of the year featuring innovative and industry insights.
-                        </p>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Calendar className="w-3 h-3" />
-                            <span>June, 27 2025</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <MapPin className="w-3 h-3" />
-                            <span>Grand Convention Center</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Users className="w-3 h-3" />
-                            <span>250 Attendees</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end">
-                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
-                          Share to Forum
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* Event Card 2 */}
-                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                      <div className="mb-3">
-                        <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
-                            #techvent
-                          </Badge>
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
-                            Conference
-                          </Badge>
-                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
-                            AZANA
-                          </Badge>
-                        </div>
-                        <p className="text-xs text-gray-600 mb-3 leading-relaxed">
-                          Join us for the biggest Tech event of the year featuring innovative and industry insights.
-                        </p>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Calendar className="w-3 h-3" />
-                            <span>June, 27 2025</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <MapPin className="w-3 h-3" />
-                            <span>Grand Convention Center</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Users className="w-3 h-3" />
-                            <span>250 Attendees</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end">
-                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
-                          Share to Forum
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Right Column */}
