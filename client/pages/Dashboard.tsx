@@ -294,48 +294,91 @@ export default function Dashboard() {
               {/* Recent Activities and Company Events Row */}
               <div className="grid grid-cols-2 gap-6">
                 {/* Recent Activities */}
-                <Card>
+                <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
                   <CardContent className="p-6">
-                    <div className="mb-6">
+                    <div className="mb-4">
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Recent Activities</h3>
                       <p className="text-sm text-gray-600">Latest updates across the company.</p>
                     </div>
 
-                    <div className="space-y-3">
-                      {recentActivities.slice(0, 6).map((activity) => (
-                        <div key={activity.id} className="border-b border-gray-100 pb-3 last:border-b-0">
-                          <div className="flex items-start space-x-2">
-                            <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                              <span className="text-xs text-blue-600">👤</span>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-xs font-medium text-gray-900 leading-tight mb-1">
-                                {activity.activity}
-                              </p>
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-2">
-                                  <span className={`text-xs px-2 py-0.5 rounded ${
-                                    activity.category === 'Onboarding' ? 'bg-blue-100 text-blue-700' :
-                                    activity.category === 'Performance' ? 'bg-red-100 text-red-700' :
-                                    activity.category === 'Payroll' ? 'bg-cyan-100 text-cyan-700' :
-                                    'bg-gray-100 text-gray-700'
-                                  }`}>
-                                    {activity.category}
-                                  </span>
-                                  <span className="text-xs text-gray-600">{activity.department}</span>
-                                </div>
-                                <span className="text-xs text-gray-500">{activity.time}</span>
-                              </div>
-                            </div>
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">New Candidate John Doe joined HR Department</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 border-0">Onboarding</Badge>
+                            <span className="text-xs text-gray-600">HR</span>
                           </div>
+                          <span className="text-xs text-gray-500">2 hours ago</span>
                         </div>
-                      ))}
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">New Candidate Sarah Johnson Completed AI Assessment</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 border-0">Onboarding</Badge>
+                            <span className="text-xs text-gray-600">HR</span>
+                          </div>
+                          <span className="text-xs text-gray-500">5 hours ago</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">New Candidate John Johnson started Onboarding</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 border-0">Onboarding</Badge>
+                            <span className="text-xs text-gray-600">HR</span>
+                          </div>
+                          <span className="text-xs text-gray-500">2 hours ago</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">Q2 Performance reviews completed for engineering</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-red-100 text-red-700 border-0">Performance</Badge>
+                            <span className="text-xs text-gray-600">Engineering Team</span>
+                          </div>
+                          <span className="text-xs text-gray-500">2 hours ago</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">New Candidate John Doe joined HR Department</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 border-0">Onboarding</Badge>
+                            <span className="text-xs text-gray-600">HR</span>
+                          </div>
+                          <span className="text-xs text-gray-500">2 hours ago</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900 mb-1">Monthly payroll process successful for 1245</p>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs px-2 py-0.5 bg-cyan-100 text-cyan-700 border-0">Payroll</Badge>
+                            <span className="text-xs text-gray-600">Finance</span>
+                          </div>
+                          <span className="text-xs text-gray-500">2 hours ago</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="mt-4 text-center">
-                      <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                    <div className="mt-6 text-center">
+                      <Button variant="link" className="text-sm text-blue-600 hover:text-blue-800 font-medium p-0">
                         View all activities
-                      </button>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
