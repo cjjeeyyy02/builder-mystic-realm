@@ -69,28 +69,12 @@ export default function FilterTabs() {
       candidateCount: 45,
     },
     {
-      id: "indeed",
-      name: "Indeed",
-      icon: Globe,
-      description: "Sync applications from Indeed postings",
-      connected: false,
-      candidateCount: 23,
-    },
-    {
       id: "internal",
       name: "Internal Career Page",
       icon: Users,
       description: "Import from company career portal",
       connected: true,
       candidateCount: 18,
-    },
-    {
-      id: "monster",
-      name: "Monster.com",
-      icon: Globe,
-      description: "Access Monster job board applications",
-      connected: false,
-      candidateCount: 12,
     },
   ];
 
