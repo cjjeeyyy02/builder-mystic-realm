@@ -341,7 +341,7 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     {/* Location & Period */}
                     <div className="space-y-3">
                       <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">LOCATION</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">COMPANY LOCATION</span>
                         <div className="text-[12px] font-medium text-slate-700">{candidate.companyLocation}</div>
                       </div>
                       <div className="space-y-1">
