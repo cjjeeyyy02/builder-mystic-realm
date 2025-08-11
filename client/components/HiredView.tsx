@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, User, Building, Search, Mail, Phone, FileText, CheckCircle, XCircle, MapPin, Clock } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface HiredEmployee {
@@ -346,8 +354,15 @@ interface DecisionRoomViewProps {
 function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
   const [searchCandidates, setSearchCandidates] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<{
+    type: 'approve' | 'decline';
+    candidate: DecisionCandidate;
+  } | null>(null);
+  const [candidates, setCandidates] = useState<DecisionCandidate[]>(
 
-  const decisionCandidates: DecisionCandidate[] = [
+  [
+    // Initial candidate data
     {
       id: "1",
       serialNo: 1,
@@ -436,14 +451,48 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       location: "Hyderabad, India",
       status: "pending"
     }
-  ];
+  ]);
 
-  const filteredCandidates = decisionCandidates.filter(candidate => {
+  const filteredCandidates = candidates.filter(candidate => {
     const matchesSearch = candidate.name.toLowerCase().includes(searchCandidates.toLowerCase()) ||
                          candidate.role.toLowerCase().includes(searchCandidates.toLowerCase());
     const matchesStatus = statusFilter === "all" || candidate.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+
+  const handleApproveClick = (candidate: DecisionCandidate) => {
+    setConfirmAction({ type: 'approve', candidate });
+    setShowConfirmDialog(true);
+  };
+
+  const handleDeclineClick = (candidate: DecisionCandidate) => {
+    setConfirmAction({ type: 'decline', candidate });
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmAction = () => {
+    if (!confirmAction) return;
+
+    setCandidates(prevCandidates =>
+      prevCandidates.map(candidate =>
+        candidate.id === confirmAction.candidate.id
+          ? {
+              ...candidate,
+              status: confirmAction.type === 'approve' ? 'approved' : 'declined',
+              confirmedDOJ: confirmAction.type === 'approve' ? candidate.expectedDOJ : undefined
+            }
+          : candidate
+      )
+    );
+
+    setShowConfirmDialog(false);
+    setConfirmAction(null);
+  };
+
+  const handleCancelAction = () => {
+    setShowConfirmDialog(false);
+    setConfirmAction(null);
+  };
 
   const getEmploymentColor = (employment: string): string => {
     switch (employment) {
@@ -485,25 +534,25 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-4">
           <div className="text-2xl font-bold text-orange-600">
-            {decisionCandidates.filter(c => c.status === "pending").length}
+            {candidates.filter(c => c.status === "pending").length}
           </div>
           <div className="text-sm text-muted-foreground">Pending Decisions</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-green-600">
-            {decisionCandidates.filter(c => c.status === "approved").length}
+            {candidates.filter(c => c.status === "approved").length}
           </div>
           <div className="text-sm text-muted-foreground">Approved</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-red-600">
-            {decisionCandidates.filter(c => c.status === "declined").length}
+            {candidates.filter(c => c.status === "declined").length}
           </div>
           <div className="text-sm text-muted-foreground">Declined</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-purple-600">
-            {new Set(decisionCandidates.map(c => c.location)).size}
+            {new Set(candidates.map(c => c.location)).size}
           </div>
           <div className="text-sm text-muted-foreground">Locations</div>
         </Card>
@@ -645,20 +694,37 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                   </TableCell>
                   <TableCell className="py-4">
                     <div className="flex items-center gap-2 justify-center">
-                      <Button
-                        size="sm"
-                        className="bg-green-600 hover:bg-green-700 text-white h-8 px-3"
-                      >
-                        <CheckCircle className="w-3 h-3 mr-1" />
-                        APPROVE
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="bg-red-600 hover:bg-red-700 text-white h-8 px-3"
-                      >
-                        <XCircle className="w-3 h-3 mr-1" />
-                        DECLINE
-                      </Button>
+                      {candidate.status === 'pending' ? (
+                        <>
+                          <Button
+                            size="sm"
+                            className="bg-green-600 hover:bg-green-700 text-white h-8 px-3"
+                            onClick={() => handleApproveClick(candidate)}
+                          >
+                            <CheckCircle className="w-3 h-3 mr-1" />
+                            APPROVE
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="bg-red-600 hover:bg-red-700 text-white h-8 px-3"
+                            onClick={() => handleDeclineClick(candidate)}
+                          >
+                            <XCircle className="w-3 h-3 mr-1" />
+                            DECLINE
+                          </Button>
+                        </>
+                      ) : (
+                        <Badge
+                          variant="outline"
+                          className={`${
+                            candidate.status === 'approved'
+                              ? 'bg-green-100 text-green-700 border-green-200'
+                              : 'bg-red-100 text-red-700 border-red-200'
+                          }`}
+                        >
+                          {candidate.status === 'approved' ? 'APPROVED' : 'DECLINED'}
+                        </Badge>
+                      )}
                       <Button
                         size="sm"
                         className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3"
@@ -674,6 +740,76 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {confirmAction?.type === 'approve' ? (
+                <CheckCircle className="w-5 h-5 text-green-600" />
+              ) : (
+                <XCircle className="w-5 h-5 text-red-600" />
+              )}
+              {confirmAction?.type === 'approve' ? 'Approve Candidate' : 'Decline Candidate'}
+            </DialogTitle>
+            <DialogDescription>
+              Are you sure you want to {confirmAction?.type} <strong>{confirmAction?.candidate.name}</strong> for the position of <strong>{confirmAction?.candidate.role}</strong>?
+            </DialogDescription>
+          </DialogHeader>
+
+          {confirmAction && (
+            <div className="py-4">
+              <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Candidate:</span>
+                  <span className="font-medium">{confirmAction.candidate.name}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Role:</span>
+                  <span className="font-medium">{confirmAction.candidate.role}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Department:</span>
+                  <span className="font-medium">{confirmAction.candidate.department}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Expected DOJ:</span>
+                  <span className="font-medium">{confirmAction.candidate.expectedDOJ}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={handleCancelAction}
+            >
+              Cancel
+            </Button>
+            <Button
+              className={confirmAction?.type === 'approve'
+                ? 'bg-green-600 hover:bg-green-700 text-white'
+                : 'bg-red-600 hover:bg-red-700 text-white'
+              }
+              onClick={handleConfirmAction}
+            >
+              {confirmAction?.type === 'approve' ? (
+                <>
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Yes, Approve
+                </>
+              ) : (
+                <>
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Yes, Decline
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
     </div>
   );
