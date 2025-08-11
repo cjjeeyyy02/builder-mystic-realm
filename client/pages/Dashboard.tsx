@@ -269,37 +269,111 @@ export default function Dashboard() {
                 </Card>
               </div>
 
-              {/* HR Metrics */}
+              {/* Company Events */}
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">HR Metrics</h3>
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
+                    <div className="flex items-center space-x-3">
+                      <Button variant="ghost" size="sm" className="text-xs text-gray-600">
+                        List
+                      </Button>
+                      <Button variant="ghost" size="sm" className="text-xs text-blue-600 bg-blue-50">
+                        Calendar 2
+                      </Button>
+                      <Button variant="ghost" size="sm" className="text-xs text-blue-600">
+                        View all events
+                      </Button>
+                    </div>
                   </div>
 
                   <div className="space-y-4">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Employee Satisfaction (89%)</span>
-                        <span className="text-xs text-gray-500">248</span>
+                    {/* Event Card 1 */}
+                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="mb-3">
+                        <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
+                            #techvent
+                          </Badge>
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
+                            Conference
+                          </Badge>
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
+                            AZANA
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-gray-600 mb-3 leading-relaxed">
+                          Join us for the biggest Tech event of the year featuring innovative and industry insights.
+                        </p>
                       </div>
-                      <Progress value={89} className="h-2" />
+
+                      <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center space-x-1">
+                            <Calendar className="w-3 h-3" />
+                            <span>June, 27 2025</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <MapPin className="w-3 h-3" />
+                            <span>Grand Convention Center</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <Users className="w-3 h-3" />
+                            <span>250 Attendees</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end">
+                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
+                          Share to Forum
+                        </Button>
+                      </div>
                     </div>
 
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Training Completion (76%)</span>
-                        <span className="text-xs text-gray-500">188</span>
+                    {/* Event Card 2 */}
+                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="mb-3">
+                        <h4 className="font-semibold text-gray-900 text-sm mb-2">Tech Summer 2024</h4>
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-gray-200 text-gray-700">
+                            #techvent
+                          </Badge>
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-teal-100 text-teal-700">
+                            Conference
+                          </Badge>
+                          <Badge variant="secondary" className="text-xs px-2 py-1 bg-blue-100 text-blue-700">
+                            AZANA
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-gray-600 mb-3 leading-relaxed">
+                          Join us for the biggest Tech event of the year featuring innovative and industry insights.
+                        </p>
                       </div>
-                      <Progress value={76} className="h-2" />
-                    </div>
 
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-900">Performance Reviews (94%)</span>
-                        <span className="text-xs text-gray-500">233</span>
+                      <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center space-x-1">
+                            <Calendar className="w-3 h-3" />
+                            <span>June, 27 2025</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <MapPin className="w-3 h-3" />
+                            <span>Grand Convention Center</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <Users className="w-3 h-3" />
+                            <span>250 Attendees</span>
+                          </div>
+                        </div>
                       </div>
-                      <Progress value={94} className="h-2" />
+
+                      <div className="flex justify-end">
+                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-7">
+                          Share to Forum
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
