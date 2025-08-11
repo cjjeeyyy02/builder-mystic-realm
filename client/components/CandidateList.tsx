@@ -85,6 +85,7 @@ const candidates: Candidate[] = [
     status: "approved",
     workType: "Remote",
     stage: "screening",
+    applicationStatus: "open",
     isSelected: false,
     summary: "Experienced operations professional with 5+ years in supply chain management and process optimization. Proven track record of improving efficiency and reducing costs.",
     experience: "5 years",
