@@ -188,6 +188,7 @@ const candidates: Candidate[] = [
     status: "approved",
     workType: "On-site",
     stage: "interview",
+    applicationStatus: "open",
     isSelected: false,
   },
 ];
