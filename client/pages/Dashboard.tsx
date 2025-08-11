@@ -95,6 +95,22 @@ export default function Dashboard() {
     },
   ];
 
+  // Employee growth data for bar chart
+  const employeeGrowthData = [
+    { month: "Jan", newHires: 12, exits: 3 },
+    { month: "Feb", newHires: 8, exits: 5 },
+    { month: "Mar", newHires: 15, exits: 2 },
+    { month: "Apr", newHires: 10, exits: 4 },
+    { month: "May", newHires: 18, exits: 6 },
+    { month: "Jun", newHires: 14, exits: 3 },
+    { month: "Jul", newHires: 20, exits: 7 },
+    { month: "Aug", newHires: 16, exits: 4 },
+    { month: "Sep", newHires: 13, exits: 8 },
+    { month: "Oct", newHires: 17, exits: 5 },
+    { month: "Nov", newHires: 11, exits: 6 },
+    { month: "Dec", newHires: 9, exits: 3 },
+  ];
+
   const salesData = [
     { month: "Jan", income: 40, expenses: 30 },
     { month: "Feb", income: 35, expenses: 25 },
