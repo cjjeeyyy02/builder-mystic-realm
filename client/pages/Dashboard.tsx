@@ -35,54 +35,54 @@ export default function Dashboard() {
   const [dateRange, setDateRange] = useState("january-may-2024");
 
   // Sample data for the dashboard
-  const recentHires = [
+  const recentActivities = [
     {
       id: 1,
-      employee: "Sarah Johnson",
-      date: "Aug 12th, 2024",
-      department: "Engineering",
-      status: "Active",
-      avatar: "SJ",
+      activity: "New Candidate John Doe joined the HR Department",
+      category: "Onboarding",
+      department: "HR",
+      time: "2 hours ago",
+      icon: "👤",
     },
     {
       id: 2,
-      employee: "Michael Chen",
-      date: "Aug 11th, 2024",
-      department: "Marketing",
-      status: "Onboarding",
-      avatar: "MC",
+      activity: "New Candidate Sarah Johnson Completed AI Assessment",
+      category: "Onboarding",
+      department: "HR",
+      time: "5 hours ago",
+      icon: "👤",
     },
     {
       id: 3,
-      employee: "Emily Rodriguez",
-      date: "Aug 10th, 2024",
+      activity: "New Candidate Sarah Johnson started Onboarding",
+      category: "Onboarding",
       department: "HR",
-      status: "Onboarding",
-      avatar: "ER",
+      time: "2 hours ago",
+      icon: "👤",
     },
     {
       id: 4,
-      employee: "David Kim",
-      date: "Aug 09th, 2024",
-      department: "Finance",
-      status: "Active",
-      avatar: "DK",
+      activity: "Q2 Performance reviews completed for engineering",
+      category: "Performance",
+      department: "Engineering Team",
+      time: "2 hours ago",
+      icon: "👤",
     },
     {
       id: 5,
-      employee: "Lisa Wang",
-      date: "Aug 08th, 2024",
-      department: "Sales",
-      status: "Active",
-      avatar: "LW",
+      activity: "New Candidate John Doe joined the HR Department",
+      category: "Onboarding",
+      department: "HR",
+      time: "2 hours ago",
+      icon: "👤",
     },
     {
       id: 6,
-      employee: "Alex Thompson",
-      date: "Aug 07th, 2024",
-      department: "Engineering",
-      status: "Active",
-      avatar: "AT",
+      activity: "Monthly payroll process successfully for 1245",
+      category: "Payroll",
+      department: "Finance",
+      time: "2 hours ago",
+      icon: "👤",
     },
     {
       id: 7,
@@ -199,37 +199,46 @@ export default function Dashboard() {
                 {/* Recent Hires */}
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900">Recent Hires</h3>
-                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <div className="mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">Recent Activities</h3>
+                      <p className="text-sm text-gray-600">Latest updates across the company.</p>
                     </div>
 
-                    <div className="space-y-4">
-                      {recentHires.slice(0, 7).map((hire) => (
-                        <div key={hire.id} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                              <span className="text-xs font-medium text-gray-600">
-                                {hire.avatar}
-                              </span>
+                    <div className="space-y-3">
+                      {recentActivities.slice(0, 6).map((activity) => (
+                        <div key={activity.id} className="border-b border-gray-100 pb-3 last:border-b-0">
+                          <div className="flex items-start space-x-2">
+                            <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <span className="text-xs text-blue-600">👤</span>
                             </div>
-                            <div>
-                              <p className="text-sm font-medium text-gray-900">
-                                {hire.employee}
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-medium text-gray-900 leading-tight mb-1">
+                                {activity.activity}
                               </p>
-                              <p className="text-xs text-gray-500">{hire.date}</p>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-2">
+                                  <span className={`text-xs px-2 py-0.5 rounded ${
+                                    activity.category === 'Onboarding' ? 'bg-blue-100 text-blue-700' :
+                                    activity.category === 'Performance' ? 'bg-red-100 text-red-700' :
+                                    activity.category === 'Payroll' ? 'bg-cyan-100 text-cyan-700' :
+                                    'bg-gray-100 text-gray-700'
+                                  }`}>
+                                    {activity.category}
+                                  </span>
+                                  <span className="text-xs text-gray-600">{activity.department}</span>
+                                </div>
+                                <span className="text-xs text-gray-500">{activity.time}</span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-medium text-gray-900">
-                              {hire.department}
-                            </p>
-                            <span className={getStatusBadge(hire.status)}>
-                              {hire.status}
-                            </span>
                           </div>
                         </div>
                       ))}
+                    </div>
+
+                    <div className="mt-4 text-center">
+                      <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                        View all activities
+                      </button>
                     </div>
                   </CardContent>
                 </Card>
