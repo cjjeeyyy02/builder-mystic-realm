@@ -47,6 +47,7 @@ interface Candidate {
   status: "approved" | "reject" | "queue";
   workType: "Remote" | "On-site" | "Hybrid";
   stage: "screening" | "interview" | "activation" | "hired";
+  applicationStatus: "open" | "close";
   isSelected?: boolean;
   avatar?: string;
   // Enhanced profile information
