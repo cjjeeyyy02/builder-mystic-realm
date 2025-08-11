@@ -198,7 +198,7 @@ function getStatusVariant(
 ): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case "hired":
-      return "default";
+      return "default"; // This will be overridden by custom classes
     case "reject":
       return "destructive";
     case "queue":
