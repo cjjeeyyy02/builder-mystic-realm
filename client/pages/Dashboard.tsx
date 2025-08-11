@@ -432,12 +432,13 @@ export default function Dashboard() {
             </Card>
           </div>
 
-          {/* Right Column - Recent Activities */}
-          <div className="col-span-4">
-            <Card className="bg-white border-0 shadow-sm h-fit">
+          {/* Right Column - Recent Activities and Latest E Forum */}
+          <div className="col-span-4 space-y-6">
+            {/* Recent Activities */}
+            <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-6">Recent Activities</h3>
-                
+
                 <div className="space-y-4">
                   {recentActivities.map((activity) => (
                     <div key={activity.id} className="flex items-start space-x-3">
@@ -467,6 +468,54 @@ export default function Dashboard() {
                   <Button variant="link" className="text-sm text-blue-600">
                     View all activities
                   </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Latest E Forum */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900">Latest E Forum</h3>
+                  <div className="relative">
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <Input placeholder="Search" className="pl-9 h-8 text-sm" />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {forumPosts.map((post) => (
+                    <div key={post.id} className="border-b border-gray-100 pb-4 last:border-b-0">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-xs font-semibold">
+                            {post.author.split(' ').map(n => n[0]).join('')}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-2 mb-1">
+                            <h4 className="text-sm font-semibold text-gray-900">{post.author}</h4>
+                          </div>
+                          <p className="text-xs text-gray-500 mb-2">{post.time}</p>
+                          <p className="text-xs text-gray-600 leading-relaxed mb-3">{post.content}</p>
+                          <div className="flex items-center space-x-4 text-xs text-gray-500">
+                            <div className="flex items-center space-x-1">
+                              <MessageSquare className="w-3 h-3" />
+                              <span>{post.comments} Comments</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <TrendingUp className="w-3 h-3" />
+                              <span>Share</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Eye className="w-3 h-3" />
+                              <span>{post.views} Views</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
