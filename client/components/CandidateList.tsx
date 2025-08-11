@@ -287,75 +287,81 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`border border-gray-200 bg-white hover:shadow-md transition-all duration-200 ${
+            className={`relative overflow-hidden bg-gradient-to-br from-white to-gray-50/30 border-0 shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 transform hover:-translate-y-1 ${
               candidate.isSelected
-                ? "ring-1 ring-blue-400 shadow-md border-blue-200"
-                : "hover:border-gray-300"
+                ? "ring-2 ring-blue-500/20 shadow-[0_8px_30px_rgba(59,130,246,0.15)] border-t-4 border-t-blue-500"
+                : ""
             }`}
           >
-            <CardContent className="p-5">
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+
+            <CardContent className="relative p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
                 {/* Left Section - Candidate Details */}
                 <div className="lg:col-span-3">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Basic Info */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">APPLICANT NAME</span>
-                        <div className="text-[16px] font-bold text-slate-900">{candidate.name}</div>
+                    <div className="space-y-5">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">APPLICANT NAME</span>
+                        <div className="text-[18px] font-bold text-slate-900 font-heading leading-tight">{candidate.name}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">APPLIED POSITION</span>
-                        <div className="text-[13px] font-semibold text-slate-800">{candidate.position}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">APPLIED POSITION</span>
+                        <div className="text-[14px] font-semibold text-slate-700 leading-snug">{candidate.position}</div>
                       </div>
                     </div>
 
                     {/* Application Details */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">JOB TYPE</span>
-                        <div className="text-[13px] font-medium text-slate-700">{candidate.workType}</div>
+                    <div className="space-y-5">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">JOB TYPE</span>
+                        <div className="text-[14px] font-medium text-slate-700">{candidate.workType}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">APPLIED</span>
-                        <div className="text-[13px] font-medium text-slate-700">{candidate.appliedDate}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">APPLIED</span>
+                        <div className="text-[14px] font-medium text-slate-700">{candidate.appliedDate}</div>
                       </div>
                     </div>
 
                     {/* Location & Period */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">LOCATION</span>
-                        <div className="text-[13px] font-medium text-slate-700">{candidate.companyLocation}</div>
+                    <div className="space-y-5">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">LOCATION</span>
+                        <div className="text-[14px] font-medium text-slate-700">{candidate.companyLocation}</div>
                       </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">PERIOD</span>
-                        <div className="text-[12px] font-medium text-slate-600">{candidate.applicationStart} - {candidate.applicationEnd}</div>
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">PERIOD</span>
+                        <div className="text-[13px] font-medium text-slate-600 leading-relaxed">{candidate.applicationStart} - {candidate.applicationEnd}</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right Section - Status & Actions */}
-                <div className="lg:col-span-1 border-l border-slate-200 lg:pl-5">
-                  <div className="space-y-3">
+                <div className="lg:col-span-1 relative">
+                  {/* Elegant divider */}
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-200 to-transparent lg:block hidden"></div>
+
+                  <div className="lg:pl-8 space-y-4">
                     {/* Status Badges */}
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <Badge
                         variant={getStatusVariant(candidate.status)}
-                        className="font-bold text-[10px] uppercase tracking-[0.05em] px-2.5 py-1 h-auto w-full justify-center"
+                        className="font-bold text-[11px] uppercase tracking-[0.1em] px-4 py-2.5 h-auto w-full justify-center rounded-lg shadow-sm"
                       >
                         {candidate.status}
                       </Badge>
                       <Badge
                         variant="outline"
-                        className={`font-bold text-[10px] uppercase tracking-[0.05em] px-2.5 py-1 h-auto w-full justify-center border ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                        className={`font-bold text-[11px] uppercase tracking-[0.1em] px-4 py-2.5 h-auto w-full justify-center rounded-lg shadow-sm ${getApplicationStatusColor(candidate.applicationStatus)}`}
                       >
                         {candidate.applicationStatus}
                       </Badge>
                       <Badge
                         variant="secondary"
-                        className={`font-medium text-[10px] uppercase tracking-[0.05em] px-2.5 py-1 h-auto w-full justify-center ${getDepartmentColor(candidate.workType)}`}
+                        className={`font-medium text-[11px] uppercase tracking-[0.1em] px-4 py-2.5 h-auto w-full justify-center rounded-lg shadow-sm ${getDepartmentColor(candidate.workType)}`}
                       >
                         {candidate.workType}
                       </Badge>
@@ -365,17 +371,17 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full text-[10px] font-bold uppercase tracking-[0.05em] border-slate-300 hover:bg-slate-50 h-8 px-3"
+                      className="w-full text-[11px] font-bold uppercase tracking-[0.1em] border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md h-10 px-4 rounded-lg transition-all duration-300 font-heading"
                       onClick={() => handleViewProfile(candidate)}
                     >
                       VIEW PROFILE
                     </Button>
 
                     {/* Current Stage */}
-                    <div className="pt-2 border-t border-slate-200">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.05em]">STAGE</span>
-                        <Badge variant="secondary" className="text-[10px] font-medium uppercase tracking-[0.05em] px-2 py-0.5 h-auto w-full justify-center">
+                    <div className="pt-4 border-t border-slate-200/60">
+                      <div className="space-y-2">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] block">STAGE</span>
+                        <Badge variant="secondary" className="text-[11px] font-medium uppercase tracking-[0.1em] px-3 py-1.5 h-auto w-full justify-center rounded-lg bg-slate-100 text-slate-600 shadow-sm">
                           {candidate.stage}
                         </Badge>
                       </div>
