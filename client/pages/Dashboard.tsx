@@ -35,54 +35,54 @@ export default function Dashboard() {
   const [dateRange, setDateRange] = useState("january-may-2024");
 
   // Sample data for the dashboard
-  const transactions = [
+  const recentHires = [
     {
       id: 1,
-      product: "Premium T-Shirt",
-      date: "Jul 12th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Completed",
-      avatar: "T",
+      employee: "Sarah Johnson",
+      date: "Aug 12th, 2024",
+      department: "Engineering",
+      status: "Active",
+      avatar: "SJ",
     },
     {
       id: 2,
-      product: "PlayStation 5",
-      date: "Jul 11th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Pending",
-      avatar: "P",
+      employee: "Michael Chen",
+      date: "Aug 11th, 2024",
+      department: "Marketing",
+      status: "Onboarding",
+      avatar: "MC",
     },
     {
       id: 3,
-      product: "Hoodie Combinag",
-      date: "Jul 10th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Pending",
-      avatar: "H",
+      employee: "Emily Rodriguez",
+      date: "Aug 10th, 2024",
+      department: "HR",
+      status: "Onboarding",
+      avatar: "ER",
     },
     {
       id: 4,
-      product: "iPhone 15 Pro Max",
-      date: "Jul 12th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Completed",
-      avatar: "I",
+      employee: "David Kim",
+      date: "Aug 09th, 2024",
+      department: "Finance",
+      status: "Active",
+      avatar: "DK",
     },
     {
       id: 5,
-      product: "Lotus",
-      date: "Jul 12th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Completed",
-      avatar: "L",
+      employee: "Lisa Wang",
+      date: "Aug 08th, 2024",
+      department: "Sales",
+      status: "Active",
+      avatar: "LW",
     },
     {
       id: 6,
-      product: "Starbucks",
-      date: "Jul 12th, 2024",
-      amount: "0.0WESTRAC",
-      status: "Completed",
-      avatar: "S",
+      employee: "Alex Thompson",
+      date: "Aug 07th, 2024",
+      department: "Engineering",
+      status: "Active",
+      avatar: "AT",
     },
     {
       id: 7,
@@ -141,50 +141,50 @@ export default function Dashboard() {
             <div className="col-span-8 space-y-6">
               {/* Top Stats Row */}
               <div className="grid grid-cols-3 gap-6">
-                {/* Sales Revenue Card */}
+                {/* Employee Growth Card */}
                 <Card className="bg-emerald-600 text-white col-span-1">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <TrendingUp className="w-5 h-5" />
+                      <Users className="w-5 h-5" />
                       <span className="text-xs font-medium bg-emerald-700 px-2 py-1 rounded">Update</span>
                     </div>
                     <div>
-                      <h3 className="text-sm font-medium mb-2">Sales revenue increased</h3>
-                      <p className="text-2xl font-bold mb-1">40% in 1 week</p>
-                      <p className="text-xs opacity-90">See statistics →</p>
+                      <h3 className="text-sm font-medium mb-2">Team growth increased</h3>
+                      <p className="text-2xl font-bold mb-1">15% this month</p>
+                      <p className="text-xs opacity-90">View analytics →</p>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Net Income */}
+                {/* Total Employees */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-medium text-gray-600">Net Income</h3>
+                      <h3 className="text-sm font-medium text-gray-600">Total Employees</h3>
                       <MoreHorizontal className="w-4 h-4 text-gray-400" />
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-gray-900">$193,000</span>
+                      <span className="text-2xl font-bold text-gray-900">248</span>
                       <div className="flex items-center text-green-600 text-sm">
                         <ArrowUpRight className="w-4 h-4 mr-1" />
-                        +35% from last month
+                        +12 new hires
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Total Return */}
+                {/* Active Projects */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-medium text-gray-600">Total Return</h3>
+                      <h3 className="text-sm font-medium text-gray-600">Active Projects</h3>
                       <MoreHorizontal className="w-4 h-4 text-gray-400" />
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-gray-900">$32,000</span>
+                      <span className="text-2xl font-bold text-gray-900">32</span>
                       <div className="flex items-center text-red-600 text-sm">
                         <TrendingDown className="w-4 h-4 mr-1" />
-                        -24% from last month
+                        -3 completed
                       </div>
                     </div>
                   </CardContent>
@@ -193,36 +193,36 @@ export default function Dashboard() {
 
               {/* Transaction and Revenue Row */}
               <div className="grid grid-cols-2 gap-6">
-                {/* Transactions */}
+                {/* Recent Hires */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900">Transaction</h3>
+                      <h3 className="text-lg font-semibold text-gray-900">Recent Hires</h3>
                       <MoreHorizontal className="w-4 h-4 text-gray-400" />
                     </div>
-                    
+
                     <div className="space-y-4">
-                      {transactions.slice(0, 7).map((transaction) => (
-                        <div key={transaction.id} className="flex items-center justify-between">
+                      {recentHires.slice(0, 7).map((hire) => (
+                        <div key={hire.id} className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
                             <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
                               <span className="text-xs font-medium text-gray-600">
-                                {transaction.avatar}
+                                {hire.avatar}
                               </span>
                             </div>
                             <div>
                               <p className="text-sm font-medium text-gray-900">
-                                {transaction.product}
+                                {hire.employee}
                               </p>
-                              <p className="text-xs text-gray-500">{transaction.date}</p>
+                              <p className="text-xs text-gray-500">{hire.date}</p>
                             </div>
                           </div>
                           <div className="text-right">
                             <p className="text-sm font-medium text-gray-900">
-                              {transaction.amount}
+                              {hire.department}
                             </p>
-                            <span className={getStatusBadge(transaction.status)}>
-                              {transaction.status}
+                            <span className={getStatusBadge(hire.status)}>
+                              {hire.status}
                             </span>
                           </div>
                         </div>
@@ -231,11 +231,11 @@ export default function Dashboard() {
                   </CardContent>
                 </Card>
 
-                {/* Revenue Chart */}
+                {/* Department Distribution */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900">Revenue</h3>
+                      <h3 className="text-lg font-semibold text-gray-900">Department Distribution</h3>
                       <MoreHorizontal className="w-4 h-4 text-gray-400" />
                     </div>
                     
