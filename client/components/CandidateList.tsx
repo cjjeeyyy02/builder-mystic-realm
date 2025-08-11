@@ -606,8 +606,11 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                         <div>
                           <label className="text-sm font-medium text-gray-600">Current Status</label>
                           <div className="mt-1">
-                            <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-sm">
-                              {selectedCandidate.status}
+                            <Badge
+                              variant={getStatusVariant(selectedCandidate.status)}
+                              className={`text-sm ${getStatusBadgeClasses(selectedCandidate.status)}`}
+                            >
+                              {selectedCandidate.status === "reject" ? "rejected" : selectedCandidate.status}
                             </Badge>
                           </div>
                         </div>
