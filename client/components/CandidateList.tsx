@@ -172,6 +172,7 @@ const candidates: Candidate[] = [
     status: "queue",
     workType: "Hybrid",
     stage: "screening",
+    applicationStatus: "open",
     isSelected: false,
   },
   {
