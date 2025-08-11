@@ -364,7 +364,7 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                         variant="outline"
                         className={`font-bold text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm ${getStatusBadgeClasses(candidate.status)}`}
                       >
-                        Current Application Stage: {candidate.status}
+                        Current Application Stage: {candidate.status === "reject" ? "rejected" : candidate.status}
                       </Badge>
                       <Badge
                         variant="outline"
