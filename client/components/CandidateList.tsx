@@ -44,7 +44,7 @@ interface Candidate {
   appliedDate: string;
   applicationStart: string;
   applicationEnd: string;
-  status: "approved" | "reject" | "queue";
+  status: "hired" | "reject" | "queue";
   workType: "Remote" | "On-site" | "Hybrid";
   stage: "screening" | "interview" | "activation" | "hired";
   applicationStatus: "open" | "close";
@@ -197,7 +197,7 @@ function getStatusVariant(
   status: string,
 ): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
-    case "approved":
+    case "hired":
       return "default";
     case "reject":
       return "destructive";
@@ -210,7 +210,7 @@ function getStatusVariant(
 
 function getStatusIcon(status: string) {
   switch (status) {
-    case "approved":
+    case "hired":
       return <CheckCircle className="w-3 h-3" />;
     case "reject":
       return <X className="w-3 h-3" />;
