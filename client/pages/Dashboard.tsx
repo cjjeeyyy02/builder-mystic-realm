@@ -291,8 +291,8 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              {/* Recent Activities and Company Events Row */}
-              <div className="grid grid-cols-2 gap-6">
+              {/* Recent Activities Row */}
+              <div className="grid grid-cols-1 gap-6">
                 {/* Recent Activities */}
                 <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
                   <CardContent className="p-6">
