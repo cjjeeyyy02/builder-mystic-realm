@@ -359,12 +359,6 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                       >
                         Status: {candidate.applicationStatus}
                       </Badge>
-                      <Badge
-                        variant="secondary"
-                        className={`font-medium text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm ${getDepartmentColor(candidate.workType)}`}
-                      >
-                        {candidate.workType}
-                      </Badge>
                     </div>
 
                     {/* Action Button */}
@@ -376,16 +370,6 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     >
                       VIEW PROFILE
                     </Button>
-
-                    {/* Current Stage */}
-                    <div className="pt-2 border-t border-slate-200/60">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">STAGE</span>
-                        <Badge variant="secondary" className="text-[9px] font-medium uppercase tracking-[0.08em] px-2.5 py-1 h-auto w-full justify-center rounded-md bg-slate-100 text-slate-600 shadow-sm">
-                          {candidate.stage}
-                        </Badge>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
