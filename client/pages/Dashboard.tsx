@@ -154,19 +154,6 @@ export default function Dashboard() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Calendar className="w-4 h-4 text-gray-500" />
-                <Select value={dateRange} onValueChange={setDateRange}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="january-may-2024">January 2024 - May 2024</SelectItem>
-                    <SelectItem value="june-august-2024">June 2024 - August 2024</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
               <span className="text-sm font-semibold text-gray-700">View Reports and Quick Action</span>
             </div>
           </div>
