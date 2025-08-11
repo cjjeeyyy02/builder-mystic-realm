@@ -348,6 +348,12 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                         {candidate.status}
                       </Badge>
                       <Badge
+                        variant="outline"
+                        className={`font-bold text-[10px] uppercase tracking-[0.05em] px-2.5 py-1 h-auto w-full justify-center border ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                      >
+                        {candidate.applicationStatus}
+                      </Badge>
+                      <Badge
                         variant="secondary"
                         className={`font-medium text-[10px] uppercase tracking-[0.05em] px-2.5 py-1 h-auto w-full justify-center ${getDepartmentColor(candidate.workType)}`}
                       >
