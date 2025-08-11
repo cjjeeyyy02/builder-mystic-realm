@@ -250,10 +250,6 @@ export default function ActivationView() {
                       <Mail className="w-3 h-3 mr-1" />
                       Email
                     </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Phone className="w-3 h-3 mr-1" />
-                      Call
-                    </Button>
                   </div>
                   
                   <div className="flex justify-end">
