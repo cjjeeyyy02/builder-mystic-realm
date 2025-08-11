@@ -140,19 +140,21 @@ export default function Dashboard() {
           {/* Dashboard Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Welcome to EMS Dashboard</h1>
-              <p className="text-gray-600 text-sm">Employee Management System - Real Time Analytics and Insight</p>
+              <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+              <p className="text-gray-600 text-sm">An any way to manage sales with care and precision.</p>
             </div>
-            
+
             <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="text-sm font-semibold">
-                <FileText className="w-4 h-4 mr-2" />
-                View Reports
-              </Button>
-              <Button variant="outline" size="sm" className="text-sm font-semibold">
-                <Zap className="w-4 h-4 mr-2" />
-                Quick Action
-              </Button>
+              <Select value={dateRange} onValueChange={setDateRange}>
+                <SelectTrigger className="w-48">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <SelectValue placeholder="Select date range" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="january-may-2024">January 2024 - May 2024</SelectItem>
+                  <SelectItem value="june-october-2024">June 2024 - October 2024</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
