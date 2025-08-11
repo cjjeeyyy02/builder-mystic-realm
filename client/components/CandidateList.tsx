@@ -112,6 +112,7 @@ const candidates: Candidate[] = [
     status: "queue",
     workType: "On-site",
     stage: "interview",
+    applicationStatus: "open",
     isSelected: false,
     summary: "Detail-oriented operations specialist with expertise in logistics and inventory management. Strong analytical skills and team leadership experience.",
     experience: "3 years",
