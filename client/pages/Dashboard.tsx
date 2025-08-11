@@ -234,21 +234,18 @@ export default function Dashboard() {
                   </CardContent>
                 </Card>
 
-                {/* Department Distribution */}
+                {/* Employee Growth Trend */}
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900">Department Distribution</h3>
-                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
-                    </div>
-                    
+                    <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
+                    <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
+
                     <div className="mb-4">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-sm text-gray-600">Employee Count by Department</span>
                       </div>
                     </div>
 
-                    {/* Department Distribution Chart */}
+                    {/* Chart placeholder area */}
                     <div className="flex items-center justify-center mb-6">
                       <div className="relative w-40 h-40">
                         {/* Placeholder for donut chart - could be replaced with actual chart library */}
@@ -257,30 +254,6 @@ export default function Dashboard() {
                           <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
                           <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Department Legend */}
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="text-gray-600">Engineering</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
-                        <span className="text-gray-600">HR</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                        <span className="text-gray-600">Marketing</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-                        <span className="text-gray-600">Finance</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
-                        <span className="text-gray-600">Sales</span>
                       </div>
                     </div>
                   </CardContent>
