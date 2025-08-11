@@ -313,110 +313,49 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            {/* Bottom Row */}
-            <div className="grid grid-cols-2 gap-6">
-              {/* Department Distribution */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Distribution</h3>
-                  
-                  {/* Donut Chart */}
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="relative w-32 h-32">
-                      <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-orange-400" style={{transform: 'rotate(120deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-teal-400" style={{transform: 'rotate(180deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-green-400" style={{transform: 'rotate(240deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-purple-400" style={{transform: 'rotate(300deg)'}}></div>
-                      </div>
-                    </div>
-                  </div>
+            {/* Department Distribution - Full Width */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Distribution</h3>
 
-                  {/* Legend */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Engineering</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Finance</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-teal-400 rounded-full"></div>
-                        <span className="text-sm text-gray-600">HR</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Marketing</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Sales</span>
-                      </div>
+                {/* Donut Chart */}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="relative w-32 h-32">
+                    <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
+                      <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
+                      <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-orange-400" style={{transform: 'rotate(120deg)'}}></div>
+                      <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-teal-400" style={{transform: 'rotate(180deg)'}}></div>
+                      <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-green-400" style={{transform: 'rotate(240deg)'}}></div>
+                      <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-purple-400" style={{transform: 'rotate(300deg)'}}></div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
 
-              {/* Latest E Forum */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Latest E Forum</h3>
-                    <div className="relative">
-                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                      <Input placeholder="Search" className="pl-9 h-8 text-sm" />
-                    </div>
+                {/* Legend */}
+                <div className="grid grid-cols-5 gap-4 text-center">
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Engineering</span>
                   </div>
-
-                  <div className="space-y-4">
-                    {forumPosts.map((post) => (
-                      <div key={post.id} className="border-b border-gray-100 pb-4 last:border-b-0">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-white text-xs font-semibold">
-                              {post.author.split(' ').map(n => n[0]).join('')}
-                            </span>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-2 mb-1">
-                              <h4 className="text-sm font-semibold text-gray-900">{post.author}</h4>
-                            </div>
-                            <p className="text-xs text-gray-500 mb-2">{post.time}</p>
-                            <p className="text-xs text-gray-600 leading-relaxed mb-3">{post.content}</p>
-                            <div className="flex items-center space-x-4 text-xs text-gray-500">
-                              <div className="flex items-center space-x-1">
-                                <MessageSquare className="w-3 h-3" />
-                                <span>{post.comments} Comments</span>
-                              </div>
-                              <div className="flex items-center space-x-1">
-                                <TrendingUp className="w-3 h-3" />
-                                <span>Share</span>
-                              </div>
-                              <div className="flex items-center space-x-1">
-                                <Eye className="w-3 h-3" />
-                                <span>{post.views} Views</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Finance</span>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-3 h-3 bg-teal-400 rounded-full"></div>
+                    <span className="text-sm text-gray-600">HR</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Marketing</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Sales</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Company Events */}
             <Card className="bg-white border-0 shadow-sm">
