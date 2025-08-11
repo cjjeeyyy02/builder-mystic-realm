@@ -174,11 +174,11 @@ function getStatusVariant(
     case "reject":
       return "destructive";
     case "queue":
-      return "outline";
+      return "secondary";
     case "pending":
-      return "secondary";
+      return "outline";
     default:
-      return "secondary";
+      return "outline";
   }
 }
 
@@ -298,11 +298,20 @@ export default function ScreeningView() {
                     {candidate.status !== "pending" ? (
                       <Badge
                         variant={getStatusVariant(candidate.status)}
-                        className="gap-1 text-xs font-medium flex-shrink-0"
+                        className={`gap-1 text-xs font-medium flex-shrink-0 ${
+                          candidate.status === "approved"
+                            ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
+                            : candidate.status === "queue"
+                            ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
+                            : candidate.status === "reject"
+                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
+                            : ""
+                        }`}
                       >
                         {getStatusIcon(candidate.status)}
-                        {candidate.status.charAt(0).toUpperCase() +
-                          candidate.status.slice(1)}
+                        {candidate.status === "approved" ? "Approved" :
+                         candidate.status === "reject" ? "Rejected" :
+                         candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
                       </Badge>
                     ) : (
                       <span className="text-xs text-gray-500 italic">
@@ -475,9 +484,24 @@ export default function ScreeningView() {
                         <span className="text-xs sm:text-sm font-medium">{selectedCandidate.rating}/5</span>
                       </div>
                     )}
-                    <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-xs sm:text-sm">
+                    <Badge
+                      variant={getStatusVariant(selectedCandidate.status)}
+                      className={`text-xs sm:text-sm ${
+                        selectedCandidate.status === "approved"
+                          ? "bg-green-100 text-green-700 border-green-200"
+                          : selectedCandidate.status === "queue"
+                          ? "bg-orange-100 text-orange-700 border-orange-200"
+                          : selectedCandidate.status === "reject"
+                          ? "bg-red-100 text-red-700 border-red-200"
+                          : ""
+                      }`}
+                    >
                       {getStatusIcon(selectedCandidate.status)}
-                      <span className="ml-1">{selectedCandidate.status}</span>
+                      <span className="ml-1">
+                        {selectedCandidate.status === "approved" ? "Approved" :
+                         selectedCandidate.status === "reject" ? "Rejected" :
+                         selectedCandidate.status}
+                      </span>
                     </Badge>
                   </div>
                 </DialogTitle>
@@ -664,8 +688,21 @@ export default function ScreeningView() {
                         <div>
                           <label className="text-gray-600 text-xs">Current Status</label>
                           <div className="mt-1">
-                            <Badge variant={getStatusVariant(selectedCandidate.status)} className="text-xs">
-                              {selectedCandidate.status}
+                            <Badge
+                              variant={getStatusVariant(selectedCandidate.status)}
+                              className={`text-xs ${
+                                selectedCandidate.status === "approved"
+                                  ? "bg-green-100 text-green-700 border-green-200"
+                                  : selectedCandidate.status === "queue"
+                                  ? "bg-orange-100 text-orange-700 border-orange-200"
+                                  : selectedCandidate.status === "reject"
+                                  ? "bg-red-100 text-red-700 border-red-200"
+                                  : ""
+                              }`}
+                            >
+                              {selectedCandidate.status === "approved" ? "Approved" :
+                               selectedCandidate.status === "reject" ? "Rejected" :
+                               selectedCandidate.status}
                             </Badge>
                           </div>
                         </div>
