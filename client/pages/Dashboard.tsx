@@ -244,30 +244,6 @@ export default function Dashboard() {
                   </CardContent>
                 </Card>
 
-                {/* Employee Growth Trend */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
-                    <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
-
-                    <div className="mb-4">
-                      <div className="flex items-center space-x-2 mb-2">
-                      </div>
-                    </div>
-
-                    {/* Chart placeholder area */}
-                    <div className="flex items-center justify-center mb-6">
-                      <div className="relative w-40 h-40">
-                        {/* Placeholder for donut chart - could be replaced with actual chart library */}
-                        <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
-                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
-                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
-                          <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
 
               {/* Company Events */}
@@ -430,48 +406,32 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              {/* Guide Views */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Guide Views</h3>
-                  
-                  <div className="flex items-center justify-center space-x-4 text-xs mb-4">
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-600">View Count</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      <span className="text-gray-600">Percentage</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                      <span className="text-gray-600">Sales</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
 
               {/* Level Up Card */}
               <Card className="bg-gradient-to-br from-green-400 to-green-600 text-white">
-                <CardContent className="p-6 relative overflow-hidden">
-                  <div className="relative z-10">
-                    <h3 className="text-lg font-bold mb-2">Level up your sales</h3>
-                    <h4 className="text-lg font-bold mb-2">managing to the</h4>
-                    <h4 className="text-lg font-bold mb-4">next level.</h4>
-                    
-                    <p className="text-sm opacity-90 mb-6">
-                      An easy way to manage sales with care and precision.
-                    </p>
-                    
-                    <Button className="bg-emerald-700 hover:bg-emerald-800 text-white">
-                      Update to Siohioma+
-                    </Button>
+              </Card>
+
+              {/* Employee Growth Trend */}
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
+                  <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
+
+                  <div className="mb-4">
+                    <div className="flex items-center space-x-2 mb-2">
+                    </div>
                   </div>
-                  
-                  {/* Decorative element */}
-                  <div className="absolute -right-4 -bottom-4 w-20 h-20 text-green-300 opacity-20">
-                    <BarChart3 className="w-full h-full" />
+
+                  {/* Chart placeholder area */}
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative w-40 h-40">
+                      {/* Placeholder for donut chart - could be replaced with actual chart library */}
+                      <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
