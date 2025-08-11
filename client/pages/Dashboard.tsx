@@ -114,37 +114,6 @@ export default function Dashboard() {
   return (
     <Layout>
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <span className="text-lg font-semibold text-gray-900">Sales Admin</span>
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  placeholder="Search anything in Siohioma"
-                  className="pl-10 w-80 border-gray-300"
-                />
-              </div>
-              <Button variant="ghost" size="sm">
-                <Bell className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Settings className="w-4 h-4" />
-              </Button>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                <Plus className="w-4 h-4 mr-2" />
-                Add new product
-              </Button>
-            </div>
-          </div>
-        </div>
 
         {/* Main Content */}
         <div className="px-8 py-6">
