@@ -27,6 +27,8 @@ import {
   Users,
   Eye,
   BarChart3,
+  FileText,
+  Zap,
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -154,7 +156,14 @@ export default function Dashboard() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <span className="text-sm font-semibold text-gray-700">View Reports and Quick Action</span>
+              <Button variant="outline" size="sm" className="text-sm font-semibold">
+                <FileText className="w-4 h-4 mr-2" />
+                View Reports
+              </Button>
+              <Button variant="outline" size="sm" className="text-sm font-semibold">
+                <Zap className="w-4 h-4 mr-2" />
+                Quick Action
+              </Button>
             </div>
           </div>
 
