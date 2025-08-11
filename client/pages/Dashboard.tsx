@@ -163,338 +163,350 @@ export default function Dashboard() {
             <div className="col-span-8 space-y-6">
               {/* Top Stats Row */}
               <div className="grid grid-cols-3 gap-6">
-                {/* Employee Growth Card */}
-                <Card className="bg-emerald-600 text-white col-span-1">
+                {/* Sales Update Card */}
+                <Card className="bg-emerald-600 text-white">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <Users className="w-5 h-5" />
+                      <TrendingUp className="w-5 h-5" />
                       <span className="text-xs font-medium bg-emerald-700 px-2 py-1 rounded">Update</span>
                     </div>
                     <div>
-                      <h3 className="text-sm font-medium mb-2">Team growth increased</h3>
-                      <p className="text-2xl font-bold mb-1">15% this month</p>
-                      <p className="text-xs opacity-90">View analytics →</p>
+                      <h3 className="text-sm font-medium mb-2">Sales revenue increased</h3>
+                      <p className="text-2xl font-bold mb-1">40% in 1 week</p>
+                      <p className="text-xs opacity-90">See Statistics →</p>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Total Employees */}
+                {/* Net Income */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-medium text-gray-600">Total Employees</h3>
+                      <h3 className="text-sm font-medium text-gray-600">Net Income</h3>
                       <MoreHorizontal className="w-4 h-4 text-gray-400" />
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-gray-900">248</span>
-                      <div className="flex items-center text-green-600 text-sm">
-                        <ArrowUpRight className="w-4 h-4 mr-1" />
-                        +12 new hires
+                    <div className="mb-2">
+                      <span className="text-3xl font-bold text-gray-900">$193,000</span>
+                    </div>
+                    <div className="flex items-center text-green-600 text-sm">
+                      <TrendingUp className="w-4 h-4 mr-1" />
+                      +35% from last month
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Total Return */}
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-sm font-medium text-gray-600">Total Return</h3>
+                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <div className="mb-2">
+                      <span className="text-3xl font-bold text-gray-900">$32,000</span>
+                    </div>
+                    <div className="flex items-center text-red-600 text-sm">
+                      <TrendingDown className="w-4 h-4 mr-1" />
+                      -24% from last month
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Transaction and Revenue Row */}
+              <div className="grid grid-cols-2 gap-6">
+                {/* Transaction */}
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900">Transaction</h3>
+                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            👕
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">Premium T-Shirt</p>
+                            <p className="text-xs text-gray-500">Jul 12th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-green-600">Completed</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            🎮
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">PlayStation 5</p>
+                            <p className="text-xs text-gray-500">Jul 12th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-orange-600">Pending</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            👔
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">Hoodie Gombong</p>
+                            <p className="text-xs text-gray-500">Jul 12th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-orange-600">Pending</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            📱
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">iPhone 15 Pro Max</p>
+                            <p className="text-xs text-gray-500">Jul 10th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-green-600">Completed</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            🍃
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">Lotse</p>
+                            <p className="text-xs text-gray-500">Jul 12th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-green-600">Completed</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between py-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
+                            ☕
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 text-sm">Starbucks</p>
+                            <p className="text-xs text-gray-500">Jul 12th 2024</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-green-600">Completed</p>
+                          <p className="text-xs text-gray-500">0.JWEIJS75NC</p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Active Projects */}
+                {/* Revenue Chart */}
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-medium text-gray-600">Active Projects</h3>
-                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900">Revenue</h3>
+                      <div className="flex items-center space-x-4 text-sm">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 bg-gray-800 rounded"></div>
+                          <span className="text-gray-600">Income</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 bg-green-400 rounded"></div>
+                          <span className="text-gray-600">Expenses</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-gray-900">32</span>
-                      <div className="flex items-center text-red-600 text-sm">
-                        <TrendingDown className="w-4 h-4 mr-1" />
-                        -3 completed
+
+                    <div className="mb-4">
+                      <span className="text-2xl font-bold text-gray-900">$193,000</span>
+                      <span className="text-sm text-green-600 ml-2">+35% from last month</span>
+                    </div>
+
+                    {/* Revenue Chart */}
+                    <div className="relative h-48">
+                      <div className="flex items-end justify-between h-full space-x-2">
+                        {salesData.map((data, index) => (
+                          <div key={data.month} className="flex flex-col items-center space-y-1 flex-1">
+                            <div className="flex space-x-1 items-end h-32 w-full">
+                              <div
+                                className="bg-gray-800 rounded-t w-1/2 transition-all duration-300"
+                                style={{ height: `${(data.income / 60) * 100}%` }}
+                                title={`Income: $${data.income}k`}
+                              />
+                              <div
+                                className="bg-green-400 rounded-t w-1/2 transition-all duration-300"
+                                style={{ height: `${(data.expenses / 60) * 100}%` }}
+                                title={`Expenses: $${data.expenses}k`}
+                              />
+                            </div>
+                            <span className="text-xs text-gray-600">{data.month}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Employee Growth Trend - Full Width */}
+              {/* Sales Report */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Employee Growth Trend</h3>
-                  <span className="text-sm text-gray-600">Monthly Hiring and Exit Pattern</span>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900">Sales Report</h3>
+                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                  </div>
 
-                  {/* Legend */}
-                  <div className="flex items-center justify-center space-x-6 mb-6 mt-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-green-500 rounded"></div>
-                      <span className="text-xs text-gray-600">New Hires</span>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-900">Product Launched (231)</span>
+                        <span className="text-xs text-gray-500">100%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="bg-green-400 h-2 rounded-full" style={{ width: '100%' }}></div>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded"></div>
-                      <span className="text-xs text-gray-600">Exits</span>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-900">Ongoing Product (23)</span>
+                        <span className="text-xs text-gray-500">65%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="bg-green-400 h-2 rounded-full" style={{ width: '65%' }}></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-900">Product Sold (482)</span>
+                        <span className="text-xs text-gray-500">85%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="bg-green-400 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Bar Chart */}
-                  <div className="relative h-48">
-                    {/* Y-axis labels */}
-                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
-                      <span>25</span>
-                      <span>20</span>
-                      <span>15</span>
-                      <span>10</span>
-                      <span>5</span>
-                      <span>0</span>
-                    </div>
-
-                    {/* Chart area */}
-                    <div className="ml-6 h-full">
-                      {/* Grid lines */}
-                      <div className="absolute inset-0 ml-6">
-                        {[0, 20, 40, 60, 80, 100].map((percent) => (
-                          <div
-                            key={percent}
-                            className="absolute w-full border-t border-gray-100"
-                            style={{ bottom: `${percent}%` }}
-                          />
-                        ))}
-                      </div>
-
-                      {/* Bars */}
-                      <div className="flex items-end justify-between h-full relative z-10">
-                        {employeeGrowthData.map((data, index) => {
-                          const maxValue = 25; // Maximum value for scaling
-                          const newHireHeight = (data.newHires / maxValue) * 100;
-                          const exitHeight = (data.exits / maxValue) * 100;
-
-                          return (
-                            <div key={data.month} className="flex flex-col items-center space-y-1">
-                              {/* Bars container */}
-                              <div className="flex space-x-0.5 items-end h-40">
-                                {/* New Hires bar */}
-                                <div
-                                  className="bg-green-500 w-3 rounded-t transition-all duration-300 hover:bg-green-600"
-                                  style={{ height: `${newHireHeight}%` }}
-                                  title={`New Hires: ${data.newHires}`}
-                                />
-                                {/* Exits bar */}
-                                <div
-                                  className="bg-red-500 w-3 rounded-t transition-all duration-300 hover:bg-red-600"
-                                  style={{ height: `${exitHeight}%` }}
-                                  title={`Exits: ${data.exits}`}
-                                />
-                              </div>
-                              {/* Month label */}
-                              <span className="text-xs text-gray-600 mt-2">
-                                {data.month}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                  <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
+                    <span>0</span>
+                    <span>100</span>
+                    <span>200</span>
+                    <span>300</span>
+                    <span>400</span>
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Company Events Row */}
-              <div className="grid grid-cols-1 gap-6">
-                {/* Company Events */}
-                <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-8">
-                      <div>
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">Company Events</h3>
-                        <p className="text-sm text-gray-600">Company Upcoming events and activities</p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2">
-                          List
-                        </Button>
-                        <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-800 px-4 py-2">
-                          Calendar
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="space-y-6">
-                      {/* Event Card 1 - Tech Summer 2024 */}
-                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="mb-4">
-                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Tech Summer 2024</h4>
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                <Badge className="text-xs px-3 py-1 bg-blue-100 text-blue-700 border-0">Awaited</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-teal-100 text-teal-700 border-0">Conference</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-gray-100 text-gray-700 border-0">Workshop</Badge>
-                              </div>
-                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
-                                Join us for the biggest Tech event discussing innovative and industry insights
-                              </p>
-                            </div>
-
-                            <div className="flex items-center space-x-6 text-sm text-gray-500">
-                              <div className="flex items-center space-x-2">
-                                <Calendar className="w-4 h-4" />
-                                <span>29/06/2024</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <MapPin className="w-4 h-4" />
-                                <span>Grand Convention Center</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <Users className="w-4 h-4" />
-                                <span>2520 Attendees</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="ml-6">
-                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
-                              <Calendar className="w-4 h-4 mr-2" />
-                              Going to Event
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Event Card 2 - Team Building Workshop */}
-                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="mb-4">
-                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Team Building and Innovation Workshop</h4>
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                <Badge className="text-xs px-3 py-1 bg-orange-100 text-orange-700 border-0">Registration Due</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-green-100 text-green-700 border-0">Innovation</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-blue-100 text-blue-700 border-0">Awaited</Badge>
-                              </div>
-                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
-                                Collaboration Workshop focusing on innovation methodologies and Team dynamics
-                              </p>
-                            </div>
-
-                            <div className="flex items-center space-x-6 text-sm text-gray-500">
-                              <div className="flex items-center space-x-2">
-                                <Calendar className="w-4 h-4" />
-                                <span>15/07/2024</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <MapPin className="w-4 h-4" />
-                                <span>Training Center</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <Users className="w-4 h-4" />
-                                <span>156 Attendees</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="ml-6">
-                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
-                              <Calendar className="w-4 h-4 mr-2" />
-                              Going to Event
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Event Card 3 - Holiday Celebration */}
-                      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="mb-4">
-                              <h4 className="font-semibold text-gray-900 text-lg mb-3">Holiday Celebration and Award Night</h4>
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                <Badge className="text-xs px-3 py-1 bg-purple-100 text-purple-700 border-0">Creative</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-pink-100 text-pink-700 border-0">Social</Badge>
-                                <Badge className="text-xs px-3 py-1 bg-yellow-100 text-yellow-700 border-0">Awards</Badge>
-                              </div>
-                              <p className="text-sm text-gray-600 mb-4 leading-relaxed max-w-2xl">
-                                Annual Celebration and Award ceremony, dinner and entertainment
-                              </p>
-                            </div>
-
-                            <div className="flex items-center space-x-6 text-sm text-gray-500">
-                              <div className="flex items-center space-x-2">
-                                <Calendar className="w-4 h-4" />
-                                <span>20/12/2024</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <MapPin className="w-4 h-4" />
-                                <span>Skyline Rooftop</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <Users className="w-4 h-4" />
-                                <span>65 Attendees</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="ml-6">
-                            <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">
-                              <Calendar className="w-4 h-4 mr-2" />
-                              Going to Event
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-              </div>
             </div>
 
             {/* Right Column */}
             <div className="col-span-4 flex flex-col space-y-6">
-              {/* Department Distribution */}
+              {/* Total View Performance */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Distribution</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Total View Performance</h3>
 
-                  <div className="mb-4">
-                    <div className="text-sm text-gray-600 mb-2">Employee Count by Department</div>
-                  </div>
-
-                  {/* Department Distribution Chart */}
+                  {/* Donut Chart */}
                   <div className="flex items-center justify-center mb-6">
                     <div className="relative w-40 h-40">
-                      {/* Placeholder for donut chart - could be replaced with actual chart library */}
                       <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-400 border-r-gray-400" style={{transform: 'rotate(120deg)'}}></div>
-                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-300" style={{transform: 'rotate(180deg)'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-green-400 border-r-green-400" style={{transform: 'rotate(0deg)', borderTopWidth: '20px', borderRightWidth: '20px'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-orange-400 border-r-orange-400" style={{transform: 'rotate(120deg)', borderTopWidth: '10px', borderRightWidth: '10px'}}></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-gray-600" style={{transform: 'rotate(200deg)', borderTopWidth: '8px'}}></div>
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <p className="text-xs text-gray-500">Total Count</p>
+                          <p className="text-2xl font-bold text-gray-900">565K</p>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Department Legend */}
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span className="text-gray-600">Engineering</span>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                        <span className="text-gray-600">68%</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
-                      <span className="text-gray-600">HR</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                        <span className="text-gray-600">16%</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                      <span className="text-gray-600">Marketing</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <span className="text-gray-600">23%</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-                      <span className="text-gray-600">Finance</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
-                      <span className="text-gray-600">Sales</span>
+                  </div>
+
+                  <div className="text-center">
+                    <p className="text-xs text-gray-500 mb-4">Here are some tips on how to improve your score</p>
+                    <Button variant="outline" size="sm" className="text-gray-600">
+                      Guide Views
+                    </Button>
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <div className="flex items-center justify-center space-x-4 text-xs">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span>View Count</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-gray-600 rounded-full"></div>
+                        <span>Percentage</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                        <span>Sales</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-
-              {/* Level Up Card */}
-              <Card className="bg-gradient-to-br from-green-400 to-green-600 text-white">
+              {/* Level Up Sales Card */}
+              <Card className="bg-gradient-to-br from-green-400 to-green-600 text-white overflow-hidden">
+                <CardContent className="p-6 relative">
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-semibold mb-2">Level up your sales managing to the next level.</h3>
+                    <p className="text-sm opacity-90 mb-6">An any way to manage sales with care and precision.</p>
+                    <Button className="bg-green-700 hover:bg-green-800 text-white">
+                      Update to Slohoma+
+                    </Button>
+                  </div>
+                  <div className="absolute top-0 right-0 opacity-20">
+                    <div className="w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-8"></div>
+                  </div>
+                </CardContent>
               </Card>
             </div>
           </div>
