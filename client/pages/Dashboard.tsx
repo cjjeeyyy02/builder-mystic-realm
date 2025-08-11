@@ -387,7 +387,7 @@ export default function Dashboard() {
             </div>
 
             {/* Right Column */}
-            <div className="col-span-4 flex flex-col space-y-6 pb-[200px]">
+            <div className="col-span-4 flex flex-col space-y-6">
               {/* Department Distribution */}
               <Card>
                 <CardContent className="p-6">
