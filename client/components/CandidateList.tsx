@@ -156,6 +156,7 @@ const candidates: Candidate[] = [
     status: "approved",
     workType: "Remote",
     stage: "hired",
+    applicationStatus: "close",
     isSelected: false,
   },
   {
