@@ -342,7 +342,7 @@ export default function Dashboard() {
 
                 {/* Company Events */}
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col justify-start items-start">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
                       <div className="flex items-center space-x-3">
