@@ -361,8 +361,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     {/* Status Badges */}
                     <div className="space-y-2">
                       <Badge
-                        variant={getStatusVariant(candidate.status)}
-                        className="font-bold text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm"
+                        variant="outline"
+                        className={`font-bold text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm ${getStatusBadgeClasses(candidate.status)}`}
                       >
                         Current Application Stage: {candidate.status}
                       </Badge>
