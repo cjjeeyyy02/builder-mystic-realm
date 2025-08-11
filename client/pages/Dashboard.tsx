@@ -149,8 +149,8 @@ export default function Dashboard() {
           {/* Dashboard Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-              <p className="text-gray-600 text-sm">An easy way to manage sales with care and precision.</p>
+              <h1 className="text-2xl font-bold text-gray-900">Welcome to EMS Dashboard</h1>
+              <p className="text-gray-600 text-sm">Employee Management System - Real Time Analytics and Insight</p>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -167,7 +167,7 @@ export default function Dashboard() {
                 </Select>
               </div>
               
-              <span className="text-sm font-semibold text-gray-700">Total View Performance</span>
+              <span className="text-sm font-semibold text-gray-700">View Reports and Quick Action</span>
             </div>
           </div>
 
