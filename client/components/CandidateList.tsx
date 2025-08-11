@@ -424,10 +424,10 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                   <div className="ml-auto">
                     <Badge
                       variant={getStatusVariant(selectedCandidate.status)}
-                      className="text-sm"
+                      className={`text-sm ${getStatusBadgeClasses(selectedCandidate.status)}`}
                     >
                       {getStatusIcon(selectedCandidate.status)}
-                      <span className="ml-1">{selectedCandidate.status}</span>
+                      <span className="ml-1">{selectedCandidate.status === "reject" ? "rejected" : selectedCandidate.status}</span>
                     </Badge>
                   </div>
                 </DialogTitle>
