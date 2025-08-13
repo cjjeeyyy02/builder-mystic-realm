@@ -30,10 +30,13 @@ export default function Dashboard() {
           {/* Left Column - Main Content */}
           <div className="col-span-8 space-y-6">
             {/* Metrics Cards */}
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-4 min-w-max pb-2">
+            <div className="relative">
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex gap-4 pb-2">
+                  {/* First 4 Cards - Always Visible */}
+                  <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
                 {/* Total Employees */}
-                <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-3">
                     <div className="flex items-start justify-between mb-2">
                       <div className="p-1 bg-blue-500 rounded">
@@ -54,7 +57,7 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Active Candidates */}
-                <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-3">
                     <div className="flex items-start justify-between mb-2">
                       <div className="p-1 bg-green-500 rounded">
@@ -75,7 +78,7 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Average Performance */}
-                <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-3">
                     <div className="flex items-start justify-between mb-2">
                       <div className="p-1 bg-purple-500 rounded">
@@ -96,7 +99,7 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Pending Tasks */}
-                <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-3">
                     <div className="flex items-start justify-between mb-2">
                       <div className="p-1 bg-orange-500 rounded">
@@ -114,9 +117,12 @@ export default function Dashboard() {
                       <p className="text-xs text-gray-600 mt-1">Outstanding hiring tasks</p>
                     </div>
                   </CardContent>
-                </Card>
+                    </Card>
+                  </div>
 
-                {/* Pending Onboarding */}
+                  {/* Additional Cards - Scrollable */}
+                  <div className="flex gap-4 flex-shrink-0">
+                    {/* Pending Onboarding */}
                 <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
                   <CardContent className="p-3">
                     <div className="flex items-start justify-between mb-2">
@@ -198,7 +204,16 @@ export default function Dashboard() {
                       <p className="text-xs text-gray-600 mt-1">Successfully completed</p>
                     </div>
                   </CardContent>
-                </Card>
+                    </Card>
+                  </div>
+                </div>
+              </div>
+
+              {/* Scroll Indicator */}
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white border border-gray-300 rounded-full p-1 shadow-sm">
+                <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </div>
             </div>
 
