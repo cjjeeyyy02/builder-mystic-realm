@@ -110,8 +110,9 @@ export default function Dashboard() {
     }
   ];
 
-  // Employee Growth Data for chart
+  // Employee Growth Data for chart - All 12 months with status data
   const employeeGrowthData = [
+    { month: "Jan", newHire: 5, exit: 3 },
     { month: "Feb", newHire: 8, exit: 4 },
     { month: "Mar", newHire: 12, exit: 6 },
     { month: "Apr", newHire: 15, exit: 8 },
