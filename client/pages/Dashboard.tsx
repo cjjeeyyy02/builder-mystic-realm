@@ -452,8 +452,8 @@ export default function Dashboard() {
             </Card>
 
             {/* Company Events */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-6">
+            <Card className="bg-white border-0 shadow-sm flex flex-col">
+              <CardContent className="p-6 ml-auto">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
                   <div className="flex items-center space-x-2">
