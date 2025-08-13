@@ -452,8 +452,8 @@ export default function Dashboard() {
             </Card>
 
             {/* Company Events */}
-            <Card className="bg-white border-0 shadow-sm flex flex-col">
-              <CardContent className="p-6 ml-auto">
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
                   <div className="flex items-center space-x-2">
@@ -462,18 +462,18 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-3 gap-4">
                   {/* Event 1 */}
-                  <div className="space-y-3">
+                  <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                     <div className="flex items-start justify-between">
-                      <h4 className="font-semibold text-gray-900">Tech Summer 2024</h4>
+                      <h4 className="font-semibold text-gray-900 text-sm">Tech Summer 2024</h4>
                       <div className="flex space-x-1">
                         <Badge className="text-xs bg-blue-100 text-blue-700">Oplolloner</Badge>
                         <Badge className="text-xs bg-purple-100 text-purple-700">ADMate</Badge>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
-                    <div className="flex items-center space-x-4 text-xs text-gray-500">
+                    <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
+                    <div className="space-y-2 text-xs text-gray-500">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>June 27, 2025</span>
@@ -487,22 +487,22 @@ export default function Dashboard() {
                         <span>250 Attend</span>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-500 text-white text-xs">
+                    <Button size="sm" className="bg-blue-500 text-white text-xs w-full">
                       Share to Forum
                     </Button>
                   </div>
 
                   {/* Event 2 */}
-                  <div className="space-y-3">
+                  <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                     <div className="flex items-start justify-between">
-                      <h4 className="font-semibold text-gray-900">Tech Summer 2024</h4>
+                      <h4 className="font-semibold text-gray-900 text-sm">Tech Summer 2024</h4>
                       <div className="flex space-x-1">
                         <Badge className="text-xs bg-orange-100 text-orange-700">Onwamster</Badge>
                         <Badge className="text-xs bg-purple-100 text-purple-700">ADMate</Badge>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
-                    <div className="flex items-center space-x-4 text-xs text-gray-500">
+                    <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
+                    <div className="space-y-2 text-xs text-gray-500">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>June 27, 2025</span>
@@ -516,7 +516,36 @@ export default function Dashboard() {
                         <span>150 Attens</span>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-500 text-white text-xs">
+                    <Button size="sm" className="bg-blue-500 text-white text-xs w-full">
+                      Share to Forum
+                    </Button>
+                  </div>
+
+                  {/* Event 3 */}
+                  <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                    <div className="flex items-start justify-between">
+                      <h4 className="font-semibold text-gray-900 text-sm">Tech Summer 2024</h4>
+                      <div className="flex space-x-1">
+                        <Badge className="text-xs bg-orange-100 text-orange-700">Onwamster</Badge>
+                        <Badge className="text-xs bg-purple-100 text-purple-700">ADMate</Badge>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-3 h-3" />
+                        <span>June 27, 2025</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <MapPin className="w-3 h-3" />
+                        <span>Grand Convention Center</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Users className="w-3 h-3" />
+                        <span>150 Attens</span>
+                      </div>
+                    </div>
+                    <Button size="sm" className="bg-blue-500 text-white text-xs w-full">
                       Share to Forum
                     </Button>
                   </div>
