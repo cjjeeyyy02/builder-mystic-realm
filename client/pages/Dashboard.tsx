@@ -190,151 +190,91 @@ export default function Dashboard() {
         <div className="grid grid-cols-12 gap-6">
           {/* Left Column - Main Content */}
           <div className="col-span-8 space-y-6">
-            {/* Horizontal Scrollable Metrics */}
-            <div className="relative">
-              <div className="overflow-x-auto scrollbar-hide">
-                <div className="flex space-x-4 pb-4" style={{ width: 'max-content' }}>
-                  {/* Total Employees */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Total Employees</h3>
-                        <Users className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-blue-600">↗ Previous month</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Pending Onboarding Status</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Active Candidates */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Active Candidates</h3>
-                        <UserCheck className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-blue-600">↗ Not Increase</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Active 6 oncomitl Candidates</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Average Performance */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Average Performance</h3>
-                        <BarChart3 className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-blue-600">↗ All Previous</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Average Module Performance</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Pending Task */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Pending Task</h3>
-                        <Clock className="w-4 h-4 text-orange-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">23,000</p>
-                        <p className="text-xs text-orange-600">↗ All Increase</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Completed Echo Odo</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* On AdamBoarding */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">On AdamBoarding</h3>
-                        <Users className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-blue-600">↗ All Increased</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Formaly OnBoarding</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* On Probation */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">On Probation</h3>
-                        <Clock className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-blue-600">↗ All Group</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Probationary Employees</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Onboarding */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Onboarding</h3>
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">23,000</p>
-                        <p className="text-xs text-blue-600">↗ All PERMABAN</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Viewen Payment</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Completed Tasks */}
-                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-600">Completed Tasks</h3>
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-2xl font-bold text-gray-900">1,247</p>
-                        <p className="text-xs text-green-600">↗ All Module</p>
-                        <div className="mt-2">
-                          <p className="text-xs text-gray-500">Completed 6352 Goal</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+            {/* Metrics Cards - Conditional Layout */}
+            {showAllMetrics ? (
+              // Grid View - Show all 8 cards in a 4x2 grid
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">All Metrics</h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowAllMetrics(false)}
+                    className="text-xs"
+                  >
+                    <ChevronUp className="w-4 h-4 mr-1" />
+                    Collapse View
+                  </Button>
+                </div>
+                <div className="grid grid-cols-4 gap-4">
+                  {metricsCards.map((metric) => {
+                    const IconComponent = metric.icon;
+                    return (
+                      <Card key={metric.id} className="bg-white border-0 shadow-sm">
+                        <CardContent className="p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="text-sm font-medium text-gray-600">{metric.title}</h3>
+                            <IconComponent className={`w-4 h-4 ${metric.iconColor}`} />
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
+                            <p className="text-xs text-blue-600">{metric.trend}</p>
+                            <div className="mt-2">
+                              <p className="text-xs text-gray-500">{metric.description}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
+            ) : (
+              // Horizontal Scrollable View - Show first 4 cards with scroll
+              <div className="relative">
+                <div className="overflow-x-auto scrollbar-hide">
+                  <div className="flex space-x-4 pb-4" style={{ width: 'max-content' }}>
+                    {metricsCards.map((metric) => {
+                      const IconComponent = metric.icon;
+                      return (
+                        <Card key={metric.id} className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                          <CardContent className="p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <h3 className="text-sm font-medium text-gray-600">{metric.title}</h3>
+                              <IconComponent className={`w-4 h-4 ${metric.iconColor}`} />
+                            </div>
+                            <div className="space-y-1">
+                              <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
+                              <p className="text-xs text-blue-600">{metric.trend}</p>
+                              <div className="mt-2">
+                                <p className="text-xs text-gray-500">{metric.description}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
 
-              {/* Scroll Indicator */}
-              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-gray-50 to-transparent w-8 h-full pointer-events-none"></div>
-            </div>
+                    {/* Toggle Button at the end */}
+                    <div className="flex-shrink-0 flex items-center justify-center w-16">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowAllMetrics(true)}
+                        className="h-20 w-14 flex flex-col items-center justify-center space-y-1 border-dashed border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                      >
+                        <Grid3X3 className="w-4 h-4 text-gray-500" />
+                        <ChevronDown className="w-3 h-3 text-gray-500" />
+                        <span className="text-xs text-gray-500">View All</span>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scroll Indicator */}
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-gray-50 to-transparent w-8 h-full pointer-events-none"></div>
+              </div>
+            )}
 
             {/* Employee Growth Trends Chart */}
             <Card className="bg-white border-0 shadow-sm">
