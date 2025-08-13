@@ -402,22 +402,6 @@ export default function Dashboard() {
                     Number of Employees
                   </div>
                 </div>
-
-                {/* Chart Summary */}
-                <div className="mt-6 grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
-                  <div className="text-center">
-                    <p className="text-lg font-semibold text-blue-600">{employeeGrowthData.reduce((sum, data) => sum + data.newHire, 0)}</p>
-                    <p className="text-xs text-gray-600">Total New Hires</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-lg font-semibold text-red-500">{employeeGrowthData.reduce((sum, data) => sum + data.exit, 0)}</p>
-                    <p className="text-xs text-gray-600">Total Exits</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-lg font-semibold text-green-600">+{employeeGrowthData.reduce((sum, data) => sum + (data.newHire - data.exit), 0)}</p>
-                    <p className="text-xs text-gray-600">Net Growth</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
 
