@@ -141,7 +141,7 @@ export default function Dashboard() {
 
             {/* Company Events - Full Width */}
             <Card className="bg-white border border-gray-200">
-              <CardContent className="p-6">
+              <CardContent className="p-6 mb-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Company Events</h3>
                 <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center">
                   <p className="text-gray-500">Events Content</p>
