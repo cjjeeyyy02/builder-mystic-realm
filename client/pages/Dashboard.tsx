@@ -258,14 +258,12 @@ export default function Dashboard() {
                     {/* Toggle Button at the end */}
                     <div className="flex-shrink-0 flex items-center justify-center w-16">
                       <Button
-                        variant="outline"
+                        variant="ghost"
                         size="sm"
                         onClick={() => setShowAllMetrics(true)}
-                        className="h-20 w-14 flex flex-col items-center justify-center space-y-1 border-dashed border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                        className="h-8 w-8 p-0 hover:bg-gray-100"
                       >
-                        <Grid3X3 className="w-4 h-4 text-gray-500" />
-                        <ChevronDown className="w-3 h-3 text-gray-500" />
-                        <span className="text-xs text-gray-500">View All</span>
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
                       </Button>
                     </div>
                   </div>
