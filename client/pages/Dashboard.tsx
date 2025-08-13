@@ -338,7 +338,7 @@ export default function Dashboard() {
                       </div>
 
                       {/* Chart Bars */}
-                      <div className="relative h-80 flex items-end justify-between px-2">
+                      <div className="relative h-64 flex items-end justify-between px-2">
                         {employeeGrowthData.map((data, index) => {
                           const maxValue = 50;
                           const newHireHeight = (data.newHire / maxValue) * 100;
@@ -347,7 +347,7 @@ export default function Dashboard() {
                           return (
                             <div key={data.month} className="flex-1 flex flex-col items-center group max-w-16">
                               {/* Month Status Bars Container */}
-                              <div className="relative w-full h-80 flex items-end justify-center gap-1">
+                              <div className="relative w-full h-64 flex items-end justify-center gap-1">
                                 {/* New Hire Status Bar */}
                                 <div className="relative w-4">
                                   <div
