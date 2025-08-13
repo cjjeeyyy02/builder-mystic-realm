@@ -801,50 +801,13 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Forum Post 5 - Another Duplicate Mike Johnson */}
-                  <div className="bg-gray-50 rounded-lg p-2 mt-2">
-                    <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">MJ</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">Mike Johnson</h4>
-                          <span className="text-xs text-gray-500">Engineering • 4h ago</span>
-                        </div>
-                        <p className="text-xs text-gray-800 mb-1 leading-relaxed">
-                          Tech Stack Update: New tools and frameworks adoption for enhanced productivity.
-                        </p>
-                        <div className="flex items-center gap-3 text-xs text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                            <span>19</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            <span>15</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/>
-                            </svg>
-                            <span>7</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                            <span>156</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+
+                {/* Visit Forum Button */}
+                <div className="mt-4 text-center">
+                  <Button variant="link" className="text-blue-600 hover:text-blue-700 text-xs p-0">
+                    Visit Forum →
+                  </Button>
                 </div>
               </CardContent>
             </Card>
