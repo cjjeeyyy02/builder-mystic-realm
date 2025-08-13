@@ -338,39 +338,43 @@ export default function Dashboard() {
                       </div>
 
                       {/* Chart Bars */}
-                      <div className="relative h-80 flex items-end justify-between space-x-1">
+                      <div className="relative h-80 flex items-end justify-between px-2">
                         {employeeGrowthData.map((data, index) => {
                           const maxValue = 50;
                           const newHireHeight = (data.newHire / maxValue) * 100;
                           const exitHeight = (data.exit / maxValue) * 100;
 
                           return (
-                            <div key={data.month} className="flex-1 flex flex-col items-center group">
-                              {/* Bars Container */}
-                              <div className="relative w-full h-80 flex items-end justify-center space-x-1">
-                                {/* New Hire Bar */}
-                                <div className="relative flex-1 max-w-6">
+                            <div key={data.month} className="flex-1 flex flex-col items-center group max-w-16">
+                              {/* Month Status Bars Container */}
+                              <div className="relative w-full h-80 flex items-end justify-center gap-1">
+                                {/* New Hire Status Bar */}
+                                <div className="relative w-4">
                                   <div
-                                    className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-sm shadow-sm transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-500 group-hover:shadow-md relative"
-                                    style={{ height: `${newHireHeight}%` }}
+                                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-md shadow-sm transition-all duration-300 group-hover:from-blue-700 group-hover:to-blue-500 group-hover:shadow-md relative border border-blue-300"
+                                    style={{ height: `${newHireHeight}%`, minHeight: '4px' }}
                                   >
                                     {/* Value label on hover */}
-                                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
-                                      {data.newHire} new hires
+                                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-20 shadow-lg">
+                                      {data.newHire} New Hires
                                     </div>
+                                    {/* Status indicator */}
+                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-blue-600 rounded-full border border-white shadow-sm"></div>
                                   </div>
                                 </div>
 
-                                {/* Exit Bar */}
-                                <div className="relative flex-1 max-w-6">
+                                {/* Exit Status Bar */}
+                                <div className="relative w-4">
                                   <div
-                                    className="w-full bg-gradient-to-t from-red-400 to-red-300 rounded-t-sm shadow-sm transition-all duration-300 group-hover:from-red-500 group-hover:to-red-400 group-hover:shadow-md relative"
-                                    style={{ height: `${exitHeight}%` }}
+                                    className="w-full bg-gradient-to-t from-red-500 to-red-300 rounded-t-md shadow-sm transition-all duration-300 group-hover:from-red-600 group-hover:to-red-400 group-hover:shadow-md relative border border-red-200"
+                                    style={{ height: `${exitHeight}%`, minHeight: '4px' }}
                                   >
                                     {/* Value label on hover */}
-                                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
-                                      {data.exit} exits
+                                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-20 shadow-lg">
+                                      {data.exit} Exits
                                     </div>
+                                    {/* Status indicator */}
+                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-red-500 rounded-full border border-white shadow-sm"></div>
                                   </div>
                                 </div>
                               </div>
