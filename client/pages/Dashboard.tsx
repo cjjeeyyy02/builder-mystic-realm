@@ -296,7 +296,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Legend */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-start mb-8">
                   <div className="flex items-center space-x-6">
                     <div className="flex items-center space-x-2">
                       <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-sm shadow-sm"></div>
@@ -306,9 +306,6 @@ export default function Dashboard() {
                       <div className="w-4 h-4 bg-gradient-to-r from-red-400 to-red-500 rounded-sm shadow-sm"></div>
                       <span className="text-sm font-medium text-gray-700">Exits</span>
                     </div>
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Employees
                   </div>
                 </div>
 
