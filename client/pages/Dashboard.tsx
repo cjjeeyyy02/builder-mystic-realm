@@ -110,146 +110,150 @@ export default function Dashboard() {
         <div className="grid grid-cols-12 gap-6">
           {/* Left Column - Main Content */}
           <div className="col-span-8 space-y-6">
-            {/* Top Metrics Row */}
-            <div className="grid grid-cols-4 gap-4">
-              {/* Total Employees */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Total Employees</h3>
-                    <Users className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-blue-600">↗ Previous month</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Pending Onboarding Status</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            {/* Horizontal Scrollable Metrics */}
+            <div className="relative">
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex space-x-4 pb-4" style={{ width: 'max-content' }}>
+                  {/* Total Employees */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Total Employees</h3>
+                        <Users className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-blue-600">↗ Previous month</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Pending Onboarding Status</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* Active Candidates */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Active Candidates</h3>
-                    <UserCheck className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-blue-600">↗ Not Increase</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Active 6 oncomitl Candidates</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* Active Candidates */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Active Candidates</h3>
+                        <UserCheck className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-blue-600">↗ Not Increase</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Active 6 oncomitl Candidates</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* Average Performance */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Average Performance</h3>
-                    <BarChart3 className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-blue-600">↗ All Previous</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Average Module Performance</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* Average Performance */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Average Performance</h3>
+                        <BarChart3 className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-blue-600">↗ All Previous</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Average Module Performance</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* Pending Task */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Pending Task</h3>
-                    <Clock className="w-4 h-4 text-orange-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">23,000</p>
-                    <p className="text-xs text-orange-600">↗ All Increase</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Completed Echo Odo</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  {/* Pending Task */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Pending Task</h3>
+                        <Clock className="w-4 h-4 text-orange-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">23,000</p>
+                        <p className="text-xs text-orange-600">↗ All Increase</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Completed Echo Odo</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-            {/* Secondary Metrics Row */}
-            <div className="grid grid-cols-4 gap-4">
-              {/* On AdamBoarding */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">On AdamBoarding</h3>
-                    <Users className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-blue-600">↗ All Increased</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Formaly OnBoarding</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* On AdamBoarding */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">On AdamBoarding</h3>
+                        <Users className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-blue-600">↗ All Increased</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Formaly OnBoarding</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* On Probation */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">On Probation</h3>
-                    <Clock className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-blue-600">↗ All Group</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Probationary Employees</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* On Probation */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">On Probation</h3>
+                        <Clock className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-blue-600">↗ All Group</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Probationary Employees</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* Onboarding */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Onboarding</h3>
-                    <CheckCircle className="w-4 h-4 text-blue-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">23,000</p>
-                    <p className="text-xs text-blue-600">↗ All PERMABAN</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Viewen Payment</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* Onboarding */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Onboarding</h3>
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">23,000</p>
+                        <p className="text-xs text-blue-600">↗ All PERMABAN</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Viewen Payment</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              {/* Completed Tasks */}
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-medium text-gray-600">Completed Tasks</h3>
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-2xl font-bold text-gray-900">1,247</p>
-                    <p className="text-xs text-green-600">↗ All Module</p>
-                    <div className="mt-2">
-                      <p className="text-xs text-gray-500">Completed 6352 Goal</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* Completed Tasks */}
+                  <Card className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-600">Completed Tasks</h3>
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-2xl font-bold text-gray-900">1,247</p>
+                        <p className="text-xs text-green-600">↗ All Module</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-gray-500">Completed 6352 Goal</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Scroll Indicator */}
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-gray-50 to-transparent w-8 h-full pointer-events-none"></div>
             </div>
 
             {/* Employee Growth Trends Chart */}
