@@ -457,9 +457,8 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
                   <div className="flex items-center space-x-2">
-                    <Button size="sm" variant="outline" className="text-xs">Latest</Button>
+                    <Button size="sm" variant="outline" className="text-xs">List</Button>
                     <Button size="sm" variant="default" className="text-xs bg-blue-500">Calendar</Button>
-                    <Button size="sm" variant="ghost" className="text-xs">More Events</Button>
                   </div>
                 </div>
 
@@ -489,7 +488,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <Button size="sm" className="bg-blue-500 text-white text-xs">
-                      Deva or Calendar
+                      Share to Forum
                     </Button>
                   </div>
 
@@ -527,7 +526,7 @@ export default function Dashboard() {
           </div>
 
           {/* Right Column - Recent Activities and Latest E Forum */}
-          <div className="col-span-4 space-y-6">
+          <div className="col-span-4 space-y-6 pb-48">
             {/* Recent Activities */}
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
@@ -570,11 +569,7 @@ export default function Dashboard() {
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900">Latest E Forum</h3>
-                  <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <Input placeholder="Search" className="pl-9 h-8 text-sm" />
-                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Latest E-Forum</h3>
                 </div>
 
                 <div className="space-y-4">
