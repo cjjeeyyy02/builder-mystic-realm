@@ -31,42 +31,86 @@ export default function Dashboard() {
           <div className="col-span-8 space-y-6">
             {/* Metrics Cards */}
             <div className="grid grid-cols-4 gap-4">
-              <Card className="bg-white border border-gray-200">
+              {/* Total Employees */}
+              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="text-center">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Total Employees</h3>
-                    <p className="text-3xl font-bold text-gray-900 mb-1">1247</p>
-                    <p className="text-xs text-gray-500">Active Workspace size</p>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2 bg-blue-500 rounded-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-1">Total Employees</h3>
+                    <p className="text-3xl font-bold text-gray-900 mb-2">1,247</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-green-600">+30 this month</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">Active workspace size</p>
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card className="bg-white border border-gray-200">
+
+              {/* Active Candidates */}
+              <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="text-center">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Total Employees</h3>
-                    <p className="text-3xl font-bold text-gray-900 mb-1">1247</p>
-                    <p className="text-xs text-gray-500">Active Workspace size</p>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2 bg-green-500 rounded-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-1">Active Candidates</h3>
+                    <p className="text-3xl font-bold text-gray-900 mb-2">24</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-green-600">+3 this week</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">New hires and candidates</p>
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card className="bg-white border border-gray-200">
+
+              {/* Average Performance */}
+              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="text-center">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Total Employees</h3>
-                    <p className="text-3xl font-bold text-gray-900 mb-1">1247</p>
-                    <p className="text-xs text-gray-500">Active Workspace size</p>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2 bg-purple-500 rounded-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-1">Average Performance</h3>
+                    <p className="text-3xl font-bold text-gray-900 mb-2">4.5/5</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-green-600">+0.3 improvement</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">Overall team performance</p>
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card className="bg-white border border-gray-200">
+
+              {/* Pending Tasks */}
+              <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="text-center">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Total Employees</h3>
-                    <p className="text-3xl font-bold text-gray-900 mb-1">1247</p>
-                    <p className="text-xs text-gray-500">Active Workspace size</p>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2 bg-orange-500 rounded-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-1">Pending Tasks</h3>
+                    <p className="text-3xl font-bold text-gray-900 mb-2">18</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-orange-600">5 from last week</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">Outstanding hiring tasks</p>
                   </div>
                 </CardContent>
               </Card>
