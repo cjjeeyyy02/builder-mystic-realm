@@ -238,14 +238,14 @@ export default function Dashboard() {
                     {metricsCards.map((metric) => {
                       const IconComponent = metric.icon;
                       return (
-                        <Card key={metric.id} className="bg-white border-0 shadow-sm flex-shrink-0 w-64">
-                          <CardContent className="p-4">
+                        <Card key={metric.id} className="bg-white border-0 shadow-sm flex-shrink-0 w-52">
+                          <CardContent className="p-3">
                             <div className="flex items-center justify-between mb-2">
-                              <h3 className="text-sm font-medium text-gray-600">{metric.title}</h3>
-                              <IconComponent className={`w-4 h-4 ${metric.iconColor}`} />
+                              <h3 className="text-xs font-medium text-gray-600">{metric.title}</h3>
+                              <IconComponent className={`w-3 h-3 ${metric.iconColor}`} />
                             </div>
                             <div className="space-y-1">
-                              <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
+                              <p className="text-lg font-bold text-gray-900">{metric.value}</p>
                               <p className="text-xs text-blue-600">{metric.trend}</p>
                               <div className="mt-2">
                                 <p className="text-xs text-gray-500">{metric.description}</p>
