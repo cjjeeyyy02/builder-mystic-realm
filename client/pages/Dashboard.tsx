@@ -278,7 +278,10 @@ export default function Dashboard() {
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900">Employee Growth Trends</h3>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Employee Growth Trends</h3>
+                    <p className="text-sm text-gray-600 mt-1">Monthly hiring and exit patterns</p>
+                  </div>
                   <Select value={dateRange} onValueChange={setDateRange}>
                     <SelectTrigger className="w-48">
                       <SelectValue placeholder="All Department" />
@@ -293,43 +296,126 @@ export default function Dashboard() {
                 </div>
 
                 {/* Legend */}
-                <div className="flex items-center space-x-6 mb-6">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">New Hire</span>
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-sm shadow-sm"></div>
+                      <span className="text-sm font-medium text-gray-700">New Hires</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gradient-to-r from-red-400 to-red-500 rounded-sm shadow-sm"></div>
+                      <span className="text-sm font-medium text-gray-700">Exits</span>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Exit</span>
+                  <div className="text-xs text-gray-500">
+                    Employees
                   </div>
                 </div>
 
-                {/* Chart */}
-                <div className="relative h-64">
-                  <div className="flex items-end justify-between h-full space-x-2">
-                    {employeeGrowthData.map((data, index) => {
-                      const maxValue = 45;
-                      const newHireHeight = (data.newHire / maxValue) * 100;
-                      const exitHeight = (data.exit / maxValue) * 100;
-                      
-                      return (
-                        <div key={data.month} className="flex flex-col items-center space-y-2 flex-1">
-                          <div className="flex space-x-1 items-end h-48 w-full">
-                            <div
-                              className="bg-blue-500 rounded-t w-1/2 transition-all duration-300 hover:bg-blue-600"
-                              style={{ height: `${newHireHeight}%` }}
-                              title={`New Hires: ${data.newHire}`}
-                            />
-                            <div
-                              className="bg-gray-400 rounded-t w-1/2 transition-all duration-300 hover:bg-gray-500"
-                              style={{ height: `${exitHeight}%` }}
-                              title={`Exits: ${data.exit}`}
-                            />
-                          </div>
-                          <span className="text-xs text-gray-600">{data.month}</span>
-                        </div>
-                      );
-                    })}
+                {/* Professional Chart with Axes */}
+                <div className="relative">
+                  {/* Chart Container */}
+                  <div className="relative bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-100 p-4">
+                    {/* Y-Axis */}
+                    <div className="absolute left-0 top-4 bottom-12 w-10 flex flex-col justify-between text-xs text-gray-500">
+                      <span className="text-right pr-2">50</span>
+                      <span className="text-right pr-2">40</span>
+                      <span className="text-right pr-2">30</span>
+                      <span className="text-right pr-2">20</span>
+                      <span className="text-right pr-2">10</span>
+                      <span className="text-right pr-2">0</span>
+                    </div>
+
+                    {/* Chart Area */}
+                    <div className="ml-10 mr-4 relative">
+                      {/* Horizontal Grid Lines */}
+                      <div className="absolute inset-0 flex flex-col justify-between">
+                        {[0, 1, 2, 3, 4, 5].map((line) => (
+                          <div
+                            key={line}
+                            className="w-full border-t border-gray-200"
+                            style={{ borderStyle: line === 5 ? 'solid' : 'dashed', borderWidth: line === 5 ? '1px' : '0.5px' }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Chart Bars */}
+                      <div className="relative h-80 flex items-end justify-between space-x-1">
+                        {employeeGrowthData.map((data, index) => {
+                          const maxValue = 50;
+                          const newHireHeight = (data.newHire / maxValue) * 100;
+                          const exitHeight = (data.exit / maxValue) * 100;
+
+                          return (
+                            <div key={data.month} className="flex-1 flex flex-col items-center group">
+                              {/* Bars Container */}
+                              <div className="relative w-full h-80 flex items-end justify-center space-x-1">
+                                {/* New Hire Bar */}
+                                <div className="relative flex-1 max-w-6">
+                                  <div
+                                    className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-sm shadow-sm transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-500 group-hover:shadow-md relative"
+                                    style={{ height: `${newHireHeight}%` }}
+                                  >
+                                    {/* Value label on hover */}
+                                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                                      {data.newHire} new hires
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Exit Bar */}
+                                <div className="relative flex-1 max-w-6">
+                                  <div
+                                    className="w-full bg-gradient-to-t from-red-400 to-red-300 rounded-t-sm shadow-sm transition-all duration-300 group-hover:from-red-500 group-hover:to-red-400 group-hover:shadow-md relative"
+                                    style={{ height: `${exitHeight}%` }}
+                                  >
+                                    {/* Value label on hover */}
+                                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                                      {data.exit} exits
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* X-Axis Labels */}
+                      <div className="flex justify-between mt-4 text-xs text-gray-600 font-medium">
+                        {employeeGrowthData.map((data) => (
+                          <span key={data.month} className="flex-1 text-center">
+                            {data.month}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* X-Axis Title */}
+                    <div className="text-center mt-4 text-xs text-gray-500 font-medium">
+                      Months (2024)
+                    </div>
+                  </div>
+
+                  {/* Y-Axis Title */}
+                  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -rotate-90 text-xs text-gray-500 font-medium whitespace-nowrap">
+                    Number of Employees
+                  </div>
+                </div>
+
+                {/* Chart Summary */}
+                <div className="mt-6 grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center">
+                    <p className="text-lg font-semibold text-blue-600">{employeeGrowthData.reduce((sum, data) => sum + data.newHire, 0)}</p>
+                    <p className="text-xs text-gray-600">Total New Hires</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-lg font-semibold text-red-500">{employeeGrowthData.reduce((sum, data) => sum + data.exit, 0)}</p>
+                    <p className="text-xs text-gray-600">Total Exits</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-lg font-semibold text-green-600">+{employeeGrowthData.reduce((sum, data) => sum + (data.newHire - data.exit), 0)}</p>
+                    <p className="text-xs text-gray-600">Net Growth</p>
                   </div>
                 </div>
               </CardContent>
