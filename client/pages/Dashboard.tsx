@@ -473,7 +473,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
-                    <div className="space-y-2 text-xs text-gray-500">
+                    <div className="space-y-1 text-xs text-gray-500">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>June 27, 2025</span>
@@ -502,7 +502,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
-                    <div className="space-y-2 text-xs text-gray-500">
+                    <div className="space-y-1 text-xs text-gray-500">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>June 27, 2025</span>
@@ -531,7 +531,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-600">Join us for the biggest Tech event of the year featuring innovative and industry insights</p>
-                    <div className="space-y-2 text-xs text-gray-500">
+                    <div className="space-y-1 text-xs text-gray-500">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>June 27, 2025</span>
