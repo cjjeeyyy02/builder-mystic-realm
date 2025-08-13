@@ -186,11 +186,11 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="min-h-screen bg-gray-50 p-3">
         {/* Main Dashboard Content */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-4">
           {/* Main Content */}
-          <div className="col-span-8 space-y-6">
+          <div className="col-span-8 space-y-4">
             {/* Metrics Cards - Conditional Layout */}
             {showAllMetrics ? (
               // Grid View - Show all 8 cards in a 4x2 grid
