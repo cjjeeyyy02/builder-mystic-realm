@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
+import Files from "./pages/Files";
 import Records from "./pages/Records";
 import Performance from "./pages/Performance";
 import MediaResources from "./pages/MediaResources";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/files" element={<Files />} />
           <Route path="/records" element={<Records />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/media-resources" element={<MediaResources />} />
