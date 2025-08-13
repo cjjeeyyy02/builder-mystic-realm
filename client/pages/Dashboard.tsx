@@ -121,12 +121,12 @@ export default function Dashboard() {
               {/* Employee Growth Trends */}
               <Card className="bg-white border border-gray-200">
                 <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Employee Growth Trends</h3>
-                      <p className="text-sm text-gray-500 mt-1">Monthly hiring and exit patterns</p>
+                      <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
+                      <p className="text-xs text-gray-500 mt-1">Monthly hiring and exit patterns</p>
                     </div>
-                    <select className="text-sm border border-gray-300 rounded-md px-3 py-1 bg-white">
+                    <select className="text-xs border border-gray-300 rounded-md px-2 py-1 bg-white">
                       <option>All Department</option>
                       <option>Engineering</option>
                       <option>HR</option>
@@ -137,93 +137,93 @@ export default function Dashboard() {
                   </div>
 
                   {/* Legend */}
-                  <div className="flex items-center gap-6 mb-6">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span className="text-sm text-gray-700">New Hires</span>
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-xs text-gray-700">New Hires</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
-                      <span className="text-sm text-gray-700">Exit</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <span className="text-xs text-gray-700">Exit</span>
                     </div>
                   </div>
 
                   {/* Chart */}
-                  <div className="h-48 relative">
+                  <div className="h-32 relative">
                     {/* Y-axis labels */}
-                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
-                      <span>80</span>
-                      <span>60</span>
-                      <span>40</span>
-                      <span>20</span>
-                      <span>0</span>
+                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-1">
+                      <span className="text-xs">80</span>
+                      <span className="text-xs">60</span>
+                      <span className="text-xs">40</span>
+                      <span className="text-xs">20</span>
+                      <span className="text-xs">0</span>
                     </div>
 
                     {/* Chart area */}
-                    <div className="ml-8 h-full flex items-end justify-between gap-2">
+                    <div className="ml-6 h-full flex items-end justify-between gap-1">
                       {/* June */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '90px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">June</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '45px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Jun</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '30px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '15px'}}></div>
                         </div>
                       </div>
 
                       {/* May */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '144px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">May</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '72px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">May</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '48px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '24px'}}></div>
                         </div>
                       </div>
 
                       {/* April */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '156px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">April</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '78px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Apr</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '60px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '30px'}}></div>
                         </div>
                       </div>
 
                       {/* March */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '78px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">March</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '39px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Mar</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '66px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '33px'}}></div>
                         </div>
                       </div>
 
                       {/* February */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '138px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">February</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '69px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Feb</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '48px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '24px'}}></div>
                         </div>
                       </div>
 
                       {/* January */}
-                      <div className="flex-1 flex items-end gap-1">
+                      <div className="flex-1 flex items-end gap-0.5">
                         <div className="flex flex-col items-end">
-                          <div className="w-6 bg-blue-500 rounded-t-sm" style={{height: '192px'}}></div>
-                          <div className="text-xs text-gray-600 mt-2 whitespace-nowrap">January</div>
+                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '96px'}}></div>
+                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Jan</div>
                         </div>
                         <div className="flex flex-col items-end">
-                          <div className="w-4 bg-gray-800 rounded-t-sm" style={{height: '42px'}}></div>
+                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '21px'}}></div>
                         </div>
                       </div>
                     </div>
