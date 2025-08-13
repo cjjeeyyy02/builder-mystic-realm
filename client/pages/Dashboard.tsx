@@ -597,25 +597,25 @@ export default function Dashboard() {
             {/* Latest E-Forum */}
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900">Latest E-Forum</h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-base font-semibold text-gray-900">Latest E-Forum</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {forumPosts.map((post) => (
-                    <div key={post.id} className="border-b border-gray-100 pb-4 last:border-b-0">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div key={post.id} className="border-b border-gray-100 pb-3 last:border-b-0">
+                      <div className="flex items-start space-x-2">
+                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-xs font-semibold">
                             {post.author.split(' ').map(n => n[0]).join('')}
                           </span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2 mb-1">
-                            <h4 className="text-sm font-semibold text-gray-900">{post.author}</h4>
+                            <h4 className="text-xs font-semibold text-gray-900">{post.author}</h4>
                           </div>
-                          <p className="text-xs text-gray-500 mb-2">{post.time}</p>
-                          <p className="text-xs text-gray-600 leading-relaxed mb-3">{post.content}</p>
+                          <p className="text-xs text-gray-500 mb-1">{post.time}</p>
+                          <p className="text-xs text-gray-600 leading-relaxed mb-2 line-clamp-2">{post.content}</p>
                           <div className="flex items-center space-x-4 text-xs text-gray-500">
                             <div className="flex items-center space-x-1">
                               <MessageSquare className="w-3 h-3" />
