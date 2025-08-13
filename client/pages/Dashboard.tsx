@@ -25,10 +25,14 @@ import {
   MessageSquare,
   Eye,
   MoreHorizontal,
+  ChevronDown,
+  ChevronUp,
+  Grid3X3,
 } from "lucide-react";
 
 export default function Dashboard() {
   const [dateRange, setDateRange] = useState("all-departments");
+  const [showAllMetrics, setShowAllMetrics] = useState(false);
 
   // Employee Growth Data for chart
   const employeeGrowthData = [
