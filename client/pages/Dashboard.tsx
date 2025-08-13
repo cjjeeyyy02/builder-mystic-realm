@@ -563,12 +563,12 @@ export default function Dashboard() {
 
                 <div className="space-y-3">
                   {recentActivities.map((activity) => (
-                    <div key={activity.id} className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Users className="w-4 h-4 text-white" />
+                    <div key={activity.id} className="flex items-start space-x-2">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Users className="w-3 h-3 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-900 mb-1">{activity.text}</p>
+                        <p className="text-xs text-gray-900 mb-1">{activity.text}</p>
                         <div className="flex items-center space-x-2 mb-2">
                           <Badge className={`text-xs ${
                             activity.type === 'Onboarding' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
