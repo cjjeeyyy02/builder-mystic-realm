@@ -875,9 +875,9 @@ export default function Dashboard() {
       </div>
 
       {/* Footer Navigation */}
-      <div className="bg-white border-t border-gray-200 mt-8">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-center space-x-8">
+      <div className="bg-white border-t border-gray-200 shadow-lg mt-12">
+        <div className="max-w-7xl mx-auto px-8 py-6">
+          <div className="flex items-center justify-center space-x-12">
             {/* Activity Feed */}
             <div className="flex flex-col items-center space-y-1 cursor-pointer hover:opacity-70 transition-opacity">
               <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
