@@ -409,12 +409,12 @@ export default function Dashboard() {
 
             {/* Department Distribution - Full Width */}
             <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Distribution</h3>
+              <CardContent className="p-4">
+                <h3 className="text-base font-semibold text-gray-900 mb-4">Department Distribution</h3>
 
                 {/* Donut Chart */}
-                <div className="flex items-center justify-center mb-6">
-                  <div className="relative w-32 h-32">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="relative w-24 h-24">
                     <div className="w-full h-full rounded-full border-8 border-gray-200 relative">
                       <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-blue-500 border-r-blue-500" style={{transform: 'rotate(0deg)'}}></div>
                       <div className="absolute inset-0 rounded-full border-8 border-transparent border-t-orange-400" style={{transform: 'rotate(120deg)'}}></div>
