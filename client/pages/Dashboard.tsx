@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div className="min-h-screen bg-gray-100 p-6">
