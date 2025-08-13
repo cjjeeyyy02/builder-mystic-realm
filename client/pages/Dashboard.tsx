@@ -34,6 +34,82 @@ export default function Dashboard() {
   const [dateRange, setDateRange] = useState("all-departments");
   const [showAllMetrics, setShowAllMetrics] = useState(false);
 
+  // Metrics Cards Data
+  const metricsCards = [
+    {
+      id: 1,
+      title: "Total Employees",
+      value: "1,247",
+      trend: "↗ Previous month",
+      description: "Pending Onboarding Status",
+      icon: Users,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 2,
+      title: "Active Candidates",
+      value: "1,247",
+      trend: "↗ Not Increase",
+      description: "Active 6 oncomitl Candidates",
+      icon: UserCheck,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 3,
+      title: "Average Performance",
+      value: "1,247",
+      trend: "↗ All Previous",
+      description: "Average Module Performance",
+      icon: BarChart3,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 4,
+      title: "Pending Task",
+      value: "23,000",
+      trend: "↗ All Increase",
+      description: "Completed Echo Odo",
+      icon: Clock,
+      iconColor: "text-orange-500"
+    },
+    {
+      id: 5,
+      title: "On AdamBoarding",
+      value: "1,247",
+      trend: "↗ All Increased",
+      description: "Formaly OnBoarding",
+      icon: Users,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 6,
+      title: "On Probation",
+      value: "1,247",
+      trend: "↗ All Group",
+      description: "Probationary Employees",
+      icon: Clock,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 7,
+      title: "Onboarding",
+      value: "23,000",
+      trend: "↗ All PERMABAN",
+      description: "Viewen Payment",
+      icon: CheckCircle,
+      iconColor: "text-blue-500"
+    },
+    {
+      id: 8,
+      title: "Completed Tasks",
+      value: "1,247",
+      trend: "↗ All Module",
+      description: "Completed 6352 Goal",
+      icon: CheckCircle,
+      iconColor: "text-green-500"
+    }
+  ];
+
   // Employee Growth Data for chart
   const employeeGrowthData = [
     { month: "Feb", newHire: 8, exit: 4 },
