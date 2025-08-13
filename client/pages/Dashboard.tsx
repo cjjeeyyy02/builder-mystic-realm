@@ -454,19 +454,19 @@ export default function Dashboard() {
             {/* Company Events */}
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900">Company Events</h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-base font-semibold text-gray-900">Company Events</h3>
                   <div className="flex items-center space-x-2">
-                    <Button size="sm" variant="outline" className="text-xs">List</Button>
-                    <Button size="sm" variant="default" className="text-xs bg-blue-500">Calendar</Button>
+                    <Button size="sm" variant="outline" className="text-xs h-7">List</Button>
+                    <Button size="sm" variant="default" className="text-xs bg-blue-500 h-7">Calendar</Button>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   {/* Event 1 */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                  <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                     <div className="flex items-start justify-between">
-                      <h4 className="font-semibold text-gray-900 text-sm">Tech Summer 2024</h4>
+                      <h4 className="font-semibold text-gray-900 text-xs">Tech Summer 2024</h4>
                       <div className="flex space-x-1">
                         <Badge className="text-xs bg-blue-100 text-blue-700">Oplolloner</Badge>
                         <Badge className="text-xs bg-purple-100 text-purple-700">ADMate</Badge>
