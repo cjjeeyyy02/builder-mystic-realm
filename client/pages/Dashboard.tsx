@@ -189,8 +189,8 @@ export default function Dashboard() {
       <div className="min-h-screen bg-gray-50 p-6">
         {/* Main Dashboard Content */}
         <div className="grid grid-cols-12 gap-6">
-          {/* Main Content - Full Width */}
-          <div className="col-span-12 space-y-6">
+          {/* Main Content */}
+          <div className="col-span-8 space-y-6">
             {/* Metrics Cards - Conditional Layout */}
             {showAllMetrics ? (
               // Grid View - Show all 8 cards in a 4x2 grid
