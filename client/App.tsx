@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import Chat from "./pages/Chat";
 import Records from "./pages/Records";
 import Performance from "./pages/Performance";
 import MediaResources from "./pages/MediaResources";
@@ -26,6 +27,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/records" element={<Records />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/media-resources" element={<MediaResources />} />
