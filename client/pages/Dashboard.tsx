@@ -164,7 +164,7 @@ export default function Dashboard() {
 
             {/* Latest E-Forum */}
             <Card className="bg-white border border-gray-200">
-              <CardContent className="p-6">
+              <CardContent className="p-6 mb-36">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Latest E-Forum</h3>
                 <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
                   <p className="text-gray-500">Forum Content</p>
