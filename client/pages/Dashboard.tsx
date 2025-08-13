@@ -426,26 +426,26 @@ export default function Dashboard() {
                 </div>
 
                 {/* Legend */}
-                <div className="grid grid-cols-5 gap-4 text-center">
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Engineering</span>
+                <div className="grid grid-cols-5 gap-3 text-center">
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-xs text-gray-600">Engineering</span>
                   </div>
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Finance</span>
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <span className="text-xs text-gray-600">Finance</span>
                   </div>
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-3 h-3 bg-teal-400 rounded-full"></div>
-                    <span className="text-sm text-gray-600">HR</span>
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                    <span className="text-xs text-gray-600">HR</span>
                   </div>
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Marketing</span>
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="text-xs text-gray-600">Marketing</span>
                   </div>
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Sales</span>
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                    <span className="text-xs text-gray-600">Sales</span>
                   </div>
                 </div>
               </CardContent>
