@@ -250,7 +250,10 @@ export default function Files() {
               </div>
 
               {/* Reminders */}
-              <div className="flex flex-col items-center space-y-1 cursor-pointer hover:opacity-70 transition-opacity">
+              <div
+                className="flex flex-col items-center space-y-1 cursor-pointer hover:opacity-70 transition-opacity"
+                onClick={() => navigate('/reminders')}
+              >
                 <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
                   <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5v-5a7.5 7.5 0 1015 0z" />
