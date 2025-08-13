@@ -149,7 +149,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Chart */}
-                  <div className="h-24 relative">
+                  <div className="h-40 relative">
                     {/* Y-axis labels */}
                     <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-1">
                       <span className="text-xs">80</span>
@@ -160,57 +160,57 @@ export default function Dashboard() {
                     </div>
 
                     {/* Chart area */}
-                    <div className="ml-6 h-full flex items-end justify-between gap-0.5">
+                    <div className="ml-6 h-full flex items-end justify-between gap-1">
                       {/* June */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '24px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '8px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '48px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '16px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">Jun</div>
                       </div>
 
                       {/* May */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '38px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '12px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '76px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '24px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">May</div>
                       </div>
 
                       {/* April */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '42px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '16px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '84px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '32px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">Apr</div>
                       </div>
 
                       {/* March */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '21px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '18px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '42px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '36px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">Mar</div>
                       </div>
 
                       {/* February */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '37px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '12px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '74px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '24px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">Feb</div>
                       </div>
 
                       {/* January */}
-                      <div className="flex flex-col items-center gap-0.5">
-                        <div className="flex items-end gap-0.5 h-16">
-                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '51px'}}></div>
-                          <div className="w-2 bg-red-500 rounded-t" style={{height: '11px'}}></div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-end gap-0.5 h-32">
+                          <div className="w-3 bg-emerald-500 rounded-t" style={{height: '102px'}}></div>
+                          <div className="w-3 bg-red-500 rounded-t" style={{height: '22px'}}></div>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-nowrap">Jan</div>
                       </div>
