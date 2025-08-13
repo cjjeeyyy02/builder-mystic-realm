@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export default function Chat() {
+  const navigate = useNavigate();
   const [selectedChat, setSelectedChat] = useState("jennifer");
   const [message, setMessage] = useState("");
 
