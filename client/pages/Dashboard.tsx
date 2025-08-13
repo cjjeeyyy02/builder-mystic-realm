@@ -938,7 +938,10 @@ export default function Dashboard() {
             </div>
 
             {/* E - Forum */}
-            <div className="flex flex-col items-center space-y-1 cursor-pointer hover:opacity-70 transition-opacity">
+            <div
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:opacity-70 transition-opacity"
+              onClick={() => navigate('/e-forum')}
+            >
               <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                 <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z" />
