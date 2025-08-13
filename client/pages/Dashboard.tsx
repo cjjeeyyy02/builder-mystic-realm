@@ -137,19 +137,19 @@ export default function Dashboard() {
                   </div>
 
                   {/* Legend */}
-                  <div className="flex items-center gap-4 mb-3">
+                  <div className="flex items-center gap-3 mb-3">
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                       <span className="text-xs text-gray-700">New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                       <span className="text-xs text-gray-700">Exit</span>
                     </div>
                   </div>
 
                   {/* Chart */}
-                  <div className="h-32 relative">
+                  <div className="h-24 relative">
                     {/* Y-axis labels */}
                     <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-1">
                       <span className="text-xs">80</span>
@@ -160,71 +160,59 @@ export default function Dashboard() {
                     </div>
 
                     {/* Chart area */}
-                    <div className="ml-6 h-full flex items-end justify-between gap-1">
+                    <div className="ml-6 h-full flex items-end justify-between gap-0.5">
                       {/* June */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '45px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Jun</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '24px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '8px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '15px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">Jun</div>
                       </div>
 
                       {/* May */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '72px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">May</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '38px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '12px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '24px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">May</div>
                       </div>
 
                       {/* April */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '78px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Apr</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '42px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '16px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '30px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">Apr</div>
                       </div>
 
                       {/* March */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '39px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Mar</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '21px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '18px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '33px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">Mar</div>
                       </div>
 
                       {/* February */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '69px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Feb</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '37px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '12px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '24px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">Feb</div>
                       </div>
 
                       {/* January */}
-                      <div className="flex-1 flex items-end gap-0.5">
-                        <div className="flex flex-col items-end">
-                          <div className="w-3 bg-blue-500 rounded-t-sm" style={{height: '96px'}}></div>
-                          <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">Jan</div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="flex items-end gap-0.5 h-16">
+                          <div className="w-2 bg-emerald-500 rounded-t" style={{height: '51px'}}></div>
+                          <div className="w-2 bg-red-500 rounded-t" style={{height: '11px'}}></div>
                         </div>
-                        <div className="flex flex-col items-end">
-                          <div className="w-2 bg-gray-800 rounded-t-sm" style={{height: '21px'}}></div>
-                        </div>
+                        <div className="text-xs text-gray-600 whitespace-nowrap">Jan</div>
                       </div>
                     </div>
                   </div>
