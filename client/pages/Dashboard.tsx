@@ -606,7 +606,7 @@ export default function Dashboard() {
 
             {/* Latest E-Forum */}
             <Card className="bg-white border border-gray-200">
-              <CardContent className="p-6 mb-36">
+              <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className="text-sm font-semibold text-gray-900">Latest E Forum Updates</h3>
