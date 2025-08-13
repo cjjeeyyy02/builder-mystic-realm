@@ -396,7 +396,7 @@ export default function Dashboard() {
 
                   {/* Y-Axis Title */}
                   <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -rotate-90 text-xs text-gray-500 font-medium whitespace-nowrap">
-                    Number of Employees
+                    Count
                   </div>
                 </div>
               </CardContent>
