@@ -12,6 +12,7 @@ import Chat from "./pages/Chat";
 import Files from "./pages/Files";
 import Reminders from "./pages/Reminders";
 import EForum from "./pages/EForum";
+import AI2AIMStore from "./pages/AI2AIMStore";
 import Records from "./pages/Records";
 import Performance from "./pages/Performance";
 import MediaResources from "./pages/MediaResources";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/files" element={<Files />} />
           <Route path="/reminders" element={<Reminders />} />
           <Route path="/e-forum" element={<EForum />} />
+          <Route path="/ai2aim-store" element={<AI2AIMStore />} />
           <Route path="/records" element={<Records />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/media-resources" element={<MediaResources />} />
