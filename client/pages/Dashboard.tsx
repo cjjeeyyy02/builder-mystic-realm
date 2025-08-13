@@ -277,11 +277,11 @@ export default function Dashboard() {
 
             {/* Employee Growth Trends Chart */}
             <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Employee Growth Trends</h3>
-                    <p className="text-sm text-gray-600 mt-1">Monthly hiring and exit patterns</p>
+                    <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
+                    <p className="text-xs text-gray-600 mt-1">Monthly hiring and exit patterns</p>
                   </div>
                   <Select value={dateRange} onValueChange={setDateRange}>
                     <SelectTrigger className="w-48">
