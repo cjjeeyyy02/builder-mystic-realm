@@ -555,13 +555,13 @@ export default function Dashboard() {
           </div>
 
           {/* Right Sidebar - Recent Activities and Latest E-Forum */}
-          <div className="col-span-4 space-y-6">
+          <div className="col-span-4 space-y-4">
             {/* Recent Activities */}
             <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6">Recent Activities</h3>
+              <CardContent className="p-4">
+                <h3 className="text-base font-semibold text-gray-900 mb-4">Recent Activities</h3>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {recentActivities.map((activity) => (
                     <div key={activity.id} className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
