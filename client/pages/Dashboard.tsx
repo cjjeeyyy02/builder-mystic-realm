@@ -17,6 +17,7 @@ export default function Dashboard() {
   const [metricsCollapsed, setMetricsCollapsed] = useState(false);
   const metricsScrollRef = useRef<HTMLDivElement>(null);
   const [eventsView, setEventsView] = useState("list"); // "list" or "calendar"
+  const [showVoiceSearch, setShowVoiceSearch] = useState(false);
 
   // Close dropdown when clicking outside
   useEffect(() => {
