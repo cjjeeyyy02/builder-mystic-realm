@@ -630,87 +630,72 @@ export default function Dashboard() {
                   </div>
 
                   {/* Activity Item 2 */}
-                  <div className="backdrop-blur-sm bg-white/70 p-4 rounded-xl border border-white/50 hover:bg-white/90 transition-all duration-300 group">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
-                            Sarah Johnson Completed AI Assessment
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-emerald-100 to-emerald-200 px-3 py-1 text-xs font-medium text-emerald-800 border border-emerald-300">
-                              ✅ Assessment
-                            </span>
-                            <span className="text-xs font-medium text-indigo-600">HR Department</span>
-                          </div>
-                        </div>
+                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                       </div>
-                      <div className="text-right">
-                        <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">1 hour ago</span>
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-1 ml-auto"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900 mb-1">
+                          Sarah Johnson Completed AI Assessment
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                            Assessment
+                          </span>
+                          <span className="text-xs text-gray-500">HR</span>
+                        </div>
                       </div>
                     </div>
+                    <span className="text-xs text-gray-400 flex-shrink-0">1 hour ago</span>
                   </div>
 
                   {/* Activity Item 3 */}
-                  <div className="backdrop-blur-sm bg-white/70 p-4 rounded-xl border border-white/50 hover:bg-white/90 transition-all duration-300 group">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
-                            Q2 Performance Reviews Completed for Engineering Team
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-100 to-purple-200 px-3 py-1 text-xs font-medium text-purple-800 border border-purple-300">
-                              📊 Performance
-                            </span>
-                            <span className="text-xs font-medium text-indigo-600">Engineering</span>
-                          </div>
-                        </div>
+                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                       </div>
-                      <div className="text-right">
-                        <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">1 day ago</span>
-                        <div className="w-2 h-2 bg-purple-500 rounded-full mt-1 ml-auto"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900 mb-1">
+                          Q2 Performance reviews completed for engineering team
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
+                            Review
+                          </span>
+                          <span className="text-xs text-gray-500">HR</span>
+                        </div>
                       </div>
                     </div>
+                    <span className="text-xs text-gray-400 flex-shrink-0">1 day ago</span>
                   </div>
 
                   {/* Activity Item 4 */}
-                  <div className="backdrop-blur-sm bg-white/70 p-4 rounded-xl border border-white/50 hover:bg-white/90 transition-all duration-300 group">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
-                            Monthly Payroll Processed Successfully for 1,245 Employees
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-amber-100 to-amber-200 px-3 py-1 text-xs font-medium text-amber-800 border border-amber-300">
-                              💰 Payroll
-                            </span>
-                            <span className="text-xs font-medium text-indigo-600">Finance</span>
-                          </div>
-                        </div>
+                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                        </svg>
                       </div>
-                      <div className="text-right">
-                        <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">2 days ago</span>
-                        <div className="w-2 h-2 bg-amber-500 rounded-full mt-1 ml-auto"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900 mb-1">
+                          Monthly payroll process successfully for 1245 employees
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                            Payroll
+                          </span>
+                          <span className="text-xs text-gray-500">HR</span>
+                        </div>
                       </div>
                     </div>
+                    <span className="text-xs text-gray-400 flex-shrink-0">2 days ago</span>
                   </div>
                 </div>
 
