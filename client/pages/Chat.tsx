@@ -7,11 +7,12 @@ import FooterNavigation from "@/components/FooterNavigation";
 
 export default function Chat() {
   const navigate = useNavigate();
-  const [selectedChat, setSelectedChat] = useState("jennifer");
+  const [selectedChat, setSelectedChat] = useState("");
   const [message, setMessage] = useState("");
   const [chatType, setChatType] = useState("individual"); // 'individual' or 'group'
   const [isTyping, setIsTyping] = useState(false);
   const [footerCollapsed, setFooterCollapsed] = useState(false);
+  const [rightPanelVisible, setRightPanelVisible] = useState(false);
 
   const chatList = [
     {
@@ -201,11 +202,19 @@ export default function Chat() {
   const handleGroupClick = (groupId: string) => {
     setSelectedChat(groupId);
     setChatType("group");
+    setRightPanelVisible(true);
   };
 
   const handleIndividualClick = (chatId: string) => {
     setSelectedChat(chatId);
     setChatType("individual");
+    setRightPanelVisible(true);
+  };
+
+  const handleChatTypeChange = (type: string) => {
+    setChatType(type);
+    setSelectedChat("");
+    setRightPanelVisible(false);
   };
 
   const getStatusColor = (status: string) => {
@@ -274,7 +283,7 @@ export default function Chat() {
               {/* Chat Type Tabs */}
               <div className="flex bg-gray-100/80 rounded-md p-0.5">
                 <button
-                  onClick={() => setChatType("individual")}
+                  onClick={() => handleChatTypeChange("individual")}
                   className={`flex-1 py-1.5 px-2 text-[10px] font-medium rounded transition-all ${
                     chatType === "individual"
                       ? "bg-white text-blue-600 shadow-sm"
@@ -284,7 +293,7 @@ export default function Chat() {
                   Direct
                 </button>
                 <button
-                  onClick={() => setChatType("group")}
+                  onClick={() => handleChatTypeChange("group")}
                   className={`flex-1 py-1.5 px-2 text-[10px] font-medium rounded transition-all ${
                     chatType === "group"
                       ? "bg-white text-blue-600 shadow-sm"
@@ -377,7 +386,9 @@ export default function Chat() {
           </div>
 
           {/* Center - Chat Messages */}
-          <div className="flex-1 flex flex-col bg-white/70 backdrop-blur-sm">
+          <div className={`flex-1 flex flex-col bg-white/70 backdrop-blur-sm transition-all duration-300 ${
+            rightPanelVisible ? 'flex' : 'hidden'
+          }`}>
             {/* Chat Header */}
             {currentChatData && (
               <div className="p-2 border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
