@@ -390,7 +390,7 @@ export default function Chat() {
             rightPanelVisible ? 'flex' : 'hidden'
           }`}>
             {/* Chat Header */}
-            {currentChatData && (
+            {currentChatData && rightPanelVisible && (
               <div className="p-2 border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -438,7 +438,7 @@ export default function Chat() {
 
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto p-2 space-y-2">
-              {currentMessages.map((msg) => (
+              {rightPanelVisible && currentMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.type === 'sent' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`flex items-end space-x-1 max-w-xs lg:max-w-md ${msg.type === 'sent' ? 'flex-row-reverse space-x-reverse' : ''}`}>
                     {msg.type === 'received' && (
