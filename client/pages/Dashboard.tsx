@@ -123,7 +123,7 @@ export default function Dashboard() {
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
                     {/* Total Employees */}
-                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-blue-500 rounded">
@@ -162,7 +162,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Active Candidates */}
-                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-green-500 rounded">
@@ -201,7 +201,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Average Performance */}
-                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-purple-500 rounded">
@@ -240,7 +240,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Pending Tasks */}
-                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-orange-500 rounded">
