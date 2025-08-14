@@ -181,7 +181,9 @@ export default function Dashboard() {
                               +30 this month
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Active workspace size
                           </p>
                         </div>
@@ -1355,7 +1357,9 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">
+                      <p className={`text-xs mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
                         Join us for the biggest Tech event discussing innovative
                         and industry insights
                       </p>
@@ -1459,7 +1463,9 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">
+                      <p className={`text-xs mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
                         Collaboration Workshop focusing on innovation
                         methodologies and Team dynamics
                       </p>
@@ -1561,7 +1567,9 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">
+                      <p className={`text-xs mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
                         Annual Celebration and Award ceremony, dinner and
                         entertainment
                       </p>
