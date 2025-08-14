@@ -22,7 +22,11 @@ export default function Meetings() {
           </div>
 
           {/* Coming Soon Card */}
-          <Card className="bg-gradient-to-br from-purple-50 to-indigo-100 border border-purple-200">
+          <Card className={`transition-all duration-300 ${
+            isDarkMode
+              ? 'bg-gradient-to-br from-purple-900/20 to-indigo-800/30 border border-purple-700/30'
+              : 'bg-gradient-to-br from-purple-50 to-indigo-100 border border-purple-200'
+          }`}>
             <CardContent className="p-8 text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -39,11 +43,15 @@ export default function Meetings() {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>
                 Meetings Feature Coming Soon
               </h2>
-              <p className="text-gray-600 max-w-md mx-auto">
-                We're working on bringing you a comprehensive meetings management system. 
+              <p className={`max-w-md mx-auto transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}>
+                We're working on bringing you a comprehensive meetings management system.
                 Stay tuned for updates!
               </p>
             </CardContent>
