@@ -16,7 +16,7 @@ export default function Dashboard() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [metricsCollapsed, setMetricsCollapsed] = useState(false);
   const metricsScrollRef = useRef<HTMLDivElement>(null);
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [eventsView, setEventsView] = useState("list"); // "list" or "calendar"
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -1181,16 +1181,17 @@ export default function Dashboard() {
                   <div className="flex items-center space-x-2">
                     <Button
                       size="sm"
-                      variant="default"
-                      className="text-xs bg-blue-500 h-7 px-3"
+                      variant={eventsView === "list" ? "default" : "outline"}
+                      className="text-xs h-7 px-3"
+                      onClick={() => setEventsView("list")}
                     >
                       List
                     </Button>
                     <Button
                       size="sm"
-                      variant="outline"
+                      variant={eventsView === "calendar" ? "default" : "outline"}
                       className="text-xs h-7 px-3"
-                      onClick={() => setShowCalendar(true)}
+                      onClick={() => setEventsView("calendar")}
                     >
                       Calendar
                     </Button>
