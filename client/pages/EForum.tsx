@@ -344,18 +344,18 @@ export default function EForum() {
       <Layout>
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
           {/* Header */}
-          <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100 px-6 py-6 shadow-sm">
+          <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 shadow-sm">
             <div className="max-w-6xl mx-auto">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div>
-                  <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     E-Forum
                   </h1>
-                  <p className="text-gray-600 mt-2">Connect, collaborate, and share knowledge with your team</p>
+                  <p className="text-gray-600 text-sm mt-1">Connect, collaborate, and share knowledge with your team</p>
                 </div>
                 <Button
                   onClick={handleNewPost}
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-2 rounded-lg shadow-sm"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-1.5 text-sm rounded-lg shadow-sm"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
