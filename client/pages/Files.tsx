@@ -277,19 +277,8 @@ export default function Files() {
 
         {/* Files Grid */}
         <div
+          ref={scrollContainerRef}
           className="p-4 pb-footer"
-          onScroll={(e) => {
-            const currentScrollY = e.currentTarget.scrollTop;
-            const isScrollingDown = currentScrollY > lastScrollY;
-
-            if (currentScrollY > 100) {
-              setFooterCollapsed(isScrollingDown);
-            } else {
-              setFooterCollapsed(false);
-            }
-
-            setLastScrollY(currentScrollY);
-          }}
           style={{ height: 'calc(100vh - 120px)', overflowY: 'auto' }}
         >
           <div className="mb-4">
