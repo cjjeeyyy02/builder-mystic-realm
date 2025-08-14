@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +11,30 @@ export default function Files() {
   const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollContainerRef.current) return;
+
+      const currentScrollY = scrollContainerRef.current.scrollTop;
+      const isScrollingDown = currentScrollY > lastScrollY;
+
+      if (currentScrollY > 50) {
+        setFooterCollapsed(isScrollingDown);
+      } else {
+        setFooterCollapsed(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
+  }, [lastScrollY]);
 
   const recentFiles = [
     {
