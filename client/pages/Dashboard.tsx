@@ -1441,7 +1441,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className="text-sm font-semibold text-gray-900">
-                      Latest E Forum Updates
+                      Latest E-Forum Updates
                     </h3>
                     <p className="text-xs text-gray-500 mt-1">
                       Employee discussion forum
@@ -1730,6 +1730,7 @@ export default function Dashboard() {
                 <div className="mt-4 text-center">
                   <Button
                     variant="link"
+                    onClick={() => navigate('/e-forum')}
                     className="text-blue-600 hover:text-blue-700 text-xs p-0"
                   >
                     Visit Forum →
