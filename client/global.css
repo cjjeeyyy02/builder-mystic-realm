@@ -140,20 +140,20 @@
 
   /* Footer spacing utility */
   .pb-footer {
-    padding-bottom: 4.5rem; /* 72px */
+    padding-bottom: 3.5rem; /* 56px */
   }
 
   /* Mobile footer spacing */
   @media (max-width: 1023px) {
     .pb-footer {
-      padding-bottom: 4rem; /* 64px */
+      padding-bottom: 3rem; /* 48px */
     }
   }
 
   /* Desktop footer spacing for dashboard layout */
   @media (min-width: 1024px) {
     .pb-footer {
-      padding-bottom: 4.5rem; /* 72px */
+      padding-bottom: 3.5rem; /* 56px */
     }
   }
 
