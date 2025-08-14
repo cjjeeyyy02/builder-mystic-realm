@@ -116,7 +116,10 @@ export default function Dashboard() {
           <div className="col-span-8 space-y-6">
             {/* Metrics Cards */}
             <div className="relative">
-              <div className="overflow-x-auto scrollbar-hide">
+              <div
+                ref={metricsScrollRef}
+                className="overflow-x-auto scrollbar-hide"
+              >
                 <div className="flex gap-4 pb-2">
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
