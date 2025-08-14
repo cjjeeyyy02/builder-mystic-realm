@@ -10,7 +10,11 @@ export default function Meetings() {
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 p-6 overflow-y-auto pb-footer">
+        <div className={`min-h-screen p-6 overflow-y-auto pb-footer transition-colors duration-300 ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-purple-900'
+            : 'bg-gradient-to-br from-gray-50 via-white to-purple-50'
+        }`}>
           {/* Header */}
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Meetings</h1>
