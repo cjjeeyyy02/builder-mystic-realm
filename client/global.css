@@ -140,7 +140,7 @@
 
   /* Footer spacing utility */
   .pb-footer {
-    padding-bottom: 3.5rem; /* 56px */
+    padding-bottom: 2.625rem; /* 42px - matches minimized footer height */
   }
 
   /* Mobile footer spacing */
