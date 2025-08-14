@@ -827,7 +827,7 @@ export default function Dashboard() {
 
               {/* Department Distribution */}
               {!isGrowthExpanded && (
-                <Card className="bg-white border border-gray-200">
+                <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200">
                   <CardContent className="p-6">
                     <div className="mb-3">
                       <h3 className="text-base font-semibold text-gray-900">
@@ -928,12 +928,12 @@ export default function Dashboard() {
                         <span className="text-gray-700">HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">Marketing</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 col-span-2 justify-center">
                         <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
                         <span className="text-gray-700">Sales</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 col-span-2 justify-center">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">Marketing</span>
                       </div>
                     </div>
                   </CardContent>
