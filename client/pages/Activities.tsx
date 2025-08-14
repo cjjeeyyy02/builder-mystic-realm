@@ -302,7 +302,7 @@ export default function Activities() {
               </div>
 
               {/* Search Only */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-start mt-4">
                 <div className="flex-1 max-w-sm">
                   <div className="relative">
                     <svg
