@@ -13,7 +13,7 @@ export default function EForum() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [nextPostId, setNextPostId] = useState(100); // Start from 100 to avoid conflicts
+  const nextPostIdRef = useRef(1000); // Use ref to avoid race conditions, start from 1000
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const initialPosts = [
@@ -153,16 +153,18 @@ export default function EForum() {
     ];
 
     const newPosts = [];
+    const startId = nextPostIdRef.current;
+
     for (let i = 0; i < 6; i++) {
       const author = authors[i % authors.length];
       const content = contents[i % contents.length];
-      const currentId = nextPostId + i;
+      const currentId = startId + i;
 
       newPosts.push({
         id: currentId,
         author: author.name,
         department: author.dept,
-        timestamp: `${Math.floor(currentId / 10)} hours ago`,
+        timestamp: `${Math.floor(currentId / 100)} hours ago`,
         content: content,
         hearts: Math.floor(Math.random() * 40) + 5,
         comments: Math.floor(Math.random() * 20) + 2,
@@ -174,7 +176,7 @@ export default function EForum() {
       });
     }
 
-    setNextPostId(prev => prev + 6); // Update next ID counter
+    nextPostIdRef.current += 6; // Update ref directly
     return newPosts;
   };
 
@@ -214,7 +216,7 @@ export default function EForum() {
       scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }
-  }, [lastScrollY, loading, posts]);
+  }, [lastScrollY, loading]);
 
   const loadMorePosts = () => {
     if (loading) return;
@@ -222,7 +224,12 @@ export default function EForum() {
 
     setTimeout(() => {
       const newPosts = generateMorePosts();
-      setPosts(prev => [...prev, ...newPosts]);
+      setPosts(prev => {
+        // Additional safety check to prevent duplicates
+        const existingIds = new Set(prev.map(post => post.id));
+        const filteredNewPosts = newPosts.filter(post => !existingIds.has(post.id));
+        return [...prev, ...filteredNewPosts];
+      });
       setLoading(false);
     }, 800);
   };
