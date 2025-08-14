@@ -1198,8 +1198,11 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  {/* Event 1 - Tech Summer 2024 */}
+                {/* Conditional Content: List View or Calendar View */}
+                {eventsView === "list" ? (
+                  <div>
+                    <div className="space-y-3">
+                      {/* Event 1 - Tech Summer 2024 */}
                   <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -1506,18 +1509,135 @@ export default function Dashboard() {
                       Share to Forum
                     </Button>
                   </div>
-                </div>
+                    </div>
 
-                {/* View all events link */}
-                <div className="mt-4">
-                  <Button
-                    variant="link"
-                    onClick={() => navigate("/events")}
-                    className="text-blue-600 hover:text-blue-700 text-xs p-0"
-                  >
-                    View all events →
-                  </Button>
-                </div>
+                    {/* View all events link */}
+                    <div className="mt-4">
+                      <Button
+                        variant="link"
+                        onClick={() => navigate("/events")}
+                        className="text-blue-600 hover:text-blue-700 text-xs p-0"
+                      >
+                        View all events →
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  /* Calendar View */
+                  <div className="space-y-4">
+                    {/* Calendar Header with Filter */}
+                    <div className="flex items-center justify-end">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-xs"
+                      >
+                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        </svg>
+                        Filter
+                      </Button>
+                    </div>
+
+                    {/* Calendar Grid */}
+                    <div className="grid grid-cols-7 gap-1 mb-4">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28].map((day) => (
+                        <div
+                          key={day}
+                          className={`
+                            aspect-square flex items-center justify-center text-xs font-medium rounded cursor-pointer transition-all relative
+                            ${day <= 14 ? 'bg-blue-100 text-blue-800 hover:bg-blue-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
+                            ${day === 3 || day === 6 || day === 12 ? 'ring-1 ring-green-400' : ''}
+                          `}
+                        >
+                          {day}
+                          {/* Event indicators */}
+                          {day === 3 && (
+                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
+                              <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                            </div>
+                          )}
+                          {day === 6 && (
+                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
+                              <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                            </div>
+                          )}
+                          {day === 12 && (
+                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
+                              <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Event Details */}
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2 p-2 bg-blue-50 rounded-lg">
+                        <div className="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded">
+                          Summit
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-semibold text-gray-900">Annual Marketing Summit</h3>
+                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                            <span>June 12, 9:00 AM</span>
+                            <span>New York, NY</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded">
+                            UPCOMING
+                          </span>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-6">
+                            View Details →
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2 p-2 bg-green-50 rounded-lg">
+                        <div className="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded">
+                          Social
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-semibold text-gray-900">Networking Mixer</h3>
+                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                            <span>June 20, 6:00 PM</span>
+                            <span>Downtown</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">
+                            CONFIRMED
+                          </span>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-6">
+                            View Details →
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2 p-2 bg-purple-50 rounded-lg">
+                        <div className="px-2 py-1 bg-purple-500 text-white text-xs font-medium rounded">
+                          Conference
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-semibold text-gray-900">Data Science Conference</h3>
+                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                            <span>July 3, 10:00 AM</span>
+                            <span>Chicago, IL</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">
+                            PLANNING
+                          </span>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-6">
+                            View Details →
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
