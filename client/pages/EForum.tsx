@@ -163,152 +163,154 @@ export default function EForum() {
   );
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-white">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Community Forum
-                </h1>
-                <p className="text-gray-600 mt-2">Connect, collaborate, and share knowledge with your team</p>
-              </div>
-              <Button 
-                onClick={handleNewPost}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-sm"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                Create Post
-              </Button>
-            </div>
-
-            {/* Category Tabs */}
-            <div className="flex items-center space-x-2 overflow-x-auto">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveTab(category.toLowerCase())}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                    activeTab === category.toLowerCase()
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
+    <>
+      <Layout>
+        <div className="min-h-screen bg-white">
+          {/* Header */}
+          <div className="bg-white border-b border-gray-200 px-6 py-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900">
+                    Community Forum
+                  </h1>
+                  <p className="text-gray-600 mt-2">Connect, collaborate, and share knowledge with your team</p>
+                </div>
+                <Button 
+                  onClick={handleNewPost}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-sm"
                 >
-                  {category}
-                </button>
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  Create Post
+                </Button>
+              </div>
+
+              {/* Category Tabs */}
+              <div className="flex items-center space-x-2 overflow-x-auto">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveTab(category.toLowerCase())}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                      activeTab === category.toLowerCase()
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="p-6 pb-24">
+            <div className="max-w-4xl mx-auto">
+              {forumPosts.map((post) => (
+                <PostCard key={post.id} post={post} />
               ))}
             </div>
           </div>
         </div>
+      </Layout>
 
-        {/* Main Content */}
-        <div className="p-6">
-          <div className="max-w-4xl mx-auto">
-            {forumPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="bg-white border-t border-gray-200 mt-12">
-          <div className="max-w-7xl mx-auto px-6 py-6">
-            <div className="flex items-center justify-center space-x-12">
-              {/* Dashboard */}
-              <div 
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/dashboard')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">Dashboard</span>
+      {/* Footer Navigation - Full Screen Fixed */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-center space-x-8 max-w-4xl mx-auto">
+            {/* Dashboard */}
+            <div 
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/dashboard')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">Dashboard</span>
+            </div>
 
-              {/* Chat */}
-              <div 
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/chat')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">Chat</span>
+            {/* Chat */}
+            <div 
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/chat')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">Chat</span>
+            </div>
 
-              {/* Files */}
-              <div 
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/files')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">Files</span>
+            {/* Files */}
+            <div 
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/files')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">Files</span>
+            </div>
 
-              {/* Activities */}
-              <div 
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/activities')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">Activities</span>
+            {/* Activities */}
+            <div 
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/activities')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">Activities</span>
+            </div>
 
-              {/* Reminders */}
-              <div 
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/reminders')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">Reminders</span>
+            {/* Reminders */}
+            <div 
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/reminders')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">Reminders</span>
+            </div>
 
-              {/* E-Forum - Active */}
-              <div className="flex flex-col items-center space-y-2">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-blue-600 font-medium">Forum</span>
+            {/* E-Forum - Active */}
+            <div className="flex flex-col items-center space-y-1">
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z" />
+                </svg>
               </div>
+              <span className="text-xs text-blue-600 font-medium">Forum</span>
+            </div>
 
-              {/* AI2AIM Store */}
-              <div
-                className="flex flex-col items-center space-y-2 cursor-pointer group"
-                onClick={() => navigate('/ai2aim-store')}
-              >
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                  </svg>
-                </div>
-                <span className="text-sm text-gray-600 group-hover:text-blue-600 font-medium">AI2AIM</span>
+            {/* AI2AIM Store */}
+            <div
+              className="flex flex-col items-center space-y-1 cursor-pointer group"
+              onClick={() => navigate('/ai2aim-store')}
+            >
+              <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-200">
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
               </div>
+              <span className="text-xs text-gray-600 group-hover:text-blue-600 font-medium">AI2AIM</span>
             </div>
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
