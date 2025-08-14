@@ -486,7 +486,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Completed Tasks */}
-                    <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-emerald-900/20 to-emerald-800/30 border border-emerald-700/30'
+                        : 'bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-emerald-500 rounded">
@@ -506,10 +510,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Completed Tasks
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             142
                           </p>
                           <div className="flex items-center justify-between">
@@ -517,7 +525,9 @@ export default function Dashboard() {
                               +12 today
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Successfully completed
                           </p>
                         </div>
@@ -715,14 +725,20 @@ export default function Dashboard() {
             >
               {/* Employee Growth Trends */}
               <Card
-                className="bg-gradient-to-br from-sky-50 to-blue-100 border border-sky-200 cursor-pointer hover:shadow-md transition-all duration-300"
+                className={`cursor-pointer hover:shadow-md transition-all duration-300 ${
+                  isDarkMode
+                    ? 'bg-gradient-to-br from-sky-900/20 to-blue-800/30 border border-sky-700/30'
+                    : 'bg-gradient-to-br from-sky-50 to-blue-100 border border-sky-200'
+                }`}
                 onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="text-base font-semibold text-gray-900">
+                        <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Employee Growth Trends
                         </h3>
                         <svg
@@ -739,7 +755,9 @@ export default function Dashboard() {
                           />
                         </svg>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className={`text-xs mt-1 transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
                         {isGrowthExpanded
                           ? "Full year hiring and exit patterns"
                           : "Monthly hiring and exit patterns"}
