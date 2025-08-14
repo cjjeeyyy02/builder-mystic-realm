@@ -37,6 +37,7 @@ const App = () => (
           <Route path="/reminders" element={<Reminders />} />
           <Route path="/e-forum" element={<EForum />} />
           <Route path="/ai2aim-store" element={<AI2AIMStore />} />
+          <Route path="/activities" element={<Activities />} />
           <Route path="/records" element={<Records />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/media-resources" element={<MediaResources />} />
