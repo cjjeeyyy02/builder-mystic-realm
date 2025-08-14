@@ -7,6 +7,7 @@ import FooterNavigation from "@/components/FooterNavigation";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
   const [isGrowthExpanded, setIsGrowthExpanded] = useState(false);
   const [selectedDepartment, setSelectedDepartment] =
     useState("All Department");
