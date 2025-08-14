@@ -224,13 +224,13 @@ export default function Dashboard() {
             {/* Second Row - Charts */}
             <div className={`${isGrowthExpanded ? 'grid grid-cols-1' : 'grid grid-cols-2'} gap-6`}>
               {/* Employee Growth Trends */}
-              <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 cursor-pointer hover:shadow-md transition-all duration-300">
+              <Card
+                className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 cursor-pointer hover:shadow-md transition-all duration-300"
+                onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <div
-                      className="flex-1 cursor-pointer"
-                      onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
-                    >
+                    <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
                         <svg
@@ -246,14 +246,6 @@ export default function Dashboard() {
                         {isGrowthExpanded ? 'Full year hiring and exit patterns' : 'Monthly hiring and exit patterns'}
                       </p>
                     </div>
-                    <select className="text-xs border border-gray-300 rounded-md px-2 py-1 bg-white">
-                      <option>All Department</option>
-                      <option>Engineering</option>
-                      <option>HR</option>
-                      <option>Finance</option>
-                      <option>Marketing</option>
-                      <option>Sales</option>
-                    </select>
                   </div>
 
                   {/* Legend */}
