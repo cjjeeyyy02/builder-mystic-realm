@@ -2185,7 +2185,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-blue-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-blue-400'
+                  : 'text-gray-600 group-hover:text-blue-600'
+              }`}>
                 Activity
               </span>
             </div>
