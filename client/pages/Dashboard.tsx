@@ -1247,6 +1247,7 @@ export default function Dashboard() {
                 <div className="mt-4">
                   <Button
                     variant="link"
+                    onClick={() => navigate('/events')}
                     className="text-blue-600 hover:text-blue-700 text-xs p-0"
                   >
                     View all events →
