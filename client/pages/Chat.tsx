@@ -279,7 +279,10 @@ export default function Chat() {
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-white">
+        <div
+          ref={scrollContainerRef}
+          className="min-h-screen bg-white overflow-y-auto"
+        >
           {/* Header */}
           <div className="bg-white border-b border-gray-200 px-4 py-2 shadow-sm">
             <div className="flex items-center justify-between">
