@@ -1802,13 +1802,21 @@ export default function Dashboard() {
           {/* Right Sidebar */}
           <div className="col-span-4 space-y-6">
             {/* Recent Activities */}
-            <Card className="bg-gradient-to-br from-teal-50 to-cyan-100 border border-teal-200">
+            <Card className={`transition-all duration-300 ${
+              isDarkMode
+                ? 'bg-gradient-to-br from-teal-900/20 to-cyan-800/30 border border-teal-700/30'
+                : 'bg-gradient-to-br from-teal-50 to-cyan-100 border border-teal-200'
+            }`}>
               <CardContent className="p-4">
                 <div className="mb-3">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
+                  <h3 className={`text-sm font-semibold mb-0.5 transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
                     Recent Activities
                   </h3>
-                  <p className="text-xs text-gray-500">
+                  <p className={`text-xs transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                  }`}>
                     Latest updates across the company
                   </p>
                 </div>
