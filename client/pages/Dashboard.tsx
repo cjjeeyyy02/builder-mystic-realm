@@ -605,33 +605,28 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-500">Latest updates across the company</p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Activity Item 1 */}
-                  <div className="backdrop-blur-sm bg-white/70 p-4 rounded-xl border border-white/50 hover:bg-white/90 transition-all duration-300 group">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
-                            New Candidate John Doe joined the HR Department
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-blue-100 to-blue-200 px-3 py-1 text-xs font-medium text-blue-800 border border-blue-300">
-                              🧑 Onboarding
-                            </span>
-                            <span className="text-xs font-medium text-indigo-600">HR Department</span>
-                          </div>
-                        </div>
+                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
                       </div>
-                      <div className="text-right">
-                        <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">10 mins ago</span>
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-1 ml-auto animate-pulse"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900 mb-1">
+                          New Candidate John Doe joined the HR Department
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
+                            Onboarding
+                          </span>
+                          <span className="text-xs text-gray-500">HR</span>
+                        </div>
                       </div>
                     </div>
+                    <span className="text-xs text-gray-400 flex-shrink-0">10 mins ago</span>
                   </div>
 
                   {/* Activity Item 2 */}
