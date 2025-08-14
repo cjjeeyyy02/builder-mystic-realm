@@ -388,7 +388,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* On Probation */}
-                    <Card className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-yellow-900/20 to-yellow-800/30 border border-yellow-700/30'
+                        : 'bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-yellow-500 rounded">
@@ -408,10 +412,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             On Probation
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             15
                           </p>
                           <div className="flex items-center justify-between">
@@ -419,7 +427,9 @@ export default function Dashboard() {
                               3 ending soon
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Probationary employees
                           </p>
                         </div>
@@ -427,7 +437,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Offboarding */}
-                    <Card className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-red-900/20 to-red-800/30 border border-red-700/30'
+                        : 'bg-gradient-to-br from-red-50 to-red-100 border border-red-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-red-500 rounded">
@@ -447,10 +461,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Offboarding
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             5
                           </p>
                           <div className="flex items-center justify-between">
@@ -458,7 +476,9 @@ export default function Dashboard() {
                               -3 next week
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Exit in progress
                           </p>
                         </div>
