@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import FooterNavigation from "@/components/FooterNavigation";
 
 export default function AI2AIMStore() {
   const navigate = useNavigate();
