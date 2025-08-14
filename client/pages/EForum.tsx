@@ -9,6 +9,7 @@ export default function EForum() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("all");
   const [footerCollapsed, setFooterCollapsed] = useState(false);
+  const [headerCollapsed, setHeaderCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -189,11 +190,14 @@ export default function EForum() {
 
       const currentScrollY = scrollContainerRef.current.scrollTop;
       const isScrollingDown = currentScrollY > lastScrollY;
+      const isScrollingUp = currentScrollY < lastScrollY;
 
       if (currentScrollY > 50) {
         setFooterCollapsed(isScrollingDown);
+        setHeaderCollapsed(isScrollingUp);
       } else {
         setFooterCollapsed(false);
+        setHeaderCollapsed(false);
       }
 
       // Load more posts when near bottom
@@ -344,7 +348,9 @@ export default function EForum() {
       <Layout>
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
           {/* Header */}
-          <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 shadow-sm">
+          <div className={`bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 shadow-sm transition-all duration-300 ${
+            headerCollapsed ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'
+          }`}>
             <div className="max-w-6xl mx-auto">
               <div className="flex items-center justify-between mb-2">
                 <div>
@@ -369,8 +375,10 @@ export default function EForum() {
           {/* Main Content */}
           <div
             ref={scrollContainerRef}
-            className="pb-footer overflow-y-auto"
-            style={{ height: 'calc(100vh - 120px)' }}
+            className={`pb-footer overflow-y-auto transition-all duration-300`}
+            style={{
+              height: headerCollapsed ? 'calc(100vh - 50px)' : 'calc(100vh - 120px)'
+            }}
           >
             <div className="p-6">
               <div className="max-w-4xl mx-auto">
