@@ -4,9 +4,11 @@ import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FooterNavigation from "@/components/FooterNavigation";
+import { useDarkMode } from "@/components/DarkModeProvider";
 
 export default function AI2AIMStore() {
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
   const [activeCategory, setActiveCategory] = useState("All");
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
