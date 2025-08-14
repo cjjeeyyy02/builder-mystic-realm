@@ -1680,8 +1680,8 @@ export default function Dashboard() {
                 <div className="mt-3 text-center">
                   <Button
                     variant="link"
-                    className="text-gray-400 cursor-not-allowed text-xs"
-                    disabled
+                    onClick={() => navigate("/activities")}
+                    className="text-blue-600 hover:text-blue-700 text-xs"
                   >
                     View All Activities →
                   </Button>
