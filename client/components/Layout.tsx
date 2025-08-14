@@ -17,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 interface LayoutProps {
-  children: ReactNode;
+  children: (isDarkMode: boolean) => ReactNode;
 }
 
 // Dark Mode Context
