@@ -2147,10 +2147,10 @@ export default function Dashboard() {
         <div className="max-w-6xl mx-auto px-4 py-2">
           <div className="flex items-center justify-center space-x-6">
             {/* Activity Feed */}
-            <div className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+            <div className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80">
+              <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2163,19 +2163,19 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-blue-600 transition-colors">
-                Activity Feed
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-blue-600 transition-colors">
+                Activity
               </span>
             </div>
 
             {/* Chat */}
             <div
-              className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/chat")}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-7 h-7 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2188,19 +2188,19 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-emerald-600 transition-colors">
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-emerald-600 transition-colors">
                 Chat
               </span>
             </div>
 
             {/* Files */}
             <div
-              className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/files")}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-7 h-7 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2213,16 +2213,19 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-amber-600 transition-colors">
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-amber-600 transition-colors">
                 Files
               </span>
             </div>
 
             {/* Meetings */}
-            <div className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+            <div
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              onClick={() => navigate("/meetings")}
+            >
+              <div className="w-7 h-7 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2235,19 +2238,19 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-purple-600 transition-colors">
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-purple-600 transition-colors">
                 Meetings
               </span>
             </div>
 
             {/* Reminders */}
             <div
-              className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/reminders")}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-7 h-7 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2256,23 +2259,23 @@ export default function Dashboard() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15 17h5l-5 5-5-5h5v-5a7.5 7.5 0 1015 0z"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-orange-600 transition-colors">
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-orange-600 transition-colors">
                 Reminders
               </span>
             </div>
 
-            {/* E - Forum */}
+            {/* E-Forum */}
             <div
-              className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/e-forum")}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-7 h-7 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2285,19 +2288,19 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-indigo-600 transition-colors">
-                E - Forum
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-indigo-600 transition-colors">
+                E-Forum
               </span>
             </div>
 
-            {/* AI2AIM STORE */}
+            {/* AI2AIM Store */}
             <div
-              className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
+              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/ai2aim-store")}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-7 h-7 bg-gradient-to-br from-red-400 to-red-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-3.5 h-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2310,8 +2313,8 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-red-600 transition-colors">
-                AI2AIM STORE
+              <span className="text-[10px] text-gray-600 font-medium group-hover:text-red-600 transition-colors">
+                Store
               </span>
             </div>
           </div>
