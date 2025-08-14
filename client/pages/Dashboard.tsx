@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 export default function Dashboard() {
   const navigate = useNavigate();
   const [isGrowthExpanded, setIsGrowthExpanded] = useState(false);
-  const [selectedDepartment, setSelectedDepartment] = useState("All Department");
+  const [selectedDepartment, setSelectedDepartment] =
+    useState("All Department");
 
   return (
     <Layout>
@@ -16,8 +17,12 @@ export default function Dashboard() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">EMS Dashboard</h1>
-              <p className="text-gray-600">Employee Management System - Real-Time Analytics</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                EMS Dashboard
+              </h1>
+              <p className="text-gray-600">
+                Employee Management System - Real-Time Analytics
+              </p>
             </div>
             <div className="flex items-center space-x-3">
               <Button variant="outline" className="bg-white">
@@ -40,175 +45,319 @@ export default function Dashboard() {
                 <div className="flex gap-4 pb-2">
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
-                {/* Total Employees */}
+                    {/* Total Employees */}
                     <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-blue-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Total Employees</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">1,247</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-green-600">+30 this month</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Active workspace size</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-blue-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Total Employees
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            1,247
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-green-600">
+                              +30 this month
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Active workspace size
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* Active Candidates */}
+                    {/* Active Candidates */}
                     <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-green-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Active Candidates</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">24</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-green-600">+3 this week</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">New hires and candidates</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-green-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Active Candidates
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            24
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-green-600">
+                              +3 this week
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            New hires and candidates
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* Average Performance */}
+                    {/* Average Performance */}
                     <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-purple-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Average Performance</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">4.5/5</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-green-600">+0.3 improvement</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Overall team performance</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-purple-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Average Performance
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            4.5/5
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-green-600">
+                              +0.3 improvement
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Overall team performance
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* Pending Tasks */}
+                    {/* Pending Tasks */}
                     <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-orange-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Pending Tasks</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">18</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-orange-600">5 from last week</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Outstanding hiring tasks</p>
-                    </div>
-                  </CardContent>
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-orange-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Pending Tasks
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            18
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-orange-600">
+                              5 from last week
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Outstanding hiring tasks
+                          </p>
+                        </div>
+                      </CardContent>
                     </Card>
                   </div>
 
                   {/* Additional Cards - Scrollable */}
                   <div className="flex gap-4 flex-shrink-0">
                     {/* Pending Onboarding */}
-                <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-gray-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Pending Onboarding</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">10</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-blue-600">+4 next week</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Awaiting onboarding</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-gray-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Pending Onboarding
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            10
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-blue-600">
+                              +4 next week
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Awaiting onboarding
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* On Probation */}
-                <Card className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-yellow-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">On Probation</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">15</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-yellow-600">3 ending soon</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Probationary employees</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    {/* On Probation */}
+                    <Card className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-yellow-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            On Probation
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            15
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-yellow-600">
+                              3 ending soon
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Probationary employees
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* Offboarding */}
-                <Card className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-red-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Offboarding</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">5</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-red-600">-3 next week</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Exit in progress</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    {/* Offboarding */}
+                    <Card className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-red-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Offboarding
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            5
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-red-600">
+                              -3 next week
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Exit in progress
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                {/* Completed Tasks */}
-                <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
-                  <CardContent className="p-3">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="p-1 bg-emerald-500 rounded">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-700 mb-1">Completed Tasks</h3>
-                      <p className="text-xl font-bold text-gray-900 mb-1">142</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-emerald-600">+12 today</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-1">Successfully completed</p>
-                    </div>
-                  </CardContent>
+                    {/* Completed Tasks */}
+                    <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                      <CardContent className="p-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="p-1 bg-emerald-500 rounded">
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                            Completed Tasks
+                          </h3>
+                          <p className="text-xl font-bold text-gray-900 mb-1">
+                            142
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-emerald-600">
+                              +12 today
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Successfully completed
+                          </p>
+                        </div>
+                      </CardContent>
                     </Card>
                   </div>
                 </div>
@@ -216,14 +365,26 @@ export default function Dashboard() {
 
               {/* Scroll Indicator */}
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white border border-gray-300 rounded-full p-1 shadow-sm">
-                <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-3 h-3 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </div>
             </div>
 
             {/* Second Row - Charts */}
-            <div className={`${isGrowthExpanded ? 'grid grid-cols-1' : 'grid grid-cols-2'} gap-6`}>
+            <div
+              className={`${isGrowthExpanded ? "grid grid-cols-1" : "grid grid-cols-2"} gap-6`}
+            >
               {/* Employee Growth Trends */}
               <Card
                 className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 cursor-pointer hover:shadow-md transition-all duration-300"
@@ -233,18 +394,27 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
+                        <h3 className="text-base font-semibold text-gray-900">
+                          Employee Growth Trends
+                        </h3>
                         <svg
-                          className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isGrowthExpanded ? 'rotate-180' : ''}`}
+                          className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isGrowthExpanded ? "rotate-180" : ""}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        {isGrowthExpanded ? 'Full year hiring and exit patterns' : 'Monthly hiring and exit patterns'}
+                        {isGrowthExpanded
+                          ? "Full year hiring and exit patterns"
+                          : "Monthly hiring and exit patterns"}
                       </p>
                     </div>
                   </div>
@@ -265,7 +435,14 @@ export default function Dashboard() {
                   {isGrowthExpanded && (
                     <div className="mb-4">
                       <div className="flex flex-wrap gap-2">
-                        {["All Department", "Engineering", "HR", "Finance", "Marketing", "Sales"].map((dept) => (
+                        {[
+                          "All Department",
+                          "Engineering",
+                          "HR",
+                          "Finance",
+                          "Marketing",
+                          "Sales",
+                        ].map((dept) => (
                           <button
                             key={dept}
                             onClick={(e) => {
@@ -274,8 +451,8 @@ export default function Dashboard() {
                             }}
                             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                               selectedDepartment === dept
-                                ? 'bg-blue-500 text-white shadow-md'
-                                : 'bg-white text-gray-600 border border-gray-300 hover:bg-blue-50 hover:border-blue-300'
+                                ? "bg-blue-500 text-white shadow-md"
+                                : "bg-white text-gray-600 border border-gray-300 hover:bg-blue-50 hover:border-blue-300"
                             }`}
                           >
                             {dept}
@@ -286,7 +463,9 @@ export default function Dashboard() {
                   )}
 
                   {/* Chart */}
-                  <div className={`${isGrowthExpanded ? 'h-64' : 'h-40'} relative transition-all duration-300`}>
+                  <div
+                    className={`${isGrowthExpanded ? "h-64" : "h-40"} relative transition-all duration-300`}
+                  >
                     {/* Y-axis labels */}
                     <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-1">
                       <span className="text-xs">80</span>
@@ -297,105 +476,203 @@ export default function Dashboard() {
                     </div>
 
                     {/* Chart area */}
-                    <div className={`ml-6 h-full flex items-end justify-between ${isGrowthExpanded ? 'gap-2' : 'gap-1'}`}>
+                    <div
+                      className={`ml-6 h-full flex items-end justify-between ${isGrowthExpanded ? "gap-2" : "gap-1"}`}
+                    >
                       {isGrowthExpanded ? (
                         // Full year view (January to December)
                         <>
                           {/* January */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '102px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '22px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "102px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "22px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Jan</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Jan
+                            </div>
                           </div>
                           {/* February */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '74px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '24px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "74px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "24px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Feb</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Feb
+                            </div>
                           </div>
                           {/* March */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '42px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '36px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "42px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "36px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Mar</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Mar
+                            </div>
                           </div>
                           {/* April */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '84px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '32px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "84px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "32px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Apr</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Apr
+                            </div>
                           </div>
                           {/* May */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '76px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '24px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "76px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "24px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">May</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              May
+                            </div>
                           </div>
                           {/* June */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '48px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '16px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "48px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "16px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Jun</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Jun
+                            </div>
                           </div>
                           {/* July */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '92px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '18px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "92px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "18px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Jul</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Jul
+                            </div>
                           </div>
                           {/* August */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '68px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '28px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "68px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "28px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Aug</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Aug
+                            </div>
                           </div>
                           {/* September */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '88px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '15px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "88px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "15px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Sep</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Sep
+                            </div>
                           </div>
                           {/* October */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '58px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '26px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "58px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "26px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Oct</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Oct
+                            </div>
                           </div>
                           {/* November */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '72px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '20px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "72px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "20px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Nov</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Nov
+                            </div>
                           </div>
                           {/* December */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
-                              <div className="w-4 bg-emerald-500 rounded-t" style={{height: '45px'}}></div>
-                              <div className="w-4 bg-red-500 rounded-t" style={{height: '12px'}}></div>
+                              <div
+                                className="w-4 bg-emerald-500 rounded-t"
+                                style={{ height: "45px" }}
+                              ></div>
+                              <div
+                                className="w-4 bg-red-500 rounded-t"
+                                style={{ height: "12px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Dec</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Dec
+                            </div>
                           </div>
                         </>
                       ) : (
@@ -404,50 +681,98 @@ export default function Dashboard() {
                           {/* June */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '48px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '16px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "48px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "16px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Jun</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Jun
+                            </div>
                           </div>
                           {/* May */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '76px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '24px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "76px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "24px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">May</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              May
+                            </div>
                           </div>
                           {/* April */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '84px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '32px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "84px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "32px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Apr</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Apr
+                            </div>
                           </div>
                           {/* March */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '42px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '36px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "42px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "36px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Mar</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Mar
+                            </div>
                           </div>
                           {/* February */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '74px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '24px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "74px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "24px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Feb</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Feb
+                            </div>
                           </div>
                           {/* January */}
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
-                              <div className="w-3 bg-emerald-500 rounded-t" style={{height: '102px'}}></div>
-                              <div className="w-3 bg-red-500 rounded-t" style={{height: '22px'}}></div>
+                              <div
+                                className="w-3 bg-emerald-500 rounded-t"
+                                style={{ height: "102px" }}
+                              ></div>
+                              <div
+                                className="w-3 bg-red-500 rounded-t"
+                                style={{ height: "22px" }}
+                              ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">Jan</div>
+                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                              Jan
+                            </div>
                           </div>
                         </>
                       )}
@@ -461,14 +786,21 @@ export default function Dashboard() {
                 <Card className="bg-white border border-gray-200">
                   <CardContent className="p-6">
                     <div className="mb-3">
-                      <h3 className="text-base font-semibold text-gray-900">Department Distribution</h3>
-                      <p className="text-xs text-gray-500 mt-1">Employee Count by Department</p>
+                      <h3 className="text-base font-semibold text-gray-900">
+                        Department Distribution
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Employee Count by Department
+                      </p>
                     </div>
 
                     {/* Donut Chart */}
                     <div className="flex items-center justify-center mb-4">
                       <div className="relative w-28 h-28">
-                        <svg className="w-28 h-28 transform -rotate-90" viewBox="0 0 42 42">
+                        <svg
+                          className="w-28 h-28 transform -rotate-90"
+                          viewBox="0 0 42 42"
+                        >
                           {/* Background circle */}
                           <circle
                             cx="21"
@@ -570,14 +902,26 @@ export default function Dashboard() {
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-base font-semibold text-gray-900">Company Events</h3>
-                    <p className="text-xs text-gray-500 mt-1">Company Upcoming events and activities</p>
+                    <h3 className="text-base font-semibold text-gray-900">
+                      Company Events
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Company Upcoming events and activities
+                    </p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button size="sm" variant="default" className="text-xs bg-blue-500 h-7 px-3">
+                    <Button
+                      size="sm"
+                      variant="default"
+                      className="text-xs bg-blue-500 h-7 px-3"
+                    >
                       List
                     </Button>
-                    <Button size="sm" variant="outline" className="text-xs h-7 px-3">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-xs h-7 px-3"
+                    >
                       Calendar
                     </Button>
                   </div>
@@ -588,7 +932,9 @@ export default function Dashboard() {
                   <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-sm font-semibold text-gray-900">Tech Summer 2024</h4>
+                        <h4 className="text-sm font-semibold text-gray-900">
+                          Tech Summer 2024
+                        </h4>
                         <div className="flex gap-1">
                           <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-700/10">
                             Awaited
@@ -601,30 +947,71 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">Join us for the biggest Tech event discussing innovative and industry insights</p>
+                      <p className="text-xs text-gray-600 mb-2">
+                        Join us for the biggest Tech event discussing innovative
+                        and industry insights
+                      </p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
                           </svg>
                           <span>29/06/2024</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
                           </svg>
                           <span>Grand Convention Center</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
                           </svg>
                           <span>2529 Attendees</span>
                         </div>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-500 text-white text-xs ml-4">
+                    <Button
+                      size="sm"
+                      className="bg-blue-500 text-white text-xs ml-4"
+                    >
                       Going to Event
                     </Button>
                   </div>
@@ -633,7 +1020,9 @@ export default function Dashboard() {
                   <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-sm font-semibold text-gray-900">Team Building and Innovation Workshop</h4>
+                        <h4 className="text-sm font-semibold text-gray-900">
+                          Team Building and Innovation Workshop
+                        </h4>
                         <div className="flex gap-1">
                           <span className="inline-flex items-center rounded-md bg-orange-50 px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-700/10">
                             Registration Due
@@ -646,30 +1035,71 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">Collaboration Workshop focusing on innovation methodologies and Team dynamics</p>
+                      <p className="text-xs text-gray-600 mb-2">
+                        Collaboration Workshop focusing on innovation
+                        methodologies and Team dynamics
+                      </p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
                           </svg>
                           <span>15/07/2024</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
                           </svg>
                           <span>Training Center</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
                           </svg>
                           <span>156 Attendees</span>
                         </div>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-500 text-white text-xs ml-4">
+                    <Button
+                      size="sm"
+                      className="bg-blue-500 text-white text-xs ml-4"
+                    >
                       Going to Event
                     </Button>
                   </div>
@@ -678,7 +1108,9 @@ export default function Dashboard() {
                   <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-sm font-semibold text-gray-900">Holiday Celebration and Award Night</h4>
+                        <h4 className="text-sm font-semibold text-gray-900">
+                          Holiday Celebration and Award Night
+                        </h4>
                         <div className="flex gap-1">
                           <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
                             Creative
@@ -691,30 +1123,71 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mb-2">Annual Celebration and Award ceremony, dinner and entertainment</p>
+                      <p className="text-xs text-gray-600 mb-2">
+                        Annual Celebration and Award ceremony, dinner and
+                        entertainment
+                      </p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
                           </svg>
                           <span>20/12/2024</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
                           </svg>
                           <span>Skyline Rooftop</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
                           </svg>
                           <span>45 Attendees</span>
                         </div>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-500 text-white text-xs ml-4">
+                    <Button
+                      size="sm"
+                      className="bg-blue-500 text-white text-xs ml-4"
+                    >
                       Going to Event
                     </Button>
                   </div>
@@ -722,7 +1195,10 @@ export default function Dashboard() {
 
                 {/* View all events link */}
                 <div className="mt-4">
-                  <Button variant="link" className="text-blue-600 hover:text-blue-700 text-xs p-0">
+                  <Button
+                    variant="link"
+                    className="text-blue-600 hover:text-blue-700 text-xs p-0"
+                  >
                     View all events →
                   </Button>
                 </div>
@@ -736,8 +1212,12 @@ export default function Dashboard() {
             <Card className="bg-gradient-to-br from-gray-50 to-blue-50 border border-gray-200">
               <CardContent className="p-4">
                 <div className="mb-3">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-0.5">Recent Activities</h3>
-                  <p className="text-xs text-gray-500">Latest updates across the company</p>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
+                    Recent Activities
+                  </h3>
+                  <p className="text-xs text-gray-500">
+                    Latest updates across the company
+                  </p>
                 </div>
 
                 <div className="space-y-2">
@@ -745,8 +1225,18 @@ export default function Dashboard() {
                   <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        <svg
+                          className="w-3 h-3 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
                         </svg>
                       </div>
                       <div className="flex-1">
@@ -761,15 +1251,27 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">10 mins ago</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">
+                      10 mins ago
+                    </span>
                   </div>
 
                   {/* Activity Item 2 */}
                   <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg
+                          className="w-3 h-3 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
                         </svg>
                       </div>
                       <div className="flex-1">
@@ -784,15 +1286,27 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">1 hour ago</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">
+                      1 hour ago
+                    </span>
                   </div>
 
                   {/* Activity Item 3 */}
                   <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        <svg
+                          className="w-3 h-3 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
                         </svg>
                       </div>
                       <div className="flex-1">
@@ -807,20 +1321,33 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">1 day ago</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">
+                      1 day ago
+                    </span>
                   </div>
 
                   {/* Activity Item 4 */}
                   <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                        <svg
+                          className="w-3 h-3 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                          />
                         </svg>
                       </div>
                       <div className="flex-1">
                         <p className="text-xs font-medium text-gray-900 mb-0.5">
-                          Monthly payroll process successfully for 1245 employees
+                          Monthly payroll process successfully for 1245
+                          employees
                         </p>
                         <div className="flex items-center gap-1.5">
                           <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700">
@@ -830,7 +1357,9 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">2 days ago</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">
+                      2 days ago
+                    </span>
                   </div>
                 </div>
 
@@ -838,7 +1367,7 @@ export default function Dashboard() {
                 <div className="mt-3 text-center">
                   <Button
                     variant="link"
-                    onClick={() => navigate('/activities')}
+                    onClick={() => navigate("/activities")}
                     className="text-blue-600 hover:text-blue-700 text-xs"
                   >
                     View All Activities →
@@ -852,12 +1381,30 @@ export default function Dashboard() {
               <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-900">Latest E Forum Updates</h3>
-                    <p className="text-xs text-gray-500 mt-1">Employee discussion forum</p>
+                    <h3 className="text-sm font-semibold text-gray-900">
+                      Latest E Forum Updates
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Employee discussion forum
+                    </p>
                   </div>
-                  <Button variant="outline" size="sm" className="text-xs h-6 px-2">
-                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-xs h-6 px-2"
+                  >
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                      />
                     </svg>
                     Voice Search
                   </Button>
@@ -868,39 +1415,79 @@ export default function Dashboard() {
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
                       <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">SJ</span>
+                        <span className="text-white text-xs font-semibold">
+                          SJ
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">Sarah Jhonson</h4>
-                          <span className="text-xs text-gray-500">HR • 1h ago</span>
+                          <h4 className="text-xs font-semibold text-gray-900">
+                            Sarah Jhonson
+                          </h4>
+                          <span className="text-xs text-gray-500">
+                            HR • 1h ago
+                          </span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
-                          New Remote Policy Guidelines - HOT: Work-life balance approach for transparent workplace.
+                          New Remote Policy Guidelines - HOT: Work-life balance
+                          approach for transparent workplace.
                         </p>
                         <div className="flex items-center gap-3 text-xs text-gray-500">
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            <svg
+                              className="w-2 h-2 text-red-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg>
                             <span>32</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                              />
                             </svg>
                             <span>35</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/>
+                            <svg
+                              className="w-2 h-2 text-blue-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z" />
                             </svg>
                             <span>5</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              />
                             </svg>
                             <span>245</span>
                           </div>
@@ -913,39 +1500,79 @@ export default function Dashboard() {
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
                       <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">SJ</span>
+                        <span className="text-white text-xs font-semibold">
+                          SJ
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">Sarah Jhonson</h4>
-                          <span className="text-xs text-gray-500">HR �� 2h ago</span>
+                          <h4 className="text-xs font-semibold text-gray-900">
+                            Sarah Jhonson
+                          </h4>
+                          <span className="text-xs text-gray-500">
+                            HR �� 2h ago
+                          </span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
-                          Q2 Performance Updates: Team performance metrics and development goals discussion.
+                          Q2 Performance Updates: Team performance metrics and
+                          development goals discussion.
                         </p>
                         <div className="flex items-center gap-3 text-xs text-gray-500">
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            <svg
+                              className="w-2 h-2 text-red-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg>
                             <span>28</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                              />
                             </svg>
                             <span>22</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/>
+                            <svg
+                              className="w-2 h-2 text-blue-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z" />
                             </svg>
                             <span>3</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              />
                             </svg>
                             <span>189</span>
                           </div>
@@ -958,39 +1585,79 @@ export default function Dashboard() {
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
                       <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">MJ</span>
+                        <span className="text-white text-xs font-semibold">
+                          MJ
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">Mike Johnson</h4>
-                          <span className="text-xs text-gray-500">Engineering • 4h ago</span>
+                          <h4 className="text-xs font-semibold text-gray-900">
+                            Mike Johnson
+                          </h4>
+                          <span className="text-xs text-gray-500">
+                            Engineering • 4h ago
+                          </span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
-                          Tech Stack Update: New tools and frameworks adoption for enhanced productivity.
+                          Tech Stack Update: New tools and frameworks adoption
+                          for enhanced productivity.
                         </p>
                         <div className="flex items-center gap-3 text-xs text-gray-500">
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            <svg
+                              className="w-2 h-2 text-red-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg>
                             <span>19</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                              />
                             </svg>
                             <span>15</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/>
+                            <svg
+                              className="w-2 h-2 text-blue-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z" />
                             </svg>
                             <span>7</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            <svg
+                              className="w-2 h-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              />
                             </svg>
                             <span>156</span>
                           </div>
@@ -998,12 +1665,14 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-
                 </div>
 
                 {/* Visit Forum Button */}
                 <div className="mt-4 text-center">
-                  <Button variant="link" className="text-blue-600 hover:text-blue-700 text-xs p-0">
+                  <Button
+                    variant="link"
+                    className="text-blue-600 hover:text-blue-700 text-xs p-0"
+                  >
                     Visit Forum →
                   </Button>
                 </div>
@@ -1020,86 +1689,170 @@ export default function Dashboard() {
             {/* Activity Feed */}
             <div className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-blue-600 transition-colors">Activity Feed</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-blue-600 transition-colors">
+                Activity Feed
+              </span>
             </div>
 
             {/* Chat */}
             <div
               className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
-              onClick={() => navigate('/chat')}
+              onClick={() => navigate("/chat")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-emerald-600 transition-colors">Chat</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-emerald-600 transition-colors">
+                Chat
+              </span>
             </div>
 
             {/* Files */}
             <div
               className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
-              onClick={() => navigate('/files')}
+              onClick={() => navigate("/files")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-amber-600 transition-colors">Files</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-amber-600 transition-colors">
+                Files
+              </span>
             </div>
 
             {/* Meetings */}
             <div className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-purple-600 transition-colors">Meetings</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-purple-600 transition-colors">
+                Meetings
+              </span>
             </div>
 
             {/* Reminders */}
             <div
               className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
-              onClick={() => navigate('/reminders')}
+              onClick={() => navigate("/reminders")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5v-5a7.5 7.5 0 1015 0z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 17h5l-5 5-5-5h5v-5a7.5 7.5 0 1015 0z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-orange-600 transition-colors">Reminders</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-orange-600 transition-colors">
+                Reminders
+              </span>
             </div>
 
             {/* E - Forum */}
             <div
               className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
-              onClick={() => navigate('/e-forum')}
+              onClick={() => navigate("/e-forum")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-indigo-600 transition-colors">E - Forum</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-indigo-600 transition-colors">
+                E - Forum
+              </span>
             </div>
 
             {/* AI2AIM STORE */}
             <div
               className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-xl hover:bg-gray-50"
-              onClick={() => navigate('/ai2aim-store')}
+              onClick={() => navigate("/ai2aim-store")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                  />
                 </svg>
               </div>
-              <span className="text-xs text-gray-700 font-semibold group-hover:text-red-600 transition-colors">AI2AIM STORE</span>
+              <span className="text-xs text-gray-700 font-semibold group-hover:text-red-600 transition-colors">
+                AI2AIM STORE
+              </span>
             </div>
           </div>
         </div>
