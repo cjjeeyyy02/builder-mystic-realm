@@ -873,7 +873,9 @@ export default function Dashboard() {
                                 style={{ height: "22px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Jan
                             </div>
                           </div>
@@ -889,7 +891,9 @@ export default function Dashboard() {
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Feb
                             </div>
                           </div>
@@ -905,7 +909,9 @@ export default function Dashboard() {
                                 style={{ height: "36px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Mar
                             </div>
                           </div>
@@ -921,7 +927,9 @@ export default function Dashboard() {
                                 style={{ height: "32px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Apr
                             </div>
                           </div>
@@ -937,7 +945,9 @@ export default function Dashboard() {
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               May
                             </div>
                           </div>
@@ -953,7 +963,9 @@ export default function Dashboard() {
                                 style={{ height: "16px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Jun
                             </div>
                           </div>
@@ -969,7 +981,9 @@ export default function Dashboard() {
                                 style={{ height: "18px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Jul
                             </div>
                           </div>
@@ -985,7 +999,9 @@ export default function Dashboard() {
                                 style={{ height: "28px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Aug
                             </div>
                           </div>
@@ -1001,7 +1017,9 @@ export default function Dashboard() {
                                 style={{ height: "15px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Sep
                             </div>
                           </div>
@@ -1017,7 +1035,9 @@ export default function Dashboard() {
                                 style={{ height: "26px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Oct
                             </div>
                           </div>
@@ -1033,7 +1053,9 @@ export default function Dashboard() {
                                 style={{ height: "20px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Nov
                             </div>
                           </div>
@@ -1049,7 +1071,9 @@ export default function Dashboard() {
                                 style={{ height: "12px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Dec
                             </div>
                           </div>
@@ -1069,7 +1093,9 @@ export default function Dashboard() {
                                 style={{ height: "16px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Jun
                             </div>
                           </div>
@@ -1085,7 +1111,9 @@ export default function Dashboard() {
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               May
                             </div>
                           </div>
@@ -1101,7 +1129,9 @@ export default function Dashboard() {
                                 style={{ height: "32px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Apr
                             </div>
                           </div>
@@ -1117,7 +1147,9 @@ export default function Dashboard() {
                                 style={{ height: "36px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Mar
                             </div>
                           </div>
@@ -1133,7 +1165,9 @@ export default function Dashboard() {
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Feb
                             </div>
                           </div>
@@ -1149,7 +1183,9 @@ export default function Dashboard() {
                                 style={{ height: "22px" }}
                               ></div>
                             </div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">
+                            <div className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               Jan
                             </div>
                           </div>
