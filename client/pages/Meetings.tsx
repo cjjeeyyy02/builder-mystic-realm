@@ -2,8 +2,11 @@ import React from "react";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import FooterNavigation from "@/components/FooterNavigation";
+import { useDarkMode } from "@/components/DarkModeProvider";
 
 export default function Meetings() {
+  const { isDarkMode } = useDarkMode();
+
   return (
     <>
       <Layout>
