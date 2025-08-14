@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +11,9 @@ export default function Dashboard() {
   const [selectedDepartment, setSelectedDepartment] =
     useState("All Department");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [footerCollapsed, setFooterCollapsed] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
