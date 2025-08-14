@@ -827,7 +827,7 @@ export default function Dashboard() {
 
               {/* Department Distribution */}
               {!isGrowthExpanded && (
-                <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200">
+                <Card className="bg-white border border-gray-200">
                   <CardContent className="p-6">
                     <div className="mb-3">
                       <h3 className="text-base font-semibold text-gray-900">
