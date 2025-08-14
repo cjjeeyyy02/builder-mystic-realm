@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [isGrowthExpanded, setIsGrowthExpanded] = useState(false);
 
   return (
     <Layout>
