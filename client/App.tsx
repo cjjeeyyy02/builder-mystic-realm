@@ -14,6 +14,7 @@ import Reminders from "./pages/Reminders";
 import EForum from "./pages/EForum";
 import AI2AIMStore from "./pages/AI2AIMStore";
 import Activities from "./pages/Activities";
+import Meetings from "./pages/Meetings";
 import Events from "./pages/Events";
 import Records from "./pages/Records";
 import Performance from "./pages/Performance";
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/e-forum" element={<EForum />} />
           <Route path="/ai2aim-store" element={<AI2AIMStore />} />
           <Route path="/activities" element={<Activities />} />
+          <Route path="/meetings" element={<Meetings />} />
           <Route path="/events" element={<Events />} />
           <Route path="/records" element={<Records />} />
           <Route path="/performance" element={<Performance />} />
