@@ -440,110 +440,112 @@ export default function Dashboard() {
               </Card>
 
               {/* Department Distribution */}
-              <Card className="bg-white border border-gray-200">
-                <CardContent className="p-6">
-                  <div className="mb-3">
-                    <h3 className="text-base font-semibold text-gray-900">Department Distribution</h3>
-                    <p className="text-xs text-gray-500 mt-1">Employee Count by Department</p>
-                  </div>
+              {!isGrowthExpanded && (
+                <Card className="bg-white border border-gray-200">
+                  <CardContent className="p-6">
+                    <div className="mb-3">
+                      <h3 className="text-base font-semibold text-gray-900">Department Distribution</h3>
+                      <p className="text-xs text-gray-500 mt-1">Employee Count by Department</p>
+                    </div>
 
-                  {/* Donut Chart */}
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="relative w-28 h-28">
-                      <svg className="w-28 h-28 transform -rotate-90" viewBox="0 0 42 42">
-                        {/* Background circle */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#f3f4f6"
-                          strokeWidth="3"
-                        />
-                        {/* Engineering - 35% */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#10b981"
-                          strokeWidth="3"
-                          strokeDasharray="35 65"
-                          strokeDashoffset="0"
-                        />
-                        {/* Finance - 20% */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#3b82f6"
-                          strokeWidth="3"
-                          strokeDasharray="20 80"
-                          strokeDashoffset="-35"
-                        />
-                        {/* HR - 15% */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#8b5cf6"
-                          strokeWidth="3"
-                          strokeDasharray="15 85"
-                          strokeDashoffset="-55"
-                        />
-                        {/* Marketing - 20% */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#f59e0b"
-                          strokeWidth="3"
-                          strokeDasharray="20 80"
-                          strokeDashoffset="-70"
-                        />
-                        {/* Sales - 10% */}
-                        <circle
-                          cx="21"
-                          cy="21"
-                          r="15.915"
-                          fill="transparent"
-                          stroke="#ef4444"
-                          strokeWidth="3"
-                          strokeDasharray="10 90"
-                          strokeDashoffset="-90"
-                        />
-                      </svg>
+                    {/* Donut Chart */}
+                    <div className="flex items-center justify-center mb-4">
+                      <div className="relative w-28 h-28">
+                        <svg className="w-28 h-28 transform -rotate-90" viewBox="0 0 42 42">
+                          {/* Background circle */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#f3f4f6"
+                            strokeWidth="3"
+                          />
+                          {/* Engineering - 35% */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#10b981"
+                            strokeWidth="3"
+                            strokeDasharray="35 65"
+                            strokeDashoffset="0"
+                          />
+                          {/* Finance - 20% */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#3b82f6"
+                            strokeWidth="3"
+                            strokeDasharray="20 80"
+                            strokeDashoffset="-35"
+                          />
+                          {/* HR - 15% */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#8b5cf6"
+                            strokeWidth="3"
+                            strokeDasharray="15 85"
+                            strokeDashoffset="-55"
+                          />
+                          {/* Marketing - 20% */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#f59e0b"
+                            strokeWidth="3"
+                            strokeDasharray="20 80"
+                            strokeDashoffset="-70"
+                          />
+                          {/* Sales - 10% */}
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="15.915"
+                            fill="transparent"
+                            stroke="#ef4444"
+                            strokeWidth="3"
+                            strokeDasharray="10 90"
+                            strokeDashoffset="-90"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Legend */}
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700">Engineering</span>
+                    {/* Legend */}
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">Engineering</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">Finance</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">HR</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">Marketing</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 col-span-2 justify-center">
+                        <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700">Sales</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700">Finance</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700">HR</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700">Marketing</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 col-span-2 justify-center">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700">Sales</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             {/* Company Events - Full Width */}
