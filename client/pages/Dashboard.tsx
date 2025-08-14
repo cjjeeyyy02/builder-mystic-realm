@@ -418,6 +418,64 @@ export default function Dashboard() {
                           : "Monthly hiring and exit patterns"}
                       </p>
                     </div>
+
+                    {/* Department Filter Dropdown - Only show when expanded */}
+                    {isGrowthExpanded && (
+                      <div className="relative">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsDropdownOpen(!isDropdownOpen);
+                          }}
+                          className="flex items-center gap-2 px-3 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          <span>{selectedDepartment}</span>
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        {isDropdownOpen && (
+                          <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            {[
+                              "All Department",
+                              "Engineering",
+                              "HR",
+                              "Finance",
+                              "Marketing",
+                              "Sales",
+                            ].map((dept) => (
+                              <button
+                                key={dept}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedDepartment(dept);
+                                  setIsDropdownOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 text-xs hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg transition-colors duration-150 ${
+                                  selectedDepartment === dept
+                                    ? "bg-blue-50 text-blue-700 font-medium"
+                                    : "text-gray-700"
+                                }`}
+                              >
+                                {dept}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {/* Legend */}
