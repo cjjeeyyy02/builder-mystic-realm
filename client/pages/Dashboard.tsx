@@ -9,6 +9,7 @@ export default function Dashboard() {
   const [isGrowthExpanded, setIsGrowthExpanded] = useState(false);
   const [selectedDepartment, setSelectedDepartment] =
     useState("All Department");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <Layout>
