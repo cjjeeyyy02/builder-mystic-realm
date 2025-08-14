@@ -222,14 +222,29 @@ export default function Dashboard() {
             </div>
 
             {/* Second Row - Charts */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className={`${isGrowthExpanded ? 'grid grid-cols-1' : 'grid grid-cols-2'} gap-6`}>
               {/* Employee Growth Trends */}
-              <Card className="bg-white border border-gray-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 cursor-pointer hover:shadow-md transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
-                      <p className="text-xs text-gray-500 mt-1">Monthly hiring and exit patterns</p>
+                    <div
+                      className="flex-1 cursor-pointer"
+                      onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
+                    >
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-semibold text-gray-900">Employee Growth Trends</h3>
+                        <svg
+                          className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isGrowthExpanded ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {isGrowthExpanded ? 'Full year hiring and exit patterns' : 'Monthly hiring and exit patterns'}
+                      </p>
                     </div>
                     <select className="text-xs border border-gray-300 rounded-md px-2 py-1 bg-white">
                       <option>All Department</option>
