@@ -1156,13 +1156,21 @@ export default function Dashboard() {
 
               {/* Department Distribution */}
               {!isGrowthExpanded && (
-                <Card className="bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200">
+                <Card className={`transition-all duration-300 ${
+                  isDarkMode
+                    ? 'bg-gradient-to-br from-slate-800/20 to-gray-700/30 border border-gray-600/30'
+                    : 'bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200'
+                }`}>
                   <CardContent className="p-6">
                     <div className="mb-3">
-                      <h3 className="text-base font-semibold text-gray-900">
+                      <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-gray-900'
+                      }`}>
                         Department Distribution
                       </h3>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className={`text-xs mt-1 transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
                         Employee Count by Department
                       </p>
                     </div>
@@ -1246,23 +1254,33 @@ export default function Dashboard() {
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">Engineering</span>
+                        <span className={`transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        }`}>Engineering</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">Finance</span>
+                        <span className={`transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        }`}>Finance</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">HR</span>
+                        <span className={`transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        }`}>HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">Sales</span>
+                        <span className={`transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        }`}>Sales</span>
                       </div>
                       <div className="flex items-center gap-1.5 col-span-2 justify-center">
                         <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-700">Marketing</span>
+                        <span className={`transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        }`}>Marketing</span>
                       </div>
                     </div>
                   </CardContent>
