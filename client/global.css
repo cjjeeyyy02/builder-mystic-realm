@@ -111,13 +111,28 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Roboto', 'Poppins', system-ui, -apple-system, sans-serif;
+    font-family:
+      "Roboto",
+      "Poppins",
+      system-ui,
+      -apple-system,
+      sans-serif;
     font-feature-settings: "cv11", "ss01";
     font-variation-settings: "opsz" 32;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', 'Roboto', system-ui, -apple-system, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:
+      "Poppins",
+      "Roboto",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 }
 
@@ -129,8 +144,8 @@
 
   /* Hide scrollbar for IE, Edge and Firefox */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   /* Smooth scrolling */
