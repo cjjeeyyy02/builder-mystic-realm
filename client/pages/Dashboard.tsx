@@ -261,6 +261,30 @@ export default function Dashboard() {
                     </div>
                   </div>
 
+                  {/* Department Filter Buttons - Only show when expanded */}
+                  {isGrowthExpanded && (
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        {["All Department", "Engineering", "HR", "Finance", "Marketing", "Sales"].map((dept) => (
+                          <button
+                            key={dept}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedDepartment(dept);
+                            }}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
+                              selectedDepartment === dept
+                                ? 'bg-blue-500 text-white shadow-md'
+                                : 'bg-white text-gray-600 border border-gray-300 hover:bg-blue-50 hover:border-blue-300'
+                            }`}
+                          >
+                            {dept}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Chart */}
                   <div className={`${isGrowthExpanded ? 'h-64' : 'h-40'} relative transition-all duration-300`}>
                     {/* Y-axis labels */}
@@ -849,7 +873,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className="text-xs font-semibold text-gray-900">Sarah Jhonson</h4>
-                          <span className="text-xs text-gray-500">HR ��� 1h ago</span>
+                          <span className="text-xs text-gray-500">HR • 1h ago</span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
                           New Remote Policy Guidelines - HOT: Work-life balance approach for transparent workplace.
