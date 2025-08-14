@@ -598,18 +598,11 @@ export default function Dashboard() {
           {/* Right Sidebar */}
           <div className="col-span-4 space-y-6">
             {/* Recent Activities */}
-            <Card className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border border-indigo-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="bg-white border border-gray-200">
               <CardContent className="p-6">
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-lg font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Recent Activities</h3>
-                  </div>
-                  <p className="text-sm text-gray-600">Latest updates and real-time insights across the company</p>
+                <div className="mb-4">
+                  <h3 className="text-base font-semibold text-gray-900 mb-1">Recent Activities</h3>
+                  <p className="text-xs text-gray-500">Latest updates across the company</p>
                 </div>
 
                 <div className="space-y-4">
