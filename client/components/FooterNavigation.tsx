@@ -62,12 +62,7 @@ export default function FooterNavigation({ collapsed = false }: FooterNavigation
         borderTopColor: 'rgba(0, 0, 0, 0.05)'
       }}
     >
-      <div className="safe-area-inset-bottom">
-        <nav 
-          className="px-3 lg:px-4 py-1.5" 
-          role="navigation" 
-          aria-label="Footer Navigation"
-        >
+      <div className="safe-area-inset-bottom px-3 lg:px-4 py-1.5">
           <div className="flex items-center justify-center gap-1 max-w-3xl mx-auto">
             {navigationItems.map((item) => {
               const isActive = location.pathname === item.path;
@@ -114,7 +109,6 @@ export default function FooterNavigation({ collapsed = false }: FooterNavigation
               );
             })}
           </div>
-        </nav>
       </div>
     </footer>
   );
