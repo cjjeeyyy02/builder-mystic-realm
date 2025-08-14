@@ -285,7 +285,11 @@ export default function Files() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+          <div className={`${
+            viewMode === "grid"
+              ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2"
+              : "space-y-2"
+          }`}>
             {recentFiles.map((file) => (
               <FileCard key={file.id} file={file} />
             ))}
