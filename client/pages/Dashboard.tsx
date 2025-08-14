@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 export default function Dashboard() {
   const navigate = useNavigate();
   const [isGrowthExpanded, setIsGrowthExpanded] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState("All Department");
 
   return (
     <Layout>
@@ -848,7 +849,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className="text-xs font-semibold text-gray-900">Sarah Jhonson</h4>
-                          <span className="text-xs text-gray-500">HR • 1h ago</span>
+                          <span className="text-xs text-gray-500">HR ��� 1h ago</span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
                           New Remote Policy Guidelines - HOT: Work-life balance approach for transparent workplace.
