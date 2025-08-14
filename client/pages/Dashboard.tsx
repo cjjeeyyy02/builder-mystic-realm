@@ -165,10 +165,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Total Employees
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             1,247
                           </p>
                           <div className="flex items-center justify-between">
