@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-100 p-6">
+      <div className="min-h-screen bg-white p-6">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
