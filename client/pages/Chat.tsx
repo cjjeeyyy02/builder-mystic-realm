@@ -13,6 +13,8 @@ export default function Chat() {
   const [isTyping, setIsTyping] = useState(false);
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [rightPanelVisible, setRightPanelVisible] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const chatList = [
     {
