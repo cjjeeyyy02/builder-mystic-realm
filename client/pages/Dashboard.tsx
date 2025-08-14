@@ -16,6 +16,7 @@ export default function Dashboard() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [metricsCollapsed, setMetricsCollapsed] = useState(false);
   const metricsScrollRef = useRef<HTMLDivElement>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -1189,6 +1190,7 @@ export default function Dashboard() {
                       size="sm"
                       variant="outline"
                       className="text-xs h-7 px-3"
+                      onClick={() => setShowCalendar(true)}
                     >
                       Calendar
                     </Button>
