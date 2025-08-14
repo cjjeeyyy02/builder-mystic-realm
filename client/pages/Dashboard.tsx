@@ -1051,7 +1051,7 @@ export default function Dashboard() {
 
               {/* Department Distribution */}
               {!isGrowthExpanded && (
-                <Card className="bg-white border border-gray-200">
+                <Card className="bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200">
                   <CardContent className="p-6">
                     <div className="mb-3">
                       <h3 className="text-base font-semibold text-gray-900">
@@ -1166,7 +1166,7 @@ export default function Dashboard() {
             </div>
 
             {/* Company Events - Full Width */}
-            <Card className="bg-white border border-gray-200">
+            <Card className="bg-gradient-to-br from-indigo-50 to-blue-100 border border-indigo-200">
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -1522,7 +1522,7 @@ export default function Dashboard() {
           {/* Right Sidebar */}
           <div className="col-span-4 space-y-6">
             {/* Recent Activities */}
-            <Card className="bg-white border border-gray-200">
+            <Card className="bg-gradient-to-br from-teal-50 to-cyan-100 border border-teal-200">
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
@@ -1690,7 +1690,7 @@ export default function Dashboard() {
             </Card>
 
             {/* Latest E-Forum */}
-            <Card className="bg-white border border-gray-200">
+            <Card className="bg-gradient-to-br from-violet-50 to-purple-100 border border-violet-200">
               <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
