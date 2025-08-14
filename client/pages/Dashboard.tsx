@@ -62,7 +62,7 @@ export default function Dashboard() {
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
                     {/* Total Employees */}
-                    <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-blue-500 rounded">
