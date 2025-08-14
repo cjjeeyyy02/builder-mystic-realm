@@ -218,7 +218,7 @@ export default function EForum() {
       </Layout>
 
       {/* Footer Navigation - Full Screen Fixed */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg" style={{ marginLeft: 0 }}>
         <div className="px-6 py-4">
           <div className="flex items-center justify-center space-x-8 max-w-4xl mx-auto">
             {/* Dashboard */}
