@@ -942,7 +942,7 @@ export default function Dashboard() {
             </div>
 
             {/* Company Events - Full Width */}
-            <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-200">
+            <Card className="bg-white border border-gray-200">
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -1241,7 +1241,6 @@ export default function Dashboard() {
                 <div className="mt-4">
                   <Button
                     variant="link"
-                    onClick={() => navigate('/events')}
                     className="text-blue-600 hover:text-blue-700 text-xs p-0"
                   >
                     View all events →
