@@ -8,6 +8,7 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 
 export default function Chat() {
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
   const [selectedChat, setSelectedChat] = useState("");
   const [message, setMessage] = useState("");
   const [chatType, setChatType] = useState("individual"); // 'individual' or 'group'
