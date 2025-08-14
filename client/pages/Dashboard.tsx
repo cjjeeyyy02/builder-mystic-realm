@@ -598,28 +598,28 @@ export default function Dashboard() {
           {/* Right Sidebar */}
           <div className="col-span-4 space-y-6">
             {/* Recent Activities */}
-            <Card className="bg-white border border-gray-200">
-              <CardContent className="p-6">
-                <div className="mb-4">
-                  <h3 className="text-base font-semibold text-gray-900 mb-1">Recent Activities</h3>
+            <Card className="bg-gradient-to-br from-gray-50 to-blue-50 border border-gray-200">
+              <CardContent className="p-4">
+                <div className="mb-3">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-0.5">Recent Activities</h3>
                   <p className="text-xs text-gray-500">Latest updates across the company</p>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {/* Activity Item 1 */}
-                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-2 flex-1">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 mb-1">
+                        <p className="text-xs font-medium text-gray-900 mb-0.5">
                           New Candidate John Doe joined the HR Department
                         </p>
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="inline-flex items-center rounded-md bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700">
                             Onboarding
                           </span>
                           <span className="text-xs text-gray-500">HR</span>
@@ -630,19 +630,19 @@ export default function Dashboard() {
                   </div>
 
                   {/* Activity Item 2 */}
-                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-2 flex-1">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 mb-1">
+                        <p className="text-xs font-medium text-gray-900 mb-0.5">
                           Sarah Johnson Completed AI Assessment
                         </p>
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700">
                             Assessment
                           </span>
                           <span className="text-xs text-gray-500">HR</span>
@@ -653,19 +653,19 @@ export default function Dashboard() {
                   </div>
 
                   {/* Activity Item 3 */}
-                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-2 flex-1">
+                      <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 mb-1">
+                        <p className="text-xs font-medium text-gray-900 mb-0.5">
                           Q2 Performance reviews completed for engineering team
                         </p>
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="inline-flex items-center rounded-md bg-purple-50 px-1.5 py-0.5 text-xs font-medium text-purple-700">
                             Review
                           </span>
                           <span className="text-xs text-gray-500">HR</span>
@@ -676,19 +676,19 @@ export default function Dashboard() {
                   </div>
 
                   {/* Activity Item 4 */}
-                  <div className="flex items-start justify-between gap-2 py-3 border-b border-gray-100 last:border-b-0">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                    <div className="flex items-start gap-2 flex-1">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 mb-1">
+                        <p className="text-xs font-medium text-gray-900 mb-0.5">
                           Monthly payroll process successfully for 1245 employees
                         </p>
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700">
                             Payroll
                           </span>
                           <span className="text-xs text-gray-500">HR</span>
@@ -700,11 +700,11 @@ export default function Dashboard() {
                 </div>
 
                 {/* View All Activities Link */}
-                <div className="mt-4 text-center">
+                <div className="mt-3 text-center">
                   <Button
                     variant="link"
                     onClick={() => navigate('/activities')}
-                    className="text-blue-600 hover:text-blue-700 text-sm"
+                    className="text-blue-600 hover:text-blue-700 text-xs"
                   >
                     View All Activities →
                   </Button>
