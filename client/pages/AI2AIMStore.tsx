@@ -259,7 +259,10 @@ export default function AI2AIMStore() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-100 pb-footer">
+      <div
+        ref={scrollContainerRef}
+        className="min-h-screen bg-gray-100 pb-footer overflow-y-auto"
+      >
         {/* Featured Section */}
         <div className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white px-6 py-8">
           <div className="mb-6">
@@ -328,7 +331,7 @@ export default function AI2AIMStore() {
         </div>
 
       </div>
-      <FooterNavigation />
+      <FooterNavigation collapsed={footerCollapsed} />
     </Layout>
   );
 }
