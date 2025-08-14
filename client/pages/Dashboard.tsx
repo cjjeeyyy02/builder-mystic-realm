@@ -2143,9 +2143,9 @@ export default function Dashboard() {
       </div>
 
       {/* Footer Navigation */}
-      <div className="bg-gradient-to-r from-blue-50 via-white to-purple-50 border-t border-gray-100/60 shadow-sm mt-8">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-center space-x-6">
+      <div className="bg-gradient-to-r from-blue-50 via-white to-purple-50 border-t border-gray-100/60 shadow-sm mt-12">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-center space-x-8">
             {/* Activity Feed */}
             <div className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80">
               <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
