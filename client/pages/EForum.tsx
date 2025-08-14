@@ -12,6 +12,7 @@ export default function EForum() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [nextPostId, setNextPostId] = useState(100); // Start from 100 to avoid conflicts
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const initialPosts = [
@@ -129,7 +130,7 @@ export default function EForum() {
     }
   ];
 
-  const generateMorePosts = (startId: number) => {
+  const generateMorePosts = () => {
     const authors = [
       { name: "Rachel Green", dept: "Customer Success", avatar: "RG" },
       { name: "Tom Baker", dept: "Quality Assurance", avatar: "TB" },
@@ -150,14 +151,17 @@ export default function EForum() {
       "Customer satisfaction scores are at an all-time high! The recent updates and improvements are making a real difference for our users."
     ];
 
-    return Array.from({ length: 6 }, (_, i) => {
+    const newPosts = [];
+    for (let i = 0; i < 6; i++) {
       const author = authors[i % authors.length];
       const content = contents[i % contents.length];
-      return {
-        id: startId + i,
+      const currentId = nextPostId + i;
+
+      newPosts.push({
+        id: currentId,
         author: author.name,
         department: author.dept,
-        timestamp: `${9 + i} hours ago`,
+        timestamp: `${Math.floor(currentId / 10)} hours ago`,
         content: content,
         hearts: Math.floor(Math.random() * 40) + 5,
         comments: Math.floor(Math.random() * 20) + 2,
@@ -166,8 +170,11 @@ export default function EForum() {
         avatar: author.avatar,
         category: "General",
         isHot: Math.random() > 0.8
-      };
-    });
+      });
+    }
+
+    setNextPostId(prev => prev + 6); // Update next ID counter
+    return newPosts;
   };
 
   const categories = ["All"];
@@ -210,7 +217,7 @@ export default function EForum() {
     setLoading(true);
 
     setTimeout(() => {
-      const newPosts = generateMorePosts(posts.length + 1);
+      const newPosts = generateMorePosts();
       setPosts(prev => [...prev, ...newPosts]);
       setLoading(false);
     }, 800);
