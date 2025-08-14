@@ -181,6 +181,32 @@ export default function Activities() {
     { id: "low", label: "Low Priority", color: "green" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollContainerRef.current) return;
+
+      const currentScrollY = scrollContainerRef.current.scrollTop;
+      const isScrollingDown = currentScrollY > lastScrollY;
+      const isScrollingUp = currentScrollY < lastScrollY;
+
+      if (currentScrollY > 50) {
+        setFooterCollapsed(isScrollingUp);
+      } else {
+        setFooterCollapsed(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll, {
+        passive: true,
+      });
+      return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    }
+  }, [lastScrollY]);
+
   const getIconSvg = (iconType: string) => {
     const icons = {
       user: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
