@@ -1067,7 +1067,7 @@ export default function Dashboard() {
                 </div>
 
                   {/* Event 2 - Team Building Workshop */}
-                  <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="relative p-3 bg-gray-50 rounded-lg pb-12">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className="text-sm font-semibold text-gray-900">
