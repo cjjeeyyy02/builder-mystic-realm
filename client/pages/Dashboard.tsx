@@ -1525,8 +1525,31 @@ export default function Dashboard() {
                 ) : (
                   /* Calendar View */
                   <div className="space-y-4">
-                    {/* Calendar Header with Filter */}
-                    <div className="flex items-center justify-end">
+                    {/* Calendar Header with Month/Year and Filter */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-bold text-gray-900">June 2025</h3>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="text-xs px-2 py-1 h-6 hover:bg-gray-100"
+                          >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="text-xs px-2 py-1 h-6 hover:bg-gray-100"
+                          >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Button>
+                        </div>
+                      </div>
                       <Button
                         size="sm"
                         variant="outline"
