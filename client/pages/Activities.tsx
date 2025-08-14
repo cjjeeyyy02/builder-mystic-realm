@@ -265,18 +265,19 @@ export default function Activities() {
           className="min-h-screen bg-white overflow-y-auto"
         >
           {/* Header */}
-          <div className="bg-white border-b border-gray-200 px-6 py-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex items-center justify-between mb-6">
+          <div className="bg-white border-b border-gray-200 px-4 py-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-between mb-4">
                 <div>
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-2 mb-3">
                     <Button
                       onClick={() => navigate("/dashboard")}
                       variant="outline"
-                      className="bg-white/70 border-gray-300 hover:bg-white"
+                      size="sm"
+                      className="bg-white/70 border-gray-300 hover:bg-white text-xs"
                     >
                       <svg
-                        className="w-4 h-4 mr-2"
+                        className="w-3 h-3 mr-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -291,21 +292,21 @@ export default function Activities() {
                       Back to Dashboard
                     </Button>
                   </div>
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-xl font-semibold text-gray-900">
                     All Activities
                   </h1>
-                  <p className="text-gray-600 mt-2 text-lg">
-                    Comprehensive view of all company activities and updates
+                  <p className="text-gray-500 mt-1 text-sm">
+                    Company activities and updates
                   </p>
                 </div>
               </div>
 
               {/* Search Only */}
               <div className="flex items-center justify-center">
-                <div className="flex-1 max-w-md">
+                <div className="flex-1 max-w-sm">
                   <div className="relative">
                     <svg
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                      className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -319,10 +320,10 @@ export default function Activities() {
                     </svg>
                     <input
                       type="text"
-                      placeholder="Search activities, departments, or assignees..."
+                      placeholder="Search activities..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 bg-white/70 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
+                      className="w-full pl-8 pr-3 py-2 text-sm bg-white/70 border border-gray-300 rounded-lg focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
                     />
                   </div>
                 </div>
@@ -331,21 +332,21 @@ export default function Activities() {
           </div>
 
           {/* Activities List */}
-          <div className="p-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid gap-6">
+          <div className="p-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid gap-3">
                 {filteredActivities.map((activity) => (
                   <Card
                     key={activity.id}
-                    className="backdrop-blur-sm bg-white/90 border border-gray-200/50 hover:shadow-lg hover:border-indigo-200/50 transition-all duration-300 group"
+                    className="bg-white border border-gray-200 hover:shadow-md hover:border-gray-300 transition-all duration-200 group"
                   >
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
+                    <CardContent className="p-4">
+                      <div className="flex items-start gap-3">
                         <div
-                          className={`w-14 h-14 bg-gradient-to-br from-${activity.color}-500 to-${activity.color}-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                          className={`w-8 h-8 bg-gradient-to-br from-${activity.color}-400 to-${activity.color}-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm`}
                         >
                           <svg
-                            className="w-6 h-6 text-white"
+                            className="w-4 h-4 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -360,25 +361,24 @@ export default function Activities() {
                         </div>
 
                         <div className="flex-1">
-                          <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start justify-between mb-2">
                             <div>
-                              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                              <h3 className="text-sm font-medium text-gray-900 mb-1">
                                 {activity.title}
                               </h3>
-                              <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-2">
                                 {activity.description}
                               </p>
                             </div>
-                            <div className="flex items-center gap-2 ml-4">
+                            <div className="flex items-center gap-1 ml-3">
                               <span
-                                className={`px-3 py-1 rounded-full text-xs font-medium border ${getPriorityColor(activity.priority)}`}
+                                className={`px-2 py-0.5 rounded text-xs font-medium border ${getPriorityColor(activity.priority)}`}
                               >
                                 {activity.priority.charAt(0).toUpperCase() +
-                                  activity.priority.slice(1)}{" "}
-                                Priority
+                                  activity.priority.slice(1)}
                               </span>
                               <span
-                                className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(activity.status)}`}
+                                className={`px-2 py-0.5 rounded text-xs font-medium border ${getStatusColor(activity.status)}`}
                               >
                                 {activity.status.charAt(0).toUpperCase() +
                                   activity.status.slice(1)}
@@ -387,10 +387,10 @@ export default function Activities() {
                           </div>
 
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-6 text-sm text-gray-500">
-                              <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                              <div className="flex items-center gap-1">
                                 <svg
-                                  className="w-4 h-4"
+                                  className="w-3 h-3"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
@@ -406,9 +406,9 @@ export default function Activities() {
                                   {activity.department}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1">
                                 <svg
-                                  className="w-4 h-4"
+                                  className="w-3 h-3"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
@@ -422,9 +422,9 @@ export default function Activities() {
                                 </svg>
                                 <span>{activity.assignee}</span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1">
                                 <svg
-                                  className="w-4 h-4"
+                                  className="w-3 h-3"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
@@ -449,10 +449,10 @@ export default function Activities() {
               </div>
 
               {filteredActivities.length === 0 && (
-                <div className="text-center py-12">
-                  <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg
-                      className="w-12 h-12 text-gray-400"
+                      className="w-8 h-8 text-gray-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -465,11 +465,11 @@ export default function Activities() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <h3 className="text-sm font-medium text-gray-900 mb-1">
                     No activities found
                   </h3>
-                  <p className="text-gray-500">
-                    Try adjusting your search terms or filters
+                  <p className="text-xs text-gray-500">
+                    Try adjusting your search terms
                   </p>
                 </div>
               )}
