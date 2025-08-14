@@ -973,8 +973,8 @@ export default function Dashboard() {
 
                 <div className="space-y-3">
                   {/* Event 1 - Tech Summer 2024 */}
-                  <div className="relative p-3 bg-gray-50 rounded-lg">
-                    <div className="pr-16">
+                  <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className="text-sm font-semibold text-gray-900">
                           Tech Summer 2024
@@ -1537,7 +1537,7 @@ export default function Dashboard() {
                             Sarah Jhonson
                           </h4>
                           <span className="text-xs text-gray-500">
-                            HR �� 2h ago
+                            HR ��� 2h ago
                           </span>
                         </div>
                         <p className="text-xs text-gray-800 mb-1 leading-relaxed">
