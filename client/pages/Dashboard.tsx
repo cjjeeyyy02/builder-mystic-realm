@@ -1979,7 +1979,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <FooterNavigation collapsed={footerCollapsed} />
     </Layout>
   );
 }
