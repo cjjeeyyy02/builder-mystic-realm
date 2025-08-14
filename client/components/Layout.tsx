@@ -1,4 +1,4 @@
-import { ReactNode, useState, createContext, useContext, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import Sidebar from "./Sidebar";
 import {
   Menu,
@@ -15,26 +15,11 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useDarkMode } from "./DarkModeProvider";
 
 interface LayoutProps {
   children: ReactNode;
 }
-
-// Dark Mode Context
-interface DarkModeContextType {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-}
-
-const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
-
-export const useDarkMode = () => {
-  const context = useContext(DarkModeContext);
-  if (context === undefined) {
-    throw new Error('useDarkMode must be used within a DarkModeProvider');
-  }
-  return context;
-};
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
