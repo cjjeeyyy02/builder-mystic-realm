@@ -39,9 +39,24 @@ export const useDarkMode = () => {
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  useEffect(() => {
+    // Apply dark mode class to document root
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-background'}`}>
       <Sidebar
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -51,7 +66,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Header */}
       <div
-        className={`${sidebarCollapsed ? "lg:ml-[80px]" : "lg:ml-[260px]"} h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-8 shadow-sm transition-all duration-300`}
+        className={`${sidebarCollapsed ? "lg:ml-[80px]" : "lg:ml-[260px]"} h-16 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-card border-border'} border-b flex items-center justify-between px-4 lg:px-8 shadow-sm transition-all duration-300`}
       >
         <div className="flex items-center gap-4">
           <Button
@@ -85,6 +100,20 @@ export default function Layout({ children }: LayoutProps) {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Dark Mode Toggle */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleDarkMode}
+            className="relative hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          >
+            {isDarkMode ? (
+              <Sun className="w-5 h-5 text-yellow-500" />
+            ) : (
+              <Moon className="w-5 h-5 text-gray-600" />
+            )}
+          </Button>
+
           {/* Notifications */}
           <Button variant="ghost" size="sm" className="relative">
             <Bell className="w-5 h-5" />
@@ -117,10 +146,11 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Main Content */}
       <div
-        className={`${sidebarCollapsed ? "lg:ml-[80px]" : "lg:ml-[260px]"} p-4 lg:p-8 bg-muted/30 min-h-[calc(100vh-4rem)] transition-all duration-300`}
+        className={`${sidebarCollapsed ? "lg:ml-[80px]" : "lg:ml-[260px]"} p-4 lg:p-8 ${isDarkMode ? 'bg-gray-900' : 'bg-muted/30'} min-h-[calc(100vh-4rem)] transition-all duration-300`}
       >
         {children}
       </div>
     </div>
+    </DarkModeContext.Provider>
   );
 }
