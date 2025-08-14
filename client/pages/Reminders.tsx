@@ -221,7 +221,10 @@ export default function Reminders() {
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 pb-footer">
+        <div
+          ref={scrollContainerRef}
+          className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 pb-footer overflow-y-auto"
+        >
           {/* Header */}
           <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100 px-6 py-4 shadow-sm">
             <div className="flex items-center justify-between mb-4">
@@ -459,7 +462,7 @@ export default function Reminders() {
           </div>
         </div>
       </Layout>
-      <FooterNavigation />
+      <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
 }
