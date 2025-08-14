@@ -209,7 +209,7 @@ export default function Chat() {
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold text-gray-900">
               Messages
             </h1>
             <div className="flex items-center space-x-3">
