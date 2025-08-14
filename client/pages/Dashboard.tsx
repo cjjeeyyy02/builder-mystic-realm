@@ -189,7 +189,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Active Candidates */}
-                    <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-green-900/20 to-green-800/30 border border-green-700/30'
+                        : 'bg-gradient-to-br from-green-50 to-green-100 border border-green-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-green-500 rounded">
@@ -209,10 +213,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Active Candidates
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             24
                           </p>
                           <div className="flex items-center justify-between">
@@ -220,7 +228,9 @@ export default function Dashboard() {
                               +3 this week
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             New hires and candidates
                           </p>
                         </div>
@@ -228,7 +238,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Average Performance */}
-                    <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-purple-900/20 to-purple-800/30 border border-purple-700/30'
+                        : 'bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-purple-500 rounded">
@@ -248,10 +262,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Average Performance
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             4.5/5
                           </p>
                           <div className="flex items-center justify-between">
@@ -259,7 +277,9 @@ export default function Dashboard() {
                               +0.3 improvement
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Overall team performance
                           </p>
                         </div>
