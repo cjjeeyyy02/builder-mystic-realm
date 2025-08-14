@@ -35,10 +35,15 @@ export default function FooterNavigation() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/99 backdrop-blur-xl border-t border-gray-50 z-50 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
+    <footer 
+      className="fixed bottom-0 left-0 right-0 bg-white/98 backdrop-blur-xl border-t border-gray-100/80 z-50"
+      style={{ 
+        boxShadow: '0 -1px 3px rgba(0, 0, 0, 0.02), 0 -1px 2px rgba(0, 0, 0, 0.03)' 
+      }}
+    >
       <div className="safe-area-inset-bottom">
-        <div className="px-1 py-1 max-w-6xl mx-auto">
-          <div className="flex items-center justify-between gap-0.5">
+        <nav className="px-2 py-1.5 max-w-7xl mx-auto" role="navigation" aria-label="Footer Navigation">
+          <div className="flex items-center justify-between gap-1">
             {navigationItems.map((item) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
@@ -47,28 +52,45 @@ export default function FooterNavigation() {
                 <button
                   key={item.path}
                   onClick={() => handleNavigation(item.path)}
-                  className={`flex flex-col items-center justify-center min-w-0 flex-1 py-2 px-1 rounded-md transition-all duration-200 touch-target group ${
-                    isActive
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "text-gray-400 hover:text-blue-600 hover:bg-blue-50/60 active:bg-blue-100/50 active:scale-95"
-                  }`}
+                  className={`
+                    flex flex-col items-center justify-center min-w-0 flex-1 
+                    py-2 px-0.5 rounded-lg transition-all duration-200 
+                    touch-target group relative overflow-hidden
+                    ${isActive
+                      ? "bg-blue-600 text-white shadow-sm" 
+                      : "text-gray-500 hover:text-blue-600 hover:bg-blue-50/70 active:bg-blue-100/60"
+                    }
+                  `}
+                  aria-label={`Navigate to ${item.label}`}
+                  aria-current={isActive ? 'page' : undefined}
                 >
-                  <div className={`mb-1 transition-all duration-200 ${
-                    isActive ? "scale-100" : "group-hover:scale-105 group-active:scale-95"
+                  {/* Active indicator */}
+                  {isActive && (
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-white rounded-full" />
+                  )}
+                  
+                  <div className={`mb-0.5 transition-all duration-200 ${
+                    isActive ? "scale-105" : "group-hover:scale-105 group-active:scale-95"
                   }`}>
-                    <Icon className={`${isActive ? 'w-4 h-4' : 'w-[18px] h-[18px]'} transition-all duration-200`} />
+                    <Icon className="w-4 h-4" strokeWidth={isActive ? 2.5 : 2} />
                   </div>
-                  <span className={`text-[9px] font-medium leading-none truncate max-w-full transition-all duration-200 ${
-                    isActive ? "text-white opacity-100" : "text-gray-400 group-hover:text-blue-600 opacity-80"
-                  }`}>
+                  
+                  <span className={`
+                    text-[9px] font-medium leading-tight truncate max-w-full 
+                    transition-all duration-200
+                    ${isActive 
+                      ? "text-white" 
+                      : "text-gray-500 group-hover:text-blue-600"
+                    }
+                  `}>
                     {item.label}
                   </span>
                 </button>
               );
             })}
           </div>
-        </div>
+        </nav>
       </div>
-    </div>
+    </footer>
   );
 }
