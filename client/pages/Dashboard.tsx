@@ -50,13 +50,36 @@ export default function Dashboard() {
       setLastScrollY(currentScrollY);
     };
 
+    const handleMetricsScroll = () => {
+      if (!metricsScrollRef.current) return;
+
+      const scrollLeft = metricsScrollRef.current.scrollLeft;
+      setMetricsCollapsed(scrollLeft > 10);
+    };
+
     const scrollContainer = scrollContainerRef.current;
+    const metricsContainer = metricsScrollRef.current;
+
     if (scrollContainer) {
       scrollContainer.addEventListener("scroll", handleScroll, {
         passive: true,
       });
-      return () => scrollContainer.removeEventListener("scroll", handleScroll);
     }
+
+    if (metricsContainer) {
+      metricsContainer.addEventListener("scroll", handleMetricsScroll, {
+        passive: true,
+      });
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+      }
+      if (metricsContainer) {
+        metricsContainer.removeEventListener("scroll", handleMetricsScroll);
+      }
+    };
   }, [lastScrollY]);
 
   return (
