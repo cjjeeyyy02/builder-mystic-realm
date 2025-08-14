@@ -8,6 +8,7 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 
 export default function Files() {
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
   const [filterBy, setFilterBy] = useState("All Files");
   const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
   const [footerCollapsed, setFooterCollapsed] = useState(false);
