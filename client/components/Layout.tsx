@@ -148,7 +148,7 @@ export default function Layout({ children }: LayoutProps) {
       <div
         className={`${sidebarCollapsed ? "lg:ml-[80px]" : "lg:ml-[260px]"} p-4 lg:p-8 ${isDarkMode ? 'bg-gray-900' : 'bg-muted/30'} min-h-[calc(100vh-4rem)] transition-all duration-300`}
       >
-        {children(isDarkMode)}
+        {children}
       </div>
     </div>
     </DarkModeContext.Provider>
