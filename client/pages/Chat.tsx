@@ -10,6 +10,8 @@ export default function Chat() {
   const [selectedChat, setSelectedChat] = useState("jennifer");
   const [message, setMessage] = useState("");
   const [chatType, setChatType] = useState("individual"); // 'individual' or 'group'
+  const [isTyping, setIsTyping] = useState(false);
+  const [footerCollapsed, setFooterCollapsed] = useState(false);
 
   const chatList = [
     {
@@ -170,6 +172,29 @@ export default function Chat() {
     if (message.trim()) {
       console.log("Sending message:", message);
       setMessage("");
+      setIsTyping(false);
+      setFooterCollapsed(false);
+    }
+  };
+
+  const handleInputFocus = () => {
+    setIsTyping(true);
+    setFooterCollapsed(true);
+  };
+
+  const handleInputBlur = () => {
+    if (!message.trim()) {
+      setIsTyping(false);
+      setFooterCollapsed(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+    if (e.target.value.trim()) {
+      setFooterCollapsed(true);
+    } else {
+      setFooterCollapsed(false);
     }
   };
 
@@ -209,64 +234,64 @@ export default function Chat() {
       <Layout>
       <div className="min-h-screen bg-white">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
+        <div className="bg-white border-b border-gray-200 px-4 py-2 shadow-sm">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-lg font-bold text-gray-900">
               Messages
             </h1>
-            <div className="flex items-center space-x-3">
-              <Button 
-                variant="outline" 
+            <div className="flex items-center space-x-2">
+              <Button
+                variant="outline"
                 size="sm"
-                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                className="border-blue-200 text-blue-600 hover:bg-blue-50 text-xs px-2 py-1 h-7"
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
-                New Chat
+                New
               </Button>
             </div>
           </div>
         </div>
 
         {/* Main Chat Layout */}
-        <div className="flex h-[calc(100vh-140px)]">
+        <div className={`flex transition-all duration-300 ${footerCollapsed ? 'h-[calc(100vh-60px)]' : 'h-[calc(100vh-105px)]'}`}>
           {/* Left Sidebar - Chat List */}
-          <div className="w-80 bg-white/70 backdrop-blur-sm border-r border-gray-200/50 flex flex-col">
+          <div className="w-64 bg-white/70 backdrop-blur-sm border-r border-gray-200/50 flex flex-col">
             {/* Search and Tabs */}
-            <div className="p-4 border-b border-gray-200/50">
-              <div className="relative mb-4">
+            <div className="p-2 border-b border-gray-200/50">
+              <div className="relative mb-2">
                 <input
                   type="text"
-                  placeholder="Search conversations..."
-                  className="w-full px-4 py-3 pl-11 text-sm bg-gray-50/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  placeholder="Search..."
+                  className="w-full px-3 py-2 pl-8 text-xs bg-gray-50/80 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
-                <svg className="w-4 h-4 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
               
               {/* Chat Type Tabs */}
-              <div className="flex bg-gray-100/80 rounded-lg p-1">
+              <div className="flex bg-gray-100/80 rounded-md p-0.5">
                 <button
                   onClick={() => setChatType("individual")}
-                  className={`flex-1 py-2 px-3 text-xs font-medium rounded-md transition-all ${
-                    chatType === "individual" 
-                      ? "bg-white text-blue-600 shadow-sm" 
+                  className={`flex-1 py-1.5 px-2 text-[10px] font-medium rounded transition-all ${
+                    chatType === "individual"
+                      ? "bg-white text-blue-600 shadow-sm"
                       : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
-                  Direct Messages
+                  Direct
                 </button>
                 <button
                   onClick={() => setChatType("group")}
-                  className={`flex-1 py-2 px-3 text-xs font-medium rounded-md transition-all ${
-                    chatType === "group" 
-                      ? "bg-white text-blue-600 shadow-sm" 
+                  className={`flex-1 py-1.5 px-2 text-[10px] font-medium rounded transition-all ${
+                    chatType === "group"
+                      ? "bg-white text-blue-600 shadow-sm"
                       : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
-                  Teams & Groups
+                  Teams
                 </button>
               </div>
             </div>
@@ -279,28 +304,28 @@ export default function Chat() {
                   <div
                     key={chat.id}
                     onClick={() => handleIndividualClick(chat.id)}
-                    className={`p-4 border-b border-gray-100/50 cursor-pointer hover:bg-blue-50/50 transition-all ${
-                      selectedChat === chat.id && chatType === "individual" 
-                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-l-blue-500' 
+                    className={`p-2 border-b border-gray-100/50 cursor-pointer hover:bg-blue-50/50 transition-all ${
+                      selectedChat === chat.id && chatType === "individual"
+                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-l-2 border-l-blue-500'
                         : ''
                     }`}
                   >
-                    <div className="flex items-start space-x-3">
+                    <div className="flex items-start space-x-2">
                       <div className="relative">
-                        <div className={`w-12 h-12 ${getAvatarColor(chat.name)} rounded-full flex items-center justify-center shadow-sm`}>
-                          <span className="text-white text-sm font-semibold">{chat.avatar}</span>
+                        <div className={`w-8 h-8 ${getAvatarColor(chat.name)} rounded-full flex items-center justify-center shadow-sm`}>
+                          <span className="text-white text-xs font-semibold">{chat.avatar}</span>
                         </div>
-                        <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(chat.status)} rounded-full border-2 border-white`}></div>
+                        <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 ${getStatusColor(chat.status)} rounded-full border border-white`}></div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="text-sm font-semibold text-gray-900 truncate">{chat.name}</h4>
-                          <span className="text-xs text-gray-500">{chat.time}</span>
+                        <div className="flex items-center justify-between mb-0.5">
+                          <h4 className="text-xs font-semibold text-gray-900 truncate">{chat.name}</h4>
+                          <span className="text-[10px] text-gray-500">{chat.time}</span>
                         </div>
-                        <p className="text-xs text-gray-600 line-clamp-2 mb-1">{chat.lastMessage}</p>
+                        <p className="text-[10px] text-gray-600 line-clamp-1 mb-0.5">{chat.lastMessage}</p>
                         {chat.unread > 0 && (
                           <div className="flex justify-end">
-                            <span className="bg-blue-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                            <span className="bg-blue-500 text-white text-[9px] rounded-full px-1.5 py-0.5 min-w-[16px] text-center">
                               {chat.unread}
                             </span>
                           </div>
@@ -315,30 +340,30 @@ export default function Chat() {
                   <div
                     key={team.id}
                     onClick={() => handleGroupClick(team.id)}
-                    className={`p-4 border-b border-gray-100/50 cursor-pointer hover:bg-blue-50/50 transition-all ${
-                      selectedChat === team.id && chatType === "group" 
-                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-l-blue-500' 
+                    className={`p-2 border-b border-gray-100/50 cursor-pointer hover:bg-blue-50/50 transition-all ${
+                      selectedChat === team.id && chatType === "group"
+                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-l-2 border-l-blue-500'
                         : ''
                     }`}
                   >
-                    <div className="flex items-start space-x-3">
+                    <div className="flex items-start space-x-2">
                       <div className="relative">
-                        <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                           </svg>
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="text-sm font-semibold text-gray-900 truncate">{team.name}</h4>
-                          <span className="text-xs text-gray-500">{team.time}</span>
+                        <div className="flex items-center justify-between mb-0.5">
+                          <h4 className="text-xs font-semibold text-gray-900 truncate">{team.name}</h4>
+                          <span className="text-[10px] text-gray-500">{team.time}</span>
                         </div>
-                        <p className="text-xs text-gray-600 mb-2">{team.members}</p>
-                        <p className="text-xs text-gray-600 line-clamp-2 mb-1">{team.lastMessage}</p>
+                        <p className="text-[10px] text-gray-600 mb-1">{team.members}</p>
+                        <p className="text-[10px] text-gray-600 line-clamp-1 mb-0.5">{team.lastMessage}</p>
                         {team.unread > 0 && (
                           <div className="flex justify-end">
-                            <span className="bg-purple-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                            <span className="bg-purple-500 text-white text-[9px] rounded-full px-1.5 py-0.5 min-w-[16px] text-center">
                               {team.unread}
                             </span>
                           </div>
@@ -355,43 +380,43 @@ export default function Chat() {
           <div className="flex-1 flex flex-col bg-white/70 backdrop-blur-sm">
             {/* Chat Header */}
             {currentChatData && (
-              <div className="p-4 border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
+              <div className="p-2 border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
                     <div className="relative">
-                      <div className={`w-12 h-12 ${
-                        chatType === "group" 
-                          ? "bg-gradient-to-br from-indigo-500 to-purple-600" 
+                      <div className={`w-8 h-8 ${
+                        chatType === "group"
+                          ? "bg-gradient-to-br from-indigo-500 to-purple-600"
                           : getAvatarColor(currentChatData.name)
                       } rounded-full flex items-center justify-center shadow-sm`}>
                         {chatType === "group" ? (
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                           </svg>
                         ) : (
-                          <span className="text-white text-sm font-semibold">{currentChatData.avatar}</span>
+                          <span className="text-white text-xs font-semibold">{currentChatData.avatar}</span>
                         )}
                       </div>
                       {chatType === "individual" && (
-                        <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(currentChatData.status)} rounded-full border-2 border-white`}></div>
+                        <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 ${getStatusColor(currentChatData.status)} rounded-full border border-white`}></div>
                       )}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{currentChatData.name}</h3>
-                      <p className="text-sm text-gray-600">
+                      <h3 className="text-sm font-semibold text-gray-900">{currentChatData.name}</h3>
+                      <p className="text-xs text-gray-600">
                         {chatType === "group" ? currentChatData.members : `${currentChatData.status}`}
                       </p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-2">
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center space-x-1">
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800 p-1 h-6 w-6">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800 p-1 h-6 w-6">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     </Button>
@@ -401,27 +426,27 @@ export default function Chat() {
             )}
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-2 space-y-2">
               {currentMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.type === 'sent' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`flex items-end space-x-2 max-w-xs lg:max-w-md ${msg.type === 'sent' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className={`flex items-end space-x-1 max-w-xs lg:max-w-md ${msg.type === 'sent' ? 'flex-row-reverse space-x-reverse' : ''}`}>
                     {msg.type === 'received' && (
-                      <div className={`w-8 h-8 ${getAvatarColor(msg.senderName || "user")} rounded-full flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                        <span className="text-white text-xs font-semibold">{msg.avatar}</span>
+                      <div className={`w-6 h-6 ${getAvatarColor(msg.senderName || "user")} rounded-full flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                        <span className="text-white text-[10px] font-semibold">{msg.avatar}</span>
                       </div>
                     )}
                     <div className="flex flex-col">
                       {msg.type === 'received' && chatType === 'group' && (
-                        <span className="text-xs text-gray-500 mb-1 ml-2">{msg.senderName}</span>
+                        <span className="text-[10px] text-gray-500 mb-0.5 ml-1">{msg.senderName}</span>
                       )}
-                      <div className={`px-4 py-3 rounded-2xl text-sm shadow-sm ${
-                        msg.type === 'sent' 
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-md' 
-                          : 'bg-white text-gray-800 rounded-bl-md border border-gray-200'
+                      <div className={`px-2 py-1.5 rounded-lg text-xs shadow-sm ${
+                        msg.type === 'sent'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-sm'
+                          : 'bg-white text-gray-800 rounded-bl-sm border border-gray-200'
                       }`}>
                         {msg.content}
                       </div>
-                      <span className={`text-xs text-gray-500 mt-1 ${msg.type === 'sent' ? 'text-right mr-2' : 'ml-2'}`}>
+                      <span className={`text-[10px] text-gray-500 mt-0.5 ${msg.type === 'sent' ? 'text-right mr-1' : 'ml-1'}`}>
                         {msg.time}
                       </span>
                     </div>
@@ -431,10 +456,10 @@ export default function Chat() {
             </div>
 
             {/* Message Input */}
-            <div className="p-4 bg-white/80 backdrop-blur-sm border-t border-gray-200/50">
-              <div className="flex items-center space-x-4">
-                <button className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-2 bg-white/80 backdrop-blur-sm border-t border-gray-200/50">
+              <div className="flex items-center space-x-2">
+                <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                   </svg>
                 </button>
@@ -442,22 +467,24 @@ export default function Chat() {
                   <input
                     type="text"
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Type your message..."
-                    className="w-full px-4 py-3 pr-12 text-sm bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="Type message..."
+                    className="w-full px-3 py-2 pr-8 text-xs bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
-                  <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700 transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <button className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-gray-500 hover:text-gray-700 transition-colors">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </button>
                 </div>
-                <button 
+                <button
                   onClick={handleSendMessage}
-                  className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all shadow-sm"
+                  className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all shadow-sm"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 </button>
@@ -470,7 +497,7 @@ export default function Chat() {
       </Layout>
 
       {/* Footer Navigation */}
-      <FooterNavigation />
+      <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
 }
