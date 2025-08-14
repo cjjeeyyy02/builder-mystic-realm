@@ -1680,8 +1680,8 @@ export default function Dashboard() {
                 <div className="mt-3 text-center">
                   <Button
                     variant="link"
-                    onClick={() => navigate("/activities")}
-                    className="text-blue-600 hover:text-blue-700 text-xs"
+                    className="text-gray-400 cursor-not-allowed text-xs"
+                    disabled
                   >
                     View All Activities →
                   </Button>
@@ -1695,7 +1695,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className="text-sm font-semibold text-gray-900">
-                      Latest E-Forum Updates
+                      Latest E-Forum
                     </h3>
                     <p className="text-xs text-gray-500 mt-1">
                       Employee discussion forum
