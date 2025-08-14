@@ -700,15 +700,13 @@ export default function Dashboard() {
                 </div>
 
                 {/* View All Activities Link */}
-                <div className="mt-6 text-center">
+                <div className="mt-4 text-center">
                   <Button
+                    variant="link"
                     onClick={() => navigate('/activities')}
-                    className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="text-blue-600 hover:text-blue-700 text-sm"
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    View All Activities
+                    View All Activities →
                   </Button>
                 </div>
               </CardContent>
