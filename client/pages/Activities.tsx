@@ -229,7 +229,7 @@ export default function Activities() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <div className="min-h-screen bg-white">
         {/* Header */}
         <div className="backdrop-blur-sm bg-white/80 border-b border-gray-200/50 px-6 py-8">
           <div className="max-w-7xl mx-auto">
