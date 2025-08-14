@@ -147,6 +147,32 @@ export default function AI2AIMStore() {
     console.log(`Previewing ${app.name}`);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollContainerRef.current) return;
+
+      const currentScrollY = scrollContainerRef.current.scrollTop;
+      const isScrollingDown = currentScrollY > lastScrollY;
+      const isScrollingUp = currentScrollY < lastScrollY;
+
+      if (currentScrollY > 50) {
+        setFooterCollapsed(isScrollingUp);
+      } else {
+        setFooterCollapsed(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll, {
+        passive: true,
+      });
+      return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    }
+  }, [lastScrollY]);
+
   const AppCard = ({
     app,
     featured = false,
