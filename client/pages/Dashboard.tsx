@@ -2161,7 +2161,11 @@ export default function Dashboard() {
       </div>
 
       {/* Footer Navigation */}
-      <div className="bg-gradient-to-r from-blue-50 via-white to-purple-50 border-t border-gray-100/60 shadow-sm mt-12">
+      <div className={`border-t shadow-sm mt-12 transition-colors duration-300 ${
+        isDarkMode
+          ? 'bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 border-gray-700'
+          : 'bg-gradient-to-r from-blue-50 via-white to-purple-50 border-gray-100/60'
+      }`}>
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-center space-x-8">
             {/* Activity Feed */}
