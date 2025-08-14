@@ -299,6 +299,7 @@ export default function AI2AIMStore() {
         </div>
 
       </div>
+      <FooterNavigation />
     </Layout>
   );
 }
