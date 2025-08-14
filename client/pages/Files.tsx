@@ -211,16 +211,16 @@ export default function Files() {
       <Layout>
       <div className="min-h-screen bg-white">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-6 shadow-sm">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white border-b border-gray-200 px-3 py-3 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
             <div>
-              <h1 className="text-xl font-bold text-gray-900">
+              <h1 className="text-lg font-bold text-gray-900">
                 Files
               </h1>
-              <p className="text-xs text-gray-600 mt-1">Manage and organize your files</p>
+              <p className="text-xs text-gray-600 mt-0.5">Manage and organize your files</p>
 
               {/* Search Bar */}
-              <div className="mt-3">
+              <div className="mt-2">
                 <div className="relative">
                   <input
                     type="text"
@@ -234,9 +234,9 @@ export default function Files() {
               </div>
             </div>
             <div className="flex items-center">
-              <Button 
+              <Button
                 onClick={handleUpload}
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-4 py-2 rounded-xl shadow-sm"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-3 py-1.5 text-sm rounded-lg shadow-sm"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
