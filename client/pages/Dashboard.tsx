@@ -1747,7 +1747,8 @@ export default function Dashboard() {
                           key={day}
                           className={`
                             aspect-square flex items-center justify-center text-xs font-medium rounded cursor-pointer transition-all relative
-                            ${day <= 14 ? 'bg-blue-100 text-blue-800 hover:bg-blue-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
+                            ${day <= 14 ? 'bg-blue-100 text-blue-800 hover:bg-blue-200' :
+                              isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
                             ${day === 3 || day === 6 || day === 12 ? 'ring-1 ring-green-400' : ''}
                           `}
                         >
@@ -1780,7 +1781,9 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="text-sm font-semibold text-gray-900">Annual Marketing Summit</h3>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                          <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             <span>June 12, 9:00 AM</span>
                             <span>New York, NY</span>
                           </div>
@@ -1801,7 +1804,9 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="text-sm font-semibold text-gray-900">Networking Mixer</h3>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                          <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             <span>June 20, 6:00 PM</span>
                             <span>Downtown</span>
                           </div>
@@ -1822,7 +1827,9 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="text-sm font-semibold text-gray-900">Data Science Conference</h3>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600">
+                          <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             <span>July 3, 10:00 AM</span>
                             <span>Chicago, IL</span>
                           </div>
