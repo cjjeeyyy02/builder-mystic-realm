@@ -208,7 +208,7 @@ export default function EForum() {
           </div>
 
           {/* Main Content */}
-          <div className="p-6 pb-20">
+          <div className="p-6 pb-16">
             <div className="max-w-4xl mx-auto">
               {forumPosts.map((post) => (
                 <PostCard key={post.id} post={post} />
