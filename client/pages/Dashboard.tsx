@@ -85,7 +85,7 @@ export default function Dashboard() {
     <Layout>
       <div
         ref={scrollContainerRef}
-        className="min-h-screen bg-white p-6 overflow-y-auto"
+        className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 p-6 overflow-y-auto"
       >
         {/* Header */}
         <div className="mb-8">
@@ -1997,7 +1997,7 @@ export default function Dashboard() {
       </div>
 
       {/* Footer Navigation */}
-      <div className="bg-white border-t border-gray-200 shadow-lg mt-12">
+      <div className="bg-gradient-to-r from-gray-50 to-white border-t border-gray-200 shadow-lg mt-12">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex items-center justify-center space-x-12">
             {/* Activity Feed */}
