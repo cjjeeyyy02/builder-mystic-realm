@@ -461,7 +461,7 @@ export default function Dashboard() {
 
 
               {/* All 8 Metrics Cards Dropdown */}
-              {showAllMetrics && (
+              {false && (
                 <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {/* All 8 metrics cards */}
