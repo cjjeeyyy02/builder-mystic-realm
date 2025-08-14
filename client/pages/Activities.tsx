@@ -257,7 +257,7 @@ export default function Activities() {
                     Back to Dashboard
                   </Button>
                 </div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold text-gray-900">
                   All Activities
                 </h1>
                 <p className="text-gray-600 mt-2 text-lg">
