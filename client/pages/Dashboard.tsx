@@ -101,7 +101,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Active Candidates */}
-                    <Card className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-green-500 rounded">
