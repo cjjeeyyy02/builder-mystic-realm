@@ -110,7 +110,14 @@ export default function Dashboard() {
               </p>
             </div>
             <div className="flex items-center space-x-3">
-              <Button variant="outline" className="bg-white">
+              <Button
+                variant="outline"
+                className={`transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                    : 'bg-white'
+                }`}
+              >
                 Quick Action
               </Button>
               <Button className="bg-blue-600 hover:bg-blue-700">
