@@ -490,36 +490,6 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Department Filter Buttons - Only show when expanded */}
-                  {isGrowthExpanded && (
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          "All Department",
-                          "Engineering",
-                          "HR",
-                          "Finance",
-                          "Marketing",
-                          "Sales",
-                        ].map((dept) => (
-                          <button
-                            key={dept}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedDepartment(dept);
-                            }}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
-                              selectedDepartment === dept
-                                ? "bg-blue-500 text-white shadow-md"
-                                : "bg-white text-gray-600 border border-gray-300 hover:bg-blue-50 hover:border-blue-300"
-                            }`}
-                          >
-                            {dept}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
 
                   {/* Chart */}
                   <div
