@@ -16,6 +16,10 @@ interface NavItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
+interface FooterNavigationProps {
+  collapsed?: boolean;
+}
+
 const navigationItems: NavItem[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { label: "Chat", path: "/chat", icon: MessageSquare },
@@ -26,7 +30,7 @@ const navigationItems: NavItem[] = [
   { label: "Store", path: "/ai2aim-store", icon: ShoppingBag },
 ];
 
-export default function FooterNavigation() {
+export default function FooterNavigation({ collapsed = false }: FooterNavigationProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -46,14 +50,15 @@ export default function FooterNavigation() {
   };
 
   return (
-    <footer 
+    <footer
       className={`
-        fixed bottom-0 right-0 bg-white/99 backdrop-blur-xl border-t border-gray-100/80 z-40 
+        fixed bottom-0 right-0 bg-white/99 backdrop-blur-xl border-t border-gray-100/80 z-40
         transition-all duration-300 shadow-sm
         ${isLargeScreen ? 'left-[260px]' : 'left-0'}
+        ${collapsed ? 'transform translate-y-full opacity-0 pointer-events-none' : 'transform translate-y-0 opacity-100'}
       `}
-      style={{ 
-        boxShadow: '0 -1px 2px rgba(0, 0, 0, 0.02), 0 -1px 1px rgba(0, 0, 0, 0.03)',
+      style={{
+        boxShadow: collapsed ? 'none' : '0 -1px 2px rgba(0, 0, 0, 0.02), 0 -1px 1px rgba(0, 0, 0, 0.03)',
         borderTopColor: 'rgba(0, 0, 0, 0.05)'
       }}
     >
