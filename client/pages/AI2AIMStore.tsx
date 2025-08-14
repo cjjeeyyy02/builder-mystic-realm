@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +8,9 @@ import FooterNavigation from "@/components/FooterNavigation";
 export default function AI2AIMStore() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("All");
+  const [footerCollapsed, setFooterCollapsed] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     "All",
