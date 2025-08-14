@@ -140,7 +140,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Average Performance */}
-                    <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-purple-500 rounded">
