@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import FooterNavigation from "@/components/FooterNavigation";
 
 export default function Activities() {
   const navigate = useNavigate();
@@ -228,7 +229,8 @@ export default function Activities() {
   };
 
   return (
-    <Layout>
+    <>
+      <Layout>
       <div className="min-h-screen bg-white">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-8">
@@ -524,6 +526,10 @@ export default function Activities() {
           </div>
         </div>
       </div>
-    </Layout>
+      </Layout>
+
+      {/* Footer Navigation */}
+      <FooterNavigation />
+    </>
   );
 }
