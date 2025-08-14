@@ -9,6 +9,8 @@ export default function Files() {
   const navigate = useNavigate();
   const [filterBy, setFilterBy] = useState("All Files");
   const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+  const [footerCollapsed, setFooterCollapsed] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const recentFiles = [
     {
@@ -94,7 +96,7 @@ export default function Files() {
     }
   ];
 
-  const categories = ["All Files", "Documents", "Images", "Archives", "Recent"];
+  const categories = ["All Files"];
 
   const handleDownload = (file: any) => {
     console.log(`Downloading ${file.name}`);
@@ -146,52 +148,31 @@ export default function Files() {
   };
 
   const FileCard = ({ file }: { file: any }) => (
-    <Card className="bg-white/70 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group">
-      <CardContent className="p-4">
-        <div className="flex items-start space-x-3">
-          <div className={`w-12 h-12 bg-gradient-to-br ${file.color} rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow flex-shrink-0`}>
-            {getFileIcon(file.type)}
+    <Card className="bg-white border border-gray-200 hover:border-blue-300 transition-all duration-200">
+      <CardContent className="p-3">
+        <div className="flex items-center space-x-3">
+          <div className={`w-8 h-8 bg-gradient-to-br ${file.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
           </div>
-          
+
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-2">
-              <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
-                  {file.name}
-                </h3>
-                <p className="text-xs text-gray-500 mt-1">
-                  {file.size}
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-1 mb-3">
-              <p className="text-xs text-gray-600">
-                <span className="font-medium">Uploaded by:</span> {file.uploadedBy}
-              </p>
+            <h3 className="text-sm font-medium text-gray-900 truncate">
+              {file.name}
+            </h3>
+            <div className="flex items-center justify-between mt-1">
               <p className="text-xs text-gray-500">
-                {file.uploadedTime}
+                {file.size} • {file.uploadedTime}
               </p>
-            </div>
-
-            <div className="flex items-center space-x-2">
               <Button
                 onClick={() => handleDownload(file)}
                 size="sm"
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xs px-3 py-1.5 h-7 shadow-sm"
-              >
-                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download
-              </Button>
-              <Button
                 variant="ghost"
-                size="sm"
-                className="text-gray-600 hover:text-gray-800 text-xs px-2 py-1.5 h-7"
+                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 text-xs px-2 py-1 h-6"
               >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3" />
                 </svg>
               </Button>
             </div>
@@ -209,10 +190,10 @@ export default function Files() {
         <div className="bg-white border-b border-gray-200 px-6 py-6 shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Files & Documents
+              <h1 className="text-xl font-bold text-gray-900">
+                Files
               </h1>
-              <p className="text-sm text-gray-600 mt-1">Manage and organize your team files</p>
+              <p className="text-xs text-gray-600 mt-1">Manage and organize your files</p>
             </div>
             <div className="flex items-center space-x-3">
               <div className="flex bg-gray-100/80 rounded-lg p-1">
@@ -253,60 +234,69 @@ export default function Files() {
             </div>
           </div>
 
-          {/* Filters and Search */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setFilterBy(category)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                    filterBy === category
-                      ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm"
-                      : "bg-white/70 text-gray-700 hover:bg-white hover:text-amber-600 border border-gray-200/50"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+          {/* Search Only */}
+          <div className="flex justify-end">
             
-            <div className="relative w-full sm:w-auto">
+            <div className="relative">
               <input
                 type="text"
                 placeholder="Search files..."
-                className="w-full sm:w-64 px-4 py-2 pl-10 text-sm bg-white/70 border border-gray-200/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                className="w-64 px-3 py-2 pl-8 text-xs bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all"
               />
-              <svg className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
           </div>
 
-          {/* Recent Files Toggle */}
-          <div className="flex items-center space-x-2 mt-4">
-            <input 
-              type="checkbox" 
-              id="recent-files"
-              className="w-4 h-4 text-amber-600 bg-gray-100 border-gray-300 rounded focus:ring-amber-500 focus:ring-2"
-            />
-            <label htmlFor="recent-files" className="text-sm font-medium text-gray-700">
-              Show Recent Files Only
-            </label>
-          </div>
         </div>
 
         {/* Files Grid */}
-        <div className="p-6">
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Your Files</h2>
-            <p className="text-sm text-gray-600">{recentFiles.length} files available</p>
+        <div
+          className="p-4 pb-footer"
+          onScroll={(e) => {
+            const currentScrollY = e.currentTarget.scrollTop;
+            const isScrollingDown = currentScrollY > lastScrollY;
+
+            if (currentScrollY > 100) {
+              setFooterCollapsed(isScrollingDown);
+            } else {
+              setFooterCollapsed(false);
+            }
+
+            setLastScrollY(currentScrollY);
+          }}
+          style={{ height: 'calc(100vh - 120px)', overflowY: 'auto' }}
+        >
+          <div className="mb-4">
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-gray-600">{recentFiles.length} files</p>
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-gray-500">View:</span>
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-1 rounded ${viewMode === "grid" ? "bg-blue-100 text-blue-600" : "text-gray-400"}`}
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`p-1 rounded ${viewMode === "list" ? "bg-blue-100 text-blue-600" : "text-gray-400"}`}
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className={`${
-            viewMode === "grid" 
-              ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" 
-              : "space-y-3"
+            viewMode === "grid"
+              ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+              : "space-y-2"
           }`}>
             {recentFiles.map((file) => (
               <FileCard key={file.id} file={file} />
@@ -318,7 +308,7 @@ export default function Files() {
       </Layout>
 
       {/* Footer Navigation */}
-      <FooterNavigation />
+      <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
 }
