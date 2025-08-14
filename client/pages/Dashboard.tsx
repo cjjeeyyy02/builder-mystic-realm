@@ -11,6 +11,21 @@ export default function Dashboard() {
     useState("All Department");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setIsDropdownOpen(false);
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isDropdownOpen]);
+
   return (
     <Layout>
       <div className="min-h-screen bg-gray-100 p-6">
