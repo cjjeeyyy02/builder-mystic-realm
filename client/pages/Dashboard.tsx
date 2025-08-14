@@ -827,11 +827,15 @@ export default function Dashboard() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="flex items-center gap-1">
                       <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      <span className="text-xs text-gray-700">New Hires</span>
+                      <span className={`text-xs transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                      }`}>New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-xs text-gray-700">Exit</span>
+                      <span className={`text-xs transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                      }`}>Exit</span>
                     </div>
                   </div>
 
@@ -1289,14 +1293,22 @@ export default function Dashboard() {
             </div>
 
             {/* Company Events - Full Width */}
-            <Card className="bg-gradient-to-br from-indigo-50 to-blue-100 border border-indigo-200">
+            <Card className={`transition-all duration-300 ${
+              isDarkMode
+                ? 'bg-gradient-to-br from-indigo-900/20 to-blue-800/30 border border-indigo-700/30'
+                : 'bg-gradient-to-br from-indigo-50 to-blue-100 border border-indigo-200'
+            }`}>
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-base font-semibold text-gray-900">
+                    <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>
                       Company Events
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className={`text-xs mt-1 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
                       Company Upcoming events and activities
                     </p>
                   </div>
