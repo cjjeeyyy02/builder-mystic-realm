@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, createContext, useContext, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import {
   Menu,
@@ -7,6 +7,8 @@ import {
   Settings,
   PanelLeftClose,
   PanelLeftOpen,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
