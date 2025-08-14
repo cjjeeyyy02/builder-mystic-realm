@@ -2294,7 +2294,11 @@ export default function Dashboard() {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-center space-x-8">
             {/* Activity Feed */}
-            <div className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80">
+            <div className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg ${
+              isDarkMode
+                ? 'hover:bg-gray-700/50'
+                : 'hover:bg-gray-50/80'
+            }`}>
               <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
                   className="w-3.5 h-3.5 text-white"
