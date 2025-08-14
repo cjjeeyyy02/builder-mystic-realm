@@ -58,7 +58,10 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-white p-6">
+      <div
+        ref={scrollContainerRef}
+        className="min-h-screen bg-white p-6 overflow-y-auto"
+      >
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
@@ -1976,6 +1979,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <FooterNavigation collapsed={footerCollapsed} />
     </Layout>
   );
 }
