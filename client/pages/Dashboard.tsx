@@ -2214,7 +2214,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-emerald-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-emerald-400'
+                  : 'text-gray-600 group-hover:text-emerald-600'
+              }`}>
                 Chat
               </span>
             </div>
@@ -2239,7 +2243,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-amber-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-amber-400'
+                  : 'text-gray-600 group-hover:text-amber-600'
+              }`}>
                 Files
               </span>
             </div>
@@ -2264,7 +2272,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-purple-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-purple-400'
+                  : 'text-gray-600 group-hover:text-purple-600'
+              }`}>
                 Meetings
               </span>
             </div>
@@ -2289,7 +2301,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-orange-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-orange-400'
+                  : 'text-gray-600 group-hover:text-orange-600'
+              }`}>
                 Reminders
               </span>
             </div>
@@ -2314,7 +2330,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-indigo-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-indigo-400'
+                  : 'text-gray-600 group-hover:text-indigo-600'
+              }`}>
                 E-Forum
               </span>
             </div>
@@ -2339,7 +2359,11 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-[10px] text-gray-600 font-medium group-hover:text-red-600 transition-colors">
+              <span className={`text-[10px] font-medium transition-colors ${
+                isDarkMode
+                  ? 'text-gray-300 group-hover:text-red-400'
+                  : 'text-gray-600 group-hover:text-red-600'
+              }`}>
                 Store
               </span>
             </div>
