@@ -202,7 +202,7 @@ export default function Files() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="min-h-screen bg-white">
         {/* Header */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 px-6 py-6 shadow-sm">
           <div className="flex items-center justify-between mb-6">
