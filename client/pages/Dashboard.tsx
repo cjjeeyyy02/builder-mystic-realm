@@ -1268,7 +1268,7 @@ export default function Dashboard() {
           {/* Right Sidebar */}
           <div className="col-span-4 space-y-6">
             {/* Recent Activities */}
-            <Card className="bg-gradient-to-br from-gray-50 to-blue-50 border border-gray-200">
+            <Card className="bg-white border border-gray-200">
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
