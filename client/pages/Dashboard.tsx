@@ -141,7 +141,11 @@ export default function Dashboard() {
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
                     {/* Total Employees */}
-                    <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-blue-900/20 to-blue-800/30 border border-blue-700/30'
+                        : 'bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-blue-500 rounded">
