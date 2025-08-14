@@ -459,30 +459,6 @@ export default function Dashboard() {
                 </svg>
               </div>
 
-              {/* Dropdown Toggle for All Metrics */}
-              <div className="flex justify-end mt-2">
-                <button
-                  onClick={() => setShowAllMetrics(!showAllMetrics)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-gray-700 transition-colors"
-                >
-                  <span>{showAllMetrics ? 'Hide' : 'Show All'} Metrics</span>
-                  <svg
-                    className={`w-3 h-3 transition-transform duration-200 ${
-                      showAllMetrics ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-              </div>
 
               {/* All 8 Metrics Cards Dropdown */}
               {showAllMetrics && (
