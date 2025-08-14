@@ -2170,7 +2170,7 @@ export default function Dashboard() {
 
             {/* Chat */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/chat")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
@@ -2195,7 +2195,7 @@ export default function Dashboard() {
 
             {/* Files */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/files")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
@@ -2220,7 +2220,7 @@ export default function Dashboard() {
 
             {/* Meetings */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/meetings")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
@@ -2245,7 +2245,7 @@ export default function Dashboard() {
 
             {/* Reminders */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/reminders")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
@@ -2270,7 +2270,7 @@ export default function Dashboard() {
 
             {/* E-Forum */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/e-forum")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
@@ -2295,7 +2295,7 @@ export default function Dashboard() {
 
             {/* AI2AIM Store */}
             <div
-              className="flex flex-col items-center space-y-1 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg hover:bg-gray-50/80"
+              className="flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg hover:bg-gray-50/80"
               onClick={() => navigate("/ai2aim-store")}
             >
               <div className="w-7 h-7 bg-gradient-to-br from-red-400 to-red-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
