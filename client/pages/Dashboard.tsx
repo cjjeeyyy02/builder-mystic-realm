@@ -15,7 +15,6 @@ export default function Dashboard() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [metricsCollapsed, setMetricsCollapsed] = useState(false);
-  const [showAllMetrics, setShowAllMetrics] = useState(false);
   const metricsScrollRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
