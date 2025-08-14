@@ -1851,10 +1851,11 @@ export default function Dashboard() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-xs h-6 px-2"
+                    className={`text-xs h-6 transition-all duration-200 ${showVoiceSearch ? 'px-2' : 'px-1'}`}
+                    onClick={() => setShowVoiceSearch(!showVoiceSearch)}
                   >
                     <svg
-                      className="w-3 h-3 mr-1"
+                      className={`w-3 h-3 ${showVoiceSearch ? 'mr-1' : ''}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1866,7 +1867,7 @@ export default function Dashboard() {
                         d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                       />
                     </svg>
-                    Voice Search
+                    {showVoiceSearch && 'Voice Search'}
                   </Button>
                 </div>
 
