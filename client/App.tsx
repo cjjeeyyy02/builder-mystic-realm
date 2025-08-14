@@ -13,6 +13,7 @@ import Files from "./pages/Files";
 import Reminders from "./pages/Reminders";
 import EForum from "./pages/EForum";
 import AI2AIMStore from "./pages/AI2AIMStore";
+import Activities from "./pages/Activities";
 import Records from "./pages/Records";
 import Performance from "./pages/Performance";
 import MediaResources from "./pages/MediaResources";
