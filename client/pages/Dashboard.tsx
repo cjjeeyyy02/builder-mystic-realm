@@ -1160,7 +1160,7 @@ export default function Dashboard() {
 
                   {/* Event 3 - Holiday Celebration */}
                   <div className="relative p-3 bg-gray-50 rounded-lg pb-12">
-                    <div className="flex-1">
+                    <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className="text-sm font-semibold text-gray-900">
                           Holiday Celebration and Award Night
