@@ -287,7 +287,11 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Pending Tasks */}
-                    <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-orange-900/20 to-orange-800/30 border border-orange-700/30'
+                        : 'bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-orange-500 rounded">
@@ -307,10 +311,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Pending Tasks
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             18
                           </p>
                           <div className="flex items-center justify-between">
@@ -318,7 +326,9 @@ export default function Dashboard() {
                               5 from last week
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Outstanding hiring tasks
                           </p>
                         </div>
@@ -329,7 +339,11 @@ export default function Dashboard() {
                   {/* Additional Cards - Scrollable */}
                   <div className="flex gap-4 flex-shrink-0">
                     {/* Pending Onboarding */}
-                    <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-48">
+                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-br from-gray-800/20 to-gray-700/30 border border-gray-600/30'
+                        : 'bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200'
+                    }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-500 rounded">
@@ -349,10 +363,14 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-xs font-medium text-gray-700 mb-1">
+                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
                             Pending Onboarding
                           </h3>
-                          <p className="text-xl font-bold text-gray-900 mb-1">
+                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             10
                           </p>
                           <div className="flex items-center justify-between">
@@ -360,7 +378,9 @@ export default function Dashboard() {
                               +4 next week
                             </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
                             Awaiting onboarding
                           </p>
                         </div>
