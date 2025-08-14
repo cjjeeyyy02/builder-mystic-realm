@@ -628,7 +628,7 @@ export default function Dashboard() {
             >
               {/* Employee Growth Trends */}
               <Card
-                className="bg-white border border-gray-200 cursor-pointer hover:shadow-md transition-all duration-300"
+                className="bg-gradient-to-br from-sky-50 to-blue-100 border border-sky-200 cursor-pointer hover:shadow-md transition-all duration-300"
                 onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
               >
                 <CardContent className="p-6">
