@@ -198,7 +198,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-green-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -588,7 +588,7 @@ export default function Dashboard() {
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-green-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                             </svg>
@@ -1761,7 +1761,7 @@ export default function Dashboard() {
                           )}
                           {day === 6 && (
                             <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
                             </div>
                           )}
                           {day === 12 && (
@@ -1799,7 +1799,7 @@ export default function Dashboard() {
                       </div>
 
                       <div className="flex items-start gap-2 p-2 bg-green-50 rounded-lg">
-                        <div className="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded">
+                        <div className="px-2 py-1 bg-gray-700 text-white text-xs font-medium rounded">
                           Social
                         </div>
                         <div className="flex-1 min-w-0">
@@ -2237,7 +2237,7 @@ export default function Dashboard() {
                   {/* Forum Post 3 */}
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
                           MJ
                         </span>
