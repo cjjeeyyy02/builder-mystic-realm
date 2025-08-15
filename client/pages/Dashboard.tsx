@@ -177,7 +177,7 @@ export default function Dashboard() {
                             1,247
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-green-600">
+                            <span className="text-xs font-medium text-gray-600">
                               +30 this month
                             </span>
                           </div>
@@ -226,7 +226,7 @@ export default function Dashboard() {
                             24
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-green-600">
+                            <span className="text-xs font-medium text-gray-600">
                               +3 this week
                             </span>
                           </div>
@@ -275,7 +275,7 @@ export default function Dashboard() {
                             4.5/5
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-green-600">
+                            <span className="text-xs font-medium text-gray-600">
                               +0.3 improvement
                             </span>
                           </div>
@@ -324,7 +324,7 @@ export default function Dashboard() {
                             18
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-orange-600">
+                            <span className="text-xs font-medium text-gray-600">
                               5 from last week
                             </span>
                           </div>
@@ -376,7 +376,7 @@ export default function Dashboard() {
                             10
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-blue-600">
+                            <span className="text-xs font-medium text-gray-700">
                               +4 next week
                             </span>
                           </div>
@@ -425,7 +425,7 @@ export default function Dashboard() {
                             15
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-yellow-600">
+                            <span className="text-xs font-medium text-gray-600">
                               3 ending soon
                             </span>
                           </div>
@@ -474,7 +474,7 @@ export default function Dashboard() {
                             5
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-red-600">
+                            <span className="text-xs font-medium text-gray-600">
                               -3 next week
                             </span>
                           </div>
@@ -523,7 +523,7 @@ export default function Dashboard() {
                             142
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-emerald-600">
+                            <span className="text-xs font-medium text-gray-600">
                               +12 today
                             </span>
                           </div>
@@ -578,7 +578,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Total Employees</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">1,247</p>
-                          <span className="text-xs font-medium text-green-600">+30 this month</span>
+                          <span className="text-xs font-medium text-gray-600">+30 this month</span>
                           <p className="text-xs text-gray-600 mt-1">Active workspace size</p>
                         </div>
                       </CardContent>
@@ -597,7 +597,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Active Candidates</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">24</p>
-                          <span className="text-xs font-medium text-green-600">+3 this week</span>
+                          <span className="text-xs font-medium text-gray-600">+3 this week</span>
                           <p className="text-xs text-gray-600 mt-1">New hires and candidates</p>
                         </div>
                       </CardContent>
@@ -616,7 +616,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Average Performance</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">4.5/5</p>
-                          <span className="text-xs font-medium text-green-600">+0.3 improvement</span>
+                          <span className="text-xs font-medium text-gray-600">+0.3 improvement</span>
                           <p className="text-xs text-gray-600 mt-1">Overall team rating</p>
                         </div>
                       </CardContent>
@@ -635,7 +635,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Completed Tasks</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">142</p>
-                          <span className="text-xs font-medium text-emerald-600">+12 today</span>
+                          <span className="text-xs font-medium text-gray-600">+12 today</span>
                           <p className="text-xs text-gray-600 mt-1">Successfully completed</p>
                         </div>
                       </CardContent>
@@ -654,7 +654,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Pending Reviews</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">18</p>
-                          <span className="text-xs font-medium text-yellow-600">Requires attention</span>
+                          <span className="text-xs font-medium text-gray-600">Requires attention</span>
                           <p className="text-xs text-gray-600 mt-1">Awaiting approval</p>
                         </div>
                       </CardContent>
@@ -673,7 +673,7 @@ export default function Dashboard() {
                         <div>
                           <h3 className="text-xs font-medium text-gray-700 mb-1">Department Goals</h3>
                           <p className="text-xl font-bold text-gray-900 mb-1">85%</p>
-                          <span className="text-xs font-medium text-indigo-600">On track</span>
+                          <span className="text-xs font-medium text-gray-700">On track</span>
                           <p className="text-xs text-gray-600 mt-1">Quarterly targets</p>
                         </div>
                       </CardContent>
@@ -1694,7 +1694,7 @@ export default function Dashboard() {
                       <Button
                         variant="link"
                         onClick={() => navigate("/events")}
-                        className="text-blue-600 hover:text-blue-700 text-xs p-0"
+                        className="text-gray-700 hover:text-blue-700 text-xs p-0"
                       >
                         View all events →
                       </Button>
@@ -1878,7 +1878,7 @@ export default function Dashboard() {
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg
-                          className="w-3 h-3 text-blue-600"
+                          className="w-3 h-3 text-gray-700"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1913,7 +1913,7 @@ export default function Dashboard() {
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg
-                          className="w-3 h-3 text-green-600"
+                          className="w-3 h-3 text-gray-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1948,7 +1948,7 @@ export default function Dashboard() {
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg
-                          className="w-3 h-3 text-purple-600"
+                          className="w-3 h-3 text-gray-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1983,7 +1983,7 @@ export default function Dashboard() {
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg
-                          className="w-3 h-3 text-green-600"
+                          className="w-3 h-3 text-gray-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -2020,7 +2020,7 @@ export default function Dashboard() {
                   <Button
                     variant="link"
                     onClick={() => navigate("/activities")}
-                    className="text-blue-600 hover:text-blue-700 text-xs"
+                    className="text-gray-700 hover:text-blue-700 text-xs"
                   >
                     View All Activities →
                   </Button>
@@ -2325,7 +2325,7 @@ export default function Dashboard() {
                   <Button
                     variant="link"
                     onClick={() => navigate("/e-forum")}
-                    className="text-blue-600 hover:text-blue-700 text-xs p-0"
+                    className="text-gray-700 hover:text-blue-700 text-xs p-0"
                   >
                     Visit Forum →
                   </Button>
@@ -2368,7 +2368,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-blue-400'
-                  : 'text-gray-600 group-hover:text-blue-600'
+                  : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 Activity
               </span>
@@ -2401,7 +2401,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-emerald-400'
-                  : 'text-gray-600 group-hover:text-emerald-600'
+                  : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Chat
               </span>
@@ -2467,7 +2467,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-purple-400'
-                  : 'text-gray-600 group-hover:text-purple-600'
+                  : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Meetings
               </span>
@@ -2500,7 +2500,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-orange-400'
-                  : 'text-gray-600 group-hover:text-orange-600'
+                  : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Reminders
               </span>
@@ -2533,7 +2533,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-indigo-400'
-                  : 'text-gray-600 group-hover:text-indigo-600'
+                  : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 E-Forum
               </span>
@@ -2566,7 +2566,7 @@ export default function Dashboard() {
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-red-400'
-                  : 'text-gray-600 group-hover:text-red-600'
+                  : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Store
               </span>
