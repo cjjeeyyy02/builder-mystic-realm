@@ -2367,7 +2367,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-blue-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 Activity
@@ -2400,7 +2400,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-emerald-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Chat
@@ -2433,8 +2433,8 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-amber-400'
-                  : 'text-gray-600 group-hover:text-amber-600'
+                  ? 'text-gray-300 group-hover:text-gray-400'
+                  : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Files
               </span>
@@ -2466,7 +2466,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-purple-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Meetings
@@ -2499,7 +2499,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-orange-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Reminders
@@ -2532,7 +2532,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-indigo-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 E-Forum
@@ -2565,7 +2565,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[10px] font-medium transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-red-400'
+                  ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Store
