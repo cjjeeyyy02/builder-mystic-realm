@@ -144,7 +144,7 @@ export default function Dashboard() {
                     {/* Total Employees */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-blue-900/20 to-blue-800/30 border border-blue-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -193,7 +193,7 @@ export default function Dashboard() {
                     {/* Active Candidates */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-green-900/20 to-green-800/30 border border-green-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -242,7 +242,7 @@ export default function Dashboard() {
                     {/* Average Performance */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-purple-900/20 to-purple-800/30 border border-purple-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -291,7 +291,7 @@ export default function Dashboard() {
                     {/* Pending Tasks */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-orange-900/20 to-orange-800/30 border border-orange-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -343,7 +343,7 @@ export default function Dashboard() {
                     {/* Pending Onboarding */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-gray-800/20 to-gray-700/30 border border-gray-600/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -392,7 +392,7 @@ export default function Dashboard() {
                     {/* On Probation */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-yellow-900/20 to-yellow-800/30 border border-yellow-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -441,7 +441,7 @@ export default function Dashboard() {
                     {/* Offboarding */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-red-900/20 to-red-800/30 border border-red-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
@@ -490,7 +490,7 @@ export default function Dashboard() {
                     {/* Completed Tasks */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-gradient-to-br from-emerald-900/20 to-emerald-800/30 border border-emerald-700/30'
+                        ? 'bg-gray-800/50 border border-gray-700'
                         : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
