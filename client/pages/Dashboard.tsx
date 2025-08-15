@@ -149,7 +149,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-blue-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -569,7 +569,7 @@ export default function Dashboard() {
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-blue-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -1301,7 +1301,7 @@ export default function Dashboard() {
                         }`}>Engineering</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-300' : 'text-gray-700'
                         }`}>Finance</span>
@@ -1756,7 +1756,7 @@ export default function Dashboard() {
                           {/* Event indicators */}
                           {day === 3 && (
                             <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
                             </div>
                           )}
                           {day === 6 && (
@@ -1776,7 +1776,7 @@ export default function Dashboard() {
                     {/* Event Details */}
                     <div className="space-y-2">
                       <div className="flex items-start gap-2 p-2 bg-blue-50 rounded-lg">
-                        <div className="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded">
+                        <div className="px-2 py-1 bg-gray-700 text-white text-xs font-medium rounded">
                           Summit
                         </div>
                         <div className="flex-1 min-w-0">
@@ -2067,7 +2067,7 @@ export default function Dashboard() {
                   {/* Forum Post 1 */}
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
                           SJ
                         </span>
@@ -2152,7 +2152,7 @@ export default function Dashboard() {
                   {/* Forum Post 2 */}
                   <div className="bg-gray-50 rounded-lg p-2">
                     <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
                           SJ
                         </span>
