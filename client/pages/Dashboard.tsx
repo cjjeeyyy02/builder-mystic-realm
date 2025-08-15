@@ -121,7 +121,7 @@ export default function Dashboard() {
               >
                 Quick Action
               </Button>
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Button className="bg-gray-700 hover:bg-gray-800 text-white">
                 View Reports
               </Button>
             </div>
