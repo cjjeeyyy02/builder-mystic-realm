@@ -729,8 +729,8 @@ export default function Dashboard() {
               <Card
                 className={`cursor-pointer hover:shadow-md transition-all duration-300 ${
                   isDarkMode
-                    ? 'bg-gradient-to-br from-sky-900/20 to-blue-800/30 border border-sky-700/30'
-                    : 'bg-gradient-to-br from-sky-50 to-blue-100 border border-sky-200'
+                    ? 'bg-gray-800/50 border border-gray-700'
+                    : 'bg-white border border-gray-200'
                 }`}
                 onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
               >
@@ -1200,8 +1200,8 @@ export default function Dashboard() {
               {!isGrowthExpanded && (
                 <Card className={`transition-all duration-300 ${
                   isDarkMode
-                    ? 'bg-gradient-to-br from-slate-800/20 to-gray-700/30 border border-gray-600/30'
-                    : 'bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200'
+                    ? 'bg-gray-800/50 border border-gray-700'
+                    : 'bg-white border border-gray-200'
                 }`}>
                   <CardContent className="p-6">
                     <div className="mb-3">
@@ -1333,8 +1333,8 @@ export default function Dashboard() {
             {/* Company Events - Full Width */}
             <Card className={`transition-all duration-300 ${
               isDarkMode
-                ? 'bg-gradient-to-br from-indigo-900/20 to-blue-800/30 border border-indigo-700/30'
-                : 'bg-gradient-to-br from-indigo-50 to-blue-100 border border-indigo-200'
+                ? 'bg-gray-800/50 border border-gray-700'
+                : 'bg-white border border-gray-200'
             }`}>
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
