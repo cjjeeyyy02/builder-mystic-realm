@@ -1855,8 +1855,8 @@ export default function Dashboard() {
             {/* Recent Activities */}
             <Card className={`transition-all duration-300 ${
               isDarkMode
-                ? 'bg-gradient-to-br from-teal-900/20 to-cyan-800/30 border border-teal-700/30'
-                : 'bg-gradient-to-br from-teal-50 to-cyan-100 border border-teal-200'
+                ? 'bg-gray-800/50 border border-gray-700'
+                : 'bg-white border border-gray-200'
             }`}>
               <CardContent className="p-4">
                 <div className="mb-3">
@@ -2029,7 +2029,7 @@ export default function Dashboard() {
             </Card>
 
             {/* Latest E-Forum */}
-            <Card className="bg-gradient-to-br from-violet-50 to-purple-100 border border-violet-200">
+            <Card className="bg-white border border-gray-200">
               <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
