@@ -247,7 +247,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-purple-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -296,7 +296,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-orange-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -348,7 +348,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-gray-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -397,7 +397,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-yellow-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -446,7 +446,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-red-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -495,7 +495,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -607,7 +607,7 @@ export default function Dashboard() {
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-purple-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
@@ -626,7 +626,7 @@ export default function Dashboard() {
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -645,7 +645,7 @@ export default function Dashboard() {
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-yellow-500 rounded">
+                          <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -828,13 +828,13 @@ export default function Dashboard() {
                   {/* Legend */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
                       <span className={`text-xs transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
                       <span className={`text-xs transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>Exit</span>
@@ -865,11 +865,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "102px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "22px" }}
                               ></div>
                             </div>
@@ -883,11 +883,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "74px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
@@ -901,11 +901,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "42px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "36px" }}
                               ></div>
                             </div>
@@ -919,11 +919,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "84px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "32px" }}
                               ></div>
                             </div>
@@ -937,11 +937,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "76px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
@@ -955,11 +955,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "48px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "16px" }}
                               ></div>
                             </div>
@@ -973,11 +973,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "92px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "18px" }}
                               ></div>
                             </div>
@@ -991,11 +991,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "68px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "28px" }}
                               ></div>
                             </div>
@@ -1009,11 +1009,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "88px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "15px" }}
                               ></div>
                             </div>
@@ -1027,11 +1027,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "58px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "26px" }}
                               ></div>
                             </div>
@@ -1045,11 +1045,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "72px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "20px" }}
                               ></div>
                             </div>
@@ -1063,11 +1063,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-52">
                               <div
-                                className="w-4 bg-emerald-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "45px" }}
                               ></div>
                               <div
-                                className="w-4 bg-red-500 rounded-t"
+                                className="w-4 bg-gray-700 rounded-t"
                                 style={{ height: "12px" }}
                               ></div>
                             </div>
@@ -1085,11 +1085,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "48px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "16px" }}
                               ></div>
                             </div>
@@ -1103,11 +1103,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "76px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
@@ -1121,11 +1121,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "84px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "32px" }}
                               ></div>
                             </div>
@@ -1139,11 +1139,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "42px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "36px" }}
                               ></div>
                             </div>
@@ -1157,11 +1157,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "74px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "24px" }}
                               ></div>
                             </div>
@@ -1175,11 +1175,11 @@ export default function Dashboard() {
                           <div className="flex flex-col items-center gap-1">
                             <div className="flex items-end gap-0.5 h-32">
                               <div
-                                className="w-3 bg-emerald-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "102px" }}
                               ></div>
                               <div
-                                className="w-3 bg-red-500 rounded-t"
+                                className="w-3 bg-gray-700 rounded-t"
                                 style={{ height: "22px" }}
                               ></div>
                             </div>
@@ -1295,7 +1295,7 @@ export default function Dashboard() {
                     {/* Legend */}
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-300' : 'text-gray-700'
                         }`}>Engineering</span>
@@ -1307,13 +1307,13 @@ export default function Dashboard() {
                         }`}>Finance</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-300' : 'text-gray-700'
                         }`}>HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-300' : 'text-gray-700'
                         }`}>Sales</span>
@@ -1766,7 +1766,7 @@ export default function Dashboard() {
                           )}
                           {day === 12 && (
                             <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
                             </div>
                           )}
                         </div>
@@ -1822,7 +1822,7 @@ export default function Dashboard() {
                       </div>
 
                       <div className="flex items-start gap-2 p-2 bg-purple-50 rounded-lg">
-                        <div className="px-2 py-1 bg-purple-500 text-white text-xs font-medium rounded">
+                        <div className="px-2 py-1 bg-gray-700 text-white text-xs font-medium rounded">
                           Conference
                         </div>
                         <div className="flex-1 min-w-0">
