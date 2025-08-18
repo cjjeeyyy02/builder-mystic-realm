@@ -446,7 +446,7 @@ export default function Files() {
                     <h1 className="text-lg sm:text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
                     <button
                       onClick={() => setShowUploadForm(false)}
-                      className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+                      className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
                     >
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
