@@ -760,63 +760,7 @@ export default function Chat() {
                               </div>
                             </div>
 
-                            {/* Group Context Menu */}
-                            {showSidebarGroupMenu === group.id && (
-                              <div className={`absolute right-0 top-full mt-1 w-40 shadow-xl border rounded-lg z-50 transition-all duration-300 ${
-                                isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
-                              }`}>
-                                <div className="py-1">
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleGoPublic(group.id);
-                                      setShowSidebarGroupMenu(null);
-                                    }}
-                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
-                                    }`}
-                                  >
-                                    Go Public
-                                  </button>
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleEditGroup(group.id);
-                                      setShowSidebarGroupMenu(null);
-                                    }}
-                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
-                                    }`}
-                                  >
-                                    Edit Group
-                                  </button>
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleMuteGroup(group.id);
-                                      setShowSidebarGroupMenu(null);
-                                    }}
-                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
-                                    }`}
-                                  >
-                                    {groupMutedStatus[group.id] ? 'Unmute Group' : 'Mute Group'}
-                                  </button>
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleDeleteGroup(group.id);
-                                      setShowSidebarGroupMenu(null);
-                                    }}
-                                    className={`w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors ${
-                                      isDarkMode ? 'text-red-400 hover:bg-gray-700' : 'text-red-600 hover:bg-red-50'
-                                    }`}
-                                  >
-                                    Delete Group
-                                  </button>
-                                </div>
-                              </div>
-                            )}
+                            {/* Sidebar group context menu removed */}
                           </CardContent>
                         </Card>
                       ))}
