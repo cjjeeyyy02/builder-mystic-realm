@@ -238,7 +238,7 @@ export default function Chat() {
         id: groupForm.name.toLowerCase().replace(/\s+/g, ''),
         name: groupForm.name,
         type: groupForm.type,
-        members: 1, // Start with just the creator
+        members: 3, // Start with creator + sample members
         status: "team",
       };
 
@@ -247,6 +247,21 @@ export default function Chat() {
 
       // Update tabs count (assuming new group increases TEAMS count)
       tabs.find(tab => tab.id === "TEAMS")!.count += 1;
+
+      // Auto-select the new group and close modal after a brief delay
+      setTimeout(() => {
+        setSelectedChat(newGroup.id);
+        setActiveTab("TEAMS");
+        setShowCreateGroupModal(false);
+        setGroupSaved(false);
+        // Reset form
+        setGroupForm({
+          name: "",
+          type: "Private",
+          username: "",
+          access: "Only Admin"
+        });
+      }, 1000); // 1 second delay to show the "GROUP SAVED" state
     }
   };
 
