@@ -767,7 +767,7 @@ export default function Files() {
                               </div>
                             </div>
 
-                            <div className="flex items-center justify-center space-x-1 pt-2 border-t border-gray-200 dark:border-gray-600">
+                            <div className="hidden">
 
                               <Button
                                 onClick={() => handlePreviewFile(file)}
