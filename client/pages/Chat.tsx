@@ -850,10 +850,10 @@ export default function Chat() {
                               <span className="sm:hidden">JOIN</span>
                             </Button>
                           </div>
-                          <p className={`text-[9px] transition-colors duration-300 ${
+                          <p className={`text-[8px] sm:text-[9px] transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-600'
                           }`}>
-                            {group.type} • {group.members} Members
+                            {group.type} • <span className="hidden sm:inline">{group.members} Members</span><span className="sm:hidden">{group.members}</span>
                           </p>
                         </div>
                       </div>
