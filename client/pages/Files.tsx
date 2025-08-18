@@ -699,10 +699,10 @@ export default function Files() {
                             <div className="flex-1 space-y-3 mb-3">
                               {/* FILE NAME */}
                               <div>
-                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                   FILE NAME
                                 </p>
-                                <h3 className={`text-xs font-medium truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                <h3 className={`text-sm font-medium break-words ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                   {file.name}
                                 </h3>
                               </div>
