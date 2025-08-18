@@ -33,6 +33,9 @@ export default function Chat() {
   const [groupMutedStatus, setGroupMutedStatus] = useState<{[key: string]: boolean}>({});
   const [showGoPublicModal, setShowGoPublicModal] = useState(false);
   const [selectedGroupForPublic, setSelectedGroupForPublic] = useState<string | null>(null);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [isVideoActive, setIsVideoActive] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const contactList = [
