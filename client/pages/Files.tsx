@@ -767,7 +767,7 @@ export default function Files() {
                               </div>
                             </div>
 
-                            <div className="hidden">
+                            <div style={{display: 'none'}}>
 
                               <Button
                                 onClick={() => handlePreviewFile(file)}
