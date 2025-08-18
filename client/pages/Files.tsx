@@ -794,7 +794,6 @@ export default function Files() {
                               </Button>
 
 
-                              {/* DELETE */}
                             </div>
                           </div>
                         </CardContent>
