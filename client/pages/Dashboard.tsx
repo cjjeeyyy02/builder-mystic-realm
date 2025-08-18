@@ -1672,12 +1672,16 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      <div className="flex items-start gap-2 p-2 bg-purple-50 rounded-lg">
+                      <div className={`flex items-start gap-2 p-2 rounded-lg transition-colors duration-300 ${
+                        isDarkMode ? 'bg-purple-900/30' : 'bg-purple-50'
+                      }`}>
                         <div className="px-2 py-1 bg-gray-700 text-white text-xs font-medium rounded">
                           Conference
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-sm font-semibold text-gray-900">Data Science Conference</h3>
+                          <h3 className={`text-sm font-semibold transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>Data Science Conference</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-600'
                           }`}>
