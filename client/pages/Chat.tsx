@@ -616,13 +616,14 @@ export default function Chat() {
               variant="outline"
               size="sm"
               onClick={handleCreateGroup}
-              className={`text-xs px-3 py-2 h-8 transition-colors duration-300 ${
+              className={`text-xs px-2 sm:px-3 py-1.5 sm:py-2 h-7 sm:h-8 transition-colors duration-300 ${
                 isDarkMode
                   ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
                   : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
               }`}
             >
-              CREATE GROUP ⬜
+              <span className="hidden sm:inline">CREATE GROUP</span>
+              <span className="sm:hidden">+</span>
             </Button>
           </div>
 
