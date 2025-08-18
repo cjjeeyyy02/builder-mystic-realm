@@ -236,7 +236,7 @@ export default function Files() {
   };
 
   const selectOptions = {
-    type: ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT", "PNG", "JPG", "ZIP"],
+    type: ["PDF", "PNG", "DOC", "JPEG", "XLS"],
     category: ["Documents", "Spreadsheets", "Presentations", "Images", "Archives", "Others"],
     department: ["HR", "Finance", "Marketing", "Engineering", "Design", "Product", "Sales", "Legal"],
     priority: ["VERY HIGH", "HIGH", "MEDIUM", "LOW", "VERY LOW"],
@@ -426,7 +426,7 @@ export default function Files() {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
-                      Create File
+                      Create | Upload File
                     </Button>
                   </div>
                 </div>
@@ -512,6 +512,7 @@ export default function Files() {
                         />
                         <input
                           type="file"
+                          accept=".pdf,.png,.doc,.jpeg,.jpg,.xls"
                           onChange={handleFileUpload}
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         />
