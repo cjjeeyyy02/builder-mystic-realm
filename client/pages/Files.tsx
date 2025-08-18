@@ -19,6 +19,8 @@ export default function Files() {
   const [filterCategory, setFilterCategory] = useState('all');
   const [sortBy, setSortBy] = useState('date');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showDateFilter, setShowDateFilter] = useState(false);
+  const [selectedDateFilter, setSelectedDateFilter] = useState('all');
   const [uploadedFiles, setUploadedFiles] = useState([
     {
       id: "F003",
@@ -354,16 +356,54 @@ export default function Files() {
                   </div>
 
                   <div className="flex space-x-2">
-                    <Button
-                      onClick={() => setShowUploadForm(!showUploadForm)}
-                      variant="outline"
-                      className="border-2"
-                    >
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                      Create
-                    </Button>
+                    {/* Date Filter Dropdown */}
+                    <div className="relative">
+                      <Button
+                        onClick={() => setShowDateFilter(!showDateFilter)}
+                        variant="outline"
+                        className="border-2"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        </svg>
+                        Filter
+                      </Button>
+
+                      {showDateFilter && (
+                        <div className={`absolute top-full left-0 mt-1 w-48 rounded-md shadow-lg z-50 transition-colors duration-300 ${
+                          isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
+                        }`}>
+                          <div className="py-1">
+                            {[
+                              { value: 'all', label: 'All Files' },
+                              { value: 'today', label: 'Today' },
+                              { value: 'yesterday', label: 'Yesterday' },
+                              { value: 'week', label: 'This Week' },
+                              { value: 'month', label: 'This Month' },
+                              { value: 'lastMonth', label: 'Last Month' },
+                              { value: 'custom', label: 'Custom Date' }
+                            ].map((option) => (
+                              <button
+                                key={option.value}
+                                onClick={() => {
+                                  setSelectedDateFilter(option.value);
+                                  setShowDateFilter(false);
+                                }}
+                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                                  selectedDateFilter === option.value
+                                    ? isDarkMode ? 'bg-gray-700 text-blue-400' : 'bg-blue-50 text-blue-600'
+                                    : isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                                }`}
+                              >
+                                {option.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Combined Create/Upload Button */}
                     <Button
                       onClick={() => setShowUploadForm(!showUploadForm)}
                       className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
@@ -371,7 +411,7 @@ export default function Files() {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
-                      Upload File
+                      Create File
                     </Button>
                   </div>
                 </div>
