@@ -810,14 +810,14 @@ export default function Meetings() {
               {/* Chair and Invite Fields */}
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Meeting Host
+                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    HOST
                   </label>
                   <input
                     type="text"
                     value={meetingForm.chair}
                     onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
@@ -826,14 +826,14 @@ export default function Meetings() {
                   />
                 </div>
                 <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Invite Participants
+                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    INVITE
                   </label>
                   <input
                     type="text"
                     value={meetingForm.invite}
                     onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
