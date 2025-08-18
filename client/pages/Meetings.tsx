@@ -305,6 +305,194 @@ export default function Meetings() {
           )}
         </div>
       </Layout>
+
+      {/* Create Meeting Modal */}
+      {showCreateMeetingModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          }`}>
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold text-yellow-300">CREATE YOUR MEETING HERE</h2>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={handleCloseModal}
+                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                >
+                  <span className="text-white text-sm">↻</span>
+                </button>
+                <button
+                  onClick={handleCloseModal}
+                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                >
+                  <span className="text-white text-sm">×</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className={`p-6 space-y-4 transition-colors duration-300 ${
+              isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+            }`}>
+              {/* Title Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  TITLE:
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.title}
+                  onChange={(e) => handleMeetingFormChange('title', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
+              </div>
+
+              {/* Info Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  INFO:
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.info}
+                  onChange={(e) => handleMeetingFormChange('info', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
+              </div>
+
+              {/* Date Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  DATE:
+                </label>
+                <input
+                  type="date"
+                  value={meetingForm.date}
+                  onChange={(e) => handleMeetingFormChange('date', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                />
+              </div>
+
+              {/* Time Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  TIME:
+                </label>
+                <div className="flex-1 flex items-center space-x-2">
+                  <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>FROM</span>
+                  <input
+                    type="time"
+                    value={meetingForm.timeFrom}
+                    onChange={(e) => handleMeetingFormChange('timeFrom', e.target.value)}
+                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  />
+                  <select
+                    value={meetingForm.timeFromPeriod}
+                    onChange={(e) => handleMeetingFormChange('timeFromPeriod', e.target.value)}
+                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                  <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>TO</span>
+                  <input
+                    type="time"
+                    value={meetingForm.timeTo}
+                    onChange={(e) => handleMeetingFormChange('timeTo', e.target.value)}
+                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  />
+                  <select
+                    value={meetingForm.timeToPeriod}
+                    onChange={(e) => handleMeetingFormChange('timeToPeriod', e.target.value)}
+                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Chair Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  CHAIR:
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.chair}
+                  onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
+              </div>
+
+              {/* Invite Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  INVITE:
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.invite}
+                  onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center pt-4">
+                <Button
+                  onClick={handleScheduleMeetingSubmit}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                >
+                  SCHEDULE MEETING
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <FooterNavigation />
     </>
   );
