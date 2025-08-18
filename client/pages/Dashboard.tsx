@@ -2059,7 +2059,9 @@ export default function Dashboard() {
                             HR ��� 2h ago
                           </span>
                         </div>
-                        <p className="text-xs text-gray-800 mb-1 leading-relaxed">
+                        <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
+                        }`}>
                           Q2 Performance Updates: Team performance metrics and
                           development goals discussion.
                         </p>
