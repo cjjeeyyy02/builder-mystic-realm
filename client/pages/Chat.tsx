@@ -775,10 +775,16 @@ export default function Chat() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <h4 className={`text-[10px] font-semibold truncate transition-colors duration-300 ${
+                            <h4 className={`text-[10px] font-semibold truncate transition-colors duration-300 flex items-center ${
                               isDarkMode ? 'text-white' : 'text-gray-900'
                             }`}>
                               {group.name}
+                              {groupMutedStatus[group.id] && (
+                                <svg className="w-3 h-3 ml-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                </svg>
+                              )}
                             </h4>
                             <Button
                               variant="outline"
