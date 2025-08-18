@@ -80,7 +80,7 @@ export default function Chat() {
     },
   ];
 
-  const teamGroups = [
+  const [teamGroups, setTeamGroups] = useState([
     {
       id: "engineering",
       name: "Engineering Team",
@@ -102,7 +102,7 @@ export default function Chat() {
       members: 26,
       status: "team",
     },
-  ];
+  ]);
 
   const tabs = [
     { id: "ALL", label: "ALL", count: 8 },
