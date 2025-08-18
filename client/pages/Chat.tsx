@@ -192,13 +192,13 @@ export default function Chat() {
       <Layout>
         <div
           ref={scrollContainerRef}
-          className={`min-h-screen overflow-y-auto transition-colors duration-300 ${
+          className={`fixed inset-0 lg:left-[260px] top-16 overflow-hidden transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
           }`}
         >
           {/* Main Chat Layout */}
           <div
-            className={`flex transition-all duration-300 ${footerCollapsed ? "h-[calc(100vh-60px)]" : "h-[calc(100vh-105px)]"}`}
+            className={`flex h-full transition-all duration-300`}
           >
             {/* Left Sidebar - Chat List */}
             <div className={`w-64 flex flex-col border-r transition-colors duration-300 ${
