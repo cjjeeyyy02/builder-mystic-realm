@@ -32,18 +32,19 @@ export default function Reminders() {
   const [reminders, setReminders] = useState([
     {
       id: "R001",
-      title: "Team Meeting Preparation",
-      details: "Prepare quarterly review materials",
-      date: "2025-08-18",
-      type: "Meeting",
-      category: "Work",
-      department: "Engineering",
-      priority: "High",
+      title: "Stick to the Brand Guidelines",
+      details: "Ensure all marketing, visuals, and messaging align with the company's tone, style, and values.",
+      date: "08-15-2025",
+      type: "Task",
+      category: "Marketing",
+      department: "Marketing",
+      priority: "HIGH PRIORITY",
       status: "today",
-      completed: false
+      completed: false,
+      privacy: "PRIVATE"
     },
     {
-      id: "R002", 
+      id: "R002",
       title: "Submit Budget Report",
       details: "Q3 financial analysis due",
       date: "2025-08-17",
