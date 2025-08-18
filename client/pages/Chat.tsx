@@ -741,9 +741,9 @@ export default function Chat() {
                     <div className="flex items-center space-x-2">
                       <div className="relative">
                         <div
-                          className={`w-6 h-6 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center`}
+                          className={`w-5 h-5 sm:w-6 sm:h-6 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center`}
                         >
-                          <span className="text-white text-[9px] font-semibold">
+                          <span className="text-white text-[8px] sm:text-[9px] font-semibold">
                             {contact.avatar}
                           </span>
                         </div>
