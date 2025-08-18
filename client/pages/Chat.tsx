@@ -1021,18 +1021,18 @@ export default function Chat() {
                   </div>
 
                   {/* Messages Area */}
-                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-2 sm:space-y-4">
                     {(chatMessages[selectedChat as keyof typeof chatMessages] || []).map((msg) => (
                       <div key={msg.id} className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        <div className={`max-w-[75%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg ${
                           msg.isOwn
                             ? 'bg-blue-500 text-white'
                             : isDarkMode
                               ? 'bg-gray-700 text-gray-200'
                               : 'bg-gray-100 text-gray-900'
                         }`}>
-                          <p className="text-sm">{msg.message}</p>
-                          <p className={`text-xs mt-1 ${
+                          <p className="text-xs sm:text-sm">{msg.message}</p>
+                          <p className={`text-[10px] sm:text-xs mt-1 ${
                             msg.isOwn
                               ? 'text-blue-100'
                               : isDarkMode
