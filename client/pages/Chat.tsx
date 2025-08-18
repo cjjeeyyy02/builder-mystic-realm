@@ -9,7 +9,17 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 export default function Chat() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
-  const { sidebarCollapsed } = useSidebar();
+
+  // Safely get sidebar state with fallback
+  let sidebarCollapsed = false;
+  try {
+    const sidebarContext = useSidebar();
+    sidebarCollapsed = sidebarContext.sidebarCollapsed;
+  } catch (error) {
+    // Fallback to default state if context is not available
+    console.warn('Sidebar context not available, using default state');
+  }
+
   const [selectedChat, setSelectedChat] = useState("");
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("ALL");
