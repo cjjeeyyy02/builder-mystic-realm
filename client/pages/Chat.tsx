@@ -870,7 +870,7 @@ export default function Chat() {
               {selectedChat ? (
                 <>
                   {/* Chat Header */}
-                  <div className={`flex items-center justify-between px-4 py-3 border-b transition-colors duration-300 ${
+                  <div className={`flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 border-b transition-colors duration-300 ${
                     isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
                   }`}>
                     <div className="flex items-center space-x-3">
