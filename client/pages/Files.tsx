@@ -30,6 +30,7 @@ export default function Files() {
       department: "Design",
       priority: "HIGH",
       status: "active",
+      visibility: "Private",
       thumbnail: "🎨",
       lastModified: "2 hours ago",
       sharedWith: ["Design Team", "Product Team"]
