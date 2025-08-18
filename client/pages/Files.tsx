@@ -168,6 +168,7 @@ export default function Files() {
       department: formData.department || "General",
       priority: formData.priority || "MEDIUM",
       status: "active",
+      visibility: "Private",
       thumbnail: getFileIcon(formData.type),
       lastModified: "Just now",
       sharedWith: formData.share ? [formData.share] : ["Private"]
