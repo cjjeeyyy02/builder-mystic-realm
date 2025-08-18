@@ -227,6 +227,7 @@ export default function Files() {
               <div className="flex items-center space-x-2">
                 <Button
                   variant="outline"
+                  onClick={() => setShowUploadForm(!showUploadForm)}
                   className={`text-sm px-3 py-2 transition-colors duration-300 ${
                     isDarkMode
                       ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
