@@ -1926,7 +1926,9 @@ export default function Dashboard() {
 
                 <div className="space-y-2">
                   {/* Forum Post 1 */}
-                  <div className="bg-gray-50 rounded-lg p-2">
+                  <div className={`rounded-lg p-2 transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+                  }`}>
                     <div className="flex items-start gap-2">
                       <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
