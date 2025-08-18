@@ -1882,7 +1882,11 @@ export default function Dashboard() {
             </Card>
 
             {/* Latest E-Forum */}
-            <Card className="bg-white border border-gray-200">
+            <Card className={`transition-all duration-300 ${
+              isDarkMode
+                ? 'bg-gray-800/50 border border-gray-700'
+                : 'bg-white border border-gray-200'
+            }`}>
               <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
