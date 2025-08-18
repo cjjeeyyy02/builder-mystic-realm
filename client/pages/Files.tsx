@@ -678,6 +678,35 @@ export default function Files() {
                                   </p>
                                 </div>
                               </div>
+
+                              {/* Badges Section */}
+                              <div className="space-y-1 pt-2">
+                                {/* DEPARTMENT BADGE */}
+                                <div>
+                                  <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
+                                    file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
+                                    file.department === 'Finance' ? 'bg-green-100 text-green-800' :
+                                    file.department === 'Marketing' ? 'bg-blue-100 text-blue-800' :
+                                    file.department === 'Engineering' ? 'bg-orange-100 text-orange-800' :
+                                    file.department === 'HR' ? 'bg-pink-100 text-pink-800' :
+                                    isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                                  }`}>
+                                    {file.department}
+                                  </span>
+                                </div>
+
+                                {/* FILE CATEGORY & PRIORITY BADGES */}
+                                <div className="flex items-center gap-1 flex-wrap">
+                                  <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
+                                    file.category === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                  }`}>
+                                    {file.category === 'Public' ? 'PUBLIC' : 'PRIVATE'}
+                                  </span>
+                                  <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}>
+                                    {file.priority}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
 
                             {/* Bottom Section - Action Icons */}
