@@ -626,16 +626,16 @@ export default function Files() {
                   /* Grid View */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sortedFiles.map((file) => (
-                      <Card key={file.id} className={`min-h-[320px] hover:shadow-md transition-all duration-200 ${
+                      <Card key={file.id} className={`min-h-[240px] hover:shadow-md transition-all duration-200 ${
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                       }`}>
-                        <CardContent className="p-4 h-full">
+                        <CardContent className="p-3 h-full">
                           {/* Square Layout */}
                           <div className="flex flex-col h-full">
 
                             {/* Top Section - File Icon, Type and Actions */}
-                            <div className="flex items-start justify-between mb-3">
-                              <div className="flex items-center gap-2">
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="flex items-center gap-1">
                                 <div className="text-4xl">{file.thumbnail}</div>
                                 <span className={`text-sm px-3 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                                   {file.type}
@@ -696,7 +696,7 @@ export default function Files() {
                             </div>
 
                             {/* Middle Section - File Info */}
-                            <div className="flex-1 space-y-3 mb-3">
+                            <div className="flex-1 space-y-2 mb-2">
                               {/* FILE NAME */}
                               <div>
                                 <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -738,10 +738,10 @@ export default function Files() {
                               </div>
 
                               {/* Badges Section */}
-                              <div className="space-y-3 pt-3">
-                                {/* DEPARTMENT BADGE */}
-                                <div className="flex justify-start">
-                                  <span className={`inline-block text-sm px-3 py-1 rounded-full font-medium ${
+                              {/* All Badges in One Row */}
+                              <div className="pt-2">
+                                <div className="flex items-center gap-1 flex-wrap justify-start">
+                                  <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
                                     file.department === 'Finance' ? 'bg-green-100 text-green-800' :
                                     file.department === 'Marketing' ? 'bg-blue-100 text-blue-800' :
@@ -751,11 +751,7 @@ export default function Files() {
                                   }`}>
                                     {file.department}
                                   </span>
-                                </div>
-
-                                {/* FILE CATEGORY & PRIORITY BADGES */}
-                                <div className="flex items-center gap-1 flex-wrap justify-start">
-                                  <span className={`inline-block text-sm px-3 py-1 rounded-full font-medium ${
+                                  <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.visibility === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                                   }`}>
                                     {file.visibility === 'Public' ? 'PUBLIC' : 'PRIVATE'}
