@@ -34,6 +34,7 @@ const navigationItems: NavItem[] = [
 export default function FooterNavigation({ collapsed = false }: FooterNavigationProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { sidebarCollapsed } = useSidebar();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
@@ -50,13 +51,16 @@ export default function FooterNavigation({ collapsed = false }: FooterNavigation
     navigate(path);
   };
 
+  // Hide footer when sidebar is collapsed OR when explicitly collapsed
+  const shouldHide = sidebarCollapsed || collapsed;
+
   return (
     <footer
       className={`
         fixed bottom-0 right-0 bg-white/99 backdrop-blur-xl border-t border-gray-100/80 z-40
         transition-all duration-300 shadow-sm
-        ${isLargeScreen ? 'left-[260px]' : 'left-0'}
-        ${collapsed ? 'transform translate-y-full opacity-0 pointer-events-none' : 'transform translate-y-0 opacity-100'}
+        ${isLargeScreen ? (sidebarCollapsed ? 'left-[80px]' : 'left-[260px]') : 'left-0'}
+        ${shouldHide ? 'transform translate-y-full opacity-0 pointer-events-none' : 'transform translate-y-0 opacity-100'}
       `}
       style={{
         boxShadow: collapsed ? 'none' : '0 -1px 2px rgba(0, 0, 0, 0.02), 0 -1px 1px rgba(0, 0, 0, 0.03)',
