@@ -754,14 +754,14 @@ export default function Meetings() {
 
               {/* Date Field */}
               <div>
-                <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  Meeting Date
+                <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  DATE
                 </label>
                 <input
                   type="date"
                   value={meetingForm.date}
                   onChange={(e) => handleMeetingFormChange('date', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
                     isDarkMode
                       ? 'bg-gray-700 border-gray-600 text-gray-200'
                       : 'bg-white border-gray-300 text-gray-900'
@@ -770,10 +770,10 @@ export default function Meetings() {
               </div>
 
               {/* Time Fields */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Start Time
+                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    START
                   </label>
                   <div className="flex space-x-2">
                     <input
