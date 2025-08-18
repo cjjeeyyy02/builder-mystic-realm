@@ -632,7 +632,9 @@ export default function Chat() {
             className={`flex flex-1 transition-all duration-300`}
           >
             {/* Left Sidebar - Chat List */}
-            <div className={`w-64 flex flex-col border-r transition-colors duration-300 ${
+            <div className={`${
+              showMobileSidebar ? 'fixed inset-y-0 left-0 z-40' : 'hidden'
+            } md:relative md:flex w-64 sm:w-72 md:w-64 lg:w-72 flex-col border-r transition-all duration-300 ${
               isDarkMode
                 ? 'bg-gray-800 border-gray-700'
                 : 'bg-white border-gray-200'
