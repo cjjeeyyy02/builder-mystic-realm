@@ -526,8 +526,9 @@ export default function Chat() {
                             <Button
                               variant="outline"
                               size="sm"
+                              onClick={() => handleEnterGroup(group.id)}
                               className={`text-[8px] px-1.5 py-0.5 h-5 transition-colors duration-300 ${
-                                isDarkMode 
+                                isDarkMode
                                   ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
                                   : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                               }`}
