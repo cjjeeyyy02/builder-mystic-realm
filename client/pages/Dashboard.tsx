@@ -1737,14 +1737,20 @@ export default function Dashboard() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-900 mb-0.5">
+                        <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           New Candidate John Doe joined the HR Department
                         </p>
                         <div className="flex items-center gap-1.5">
-                          <span className="inline-flex items-center rounded-md bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700">
+                          <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-medium transition-colors duration-300 ${
+                            isDarkMode ? 'bg-blue-900/30 text-blue-300' : 'bg-blue-50 text-blue-700'
+                          }`}>
                             Onboarding
                           </span>
-                          <span className="text-xs text-gray-500">HR</span>
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>HR</span>
                         </div>
                       </div>
                     </div>
