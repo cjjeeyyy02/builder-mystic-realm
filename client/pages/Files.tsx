@@ -629,99 +629,57 @@ export default function Files() {
                           {/* Horizontal Layout */}
                           <div className="flex items-center gap-4">
 
-                            {/* Left Section – Metadata Display */}
-                            <div className="flex-1 space-y-3">
-                              {/* File Icon */}
-                              <div className="text-3xl mb-3">{file.thumbnail}</div>
+                            {/* File Icon */}
+                            <div className="text-2xl flex-shrink-0">{file.thumbnail}</div>
 
-                              {/* FILE ID */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE ID
-                                </p>
-                                <p className={`text-sm font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                  {file.id}
-                                </p>
-                              </div>
+                            {/* FILE ID */}
+                            <div className="min-w-[80px]">
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE ID
+                              </p>
+                              <p className={`text-xs font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {file.id}
+                              </p>
+                            </div>
 
-                              {/* FILE NAME */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE NAME
-                                </p>
-                                <h3 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                                  {file.name}
-                                </h3>
-                              </div>
+                            {/* FILE NAME */}
+                            <div className="flex-1 min-w-[120px]">
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE NAME
+                              </p>
+                              <h3 className={`text-xs font-medium truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                {file.name}
+                              </h3>
+                            </div>
 
-                              {/* FILE DATE */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE DATE
-                                </p>
-                                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                  {file.date}
-                                </p>
-                              </div>
+                            {/* FILE DATE */}
+                            <div className="min-w-[80px]">
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE DATE
+                              </p>
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {file.date}
+                              </p>
+                            </div>
 
-                              {/* FILE SIZE */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE SIZE
-                                </p>
-                                <p className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                  {file.size}
-                                </p>
-                              </div>
+                            {/* FILE SIZE */}
+                            <div className="min-w-[60px]">
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE SIZE
+                              </p>
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {file.size}
+                              </p>
+                            </div>
 
-                              {/* FILE TYPE */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE TYPE
-                                </p>
-                                <span className={`inline-block text-xs px-2 py-1 rounded font-medium ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
-                                  {file.type}
-                                </span>
-                              </div>
-
-                              {/* DEPARTMENT BADGE */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  DEPARTMENT BADGE
-                                </p>
-                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium ${
-                                  file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
-                                  file.department === 'Finance' ? 'bg-green-100 text-green-800' :
-                                  file.department === 'Marketing' ? 'bg-blue-100 text-blue-800' :
-                                  file.department === 'Engineering' ? 'bg-orange-100 text-orange-800' :
-                                  file.department === 'HR' ? 'bg-pink-100 text-pink-800' :
-                                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
-                                }`}>
-                                  {file.department}
-                                </span>
-                              </div>
-
-                              {/* FILE CATEGORY */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE CATEGORY
-                                </p>
-                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium ${
-                                  file.type === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                                }`}>
-                                  {file.type === 'Public' ? 'PUBLIC' : 'PRIVATE'}
-                                </span>
-                              </div>
-
-                              {/* PRIORITY BADGE */}
-                              <div>
-                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  PRIORITY BADGE
-                                </p>
-                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}>
-                                  {file.priority}
-                                </span>
-                              </div>
+                            {/* FILE TYPE */}
+                            <div className="min-w-[60px]">
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE TYPE
+                              </p>
+                              <span className={`inline-block text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                {file.type}
+                              </span>
                             </div>
 
                             {/* Right Section – Action Controls */}
