@@ -355,25 +355,52 @@ export default function Chat() {
       if (!chatMessages[groupId as keyof typeof chatMessages]) {
         // Add welcome message for the group
         const welcomeMessage = {
-          id: 1,
+          id: Date.now(),
           sender: "system",
           message: `Welcome to ${group.name}! You have joined this ${group.type.toLowerCase()} group with ${group.members} members.`,
           time: "Just now",
           isOwn: false,
         };
 
-        // You could add this to a state or extend the chatMessages object
-        console.log("Initializing group chat with welcome message:", welcomeMessage);
+        // Add the new group chat to the messages state
+        setChatMessages(prev => ({
+          ...prev,
+          [groupId]: [welcomeMessage]
+        }));
+
+        console.log("Initialized group chat with welcome message");
       }
 
-      // Mark group as active/entered
+      // Mark group as active/entered - you could add visual indicators here
       console.log(`Successfully entered ${group.name} group chat`);
 
-      // You can add more functionality here like:
-      // - Loading chat history
-      // - Marking group as recently accessed
-      // - Sending join notification to other members
-      // - Loading group settings/permissions
+      // Additional functionality when entering a group:
+      // - Scroll to bottom of messages
+      setTimeout(() => {
+        const messagesContainer = document.querySelector('.overflow-y-auto.p-4.space-y-4');
+        if (messagesContainer) {
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }, 100);
+
+      // - Show notification that user joined (could be added to group chat)
+      if (chatMessages[groupId as keyof typeof chatMessages]?.length > 0) {
+        const joinMessage = {
+          id: Date.now() + 1,
+          sender: "system",
+          message: `${currentUser.name} has joined the group`,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isOwn: false,
+        };
+
+        // Add join notification to existing group chat
+        setTimeout(() => {
+          setChatMessages(prev => ({
+            ...prev,
+            [groupId]: [...(prev[groupId as keyof typeof prev] || []), joinMessage]
+          }));
+        }, 500);
+      }
     }
   };
 
