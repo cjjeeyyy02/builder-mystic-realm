@@ -821,12 +821,12 @@ export default function Chat() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <h4 className={`text-[10px] font-semibold truncate transition-colors duration-300 flex items-center ${
+                            <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 flex items-center ${
                               isDarkMode ? 'text-white' : 'text-gray-900'
                             }`}>
                               {group.name}
                               {groupMutedStatus[group.id] && (
-                                <svg className="w-3 h-3 ml-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                                 </svg>
@@ -835,14 +835,19 @@ export default function Chat() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => handleEnterGroup(group.id)}
-                              className={`text-[8px] px-1.5 py-0.5 h-5 transition-colors duration-300 ${
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEnterGroup(group.id);
+                                setShowMobileSidebar(false);
+                              }}
+                              className={`text-[7px] sm:text-[8px] px-1 sm:px-1.5 py-0.5 h-4 sm:h-5 transition-colors duration-300 ${
                                 isDarkMode
                                   ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
                                   : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                               }`}
                             >
-                              ENTER GROUP
+                              <span className="hidden sm:inline">ENTER GROUP</span>
+                              <span className="sm:hidden">JOIN</span>
                             </Button>
                           </div>
                           <p className={`text-[9px] transition-colors duration-300 ${
