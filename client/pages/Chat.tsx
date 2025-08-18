@@ -288,6 +288,7 @@ export default function Chat() {
             <Button
               variant="outline"
               size="sm"
+              onClick={handleCreateGroup}
               className={`text-xs px-3 py-2 h-8 transition-colors duration-300 ${
                 isDarkMode
                   ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
