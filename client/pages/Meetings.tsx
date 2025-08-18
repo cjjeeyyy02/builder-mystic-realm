@@ -214,9 +214,9 @@ export default function Meetings() {
   return (
     <>
       <Layout>
-        <div className={`min-h-screen p-4 sm:p-6 overflow-y-auto pb-footer transition-colors duration-300 ${
+        <div className={`min-h-screen transition-colors duration-300 ${
           isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
-        }`}>
+        } ${meetingInProgress ? 'p-0' : 'p-4 sm:p-6 overflow-y-auto pb-footer'}`}>
           {/* Header */}
           <div className="mb-8 text-center">
             <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
