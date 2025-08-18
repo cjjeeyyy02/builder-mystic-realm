@@ -214,11 +214,33 @@ export default function Chat() {
   }, [showGroupMenu]);
 
   const handleSendMessage = () => {
-    if (message.trim()) {
+    if (message.trim() && selectedChat) {
+      const newMessage = {
+        id: Date.now(),
+        sender: "me",
+        message: message.trim(),
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: true,
+      };
+
+      // Add message to the selected chat
+      setChatMessages(prev => ({
+        ...prev,
+        [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), newMessage]
+      }));
+
       console.log("Sending message:", message);
       setMessage("");
       setIsTyping(false);
       setFooterCollapsed(false);
+
+      // Auto-scroll to bottom
+      setTimeout(() => {
+        const messagesContainer = document.querySelector('.overflow-y-auto.p-4.space-y-4');
+        if (messagesContainer) {
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }, 100);
     }
   };
 
