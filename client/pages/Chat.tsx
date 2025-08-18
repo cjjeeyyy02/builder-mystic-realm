@@ -822,7 +822,7 @@ export default function Chat() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 flex items-center ${
+                            <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 flex items-center flex-1 ${
                               isDarkMode ? 'text-white' : 'text-gray-900'
                             }`}>
                               {group.name}
@@ -833,23 +833,104 @@ export default function Chat() {
                                 </svg>
                               )}
                             </h4>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleEnterGroup(group.id);
-                                setShowMobileSidebar(false);
-                              }}
-                              className={`text-[7px] sm:text-[8px] px-1 sm:px-1.5 py-0.5 h-4 sm:h-5 transition-colors duration-300 ${
-                                isDarkMode
-                                  ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                              }`}
-                            >
-                              <span className="hidden sm:inline">ENTER GROUP</span>
-                              <span className="sm:hidden">JOIN</span>
-                            </Button>
+                            <div className="flex items-center space-x-1 relative">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setShowSidebarGroupMenu(showSidebarGroupMenu === group.id ? null : group.id);
+                                }}
+                                className={`p-1 rounded transition-colors duration-300 ${
+                                  isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                }`}
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                </svg>
+                              </button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEnterGroup(group.id);
+                                  setShowMobileSidebar(false);
+                                }}
+                                className={`text-[7px] sm:text-[8px] px-1 sm:px-1.5 py-0.5 h-4 sm:h-5 transition-colors duration-300 ${
+                                  isDarkMode
+                                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                                }`}
+                              >
+                                <span className="hidden sm:inline">ENTER GROUP</span>
+                                <span className="sm:hidden">JOIN</span>
+                              </Button>
+
+                              {/* Sidebar Group Context Menu */}
+                              {showSidebarGroupMenu === group.id && (
+                                <div className={`absolute right-0 top-6 w-32 shadow-xl border-2 z-50 transition-all duration-300 ${
+                                  isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                                }`}>
+                                  <div className="py-1">
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleGoPublic(group.id);
+                                        setShowSidebarGroupMenu(null);
+                                      }}
+                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
+                                        isDarkMode
+                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                      }`}
+                                    >
+                                      Go Public
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleEditGroup(group.id);
+                                        setShowSidebarGroupMenu(null);
+                                      }}
+                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
+                                        isDarkMode
+                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                      }`}
+                                    >
+                                      Edit Group
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleMuteGroup(group.id);
+                                        setShowSidebarGroupMenu(null);
+                                      }}
+                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
+                                        isDarkMode
+                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                      }`}
+                                    >
+                                      {groupMutedStatus[group.id] ? 'Unmute Group' : 'Mute Group'}
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDeleteGroup(group.id);
+                                        setShowSidebarGroupMenu(null);
+                                      }}
+                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium transition-colors ${
+                                        isDarkMode
+                                          ? 'text-red-400 hover:bg-gray-700'
+                                          : 'text-red-600 hover:bg-gray-50'
+                                      }`}
+                                    >
+                                      Delete Group
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
                           </div>
                           <p className={`text-[8px] sm:text-[9px] transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-600'
