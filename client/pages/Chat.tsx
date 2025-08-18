@@ -17,6 +17,13 @@ export default function Chat() {
   const [isTyping, setIsTyping] = useState(false);
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
+  const [groupForm, setGroupForm] = useState({
+    name: "",
+    type: "Private",
+    username: "",
+    access: "Only Admin"
+  });
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const contactList = [
