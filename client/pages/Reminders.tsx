@@ -93,16 +93,17 @@ export default function Reminders() {
       details: reminderForm.details,
       date: reminderForm.date,
       type: reminderForm.type || "Task",
-      category: reminderForm.category || "General",
+      category: reminderForm.category || "MARKETING",
       department: reminderForm.department || "General",
-      priority: reminderForm.priority || "Medium",
+      priority: reminderForm.priority || "HIGH PRIORITY",
       status: "today",
-      completed: false
+      completed: false,
+      privacy: "PRIVATE"
     };
 
     setReminders(prev => [...prev, newReminder]);
     setShowCreateModal(false);
-    
+
     // Reset form
     setReminderForm({
       id: "",
