@@ -442,8 +442,8 @@ export default function Files() {
                 isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
               }`}>
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-                    <h1 className="text-xl font-bold">Upload New File</h1>
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-center px-4 sm:px-6 py-3 sm:py-4 rounded-t-lg relative flex-shrink-0">
+                    <h1 className="text-lg sm:text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
                     <button
                       onClick={() => setShowUploadForm(false)}
                       className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
