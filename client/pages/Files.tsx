@@ -624,19 +624,19 @@ export default function Files() {
                   </div>
 ) : (
                   /* Grid View */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sortedFiles.map((file) => (
-                      <Card key={file.id} className={`aspect-square hover:shadow-md transition-all duration-200 ${
+                      <Card key={file.id} className={`min-h-[320px] hover:shadow-md transition-all duration-200 ${
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                       }`}>
-                        <CardContent className="p-3 h-full">
+                        <CardContent className="p-4 h-full">
                           {/* Square Layout */}
                           <div className="flex flex-col h-full">
 
                             {/* Top Section - File Icon, Type and Actions */}
-                            <div className="flex items-start justify-between mb-2">
+                            <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-2">
-                                <div className="text-3xl">{file.thumbnail}</div>
+                                <div className="text-4xl">{file.thumbnail}</div>
                                 <span className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                                   {file.type}
                                 </span>
