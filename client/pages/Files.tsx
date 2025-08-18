@@ -718,20 +718,20 @@ export default function Files() {
                               </div>
 
                               {/* FILE SIZE & DATE */}
-                              <div className="grid grid-cols-2 gap-1">
+                              <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                  <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                     SIZE
                                   </p>
-                                  <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                     {file.size}
                                   </p>
                                 </div>
                                 <div>
-                                  <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                     DATE
                                   </p>
-                                  <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                     {file.date}
                                   </p>
                                 </div>
