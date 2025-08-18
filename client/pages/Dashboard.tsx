@@ -1754,7 +1754,9 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">
+                    <span className={`text-xs flex-shrink-0 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                    }`}>
                       10 mins ago
                     </span>
                   </div>
