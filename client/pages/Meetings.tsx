@@ -701,7 +701,7 @@ export default function Meetings() {
           }`}>
             {/* Modal Header */}
             <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-center px-4 py-3 rounded-t-lg relative flex-shrink-0">
-              <h2 className="text-lg font-bold text-yellow-300">CREATE NEW MEETING</h2>
+              <h2 className="text-lg font-bold text-yellow-300">CREATE YOUR MEETING HERE</h2>
               <button
                 onClick={handleCloseModal}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 w-7 h-7 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
@@ -718,38 +718,42 @@ export default function Meetings() {
             }`}>
               {/* Title Field */}
               <div>
-                <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  TITLE
-                </label>
-                <input
-                  type="text"
-                  value={meetingForm.title}
-                  onChange={(e) => handleMeetingFormChange('title', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter meeting title"
-                />
+                <div className="flex items-center gap-2">
+                  <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    TITLE:
+                  </label>
+                  <input
+                    type="text"
+                    value={meetingForm.title}
+                    onChange={(e) => handleMeetingFormChange('title', e.target.value)}
+                    className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Type here"
+                  />
+                </div>
               </div>
 
               {/* Info Field */}
               <div>
-                <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  DESCRIPTION
-                </label>
-                <textarea
-                  value={meetingForm.info}
-                  onChange={(e) => handleMeetingFormChange('info', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter description (optional)"
-                  rows={2}
-                />
+                <div className="flex items-start gap-2">
+                  <label className={`text-sm font-semibold w-16 pt-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    INFO:
+                  </label>
+                  <textarea
+                    value={meetingForm.info}
+                    onChange={(e) => handleMeetingFormChange('info', e.target.value)}
+                    className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Type here"
+                    rows={2}
+                  />
+                </div>
               </div>
 
               {/* Date Field */}
