@@ -804,9 +804,9 @@ export default function Chat() {
                       }`}
                     >
                       <div className="flex items-center space-x-2">
-                        <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded-full flex items-center justify-center">
                           <svg
-                            className="w-3 h-3 text-white"
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
