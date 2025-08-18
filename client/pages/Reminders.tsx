@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,462 +9,588 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 export default function Reminders() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
-  const [activeTab, setActiveTab] = useState("today");
-  const [footerCollapsed, setFooterCollapsed] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeFilter, setActiveFilter] = useState("today");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("date");
+  
+  // Reminder form state
+  const [reminderForm, setReminderForm] = useState({
+    id: "",
+    title: "",
+    details: "",
+    date: "",
+    type: "",
+    category: "",
+    department: "",
+    priority: "",
+    share: "",
+    repeat: ""
+  });
 
-  const upcomingReminders = [
+  // Sample reminders data
+  const [reminders, setReminders] = useState([
     {
-      id: 1,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "upcoming",
+      id: "R001",
+      title: "Team Meeting Preparation",
+      details: "Prepare quarterly review materials",
+      date: "2025-08-18",
+      type: "Meeting",
+      category: "Work",
+      department: "Engineering",
+      priority: "High",
+      status: "today",
+      completed: false
     },
     {
-      id: 2,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "upcoming",
-    },
-  ];
+      id: "R002", 
+      title: "Submit Budget Report",
+      details: "Q3 financial analysis due",
+      date: "2025-08-17",
+      type: "Task",
+      category: "Finance",
+      department: "Finance",
+      priority: "Critical",
+      status: "pending",
+      completed: false
+    }
+  ]);
 
-  const overdueReminders = [
-    {
-      id: 3,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "overdue",
-    },
-    {
-      id: 4,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "overdue",
-    },
-  ];
-
-  const completedReminders = [
-    {
-      id: 5,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "completed",
-    },
-    {
-      id: 6,
-      title: "Policy Update Review",
-      description: "Review and acknowledge the new remote work Policy",
-      date: "2025-05-26",
-      time: "10:00 AM",
-      audience: "All Employees",
-      category: "completed",
-    },
-  ];
-
+  // Auto-generate ID and date when modal opens
   useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollContainerRef.current) return;
+    if (showCreateModal) {
+      const generateId = () => {
+        const timestamp = Date.now().toString();
+        const random = Math.random().toString(36).substring(2, 4);
+        return `R${timestamp.slice(-3)}${random.toUpperCase()}`;
+      };
 
-      const currentScrollY = scrollContainerRef.current.scrollTop;
-      const isScrollingDown = currentScrollY > lastScrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
+      setReminderForm(prev => ({
+        ...prev,
+        id: generateId(),
+        date: new Date().toLocaleDateString('en-CA')
+      }));
+    }
+  }, [showCreateModal]);
 
-      if (currentScrollY > 50) {
-        setFooterCollapsed(isScrollingUp);
-      } else {
-        setFooterCollapsed(false);
-      }
+  const handleReminderFormChange = (field: string, value: string) => {
+    setReminderForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
-      setLastScrollY(currentScrollY);
+  const handleCreateReminder = () => {
+    if (!reminderForm.title || !reminderForm.details) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const newReminder = {
+      id: reminderForm.id,
+      title: reminderForm.title,
+      details: reminderForm.details,
+      date: reminderForm.date,
+      type: reminderForm.type || "Task",
+      category: reminderForm.category || "General",
+      department: reminderForm.department || "General",
+      priority: reminderForm.priority || "Medium",
+      status: "today",
+      completed: false
     };
 
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll, {
-        passive: true,
-      });
-      return () => scrollContainer.removeEventListener("scroll", handleScroll);
-    }
-  }, [lastScrollY]);
+    setReminders(prev => [...prev, newReminder]);
+    setShowCreateModal(false);
+    
+    // Reset form
+    setReminderForm({
+      id: "",
+      title: "",
+      details: "",
+      date: "",
+      type: "",
+      category: "",
+      department: "",
+      priority: "",
+      share: "",
+      repeat: ""
+    });
 
-  const handleJoin = (reminder: any) => {
-    console.log(`Joining reminder: ${reminder.title}`);
+    console.log("Reminder created:", newReminder);
   };
 
-  const handleSnooze = (reminder: any) => {
-    console.log(`Snoozing reminder: ${reminder.title}`);
+  const handleCloseModal = () => {
+    setShowCreateModal(false);
+    setReminderForm({
+      id: "",
+      title: "",
+      details: "",
+      date: "",
+      type: "",
+      category: "",
+      department: "",
+      priority: "",
+      share: "",
+      repeat: ""
+    });
   };
 
-  const handleAddNewReminder = () => {
-    console.log("Opening add new reminder dialog");
+  // Filter logic
+  const getFilteredReminders = () => {
+    return reminders.filter(reminder => {
+      const matchesSearch = reminder.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           reminder.details.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesFilter = activeFilter === "all" || reminder.status === activeFilter;
+      return matchesSearch && matchesFilter;
+    });
   };
 
-  const ReminderCard = ({
-    reminder,
-    showJoinButton = true,
-  }: {
-    reminder: any;
-    showJoinButton?: boolean;
-  }) => (
-    <Card className="bg-white/60 backdrop-blur-sm border border-gray-100 hover:shadow-md hover:scale-[1.02] transition-all duration-200 mb-3">
-      <CardContent className="p-3">
-        <div className="flex items-start space-x-3 mb-2">
-          <div className="w-7 h-7 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg
-              className="w-3 h-3 text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <div className="flex-1">
-            <h4 className="text-sm font-semibold text-gray-800 mb-1">
-              {reminder.title}
-            </h4>
-            <p className="text-xs text-gray-600 mb-2">{reminder.description}</p>
+  // Get counts for filters
+  const getCounts = () => {
+    return {
+      today: reminders.filter(r => r.status === "today").length,
+      pending: reminders.filter(r => r.status === "pending").length, 
+      upcoming: reminders.filter(r => r.status === "upcoming").length,
+      completed: reminders.filter(r => r.completed).length
+    };
+  };
 
-            <div className="space-y-1 mb-2">
-              <div className="flex items-center space-x-2 text-xs text-gray-500">
-                <svg
-                  className="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span>{reminder.date}</span>
-                <svg
-                  className="w-3 h-3 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span>{reminder.time}</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-gray-500">
-                <svg
-                  className="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span>{reminder.audience}</span>
-              </div>
-            </div>
+  const counts = getCounts();
 
-            <div className="flex items-center space-x-2">
-              {showJoinButton && (
-                <Button
-                  onClick={() => handleJoin(reminder)}
-                  size="sm"
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xs px-3 py-1 h-6 rounded-md shadow-sm"
-                >
-                  Join
-                </Button>
-              )}
-              <Button
-                onClick={() => handleSnooze(reminder)}
-                size="sm"
-                variant="outline"
-                className="text-xs px-3 py-1 h-6 border-gray-200 hover:bg-gray-50 rounded-md"
-              >
-                Snooze
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  const selectOptions = {
+    type: ["Task", "Meeting", "Event", "Deadline", "Follow-up", "Review"],
+    category: ["Work", "Personal", "Finance", "Health", "Education", "Travel"],
+    department: ["Engineering", "Finance", "Marketing", "HR", "Sales", "Design", "Product"],
+    priority: ["LOW", "MEDIUM", "HIGH", "CRITICAL", "URGENT"],
+    repeat: ["NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY", "CUSTOM"]
+  };
 
   return (
     <>
       <Layout>
-        <div
-          ref={scrollContainerRef}
-          className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 pb-footer overflow-y-auto"
-        >
-          {/* Header */}
-          <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100 px-6 py-4 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <h1 className="text-2xl font-bold text-gray-900">Reminders</h1>
+        <div className={`min-h-screen transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+        }`}>
+          {/* Header Section */}
+          <div className={`border-b px-4 py-4 transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+          }`}>
+            {/* Search Bar */}
+            <div className="mb-4">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search reminders..."
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
+              />
+            </div>
+
+            {/* Filter Bar */}
+            <div className="flex items-center space-x-2 flex-wrap">
+              <button
+                onClick={() => setActiveFilter("today")}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  activeFilter === "today"
+                    ? 'bg-yellow-500 text-white'
+                    : isDarkMode
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                TODAY {counts.today}
+              </button>
+              
+              <button
+                onClick={() => setActiveFilter("pending")}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  activeFilter === "pending"
+                    ? 'bg-red-500 text-white'
+                    : isDarkMode
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                PENDING {counts.pending}
+              </button>
+              
+              <button
+                onClick={() => setActiveFilter("upcoming")}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  activeFilter === "upcoming"
+                    ? 'bg-orange-500 text-white'
+                    : isDarkMode
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                UPCOMING {counts.upcoming}
+              </button>
+              
+              <button
+                onClick={() => setActiveFilter("completed")}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  activeFilter === "completed"
+                    ? 'bg-green-500 text-white'
+                    : isDarkMode
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                COMPLETED {counts.completed}
+              </button>
+
+              <select
+                value={activeFilter}
+                onChange={(e) => setActiveFilter(e.target.value)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-300'
+                    : 'bg-white border-gray-300 text-gray-700'
+                }`}
+              >
+                <option value="all">STATUS</option>
+                <option value="today">Today</option>
+                <option value="pending">Pending</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="completed">Completed</option>
+              </select>
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-300'
+                    : 'bg-white border-gray-300 text-gray-700'
+                }`}
+              >
+                <option value="date">DATE</option>
+                <option value="priority">Priority</option>
+                <option value="title">Title</option>
+                <option value="department">Department</option>
+              </select>
+
               <Button
-                onClick={handleAddNewReminder}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg shadow-sm"
+                onClick={() => setShowCreateModal(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-300"
               >
-                Add New Reminders
+                CREATE REMINDER
               </Button>
-            </div>
-
-            {/* Metrics Cards */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 p-3 rounded-lg border border-blue-200/50">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-blue-900">
-                      {upcomingReminders.length}
-                    </p>
-                    <p className="text-xs text-blue-700">Today's Reminders</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-red-50 to-red-100/50 p-3 rounded-lg border border-red-200/50">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-red-900">
-                      {overdueReminders.length}
-                    </p>
-                    <p className="text-xs text-red-700">Overdue Items</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-50 to-green-100/50 p-3 rounded-lg border border-green-200/50">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-green-900">
-                      {completedReminders.length}
-                    </p>
-                    <p className="text-xs text-green-700">Completed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tab Navigation */}
-            <div className="flex space-x-6 border-b border-gray-100">
-              <button
-                onClick={() => setActiveTab("today")}
-                className={`pb-3 text-sm font-medium border-b-2 transition-all duration-200 ${
-                  activeTab === "today"
-                    ? "border-blue-500 text-blue-600 bg-blue-50/50 px-3 rounded-t-lg"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 px-3 rounded-t-lg"
-                }`}
-              >
-                Today's Reminders
-              </button>
-              <button
-                onClick={() => setActiveTab("overdue")}
-                className={`pb-3 text-sm font-medium border-b-2 transition-all duration-200 ${
-                  activeTab === "overdue"
-                    ? "border-red-500 text-red-600 bg-red-50/50 px-3 rounded-t-lg"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 px-3 rounded-t-lg"
-                }`}
-              >
-                Overdue Items
-              </button>
-              <button
-                onClick={() => setActiveTab("completed")}
-                className={`pb-3 text-sm font-medium border-b-2 transition-all duration-200 ${
-                  activeTab === "completed"
-                    ? "border-green-500 text-green-600 bg-green-50/50 px-3 rounded-t-lg"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 px-3 rounded-t-lg"
-                }`}
-              >
-                Completed
-              </button>
             </div>
           </div>
 
           {/* Main Content */}
-          <div className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Upcoming Column */}
-              <div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/30 mb-4 shadow-sm">
-                  <div className="p-4 border-b border-blue-100/50 bg-gradient-to-r from-blue-50/50 to-blue-100/30 rounded-t-xl">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-blue-500 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-semibold text-blue-900">
-                        Upcoming
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    {upcomingReminders.map((reminder) => (
-                      <ReminderCard key={reminder.id} reminder={reminder} />
-                    ))}
-                  </div>
+          <div className="p-4">
+            {getFilteredReminders().length === 0 ? (
+              <div className="text-center py-12">
+                <div className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  No reminders found
                 </div>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {searchQuery ? 'Try adjusting your search' : 'Create your first reminder to get started'}
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {getFilteredReminders().map((reminder) => (
+                  <Card key={reminder.id} className={`transition-colors duration-300 hover:shadow-lg ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                  }`}>
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                          {reminder.title}
+                        </h3>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          reminder.priority === 'HIGH' || reminder.priority === 'CRITICAL' 
+                            ? 'bg-red-100 text-red-800' 
+                            : 'bg-blue-100 text-blue-800'
+                        }`}>
+                          {reminder.priority}
+                        </span>
+                      </div>
+                      
+                      <p className={`text-xs mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {reminder.details}
+                      </p>
+                      
+                      <div className="space-y-1 mb-3">
+                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <span className="font-medium">Date:</span> {reminder.date}
+                        </div>
+                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <span className="font-medium">Type:</span> {reminder.type}
+                        </div>
+                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <span className="font-medium">Department:</span> {reminder.department}
+                        </div>
+                      </div>
+                      
+                      <div className="flex space-x-2">
+                        <Button
+                          size="sm"
+                          className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 h-6"
+                        >
+                          Complete
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="text-xs px-3 py-1 h-6"
+                        >
+                          Edit
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </Layout>
+
+      {/* Create Reminder Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          }`}>
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold text-yellow-300">CREATE YOUR REMINDER HERE</h2>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={handleCloseModal}
+                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                >
+                  <span className="text-white text-sm">↻</span>
+                </button>
+                <button
+                  onClick={handleCloseModal}
+                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                >
+                  <span className="text-white text-sm">×</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className={`p-6 space-y-4 transition-colors duration-300 ${
+              isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+            }`}>
+              {/* ID Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  ID:
+                </label>
+                <input
+                  type="text"
+                  value={reminderForm.id}
+                  readOnly
+                  className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                  }`}
+                  placeholder="AUTO-GENERATED"
+                />
               </div>
 
-              {/* Overdue Column */}
-              <div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-red-200/30 mb-4 shadow-sm">
-                  <div className="p-4 border-b border-red-100/50 bg-gradient-to-r from-red-50/50 to-red-100/30 rounded-t-xl">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-semibold text-red-900">
-                        Overdue
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    {overdueReminders.map((reminder) => (
-                      <ReminderCard key={reminder.id} reminder={reminder} />
-                    ))}
-                  </div>
-                </div>
+              {/* Title Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  TITLE:
+                </label>
+                <input
+                  type="text"
+                  value={reminderForm.title}
+                  onChange={(e) => handleReminderFormChange('title', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
               </div>
 
-              {/* Completed Column */}
-              <div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/30 mb-4 shadow-sm">
-                  <div className="p-4 border-b border-green-100/50 bg-gradient-to-r from-green-50/50 to-green-100/30 rounded-t-xl">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-semibold text-green-900">
-                        Completed
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    {completedReminders.map((reminder) => (
-                      <ReminderCard
-                        key={reminder.id}
-                        reminder={reminder}
-                        showJoinButton={false}
-                      />
-                    ))}
-                  </div>
-                </div>
+              {/* Details Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  DETAILS:
+                </label>
+                <input
+                  type="text"
+                  value={reminderForm.details}
+                  onChange={(e) => handleReminderFormChange('details', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Type here"
+                />
+              </div>
+
+              {/* Date Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  DATE:
+                </label>
+                <input
+                  type="date"
+                  value={reminderForm.date}
+                  onChange={(e) => handleReminderFormChange('date', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                />
+              </div>
+
+              {/* Type Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  TYPE:
+                </label>
+                <select
+                  value={reminderForm.type}
+                  onChange={(e) => handleReminderFormChange('type', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">Type here</option>
+                  {selectOptions.type.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Category Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  CATEGORY:
+                </label>
+                <select
+                  value={reminderForm.category}
+                  onChange={(e) => handleReminderFormChange('category', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">Type here</option>
+                  {selectOptions.category.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Department Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  DEPARTMENT:
+                </label>
+                <select
+                  value={reminderForm.department}
+                  onChange={(e) => handleReminderFormChange('department', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">Type here</option>
+                  {selectOptions.department.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Priority Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  PRIORITY:
+                </label>
+                <select
+                  value={reminderForm.priority}
+                  onChange={(e) => handleReminderFormChange('priority', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
+                  {selectOptions.priority.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Share Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  SHARE:
+                </label>
+                <input
+                  type="text"
+                  value={reminderForm.share}
+                  onChange={(e) => handleReminderFormChange('share', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Individuals, Teams, Everyone"
+                />
+              </div>
+
+              {/* Repeat Field */}
+              <div className="flex items-center space-x-4">
+                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  REPEAT:
+                </label>
+                <select
+                  value={reminderForm.repeat}
+                  onChange={(e) => handleReminderFormChange('repeat', e.target.value)}
+                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">EVERY 3 MINUTES, EVERY 5 HOURS, EVERY 1 WEEK, EVERY 1 MONTH, EVERY 365 DAYS</option>
+                  {selectOptions.repeat.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center pt-4">
+                <Button
+                  onClick={handleCreateReminder}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                >
+                  CREATE REMINDER
+                </Button>
               </div>
             </div>
           </div>
         </div>
-      </Layout>
-      <FooterNavigation collapsed={footerCollapsed} />
+      )}
+
+      <FooterNavigation />
     </>
   );
 }
