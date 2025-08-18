@@ -1954,7 +1954,9 @@ export default function Dashboard() {
                           New Remote Policy Guidelines - HOT: Work-life balance
                           approach for transparent workplace.
                         </p>
-                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                        <div className={`flex items-center gap-3 text-xs transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                        }`}>
                           <div className="flex items-center gap-1">
                             <svg
                               className="w-2 h-2 text-red-500"
