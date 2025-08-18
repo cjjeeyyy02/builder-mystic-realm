@@ -624,6 +624,7 @@ export default function Chat() {
                   {teamGroups.map((group) => (
                     <div
                       key={group.id}
+                      onClick={() => handleEnterGroup(group.id)}
                       className={`p-2 border-b cursor-pointer transition-all ${
                         selectedChat === group.id
                           ? isDarkMode
