@@ -296,21 +296,11 @@ export default function Files() {
     const matchesSearch = file.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          file.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          file.department.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = filterCategory === 'all' || file.category.toLowerCase() === filterCategory.toLowerCase();
-    return matchesSearch && matchesCategory;
+    return matchesSearch;
   });
 
   const sortedFiles = [...filteredFiles].sort((a, b) => {
-    switch (sortBy) {
-      case 'name':
-        return a.name.localeCompare(b.name);
-      case 'size':
-        return parseFloat(b.size) - parseFloat(a.size);
-      case 'type':
-        return a.type.localeCompare(b.type);
-      default: // date
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-    }
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
 
   return (
@@ -333,39 +323,12 @@ export default function Files() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      File Manager
+                      Files
                     </h1>
-                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {uploadedFiles.length} files • {uploadedFiles.reduce((acc, file) => acc + parseFloat(file.size), 0).toFixed(1)} MB total
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant={viewMode === 'grid' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('grid')}
-                      className="text-sm"
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                      </svg>
-                      Grid
-                    </Button>
-                    <Button
-                      variant={viewMode === 'list' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('list')}
-                      className="text-sm"
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                      </svg>
-                      List
-                    </Button>
                   </div>
                 </div>
 
-                {/* Search and Filters */}
+                {/* Search and Actions */}
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                   <div className="flex-1">
                     <div className="relative">
@@ -376,7 +339,7 @@ export default function Files() {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search files by name, category, or department..."
+                        placeholder="Search files..."
                         className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
                           isDarkMode
                             ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
@@ -385,44 +348,24 @@ export default function Files() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="flex space-x-2">
-                    <select
-                      value={filterCategory}
-                      onChange={(e) => setFilterCategory(e.target.value)}
-                      className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
+                    <Button
+                      onClick={() => setShowUploadForm(!showUploadForm)}
+                      variant="outline"
+                      className="border-2"
                     >
-                      <option value="all">All Categories</option>
-                      {selectOptions.category.map(cat => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
-                    >
-                      <option value="date">Sort by Date</option>
-                      <option value="name">Sort by Name</option>
-                      <option value="size">Sort by Size</option>
-                      <option value="type">Sort by Type</option>
-                    </select>
-
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Create
+                    </Button>
                     <Button
                       onClick={() => setShowUploadForm(!showUploadForm)}
                       className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
                     >
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
                       Upload File
                     </Button>
@@ -666,16 +609,16 @@ export default function Files() {
                       </svg>
                     </div>
                     <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {searchQuery || filterCategory !== 'all' ? 'No files found' : 'No files uploaded yet'}
+                      {searchQuery ? 'No files found' : 'No files uploaded yet'}
                     </h3>
                     <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                      {searchQuery || filterCategory !== 'all' 
-                        ? 'Try adjusting your search or filters' 
+                      {searchQuery
+                        ? 'Try adjusting your search'
                         : 'Click "Upload File" to get started'
                       }
                     </p>
                   </div>
-                ) : viewMode === 'grid' ? (
+) : (
                   /* Grid View */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {sortedFiles.map((file) => (
@@ -768,118 +711,6 @@ export default function Files() {
                       </Card>
                     ))}
                   </div>
-                ) : (
-                  /* List View */
-                  <Card className={`transition-colors duration-300 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-                  }`}>
-                    <CardContent className="p-0">
-                      <div className="overflow-x-auto">
-                        <table className="w-full">
-                          <thead className={`border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                            <tr className={`${isDarkMode ? 'bg-gray-750' : 'bg-gray-50'}`}>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Name</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Type</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Size</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Department</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Modified</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Priority</th>
-                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {sortedFiles.map((file, index) => (
-                              <tr key={file.id} className={`border-b hover:bg-opacity-50 transition-colors ${
-                                isDarkMode 
-                                  ? 'border-gray-700 hover:bg-gray-700' 
-                                  : 'border-gray-100 hover:bg-gray-50'
-                              }`}>
-                                <td className="p-4">
-                                  <div className="flex items-center space-x-3">
-                                    <div className="text-2xl">{file.thumbnail}</div>
-                                    <div>
-                                      <h4 className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                                        {file.name}
-                                      </h4>
-                                      <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                        ID: {file.id}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-4">
-                                  <span className={`px-2 py-1 rounded text-sm ${
-                                    isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
-                                  }`}>
-                                    {file.type}
-                                  </span>
-                                </td>
-                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                  {file.size}
-                                </td>
-                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                  {file.department}
-                                </td>
-                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                  {file.lastModified}
-                                </td>
-                                <td className="p-4">
-                                  <span className={`px-2 py-1 rounded text-xs font-medium text-white ${getPriorityColor(file.priority)}`}>
-                                    {file.priority}
-                                  </span>
-                                </td>
-                                <td className="p-4">
-                                  <div className="flex items-center space-x-1">
-                                    <Button
-                                      onClick={() => handlePreviewFile(file)}
-                                      size="sm"
-                                      variant="ghost"
-                                      className="text-xs p-1"
-                                    >
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                      </svg>
-                                    </Button>
-                                    <Button
-                                      onClick={() => handleRenameFile(file.id)}
-                                      size="sm"
-                                      variant="ghost"
-                                      className="text-xs p-1"
-                                    >
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                      </svg>
-                                    </Button>
-                                    <Button
-                                      onClick={() => handleShareFile(file.id)}
-                                      size="sm"
-                                      variant="ghost"
-                                      className="text-xs p-1"
-                                    >
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                      </svg>
-                                    </Button>
-                                    <Button
-                                      onClick={() => handleDeleteFile(file.id)}
-                                      size="sm"
-                                      variant="ghost"
-                                      className="text-xs p-1 text-red-600 hover:text-red-700 hover:bg-red-50"
-                                    >
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                      </svg>
-                                    </Button>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </CardContent>
-                  </Card>
                 )}
               </div>
             )}
