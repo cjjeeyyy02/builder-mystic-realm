@@ -682,7 +682,7 @@ export default function Files() {
                               </span>
                             </div>
 
-                            {/* Right Section – Action Controls */}
+                            {/* Action Icons */}
                             <div className="flex flex-col justify-start space-y-2 min-w-[80px]">
                               <p className={`text-xs font-medium uppercase tracking-wide mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                 ACTIONS
