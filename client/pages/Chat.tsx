@@ -737,19 +737,7 @@ export default function Chat() {
                                     )}
                                   </h4>
                                   <div className="flex items-center space-x-1">
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setShowSidebarGroupMenu(showSidebarGroupMenu === group.id ? null : group.id);
-                                      }}
-                                      className={`p-1 rounded transition-colors duration-300 ${
-                                        isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                                      }`}
-                                    >
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                      </svg>
-                                    </button>
+                                    {/* Three dots removed from team groups cards */}
                                   </div>
                                 </div>
                                 <div className="flex items-center justify-between">
