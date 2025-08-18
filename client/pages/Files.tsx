@@ -45,6 +45,7 @@ export default function Files() {
       department: "Finance",
       priority: "CRITICAL",
       status: "active",
+      visibility: "Public",
       thumbnail: "📊",
       lastModified: "1 day ago",
       sharedWith: ["Finance Team", "Executive Team"]
