@@ -24,17 +24,16 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { sidebarCollapsed, toggleSidebar } = useSidebar();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <SidebarContext.Provider value={{ sidebarCollapsed, setSidebarCollapsed }}>
-      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-background'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-background'}`}>
       <Sidebar
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         isCollapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        onToggleCollapse={toggleSidebar}
       />
 
       {/* Header */}
@@ -55,7 +54,7 @@ export default function Layout({ children }: LayoutProps) {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            onClick={toggleSidebar}
             className="hidden lg:flex"
           >
             {sidebarCollapsed ? (
@@ -124,6 +123,5 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </div>
     </div>
-    </SidebarContext.Provider>
   );
 }
