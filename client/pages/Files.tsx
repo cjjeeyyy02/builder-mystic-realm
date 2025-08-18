@@ -115,9 +115,41 @@ export default function Files() {
   };
 
   const handleSubmit = () => {
-    console.log("Creating and uploading file:", formData);
-    // Here you would implement the actual file upload logic
-    alert("File created and uploaded successfully!");
+    if (!formData.title || !formData.upload) {
+      alert("Please fill in all required fields and select a file to upload.");
+      return;
+    }
+
+    const newFile = {
+      id: formData.id,
+      name: formData.title,
+      date: formData.date,
+      size: formData.size,
+      type: formData.type || "FILE",
+      category: formData.category,
+      department: formData.department,
+      priority: formData.priority,
+      status: "active"
+    };
+
+    setUploadedFiles(prev => [...prev, newFile]);
+    setShowUploadForm(false);
+
+    // Reset form
+    setFormData({
+      id: "",
+      title: "",
+      date: "",
+      size: "",
+      type: "",
+      category: "",
+      department: "",
+      priority: "",
+      upload: "",
+      share: ""
+    });
+
+    console.log("File created and uploaded successfully:", newFile);
   };
 
   const selectOptions = {
