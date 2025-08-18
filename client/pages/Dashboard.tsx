@@ -1890,10 +1890,14 @@ export default function Dashboard() {
               <CardContent className="p-6 pb-12">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
+                    <h3 className={`text-sm font-semibold transition-colors duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>
                       Latest E-Forum
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className={`text-xs mt-1 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
                       Employee discussion forum
                     </p>
                   </div>
