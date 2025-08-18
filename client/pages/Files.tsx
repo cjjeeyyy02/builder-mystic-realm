@@ -459,18 +459,18 @@ export default function Files() {
                     isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
                   }`}>
                     {/* ID Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-semibold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        File ID:
+                    <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                      <label className={`text-blue-700 font-semibold sm:w-32 text-sm sm:text-base ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        ID:
                       </label>
                       <input
                         type="text"
                         value={formData.id}
                         readOnly
-                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 text-sm sm:text-base ${
                           isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
                         }`}
-                        placeholder="Auto-generated"
+                        placeholder="AUTO-GENERATED"
                       />
                     </div>
 
