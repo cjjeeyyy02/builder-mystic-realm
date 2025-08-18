@@ -60,6 +60,7 @@ export default function Files() {
       department: "Marketing",
       priority: "MEDIUM",
       status: "active",
+      visibility: "Private",
       thumbnail: "📦",
       lastModified: "3 days ago",
       sharedWith: ["Marketing Team"]
