@@ -782,7 +782,6 @@ export default function Files() {
                                 </svg>
                               </Button>
 
-                              {/* DOWNLOAD */}
                               <Button
                                 onClick={() => handleDownloadFile(file)}
                                 size="sm"
