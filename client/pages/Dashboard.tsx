@@ -2053,7 +2053,9 @@ export default function Dashboard() {
                           }`}>
                             Sarah Jhonson
                           </h4>
-                          <span className="text-xs text-gray-500">
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>
                             HR ��� 2h ago
                           </span>
                         </div>
