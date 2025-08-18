@@ -701,9 +701,9 @@ export default function Files() {
                                 {/* FILE CATEGORY & PRIORITY BADGES */}
                                 <div className="flex items-center gap-1 flex-wrap">
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
-                                    file.category === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                    file.visibility === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                                   }`}>
-                                    {file.category === 'Public' ? 'PUBLIC' : 'PRIVATE'}
+                                    {file.visibility === 'Public' ? 'PUBLIC' : 'PRIVATE'}
                                   </span>
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}>
                                     {file.priority}
