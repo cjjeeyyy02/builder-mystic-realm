@@ -296,6 +296,46 @@ export default function Chat() {
     handleSaveGroup(); // Save first, then send invite
   };
 
+  // Function to handle entering a group chat
+  const handleEnterGroup = (groupId: string) => {
+    // Set the selected chat to the group
+    setSelectedChat(groupId);
+    setActiveTab("TEAMS");
+
+    // Get the group information
+    const group = teamGroups.find(g => g.id === groupId);
+
+    if (group) {
+      console.log(`Entering group: ${group.name}`);
+      console.log(`Group Type: ${group.type}`);
+      console.log(`Members: ${group.members}`);
+
+      // Initialize group chat if it doesn't exist in chatMessages
+      if (!chatMessages[groupId as keyof typeof chatMessages]) {
+        // Add welcome message for the group
+        const welcomeMessage = {
+          id: 1,
+          sender: "system",
+          message: `Welcome to ${group.name}! You have joined this ${group.type.toLowerCase()} group with ${group.members} members.`,
+          time: "Just now",
+          isOwn: false,
+        };
+
+        // You could add this to a state or extend the chatMessages object
+        console.log("Initializing group chat with welcome message:", welcomeMessage);
+      }
+
+      // Mark group as active/entered
+      console.log(`Successfully entered ${group.name} group chat`);
+
+      // You can add more functionality here like:
+      // - Loading chat history
+      // - Marking group as recently accessed
+      // - Sending join notification to other members
+      // - Loading group settings/permissions
+    }
+  };
+
   const handleCloseModal = () => {
     setShowCreateGroupModal(false);
     setGroupSaved(false);
