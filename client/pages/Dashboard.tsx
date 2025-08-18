@@ -1873,7 +1873,11 @@ export default function Dashboard() {
                   <Button
                     variant="link"
                     onClick={() => navigate("/activities")}
-                    className="text-gray-700 hover:text-blue-700 text-xs"
+                    className={`text-xs transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'text-gray-300 hover:text-blue-400'
+                        : 'text-gray-700 hover:text-blue-700'
+                    }`}
                   >
                     View All Activities →
                   </Button>
