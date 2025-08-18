@@ -118,7 +118,7 @@ export default function Chat() {
   };
 
   // Sample chat messages for different contacts and groups
-  const chatMessages = {
+  const [chatMessages, setChatMessages] = useState({
     jack: [
       {
         id: 1,
@@ -144,7 +144,49 @@ export default function Chat() {
         isOwn: false,
       },
     ],
-    // Group messages (use group id as key)
+    // Default group messages
+    engineering: [
+      {
+        id: 1,
+        sender: "alex",
+        message: "Welcome to the Engineering Team! Let's build amazing things together.",
+        time: "Today 09:00 AM",
+        isOwn: false,
+      },
+      {
+        id: 2,
+        sender: "sarah",
+        message: "Looking forward to collaborating with everyone!",
+        time: "Today 09:15 AM",
+        isOwn: false,
+      },
+    ],
+    design: [
+      {
+        id: 1,
+        sender: "mike",
+        message: "Design Team assembled! Ready to create beautiful experiences.",
+        time: "Yesterday 02:30 PM",
+        isOwn: false,
+      },
+    ],
+    teabreak: [
+      {
+        id: 1,
+        sender: "jenny",
+        message: "Anyone up for coffee? ☕",
+        time: "Today 11:30 AM",
+        isOwn: false,
+      },
+      {
+        id: 2,
+        sender: "me",
+        message: "Count me in! Meeting room 2?",
+        time: "Today 11:32 AM",
+        isOwn: true,
+      },
+    ],
+    // Dynamically created groups will be added here
     threemusketeers: [
       {
         id: 1,
@@ -154,8 +196,7 @@ export default function Chat() {
         isOwn: true,
       },
     ],
-    // Add more chat data as needed
-  };
+  });
 
   // Close group menu when clicking outside
   useEffect(() => {
