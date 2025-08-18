@@ -893,12 +893,12 @@ export default function Chat() {
                         )}
                       </div>
                       <div>
-                        <h3 className={`text-sm font-semibold transition-colors duration-300 ${
+                        <h3 className={`text-xs sm:text-sm font-semibold transition-colors duration-300 ${
                           isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           {isGroupChat ? selectedGroup?.name : selectedContact?.name}
                         </h3>
-                        <p className={`text-xs transition-colors duration-300 ${
+                        <p className={`text-[10px] sm:text-xs transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-400' : 'text-gray-600'
                         }`}>
                           {isGroupChat
