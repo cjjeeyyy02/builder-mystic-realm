@@ -814,20 +814,37 @@ export default function Chat() {
 
             {/* Modal Footer */}
             <div className="px-6 py-4 border-t flex items-center justify-end space-x-3 rounded-b-lg">
-              <Button
-                variant="outline"
-                onClick={handleSaveGroup}
-                className={`px-4 py-2 text-sm transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                SAVE GROUP
-              </Button>
+              {groupSaved ? (
+                <Button
+                  disabled
+                  className="px-4 py-2 text-sm bg-green-500 text-white cursor-not-allowed"
+                >
+                  GROUP SAVED
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  onClick={handleSaveGroup}
+                  disabled={!groupForm.name.trim()}
+                  className={`px-4 py-2 text-sm transition-colors duration-300 ${
+                    !groupForm.name.trim()
+                      ? 'opacity-50 cursor-not-allowed'
+                      : isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  SAVE GROUP
+                </Button>
+              )}
               <Button
                 onClick={handleSendGroupInvite}
-                className="px-4 py-2 text-sm bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300"
+                disabled={!groupSaved}
+                className={`px-4 py-2 text-sm transition-colors duration-300 ${
+                  !groupSaved
+                    ? 'opacity-50 cursor-not-allowed bg-gray-400'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
               >
                 SEND GROUP INVITE
               </Button>
