@@ -19,6 +19,7 @@ export default function Chat() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
   const [groupSaved, setGroupSaved] = useState(false);
+  const [showGroupMenu, setShowGroupMenu] = useState(false);
   const [groupForm, setGroupForm] = useState({
     name: "",
     type: "Private",
