@@ -149,7 +149,6 @@ export default function Chat() {
         isOwn: false,
       },
     ],
-    // Default group messages
     engineering: [
       {
         id: 1,
@@ -191,16 +190,6 @@ export default function Chat() {
         isOwn: true,
       },
     ],
-    // Dynamically created groups will be added here
-    threemusketeers: [
-      {
-        id: 1,
-        sender: "me",
-        message: "Welcome to our new group! Ready to start collaborating?",
-        time: "Just now",
-        isOwn: true,
-      },
-    ],
   });
 
   // Close group menus when clicking outside
@@ -229,7 +218,6 @@ export default function Chat() {
         isOwn: true,
       };
 
-      // Add message to the selected chat
       setChatMessages(prev => ({
         ...prev,
         [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), newMessage]
@@ -240,9 +228,8 @@ export default function Chat() {
       setIsTyping(false);
       setFooterCollapsed(false);
 
-      // Auto-scroll to bottom
       setTimeout(() => {
-        const messagesContainer = document.querySelector('.overflow-y-auto.p-4.space-y-4');
+        const messagesContainer = document.querySelector('.messages-container');
         if (messagesContainer) {
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
@@ -328,44 +315,39 @@ export default function Chat() {
 
   const handleSaveGroup = () => {
     if (groupForm.name.trim()) {
-      // Add new group to the teams list
       const newGroup = {
         id: groupForm.name.toLowerCase().replace(/\s+/g, ''),
         name: groupForm.name,
         type: groupForm.type,
-        members: 3, // Start with creator + sample members
+        members: 3,
         status: "team",
       };
 
       setTeamGroups(prev => [...prev, newGroup]);
       setGroupSaved(true);
 
-      // Update tabs count (assuming new group increases TEAMS count)
       tabs.find(tab => tab.id === "TEAMS")!.count += 1;
 
-      // Auto-select the new group and close modal after a brief delay
       setTimeout(() => {
         setSelectedChat(newGroup.id);
         setActiveTab("TEAMS");
         setShowCreateGroupModal(false);
         setGroupSaved(false);
-        // Reset form
         setGroupForm({
           name: "",
           type: "Private",
           username: "",
           access: "Only Admin"
         });
-      }, 1000); // 1 second delay to show the "GROUP SAVED" state
+      }, 1000);
     }
   };
 
   const handleSendGroupInvite = () => {
     console.log("Sending group invite:", groupForm);
-    handleSaveGroup(); // Save first, then send invite
+    handleSaveGroup();
   };
 
-  // Function to handle making a group public
   const handleGoPublic = (groupId: string) => {
     const updatedGroups = teamGroups.map(group =>
       group.id === groupId ? { ...group, type: "Public" } : group
@@ -373,7 +355,6 @@ export default function Chat() {
     setTeamGroups(updatedGroups);
     console.log(`Group ${groupId} is now public`);
 
-    // Add system message about group going public
     const systemMessage = {
       id: Date.now(),
       sender: "system",
@@ -388,7 +369,6 @@ export default function Chat() {
     }));
   };
 
-  // Function to handle editing a group
   const handleEditGroup = (groupId: string) => {
     const group = teamGroups.find(g => g.id === groupId);
     if (group) {
@@ -403,7 +383,6 @@ export default function Chat() {
     }
   };
 
-  // Function to handle muting a group
   const handleMuteGroup = (groupId: string) => {
     const isMuted = groupMutedStatus[groupId] || false;
     setGroupMutedStatus(prev => ({
@@ -411,36 +390,18 @@ export default function Chat() {
       [groupId]: !isMuted
     }));
     console.log(`Group ${groupId} is now ${!isMuted ? 'muted' : 'unmuted'}`);
-
-    // Add system message about muting
-    const systemMessage = {
-      id: Date.now(),
-      sender: "system",
-      message: `You have ${!isMuted ? 'muted' : 'unmuted'} this group. ${!isMuted ? 'You will not receive notifications.' : 'You will now receive notifications.'}`,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      isOwn: false,
-    };
-
-    setChatMessages(prev => ({
-      ...prev,
-      [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
-    }));
   };
 
-  // Function to handle deleting a group
   const handleDeleteGroup = (groupId: string) => {
     if (window.confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
-      // Remove group from teams list
       setTeamGroups(prev => prev.filter(group => group.id !== groupId));
 
-      // Remove chat messages for this group
       setChatMessages(prev => {
         const newMessages = { ...prev };
         delete newMessages[groupId as keyof typeof newMessages];
         return newMessages;
       });
 
-      // If this group was selected, clear selection
       if (selectedChat === groupId) {
         setSelectedChat("");
       }
@@ -449,7 +410,6 @@ export default function Chat() {
     }
   };
 
-  // Function to handle saving group edits
   const handleSaveGroupEdit = () => {
     if (groupToEdit && groupForm.name.trim()) {
       const updatedGroups = teamGroups.map(group =>
@@ -458,20 +418,6 @@ export default function Chat() {
           : group
       );
       setTeamGroups(updatedGroups);
-
-      // Add system message about group update
-      const systemMessage = {
-        id: Date.now(),
-        sender: "system",
-        message: `Group has been updated. New name: "${groupForm.name}", Type: ${groupForm.type}`,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isOwn: false,
-      };
-
-      setChatMessages(prev => ({
-        ...prev,
-        [groupToEdit.id]: [...(prev[groupToEdit.id as keyof typeof prev] || []), systemMessage]
-      }));
 
       setShowEditGroupModal(false);
       setGroupToEdit(null);
@@ -484,23 +430,16 @@ export default function Chat() {
     }
   };
 
-  // Function to handle entering a group chat
   const handleEnterGroup = (groupId: string) => {
-    // Set the selected chat to the group
     setSelectedChat(groupId);
     setActiveTab("TEAMS");
 
-    // Get the group information
     const group = teamGroups.find(g => g.id === groupId);
 
     if (group) {
       console.log(`Entering group: ${group.name}`);
-      console.log(`Group Type: ${group.type}`);
-      console.log(`Members: ${group.members}`);
 
-      // Initialize group chat if it doesn't exist in chatMessages
       if (!chatMessages[groupId as keyof typeof chatMessages]) {
-        // Add welcome message for the group
         const welcomeMessage = {
           id: Date.now(),
           sender: "system",
@@ -509,44 +448,17 @@ export default function Chat() {
           isOwn: false,
         };
 
-        // Add the new group chat to the messages state
         setChatMessages(prev => ({
           ...prev,
           [groupId]: [welcomeMessage]
         }));
 
-        console.log("Initialized group chat with welcome message");
-      }
-
-      // Mark group as active/entered - you could add visual indicators here
-      console.log(`Successfully entered ${group.name} group chat`);
-
-      // Additional functionality when entering a group:
-      // - Scroll to bottom of messages
-      setTimeout(() => {
-        const messagesContainer = document.querySelector('.overflow-y-auto.p-4.space-y-4');
-        if (messagesContainer) {
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-      }, 100);
-
-      // - Show notification that user joined (could be added to group chat)
-      if (chatMessages[groupId as keyof typeof chatMessages]?.length > 0) {
-        const joinMessage = {
-          id: Date.now() + 1,
-          sender: "system",
-          message: `${currentUser.name} has joined the group`,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isOwn: false,
-        };
-
-        // Add join notification to existing group chat
         setTimeout(() => {
-          setChatMessages(prev => ({
-            ...prev,
-            [groupId]: [...(prev[groupId as keyof typeof prev] || []), joinMessage]
-          }));
-        }, 500);
+          const messagesContainer = document.querySelector('.messages-container');
+          if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+        }, 100);
       }
     }
   };
@@ -554,7 +466,6 @@ export default function Chat() {
   const handleCloseModal = () => {
     setShowCreateGroupModal(false);
     setGroupSaved(false);
-    // Reset form
     setGroupForm({
       name: "",
       type: "Private",
@@ -563,7 +474,6 @@ export default function Chat() {
     });
   };
 
-  // Check if selected chat is a group
   const isGroupChat = teamGroups.some(group => group.id === selectedChat);
   const selectedGroup = teamGroups.find(group => group.id === selectedChat);
   const selectedContact = contactList.find(contact => contact.id === selectedChat);
@@ -571,551 +481,449 @@ export default function Chat() {
   return (
     <>
       <Layout>
-        <div
-          ref={scrollContainerRef}
-          className={`-m-4 lg:-m-8 h-[calc(100vh-4rem)] overflow-hidden transition-colors duration-300 ${
-            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
-          }`}
-        >
-          {/* Top Header Bar */}
-          <div className={`flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 border-b transition-colors duration-300 ${
-            isDarkMode
-              ? 'bg-gray-800 border-gray-700'
-              : 'bg-white border-gray-200'
+        <div className={`h-[calc(100vh-4rem)] flex flex-col transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+        }`}>
+          {/* Chat Header */}
+          <Card className={`flex-shrink-0 rounded-none border-0 border-b transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
           }`}>
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setShowMobileSidebar(!showMobileSidebar)}
-              className={`md:hidden p-2 rounded-lg transition-colors duration-300 ${
-                isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+                  className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
 
-            <h1 className={`text-xs sm:text-sm font-bold transition-colors duration-300 ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
-            }`}>
-              CHATROOM
-            </h1>
+                <div className="flex items-center space-x-4">
+                  <h1 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    CHAT CENTER
+                  </h1>
+                  <div className="hidden sm:flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Active
+                    </span>
+                  </div>
+                </div>
 
-            {/* Center Search Bar */}
-            <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4">
-              <input
-                type="text"
-                placeholder="Search..."
-                className={`w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                    : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              />
-            </div>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCreateGroup}
-              className={`text-xs px-2 sm:px-3 py-1.5 sm:py-2 h-7 sm:h-8 transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span className="hidden sm:inline">CREATE GROUP</span>
-              <span className="sm:hidden">+</span>
-            </Button>
-          </div>
-
-          {/* Mobile Sidebar Overlay */}
-          {showMobileSidebar && (
-            <div
-              className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
-              onClick={() => setShowMobileSidebar(false)}
-            />
-          )}
-
-          {/* Main Chat Layout */}
-          <div
-            className={`flex flex-1 transition-all duration-300`}
-          >
-            {/* Left Sidebar - Chat List */}
-            <div className={`${
-              showMobileSidebar ? 'fixed inset-y-0 left-0 z-40' : 'hidden'
-            } md:relative md:flex w-64 sm:w-72 md:w-64 lg:w-72 flex-col border-r transition-all duration-300 ${
-              isDarkMode
-                ? 'bg-gray-800 border-gray-700'
-                : 'bg-white border-gray-200'
-            }`}>
-              {/* Sidebar Header */}
-              <div className={`p-2 sm:p-3 border-b transition-colors duration-300 ${
-                isDarkMode ? 'border-gray-700' : 'border-gray-200'
-              }`}>
-                {/* Mobile Close Button */}
-                <div className="md:hidden flex justify-between items-center mb-3">
-                  <h2 className={`text-sm font-semibold ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
-                  }`}>Chats</h2>
-                  <button
-                    onClick={() => setShowMobileSidebar(false)}
-                    className={`p-1 rounded ${
-                      isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                {/* Search Bar */}
+                <div className="flex-1 max-w-md mx-4">
+                  <div className="relative">
+                    <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                  </button>
-                </div>
-                {/* Filter Tabs */}
-                <div className="flex space-x-0.5 sm:space-x-1">
-                  {tabs.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`px-1.5 sm:px-2 py-1 text-[9px] sm:text-[10px] font-medium rounded transition-all ${
-                        activeTab === tab.id
-                          ? isDarkMode
-                            ? "bg-blue-600 text-white"
-                            : "bg-blue-500 text-white"
-                          : isDarkMode
-                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    <input
+                      type="text"
+                      placeholder="Search conversations..."
+                      className={`w-full pl-10 pr-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                          : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
                       }`}
-                    >
-                      {tab.label} {tab.count}
-                    </button>
-                  ))}
+                    />
+                  </div>
                 </div>
 
-                {/* Current User Status */}
-                <div className="mt-3 flex items-center space-x-2">
-                  <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-[8px] font-bold">K</span>
-                  </div>
-                  <div>
-                    <span className={`text-[10px] font-medium transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-gray-900'
-                    }`}>
-                      {currentUser.name}
-                    </span>
-                    <span className={`text-[9px] ml-1 transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                    }`}>
-                      {currentUser.role} {currentUser.status}
-                    </span>
-                  </div>
-                  <div className="flex space-x-1 ml-auto">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      isDarkMode ? 'bg-gray-600' : 'bg-gray-300'
-                    }`}></div>
-                    <button className={`text-[10px] transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'
-                    }`}>
-                      ⋯
-                    </button>
-                  </div>
-                </div>
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={handleCreateGroup}
+                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span className="hidden sm:inline">New Group</span>
+                  <span className="sm:hidden">+</span>
+                </Button>
               </div>
+            </CardContent>
+          </Card>
 
-              {/* Contact List */}
-              <div className="flex-1 overflow-y-auto">
-                {contactList.map((contact) => (
-                  <div
-                    key={contact.id}
-                    onClick={() => {
-                      setSelectedChat(contact.id);
-                      setShowMobileSidebar(false);
-                    }}
-                    className={`p-1.5 sm:p-2 border-b cursor-pointer hover:bg-opacity-50 transition-all ${
-                      selectedChat === contact.id
-                        ? isDarkMode
-                          ? "bg-gray-700 border-gray-600"
-                          : "bg-blue-50 border-blue-200"
-                        : isDarkMode
-                          ? "border-gray-700 hover:bg-gray-700"
-                          : "border-gray-100 hover:bg-gray-50"
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <div className="relative">
-                        <div
-                          className={`w-5 h-5 sm:w-6 sm:h-6 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center`}
-                        >
-                          <span className="text-white text-[8px] sm:text-[9px] font-semibold">
-                            {contact.avatar}
-                          </span>
-                        </div>
-                        <div
-                          className={`absolute -bottom-0.5 -right-0.5 w-2 h-2 ${getStatusColor(contact.status)} rounded-full border border-white`}
-                        ></div>
+          {/* Main Chat Container */}
+          <div className="flex-1 flex overflow-hidden">
+            {/* Mobile Sidebar Overlay */}
+            {showMobileSidebar && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+                onClick={() => setShowMobileSidebar(false)}
+              />
+            )}
+
+            {/* Sidebar - Contact List */}
+            <Card className={`${
+              showMobileSidebar ? 'fixed inset-y-0 left-0 z-40' : 'hidden'
+            } lg:relative lg:flex w-80 flex-col rounded-none border-0 border-r transition-all duration-300 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+            }`}>
+              <CardContent className="p-0 h-full flex flex-col">
+                {/* Sidebar Header */}
+                <div className={`p-4 border-b transition-colors duration-300 ${
+                  isDarkMode ? 'border-gray-700' : 'border-gray-200'
+                }`}>
+                  {/* Mobile Close Button */}
+                  <div className="lg:hidden flex justify-between items-center mb-4">
+                    <h2 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      Conversations
+                    </h2>
+                    <button
+                      onClick={() => setShowMobileSidebar(false)}
+                      className={`p-2 rounded ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Filter Tabs */}
+                  <div className="flex space-x-1">
+                    {tabs.map((tab) => (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                          activeTab === tab.id
+                            ? "bg-blue-600 text-white shadow-md"
+                            : isDarkMode
+                              ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        }`}
+                      >
+                        {tab.label} ({tab.count})
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Current User Status */}
+                  <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <span className="text-white text-sm font-bold">K</span>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between">
-                          <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
-                          }`}>
-                            {contact.name}
-                          </h4>
-                          {contact.hasNewMessage && (
-                            <div className="flex items-center space-x-1">
-                              <span className={`text-[8px] transition-colors duration-300 ${
-                                isDarkMode ? 'text-green-400' : 'text-green-600'
-                              }`}>
-                                New Unread
-                              </span>
-                              <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
-                            </div>
-                          )}
-                        </div>
-                        <p className={`text-[9px] truncate transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                        }`}>
-                          {contact.role}
-                        </p>
-                        <p className={`text-[8px] truncate transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-500' : 'text-gray-500'
-                        }`}>
-                          {contact.time}
-                        </p>
+                      <div className="flex-1">
+                        <h3 className="font-semibold">{currentUser.name}</h3>
+                        <p className="text-blue-100 text-sm">{currentUser.role}</p>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                        <span className="text-blue-100 text-sm">{currentUser.status}</span>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
 
-                {/* Team Groups */}
-                <div className="mt-2">
-                  {teamGroups.map((group) => (
-                    <div
-                      key={group.id}
-                      onClick={() => {
-                        handleEnterGroup(group.id);
-                        setShowMobileSidebar(false);
-                      }}
-                      className={`p-1.5 sm:p-2 border-b cursor-pointer transition-all ${
-                        selectedChat === group.id
-                          ? isDarkMode
-                            ? "bg-gray-700 border-gray-600"
-                            : "bg-blue-50 border-blue-200"
-                          : isDarkMode
-                            ? "border-gray-700 hover:bg-gray-700"
-                            : "border-gray-100 hover:bg-gray-50"
-                      }`}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                          <svg
-                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between">
-                            <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 flex items-center flex-1 ${
-                              isDarkMode ? 'text-white' : 'text-gray-900'
-                            }`}>
-                              {group.name}
-                              {groupMutedStatus[group.id] && (
-                                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                                </svg>
-                              )}
-                            </h4>
-                            <div className="flex items-center space-x-1 relative">
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setShowSidebarGroupMenu(showSidebarGroupMenu === group.id ? null : group.id);
-                                }}
-                                className={`p-1 rounded transition-colors duration-300 ${
-                                  isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                                }`}
+                {/* Contact List */}
+                <div className="flex-1 overflow-y-auto">
+                  <div className="p-2 space-y-1">
+                    {contactList.map((contact) => (
+                      <Card
+                        key={contact.id}
+                        className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                          selectedChat === contact.id
+                            ? "bg-blue-50 border-blue-200 ring-2 ring-blue-500 ring-opacity-20"
+                            : isDarkMode
+                              ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
+                              : "bg-white border-gray-200 hover:bg-gray-50"
+                        }`}
+                        onClick={() => {
+                          setSelectedChat(contact.id);
+                          setShowMobileSidebar(false);
+                        }}
+                      >
+                        <CardContent className="p-3">
+                          <div className="flex items-center space-x-3">
+                            <div className="relative">
+                              <div
+                                className={`w-12 h-12 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center shadow-md`}
                               >
-                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                              </button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleEnterGroup(group.id);
-                                  setShowMobileSidebar(false);
-                                }}
-                                className={`text-[7px] sm:text-[8px] px-1 sm:px-1.5 py-0.5 h-4 sm:h-5 transition-colors duration-300 ${
-                                  isDarkMode
-                                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                                }`}
-                              >
-                                <span className="hidden sm:inline">ENTER GROUP</span>
-                                <span className="sm:hidden">JOIN</span>
-                              </Button>
-
-                              {/* Sidebar Group Context Menu */}
-                              {showSidebarGroupMenu === group.id && (
-                                <div className={`absolute right-0 top-6 w-32 shadow-xl border-2 z-50 transition-all duration-300 ${
-                                  isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                                <span className="text-white text-sm font-bold">
+                                  {contact.avatar}
+                                </span>
+                              </div>
+                              <div
+                                className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(contact.status)} rounded-full border-2 border-white`}
+                              ></div>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <h4 className={`font-semibold truncate ${
+                                  isDarkMode ? 'text-white' : 'text-gray-900'
                                 }`}>
-                                  <div className="py-1">
+                                  {contact.name}
+                                </h4>
+                                {contact.hasNewMessage && (
+                                  <div className="flex items-center space-x-1">
+                                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                  </div>
+                                )}
+                              </div>
+                              <p className={`text-sm truncate ${
+                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                              }`}>
+                                {contact.role}
+                              </p>
+                              <p className={`text-xs truncate ${
+                                isDarkMode ? 'text-gray-500' : 'text-gray-500'
+                              }`}>
+                                {contact.time}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+
+                  {/* Team Groups */}
+                  <div className="p-2">
+                    <h3 className={`px-2 py-2 text-sm font-semibold ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      Team Groups
+                    </h3>
+                    <div className="space-y-1">
+                      {teamGroups.map((group) => (
+                        <Card
+                          key={group.id}
+                          className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                            selectedChat === group.id
+                              ? "bg-purple-50 border-purple-200 ring-2 ring-purple-500 ring-opacity-20"
+                              : isDarkMode
+                                ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
+                                : "bg-white border-gray-200 hover:bg-gray-50"
+                          }`}
+                          onClick={() => {
+                            handleEnterGroup(group.id);
+                            setShowMobileSidebar(false);
+                          }}
+                        >
+                          <CardContent className="p-3">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
+                                <svg
+                                  className="w-6 h-6 text-white"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <h4 className={`font-semibold truncate flex items-center ${
+                                    isDarkMode ? 'text-white' : 'text-gray-900'
+                                  }`}>
+                                    {group.name}
+                                    {groupMutedStatus[group.id] && (
+                                      <svg className="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                      </svg>
+                                    )}
+                                  </h4>
+                                  <div className="flex items-center space-x-1">
                                     <button
                                       onClick={(e) => {
                                         e.stopPropagation();
-                                        handleGoPublic(group.id);
-                                        setShowSidebarGroupMenu(null);
+                                        setShowSidebarGroupMenu(showSidebarGroupMenu === group.id ? null : group.id);
                                       }}
-                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
-                                        isDarkMode
-                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                      className={`p-1 rounded transition-colors duration-300 ${
+                                        isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                                       }`}
                                     >
-                                      Go Public
-                                    </button>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleEditGroup(group.id);
-                                        setShowSidebarGroupMenu(null);
-                                      }}
-                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
-                                        isDarkMode
-                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
-                                      }`}
-                                    >
-                                      Edit Group
-                                    </button>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleMuteGroup(group.id);
-                                        setShowSidebarGroupMenu(null);
-                                      }}
-                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium border-b transition-colors ${
-                                        isDarkMode
-                                          ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                          : 'text-gray-800 hover:bg-gray-50 border-gray-200'
-                                      }`}
-                                    >
-                                      {groupMutedStatus[group.id] ? 'Unmute Group' : 'Mute Group'}
-                                    </button>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDeleteGroup(group.id);
-                                        setShowSidebarGroupMenu(null);
-                                      }}
-                                      className={`w-full text-left px-3 py-1.5 text-xs font-medium transition-colors ${
-                                        isDarkMode
-                                          ? 'text-red-400 hover:bg-gray-700'
-                                          : 'text-red-600 hover:bg-gray-50'
-                                      }`}
-                                    >
-                                      Delete Group
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                      </svg>
                                     </button>
                                   </div>
                                 </div>
-                              )}
+                                <div className="flex items-center justify-between">
+                                  <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    {group.type} • {group.members} Members
+                                  </p>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleEnterGroup(group.id);
+                                      setShowMobileSidebar(false);
+                                    }}
+                                    className="text-xs px-2 py-1 h-6"
+                                  >
+                                    JOIN
+                                  </Button>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <p className={`text-[8px] sm:text-[9px] transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                          }`}>
-                            {group.type} • <span className="hidden sm:inline">{group.members} Members</span><span className="sm:hidden">{group.members}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
 
-            {/* Center - Chat Messages Area */}
-            <div className={`flex-1 flex flex-col transition-colors duration-300 ${
-              isDarkMode ? 'bg-gray-800' : 'bg-white'
-            }`}>
+                            {/* Group Context Menu */}
+                            {showSidebarGroupMenu === group.id && (
+                              <div className={`absolute right-0 top-full mt-1 w-40 shadow-xl border rounded-lg z-50 transition-all duration-300 ${
+                                isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                              }`}>
+                                <div className="py-1">
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleGoPublic(group.id);
+                                      setShowSidebarGroupMenu(null);
+                                    }}
+                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
+                                    }`}
+                                  >
+                                    Go Public
+                                  </button>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleEditGroup(group.id);
+                                      setShowSidebarGroupMenu(null);
+                                    }}
+                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
+                                    }`}
+                                  >
+                                    Edit Group
+                                  </button>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleMuteGroup(group.id);
+                                      setShowSidebarGroupMenu(null);
+                                    }}
+                                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                                      isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-50'
+                                    }`}
+                                  >
+                                    {groupMutedStatus[group.id] ? 'Unmute Group' : 'Mute Group'}
+                                  </button>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteGroup(group.id);
+                                      setShowSidebarGroupMenu(null);
+                                    }}
+                                    className={`w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors ${
+                                      isDarkMode ? 'text-red-400 hover:bg-gray-700' : 'text-red-600 hover:bg-red-50'
+                                    }`}
+                                  >
+                                    Delete Group
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Main Chat Area */}
+            <div className="flex-1 flex flex-col">
               {selectedChat ? (
                 <>
                   {/* Chat Header */}
-                  <div className={`flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 border-b transition-colors duration-300 ${
-                    isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+                  <Card className={`flex-shrink-0 rounded-none border-0 border-b transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                   }`}>
-                    <div className="flex items-center space-x-3">
-                      <div className="relative">
-                        {isGroupChat ? (
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                            <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                          </div>
-                        ) : (
-                          <>
-                            <div className={`w-6 h-6 sm:w-8 sm:h-8 ${getAvatarColor(selectedContact?.name || '')} rounded-full flex items-center justify-center`}>
-                              <span className="text-white text-xs font-semibold">
-                                {selectedContact?.avatar}
-                              </span>
-                            </div>
-                            <div className={`absolute -bottom-0.5 -right-0.5 w-2 h-2 sm:w-2.5 sm:h-2.5 ${getStatusColor(selectedContact?.status || 'offline')} rounded-full border border-white`}></div>
-                          </>
-                        )}
-                      </div>
-                      <div>
-                        <h3 className={`text-xs sm:text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
-                        }`}>
-                          {isGroupChat ? selectedGroup?.name : selectedContact?.name}
-                        </h3>
-                        <p className={`text-[10px] sm:text-xs transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                        }`}>
-                          {isGroupChat
-                            ? `${selectedGroup?.members} Members ${selectedGroup?.type} Active`
-                            : `${selectedContact?.role} Active`
-                          }
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex items-center space-x-1 sm:space-x-2 relative">
-                      {isGroupChat ? (
-                        <>
-                          <button className="p-1.5 sm:p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
-                            <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                          </button>
-                          <button className="p-1.5 sm:p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
-                            <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                          </button>
-                          <button
-                            onClick={() => setShowGroupMenu(!showGroupMenu)}
-                            className={`p-2 rounded-full transition-colors ${
-                              isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                            }`}
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                          </button>
-
-                          {/* Group Context Menu */}
-                          {showGroupMenu && (
-                            <div className={`absolute right-0 top-12 w-36 shadow-xl border-2 z-50 transition-all duration-300 ${
-                              isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
-                            }`}>
-                              <div className="py-2">
-                                <button
-                                  onClick={() => {
-                                    handleGoPublic(selectedChat);
-                                    setShowGroupMenu(false);
-                                  }}
-                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
-                                    isDarkMode
-                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
-                                  }`}
-                                >
-                                  Go Public
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    handleEditGroup(selectedChat);
-                                    setShowGroupMenu(false);
-                                  }}
-                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
-                                    isDarkMode
-                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
-                                  }`}
-                                >
-                                  Edit Group
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    handleMuteGroup(selectedChat);
-                                    setShowGroupMenu(false);
-                                  }}
-                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
-                                    isDarkMode
-                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
-                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
-                                  }`}
-                                >
-                                  {groupMutedStatus[selectedChat] ? 'Unmute Group' : 'Mute Group'}
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    handleDeleteGroup(selectedChat);
-                                    setShowGroupMenu(false);
-                                  }}
-                                  className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
-                                    isDarkMode
-                                      ? 'text-red-400 hover:bg-gray-700'
-                                      : 'text-red-600 hover:bg-gray-50'
-                                  }`}
-                                >
-                                  Delete Group
-                                </button>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="relative">
+                            {isGroupChat ? (
+                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
+                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
                               </div>
-                            </div>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          <button className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ) : (
+                              <>
+                                <div className={`w-12 h-12 ${getAvatarColor(selectedContact?.name || '')} rounded-full flex items-center justify-center shadow-md`}>
+                                  <span className="text-white text-sm font-bold">
+                                    {selectedContact?.avatar}
+                                  </span>
+                                </div>
+                                <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(selectedContact?.status || 'offline')} rounded-full border-2 border-white`}></div>
+                              </>
+                            )}
+                          </div>
+                          <div>
+                            <h3 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                              {isGroupChat ? selectedGroup?.name : selectedContact?.name}
+                            </h3>
+                            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              {isGroupChat
+                                ? `${selectedGroup?.members} Members • ${selectedGroup?.type} Group`
+                                : `${selectedContact?.role} • ${selectedContact?.status === 'online' ? 'Active now' : selectedContact?.time}`
+                              }
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex items-center space-x-2">
+                          <Button variant="outline" size="sm" className="hidden sm:flex">
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
-                          </button>
-                          <button className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            Call
+                          </Button>
+                          <Button variant="outline" size="sm" className="hidden sm:flex">
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
-                          </button>
-                          <button className={`p-2 rounded-full transition-colors ${
-                            isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                          }`}>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                            Video
+                          </Button>
+                          {isGroupChat && (
+                            <button
+                              onClick={() => setShowGroupMenu(!showGroupMenu)}
+                              className={`p-2 rounded-lg transition-colors ${
+                                isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                              }`}
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
                   {/* Messages Area */}
-                  <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-2 sm:space-y-4">
+                  <div className="flex-1 overflow-y-auto p-4 space-y-4 messages-container">
                     {(chatMessages[selectedChat as keyof typeof chatMessages] || []).map((msg) => (
                       <div key={msg.id} className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[75%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg ${
+                        <div className={`max-w-md px-4 py-3 rounded-2xl shadow-sm ${
                           msg.isOwn
-                            ? 'bg-blue-500 text-white'
+                            ? 'bg-blue-600 text-white'
                             : isDarkMode
                               ? 'bg-gray-700 text-gray-200'
-                              : 'bg-gray-100 text-gray-900'
+                              : 'bg-white text-gray-900 border border-gray-200'
                         }`}>
-                          <p className="text-xs sm:text-sm">{msg.message}</p>
-                          <p className={`text-[10px] sm:text-xs mt-1 ${
+                          <p className="text-sm leading-relaxed">{msg.message}</p>
+                          <p className={`text-xs mt-2 ${
                             msg.isOwn
                               ? 'text-blue-100'
                               : isDarkMode
@@ -1128,18 +936,60 @@ export default function Chat() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Message Input Bar */}
+                  <Card className={`flex-shrink-0 rounded-none border-0 border-t transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                  }`}>
+                    <CardContent className="p-4">
+                      <div className="flex items-center space-x-3">
+                        <button className={`p-2 rounded-lg transition-colors ${
+                          isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                          </svg>
+                        </button>
+                        
+                        <div className="flex-1 relative">
+                          <input
+                            type="text"
+                            value={message}
+                            onChange={handleInputChange}
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
+                            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                            placeholder="Type your message..."
+                            className={`w-full px-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                              isDarkMode
+                                ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                                : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                            }`}
+                          />
+                        </div>
+
+                        <button
+                          onClick={handleSendMessage}
+                          disabled={!message.trim()}
+                          className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                          </svg>
+                        </button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </>
               ) : (
                 /* No Chat Selected */
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                    <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
                       isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
                     }`}>
                       <svg
-                        className={`w-8 h-8 transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-500' : 'text-gray-400'
-                        }`}
+                        className={`w-12 h-12 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1152,89 +1002,12 @@ export default function Chat() {
                         />
                       </svg>
                     </div>
-                    <p className={`text-sm transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                    }`}>
-                      Start your conversation here
+                    <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      Welcome to Chat Center
+                    </h3>
+                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      Select a conversation to start messaging
                     </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Message Input Bar - Only show when chat is selected */}
-              {selectedChat && (
-                <div className={`p-2 sm:p-3 border-t transition-colors duration-300 ${
-                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-                }`}>
-                  <div className="flex items-center space-x-1 sm:space-x-2">
-                    <div className="flex-1 relative">
-                      <input
-                        type="text"
-                        value={message}
-                        onChange={handleInputChange}
-                        onFocus={handleInputFocus}
-                        onBlur={handleInputBlur}
-                        onKeyPress={(e) =>
-                          e.key === "Enter" && handleSendMessage()
-                        }
-                        placeholder="Type message..."
-                        className={`w-full px-2 sm:px-3 py-1.5 sm:py-2 pr-6 sm:pr-8 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                        }`}
-                      />
-                      <button className={`absolute right-1.5 sm:right-2 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                      }`}>
-                        <svg
-                          className="w-3 h-3 sm:w-4 sm:h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    <button
-                      onClick={handleSendMessage}
-                      className="p-1.5 sm:p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
-                    >
-                      <svg
-                        className="w-3 h-3 sm:w-4 sm:h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Chat Themes Button */}
-                  <div className="mt-2 flex justify-end">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className={`text-[10px] px-2 py-1 h-6 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                          : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      CHAT THEMES
-                    </Button>
                   </div>
                 </div>
               )}
@@ -1246,171 +1019,14 @@ export default function Chat() {
       {/* Create Group Modal */}
       {showCreateGroupModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className={`bg-white rounded-lg shadow-xl w-full max-w-md mx-auto transition-colors duration-300 ${
+          <Card className={`w-full max-w-md mx-auto shadow-2xl ${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           }`}>
-            {/* Modal Header */}
-            <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-lg font-bold">CREATE YOUR GROUP HERE</h2>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={handleCloseModal}
-                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-                >
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-                <button
-                  onClick={handleCloseModal}
-                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-                >
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Modal Body */}
-            <div className="p-6 space-y-4">
-              {/* Group Name */}
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP NAME:
-                </label>
-                <input
-                  type="text"
-                  value={groupForm.name}
-                  onChange={(e) => setGroupForm({...groupForm, name: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter group name"
-                />
-              </div>
-
-              {/* Group Type */}
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP TYPE:
-                </label>
-                <select
-                  value={groupForm.type}
-                  onChange={(e) => setGroupForm({...groupForm, type: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="Private">Private</option>
-                  <option value="Public">Public</option>
-                </select>
-              </div>
-
-              {/* Group Username */}
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP USERNAME:
-                </label>
-                <input
-                  type="text"
-                  value={groupForm.username}
-                  onChange={(e) => setGroupForm({...groupForm, username: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter username"
-                />
-              </div>
-
-              {/* Group Access */}
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP ACCESS:
-                </label>
-                <select
-                  value={groupForm.access}
-                  onChange={(e) => setGroupForm({...groupForm, access: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="Only Admin">Only Admin</option>
-                  <option value="All Members">All Members</option>
-                  <option value="Moderators">Moderators</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="px-6 py-4 border-t flex items-center justify-end space-x-3 rounded-b-lg">
-              {groupSaved ? (
-                <Button
-                  disabled
-                  className="px-4 py-2 text-sm bg-green-500 text-white cursor-not-allowed"
-                >
-                  GROUP SAVED
-                </Button>
-              ) : (
-                <Button
-                  variant="outline"
-                  onClick={handleSaveGroup}
-                  disabled={!groupForm.name.trim()}
-                  className={`px-4 py-2 text-sm transition-colors duration-300 ${
-                    !groupForm.name.trim()
-                      ? 'opacity-50 cursor-not-allowed'
-                      : isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  SAVE GROUP
-                </Button>
-              )}
-              <Button
-                onClick={handleSendGroupInvite}
-                disabled={!groupSaved}
-                className={`px-4 py-2 text-sm transition-colors duration-300 ${
-                  !groupSaved
-                    ? 'opacity-50 cursor-not-allowed bg-gray-400'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
-                }`}
-              >
-                SEND GROUP INVITE
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Edit Group Modal */}
-      {showEditGroupModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className={`bg-white rounded-lg shadow-xl w-full max-w-md mx-auto transition-colors duration-300 ${
-            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
-          }`}>
-            {/* Modal Header */}
-            <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-lg font-bold">EDIT GROUP</h2>
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold">Create New Group</h2>
               <button
-                onClick={() => setShowEditGroupModal(false)}
-                className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                onClick={handleCloseModal}
+                className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
               >
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1418,42 +1034,31 @@ export default function Chat() {
               </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="p-6 space-y-4">
-              {/* Group Name */}
+            <CardContent className="p-6 space-y-4">
               <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP NAME:
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Name
                 </label>
                 <input
                   type="text"
                   value={groupForm.name}
                   onChange={(e) => setGroupForm({...groupForm, name: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
                   }`}
                   placeholder="Enter group name"
                 />
               </div>
 
-              {/* Group Type */}
               <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                  GROUP TYPE:
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Type
                 </label>
                 <select
                   value={groupForm.type}
                   onChange={(e) => setGroupForm({...groupForm, type: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
                   }`}
                 >
                   <option value="Private">Private</option>
@@ -1461,47 +1066,135 @@ export default function Chat() {
                 </select>
               </div>
 
-              {/* Current Group Info */}
-              <div className={`p-3 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  <strong>Current Group:</strong> {groupToEdit?.name}
-                </p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  <strong>Members:</strong> {groupToEdit?.members}
-                </p>
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Username
+                </label>
+                <input
+                  type="text"
+                  value={groupForm.username}
+                  onChange={(e) => setGroupForm({...groupForm, username: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter username"
+                />
               </div>
-            </div>
 
-            {/* Modal Footer */}
-            <div className="px-6 py-4 border-t flex items-center justify-end space-x-3 rounded-b-lg">
-              <Button
-                variant="outline"
-                onClick={() => setShowEditGroupModal(false)}
-                className={`px-4 py-2 text-sm transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                CANCEL
-              </Button>
-              <Button
-                onClick={handleSaveGroupEdit}
-                disabled={!groupForm.name.trim()}
-                className={`px-4 py-2 text-sm transition-colors duration-300 ${
-                  !groupForm.name.trim()
-                    ? 'opacity-50 cursor-not-allowed bg-gray-400'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
-                }`}
-              >
-                SAVE CHANGES
-              </Button>
-            </div>
-          </div>
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Access
+                </label>
+                <select
+                  value={groupForm.access}
+                  onChange={(e) => setGroupForm({...groupForm, access: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="Only Admin">Only Admin</option>
+                  <option value="All Members">All Members</option>
+                  <option value="Moderators">Moderators</option>
+                </select>
+              </div>
+
+              <div className="flex items-center justify-end space-x-3 pt-4">
+                {groupSaved ? (
+                  <Button disabled className="bg-green-500 text-white cursor-not-allowed">
+                    Group Saved ✓
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={handleSaveGroup}
+                    disabled={!groupForm.name.trim()}
+                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
+                  >
+                    Save Group
+                  </Button>
+                )}
+                <Button
+                  onClick={handleSendGroupInvite}
+                  disabled={!groupSaved}
+                  className="bg-green-600 hover:bg-green-700 text-white disabled:opacity-50"
+                >
+                  Send Invite
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
-      {/* Footer Navigation - hide when sidebar is collapsed */}
+      {/* Edit Group Modal */}
+      {showEditGroupModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <Card className={`w-full max-w-md mx-auto shadow-2xl ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          }`}>
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold">Edit Group</h2>
+              <button
+                onClick={() => setShowEditGroupModal(false)}
+                className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <CardContent className="p-6 space-y-4">
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Name
+                </label>
+                <input
+                  type="text"
+                  value={groupForm.name}
+                  onChange={(e) => setGroupForm({...groupForm, name: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter group name"
+                />
+              </div>
+
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Group Type
+                </label>
+                <select
+                  value={groupForm.type}
+                  onChange={(e) => setGroupForm({...groupForm, type: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="Private">Private</option>
+                  <option value="Public">Public</option>
+                </select>
+              </div>
+
+              <div className="flex items-center justify-end space-x-3 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowEditGroupModal(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSaveGroupEdit}
+                  disabled={!groupForm.name.trim()}
+                  className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
+                >
+                  Save Changes
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
