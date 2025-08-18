@@ -1312,10 +1312,14 @@ export default function Dashboard() {
                   </div>
 
                   {/* Event 2 - Team Building Workshop */}
-                  <div className="relative p-3 bg-gray-50 rounded-lg pb-12">
+                  <div className={`relative p-3 rounded-lg pb-12 transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+                  }`}>
                     <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-sm font-semibold text-gray-900">
+                        <h4 className={`text-sm font-semibold transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Team Building and Innovation Workshop
                         </h4>
                         <div className="flex gap-1">
