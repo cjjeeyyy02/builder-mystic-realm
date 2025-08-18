@@ -39,7 +39,6 @@ export default function FooterNavigation({ collapsed = false }: FooterNavigation
   const { sidebarCollapsed } = useSidebar();
   const { isDarkMode } = useDarkMode();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const checkScreenSize = () => {
