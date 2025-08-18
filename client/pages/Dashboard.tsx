@@ -1774,7 +1774,9 @@ export default function Dashboard() {
                   </div>
 
                   {/* Activity Item 2 */}
-                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                  <div className={`flex items-start justify-between gap-2 py-2 border-b last:border-b-0 transition-colors duration-300 ${
+                    isDarkMode ? 'border-gray-600' : 'border-gray-100'
+                  }`}>
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg
