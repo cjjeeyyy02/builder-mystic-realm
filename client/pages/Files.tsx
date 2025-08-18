@@ -13,6 +13,22 @@ export default function Files() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
+  // View state
+  const [showUploadForm, setShowUploadForm] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([
+    {
+      id: "F003",
+      name: "Feature Design",
+      date: "08-15-2025",
+      size: "1 MB",
+      type: "PNG",
+      category: "Design",
+      department: "Design",
+      priority: "HIGH",
+      status: "active"
+    }
+  ]);
+
   // Form state
   const [formData, setFormData] = useState({
     id: "",
