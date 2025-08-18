@@ -9,11 +9,46 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 export default function Files() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
-  const [filterBy, setFilterBy] = useState("All Files");
-  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    id: "",
+    title: "",
+    date: "",
+    size: "",
+    type: "",
+    category: "",
+    department: "",
+    priority: "",
+    upload: "",
+    share: ""
+  });
+
+  // Auto-generate ID and date
+  useEffect(() => {
+    const generateId = () => {
+      const timestamp = Date.now().toString();
+      const random = Math.random().toString(36).substring(2, 6);
+      return `FILE_${timestamp.slice(-6)}_${random.toUpperCase()}`;
+    };
+
+    const getCurrentDate = () => {
+      return new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+    };
+
+    setFormData(prev => ({
+      ...prev,
+      id: generateId(),
+      date: getCurrentDate()
+    }));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,392 +75,328 @@ export default function Files() {
     }
   }, [lastScrollY]);
 
-  const recentFiles = [
-    {
-      id: 1,
-      name: "Employee_Handbook_2024.pdf",
-      size: "2.3 MB",
-      uploadedBy: "HR Team",
-      uploadedTime: "2 hours ago",
-      type: "pdf",
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 2,
-      name: "Project_Proposal_Q4.pdf",
-      size: "1.8 MB",
-      uploadedBy: "Product Team",
-      uploadedTime: "4 hours ago",
-      type: "pdf",
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 3,
-      name: "Design_Guidelines.pdf",
-      size: "3.1 MB",
-      uploadedBy: "Design Team",
-      uploadedTime: "1 day ago",
-      type: "pdf",
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 4,
-      name: "Financial_Report_2024.xlsx",
-      size: "892 KB",
-      uploadedBy: "Finance Team",
-      uploadedTime: "2 days ago",
-      type: "excel",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      id: 5,
-      name: "Team_Photos.zip",
-      size: "15.2 MB",
-      uploadedBy: "HR Team",
-      uploadedTime: "3 days ago",
-      type: "archive",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      id: 6,
-      name: "Marketing_Assets.zip",
-      size: "8.7 MB",
-      uploadedBy: "Marketing Team",
-      uploadedTime: "1 week ago",
-      type: "archive",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      id: 7,
-      name: "Product_Roadmap.pptx",
-      size: "4.5 MB",
-      uploadedBy: "Product Team",
-      uploadedTime: "1 week ago",
-      type: "powerpoint",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      id: 8,
-      name: "Code_Documentation.pdf",
-      size: "1.2 MB",
-      uploadedBy: "Engineering Team",
-      uploadedTime: "2 weeks ago",
-      type: "pdf",
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 9,
-      name: "User_Research.docx",
-      size: "756 KB",
-      uploadedBy: "UX Team",
-      uploadedTime: "2 weeks ago",
-      type: "document",
-      color: "from-blue-500 to-blue-600",
-    },
-  ];
-
-  const categories = ["All Files"];
-
-  const handleDownload = (file: any) => {
-    console.log(`Downloading ${file.name}`);
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
-  const handleUpload = () => {
-    console.log("Opening upload dialog");
-  };
-
-  const getFileIcon = (type: string) => {
-    switch (type) {
-      case "pdf":
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-        );
-      case "excel":
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            />
-          </svg>
-        );
-      case "powerpoint":
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V3a1 1 0 011 1v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1m8 0V3a1 1 0 00-1-1H8a1 1 0 00-1 1v1m8 0H8"
-            />
-          </svg>
-        );
-      case "archive":
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-            />
-          </svg>
-        );
-      case "document":
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-        );
-      default:
-        return (
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-        );
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Auto-generate size
+      const sizeInBytes = file.size;
+      const sizeInMB = (sizeInBytes / (1024 * 1024)).toFixed(2);
+      const sizeDisplay = sizeInMB + " MB";
+      
+      setFormData(prev => ({
+        ...prev,
+        upload: file.name,
+        size: sizeDisplay
+      }));
     }
   };
 
-  const FileCard = ({ file }: { file: any }) => (
-    <Card className="bg-white border border-gray-200 hover:border-blue-300 transition-all duration-200">
-      <CardContent className="p-3">
-        <div className="flex items-center space-x-3">
-          <div
-            className={`w-8 h-8 bg-gradient-to-br ${file.color} rounded-lg flex items-center justify-center flex-shrink-0`}
-          >
-            <svg
-              className="w-4 h-4 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-          </div>
+  const handleSubmit = () => {
+    console.log("Creating and uploading file:", formData);
+    // Here you would implement the actual file upload logic
+    alert("File created and uploaded successfully!");
+  };
 
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium text-gray-900 truncate">
-              {file.name}
-            </h3>
-            <div className="flex items-center justify-between mt-1">
-              <p className="text-xs text-gray-500">
-                {file.size} • {file.uploadedTime}
-              </p>
-              <Button
-                onClick={() => handleDownload(file)}
-                size="sm"
-                variant="ghost"
-                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 text-xs px-2 py-1 h-6"
-              >
-                <svg
-                  className="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-3-3m3 3l3-3"
-                  />
-                </svg>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  const selectOptions = {
+    type: ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT", "IMG", "ZIP"],
+    category: ["Documents", "Spreadsheets", "Presentations", "Images", "Archives", "Others"],
+    department: ["HR", "Finance", "Marketing", "Engineering", "Design", "Product", "Sales", "Legal"],
+    priority: ["VERY HIGH", "HIGH", "MEDIUM", "LOW", "VERY LOW"],
+    share: ["Individuals", "Teams", "Everyone"]
+  };
 
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-white">
-          {/* Header */}
-          <div className="bg-white border-b border-gray-200 px-3 py-3 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
-              <div>
-                <h1 className="text-lg font-bold text-gray-900">Files</h1>
-                <p className="text-xs text-gray-600 mt-0.5">
-                  Manage and organize your files
-                </p>
-
-                {/* Search Bar */}
-                <div className="mt-2">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search files..."
-                      className="w-48 px-2 py-1.5 pl-6 text-xs bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                    <svg
-                      className="w-3 h-3 text-gray-400 absolute left-2 top-1/2 transform -translate-y-1/2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
+        <div 
+          ref={scrollContainerRef}
+          className={`min-h-screen transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+          }`}
+          style={{ height: "calc(100vh - 4rem)", overflowY: "auto" }}
+        >
+          {/* Top Action Bar */}
+          <div className={`border-b px-4 py-3 transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+          }`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <input
+                  type="text"
+                  placeholder="Search and find your files here, use case, creation, department"
+                  className={`px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 w-96 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                  }`}
+                />
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center space-x-2">
                 <Button
-                  onClick={handleUpload}
-                  className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-3 py-1.5 text-sm rounded-lg shadow-sm"
+                  variant="outline"
+                  className={`text-sm px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                      : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
                 >
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                    />
-                  </svg>
-                  Upload Files
+                  CREATE AND UPLOAD FILE ✏️ 📁
+                </Button>
+                <Button
+                  variant="outline"
+                  className={`text-sm px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                      : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  FILTER SEARCH 🔽
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* Files Grid */}
-          <div
-            ref={scrollContainerRef}
-            className="p-2 pb-footer"
-            style={{ height: "calc(100vh - 110px)", overflowY: "auto" }}
-          >
-            <div className="mb-2">
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-gray-600">
-                  {recentFiles.length} files
-                </p>
-                <div className="flex items-center space-x-1">
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`p-1 rounded transition-all ${
-                      viewMode === "grid"
-                        ? "bg-blue-100 text-blue-600"
-                        : "text-gray-400 hover:text-gray-600"
-                    }`}
-                    title="Grid view"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                      />
-                    </svg>
+          {/* Main Content */}
+          <div className="flex items-center justify-center min-h-[calc(100vh-200px)] p-8">
+            <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+            }`}>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+                <h1 className="text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
+                <div className="flex items-center space-x-2">
+                  <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <span className="text-white text-sm">↻</span>
                   </button>
-                  <button
-                    onClick={() => setViewMode("list")}
-                    className={`p-1 rounded transition-all ${
-                      viewMode === "list"
-                        ? "bg-blue-100 text-blue-600"
-                        : "text-gray-400 hover:text-gray-600"
-                    }`}
-                    title="List view"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                      />
-                    </svg>
+                  <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <span className="text-white text-sm">×</span>
                   </button>
                 </div>
               </div>
-            </div>
 
-            <div
-              className={`${
-                viewMode === "grid"
-                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2"
-                  : "space-y-2"
-              }`}
-            >
-              {recentFiles.map((file) => (
-                <FileCard key={file.id} file={file} />
-              ))}
-            </div>
+              {/* Form Content */}
+              <CardContent className={`p-6 space-y-4 transition-colors duration-300 ${
+                isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+              }`}>
+                {/* ID Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    ID:
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.id}
+                    readOnly
+                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                    }`}
+                    placeholder="AUTO-GENERATED"
+                  />
+                </div>
+
+                {/* Title Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    TITLE:
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => handleInputChange('title', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Type here"
+                  />
+                </div>
+
+                {/* Date Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    DATE:
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.date}
+                    readOnly
+                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                    }`}
+                    placeholder="AUTO-GENERATED"
+                  />
+                </div>
+
+                {/* Size Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    SIZE:
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.size}
+                    readOnly
+                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                    }`}
+                    placeholder="AUTO-GENERATED"
+                  />
+                </div>
+
+                {/* Type Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    TYPE:
+                  </label>
+                  <select
+                    value={formData.type}
+                    onChange={(e) => handleInputChange('type', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Type here</option>
+                    {selectOptions.type.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Category Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    CATEGORY:
+                  </label>
+                  <select
+                    value={formData.category}
+                    onChange={(e) => handleInputChange('category', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Type here</option>
+                    {selectOptions.category.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Department Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    DEPARTMENT:
+                  </label>
+                  <select
+                    value={formData.department}
+                    onChange={(e) => handleInputChange('department', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Type here</option>
+                    {selectOptions.department.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Priority Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    PRIORITY:
+                  </label>
+                  <select
+                    value={formData.priority}
+                    onChange={(e) => handleInputChange('priority', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
+                    {selectOptions.priority.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Upload Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    UPLOAD:
+                  </label>
+                  <div className="flex-1 relative">
+                    <input
+                      type="text"
+                      value={formData.upload}
+                      readOnly
+                      className={`w-full px-3 py-2 pr-10 border rounded-lg transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                      placeholder="Click here to choose a file, or drag one here"
+                    />
+                    <input
+                      type="file"
+                      onChange={handleFileUpload}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Share Field */}
+                <div className="flex items-center space-x-4">
+                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    SHARE:
+                  </label>
+                  <select
+                    value={formData.share}
+                    onChange={(e) => handleInputChange('share', e.target.value)}
+                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Individuals, Teams, Everyone</option>
+                    {selectOptions.share.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Submit Button */}
+                <div className="flex justify-center pt-6">
+                  <Button
+                    onClick={handleSubmit}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                  >
+                    CREATE AND UPLOAD FILE
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </Layout>
