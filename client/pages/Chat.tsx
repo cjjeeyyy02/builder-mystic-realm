@@ -193,7 +193,9 @@ export default function Chat() {
       <Layout>
         <div
           ref={scrollContainerRef}
-          className={`fixed inset-0 lg:left-[260px] top-16 overflow-hidden transition-colors duration-300 ${
+          className={`fixed inset-0 top-16 overflow-hidden transition-all duration-300 ${
+            sidebarCollapsed ? 'lg:left-[80px]' : 'lg:left-[260px]'
+          } ${
             isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
           }`}
         >
