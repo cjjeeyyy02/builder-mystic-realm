@@ -15,17 +15,52 @@ export default function Files() {
   
   // View state
   const [showUploadForm, setShowUploadForm] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [filterCategory, setFilterCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
+  const [searchQuery, setSearchQuery] = useState('');
   const [uploadedFiles, setUploadedFiles] = useState([
     {
       id: "F003",
-      name: "Feature Design",
+      name: "Feature Design Mockup",
       date: "08-15-2025",
-      size: "1 MB",
+      size: "2.4 MB",
       type: "PNG",
       category: "Design",
       department: "Design",
       priority: "HIGH",
-      status: "active"
+      status: "active",
+      thumbnail: "🎨",
+      lastModified: "2 hours ago",
+      sharedWith: ["Design Team", "Product Team"]
+    },
+    {
+      id: "F004",
+      name: "Q3 Financial Report",
+      date: "08-14-2025", 
+      size: "850 KB",
+      type: "PDF",
+      category: "Documents",
+      department: "Finance",
+      priority: "CRITICAL",
+      status: "active",
+      thumbnail: "📊",
+      lastModified: "1 day ago",
+      sharedWith: ["Finance Team", "Executive Team"]
+    },
+    {
+      id: "F005",
+      name: "Marketing Campaign Assets",
+      date: "08-13-2025",
+      size: "15.2 MB", 
+      type: "ZIP",
+      category: "Archives",
+      department: "Marketing",
+      priority: "MEDIUM",
+      status: "active",
+      thumbnail: "📦",
+      lastModified: "3 days ago",
+      sharedWith: ["Marketing Team"]
     }
   ]);
 
@@ -48,7 +83,7 @@ export default function Files() {
     const generateId = () => {
       const timestamp = Date.now().toString();
       const random = Math.random().toString(36).substring(2, 6);
-      return `FILE_${timestamp.slice(-6)}_${random.toUpperCase()}`;
+      return `F${timestamp.slice(-6)}_${random.toUpperCase()}`;
     };
 
     const getCurrentDate = () => {
@@ -101,7 +136,6 @@ export default function Files() {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // Auto-generate size
       const sizeInBytes = file.size;
       const sizeInMB = (sizeInBytes / (1024 * 1024)).toFixed(2);
       const sizeDisplay = sizeInMB + " MB";
@@ -109,7 +143,8 @@ export default function Files() {
       setFormData(prev => ({
         ...prev,
         upload: file.name,
-        size: sizeDisplay
+        size: sizeDisplay,
+        type: file.name.split('.').pop()?.toUpperCase() || "FILE"
       }));
     }
   };
@@ -126,13 +161,16 @@ export default function Files() {
       date: formData.date,
       size: formData.size,
       type: formData.type || "FILE",
-      category: formData.category,
-      department: formData.department,
-      priority: formData.priority,
-      status: "active"
+      category: formData.category || "Documents",
+      department: formData.department || "General",
+      priority: formData.priority || "MEDIUM",
+      status: "active",
+      thumbnail: getFileIcon(formData.type),
+      lastModified: "Just now",
+      sharedWith: formData.share ? [formData.share] : ["Private"]
     };
 
-    setUploadedFiles(prev => [...prev, newFile]);
+    setUploadedFiles(prev => [newFile, ...prev]);
     setShowUploadForm(false);
 
     // Reset form
@@ -152,12 +190,36 @@ export default function Files() {
     console.log("File created and uploaded successfully:", newFile);
   };
 
+  const getFileIcon = (type: string) => {
+    const iconMap: { [key: string]: string } = {
+      'PDF': '📄',
+      'DOC': '📝',
+      'DOCX': '📝',
+      'XLS': '📊',
+      'XLSX': '📊',
+      'PPT': '📊',
+      'PPTX': '📊',
+      'TXT': '📄',
+      'PNG': '🖼️',
+      'JPG': '🖼️',
+      'JPEG': '🖼️',
+      'GIF': '🖼️',
+      'ZIP': '📦',
+      'RAR': '📦',
+      'MP4': '🎥',
+      'AVI': '🎥',
+      'MP3': '🎵',
+      'WAV': '🎵'
+    };
+    return iconMap[type?.toUpperCase()] || '📄';
+  };
+
   const selectOptions = {
-    type: ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT", "IMG", "ZIP"],
+    type: ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT", "PNG", "JPG", "ZIP"],
     category: ["Documents", "Spreadsheets", "Presentations", "Images", "Archives", "Others"],
     department: ["HR", "Finance", "Marketing", "Engineering", "Design", "Product", "Sales", "Legal"],
     priority: ["VERY HIGH", "HIGH", "MEDIUM", "LOW", "VERY LOW"],
-    share: ["Individuals", "Teams", "Everyone"]
+    share: ["Private", "Design Team", "Finance Team", "Marketing Team", "Engineering Team", "Everyone"]
   };
 
   const handleRenameFile = (fileId: string) => {
@@ -176,13 +238,28 @@ export default function Files() {
     alert(`Previewing: ${file.name}`);
   };
 
-  const handleMakePrivate = (fileId: string) => {
-    setUploadedFiles(prev =>
-      prev.map(file =>
-        file.id === fileId ? { ...file, status: "private" } : file
-      )
-    );
-    console.log("File made private:", fileId);
+  const handleDeleteFile = (fileId: string) => {
+    if (window.confirm("Are you sure you want to delete this file?")) {
+      setUploadedFiles(prev => prev.filter(file => file.id !== fileId));
+    }
+  };
+
+  const handleDownloadFile = (file: any) => {
+    console.log("Downloading file:", file);
+    alert(`Downloading: ${file.name}`);
+  };
+
+  const handleShareFile = (fileId: string) => {
+    const shareWith = prompt("Share with (team or person):");
+    if (shareWith) {
+      setUploadedFiles(prev =>
+        prev.map(file =>
+          file.id === fileId 
+            ? { ...file, sharedWith: [...(file.sharedWith || []), shareWith] }
+            : file
+        )
+      );
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -198,6 +275,44 @@ export default function Files() {
     }
   };
 
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case "CRITICAL":
+      case "VERY HIGH":
+        return "bg-red-500";
+      case "HIGH":
+        return "bg-orange-500";
+      case "MEDIUM":
+        return "bg-yellow-500";
+      case "LOW":
+      case "VERY LOW":
+        return "bg-green-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
+  const filteredFiles = uploadedFiles.filter(file => {
+    const matchesSearch = file.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         file.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         file.department.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = filterCategory === 'all' || file.category.toLowerCase() === filterCategory.toLowerCase();
+    return matchesSearch && matchesCategory;
+  });
+
+  const sortedFiles = [...filteredFiles].sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'size':
+        return parseFloat(b.size) - parseFloat(a.size);
+      case 'type':
+        return a.type.localeCompare(b.type);
+      default: // date
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }
+  });
+
   return (
     <>
       <Layout>
@@ -208,70 +323,134 @@ export default function Files() {
           }`}
           style={{ height: "calc(100vh - 4rem)", overflowY: "auto" }}
         >
-          {/* Top Action Bar */}
-          <div className={`border-b px-4 py-3 transition-colors duration-300 ${
+          {/* Header Section */}
+          <Card className={`rounded-none border-0 border-b transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
           }`}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <input
-                  type="text"
-                  placeholder="Search and find your files here, use case, creation, department"
-                  className={`px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 w-96 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                  }`}
-                />
+            <CardContent className="p-6">
+              <div className="flex flex-col space-y-4">
+                {/* Title and Stats */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      File Manager
+                    </h1>
+                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {uploadedFiles.length} files • {uploadedFiles.reduce((acc, file) => acc + parseFloat(file.size), 0).toFixed(1)} MB total
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      variant={viewMode === 'grid' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setViewMode('grid')}
+                      className="text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                      </svg>
+                      Grid
+                    </Button>
+                    <Button
+                      variant={viewMode === 'list' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setViewMode('list')}
+                      className="text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                      </svg>
+                      List
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Search and Filters */}
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search files by name, category, or department..."
+                        className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                            : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                        }`}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="flex space-x-2">
+                    <select
+                      value={filterCategory}
+                      onChange={(e) => setFilterCategory(e.target.value)}
+                      className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="all">All Categories</option>
+                      {selectOptions.category.map(cat => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="date">Sort by Date</option>
+                      <option value="name">Sort by Name</option>
+                      <option value="size">Sort by Size</option>
+                      <option value="type">Sort by Type</option>
+                    </select>
+
+                    <Button
+                      onClick={() => setShowUploadForm(!showUploadForm)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Upload File
+                    </Button>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowUploadForm(!showUploadForm)}
-                  className={`text-sm px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                      : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  CREATE AND UPLOAD FILE ✏️ 📁
-                </Button>
-                <Button
-                  variant="outline"
-                  className={`text-sm px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                      : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  FILTER SEARCH 🔽
-                </Button>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* Main Content */}
-          <div className="p-4">
+          <div className="p-6">
             {showUploadForm ? (
               /* Upload Form */
-              <div className="flex items-center justify-center min-h-[calc(100vh-200px)] p-8">
+              <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
                 <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
                   isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                 }`}>
                   {/* Header */}
                   <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-                    <h1 className="text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
-                    <div className="flex items-center space-x-2">
-                      <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                        <span className="text-white text-sm">↻</span>
-                      </button>
-                      <button
-                        onClick={() => setShowUploadForm(false)}
-                        className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-                      >
-                        <span className="text-white text-sm">×</span>
-                      </button>
-                    </div>
+                    <h1 className="text-xl font-bold">Upload New File</h1>
+                    <button
+                      onClick={() => setShowUploadForm(false)}
+                      className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+                    >
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </div>
 
                   {/* Form Content */}
@@ -280,8 +459,8 @@ export default function Files() {
                   }`}>
                     {/* ID Field */}
                     <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        ID:
+                      <label className={`text-blue-700 font-semibold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        File ID:
                       </label>
                       <input
                         type="text"
@@ -290,14 +469,14 @@ export default function Files() {
                         className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
                           isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
                         }`}
-                        placeholder="AUTO-GENERATED"
+                        placeholder="Auto-generated"
                       />
                     </div>
 
                     {/* Title Field */}
                     <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        TITLE:
+                      <label className={`text-blue-700 font-semibold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        File Name:
                       </label>
                       <input
                         type="text"
@@ -308,130 +487,14 @@ export default function Files() {
                             ? 'bg-gray-700 border-gray-600 text-gray-200'
                             : 'bg-white border-gray-300 text-gray-900'
                         }`}
-                        placeholder="Type here"
+                        placeholder="Enter file name"
                       />
-                    </div>
-
-                    {/* Date Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        DATE:
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.date}
-                        readOnly
-                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                          isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-                        }`}
-                        placeholder="AUTO-GENERATED"
-                      />
-                    </div>
-
-                    {/* Size Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        SIZE:
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.size}
-                        readOnly
-                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                          isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-                        }`}
-                        placeholder="AUTO-GENERATED"
-                      />
-                    </div>
-
-                    {/* Type Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        TYPE:
-                      </label>
-                      <select
-                        value={formData.type}
-                        onChange={(e) => handleInputChange('type', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200'
-                            : 'bg-white border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Type here</option>
-                        {selectOptions.type.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Category Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        CATEGORY:
-                      </label>
-                      <select
-                        value={formData.category}
-                        onChange={(e) => handleInputChange('category', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200'
-                            : 'bg-white border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Type here</option>
-                        {selectOptions.category.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Department Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        DEPARTMENT:
-                      </label>
-                      <select
-                        value={formData.department}
-                        onChange={(e) => handleInputChange('department', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200'
-                            : 'bg-white border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Type here</option>
-                        {selectOptions.department.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Priority Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        PRIORITY:
-                      </label>
-                      <select
-                        value={formData.priority}
-                        onChange={(e) => handleInputChange('priority', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200'
-                            : 'bg-white border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
-                        {selectOptions.priority.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
                     </div>
 
                     {/* Upload Field */}
                     <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        UPLOAD:
+                      <label className={`text-blue-700 font-semibold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        Upload File:
                       </label>
                       <div className="flex-1 relative">
                         <input
@@ -443,7 +506,7 @@ export default function Files() {
                               ? 'bg-gray-700 border-gray-600 text-gray-200'
                               : 'bg-white border-gray-300 text-gray-900'
                           }`}
-                          placeholder="Click here to choose a file, or drag one here"
+                          placeholder="Choose a file..."
                         />
                         <input
                           type="file"
@@ -458,120 +521,365 @@ export default function Files() {
                       </div>
                     </div>
 
-                    {/* Share Field */}
-                    <div className="flex items-center space-x-4">
-                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        SHARE:
-                      </label>
-                      <select
-                        value={formData.share}
-                        onChange={(e) => handleInputChange('share', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                          isDarkMode
-                            ? 'bg-gray-700 border-gray-600 text-gray-200'
-                            : 'bg-white border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Individuals, Teams, Everyone</option>
-                        {selectOptions.share.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
+                    {/* Category and Department Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-4">
+                        <label className={`text-blue-700 font-semibold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          Category:
+                        </label>
+                        <select
+                          value={formData.category}
+                          onChange={(e) => handleInputChange('category', e.target.value)}
+                          className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                            isDarkMode
+                              ? 'bg-gray-700 border-gray-600 text-gray-200'
+                              : 'bg-white border-gray-300 text-gray-900'
+                          }`}
+                        >
+                          <option value="">Select category</option>
+                          {selectOptions.category.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="flex items-center space-x-4">
+                        <label className={`text-blue-700 font-semibold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          Department:
+                        </label>
+                        <select
+                          value={formData.department}
+                          onChange={(e) => handleInputChange('department', e.target.value)}
+                          className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                            isDarkMode
+                              ? 'bg-gray-700 border-gray-600 text-gray-200'
+                              : 'bg-white border-gray-300 text-gray-900'
+                          }`}
+                        >
+                          <option value="">Select department</option>
+                          {selectOptions.department.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
+
+                    {/* Priority and Share Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-4">
+                        <label className={`text-blue-700 font-semibold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          Priority:
+                        </label>
+                        <select
+                          value={formData.priority}
+                          onChange={(e) => handleInputChange('priority', e.target.value)}
+                          className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                            isDarkMode
+                              ? 'bg-gray-700 border-gray-600 text-gray-200'
+                              : 'bg-white border-gray-300 text-gray-900'
+                          }`}
+                        >
+                          <option value="">Select priority</option>
+                          {selectOptions.priority.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="flex items-center space-x-4">
+                        <label className={`text-blue-700 font-semibold w-20 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          Share With:
+                        </label>
+                        <select
+                          value={formData.share}
+                          onChange={(e) => handleInputChange('share', e.target.value)}
+                          className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                            isDarkMode
+                              ? 'bg-gray-700 border-gray-600 text-gray-200'
+                              : 'bg-white border-gray-300 text-gray-900'
+                          }`}
+                        >
+                          <option value="">Select sharing option</option>
+                          {selectOptions.share.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Auto-generated fields display */}
+                    {formData.upload && (
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                        <div>
+                          <label className={`text-sm font-medium ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                            File Size:
+                          </label>
+                          <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {formData.size}
+                          </p>
+                        </div>
+                        <div>
+                          <label className={`text-sm font-medium ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                            File Type:
+                          </label>
+                          <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {formData.type}
+                          </p>
+                        </div>
+                        <div>
+                          <label className={`text-sm font-medium ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                            Upload Date:
+                          </label>
+                          <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {formData.date}
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Submit Button */}
                     <div className="flex justify-center pt-6">
                       <Button
                         onClick={handleSubmit}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                        disabled={!formData.title || !formData.upload}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-lg transition-colors duration-300 shadow-lg disabled:opacity-50"
                       >
-                        CREATE AND UPLOAD FILE
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        Upload File
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
               </div>
             ) : (
-              /* File List View */
-              <div className="space-y-4 max-w-4xl mx-auto">
-                {uploadedFiles.map((file, index) => (
-                  <Card key={file.id} className={`border-2 shadow-lg transition-colors duration-300 ${
+              /* File List/Grid View */
+              <div>
+                {sortedFiles.length === 0 ? (
+                  <div className="text-center py-16">
+                    <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
+                      isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
+                    }`}>
+                      <svg className={`w-12 h-12 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {searchQuery || filterCategory !== 'all' ? 'No files found' : 'No files uploaded yet'}
+                    </h3>
+                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {searchQuery || filterCategory !== 'all' 
+                        ? 'Try adjusting your search or filters' 
+                        : 'Click "Upload File" to get started'
+                      }
+                    </p>
+                  </div>
+                ) : viewMode === 'grid' ? (
+                  /* Grid View */
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {sortedFiles.map((file) => (
+                      <Card key={file.id} className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
+                        isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                      }`}>
+                        <CardContent className="p-6">
+                          {/* File Icon and Status */}
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="text-4xl">{file.thumbnail}</div>
+                            <div className="flex items-center space-x-2">
+                              <div className={`w-3 h-3 rounded-full ${getStatusColor(file.status)}`}></div>
+                              <span className={`text-xs px-2 py-1 rounded-full font-medium ${getPriorityColor(file.priority)} text-white`}>
+                                {file.priority}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* File Info */}
+                          <div className="space-y-2">
+                            <h3 className={`font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                              {file.name}
+                            </h3>
+                            <div className="flex items-center justify-between text-sm">
+                              <span className={`px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                {file.type}
+                              </span>
+                              <span className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                {file.size}
+                              </span>
+                            </div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              {file.department} • {file.lastModified}
+                            </p>
+                            <div className="flex flex-wrap gap-1">
+                              {file.sharedWith?.slice(0, 2).map((share, index) => (
+                                <span key={index} className={`text-xs px-2 py-1 rounded-full ${
+                                  isDarkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'
+                                }`}>
+                                  {share}
+                                </span>
+                              ))}
+                              {file.sharedWith && file.sharedWith.length > 2 && (
+                                <span className={`text-xs px-2 py-1 rounded-full ${
+                                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                                }`}>
+                                  +{file.sharedWith.length - 2}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Action Buttons */}
+                          <div className="flex items-center space-x-1 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Button
+                              onClick={() => handlePreviewFile(file)}
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 text-xs"
+                            >
+                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                              </svg>
+                              View
+                            </Button>
+                            <Button
+                              onClick={() => handleDownloadFile(file)}
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 text-xs"
+                            >
+                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              Download
+                            </Button>
+                            <Button
+                              onClick={() => handleDeleteFile(file.id)}
+                              size="sm"
+                              variant="outline"
+                              className="text-xs text-red-600 hover:text-red-700 hover:bg-red-50"
+                            >
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  /* List View */
+                  <Card className={`transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                   }`}>
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        {/* File Info */}
-                        <div className="flex-1 space-y-1">
-                          <div className="flex items-center space-x-4">
-                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                              FILE ID: {file.id}
-                            </span>
-                            <div className={`w-4 h-4 rounded-full ${getStatusColor(file.status)}`}></div>
-                          </div>
-                          <div className="flex items-center space-x-4">
-                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                              FILE NAME: {file.name}
-                            </span>
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                          </div>
-                          <div className="flex items-center space-x-4">
-                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                              FILE DATE: {file.date}
-                            </span>
-                            <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
-                          </div>
-                          <div className="flex items-center space-x-4">
-                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                              FILE SIZE: {file.size}
-                            </span>
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                          </div>
-                          <div className="flex items-center space-x-4">
-                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                              FILE TYPE: {file.type}
-                            </span>
-                            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex flex-col space-y-2">
-                          <Button
-                            onClick={() => handleRenameFile(file.id)}
-                            size="sm"
-                            className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1"
-                          >
-                            RENAME FILE
-                          </Button>
-                          <Button
-                            onClick={() => handlePreviewFile(file)}
-                            size="sm"
-                            className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1"
-                          >
-                            PREVIEW
-                          </Button>
-                          <Button
-                            onClick={() => handleMakePrivate(file.id)}
-                            size="sm"
-                            className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1"
-                          >
-                            MAKE PRIVATE
-                          </Button>
-                        </div>
+                    <CardContent className="p-0">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className={`border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                            <tr className={`${isDarkMode ? 'bg-gray-750' : 'bg-gray-50'}`}>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Name</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Type</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Size</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Department</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Modified</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Priority</th>
+                              <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {sortedFiles.map((file, index) => (
+                              <tr key={file.id} className={`border-b hover:bg-opacity-50 transition-colors ${
+                                isDarkMode 
+                                  ? 'border-gray-700 hover:bg-gray-700' 
+                                  : 'border-gray-100 hover:bg-gray-50'
+                              }`}>
+                                <td className="p-4">
+                                  <div className="flex items-center space-x-3">
+                                    <div className="text-2xl">{file.thumbnail}</div>
+                                    <div>
+                                      <h4 className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                        {file.name}
+                                      </h4>
+                                      <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                        ID: {file.id}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="p-4">
+                                  <span className={`px-2 py-1 rounded text-sm ${
+                                    isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                                  }`}>
+                                    {file.type}
+                                  </span>
+                                </td>
+                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                  {file.size}
+                                </td>
+                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                  {file.department}
+                                </td>
+                                <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                  {file.lastModified}
+                                </td>
+                                <td className="p-4">
+                                  <span className={`px-2 py-1 rounded text-xs font-medium text-white ${getPriorityColor(file.priority)}`}>
+                                    {file.priority}
+                                  </span>
+                                </td>
+                                <td className="p-4">
+                                  <div className="flex items-center space-x-1">
+                                    <Button
+                                      onClick={() => handlePreviewFile(file)}
+                                      size="sm"
+                                      variant="ghost"
+                                      className="text-xs p-1"
+                                    >
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                      </svg>
+                                    </Button>
+                                    <Button
+                                      onClick={() => handleRenameFile(file.id)}
+                                      size="sm"
+                                      variant="ghost"
+                                      className="text-xs p-1"
+                                    >
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                      </svg>
+                                    </Button>
+                                    <Button
+                                      onClick={() => handleShareFile(file.id)}
+                                      size="sm"
+                                      variant="ghost"
+                                      className="text-xs p-1"
+                                    >
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                                      </svg>
+                                    </Button>
+                                    <Button
+                                      onClick={() => handleDeleteFile(file.id)}
+                                      size="sm"
+                                      variant="ghost"
+                                      className="text-xs p-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                    >
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                      </svg>
+                                    </Button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-
-                {uploadedFiles.length === 0 && (
-                  <div className="text-center py-12">
-                    <div className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      No files uploaded yet
-                    </div>
-                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                      Click "CREATE AND UPLOAD FILE" to get started
-                    </p>
-                  </div>
                 )}
               </div>
             )}
