@@ -724,8 +724,11 @@ export default function Chat() {
                 {contactList.map((contact) => (
                   <div
                     key={contact.id}
-                    onClick={() => setSelectedChat(contact.id)}
-                    className={`p-2 border-b cursor-pointer hover:bg-opacity-50 transition-all ${
+                    onClick={() => {
+                      setSelectedChat(contact.id);
+                      setShowMobileSidebar(false);
+                    }}
+                    className={`p-1.5 sm:p-2 border-b cursor-pointer hover:bg-opacity-50 transition-all ${
                       selectedChat === contact.id
                         ? isDarkMode
                           ? "bg-gray-700 border-gray-600"
