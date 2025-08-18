@@ -566,31 +566,51 @@ export default function Chat() {
                 </div>
               )}
 
-              {/* Message Input Bar */}
-              <div className={`p-3 border-t transition-colors duration-300 ${
-                isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-              }`}>
-                <div className="flex items-center space-x-2">
-                  <div className="flex-1 relative">
-                    <input
-                      type="text"
-                      value={message}
-                      onChange={handleInputChange}
-                      onFocus={handleInputFocus}
-                      onBlur={handleInputBlur}
-                      onKeyPress={(e) =>
-                        e.key === "Enter" && handleSendMessage()
-                      }
-                      placeholder="Type your message here..."
-                      className={`w-full px-3 py-2 pr-8 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 ${
-                        isDarkMode 
-                          ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                          : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                      }`}
-                    />
-                    <button className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                    }`}>
+              {/* Message Input Bar - Only show when chat is selected */}
+              {selectedChat && (
+                <div className={`p-3 border-t transition-colors duration-300 ${
+                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+                }`}>
+                  <div className="flex items-center space-x-2">
+                    <div className="flex-1 relative">
+                      <input
+                        type="text"
+                        value={message}
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                        onBlur={handleInputBlur}
+                        onKeyPress={(e) =>
+                          e.key === "Enter" && handleSendMessage()
+                        }
+                        placeholder="Type your message here..."
+                        className={`w-full px-3 py-2 pr-8 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                        }`}
+                      />
+                      <button className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                      }`}>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <button
+                      onClick={handleSendMessage}
+                      className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+                    >
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -601,46 +621,28 @@ export default function Chat() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                         />
                       </svg>
                     </button>
                   </div>
-                  <button
-                    onClick={handleSendMessage}
-                    className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+
+                  {/* Chat Themes Button */}
+                  <div className="mt-2 flex justify-end">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={`text-[10px] px-2 py-1 h-6 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                          : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                      }`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                      />
-                    </svg>
-                  </button>
+                      CHAT THEMES
+                    </Button>
+                  </div>
                 </div>
-                
-                {/* Daily Themes Button */}
-                <div className="mt-2 flex justify-end">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className={`text-[10px] px-2 py-1 h-6 transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    DAILY THEMES
-                  </Button>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
