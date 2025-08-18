@@ -625,9 +625,13 @@ export default function Chat() {
                     <div
                       key={group.id}
                       className={`p-2 border-b cursor-pointer transition-all ${
-                        isDarkMode
-                          ? "border-gray-700 hover:bg-gray-700"
-                          : "border-gray-100 hover:bg-gray-50"
+                        selectedChat === group.id
+                          ? isDarkMode
+                            ? "bg-gray-700 border-gray-600"
+                            : "bg-blue-50 border-blue-200"
+                          : isDarkMode
+                            ? "border-gray-700 hover:bg-gray-700"
+                            : "border-gray-100 hover:bg-gray-50"
                       }`}
                     >
                       <div className="flex items-center space-x-2">
