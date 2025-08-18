@@ -9,6 +9,18 @@ export default function Meetings() {
   const { isDarkMode } = useDarkMode();
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [showCreateMeetingModal, setShowCreateMeetingModal] = useState(false);
+  const [meetingForm, setMeetingForm] = useState({
+    title: "",
+    info: "",
+    date: "",
+    timeFrom: "",
+    timeFromPeriod: "AM",
+    timeTo: "",
+    timeToPeriod: "AM",
+    chair: "",
+    invite: ""
+  });
 
   const handleRecording = () => {
     if (!isRecording) {
