@@ -297,55 +297,92 @@ export default function Reminders() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="space-y-4">
                 {getFilteredReminders().map((reminder) => (
-                  <Card key={reminder.id} className={`transition-colors duration-300 hover:shadow-lg ${
-                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                  <Card key={reminder.id} className={`transition-colors duration-300 hover:shadow-lg border-2 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'
                   }`}>
                     <CardContent className="p-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {/* Header with ID and Star */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-2">
+                          <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                            REMINDER ID: {reminder.id}
+                          </span>
+                          <div className="w-5 h-5 bg-yellow-500 rounded flex items-center justify-center">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <div className="mb-3">
+                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          REMINDER TITLE:
+                        </span>
+                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {reminder.title}
-                        </h3>
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          reminder.priority === 'HIGH' || reminder.priority === 'CRITICAL' 
-                            ? 'bg-red-100 text-red-800' 
-                            : 'bg-blue-100 text-blue-800'
-                        }`}>
-                          {reminder.priority}
                         </span>
                       </div>
-                      
-                      <p className={`text-xs mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                        {reminder.details}
-                      </p>
-                      
-                      <div className="space-y-1 mb-3">
-                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                          <span className="font-medium">Date:</span> {reminder.date}
-                        </div>
-                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                          <span className="font-medium">Type:</span> {reminder.type}
-                        </div>
-                        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                          <span className="font-medium">Department:</span> {reminder.department}
-                        </div>
+
+                      {/* Details */}
+                      <div className="mb-3">
+                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          REMINDER DETAILS:
+                        </span>
+                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          {reminder.details}
+                        </span>
                       </div>
-                      
-                      <div className="flex space-x-2">
+
+                      {/* Date */}
+                      <div className="mb-4">
+                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                          REMINDER DATE:
+                        </span>
+                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          {reminder.date}
+                        </span>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex items-center space-x-2">
                         <Button
                           size="sm"
-                          className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 h-6"
+                          className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-3 py-1 font-medium"
                         >
-                          Complete
+                          {reminder.category || "MARKETING"}
                         </Button>
+
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="text-xs px-3 py-1 h-6"
+                          className="bg-gray-500 hover:bg-gray-600 text-white text-xs px-3 py-1 font-medium"
                         >
-                          Edit
+                          {reminder.privacy || "PRIVATE"}
                         </Button>
+
+                        <Button
+                          size="sm"
+                          className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 font-medium"
+                        >
+                          {reminder.priority}
+                        </Button>
+
+                        <div className="flex items-center space-x-1 ml-auto">
+                          <button className="w-8 h-8 bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                          </button>
+
+                          <button className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
