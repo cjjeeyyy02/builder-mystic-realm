@@ -257,6 +257,14 @@ export default function Chat() {
 
   const handleCloseModal = () => {
     setShowCreateGroupModal(false);
+    setGroupSaved(false);
+    // Reset form
+    setGroupForm({
+      name: "",
+      type: "Private",
+      username: "",
+      access: "Only Admin"
+    });
   };
 
   return (
