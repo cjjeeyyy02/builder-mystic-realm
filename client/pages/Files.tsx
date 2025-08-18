@@ -634,7 +634,7 @@ export default function Files() {
                           <div className="flex flex-col h-full">
 
                             {/* Top Section - File Icon, Type and Actions */}
-                            <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-start justify-between mb-1">
                               <div className="flex items-center gap-1">
                                 <div className="text-4xl">{file.thumbnail}</div>
                                 <span className={`text-sm px-3 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
@@ -696,17 +696,18 @@ export default function Files() {
                             </div>
 
                             {/* Middle Section - File Info */}
-                            <div className="flex-1 space-y-2 mb-2">
-                              {/* FILE NAME */}
-                              <div>
-                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  FILE NAME
-                                </p>
-                                <h3 className={`text-sm font-medium break-words ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                                  {file.name}
-                                </h3>
-                              </div>
+                            {/* FILE NAME - Close to file type */}
+                            <div className="mb-4">
+                              <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                FILE NAME
+                              </p>
+                              <h3 className={`text-sm font-medium break-words ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                {file.name}
+                              </h3>
+                            </div>
 
+                            {/* Rest of the content with more space */}
+                            <div className="flex-1 space-y-2 mb-2">
                               {/* FILE ID */}
                               <div>
                                 <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
