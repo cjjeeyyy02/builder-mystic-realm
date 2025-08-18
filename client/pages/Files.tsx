@@ -58,7 +58,7 @@ export default function Files() {
       department: "Marketing",
       priority: "MEDIUM",
       status: "active",
-      thumbnail: "����",
+      thumbnail: "📦",
       lastModified: "3 days ago",
       sharedWith: ["Marketing Team"]
     }
@@ -622,7 +622,7 @@ export default function Files() {
                   /* Horizontal List View */
                   <div className="space-y-3">
                     {sortedFiles.map((file) => (
-                      <Card key={file.id} className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
+                      <Card key={file.id} className={`hover:shadow-md transition-all duration-200 ${
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                       }`}>
                         <CardContent className="p-3">
