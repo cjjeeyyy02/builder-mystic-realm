@@ -217,13 +217,38 @@ export default function Chat() {
   const getAvatarColor = (name: string) => {
     const colors = [
       "bg-blue-500",
-      "bg-purple-500", 
+      "bg-purple-500",
       "bg-green-500",
       "bg-pink-500",
       "bg-indigo-500",
       "bg-red-500",
     ];
     return colors[name.length % colors.length];
+  };
+
+  const handleCreateGroup = () => {
+    setShowCreateGroupModal(true);
+  };
+
+  const handleSaveGroup = () => {
+    console.log("Saving group:", groupForm);
+    setShowCreateGroupModal(false);
+    // Reset form
+    setGroupForm({
+      name: "",
+      type: "Private",
+      username: "",
+      access: "Only Admin"
+    });
+  };
+
+  const handleSendGroupInvite = () => {
+    console.log("Sending group invite:", groupForm);
+    handleSaveGroup(); // Save first, then send invite
+  };
+
+  const handleCloseModal = () => {
+    setShowCreateGroupModal(false);
   };
 
   return (
