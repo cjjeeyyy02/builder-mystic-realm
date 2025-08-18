@@ -2048,7 +2048,9 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">
+                          <h4 className={`text-xs font-semibold transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             Sarah Jhonson
                           </h4>
                           <span className="text-xs text-gray-500">
