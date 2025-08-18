@@ -108,6 +108,36 @@ export default function Chat() {
     status: "Active",
   };
 
+  // Sample chat messages for different contacts
+  const chatMessages = {
+    jack: [
+      {
+        id: 1,
+        sender: "jack",
+        message: "Hi Jay, please kindly come to my cabin at 15:30 PM for an important discussion.",
+        time: "Sent 14:32 PM",
+        isOwn: false,
+      },
+      {
+        id: 2,
+        sender: "me",
+        message: "Sure, Kyle, I'll be there. Thanks",
+        time: "Sent 14:36 PM",
+        isOwn: true,
+      },
+    ],
+    pal: [
+      {
+        id: 1,
+        sender: "pal",
+        message: "Hey, did you review the financial reports?",
+        time: "Sent 10:30 AM",
+        isOwn: false,
+      },
+    ],
+    // Add more chat data as needed
+  };
+
   const handleSendMessage = () => {
     if (message.trim()) {
       console.log("Sending message:", message);
