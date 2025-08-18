@@ -232,15 +232,22 @@ export default function Chat() {
   };
 
   const handleSaveGroup = () => {
-    console.log("Saving group:", groupForm);
-    setShowCreateGroupModal(false);
-    // Reset form
-    setGroupForm({
-      name: "",
-      type: "Private",
-      username: "",
-      access: "Only Admin"
-    });
+    if (groupForm.name.trim()) {
+      // Add new group to the teams list
+      const newGroup = {
+        id: groupForm.name.toLowerCase().replace(/\s+/g, ''),
+        name: groupForm.name,
+        type: groupForm.type,
+        members: 1, // Start with just the creator
+        status: "team",
+      };
+
+      setTeamGroups(prev => [...prev, newGroup]);
+      setGroupSaved(true);
+
+      // Update tabs count (assuming new group increases TEAMS count)
+      tabs.find(tab => tab.id === "TEAMS")!.count += 1;
+    }
   };
 
   const handleSendGroupInvite = () => {
