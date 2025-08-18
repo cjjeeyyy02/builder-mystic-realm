@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout, { useSidebar } from "@/components/Layout";
+import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FooterNavigation from "@/components/FooterNavigation";
@@ -9,17 +9,6 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 export default function Chat() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
-
-  // Safely get sidebar state with fallback
-  let sidebarCollapsed = false;
-  try {
-    const sidebarContext = useSidebar();
-    sidebarCollapsed = sidebarContext.sidebarCollapsed;
-  } catch (error) {
-    // Fallback to default state if context is not available
-    console.warn('Sidebar context not available, using default state');
-  }
-
   const [selectedChat, setSelectedChat] = useState("");
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("ALL");
