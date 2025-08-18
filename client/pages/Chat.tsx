@@ -9,6 +9,7 @@ import { useDarkMode } from "@/components/DarkModeProvider";
 export default function Chat() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
+  const { sidebarCollapsed } = useSidebar();
   const [selectedChat, setSelectedChat] = useState("");
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("ALL");
