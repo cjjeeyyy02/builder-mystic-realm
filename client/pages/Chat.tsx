@@ -600,11 +600,11 @@ export default function Chat() {
             </h1>
 
             {/* Center Search Bar */}
-            <div className="flex-1 max-w-md mx-4">
+            <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4">
               <input
                 type="text"
-                placeholder="Constructive, anything"
-                className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                placeholder="Search..."
+                className={`w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
