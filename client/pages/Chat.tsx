@@ -640,9 +640,25 @@ export default function Chat() {
                 : 'bg-white border-gray-200'
             }`}>
               {/* Sidebar Header */}
-              <div className={`p-3 border-b transition-colors duration-300 ${
+              <div className={`p-2 sm:p-3 border-b transition-colors duration-300 ${
                 isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
+                {/* Mobile Close Button */}
+                <div className="md:hidden flex justify-between items-center mb-3">
+                  <h2 className={`text-sm font-semibold ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>Chats</h2>
+                  <button
+                    onClick={() => setShowMobileSidebar(false)}
+                    className={`p-1 rounded ${
+                      isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
                 {/* Filter Tabs */}
                 <div className="flex space-x-1">
                   {tabs.map((tab) => (
