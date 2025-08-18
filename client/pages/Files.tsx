@@ -634,7 +634,7 @@ export default function Files() {
                           <div className="flex flex-col h-full">
 
                             {/* Top Section - File Icon, Type and Actions */}
-                            <div className="flex items-start justify-between mb-2">
+                            <div className="flex items-start justify-between mb-4">
                               <div className="flex items-center gap-1">
                                 <div className="text-4xl">{file.thumbnail}</div>
                                 <span className={`text-sm px-3 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
