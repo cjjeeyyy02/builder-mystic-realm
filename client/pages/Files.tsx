@@ -738,9 +738,9 @@ export default function Files() {
                               </div>
 
                               {/* Badges Section */}
-                              <div className="space-y-1 pt-2">
+                              <div className="space-y-2 pt-2">
                                 {/* DEPARTMENT BADGE */}
-                                <div>
+                                <div className="flex justify-start">
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
                                     file.department === 'Finance' ? 'bg-green-100 text-green-800' :
@@ -754,7 +754,7 @@ export default function Files() {
                                 </div>
 
                                 {/* FILE CATEGORY & PRIORITY BADGES */}
-                                <div className="flex items-center gap-1 flex-wrap">
+                                <div className="flex items-center gap-1 flex-wrap justify-start">
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.visibility === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                                   }`}>
