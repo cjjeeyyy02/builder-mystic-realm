@@ -192,21 +192,20 @@ export default function Chat() {
     ],
   });
 
-  // Close group menus when clicking outside
+  // Close group menu when clicking outside
   useEffect(() => {
     const handleClickOutside = () => {
       setShowGroupMenu(false);
-      setShowSidebarGroupMenu(null);
     };
 
-    if (showGroupMenu || showSidebarGroupMenu) {
+    if (showGroupMenu) {
       document.addEventListener("click", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [showGroupMenu, showSidebarGroupMenu]);
+  }, [showGroupMenu]);
 
   const handleSendMessage = () => {
     if (message.trim() && selectedChat) {
