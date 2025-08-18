@@ -112,7 +112,7 @@ export default function Chat() {
 
   const tabs = [
     { id: "ALL", label: "ALL", count: 8 },
-    { id: "NOT", label: "Not", count: 2 },
+    { id: "NOT", label: "NEW", count: 2 },
     { id: "TEAMS", label: "TEAMS", count: 3 },
   ];
 
