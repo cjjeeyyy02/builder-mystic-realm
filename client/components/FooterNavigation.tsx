@@ -167,28 +167,7 @@ export default function FooterNavigation({ collapsed = false }: FooterNavigation
         </div>
       </div>
 
-      {/* Optional: Quick Actions Bar for active page */}
-      {location.pathname === "/chat" && (
-        <div className={`
-          px-4 py-2 border-t transition-colors duration-300
-          ${isDarkMode ? 'border-gray-700 bg-gray-800/50' : 'border-gray-200 bg-gray-50/50'}
-        `}>
-          <div className="flex items-center justify-center space-x-4">
-            <button className={`
-              p-2 rounded-lg transition-colors duration-200
-              ${isDarkMode ? 'text-gray-400 hover:text-white hover:bg-gray-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'}
-            `}>
-              <Icon className="w-4 h-4" />
-            </button>
-            <button className={`
-              p-2 rounded-lg transition-colors duration-200
-              ${isDarkMode ? 'text-gray-400 hover:text-white hover:bg-gray-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'}
-            `}>
-              <MessageSquare className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Optional: Quick Actions Bar for active page - removed to fix Icon error */}
 
       {/* Home Indicator for iOS-style design */}
       <div className="flex justify-center pb-1">
