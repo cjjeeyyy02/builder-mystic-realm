@@ -621,28 +621,60 @@ export default function Chat() {
 
                           {/* Group Context Menu */}
                           {showGroupMenu && (
-                            <div className={`absolute right-0 top-12 w-32 rounded-lg shadow-lg border z-50 transition-colors duration-300 ${
-                              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                            <div className={`absolute right-0 top-12 w-36 shadow-xl border-2 z-50 transition-all duration-300 ${
+                              isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
                             }`}>
-                              <div className="py-1">
-                                <button className={`w-full text-left px-3 py-2 text-xs hover:bg-opacity-50 transition-colors ${
-                                  isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                                }`}>
+                              <div className="py-2">
+                                <button
+                                  onClick={() => {
+                                    console.log("Go Public clicked");
+                                    setShowGroupMenu(false);
+                                  }}
+                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                    isDarkMode
+                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                  }`}
+                                >
                                   Go Public
                                 </button>
-                                <button className={`w-full text-left px-3 py-2 text-xs hover:bg-opacity-50 transition-colors ${
-                                  isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                                }`}>
+                                <button
+                                  onClick={() => {
+                                    console.log("Edit Group clicked");
+                                    setShowGroupMenu(false);
+                                  }}
+                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                    isDarkMode
+                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                  }`}
+                                >
                                   Edit Group
                                 </button>
-                                <button className={`w-full text-left px-3 py-2 text-xs hover:bg-opacity-50 transition-colors ${
-                                  isDarkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                                }`}>
+                                <button
+                                  onClick={() => {
+                                    console.log("Mute Group clicked");
+                                    setShowGroupMenu(false);
+                                  }}
+                                  className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                    isDarkMode
+                                      ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
+                                      : 'text-gray-800 hover:bg-gray-50 border-gray-200'
+                                  }`}
+                                >
                                   Mute Group
                                 </button>
-                                <button className={`w-full text-left px-3 py-2 text-xs hover:bg-opacity-50 transition-colors ${
-                                  isDarkMode ? 'text-red-400 hover:bg-gray-700' : 'text-red-600 hover:bg-gray-100'
-                                }`}>
+                                <button
+                                  onClick={() => {
+                                    console.log("Delete Group clicked");
+                                    setShowGroupMenu(false);
+                                  }}
+                                  className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
+                                    isDarkMode
+                                      ? 'text-red-400 hover:bg-gray-700'
+                                      : 'text-red-600 hover:bg-gray-50'
+                                  }`}
+                                >
                                   Delete Group
                                 </button>
                               </div>
