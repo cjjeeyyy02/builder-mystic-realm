@@ -660,12 +660,12 @@ export default function Chat() {
                   </button>
                 </div>
                 {/* Filter Tabs */}
-                <div className="flex space-x-1">
+                <div className="flex space-x-0.5 sm:space-x-1">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`px-2 py-1 text-[10px] font-medium rounded transition-all ${
+                      className={`px-1.5 sm:px-2 py-1 text-[9px] sm:text-[10px] font-medium rounded transition-all ${
                         activeTab === tab.id
                           ? isDarkMode
                             ? "bg-blue-600 text-white"
