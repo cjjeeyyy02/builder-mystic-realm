@@ -695,16 +695,16 @@ export default function Meetings() {
 
       {/* Create Meeting Modal */}
       {showCreateMeetingModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <Card className={`w-full max-w-lg mx-auto shadow-2xl ${
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4">
+          <Card className={`w-full max-w-md max-h-[85vh] mx-auto shadow-2xl flex flex-col ${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           }`}>
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-xl font-bold">Create New Meeting</h2>
+            <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-center px-4 py-3 rounded-t-lg relative flex-shrink-0">
+              <h2 className="text-lg font-bold text-yellow-300">CREATE NEW MEETING</h2>
               <button
                 onClick={handleCloseModal}
-                className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-7 h-7 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
               >
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
