@@ -741,7 +741,7 @@ export default function Files() {
                               {/* Badges Section */}
                               {/* All Badges in One Row */}
                               <div className="pt-2">
-                                <div className="flex items-center gap-1 flex-wrap justify-start">
+                                <div className="flex items-center gap-2 flex-wrap justify-start">
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
                                     file.department === 'Finance' ? 'bg-green-100 text-green-800' :
@@ -750,7 +750,7 @@ export default function Files() {
                                     file.department === 'HR' ? 'bg-pink-100 text-pink-800' :
                                     isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
                                   }`}>
-                                    {file.department}
+                                    {file.department.toUpperCase()}
                                   </span>
                                   <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
                                     file.visibility === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
