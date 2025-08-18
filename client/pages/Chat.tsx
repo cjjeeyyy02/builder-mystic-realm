@@ -198,51 +198,58 @@ export default function Chat() {
             isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
           }`}
         >
+          {/* Top Header Bar */}
+          <div className={`flex items-center justify-between px-4 py-3 border-b transition-colors duration-300 ${
+            isDarkMode
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-white border-gray-200'
+          }`}>
+            <h1 className={`text-sm font-bold transition-colors duration-300 ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              CHATROOM
+            </h1>
+
+            {/* Center Search Bar */}
+            <div className="flex-1 max-w-md mx-4">
+              <input
+                type="text"
+                placeholder="Constructive, anything"
+                className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                    : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
+              />
+            </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              className={`text-xs px-3 py-2 h-8 transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              CREATE GROUP ⬜
+            </Button>
+          </div>
+
           {/* Main Chat Layout */}
           <div
-            className={`flex h-full transition-all duration-300`}
+            className={`flex flex-1 transition-all duration-300`}
           >
             {/* Left Sidebar - Chat List */}
             <div className={`w-64 flex flex-col border-r transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-gray-800 border-gray-700' 
+              isDarkMode
+                ? 'bg-gray-800 border-gray-700'
                 : 'bg-white border-gray-200'
             }`}>
-              {/* Header */}
+              {/* Sidebar Header */}
               <div className={`p-3 border-b transition-colors duration-300 ${
                 isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
-                <div className="flex items-center justify-between mb-3">
-                  <h1 className={`text-xs font-bold transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
-                  }`}>
-                    CHATROOM
-                  </h1>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className={`text-[10px] px-2 py-1 h-6 transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
-                        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    CREATE GROUP ⬜
-                  </Button>
-                </div>
-
-                {/* Search Bar */}
-                <div className="relative mb-3">
-                  <input
-                    type="text"
-                    placeholder="Constructive, anything"
-                    className={`w-full px-2 py-1 text-[10px] border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                        : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                    }`}
-                  />
-                </div>
 
                 {/* Filter Tabs */}
                 <div className="flex space-x-1">
