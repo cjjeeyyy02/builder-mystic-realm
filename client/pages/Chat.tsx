@@ -838,63 +838,84 @@ export default function Chat() {
                                 </svg>
                               </button>
 
-                              {/* Group Context Menu */}
+                              {/* Group Context Menu - Responsive */}
                               {showGroupMenu && (
-                                <div className={`absolute right-0 top-12 w-40 shadow-xl border-2 z-50 rounded-lg transition-all duration-300 ${
+                                <div className={`absolute right-0 sm:right-0 top-12 w-48 sm:w-40 shadow-xl border-2 z-50 rounded-lg transition-all duration-300 ${
                                   isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
-                                }`}>
+                                } transform sm:transform-none -translate-x-4 sm:translate-x-0`}>
                                   <div className="py-2">
                                     <button
                                       onClick={() => {
                                         handleGoPublic(selectedChat);
                                         setShowGroupMenu(false);
                                       }}
-                                      className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                      className={`w-full text-left px-3 sm:px-4 py-3 sm:py-2 text-sm sm:text-sm font-medium border-b transition-colors ${
                                         isDarkMode
                                           ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
                                           : 'text-gray-800 hover:bg-gray-50 border-gray-200'
                                       }`}
                                     >
-                                      Go Public
+                                      <span className="flex items-center">
+                                        <svg className="w-4 h-4 mr-2 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                        Go Public
+                                      </span>
                                     </button>
                                     <button
                                       onClick={() => {
                                         handleEditGroup(selectedChat);
                                         setShowGroupMenu(false);
                                       }}
-                                      className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                      className={`w-full text-left px-3 sm:px-4 py-3 sm:py-2 text-sm sm:text-sm font-medium border-b transition-colors ${
                                         isDarkMode
                                           ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
                                           : 'text-gray-800 hover:bg-gray-50 border-gray-200'
                                       }`}
                                     >
-                                      Edit Group
+                                      <span className="flex items-center">
+                                        <svg className="w-4 h-4 mr-2 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                        Edit Group
+                                      </span>
                                     </button>
                                     <button
                                       onClick={() => {
                                         handleMuteGroup(selectedChat);
                                         setShowGroupMenu(false);
                                       }}
-                                      className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
+                                      className={`w-full text-left px-3 sm:px-4 py-3 sm:py-2 text-sm sm:text-sm font-medium border-b transition-colors ${
                                         isDarkMode
                                           ? 'text-gray-200 hover:bg-gray-700 border-gray-600'
                                           : 'text-gray-800 hover:bg-gray-50 border-gray-200'
                                       }`}
                                     >
-                                      {groupMutedStatus[selectedChat] ? 'Unmute Group' : 'Mute Group'}
+                                      <span className="flex items-center">
+                                        <svg className="w-4 h-4 mr-2 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={groupMutedStatus[selectedChat] ? "M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" : "M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"} />
+                                        </svg>
+                                        {groupMutedStatus[selectedChat] ? 'Unmute Group' : 'Mute Group'}
+                                      </span>
                                     </button>
                                     <button
                                       onClick={() => {
                                         handleDeleteGroup(selectedChat);
                                         setShowGroupMenu(false);
                                       }}
-                                      className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
+                                      className={`w-full text-left px-3 sm:px-4 py-3 sm:py-2 text-sm sm:text-sm font-medium transition-colors ${
                                         isDarkMode
                                           ? 'text-red-400 hover:bg-gray-700'
                                           : 'text-red-600 hover:bg-gray-50'
                                       }`}
                                     >
-                                      Delete Group
+                                      <span className="flex items-center">
+                                        <svg className="w-4 h-4 mr-2 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        Delete Group
+                                      </span>
                                     </button>
                                   </div>
                                 </div>
