@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSidebar } from "@/contexts/SidebarContext";
 import {
   LayoutDashboard,
   MessageSquare,
