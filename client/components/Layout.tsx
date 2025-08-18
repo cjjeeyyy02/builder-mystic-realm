@@ -1,4 +1,4 @@
-import { ReactNode, useState, createContext, useContext } from "react";
+import { ReactNode, useState } from "react";
 import Sidebar from "./Sidebar";
 import {
   Menu,
@@ -16,25 +16,11 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useDarkMode } from "./DarkModeProvider";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 interface LayoutProps {
   children: ReactNode;
 }
-
-interface SidebarContextType {
-  sidebarCollapsed: boolean;
-  setSidebarCollapsed: (collapsed: boolean) => void;
-}
-
-const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
-
-export const useSidebar = () => {
-  const context = useContext(SidebarContext);
-  if (context === undefined) {
-    throw new Error('useSidebar must be used within a Layout component');
-  }
-  return context;
-};
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
