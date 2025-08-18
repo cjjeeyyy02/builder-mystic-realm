@@ -42,7 +42,8 @@ export default function Layout({ children }: LayoutProps) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-background'}`}>
+    <SidebarContext.Provider value={{ sidebarCollapsed, setSidebarCollapsed }}>
+      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-background'}`}>
       <Sidebar
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -137,5 +138,6 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </div>
     </div>
+    </SidebarContext.Provider>
   );
 }
