@@ -45,6 +45,41 @@ export default function Meetings() {
     setShowCreateMeetingModal(true);
   };
 
+  const handleMeetingFormChange = (field: string, value: string) => {
+    setMeetingForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleScheduleMeetingSubmit = () => {
+    if (!meetingForm.title || !meetingForm.timeFrom || !meetingForm.timeTo) {
+      alert("Please fill in all required fields (Title, From Time, To Time)");
+      return;
+    }
+
+    console.log("Scheduling meeting:", meetingForm);
+    alert("Meeting scheduled successfully!");
+
+    // Reset form and close modal
+    setMeetingForm({
+      title: "",
+      info: "",
+      date: new Date().toLocaleDateString('en-CA'),
+      timeFrom: "",
+      timeFromPeriod: "AM",
+      timeTo: "",
+      timeToPeriod: "AM",
+      chair: "",
+      invite: ""
+    });
+    setShowCreateMeetingModal(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowCreateMeetingModal(false);
+  };
+
   const handleScheduleMeeting = () => {
     console.log("Scheduling meeting...");
     alert("Meeting scheduling interface will open here!");
