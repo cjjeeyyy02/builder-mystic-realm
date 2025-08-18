@@ -283,6 +283,11 @@ export default function Chat() {
     });
   };
 
+  // Check if selected chat is a group
+  const isGroupChat = teamGroups.some(group => group.id === selectedChat);
+  const selectedGroup = teamGroups.find(group => group.id === selectedChat);
+  const selectedContact = contactList.find(contact => contact.id === selectedChat);
+
   return (
     <>
       <Layout>
