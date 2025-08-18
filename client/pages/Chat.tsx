@@ -26,6 +26,9 @@ export default function Chat() {
     username: "",
     access: "Only Admin"
   });
+  const [showEditGroupModal, setShowEditGroupModal] = useState(false);
+  const [groupToEdit, setGroupToEdit] = useState(null);
+  const [groupMutedStatus, setGroupMutedStatus] = useState<{[key: string]: boolean}>({});
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const contactList = [
@@ -357,6 +360,125 @@ export default function Chat() {
   const handleSendGroupInvite = () => {
     console.log("Sending group invite:", groupForm);
     handleSaveGroup(); // Save first, then send invite
+  };
+
+  // Function to handle making a group public
+  const handleGoPublic = (groupId: string) => {
+    const updatedGroups = teamGroups.map(group =>
+      group.id === groupId ? { ...group, type: "Public" } : group
+    );
+    setTeamGroups(updatedGroups);
+    console.log(`Group ${groupId} is now public`);
+
+    // Add system message about group going public
+    const systemMessage = {
+      id: Date.now(),
+      sender: "system",
+      message: `This group is now public. Anyone can join and see the messages.`,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      isOwn: false,
+    };
+
+    setChatMessages(prev => ({
+      ...prev,
+      [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
+    }));
+  };
+
+  // Function to handle editing a group
+  const handleEditGroup = (groupId: string) => {
+    const group = teamGroups.find(g => g.id === groupId);
+    if (group) {
+      setGroupToEdit(group);
+      setGroupForm({
+        name: group.name,
+        type: group.type,
+        username: group.id,
+        access: "Only Admin"
+      });
+      setShowEditGroupModal(true);
+    }
+  };
+
+  // Function to handle muting a group
+  const handleMuteGroup = (groupId: string) => {
+    const isMuted = groupMutedStatus[groupId] || false;
+    setGroupMutedStatus(prev => ({
+      ...prev,
+      [groupId]: !isMuted
+    }));
+    console.log(`Group ${groupId} is now ${!isMuted ? 'muted' : 'unmuted'}`);
+
+    // Add system message about muting
+    const systemMessage = {
+      id: Date.now(),
+      sender: "system",
+      message: `You have ${!isMuted ? 'muted' : 'unmuted'} this group. ${!isMuted ? 'You will not receive notifications.' : 'You will now receive notifications.'}`,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      isOwn: false,
+    };
+
+    setChatMessages(prev => ({
+      ...prev,
+      [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
+    }));
+  };
+
+  // Function to handle deleting a group
+  const handleDeleteGroup = (groupId: string) => {
+    if (window.confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
+      // Remove group from teams list
+      setTeamGroups(prev => prev.filter(group => group.id !== groupId));
+
+      // Remove chat messages for this group
+      setChatMessages(prev => {
+        const newMessages = { ...prev };
+        delete newMessages[groupId as keyof typeof newMessages];
+        return newMessages;
+      });
+
+      // If this group was selected, clear selection
+      if (selectedChat === groupId) {
+        setSelectedChat("");
+      }
+
+      console.log(`Group ${groupId} has been deleted`);
+    }
+  };
+
+  // Function to handle saving group edits
+  const handleSaveGroupEdit = () => {
+    if (groupToEdit && groupForm.name.trim()) {
+      const updatedGroups = teamGroups.map(group =>
+        group.id === groupToEdit.id
+          ? { ...group, name: groupForm.name, type: groupForm.type }
+          : group
+      );
+      setTeamGroups(updatedGroups);
+
+      // Add system message about group update
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Group has been updated. New name: "${groupForm.name}", Type: ${groupForm.type}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      setChatMessages(prev => ({
+        ...prev,
+        [groupToEdit.id]: [...(prev[groupToEdit.id as keyof typeof prev] || []), systemMessage]
+      }));
+
+      setShowEditGroupModal(false);
+      setGroupToEdit(null);
+      setGroupForm({
+        name: "",
+        type: "Private",
+        username: "",
+        access: "Only Admin"
+      });
+    }
   };
 
   // Function to handle entering a group chat
@@ -763,7 +885,7 @@ export default function Chat() {
                               <div className="py-2">
                                 <button
                                   onClick={() => {
-                                    console.log("Go Public clicked");
+                                    handleGoPublic(selectedChat);
                                     setShowGroupMenu(false);
                                   }}
                                   className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
@@ -776,7 +898,7 @@ export default function Chat() {
                                 </button>
                                 <button
                                   onClick={() => {
-                                    console.log("Edit Group clicked");
+                                    handleEditGroup(selectedChat);
                                     setShowGroupMenu(false);
                                   }}
                                   className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
@@ -789,7 +911,7 @@ export default function Chat() {
                                 </button>
                                 <button
                                   onClick={() => {
-                                    console.log("Mute Group clicked");
+                                    handleMuteGroup(selectedChat);
                                     setShowGroupMenu(false);
                                   }}
                                   className={`w-full text-left px-4 py-2 text-sm font-medium border-b transition-colors ${
@@ -798,11 +920,11 @@ export default function Chat() {
                                       : 'text-gray-800 hover:bg-gray-50 border-gray-200'
                                   }`}
                                 >
-                                  Mute Group
+                                  {groupMutedStatus[selectedChat] ? 'Unmute Group' : 'Mute Group'}
                                 </button>
                                 <button
                                   onClick={() => {
-                                    console.log("Delete Group clicked");
+                                    handleDeleteGroup(selectedChat);
                                     setShowGroupMenu(false);
                                   }}
                                   className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
