@@ -531,7 +531,7 @@ export default function Chat() {
         </div>
       </Layout>
 
-      {/* Footer Navigation */}
+      {/* Footer Navigation - hide when sidebar is collapsed */}
       <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
