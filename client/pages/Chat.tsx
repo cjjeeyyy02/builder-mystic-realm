@@ -753,7 +753,7 @@ export default function Chat() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
-                          <h4 className={`text-[10px] font-semibold truncate transition-colors duration-300 ${
+                          <h4 className={`text-[9px] sm:text-[10px] font-semibold truncate transition-colors duration-300 ${
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>
                             {contact.name}
