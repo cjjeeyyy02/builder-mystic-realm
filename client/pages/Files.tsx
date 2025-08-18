@@ -709,10 +709,10 @@ export default function Files() {
 
                               {/* FILE ID */}
                               <div>
-                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                   FILE ID
                                 </p>
-                                <p className={`text-xs font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                <p className={`text-sm font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                   {file.id}
                                 </p>
                               </div>
