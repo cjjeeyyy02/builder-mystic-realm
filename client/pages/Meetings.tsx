@@ -10,6 +10,12 @@ export default function Meetings() {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [showCreateMeetingModal, setShowCreateMeetingModal] = useState(false);
+  const [meetingInProgress, setMeetingInProgress] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isVideoOff, setIsVideoOff] = useState(false);
+  const [isScreenSharing, setIsScreenSharing] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+  const [transcriptionText, setTranscriptionText] = useState("Welcome to the Q3 Campaign Timelines meeting. We have 20+ participants joining today's session...");
   const [meetingForm, setMeetingForm] = useState({
     title: "",
     info: "",
