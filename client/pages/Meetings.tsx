@@ -825,20 +825,22 @@ export default function Meetings() {
               {/* Chair and Invite Fields */}
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    HOST
-                  </label>
-                  <input
-                    type="text"
-                    value={meetingForm.chair}
-                    onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                    placeholder="Enter host name (optional)"
-                  />
+                  <div className="flex items-center gap-2">
+                    <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                      CHAIR:
+                    </label>
+                    <input
+                      type="text"
+                      value={meetingForm.chair}
+                      onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
+                      className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                      placeholder="ENTER DETAILS"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
