@@ -1937,14 +1937,20 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-xs font-semibold text-gray-900">
+                          <h4 className={`text-xs font-semibold transition-colors duration-300 ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>
                             Sarah Jhonson
                           </h4>
-                          <span className="text-xs text-gray-500">
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>
                             HR • 1h ago
                           </span>
                         </div>
-                        <p className="text-xs text-gray-800 mb-1 leading-relaxed">
+                        <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
+                        }`}>
                           New Remote Policy Guidelines - HOT: Work-life balance
                           approach for transparent workplace.
                         </p>
