@@ -192,7 +192,7 @@ export default function Chat() {
       <Layout>
         <div
           ref={scrollContainerRef}
-          className={`h-[calc(100vh-4rem)] overflow-hidden transition-colors duration-300 ${
+          className={`fixed inset-0 left-0 right-0 top-0 bottom-0 overflow-hidden transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
           }`}
         >
