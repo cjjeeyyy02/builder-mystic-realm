@@ -638,36 +638,55 @@ export default function Files() {
                           </div>
 
                           {/* File Info */}
-                          <div className="space-y-2">
-                            <h3 className={`font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                              {file.name}
-                            </h3>
-                            <div className="flex items-center justify-between text-sm">
-                              <span className={`px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
-                                {file.type}
-                              </span>
-                              <span className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                {file.size}
-                              </span>
+                          <div className="space-y-3">
+                            {/* File ID */}
+                            <div>
+                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                File ID
+                              </p>
+                              <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {file.id}
+                              </p>
                             </div>
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                              {file.department} • {file.lastModified}
-                            </p>
-                            <div className="flex flex-wrap gap-1">
-                              {file.sharedWith?.slice(0, 2).map((share, index) => (
-                                <span key={index} className={`text-xs px-2 py-1 rounded-full ${
-                                  isDarkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'
-                                }`}>
-                                  {share}
+
+                            {/* File Name */}
+                            <div>
+                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                File Name
+                              </p>
+                              <h3 className={`text-sm font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                {file.name}
+                              </h3>
+                            </div>
+
+                            {/* File Date */}
+                            <div>
+                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                File Date
+                              </p>
+                              <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {file.date}
+                              </p>
+                            </div>
+
+                            {/* File Size & Type */}
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  File Size
+                                </p>
+                                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {file.size}
+                                </p>
+                              </div>
+                              <div>
+                                <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  File Type
+                                </p>
+                                <span className={`inline-block text-sm px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                  {file.type}
                                 </span>
-                              ))}
-                              {file.sharedWith && file.sharedWith.length > 2 && (
-                                <span className={`text-xs px-2 py-1 rounded-full ${
-                                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
-                                }`}>
-                                  +{file.sharedWith.length - 2}
-                                </span>
-                              )}
+                              </div>
                             </div>
                           </div>
 
