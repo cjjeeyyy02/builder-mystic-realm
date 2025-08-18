@@ -627,6 +627,14 @@ export default function Chat() {
             </Button>
           </div>
 
+          {/* Mobile Sidebar Overlay */}
+          {showMobileSidebar && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+              onClick={() => setShowMobileSidebar(false)}
+            />
+          )}
+
           {/* Main Chat Layout */}
           <div
             className={`flex flex-1 transition-all duration-300`}
