@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FooterNavigation from "@/components/FooterNavigation";
 import { useDarkMode } from "@/components/DarkModeProvider";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 export default function Chat() {
   const navigate = useNavigate();
