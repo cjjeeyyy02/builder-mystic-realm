@@ -626,105 +626,163 @@ export default function Files() {
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                       }`}>
                         <CardContent className="p-6">
-                          {/* File Icon and Status */}
-                          <div className="flex items-start justify-between mb-4">
-                            <div className="text-4xl">{file.thumbnail}</div>
-                            <div className="flex items-center space-x-2">
-                              <div className={`w-3 h-3 rounded-full ${getStatusColor(file.status)}`}></div>
-                              <span className={`text-xs px-2 py-1 rounded-full font-medium ${getPriorityColor(file.priority)} text-white`}>
-                                {file.priority}
-                              </span>
-                            </div>
-                          </div>
+                          {/* Two-Column Layout: Left Section (Metadata) + Right Section (Actions) */}
+                          <div className="flex gap-4">
 
-                          {/* File Info */}
-                          <div className="space-y-3">
-                            {/* File ID */}
-                            <div>
-                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                File ID
-                              </p>
-                              <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                {file.id}
-                              </p>
-                            </div>
+                            {/* Left Section – Metadata Display */}
+                            <div className="flex-1 space-y-3">
+                              {/* File Icon */}
+                              <div className="text-3xl mb-3">{file.thumbnail}</div>
 
-                            {/* File Name */}
-                            <div>
-                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                File Name
-                              </p>
-                              <h3 className={`text-sm font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                                {file.name}
-                              </h3>
-                            </div>
-
-                            {/* File Date */}
-                            <div>
-                              <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                File Date
-                              </p>
-                              <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                {file.date}
-                              </p>
-                            </div>
-
-                            {/* File Size & Type */}
-                            <div className="grid grid-cols-2 gap-2">
+                              {/* FILE ID */}
                               <div>
-                                <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  File Size
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE ID
+                                </p>
+                                <p className={`text-sm font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {file.id}
+                                </p>
+                              </div>
+
+                              {/* FILE NAME */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE NAME
+                                </p>
+                                <h3 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                  {file.name}
+                                </h3>
+                              </div>
+
+                              {/* FILE DATE */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE DATE
                                 </p>
                                 <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {file.date}
+                                </p>
+                              </div>
+
+                              {/* FILE SIZE */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE SIZE
+                                </p>
+                                <p className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                   {file.size}
                                 </p>
                               </div>
+
+                              {/* FILE TYPE */}
                               <div>
-                                <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                  File Type
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE TYPE
                                 </p>
-                                <span className={`inline-block text-sm px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                <span className={`inline-block text-xs px-2 py-1 rounded font-medium ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                                   {file.type}
                                 </span>
                               </div>
-                            </div>
-                          </div>
 
-                          {/* Action Buttons */}
-                          <div className="flex items-center space-x-1 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button
-                              onClick={() => handlePreviewFile(file)}
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs"
-                            >
-                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                              </svg>
-                              View
-                            </Button>
-                            <Button
-                              onClick={() => handleDownloadFile(file)}
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs"
-                            >
-                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                              Download
-                            </Button>
-                            <Button
-                              onClick={() => handleDeleteFile(file.id)}
-                              size="sm"
-                              variant="outline"
-                              className="text-xs text-red-600 hover:text-red-700 hover:bg-red-50"
-                            >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                              </svg>
-                            </Button>
+                              {/* DEPARTMENT BADGE */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  DEPARTMENT BADGE
+                                </p>
+                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium ${
+                                  file.department === 'Design' ? 'bg-purple-100 text-purple-800' :
+                                  file.department === 'Finance' ? 'bg-green-100 text-green-800' :
+                                  file.department === 'Marketing' ? 'bg-blue-100 text-blue-800' :
+                                  file.department === 'Engineering' ? 'bg-orange-100 text-orange-800' :
+                                  file.department === 'HR' ? 'bg-pink-100 text-pink-800' :
+                                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                                }`}>
+                                  {file.department}
+                                </span>
+                              </div>
+
+                              {/* FILE CATEGORY */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE CATEGORY
+                                </p>
+                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium ${
+                                  file.type === 'Public' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                }`}>
+                                  {file.type === 'Public' ? 'PUBLIC' : 'PRIVATE'}
+                                </span>
+                              </div>
+
+                              {/* PRIORITY BADGE */}
+                              <div>
+                                <p className={`text-xs font-medium uppercase tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  PRIORITY BADGE
+                                </p>
+                                <span className={`inline-block text-xs px-3 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}>
+                                  {file.priority}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Right Section – Action Controls */}
+                            <div className="flex flex-col justify-start space-y-2 min-w-[80px]">
+                              <p className={`text-xs font-medium uppercase tracking-wide mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                ACTIONS
+                              </p>
+
+                              {/* VIEW */}
+                              <Button
+                                onClick={() => handlePreviewFile(file)}
+                                size="sm"
+                                variant="outline"
+                                className="w-full text-xs justify-start"
+                              >
+                                <svg className="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                VIEW
+                              </Button>
+
+                              {/* DOWNLOAD */}
+                              <Button
+                                onClick={() => handleDownloadFile(file)}
+                                size="sm"
+                                variant="outline"
+                                className="w-full text-xs justify-start"
+                              >
+                                <svg className="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                DOWNLOAD
+                              </Button>
+
+                              {/* SHARE */}
+                              <Button
+                                onClick={() => handleShareFile(file.id)}
+                                size="sm"
+                                variant="outline"
+                                className="w-full text-xs justify-start"
+                              >
+                                <svg className="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                                </svg>
+                                SHARE
+                              </Button>
+
+                              {/* DELETE */}
+                              <Button
+                                onClick={() => handleDeleteFile(file.id)}
+                                size="sm"
+                                variant="outline"
+                                className="w-full text-xs justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
+                              >
+                                <svg className="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                DELETE
+                              </Button>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
