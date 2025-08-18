@@ -625,9 +625,9 @@ export default function Files() {
                       <Card key={file.id} className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                       }`}>
-                        <CardContent className="p-6">
-                          {/* Two-Column Layout: Left Section (Metadata) + Right Section (Actions) */}
-                          <div className="flex gap-4">
+                        <CardContent className="p-3">
+                          {/* Horizontal Layout */}
+                          <div className="flex items-center gap-4">
 
                             {/* Left Section – Metadata Display */}
                             <div className="flex-1 space-y-3">
