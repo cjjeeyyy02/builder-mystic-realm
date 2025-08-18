@@ -20,6 +20,7 @@ export default function Chat() {
   const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
   const [groupSaved, setGroupSaved] = useState(false);
   const [showGroupMenu, setShowGroupMenu] = useState(false);
+  const [showSidebarGroupMenu, setShowSidebarGroupMenu] = useState<string | null>(null);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [groupForm, setGroupForm] = useState({
     name: "",
