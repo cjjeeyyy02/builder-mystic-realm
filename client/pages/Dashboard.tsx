@@ -1200,10 +1200,14 @@ export default function Dashboard() {
                   <div>
                     <div className="space-y-3">
                       {/* Event 1 - Tech Summer 2024 */}
-                  <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className={`flex items-start justify-between p-3 rounded-lg transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+                  }`}>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-sm font-semibold text-gray-900">
+                        <h4 className={`text-sm font-semibold transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Tech Summer 2024
                         </h4>
                         <div className="flex gap-1">
