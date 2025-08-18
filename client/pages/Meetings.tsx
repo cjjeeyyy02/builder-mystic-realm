@@ -88,6 +88,46 @@ export default function Meetings() {
     setShowCreateMeetingModal(false);
   };
 
+  const handleEndMeeting = () => {
+    if (window.confirm("Are you sure you want to end this meeting?")) {
+      setMeetingInProgress(false);
+      setIsRecording(false);
+      setIsPaused(false);
+      console.log("Meeting ended");
+    }
+  };
+
+  const handleMuteToggle = () => {
+    setIsMuted(!isMuted);
+    console.log(isMuted ? "Unmuted" : "Muted");
+  };
+
+  const handleVideoToggle = () => {
+    setIsVideoOff(!isVideoOff);
+    console.log(isVideoOff ? "Video on" : "Video off");
+  };
+
+  const handleScreenShare = () => {
+    setIsScreenSharing(!isScreenSharing);
+    console.log(isScreenSharing ? "Screen share stopped" : "Screen share started");
+  };
+
+  const handleSendMessage = () => {
+    if (chatMessage.trim()) {
+      console.log("Sending chat message:", chatMessage);
+      setChatMessage("");
+    }
+  };
+
+  const handleMeetingInvite = () => {
+    const inviteLink = `Meeting Link: https://meet.company.com/q3-campaign-timelines-${Date.now()}`;
+    navigator.clipboard.writeText(inviteLink).then(() => {
+      alert("Meeting invite link copied to clipboard!");
+    }).catch(() => {
+      alert(`Meeting Invite Link:\n${inviteLink}`);
+    });
+  };
+
   const handleScheduleMeeting = () => {
     console.log("Scheduling meeting...");
     alert("Meeting scheduling interface will open here!");
