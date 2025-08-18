@@ -350,16 +350,24 @@ export default function Chat() {
   };
 
   const handleGoPublic = (groupId: string) => {
+    setSelectedGroupForPublic(groupId);
+    setShowGoPublicModal(true);
+    setShowGroupMenu(false);
+  };
+
+  const handleConfirmGoPublic = (groupId: string, showHistory: boolean) => {
     const updatedGroups = teamGroups.map(group =>
       group.id === groupId ? { ...group, type: "Public" } : group
     );
     setTeamGroups(updatedGroups);
-    console.log(`Group ${groupId} is now public`);
+    console.log(`Group ${groupId} is now public with history visibility: ${showHistory}`);
 
     const systemMessage = {
       id: Date.now(),
       sender: "system",
-      message: `This group is now public. Anyone can join and see the messages.`,
+      message: showHistory
+        ? `This group is now public. Anyone can join and see the full chat history.`
+        : `This group is now public. New participants can join but won't see previous chat history.`,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       isOwn: false,
     };
@@ -368,6 +376,9 @@ export default function Chat() {
       ...prev,
       [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
     }));
+
+    setShowGoPublicModal(false);
+    setSelectedGroupForPublic(null);
   };
 
   const handleEditGroup = (groupId: string) => {
