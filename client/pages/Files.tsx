@@ -683,10 +683,7 @@ export default function Files() {
                             </div>
 
                             {/* Action Icons */}
-                            <div className="flex flex-col justify-start space-y-2 min-w-[80px]">
-                              <p className={`text-xs font-medium uppercase tracking-wide mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                ACTIONS
-                              </p>
+                            <div className="flex items-center space-x-1 flex-shrink-0">
 
                               {/* VIEW */}
                               <Button
