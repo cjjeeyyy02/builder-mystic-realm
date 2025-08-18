@@ -619,8 +619,8 @@ export default function Files() {
                     </p>
                   </div>
 ) : (
-                  /* Grid View */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  /* Horizontal List View */
+                  <div className="space-y-3">
                     {sortedFiles.map((file) => (
                       <Card key={file.id} className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
                         isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
