@@ -31,6 +31,8 @@ export default function Chat() {
   const [showEditGroupModal, setShowEditGroupModal] = useState(false);
   const [groupToEdit, setGroupToEdit] = useState(null);
   const [groupMutedStatus, setGroupMutedStatus] = useState<{[key: string]: boolean}>({});
+  const [showGoPublicModal, setShowGoPublicModal] = useState(false);
+  const [selectedGroupForPublic, setSelectedGroupForPublic] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const contactList = [
