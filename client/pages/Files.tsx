@@ -251,239 +251,330 @@ export default function Files() {
           </div>
 
           {/* Main Content */}
-          <div className="flex items-center justify-center min-h-[calc(100vh-200px)] p-8">
-            <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
-              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-            }`}>
-              {/* Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-                <h1 className="text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
-                <div className="flex items-center space-x-2">
-                  <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                    <span className="text-white text-sm">↻</span>
-                  </button>
-                  <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                    <span className="text-white text-sm">×</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Form Content */}
-              <CardContent className={`p-6 space-y-4 transition-colors duration-300 ${
-                isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
-              }`}>
-                {/* ID Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    ID:
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.id}
-                    readOnly
-                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-                    }`}
-                    placeholder="AUTO-GENERATED"
-                  />
-                </div>
-
-                {/* Title Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    TITLE:
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                    placeholder="Type here"
-                  />
-                </div>
-
-                {/* Date Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    DATE:
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.date}
-                    readOnly
-                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-                    }`}
-                    placeholder="AUTO-GENERATED"
-                  />
-                </div>
-
-                {/* Size Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    SIZE:
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.size}
-                    readOnly
-                    className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                      isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-                    }`}
-                    placeholder="AUTO-GENERATED"
-                  />
-                </div>
-
-                {/* Type Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    TYPE:
-                  </label>
-                  <select
-                    value={formData.type}
-                    onChange={(e) => handleInputChange('type', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  >
-                    <option value="">Type here</option>
-                    {selectOptions.type.map(option => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Category Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    CATEGORY:
-                  </label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => handleInputChange('category', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  >
-                    <option value="">Type here</option>
-                    {selectOptions.category.map(option => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Department Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    DEPARTMENT:
-                  </label>
-                  <select
-                    value={formData.department}
-                    onChange={(e) => handleInputChange('department', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  >
-                    <option value="">Type here</option>
-                    {selectOptions.department.map(option => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Priority Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    PRIORITY:
-                  </label>
-                  <select
-                    value={formData.priority}
-                    onChange={(e) => handleInputChange('priority', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  >
-                    <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
-                    {selectOptions.priority.map(option => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Upload Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    UPLOAD:
-                  </label>
-                  <div className="flex-1 relative">
-                    <input
-                      type="text"
-                      value={formData.upload}
-                      readOnly
-                      className={`w-full px-3 py-2 pr-10 border rounded-lg transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
-                      placeholder="Click here to choose a file, or drag one here"
-                    />
-                    <input
-                      type="file"
-                      onChange={handleFileUpload}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    />
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                      </svg>
+          <div className="p-4">
+            {showUploadForm ? (
+              /* Upload Form */
+              <div className="flex items-center justify-center min-h-[calc(100vh-200px)] p-8">
+                <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
+                  isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                }`}>
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+                    <h1 className="text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
+                    <div className="flex items-center space-x-2">
+                      <button className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <span className="text-white text-sm">↻</span>
+                      </button>
+                      <button
+                        onClick={() => setShowUploadForm(false)}
+                        className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                      >
+                        <span className="text-white text-sm">×</span>
+                      </button>
                     </div>
                   </div>
-                </div>
 
-                {/* Share Field */}
-                <div className="flex items-center space-x-4">
-                  <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    SHARE:
-                  </label>
-                  <select
-                    value={formData.share}
-                    onChange={(e) => handleInputChange('share', e.target.value)}
-                    className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  >
-                    <option value="">Individuals, Teams, Everyone</option>
-                    {selectOptions.share.map(option => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
+                  {/* Form Content */}
+                  <CardContent className={`p-6 space-y-4 transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+                  }`}>
+                    {/* ID Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        ID:
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.id}
+                        readOnly
+                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                          isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                        }`}
+                        placeholder="AUTO-GENERATED"
+                      />
+                    </div>
 
-                {/* Submit Button */}
-                <div className="flex justify-center pt-6">
-                  <Button
-                    onClick={handleSubmit}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
-                  >
-                    CREATE AND UPLOAD FILE
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                    {/* Title Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        TITLE:
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.title}
+                        onChange={(e) => handleInputChange('title', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                        placeholder="Type here"
+                      />
+                    </div>
+
+                    {/* Date Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        DATE:
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.date}
+                        readOnly
+                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                          isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                        }`}
+                        placeholder="AUTO-GENERATED"
+                      />
+                    </div>
+
+                    {/* Size Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        SIZE:
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.size}
+                        readOnly
+                        className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
+                          isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                        }`}
+                        placeholder="AUTO-GENERATED"
+                      />
+                    </div>
+
+                    {/* Type Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        TYPE:
+                      </label>
+                      <select
+                        value={formData.type}
+                        onChange={(e) => handleInputChange('type', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                      >
+                        <option value="">Type here</option>
+                        {selectOptions.type.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Category Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        CATEGORY:
+                      </label>
+                      <select
+                        value={formData.category}
+                        onChange={(e) => handleInputChange('category', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                      >
+                        <option value="">Type here</option>
+                        {selectOptions.category.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Department Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        DEPARTMENT:
+                      </label>
+                      <select
+                        value={formData.department}
+                        onChange={(e) => handleInputChange('department', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                      >
+                        <option value="">Type here</option>
+                        {selectOptions.department.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Priority Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        PRIORITY:
+                      </label>
+                      <select
+                        value={formData.priority}
+                        onChange={(e) => handleInputChange('priority', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                      >
+                        <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
+                        {selectOptions.priority.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Upload Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        UPLOAD:
+                      </label>
+                      <div className="flex-1 relative">
+                        <input
+                          type="text"
+                          value={formData.upload}
+                          readOnly
+                          className={`w-full px-3 py-2 pr-10 border rounded-lg transition-colors duration-300 ${
+                            isDarkMode
+                              ? 'bg-gray-700 border-gray-600 text-gray-200'
+                              : 'bg-white border-gray-300 text-gray-900'
+                          }`}
+                          placeholder="Click here to choose a file, or drag one here"
+                        />
+                        <input
+                          type="file"
+                          onChange={handleFileUpload}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Share Field */}
+                    <div className="flex items-center space-x-4">
+                      <label className={`text-blue-700 font-bold w-32 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                        SHARE:
+                      </label>
+                      <select
+                        value={formData.share}
+                        onChange={(e) => handleInputChange('share', e.target.value)}
+                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200'
+                            : 'bg-white border-gray-300 text-gray-900'
+                        }`}
+                      >
+                        <option value="">Individuals, Teams, Everyone</option>
+                        {selectOptions.share.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-center pt-6">
+                      <Button
+                        onClick={handleSubmit}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                      >
+                        CREATE AND UPLOAD FILE
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ) : (
+              /* File List View */
+              <div className="space-y-4 max-w-4xl mx-auto">
+                {uploadedFiles.map((file, index) => (
+                  <Card key={file.id} className={`border-2 shadow-lg transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                  }`}>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        {/* File Info */}
+                        <div className="flex-1 space-y-1">
+                          <div className="flex items-center space-x-4">
+                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              FILE ID: {file.id}
+                            </span>
+                            <div className={`w-4 h-4 rounded-full ${getStatusColor(file.status)}`}></div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              FILE NAME: {file.name}
+                            </span>
+                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              FILE DATE: {file.date}
+                            </span>
+                            <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              FILE SIZE: {file.size}
+                            </span>
+                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                            <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              FILE TYPE: {file.type}
+                            </span>
+                            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col space-y-2">
+                          <Button
+                            onClick={() => handleRenameFile(file.id)}
+                            size="sm"
+                            className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1"
+                          >
+                            RENAME FILE
+                          </Button>
+                          <Button
+                            onClick={() => handlePreviewFile(file)}
+                            size="sm"
+                            className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1"
+                          >
+                            PREVIEW
+                          </Button>
+                          <Button
+                            onClick={() => handleMakePrivate(file.id)}
+                            size="sm"
+                            className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1"
+                          >
+                            MAKE PRIVATE
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+
+                {uploadedFiles.length === 0 && (
+                  <div className="text-center py-12">
+                    <div className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      No files uploaded yet
+                    </div>
+                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      Click "CREATE AND UPLOAD FILE" to get started
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </Layout>
