@@ -384,6 +384,104 @@ export default function Chat() {
     setSelectedGroupForPublic(null);
   };
 
+  const handleStartCall = () => {
+    setIsCallActive(!isCallActive);
+    const contactName = isGroupChat ? selectedGroup?.name : selectedContact?.name;
+
+    if (!isCallActive) {
+      console.log(`Starting voice call with ${contactName}`);
+
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Voice call started with ${contactName}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      setChatMessages(prev => ({
+        ...prev,
+        [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), systemMessage]
+      }));
+    } else {
+      console.log(`Ending voice call with ${contactName}`);
+
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Voice call ended`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      setChatMessages(prev => ({
+        ...prev,
+        [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), systemMessage]
+      }));
+    }
+  };
+
+  const handleStartVideo = () => {
+    setIsVideoActive(!isVideoActive);
+    const contactName = isGroupChat ? selectedGroup?.name : selectedContact?.name;
+
+    if (!isVideoActive) {
+      console.log(`Starting video call with ${contactName}`);
+
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Video call started with ${contactName}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      setChatMessages(prev => ({
+        ...prev,
+        [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), systemMessage]
+      }));
+    } else {
+      console.log(`Ending video call with ${contactName}`);
+
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Video call ended`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      setChatMessages(prev => ({
+        ...prev,
+        [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), systemMessage]
+      }));
+    }
+  };
+
+  const handleShare = () => {
+    setShowShareMenu(!showShareMenu);
+  };
+
+  const handleShareOption = (option: string) => {
+    const contactName = isGroupChat ? selectedGroup?.name : selectedContact?.name;
+    console.log(`Sharing ${option} with ${contactName}`);
+
+    const systemMessage = {
+      id: Date.now(),
+      sender: "system",
+      message: `Shared ${option} with ${contactName}`,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      isOwn: false,
+    };
+
+    setChatMessages(prev => ({
+      ...prev,
+      [selectedChat]: [...(prev[selectedChat as keyof typeof prev] || []), systemMessage]
+    }));
+
+    setShowShareMenu(false);
+  };
+
   const handleEditGroup = (groupId: string) => {
     const group = teamGroups.find(g => g.id === groupId);
     if (group) {
