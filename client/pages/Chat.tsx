@@ -250,7 +250,6 @@ export default function Chat() {
               <div className={`p-3 border-b transition-colors duration-300 ${
                 isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
-
                 {/* Filter Tabs */}
                 <div className="flex space-x-1">
                   {tabs.map((tab) => (
