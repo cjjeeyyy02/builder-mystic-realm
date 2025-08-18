@@ -1450,7 +1450,9 @@ export default function Dashboard() {
                         Annual Celebration and Award ceremony, dinner and
                         entertainment
                       </p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className={`flex items-center gap-4 text-xs transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
                         <div className="flex items-center gap-1">
                           <svg
                             className="w-3 h-3"
