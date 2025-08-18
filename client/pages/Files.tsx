@@ -160,6 +160,44 @@ export default function Files() {
     share: ["Individuals", "Teams", "Everyone"]
   };
 
+  const handleRenameFile = (fileId: string) => {
+    const newName = prompt("Enter new file name:");
+    if (newName) {
+      setUploadedFiles(prev =>
+        prev.map(file =>
+          file.id === fileId ? { ...file, name: newName } : file
+        )
+      );
+    }
+  };
+
+  const handlePreviewFile = (file: any) => {
+    console.log("Previewing file:", file);
+    alert(`Previewing: ${file.name}`);
+  };
+
+  const handleMakePrivate = (fileId: string) => {
+    setUploadedFiles(prev =>
+      prev.map(file =>
+        file.id === fileId ? { ...file, status: "private" } : file
+      )
+    );
+    console.log("File made private:", fileId);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return "bg-green-500";
+      case "private":
+        return "bg-red-500";
+      case "pending":
+        return "bg-yellow-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
   return (
     <>
       <Layout>
