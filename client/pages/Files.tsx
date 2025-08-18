@@ -637,7 +637,7 @@ export default function Files() {
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-2">
                                 <div className="text-4xl">{file.thumbnail}</div>
-                                <span className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                <span className={`text-sm px-3 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                                   {file.type}
                                 </span>
                               </div>
@@ -696,7 +696,7 @@ export default function Files() {
                             </div>
 
                             {/* Middle Section - File Info */}
-                            <div className="flex-1 space-y-1 mb-2">
+                            <div className="flex-1 space-y-3 mb-3">
                               {/* FILE NAME */}
                               <div>
                                 <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
