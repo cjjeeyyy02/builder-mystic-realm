@@ -212,6 +212,21 @@ export default function Chat() {
     };
   }, [showGroupMenu]);
 
+  // Close share menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShowShareMenu(false);
+    };
+
+    if (showShareMenu) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showShareMenu]);
+
   const handleSendMessage = () => {
     if (message.trim() && selectedChat) {
       const newMessage = {
