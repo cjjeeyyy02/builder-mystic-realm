@@ -1227,6 +1227,81 @@ export default function Chat() {
         </div>
       )}
 
+      {/* GO PUBLIC Confirmation Modal */}
+      {showGoPublicModal && selectedGroupForPublic && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <Card className={`w-full max-w-md mx-auto shadow-2xl ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          }`}>
+            <div className="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold">Make Group Public</h2>
+              <button
+                onClick={() => {
+                  setShowGoPublicModal(false);
+                  setSelectedGroupForPublic(null);
+                }}
+                className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <CardContent className="p-6">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h3 className={`text-lg font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Chat History Visibility
+                </h3>
+                <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Do You Want The Entire Chat History To Be Visible To New Participants?
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <Button
+                  onClick={() => handleConfirmGoPublic(selectedGroupForPublic, true)}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-3"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  YES - Show Full History
+                </Button>
+                <Button
+                  onClick={() => handleConfirmGoPublic(selectedGroupForPublic, false)}
+                  variant="outline"
+                  className="w-full py-3 border-2"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                  </svg>
+                  NO - Hide Previous History
+                </Button>
+              </div>
+
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => {
+                    setShowGoPublicModal(false);
+                    setSelectedGroupForPublic(null);
+                  }}
+                  className={`text-sm ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'} transition-colors`}
+                >
+                  Cancel
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       <FooterNavigation collapsed={footerCollapsed} />
     </>
   );
