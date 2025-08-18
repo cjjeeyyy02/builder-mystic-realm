@@ -2200,7 +2200,11 @@ export default function Dashboard() {
                   <Button
                     variant="link"
                     onClick={() => navigate("/e-forum")}
-                    className="text-gray-700 hover:text-blue-700 text-xs p-0"
+                    className={`text-xs p-0 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'text-gray-300 hover:text-blue-400'
+                        : 'text-gray-700 hover:text-blue-700'
+                    }`}
                   >
                     Visit Forum →
                   </Button>
