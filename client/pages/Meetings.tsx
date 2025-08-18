@@ -843,20 +843,25 @@ export default function Meetings() {
                   </div>
                 </div>
                 <div>
-                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    INVITE
-                  </label>
-                  <input
-                    type="text"
-                    value={meetingForm.invite}
-                    onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                    placeholder="Enter email addresses (optional)"
-                  />
+                  <div className="flex items-center gap-2">
+                    <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                      INVITE:
+                    </label>
+                    <select
+                      value={meetingForm.invite}
+                      onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
+                      className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="">Type here</option>
+                      <option value="team@company.com">Team Members</option>
+                      <option value="all@company.com">All Staff</option>
+                      <option value="external@partner.com">External Partners</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
