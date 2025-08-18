@@ -504,7 +504,7 @@ export default function Chat() {
 
                 <div className="flex items-center space-x-4">
                   <h1 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                    CHAT CENTER
+                    CHAT ROOM
                   </h1>
                   <div className="hidden sm:flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -541,7 +541,7 @@ export default function Chat() {
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
-                  <span className="hidden sm:inline">New Group</span>
+                  <span className="hidden sm:inline">CREATE GROUP</span>
                   <span className="sm:hidden">+</span>
                 </Button>
               </div>
@@ -766,7 +766,7 @@ export default function Chat() {
                                     }}
                                     className="text-xs px-2 py-1 h-6"
                                   >
-                                    JOIN
+                                    ENTER GROUP
                                   </Button>
                                 </div>
                               </div>
