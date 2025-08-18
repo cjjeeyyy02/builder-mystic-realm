@@ -632,12 +632,66 @@ export default function Files() {
                           {/* Square Layout */}
                           <div className="flex flex-col h-full">
 
-                            {/* Top Section - File Icon and Type */}
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="text-3xl">{file.thumbnail}</div>
-                              <span className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
-                                {file.type}
-                              </span>
+                            {/* Top Section - File Icon, Type and Actions */}
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <div className="text-3xl">{file.thumbnail}</div>
+                                <span className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                                  {file.type}
+                                </span>
+                              </div>
+
+                              {/* Action Icons - Right Section */}
+                              <div className="flex flex-col space-y-1">
+                                {/* VIEW Icon */}
+                                <Button
+                                  onClick={() => handlePreviewFile(file)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1 h-6 w-6"
+                                >
+                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 616 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                  </svg>
+                                </Button>
+
+                                {/* DOWNLOAD Icon */}
+                                <Button
+                                  onClick={() => handleDownloadFile(file)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1 h-6 w-6"
+                                >
+                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 712-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                  </svg>
+                                </Button>
+
+                                {/* SHARE Icon */}
+                                <Button
+                                  onClick={() => handleShareFile(file.id)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1 h-6 w-6"
+                                >
+                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                                  </svg>
+                                </Button>
+
+                                {/* DELETE Icon */}
+                                <Button
+                                  onClick={() => handleDeleteFile(file.id)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1 h-6 w-6 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                >
+                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                  </svg>
+                                </Button>
+                              </div>
                             </div>
 
                             {/* Middle Section - File Info */}
