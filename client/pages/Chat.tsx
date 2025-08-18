@@ -117,7 +117,7 @@ export default function Chat() {
     status: "Active",
   };
 
-  // Sample chat messages for different contacts
+  // Sample chat messages for different contacts and groups
   const chatMessages = {
     jack: [
       {
@@ -144,8 +144,33 @@ export default function Chat() {
         isOwn: false,
       },
     ],
+    // Group messages (use group id as key)
+    threemusketeers: [
+      {
+        id: 1,
+        sender: "me",
+        message: "Welcome to our new group! Ready to start collaborating?",
+        time: "Just now",
+        isOwn: true,
+      },
+    ],
     // Add more chat data as needed
   };
+
+  // Close group menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShowGroupMenu(false);
+    };
+
+    if (showGroupMenu) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showGroupMenu]);
 
   const handleSendMessage = () => {
     if (message.trim()) {
