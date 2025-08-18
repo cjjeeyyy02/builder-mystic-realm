@@ -1259,6 +1259,108 @@ export default function Chat() {
         </div>
       )}
 
+      {/* Edit Group Modal */}
+      {showEditGroupModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className={`bg-white rounded-lg shadow-xl w-96 max-w-md mx-4 transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          }`}>
+            {/* Modal Header */}
+            <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
+              <h2 className="text-lg font-bold">EDIT GROUP</h2>
+              <button
+                onClick={() => setShowEditGroupModal(false)}
+                className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-4">
+              {/* Group Name */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                }`}>
+                  GROUP NAME:
+                </label>
+                <input
+                  type="text"
+                  value={groupForm.name}
+                  onChange={(e) => setGroupForm({...groupForm, name: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter group name"
+                />
+              </div>
+
+              {/* Group Type */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                }`}>
+                  GROUP TYPE:
+                </label>
+                <select
+                  value={groupForm.type}
+                  onChange={(e) => setGroupForm({...groupForm, type: e.target.value})}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="Private">Private</option>
+                  <option value="Public">Public</option>
+                </select>
+              </div>
+
+              {/* Current Group Info */}
+              <div className={`p-3 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <strong>Current Group:</strong> {groupToEdit?.name}
+                </p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <strong>Members:</strong> {groupToEdit?.members}
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t flex items-center justify-end space-x-3 rounded-b-lg">
+              <Button
+                variant="outline"
+                onClick={() => setShowEditGroupModal(false)}
+                className={`px-4 py-2 text-sm transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600'
+                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                CANCEL
+              </Button>
+              <Button
+                onClick={handleSaveGroupEdit}
+                disabled={!groupForm.name.trim()}
+                className={`px-4 py-2 text-sm transition-colors duration-300 ${
+                  !groupForm.name.trim()
+                    ? 'opacity-50 cursor-not-allowed bg-gray-400'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                SAVE CHANGES
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer Navigation - hide when sidebar is collapsed */}
       <FooterNavigation collapsed={footerCollapsed} />
     </>
