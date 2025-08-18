@@ -1794,7 +1794,9 @@ export default function Dashboard() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-900 mb-0.5">
+                        <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Sarah Johnson Completed AI Assessment
                         </p>
                         <div className="flex items-center gap-1.5">
