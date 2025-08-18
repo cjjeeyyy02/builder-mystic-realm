@@ -42,8 +42,7 @@ export default function Meetings() {
   };
 
   const handleCreateMeeting = () => {
-    console.log("Creating meeting...");
-    alert("Meeting creation feature will be implemented soon!");
+    setShowCreateMeetingModal(true);
   };
 
   const handleScheduleMeeting = () => {
