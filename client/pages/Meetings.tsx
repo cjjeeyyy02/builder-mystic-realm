@@ -789,8 +789,8 @@ export default function Meetings() {
                   </div>
                 </div>
                 <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    End Time
+                  <label className={`block text-sm font-semibold mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    END
                   </label>
                   <div className="flex space-x-2">
                     <input
