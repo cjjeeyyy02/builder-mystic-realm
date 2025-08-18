@@ -426,7 +426,7 @@ export default function Files() {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
-                      Create | Upload File
+                      Create and Upload File
                     </Button>
                   </div>
                 </div>
@@ -435,13 +435,12 @@ export default function Files() {
           </Card>
 
           {/* Main Content */}
-          <div className="p-6">
-            {showUploadForm ? (
-              /* Upload Form */
-              <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
-                <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
-                  isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-                }`}>
+          {/* Modal Overlay */}
+          {showUploadForm && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <Card className={`w-full max-w-2xl shadow-2xl transition-colors duration-300 ${
+                isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+              }`}>
                   {/* Header */}
                   <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
                     <h1 className="text-xl font-bold">Upload New File</h1>
@@ -655,8 +654,11 @@ export default function Files() {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
-            ) : (
+            </div>
+          )}
+
+          <div className="p-6">
+            {!showUploadForm && (
               /* File List/Grid View */
               <div>
                 {sortedFiles.length === 0 ? (
