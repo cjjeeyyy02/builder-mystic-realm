@@ -18,6 +18,7 @@ export default function Chat() {
   const [footerCollapsed, setFooterCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
+  const [groupSaved, setGroupSaved] = useState(false);
   const [groupForm, setGroupForm] = useState({
     name: "",
     type: "Private",
