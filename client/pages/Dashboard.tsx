@@ -828,13 +828,13 @@ export default function Dashboard() {
                   {/* Legend */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
+                      <div className="w-3 h-0.5 bg-gray-600 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
+                      <div className="w-3 h-0.5 bg-gray-400 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>Exit</span>
