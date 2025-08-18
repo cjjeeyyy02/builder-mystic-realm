@@ -13,6 +13,7 @@ export default function Reminders() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("date");
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   // Reminder form state
   const [reminderForm, setReminderForm] = useState({
@@ -20,6 +21,7 @@ export default function Reminders() {
     title: "",
     details: "",
     date: "",
+    time: "",
     type: "",
     category: "",
     department: "",
@@ -35,25 +37,48 @@ export default function Reminders() {
       title: "Stick to the Brand Guidelines",
       details: "Ensure all marketing, visuals, and messaging align with the company's tone, style, and values.",
       date: "08-15-2025",
+      time: "14:30",
       type: "Task",
       category: "Marketing",
       department: "Marketing",
       priority: "HIGH PRIORITY",
       status: "today",
       completed: false,
-      privacy: "PRIVATE"
+      privacy: "PRIVATE",
+      createdDate: "2025-08-14",
+      dueDate: "2025-08-15"
     },
     {
       id: "R002",
       title: "Submit Budget Report",
-      details: "Q3 financial analysis due",
+      details: "Complete Q3 financial analysis and submit to management team for review.",
       date: "2025-08-17",
+      time: "09:00",
       type: "Task",
       category: "Finance",
       department: "Finance",
-      priority: "Critical",
+      priority: "CRITICAL",
       status: "pending",
-      completed: false
+      completed: false,
+      privacy: "TEAM",
+      createdDate: "2025-08-10",
+      dueDate: "2025-08-17"
+    },
+    {
+      id: "R003",
+      title: "Client Meeting Preparation",
+      details: "Prepare presentation materials and agenda for the quarterly client review meeting.",
+      date: "2025-08-16",
+      time: "10:00",
+      type: "Meeting",
+      category: "Business",
+      department: "Sales",
+      priority: "HIGH",
+      status: "upcoming",
+      completed: false,
+      privacy: "PRIVATE",
+      createdDate: "2025-08-12",
+      dueDate: "2025-08-16"
     }
   ]);
 
@@ -69,7 +94,8 @@ export default function Reminders() {
       setReminderForm(prev => ({
         ...prev,
         id: generateId(),
-        date: new Date().toLocaleDateString('en-CA')
+        date: new Date().toLocaleDateString('en-CA'),
+        time: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
       }));
     }
   }, [showCreateModal]);
@@ -92,16 +118,19 @@ export default function Reminders() {
       title: reminderForm.title,
       details: reminderForm.details,
       date: reminderForm.date,
+      time: reminderForm.time || "09:00",
       type: reminderForm.type || "Task",
-      category: reminderForm.category || "MARKETING",
+      category: reminderForm.category || "General",
       department: reminderForm.department || "General",
-      priority: reminderForm.priority || "HIGH PRIORITY",
+      priority: reminderForm.priority || "MEDIUM",
       status: "today",
       completed: false,
-      privacy: "PRIVATE"
+      privacy: "PRIVATE",
+      createdDate: new Date().toLocaleDateString('en-CA'),
+      dueDate: reminderForm.date
     };
 
-    setReminders(prev => [...prev, newReminder]);
+    setReminders(prev => [newReminder, ...prev]);
     setShowCreateModal(false);
 
     // Reset form
@@ -110,6 +139,7 @@ export default function Reminders() {
       title: "",
       details: "",
       date: "",
+      time: "",
       type: "",
       category: "",
       department: "",
@@ -128,6 +158,7 @@ export default function Reminders() {
       title: "",
       details: "",
       date: "",
+      time: "",
       type: "",
       category: "",
       department: "",
@@ -137,12 +168,59 @@ export default function Reminders() {
     });
   };
 
+  const handleCompleteReminder = (id: string) => {
+    setReminders(prev =>
+      prev.map(reminder =>
+        reminder.id === id
+          ? { ...reminder, completed: !reminder.completed, status: reminder.completed ? reminder.status : "completed" }
+          : reminder
+      )
+    );
+  };
+
+  const handleEditReminder = (id: string) => {
+    const reminder = reminders.find(r => r.id === id);
+    if (reminder) {
+      setReminderForm({
+        id: reminder.id,
+        title: reminder.title,
+        details: reminder.details,
+        date: reminder.date,
+        time: reminder.time,
+        type: reminder.type,
+        category: reminder.category,
+        department: reminder.department,
+        priority: reminder.priority,
+        share: reminder.privacy,
+        repeat: ""
+      });
+      setShowCreateModal(true);
+    }
+  };
+
+  const handleDeleteReminder = (id: string) => {
+    if (window.confirm("Are you sure you want to delete this reminder?")) {
+      setReminders(prev => prev.filter(reminder => reminder.id !== id));
+    }
+  };
+
   // Filter logic
   const getFilteredReminders = () => {
     return reminders.filter(reminder => {
       const matchesSearch = reminder.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           reminder.details.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesFilter = activeFilter === "all" || reminder.status === activeFilter;
+                           reminder.details.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           reminder.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           reminder.department.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      let matchesFilter = true;
+      if (activeFilter !== "all") {
+        if (activeFilter === "completed") {
+          matchesFilter = reminder.completed;
+        } else {
+          matchesFilter = reminder.status === activeFilter;
+        }
+      }
+      
       return matchesSearch && matchesFilter;
     });
   };
@@ -150,6 +228,7 @@ export default function Reminders() {
   // Get counts for filters
   const getCounts = () => {
     return {
+      all: reminders.length,
       today: reminders.filter(r => r.status === "today").length,
       pending: reminders.filter(r => r.status === "pending").length, 
       upcoming: reminders.filter(r => r.status === "upcoming").length,
@@ -161,11 +240,56 @@ export default function Reminders() {
 
   const selectOptions = {
     type: ["Task", "Meeting", "Event", "Deadline", "Follow-up", "Review"],
-    category: ["Work", "Personal", "Finance", "Health", "Education", "Travel"],
-    department: ["Engineering", "Finance", "Marketing", "HR", "Sales", "Design", "Product"],
+    category: ["Work", "Personal", "Finance", "Health", "Education", "Travel", "Marketing", "Business"],
+    department: ["Engineering", "Finance", "Marketing", "HR", "Sales", "Design", "Product", "General"],
     priority: ["LOW", "MEDIUM", "HIGH", "CRITICAL", "URGENT"],
     repeat: ["NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY", "CUSTOM"]
   };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case "CRITICAL":
+      case "URGENT":
+        return "bg-red-500";
+      case "HIGH":
+      case "HIGH PRIORITY":
+        return "bg-orange-500";
+      case "MEDIUM":
+        return "bg-yellow-500";
+      case "LOW":
+        return "bg-green-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    const iconMap: { [key: string]: string } = {
+      'Marketing': '📢',
+      'Finance': '💰',
+      'Business': '💼',
+      'Work': '💻',
+      'Personal': '👤',
+      'Health': '🏥',
+      'Education': '📚',
+      'Travel': '✈️'
+    };
+    return iconMap[category] || '📝';
+  };
+
+  const sortedReminders = [...getFilteredReminders()].sort((a, b) => {
+    switch (sortBy) {
+      case 'priority':
+        const priorityOrder = { 'CRITICAL': 0, 'URGENT': 1, 'HIGH': 2, 'HIGH PRIORITY': 2, 'MEDIUM': 3, 'LOW': 4 };
+        return (priorityOrder[a.priority as keyof typeof priorityOrder] || 5) - (priorityOrder[b.priority as keyof typeof priorityOrder] || 5);
+      case 'title':
+        return a.title.localeCompare(b.title);
+      case 'category':
+        return a.category.localeCompare(b.category);
+      default: // date
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }
+  });
 
   return (
     <>
@@ -174,258 +298,478 @@ export default function Reminders() {
           isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
         }`}>
           {/* Header Section */}
-          <div className={`border-b px-4 py-4 transition-colors duration-300 ${
+          <Card className={`rounded-none border-0 border-b transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
           }`}>
-            {/* Search Bar */}
-            <div className="mb-4">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search reminders..."
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              />
-            </div>
+            <CardContent className="p-6">
+              <div className="flex flex-col space-y-6">
+                {/* Title and Stats */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      Reminders
+                    </h1>
+                    <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {counts.all} total reminders • {counts.today} due today • {counts.completed} completed
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      variant={viewMode === 'grid' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setViewMode('grid')}
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                      </svg>
+                      Grid
+                    </Button>
+                    <Button
+                      variant={viewMode === 'list' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setViewMode('list')}
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                      </svg>
+                      List
+                    </Button>
+                  </div>
+                </div>
 
-            {/* Filter Bar */}
-            <div className="flex items-center space-x-2 flex-wrap">
-              <button
-                onClick={() => setActiveFilter("today")}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  activeFilter === "today"
-                    ? 'bg-yellow-500 text-white'
-                    : isDarkMode
-                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                TODAY {counts.today}
-              </button>
-              
-              <button
-                onClick={() => setActiveFilter("pending")}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  activeFilter === "pending"
-                    ? 'bg-red-500 text-white'
-                    : isDarkMode
-                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                PENDING {counts.pending}
-              </button>
-              
-              <button
-                onClick={() => setActiveFilter("upcoming")}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  activeFilter === "upcoming"
-                    ? 'bg-orange-500 text-white'
-                    : isDarkMode
-                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                UPCOMING {counts.upcoming}
-              </button>
-              
-              <button
-                onClick={() => setActiveFilter("completed")}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  activeFilter === "completed"
-                    ? 'bg-green-500 text-white'
-                    : isDarkMode
-                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                COMPLETED {counts.completed}
-              </button>
+                {/* Search Bar */}
+                <div className="relative">
+                  <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search reminders by title, details, category, or department..."
+                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    }`}
+                  />
+                </div>
 
-              <select
-                value={activeFilter}
-                onChange={(e) => setActiveFilter(e.target.value)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-300'
-                    : 'bg-white border-gray-300 text-gray-700'
-                }`}
-              >
-                <option value="all">STATUS</option>
-                <option value="today">Today</option>
-                <option value="pending">Pending</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="completed">Completed</option>
-              </select>
+                {/* Filter and Sort Controls */}
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 items-center justify-between">
+                  {/* Filter Buttons */}
+                  <div className="flex items-center space-x-2 flex-wrap">
+                    <button
+                      onClick={() => setActiveFilter("all")}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                        activeFilter === "all"
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      ALL ({counts.all})
+                    </button>
+                    
+                    <button
+                      onClick={() => setActiveFilter("today")}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                        activeFilter === "today"
+                          ? 'bg-yellow-500 text-white shadow-md'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      TODAY ({counts.today})
+                    </button>
+                    
+                    <button
+                      onClick={() => setActiveFilter("pending")}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                        activeFilter === "pending"
+                          ? 'bg-red-500 text-white shadow-md'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      PENDING ({counts.pending})
+                    </button>
+                    
+                    <button
+                      onClick={() => setActiveFilter("upcoming")}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                        activeFilter === "upcoming"
+                          ? 'bg-orange-500 text-white shadow-md'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      UPCOMING ({counts.upcoming})
+                    </button>
+                    
+                    <button
+                      onClick={() => setActiveFilter("completed")}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                        activeFilter === "completed"
+                          ? 'bg-green-500 text-white shadow-md'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      COMPLETED ({counts.completed})
+                    </button>
+                  </div>
 
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-gray-300'
-                    : 'bg-white border-gray-300 text-gray-700'
-                }`}
-              >
-                <option value="date">DATE</option>
-                <option value="priority">Priority</option>
-                <option value="title">Title</option>
-                <option value="department">Department</option>
-              </select>
+                  {/* Sort and Create Controls */}
+                  <div className="flex items-center space-x-3">
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="date">Sort by Date</option>
+                      <option value="priority">Sort by Priority</option>
+                      <option value="title">Sort by Title</option>
+                      <option value="category">Sort by Category</option>
+                    </select>
 
-              <Button
-                onClick={() => setShowCreateModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-300"
-              >
-                CREATE REMINDER
-              </Button>
-            </div>
-          </div>
+                    <Button
+                      onClick={() => setShowCreateModal(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      New Reminder
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Main Content */}
-          <div className="p-4">
-            {getFilteredReminders().length === 0 ? (
-              <div className="text-center py-12">
-                <div className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  No reminders found
+          <div className="p-6">
+            {sortedReminders.length === 0 ? (
+              <div className="text-center py-16">
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
+                }`}>
+                  <svg className={`w-12 h-12 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
+                <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  {searchQuery || activeFilter !== "all" ? 'No reminders found' : 'No reminders yet'}
+                </h3>
                 <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  {searchQuery ? 'Try adjusting your search' : 'Create your first reminder to get started'}
+                  {searchQuery || activeFilter !== "all" 
+                    ? 'Try adjusting your search or filters' 
+                    : 'Create your first reminder to get started'
+                  }
                 </p>
               </div>
-            ) : (
-              <div className="space-y-4">
-                {getFilteredReminders().map((reminder) => (
-                  <Card key={reminder.id} className={`transition-colors duration-300 hover:shadow-lg border-2 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'
-                  }`}>
-                    <CardContent className="p-4">
-                      {/* Header with ID and Star */}
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-2">
-                          <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                            REMINDER ID: {reminder.id}
-                          </span>
-                          <div className="w-5 h-5 bg-yellow-500 rounded flex items-center justify-center">
-                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
+            ) : viewMode === 'grid' ? (
+              /* Grid View */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sortedReminders.map((reminder) => (
+                  <Card key={reminder.id} className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 ${
+                    reminder.completed ? 'border-l-green-500' : getPriorityColor(reminder.priority).replace('bg-', 'border-l-')
+                  } ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+                    <CardContent className="p-6">
+                      {/* Header with ID and Icon */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">{getCategoryIcon(reminder.category)}</div>
+                          <div>
+                            <div className="flex items-center space-x-2">
+                              <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                                ID: {reminder.id}
+                              </span>
+                              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                            </div>
+                            <span className={`text-xs px-2 py-1 rounded-full font-medium ${getPriorityColor(reminder.priority)} text-white`}>
+                              {reminder.priority}
+                            </span>
                           </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          {reminder.completed && (
+                            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                          )}
                         </div>
                       </div>
 
                       {/* Title */}
-                      <div className="mb-3">
-                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                          REMINDER TITLE:
-                        </span>
-                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                          {reminder.title}
-                        </span>
-                      </div>
+                      <h3 className={`text-lg font-bold mb-3 ${
+                        reminder.completed ? 'line-through opacity-60' : ''
+                      } ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        {reminder.title}
+                      </h3>
 
                       {/* Details */}
-                      <div className="mb-3">
-                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                          REMINDER DETAILS:
-                        </span>
-                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          {reminder.details}
-                        </span>
+                      <p className={`text-sm mb-4 leading-relaxed ${
+                        reminder.completed ? 'line-through opacity-60' : ''
+                      } ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {reminder.details}
+                      </p>
+
+                      {/* Date and Time */}
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center space-x-2">
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            {reminder.date}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            {reminder.time}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Date */}
-                      <div className="mb-4">
-                        <span className={`text-blue-700 font-bold text-sm ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                          REMINDER DATE:
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          isDarkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'
+                        }`}>
+                          {reminder.category}
                         </span>
-                        <span className={`ml-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          {reminder.date}
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                        }`}>
+                          {reminder.department}
+                        </span>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          isDarkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-100 text-purple-800'
+                        }`}>
+                          {reminder.privacy}
                         </span>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button
+                          onClick={() => handleCompleteReminder(reminder.id)}
                           size="sm"
-                          className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-3 py-1 font-medium"
+                          variant={reminder.completed ? "outline" : "default"}
+                          className={`flex-1 text-xs ${
+                            reminder.completed 
+                              ? 'text-gray-600' 
+                              : 'bg-green-600 hover:bg-green-700 text-white'
+                          }`}
                         >
-                          {reminder.category || "MARKETING"}
+                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {reminder.completed ? 'Undo' : 'Complete'}
                         </Button>
-
                         <Button
+                          onClick={() => handleEditReminder(reminder.id)}
                           size="sm"
-                          className="bg-gray-500 hover:bg-gray-600 text-white text-xs px-3 py-1 font-medium"
+                          variant="outline"
+                          className="p-2"
                         >
-                          {reminder.privacy || "PRIVATE"}
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
                         </Button>
-
                         <Button
+                          onClick={() => handleDeleteReminder(reminder.id)}
                           size="sm"
-                          className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 font-medium"
+                          variant="outline"
+                          className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50"
                         >
-                          {reminder.priority}
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
                         </Button>
-
-                        <div className="flex items-center space-x-1 ml-auto">
-                          <button className="w-8 h-8 bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
-                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                            </svg>
-                          </button>
-
-                          <button className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
-                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-                            </svg>
-                          </button>
-                        </div>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
+            ) : (
+              /* List View */
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+              }`}>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className={`border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                        <tr className={`${isDarkMode ? 'bg-gray-750' : 'bg-gray-50'}`}>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Reminder</th>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Category</th>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Priority</th>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Due Date</th>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Status</th>
+                          <th className={`text-left p-4 font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sortedReminders.map((reminder) => (
+                          <tr key={reminder.id} className={`border-b hover:bg-opacity-50 transition-colors ${
+                            isDarkMode 
+                              ? 'border-gray-700 hover:bg-gray-700' 
+                              : 'border-gray-100 hover:bg-gray-50'
+                          }`}>
+                            <td className="p-4">
+                              <div className="flex items-center space-x-3">
+                                <div className="text-xl">{getCategoryIcon(reminder.category)}</div>
+                                <div className="flex-1">
+                                  <div className="flex items-center space-x-2">
+                                    <h4 className={`font-semibold ${
+                                      reminder.completed ? 'line-through opacity-60' : ''
+                                    } ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                      {reminder.title}
+                                    </h4>
+                                    {reminder.completed && (
+                                      <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                      </svg>
+                                    )}
+                                  </div>
+                                  <p className={`text-sm truncate max-w-xs ${
+                                    reminder.completed ? 'line-through opacity-60' : ''
+                                  } ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    {reminder.details}
+                                  </p>
+                                  <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                                    ID: {reminder.id}
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4">
+                              <div className="flex flex-col space-y-1">
+                                <span className={`text-sm px-2 py-1 rounded text-center ${
+                                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                                }`}>
+                                  {reminder.category}
+                                </span>
+                                <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  {reminder.department}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="p-4">
+                              <span className={`px-2 py-1 rounded text-xs font-medium text-white ${getPriorityColor(reminder.priority)}`}>
+                                {reminder.priority}
+                              </span>
+                            </td>
+                            <td className={`p-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                              <div className="flex flex-col">
+                                <span className="text-sm">{reminder.date}</span>
+                                <span className="text-xs text-gray-500">{reminder.time}</span>
+                              </div>
+                            </td>
+                            <td className="p-4">
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                reminder.completed
+                                  ? 'bg-green-100 text-green-800'
+                                  : reminder.status === 'today'
+                                    ? 'bg-yellow-100 text-yellow-800'
+                                    : reminder.status === 'pending'
+                                      ? 'bg-red-100 text-red-800'
+                                      : 'bg-blue-100 text-blue-800'
+                              }`}>
+                                {reminder.completed ? 'Completed' : reminder.status.toUpperCase()}
+                              </span>
+                            </td>
+                            <td className="p-4">
+                              <div className="flex items-center space-x-1">
+                                <Button
+                                  onClick={() => handleCompleteReminder(reminder.id)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </Button>
+                                <Button
+                                  onClick={() => handleEditReminder(reminder.id)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                  </svg>
+                                </Button>
+                                <Button
+                                  onClick={() => handleDeleteReminder(reminder.id)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="p-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                  </svg>
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
             )}
           </div>
         </div>
       </Layout>
 
-      {/* Create Reminder Modal */}
+      {/* Create/Edit Reminder Modal */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className={`bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto transition-colors duration-300 ${
+          <Card className={`w-full max-w-2xl mx-auto shadow-2xl transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           }`}>
             {/* Modal Header */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-lg font-bold text-yellow-300">CREATE YOUR REMINDER HERE</h2>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={handleCloseModal}
-                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-                >
-                  <span className="text-white text-sm">↻</span>
-                </button>
-                <button
-                  onClick={handleCloseModal}
-                  className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-                >
-                  <span className="text-white text-sm">×</span>
-                </button>
-              </div>
+              <h2 className="text-xl font-bold">
+                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Edit Reminder' : 'Create New Reminder'}
+              </h2>
+              <button
+                onClick={handleCloseModal}
+                className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
             {/* Modal Body */}
-            <div className={`p-6 space-y-4 transition-colors duration-300 ${
+            <CardContent className={`p-6 space-y-6 transition-colors duration-300 ${
               isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
             }`}>
-              {/* ID Field */}
+              {/* ID Field - Auto-generated */}
               <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                <label className={`text-sm font-semibold w-24 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                   ID:
                 </label>
                 <input
@@ -435,197 +779,182 @@ export default function Reminders() {
                   className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
                     isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
                   }`}
-                  placeholder="AUTO-GENERATED"
+                  placeholder="Auto-generated"
                 />
               </div>
 
-              {/* Title Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  TITLE:
-                </label>
-                <input
-                  type="text"
-                  value={reminderForm.title}
-                  onChange={(e) => handleReminderFormChange('title', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Type here"
-                />
+              {/* Title and Details Row */}
+              <div className="grid grid-cols-1 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Reminder Title
+                  </label>
+                  <input
+                    type="text"
+                    value={reminderForm.title}
+                    onChange={(e) => handleReminderFormChange('title', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Enter reminder title"
+                  />
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Reminder Details
+                  </label>
+                  <textarea
+                    value={reminderForm.details}
+                    onChange={(e) => handleReminderFormChange('details', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Enter reminder details"
+                    rows={3}
+                  />
+                </div>
               </div>
 
-              {/* Details Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  DETAILS:
-                </label>
-                <input
-                  type="text"
-                  value={reminderForm.details}
-                  onChange={(e) => handleReminderFormChange('details', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Type here"
-                />
+              {/* Date and Time Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    value={reminderForm.date}
+                    onChange={(e) => handleReminderFormChange('date', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Time
+                  </label>
+                  <input
+                    type="time"
+                    value={reminderForm.time}
+                    onChange={(e) => handleReminderFormChange('time', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  />
+                </div>
               </div>
 
-              {/* Date Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  DATE:
-                </label>
-                <input
-                  type="date"
-                  value={reminderForm.date}
-                  onChange={(e) => handleReminderFormChange('date', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                />
+              {/* Category and Department Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Category
+                  </label>
+                  <select
+                    value={reminderForm.category}
+                    onChange={(e) => handleReminderFormChange('category', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Select category</option>
+                    {selectOptions.category.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Department
+                  </label>
+                  <select
+                    value={reminderForm.department}
+                    onChange={(e) => handleReminderFormChange('department', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Select department</option>
+                    {selectOptions.department.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              {/* Type Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  TYPE:
-                </label>
-                <select
-                  value={reminderForm.type}
-                  onChange={(e) => handleReminderFormChange('type', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="">Type here</option>
-                  {selectOptions.type.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Category Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  CATEGORY:
-                </label>
-                <select
-                  value={reminderForm.category}
-                  onChange={(e) => handleReminderFormChange('category', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="">Type here</option>
-                  {selectOptions.category.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Department Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  DEPARTMENT:
-                </label>
-                <select
-                  value={reminderForm.department}
-                  onChange={(e) => handleReminderFormChange('department', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="">Type here</option>
-                  {selectOptions.department.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Priority Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  PRIORITY:
-                </label>
-                <select
-                  value={reminderForm.priority}
-                  onChange={(e) => handleReminderFormChange('priority', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="">VERY HIGH, HIGH, MEDIUM, LOW, VERY LOW</option>
-                  {selectOptions.priority.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Share Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  SHARE:
-                </label>
-                <input
-                  type="text"
-                  value={reminderForm.share}
-                  onChange={(e) => handleReminderFormChange('share', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Individuals, Teams, Everyone"
-                />
-              </div>
-
-              {/* Repeat Field */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-blue-700 font-bold w-28 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  REPEAT:
-                </label>
-                <select
-                  value={reminderForm.repeat}
-                  onChange={(e) => handleReminderFormChange('repeat', e.target.value)}
-                  className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                >
-                  <option value="">EVERY 3 MINUTES, EVERY 5 HOURS, EVERY 1 WEEK, EVERY 1 MONTH, EVERY 365 DAYS</option>
-                  {selectOptions.repeat.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
+              {/* Priority and Type Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Priority
+                  </label>
+                  <select
+                    value={reminderForm.priority}
+                    onChange={(e) => handleReminderFormChange('priority', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Select priority</option>
+                    {selectOptions.priority.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Type
+                  </label>
+                  <select
+                    value={reminderForm.type}
+                    onChange={(e) => handleReminderFormChange('type', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <option value="">Select type</option>
+                    {selectOptions.type.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* Submit Button */}
-              <div className="flex justify-center pt-4">
+              <div className="flex justify-end space-x-3 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={handleCloseModal}
+                >
+                  Cancel
+                </Button>
                 <Button
                   onClick={handleCreateReminder}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300"
+                  disabled={!reminderForm.title || !reminderForm.details}
+                  className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  CREATE REMINDER
+                  {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Update Reminder' : 'Create Reminder'}
                 </Button>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
