@@ -65,9 +65,12 @@ export default function Meetings() {
     }
 
     console.log("Scheduling meeting:", meetingForm);
-    alert("Meeting scheduled successfully!");
 
-    // Reset form and close modal
+    // Start the meeting immediately
+    setMeetingInProgress(true);
+    setShowCreateMeetingModal(false);
+
+    // Reset form
     setMeetingForm({
       title: "",
       info: "",
@@ -79,7 +82,6 @@ export default function Meetings() {
       chair: "",
       invite: ""
     });
-    setShowCreateMeetingModal(false);
   };
 
   const handleCloseModal = () => {
