@@ -131,6 +131,21 @@ export default function Files() {
     }
   }, [lastScrollY]);
 
+  // Close date filter dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (showDateFilter && !target.closest('.relative')) {
+        setShowDateFilter(false);
+      }
+    };
+
+    if (showDateFilter) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showDateFilter]);
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
@@ -202,7 +217,7 @@ export default function Files() {
       'DOC': '📝',
       'DOCX': '📝',
       'XLS': '📊',
-      'XLSX': '📊',
+      'XLSX': '��',
       'PPT': '📊',
       'PPTX': '📊',
       'TXT': '📄',
