@@ -13,7 +13,7 @@ export default function Meetings() {
   const [meetingForm, setMeetingForm] = useState({
     title: "",
     info: "",
-    date: "",
+    date: new Date().toLocaleDateString('en-CA'), // Auto-generated date in YYYY-MM-DD format
     timeFrom: "",
     timeFromPeriod: "AM",
     timeTo: "",
