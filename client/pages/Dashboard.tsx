@@ -177,7 +177,9 @@ export default function Dashboard() {
                             1,247
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               +30 this month
                             </span>
                           </div>
@@ -226,7 +228,9 @@ export default function Dashboard() {
                             24
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               +3 this week
                             </span>
                           </div>
@@ -275,7 +279,9 @@ export default function Dashboard() {
                             4.5/5
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               +0.3 improvement
                             </span>
                           </div>
@@ -324,7 +330,9 @@ export default function Dashboard() {
                             18
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               5 from last week
                             </span>
                           </div>
@@ -376,7 +384,9 @@ export default function Dashboard() {
                             10
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-700">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-700'
+                            }`}>
                               +4 next week
                             </span>
                           </div>
@@ -425,7 +435,9 @@ export default function Dashboard() {
                             15
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               3 ending soon
                             </span>
                           </div>
@@ -474,7 +486,9 @@ export default function Dashboard() {
                             5
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               -3 next week
                             </span>
                           </div>
@@ -523,7 +537,9 @@ export default function Dashboard() {
                             142
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className={`text-xs font-medium transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            }`}>
                               +12 today
                             </span>
                           </div>
@@ -540,11 +556,17 @@ export default function Dashboard() {
               </div>
 
               {/* Scroll Indicator - Outside card */}
-              <div className={`absolute right-2 top-1/2 transform -translate-y-1/2 bg-white border border-gray-300 rounded-full p-1 shadow-sm transition-all duration-300 ${
+              <div className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-1 shadow-sm transition-all duration-300 ${
+                isDarkMode
+                  ? 'bg-gray-700 border border-gray-600'
+                  : 'bg-white border border-gray-300'
+              } ${
                 metricsCollapsed ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'
               }`}>
                 <svg
-                  className="w-3 h-3 text-gray-500"
+                  className={`w-3 h-3 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -774,7 +796,11 @@ export default function Dashboard() {
                             e.stopPropagation();
                             setIsDropdownOpen(!isDropdownOpen);
                           }}
-                          className="flex items-center gap-2 px-3 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                          className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg border transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'text-gray-200 bg-gray-700 border-gray-600 hover:bg-gray-600'
+                              : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-50'
+                          }`}
                         >
                           <span>{selectedDepartment}</span>
                           <svg
@@ -794,7 +820,11 @@ export default function Dashboard() {
 
                         {/* Dropdown Menu */}
                         {isDropdownOpen && (
-                          <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                          <div className={`absolute right-0 top-full mt-1 w-40 rounded-lg shadow-lg z-10 transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'bg-gray-800 border border-gray-600'
+                              : 'bg-white border border-gray-200'
+                          }`}>
                             {[
                               "All Department",
                               "Engineering",
@@ -810,10 +840,14 @@ export default function Dashboard() {
                                   setSelectedDepartment(dept);
                                   setIsDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-3 py-2 text-xs hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg transition-colors duration-150 ${
+                                className={`w-full text-left px-3 py-2 text-xs first:rounded-t-lg last:rounded-b-lg transition-colors duration-150 ${
                                   selectedDepartment === dept
-                                    ? "bg-blue-50 text-blue-700 font-medium"
-                                    : "text-gray-700"
+                                    ? isDarkMode
+                                      ? "bg-blue-900/50 text-blue-300 font-medium"
+                                      : "bg-blue-50 text-blue-700 font-medium"
+                                    : isDarkMode
+                                      ? "text-gray-300 hover:bg-gray-700"
+                                      : "text-gray-700 hover:bg-gray-50"
                                 }`}
                               >
                                 {dept}
@@ -846,7 +880,9 @@ export default function Dashboard() {
                     className={`${isGrowthExpanded ? "h-64" : "h-40"} relative transition-all duration-300`}
                   >
                     {/* Y-axis labels */}
-                    <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-1">
+                    <div className={`absolute left-0 top-0 h-full flex flex-col justify-between text-xs pr-1 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
                       <span className="text-xs">80</span>
                       <span className="text-xs">60</span>
                       <span className="text-xs">40</span>
