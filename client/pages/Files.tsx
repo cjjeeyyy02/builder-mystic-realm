@@ -629,61 +629,59 @@ export default function Files() {
                           {/* Square Layout */}
                           <div className="flex flex-col h-full">
 
-                            {/* File Icon */}
-                            <div className="text-2xl flex-shrink-0">{file.thumbnail}</div>
-
-                            {/* FILE ID */}
-                            <div className="min-w-[80px]">
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                FILE ID
-                              </p>
-                              <p className={`text-xs font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                {file.id}
-                              </p>
-                            </div>
-
-                            {/* FILE NAME */}
-                            <div className="flex-1 min-w-[120px]">
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                FILE NAME
-                              </p>
-                              <h3 className={`text-xs font-medium truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                                {file.name}
-                              </h3>
-                            </div>
-
-                            {/* FILE DATE */}
-                            <div className="min-w-[80px]">
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                FILE DATE
-                              </p>
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                {file.date}
-                              </p>
-                            </div>
-
-                            {/* FILE SIZE */}
-                            <div className="min-w-[60px]">
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                FILE SIZE
-                              </p>
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                {file.size}
-                              </p>
-                            </div>
-
-                            {/* FILE TYPE */}
-                            <div className="min-w-[60px]">
-                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                FILE TYPE
-                              </p>
-                              <span className={`inline-block text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                            {/* Top Section - File Icon and Type */}
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="text-3xl">{file.thumbnail}</div>
+                              <span className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                                 {file.type}
                               </span>
                             </div>
 
-                            {/* Action Icons */}
-                            <div className="flex items-center space-x-1 flex-shrink-0">
+                            {/* Middle Section - File Info */}
+                            <div className="flex-1 space-y-1 mb-2">
+                              {/* FILE NAME */}
+                              <div>
+                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE NAME
+                                </p>
+                                <h3 className={`text-xs font-medium truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                  {file.name}
+                                </h3>
+                              </div>
+
+                              {/* FILE ID */}
+                              <div>
+                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                  FILE ID
+                                </p>
+                                <p className={`text-xs font-mono ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {file.id}
+                                </p>
+                              </div>
+
+                              {/* FILE SIZE & DATE */}
+                              <div className="grid grid-cols-2 gap-1">
+                                <div>
+                                  <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    SIZE
+                                  </p>
+                                  <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    {file.size}
+                                  </p>
+                                </div>
+                                <div>
+                                  <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    DATE
+                                  </p>
+                                  <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    {file.date}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Bottom Section - Action Icons */}
+                            <div className="flex items-center justify-center space-x-1 pt-2 border-t border-gray-200 dark:border-gray-600">
 
                               {/* VIEW */}
                               <Button
