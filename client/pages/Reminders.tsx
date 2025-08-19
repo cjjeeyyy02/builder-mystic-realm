@@ -1439,8 +1439,8 @@ export default function Reminders() {
               >
                 {reminderForm.id &&
                 reminders.find((r) => r.id === reminderForm.id)
-                  ? "Update File"
-                  : "Create File"}
+                  ? "Update and Upload File"
+                  : "Create and Upload File"}
               </Button>
             </div>
           </Card>
