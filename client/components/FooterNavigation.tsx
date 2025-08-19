@@ -200,7 +200,10 @@ export default function FooterNavigation({
                   {!shouldMinimize && (
                     <span
                       className={`
-                      text-[9px] sm:text-[10px] font-medium leading-tight truncate max-w-full
+                      ${isMinimizedItem
+                        ? "text-[7px] sm:text-[8px] font-normal"
+                        : "text-[9px] sm:text-[10px] font-medium"
+                      } leading-tight truncate max-w-full
                       transition-all duration-200
                       ${
                         isActive
@@ -214,7 +217,9 @@ export default function FooterNavigation({
                     `}
                     >
                       {/* Show short label on very small screens */}
-                      <span className="hidden xs:inline">{item.label}</span>
+                      <span className="hidden xs:inline">
+                        {isMinimizedItem ? item.shortLabel : item.label}
+                      </span>
                       <span className="xs:hidden">{item.shortLabel}</span>
                     </span>
                   )}
