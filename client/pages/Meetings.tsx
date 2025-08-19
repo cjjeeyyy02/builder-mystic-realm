@@ -956,88 +956,81 @@ export default function Meetings() {
               </button>
             </div>
 
-            {/* Modal Body */}
-            <CardContent
-              className={`p-6 space-y-5 overflow-y-auto ${
-                isDarkMode ? "bg-gray-800" : "bg-white"
-              }`}
-            >
+            {/* Modal Body - Scrollable */}
+            <div className={`max-h-[65vh] overflow-y-auto ${
+              isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}>
+              <CardContent className="p-3 space-y-3">
               {/* Title Field */}
-              <div>
-                <div className="space-y-2">
-                  <label
-                    className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Meeting Title *
-                  </label>
-                  <input
-                    type="text"
-                    value={meetingForm.title}
-                    onChange={(e) =>
-                      handleMeetingFormChange("title", e.target.value)
-                    }
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                      isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
-                        : "bg-white border-gray-300 text-gray-900"
-                    }`}
-                    placeholder="Enter meeting title"
-                  />
-                </div>
+              <div className="space-y-1">
+                <label
+                  className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                >
+                  Meeting Title *
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.title}
+                  onChange={(e) =>
+                    handleMeetingFormChange("title", e.target.value)
+                  }
+                  className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                    isDarkMode
+                      ? "bg-gray-700 border-gray-600 text-gray-200"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
+                  placeholder="Enter meeting title"
+                />
               </div>
 
               {/* Info Field */}
-              <div>
-                <div className="space-y-2">
-                  <label
-                    className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Description
-                  </label>
-                  <textarea
-                    value={meetingForm.info}
-                    onChange={(e) =>
-                      handleMeetingFormChange("info", e.target.value)
-                    }
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                      isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
-                        : "bg-white border-gray-300 text-gray-900"
-                    }`}
-                    placeholder="Enter meeting description (optional)"
-                    rows={3}
-                  />
-                </div>
+              <div className="space-y-1">
+                <label
+                  className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                >
+                  Description
+                </label>
+                <textarea
+                  value={meetingForm.info}
+                  onChange={(e) =>
+                    handleMeetingFormChange("info", e.target.value)
+                  }
+                  className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                    isDarkMode
+                      ? "bg-gray-700 border-gray-600 text-gray-200"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
+                  placeholder="Enter meeting description (optional)"
+                  rows={2}
+                />
               </div>
 
               {/* Date Field */}
-              <div>
-                <div className="space-y-2">
-                  <label
-                    className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Date *
-                  </label>
-                  <input
-                    type="date"
-                    value={meetingForm.date}
-                    onChange={(e) =>
-                      handleMeetingFormChange("date", e.target.value)
-                    }
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                      isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
-                        : "bg-white border-gray-300 text-gray-900"
-                    }`}
-                  />
-                </div>
+              <div className="space-y-1">
+                <label
+                  className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                >
+                  Date *
+                </label>
+                <input
+                  type="date"
+                  value={meetingForm.date}
+                  onChange={(e) =>
+                    handleMeetingFormChange("date", e.target.value)
+                  }
+                  className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                    isDarkMode
+                      ? "bg-gray-700 border-gray-600 text-gray-200"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
+                />
               </div>
 
               {/* Time Fields */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-1">
                   <label
-                    className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
                     Start Time *
                   </label>
@@ -1047,16 +1040,16 @@ export default function Meetings() {
                     onChange={(e) =>
                       handleMeetingFormChange("timeFrom", e.target.value)
                     }
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                       isDarkMode
                         ? "bg-gray-700 border-gray-600 text-gray-200"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <label
-                    className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
                     End Time *
                   </label>
@@ -1066,7 +1059,7 @@ export default function Meetings() {
                     onChange={(e) =>
                       handleMeetingFormChange("timeTo", e.target.value)
                     }
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                       isDarkMode
                         ? "bg-gray-700 border-gray-600 text-gray-200"
                         : "bg-white border-gray-300 text-gray-900"
@@ -1075,9 +1068,9 @@ export default function Meetings() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <label
-                  className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                 >
                   Meeting Host
                 </label>
@@ -1087,7 +1080,7 @@ export default function Meetings() {
                   onChange={(e) =>
                     handleMeetingFormChange("chair", e.target.value)
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                  className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                     isDarkMode
                       ? "bg-gray-700 border-gray-600 text-gray-200"
                       : "bg-white border-gray-300 text-gray-900"
@@ -1096,9 +1089,9 @@ export default function Meetings() {
                 />
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <label
-                  className={`block text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                 >
                   Invite Participants
                 </label>
@@ -1108,7 +1101,7 @@ export default function Meetings() {
                   onChange={(e) =>
                     handleMeetingFormChange("invite", e.target.value)
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                  className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                     isDarkMode
                       ? "bg-gray-700 border-gray-600 text-gray-200"
                       : "bg-white border-gray-300 text-gray-900"
@@ -1116,32 +1109,32 @@ export default function Meetings() {
                   placeholder="Enter email addresses (optional)"
                 />
               </div>
-
-              <div
-                className={`flex justify-end pt-4 border-t ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
-              >
-                <div className="flex space-x-3">
-                  <Button
-                    variant="outline"
-                    onClick={handleCloseModal}
-                    className="px-4 py-2"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={handleScheduleMeetingSubmit}
-                    disabled={
-                      !meetingForm.title ||
-                      !meetingForm.timeFrom ||
-                      !meetingForm.timeTo
-                    }
-                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2"
-                  >
-                    Create Meeting
-                  </Button>
-                </div>
-              </div>
             </CardContent>
+            </div>
+
+            {/* Modal Footer */}
+            <div className={`px-3 py-2 border-t ${isDarkMode ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"}`}>
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  onClick={handleCloseModal}
+                  className="flex-1 py-2 text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleScheduleMeetingSubmit}
+                  disabled={
+                    !meetingForm.title ||
+                    !meetingForm.timeFrom ||
+                    !meetingForm.timeTo
+                  }
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed py-2 text-xs"
+                >
+                  Create Meeting
+                </Button>
+              </div>
+            </div>
           </Card>
         </div>
       )}
