@@ -793,24 +793,26 @@ export default function Meetings() {
               <div className="text-center mb-8">
                 <Button
                   onClick={handleCreateMeeting}
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-4"
+                  className={`px-8 py-3 text-base font-semibold rounded-lg transition-colors duration-200 flex items-center gap-3 mx-auto ${
+                    isDarkMode
+                      ? "bg-emerald-700 hover:bg-emerald-600 text-white"
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white"
+                  }`}
                 >
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 4v16m8-8H4"
-                      />
-                    </svg>
-                  </div>
-                  <span>START NEW MEETING</span>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  <span>Start New Meeting</span>
                 </Button>
               </div>
 
