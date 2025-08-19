@@ -724,20 +724,20 @@ export default function Meetings() {
             }`}>
               {/* Title Field */}
               <div>
-                <div className="flex items-center gap-2">
-                  <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    TITLE:
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Meeting Title *
                   </label>
                   <input
                     type="text"
                     value={meetingForm.title}
                     onChange={(e) => handleMeetingFormChange('title', e.target.value)}
-                    className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
-                    placeholder="Type here"
+                    placeholder="Enter meeting title"
                   />
                 </div>
               </div>
