@@ -1654,36 +1654,63 @@ export default function Dashboard() {
                     </div>
 
                     {/* Calendar Grid */}
-                    <div className="grid grid-cols-7 gap-1 mb-4">
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28].map((day) => (
-                        <div
-                          key={day}
-                          className={`
-                            aspect-square flex items-center justify-center text-xs font-medium rounded cursor-pointer transition-all relative
-                            ${day <= 14 ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' :
-                              isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
-                            ${day === 3 || day === 6 || day === 12 ? 'ring-1 ring-green-400' : ''}
-                          `}
-                        >
-                          {day}
-                          {/* Event indicators */}
-                          {day === 3 && (
-                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
+                    <div className="space-y-2">
+                      {/* Day headers */}
+                      <div className="grid grid-cols-7 gap-1">
+                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                          <div key={day} className={`text-center text-xs font-medium py-2 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
+                            {day}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Calendar days */}
+                      <div className="grid grid-cols-7 gap-1">
+                        {/* Empty cells for days before month starts */}
+                        {Array.from({ length: getFirstDayOfMonth(currentDate) }, (_, i) => (
+                          <div key={`empty-${i}`} className="aspect-square"></div>
+                        ))}
+
+                        {/* Days of the month */}
+                        {Array.from({ length: getDaysInMonth(currentDate) }, (_, i) => {
+                          const day = i + 1;
+                          const today = new Date();
+                          const isToday = today.getDate() === day &&
+                                         today.getMonth() === currentDate.getMonth() &&
+                                         today.getFullYear() === currentDate.getFullYear();
+
+                          return (
+                            <div
+                              key={day}
+                              onClick={() => handleDateClick(day)}
+                              className={`
+                                aspect-square flex items-center justify-center text-xs font-medium rounded cursor-pointer transition-all relative
+                                ${isToday
+                                  ? isDarkMode
+                                    ? 'bg-emerald-600 text-white ring-2 ring-emerald-400'
+                                    : 'bg-emerald-600 text-white ring-2 ring-emerald-400'
+                                  : isDarkMode
+                                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                }
+                                ${hasEvents(day) ? 'ring-1 ring-emerald-400' : ''}
+                              `}
+                            >
+                              {day}
+                              {/* Event indicator */}
+                              {hasEvents(day) && (
+                                <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
+                                  <div className={`w-1 h-1 rounded-full ${
+                                    isDarkMode ? 'bg-emerald-400' : 'bg-emerald-600'
+                                  }`}></div>
+                                </div>
+                              )}
                             </div>
-                          )}
-                          {day === 6 && (
-                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
-                            </div>
-                          )}
-                          {day === 12 && (
-                            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-                              <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
+                          );
+                        })}
+                      </div>
                     </div>
 
                     {/* Event Details */}
