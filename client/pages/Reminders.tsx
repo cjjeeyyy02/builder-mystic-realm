@@ -1163,7 +1163,7 @@ export default function Reminders() {
                   />
                 </div>
 
-                {/* Category Field */}
+                {/* 6. Category Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
