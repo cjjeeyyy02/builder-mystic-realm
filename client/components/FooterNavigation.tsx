@@ -28,7 +28,7 @@ const navigationItems: NavItem[] = [
   { label: "Chat", path: "/chat", icon: MessageSquare, shortLabel: "Chat" },
   { label: "Files", path: "/files", icon: Folder, shortLabel: "Files" },
   { label: "Meetings", path: "/meetings", icon: Calendar, shortLabel: "Meet" },
-  { label: "Reminders", path: "/reminders", icon: Clock, shortLabel: "Tasks" },
+  { label: "Reminders", path: "/reminders", icon: Clock, shortLabel: "Reminders" },
   { label: "E-Forum", path: "/e-forum", icon: MessageCircle, shortLabel: "Forum" },
   { label: "AI2AIM Store", path: "/ai2aim-store", icon: ShoppingBag, shortLabel: "Store" },
 ];
