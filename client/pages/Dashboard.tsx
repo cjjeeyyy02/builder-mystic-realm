@@ -305,11 +305,16 @@ export default function Dashboard() {
                             24
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className={`text-xs font-medium transition-colors duration-300 ${
-                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                            }`}>
-                              +3 this week
-                            </span>
+                            <div className="flex items-center gap-1">
+                              <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
+                              </svg>
+                              <span className={`text-xs font-medium transition-colors duration-300 ${
+                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                              }`}>
+                                +3 this week
+                              </span>
+                            </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-600'
