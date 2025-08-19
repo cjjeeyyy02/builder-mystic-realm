@@ -558,12 +558,13 @@ export default function Files() {
                   isDarkMode ? "bg-gray-800" : "bg-white"
                 }`}>
                   <CardContent className="p-3 space-y-3">
-                  {/* ID Field */}
+
+                  {/* 1. ID Field - Auto-generated */}
                   <div className="space-y-1">
                     <label
                       className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                     >
-                      File ID
+                      ID
                     </label>
                     <input
                       type="text"
@@ -578,12 +579,12 @@ export default function Files() {
                     />
                   </div>
 
-                  {/* Title Field */}
+                  {/* 2. Title Field */}
                   <div className="space-y-1">
                     <label
                       className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                     >
-                      File Name *
+                      Title *
                     </label>
                     <input
                       type="text"
@@ -596,11 +597,125 @@ export default function Files() {
                           ? "bg-gray-700 border-gray-600 text-gray-200"
                           : "bg-white border-gray-300 text-gray-900"
                       }`}
-                      placeholder="Enter file name"
+                      placeholder="Enter file title"
                     />
                   </div>
 
-                  {/* Upload Field */}
+                  {/* 3. Date Field */}
+                  <div className="space-y-1">
+                    <label
+                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                    >
+                      Date *
+                    </label>
+                    <input
+                      type="date"
+                      value={formData.date}
+                      onChange={(e) =>
+                        handleInputChange("date", e.target.value)
+                      }
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                        isDarkMode
+                          ? "bg-gray-700 border-gray-600 text-gray-200"
+                          : "bg-white border-gray-300 text-gray-900"
+                      }`}
+                    />
+                  </div>
+
+                  {/* 4. Size Field - Auto-generated */}
+                  <div className="space-y-1">
+                    <label
+                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                    >
+                      Size
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.size}
+                      readOnly
+                      className={`w-full px-2 py-1.5 border rounded text-xs ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                      }`}
+                      placeholder="Auto-generated"
+                    />
+                  </div>
+
+                  {/* 5. Type Field - Auto-generated */}
+                  <div className="space-y-1">
+                    <label
+                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                    >
+                      Type
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.type}
+                      readOnly
+                      className={`w-full px-2 py-1.5 border rounded text-xs ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                      }`}
+                      placeholder="Auto-generated"
+                    />
+                  </div>
+
+                  {/* 6. Category Field */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                      Category *
+                    </label>
+                    <select
+                      value={formData.category}
+                      onChange={(e) => handleInputChange("category", e.target.value)}
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                      }`}
+                    >
+                      <option value="">Select category</option>
+                      {selectOptions.category.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* 7. Department Field */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                      Department *
+                    </label>
+                    <select
+                      value={formData.department}
+                      onChange={(e) => handleInputChange("department", e.target.value)}
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                      }`}
+                    >
+                      <option value="">Select department</option>
+                      {selectOptions.department.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* 8. Priority Field */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                      Priority *
+                    </label>
+                    <select
+                      value={formData.priority}
+                      onChange={(e) => handleInputChange("priority", e.target.value)}
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                      }`}
+                    >
+                      <option value="">Select priority</option>
+                      {selectOptions.priority.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* 9. Upload File Field */}
                   <div className="space-y-1">
                     <label
                       className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
@@ -626,119 +741,32 @@ export default function Files() {
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        {formData.upload || 'Click to upload'}
+                        {formData.upload || 'Click to upload file'}
                       </label>
                       <p className={`text-xs mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
-                        PDF, PNG, DOC, JPEG, JPG, XLS
+                        Support: PDF, PNG, DOC, JPEG, JPG, XLS
                       </p>
                     </div>
                   </div>
 
-                  {/* Category and Department Row */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="space-y-1">
-                      <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                        Category
-                      </label>
-                      <select
-                        value={formData.category}
-                        onChange={(e) => handleInputChange("category", e.target.value)}
-                        className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                          isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
-                        }`}
-                      >
-                        <option value="">Select</option>
-                        {selectOptions.category.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="space-y-1">
-                      <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                        Department
-                      </label>
-                      <select
-                        value={formData.department}
-                        onChange={(e) => handleInputChange("department", e.target.value)}
-                        className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                          isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
-                        }`}
-                      >
-                        <option value="">Select</option>
-                        {selectOptions.department.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
+                  {/* 10. Share File Field */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                      Share File *
+                    </label>
+                    <select
+                      value={formData.share}
+                      onChange={(e) => handleInputChange("share", e.target.value)}
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                      }`}
+                    >
+                      <option value="">Select sharing option</option>
+                      {selectOptions.share.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
                   </div>
-
-                  {/* Priority and Share Row */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="space-y-1">
-                      <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                        Priority
-                      </label>
-                      <select
-                        value={formData.priority}
-                        onChange={(e) => handleInputChange("priority", e.target.value)}
-                        className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                          isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
-                        }`}
-                      >
-                        <option value="">Select</option>
-                        {selectOptions.priority.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="space-y-1">
-                      <label className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                        Share With
-                      </label>
-                      <select
-                        value={formData.share}
-                        onChange={(e) => handleInputChange("share", e.target.value)}
-                        className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                          isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
-                        }`}
-                      >
-                        <option value="">Select</option>
-                        {selectOptions.share.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Auto-generated fields display */}
-                  {formData.upload && (
-                    <div className="grid grid-cols-3 gap-2 p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
-                      <div>
-                        <label className={`text-xs font-medium ${isDarkMode ? "text-blue-400" : "text-blue-700"}`}>
-                          Size:
-                        </label>
-                        <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                          {formData.size}
-                        </p>
-                      </div>
-                      <div>
-                        <label className={`text-xs font-medium ${isDarkMode ? "text-blue-400" : "text-blue-700"}`}>
-                          Type:
-                        </label>
-                        <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                          {formData.type}
-                        </p>
-                      </div>
-                      <div>
-                        <label className={`text-xs font-medium ${isDarkMode ? "text-blue-400" : "text-blue-700"}`}>
-                          Date:
-                        </label>
-                        <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                          {formData.date}
-                        </p>
-                      </div>
-                    </div>
-                  )}
 
                 </CardContent>
                 </div>
