@@ -225,7 +225,7 @@ export default function Files() {
       'JPG': '🖼️',
       'JPEG': '🖼️',
       'GIF': '🖼️',
-      'ZIP': '📦',
+      'ZIP': '���',
       'RAR': '📦',
       'MP4': '🎥',
       'AVI': '🎥',
@@ -481,20 +481,20 @@ export default function Files() {
                     </div>
 
                     {/* Title Field */}
-                    <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                      <label className={`text-blue-700 font-semibold sm:w-32 text-sm sm:text-base ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                        TITLE:
+                    <div className="space-y-2">
+                      <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        File Name *
                       </label>
                       <input
                         type="text"
                         value={formData.title}
                         onChange={(e) => handleInputChange('title', e.target.value)}
-                        className={`flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 text-sm sm:text-base ${
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                           isDarkMode
                             ? 'bg-gray-700 border-gray-600 text-gray-200'
                             : 'bg-white border-gray-300 text-gray-900'
                         }`}
-                        placeholder="Type here"
+                        placeholder="Enter file name"
                       />
                     </div>
 
