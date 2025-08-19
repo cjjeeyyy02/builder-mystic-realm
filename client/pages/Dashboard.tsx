@@ -21,6 +21,79 @@ export default function Dashboard() {
   const [eventsView, setEventsView] = useState("list"); // "list" or "calendar"
   const [showVoiceSearch, setShowVoiceSearch] = useState(false);
 
+  // Calendar functionality
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [eventTitle, setEventTitle] = useState("");
+  const [eventTime, setEventTime] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [events, setEvents] = useState<{[key: string]: Array<{title: string, time: string, description: string}>}>({});
+
+  // Calendar helper functions
+  const getDaysInMonth = (date: Date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date: Date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  };
+
+  const getMonthName = (date: Date) => {
+    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  };
+
+  const formatDateKey = (date: Date) => {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  };
+
+  const navigateMonth = (direction: 'prev' | 'next') => {
+    setCurrentDate(prev => {
+      const newDate = new Date(prev);
+      if (direction === 'prev') {
+        newDate.setMonth(prev.getMonth() - 1);
+      } else {
+        newDate.setMonth(prev.getMonth() + 1);
+      }
+      return newDate;
+    });
+  };
+
+  const handleDateClick = (day: number) => {
+    const clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    setSelectedDate(clickedDate);
+    setShowEventModal(true);
+  };
+
+  const handleAddEvent = () => {
+    if (selectedDate && eventTitle) {
+      const dateKey = formatDateKey(selectedDate);
+      const newEvent = {
+        title: eventTitle,
+        time: eventTime,
+        description: eventDescription
+      };
+
+      setEvents(prev => ({
+        ...prev,
+        [dateKey]: [...(prev[dateKey] || []), newEvent]
+      }));
+
+      // Reset form
+      setEventTitle("");
+      setEventTime("");
+      setEventDescription("");
+      setShowEventModal(false);
+      setSelectedDate(null);
+    }
+  };
+
+  const hasEvents = (day: number) => {
+    const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    const dateKey = formatDateKey(date);
+    return events[dateKey] && events[dateKey].length > 0;
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = () => {
