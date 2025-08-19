@@ -239,7 +239,7 @@ export default function Reminders() {
   const counts = getCounts();
 
   const selectOptions = {
-    type: ["Task", "Meeting", "Event", "Deadline", "Follow-up", "Review"],
+    type: ["PDF", "DOCS", "PNG", "XLS", "JPEG", "ZIP"],
     category: ["Work", "Personal", "Finance", "Health", "Education", "Travel", "Marketing", "Business"],
     department: ["Engineering", "Finance", "Marketing", "HR", "Sales", "Design", "Product", "General"],
     priority: ["LOW", "MEDIUM", "HIGH", "CRITICAL", "URGENT"],
