@@ -714,24 +714,6 @@ export default function Meetings() {
           ) : (
             /* Meeting Hub Interface */
             <>
-              {/* Header */}
-              <div className="mb-8 text-center">
-                <h1
-                  className={`text-4xl font-bold mb-4 transition-colors duration-300 ${
-                    isDarkMode ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Meeting Hub
-                </h1>
-                <p
-                  className={`text-lg max-w-2xl mx-auto transition-colors duration-300 ${
-                    isDarkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  Professional video conferencing with advanced collaboration
-                  tools, AI-powered features, and seamless integration
-                </p>
-              </div>
 
               {/* Top Features Row */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
