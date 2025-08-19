@@ -1066,7 +1066,25 @@ export default function Reminders() {
               }`}
             >
               <CardContent className="p-4 space-y-3">
-                {/* Title Field */}
+                {/* 1. ID Field - Auto-generated */}
+                <div className="space-y-1">
+                  <label
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    ID
+                  </label>
+                  <input
+                    type="text"
+                    value={reminderForm.id}
+                    readOnly
+                    className={`w-full px-2 py-2 border rounded-md text-sm ${
+                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                    }`}
+                    placeholder="Auto-generated"
+                  />
+                </div>
+
+                {/* 2. Title Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
@@ -1085,6 +1103,27 @@ export default function Reminders() {
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                     placeholder="Enter file title"
+                  />
+                </div>
+
+                {/* 3. Date Field */}
+                <div className="space-y-1">
+                  <label
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Date *
+                  </label>
+                  <input
+                    type="date"
+                    value={reminderForm.date}
+                    onChange={(e) =>
+                      handleReminderFormChange("date", e.target.value)
+                    }
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        : "bg-white border-gray-300 text-gray-900"
+                    }`}
                   />
                 </div>
 
