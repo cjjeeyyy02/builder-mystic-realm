@@ -106,9 +106,6 @@ export default function Sidebar({
                           <p className="text-sm font-semibold text-white">
                             Employee Management
                           </p>
-                          <p className="text-xs text-emerald-200">
-                            Task Management System
-                          </p>
                         </div>
                       </div>
                       <ChevronDown className="w-4 h-4 text-emerald-300" />
