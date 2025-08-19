@@ -719,8 +719,8 @@ export default function Meetings() {
             </div>
 
             {/* Modal Body */}
-            <CardContent className={`p-4 space-y-4 transition-colors duration-300 flex-1 overflow-y-auto ${
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+            <CardContent className={`p-6 space-y-5 overflow-y-auto ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
               {/* Title Field */}
               <div>
