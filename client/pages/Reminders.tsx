@@ -1262,7 +1262,7 @@ export default function Reminders() {
                   </p>
                 </div>
 
-                {/* Priority Field */}
+                {/* 8. Priority Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
