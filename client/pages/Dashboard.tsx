@@ -540,17 +540,17 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Scroll Indicator - Outside card */}
-              <div className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-1 shadow-sm transition-all duration-300 ${
+              {/* Scroll Indicator - Outside metrics area */}
+              <div className={`absolute -right-8 top-1/2 transform -translate-y-1/2 rounded-full p-0.5 shadow-sm transition-all duration-300 ${
                 isDarkMode
-                  ? 'bg-gray-700 border border-gray-600'
-                  : 'bg-white border border-gray-300'
+                  ? 'bg-emerald-800 border border-emerald-600'
+                  : 'bg-emerald-100 border border-emerald-300'
               } ${
                 metricsCollapsed ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'
               }`}>
                 <svg
-                  className={`w-3 h-3 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                  className={`w-2 h-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-emerald-300' : 'text-emerald-600'
                   }`}
                   fill="none"
                   stroke="currentColor"
