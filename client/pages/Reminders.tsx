@@ -119,7 +119,7 @@ export default function Reminders() {
       details: reminderForm.details,
       date: reminderForm.date,
       time: reminderForm.time || "09:00",
-      type: reminderForm.type || "Task",
+      type: reminderForm.type || "PDF",
       category: reminderForm.category || "General",
       department: reminderForm.department || "General",
       priority: reminderForm.priority || "MEDIUM",
