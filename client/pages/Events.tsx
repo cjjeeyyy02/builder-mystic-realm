@@ -253,7 +253,11 @@ export default function Events() {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <Button size="sm" className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs rounded-lg shadow-sm">
+                <Button
+                  size="sm"
+                  className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs rounded-lg shadow-sm"
+                  onClick={() => setShowCreateEvent(true)}
+                >
                   <svg
                     className="w-3 h-3 mr-1"
                     fill="none"
