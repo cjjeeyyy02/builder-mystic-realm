@@ -74,19 +74,19 @@ export default function Sidebar({
         }`}
       >
         {/* Logo/Brand */}
-        <div className="p-6 border-b border-sidebar-border bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-800 dark:to-slate-900">
+        <div className="p-6 border-b border-emerald-800 bg-gradient-to-br from-emerald-800 to-emerald-900">
           {!isCollapsed ? (
             <div className="space-y-4">
               {/* Company Logo and Name */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-primary/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-emerald-400/30">
                   <Users className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-xl font-bold text-slate-800 dark:text-white tracking-tight">
+                  <h1 className="text-xl font-bold text-white tracking-tight">
                     AI2AIM
                   </h1>
-                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <p className="text-xs font-medium text-emerald-200 uppercase tracking-wider">
                     WORKSPACE
                   </p>
                 </div>
