@@ -103,9 +103,13 @@ export default function FooterNavigation({
       `}
     >
       {/* Main Navigation Container */}
-      <div className="safe-area-inset-bottom px-2 sm:px-4 py-2">
+      <div className={`safe-area-inset-bottom transition-all duration-300 ${
+        shouldMinimize ? "px-1 py-1" : "px-2 sm:px-4 py-2"
+      }`}>
         <div className="flex items-center justify-center">
-          <div className="flex items-center justify-between w-full max-w-4xl">
+          <div className={`flex items-center justify-between w-full transition-all duration-300 ${
+            shouldMinimize ? "max-w-2xl" : "max-w-4xl"
+          }`}>
             {navigationItems.map((item, index) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
@@ -115,16 +119,19 @@ export default function FooterNavigation({
                   key={item.path}
                   onClick={() => handleNavigation(item.path)}
                   className={`
-                    relative flex flex-col items-center justify-center px-2 sm:px-3 py-2 sm:py-3 
-                    rounded-xl transition-all duration-200 ease-in-out group
-                    min-w-0 flex-1 max-w-[80px] sm:max-w-[100px]
+                    relative flex flex-col items-center justify-center rounded-xl transition-all duration-200 ease-in-out group
+                    min-w-0 flex-1
+                    ${shouldMinimize
+                      ? "px-1 py-1.5 max-w-[60px]"
+                      : "px-2 sm:px-3 py-2 sm:py-3 max-w-[80px] sm:max-w-[100px]"
+                    }
                     ${
                       isActive
                         ? `${
                             isDarkMode
                               ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
                               : "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                          } transform scale-105`
+                          } transform ${shouldMinimize ? "scale-100" : "scale-105"}`
                         : `${
                             isDarkMode
                               ? "text-gray-400 hover:text-white hover:bg-gray-800"
@@ -136,20 +143,22 @@ export default function FooterNavigation({
                   aria-current={isActive ? "page" : undefined}
                 >
                   {/* Active Indicator */}
-                  {isActive && (
+                  {isActive && !shouldMinimize && (
                     <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-white rounded-full opacity-90" />
                   )}
 
                   {/* Icon Container */}
                   <div
                     className={`
-                    relative transition-all duration-200 mb-1
+                    relative transition-all duration-200
+                    ${shouldMinimize ? "mb-0" : "mb-1"}
                     ${isActive ? "scale-110" : "group-hover:scale-110 group-active:scale-90"}
                   `}
                   >
                     <Icon
                       className={`
-                        w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200
+                        transition-all duration-200
+                        ${shouldMinimize ? "w-4 h-4" : "w-5 h-5 sm:w-6 sm:h-6"}
                         ${isActive ? "drop-shadow-sm" : ""}
                       `}
                       strokeWidth={isActive ? 2.5 : 2}
@@ -157,44 +166,50 @@ export default function FooterNavigation({
 
                     {/* Badge for notifications (example for chat) */}
                     {item.path === "/chat" && (
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <span className="text-[8px] text-white font-bold">
-                          3
-                        </span>
+                      <div className={`absolute -top-1 -right-1 bg-red-500 rounded-full border-2 border-white flex items-center justify-center ${
+                        shouldMinimize ? "w-2 h-2" : "w-3 h-3"
+                      }`}>
+                        {!shouldMinimize && (
+                          <span className="text-[8px] text-white font-bold">3</span>
+                        )}
                       </div>
                     )}
 
                     {/* Badge for reminders */}
                     {item.path === "/reminders" && (
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white"></div>
+                      <div className={`absolute -top-1 -right-1 bg-yellow-500 rounded-full border-2 border-white ${
+                        shouldMinimize ? "w-2 h-2" : "w-3 h-3"
+                      }`}></div>
                     )}
                   </div>
 
-                  {/* Label */}
-                  <span
-                    className={`
-                    text-[10px] sm:text-xs font-medium leading-tight truncate max-w-full
-                    transition-all duration-200
-                    ${
-                      isActive
-                        ? "text-white opacity-100 font-semibold"
-                        : `opacity-80 group-hover:opacity-100 ${
-                            isDarkMode
-                              ? "group-hover:text-white"
-                              : "group-hover:text-gray-900"
-                          }`
-                    }
-                  `}
-                  >
-                    {/* Show short label on very small screens */}
-                    <span className="hidden xs:inline">{item.label}</span>
-                    <span className="xs:hidden">{item.shortLabel}</span>
-                  </span>
+                  {/* Label - Hidden when minimized */}
+                  {!shouldMinimize && (
+                    <span
+                      className={`
+                      text-[10px] sm:text-xs font-medium leading-tight truncate max-w-full
+                      transition-all duration-200
+                      ${
+                        isActive
+                          ? "text-white opacity-100 font-semibold"
+                          : `opacity-80 group-hover:opacity-100 ${
+                              isDarkMode
+                                ? "group-hover:text-white"
+                                : "group-hover:text-gray-900"
+                            }`
+                      }
+                    `}
+                    >
+                      {/* Show short label on very small screens */}
+                      <span className="hidden xs:inline">{item.label}</span>
+                      <span className="xs:hidden">{item.shortLabel}</span>
+                    </span>
+                  )}
 
                   {/* Ripple Effect */}
                   <div
                     className={`
-                    absolute inset-0 rounded-xl opacity-0 group-active:opacity-20 
+                    absolute inset-0 rounded-xl opacity-0 group-active:opacity-20
                     transition-opacity duration-150 pointer-events-none
                     ${isDarkMode ? "bg-white" : "bg-gray-900"}
                   `}
@@ -206,17 +221,17 @@ export default function FooterNavigation({
         </div>
       </div>
 
-      {/* Optional: Quick Actions Bar for active page - removed to fix Icon error */}
-
-      {/* Home Indicator for iOS-style design */}
-      <div className="flex justify-center pb-1">
-        <div
-          className={`
-          w-20 h-1 rounded-full transition-colors duration-300
-          ${isDarkMode ? "bg-gray-700" : "bg-gray-300"}
-        `}
-        />
-      </div>
+      {/* Home Indicator for iOS-style design - Hidden when minimized */}
+      {!shouldMinimize && (
+        <div className="flex justify-center pb-1">
+          <div
+            className={`
+            w-20 h-1 rounded-full transition-colors duration-300
+            ${isDarkMode ? "bg-gray-700" : "bg-gray-300"}
+          `}
+          />
+        </div>
+      )}
     </footer>
   );
 }
