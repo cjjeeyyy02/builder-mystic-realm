@@ -19,6 +19,71 @@ export default function Events() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Create Event Form State
+  const [showCreateEvent, setShowCreateEvent] = useState(false);
+  const [createEventForm, setCreateEventForm] = useState({
+    eventName: "",
+    eventType: "",
+    description: "",
+    startDateTime: "",
+    endDateTime: "",
+    isAllDay: false,
+    location: ""
+  });
+
+  // Event type options
+  const eventTypeOptions = [
+    "Company Meeting",
+    "Workshop",
+    "Training",
+    "Team Outing",
+    "Other"
+  ];
+
+  // Form handlers
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setCreateEventForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleCreateEvent = () => {
+    // Validate required fields
+    if (!createEventForm.eventName || !createEventForm.eventType || !createEventForm.startDateTime || !createEventForm.endDateTime) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    // Here you would typically send the data to your backend
+    console.log("Creating event:", createEventForm);
+
+    // Reset form and return to list
+    setCreateEventForm({
+      eventName: "",
+      eventType: "",
+      description: "",
+      startDateTime: "",
+      endDateTime: "",
+      isAllDay: false,
+      location: ""
+    });
+    setShowCreateEvent(false);
+  };
+
+  const handleCancelCreate = () => {
+    setCreateEventForm({
+      eventName: "",
+      eventType: "",
+      description: "",
+      startDateTime: "",
+      endDateTime: "",
+      isAllDay: false,
+      location: ""
+    });
+    setShowCreateEvent(false);
+  };
+
   const allEvents = [
     {
       id: 1,
