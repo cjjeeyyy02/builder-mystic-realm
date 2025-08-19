@@ -1067,6 +1067,7 @@ export default function Reminders() {
               }`}
             >
               <CardContent className="p-4 space-y-3">
+
                 {/* 1. ID Field - Auto-generated */}
                 <div className="space-y-1">
                   <label
@@ -1107,7 +1108,29 @@ export default function Reminders() {
                   />
                 </div>
 
-                {/* 3. Date Field */}
+                {/* 3. Details Field */}
+                <div className="space-y-1">
+                  <label
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Details
+                  </label>
+                  <textarea
+                    value={reminderForm.details}
+                    onChange={(e) =>
+                      handleReminderFormChange("details", e.target.value)
+                    }
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        : "bg-white border-gray-300 text-gray-900"
+                    }`}
+                    placeholder="Enter reminder details (optional)"
+                    rows={2}
+                  />
+                </div>
+
+                {/* 4. Date Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
@@ -1128,40 +1151,31 @@ export default function Reminders() {
                   />
                 </div>
 
-                {/* 4. Size Field - Auto-generated */}
+                {/* 5. Type Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    Size
+                    Type *
                   </label>
-                  <input
-                    type="text"
-                    value={reminderForm.size}
-                    readOnly
-                    className={`w-full px-2 py-2 border rounded-md text-sm ${
-                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
-                    }`}
-                    placeholder="Auto-generated"
-                  />
-                </div>
-
-                {/* 5. Type Field - Auto-generated */}
-                <div className="space-y-1">
-                  <label
-                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Type
-                  </label>
-                  <input
-                    type="text"
+                  <select
                     value={reminderForm.type}
-                    readOnly
-                    className={`w-full px-2 py-2 border rounded-md text-sm ${
-                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                    onChange={(e) =>
+                      handleReminderFormChange("type", e.target.value)
+                    }
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        : "bg-white border-gray-300 text-gray-900"
                     }`}
-                    placeholder="Auto-generated"
-                  />
+                  >
+                    <option value="">Select type</option>
+                    {selectOptions.type.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* 6. Category Field */}
@@ -1256,11 +1270,6 @@ export default function Reminders() {
                       </option>
                     ))}
                   </select>
-                  <p
-                    className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                  >
-                    The department sending the file
-                  </p>
                 </div>
 
                 {/* 8. Priority Field */}
