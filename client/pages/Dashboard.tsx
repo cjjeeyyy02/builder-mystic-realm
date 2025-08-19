@@ -231,12 +231,12 @@ export default function Dashboard() {
                     {/* Average Performance */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-gray-800/50 border border-gray-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-700/50 border border-emerald-500'
+                        : 'bg-emerald-200 border border-emerald-400'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-gray-700 rounded">
+                          <div className="p-1 bg-emerald-800 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
