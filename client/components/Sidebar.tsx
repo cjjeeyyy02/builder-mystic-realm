@@ -114,51 +114,51 @@ export default function Sidebar({
                       <ChevronDown className="w-4 h-4 text-emerald-300" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-64 mt-2">
+                  <DropdownMenuContent align="start" className="w-64 mt-2 bg-emerald-900 border-emerald-700">
                     <div className="p-2">
-                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">
+                      <div className="text-xs font-semibold text-emerald-200 uppercase tracking-wider mb-2 px-2">
                         Available Systems
                       </div>
-                      <DropdownMenuItem className="rounded-md p-3">
+                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                            <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
+                            <Users className="w-4 h-4 text-emerald-300" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">
+                            <p className="font-medium text-sm text-white">
                               Employee Management
                             </p>
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-emerald-200">
                               HR & Personnel
                             </p>
                           </div>
                         </div>
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="rounded-md p-3">
+                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                            <FileText className="w-4 h-4 text-green-600 dark:text-green-400" />
+                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
+                            <FileText className="w-4 h-4 text-emerald-300" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">
+                            <p className="font-medium text-sm text-white">
                               Document Management
                             </p>
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-emerald-200">
                               Files & Records
                             </p>
                           </div>
                         </div>
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="rounded-md p-3">
+                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                            <BarChart3 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
+                            <BarChart3 className="w-4 h-4 text-emerald-300" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm">
+                            <p className="font-medium text-sm text-white">
                               Analytics Dashboard
                             </p>
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-emerald-200">
                               Reports & Insights
                             </p>
                           </div>
