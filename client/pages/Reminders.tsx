@@ -255,10 +255,13 @@ export default function Reminders() {
         date: reminder.date,
         time: reminder.time,
         type: reminder.type,
-        category: reminder.category,
+        size: "1.2 MB", // Default size for editing
+        category: reminder.privacy === "Public" ? "PUBLIC" : "PRIVATE",
+        categorySpecific: reminder.privacy === "Public" ? "EVERYONE" : "A TEAM",
         department: reminder.department,
         priority: reminder.priority,
-        share: reminder.privacy,
+        uploadedFile: null,
+        shareFile: reminder.privacy === "Public" ? "EVERYONE" : "TEAM OR TEAMS",
         repeat: ""
       });
       setShowCreateModal(true);
