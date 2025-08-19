@@ -663,27 +663,33 @@ export default function Reminders() {
       {/* Create/Edit Reminder Modal */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <Card className={`w-full max-w-2xl mx-auto shadow-2xl transition-colors duration-300 ${
+          <Card className={`w-full max-w-md max-h-[85vh] mx-auto shadow-xl rounded-lg overflow-hidden ${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           }`}>
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-xl font-bold">
-                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Edit Reminder' : 'Create New Reminder'}
+            <div className={`px-6 py-4 border-b flex items-center justify-between ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+            }`}>
+              <h2 className={`text-lg font-semibold ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>
+                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Edit Reminder' : 'Create Reminder'}
               </h2>
               <button
                 onClick={handleCloseModal}
-                className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                  isDarkMode ? 'hover:bg-gray-700 text-gray-400 hover:text-gray-200' : 'hover:bg-gray-200 text-gray-500 hover:text-gray-700'
+                }`}
               >
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* Modal Body */}
-            <CardContent className={`p-6 space-y-6 transition-colors duration-300 ${
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+            <CardContent className={`p-4 space-y-4 overflow-y-auto ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
               {/* ID Field - Auto-generated */}
               <div className="flex items-center space-x-4">
