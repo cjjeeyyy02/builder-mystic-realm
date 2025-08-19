@@ -187,15 +187,15 @@ export default function FooterNavigation({
                   {!shouldMinimize && (
                     <span
                       className={`
-                      text-[10px] sm:text-xs font-medium leading-tight truncate max-w-full
+                      text-[9px] sm:text-[10px] font-medium leading-tight truncate max-w-full
                       transition-all duration-200
                       ${
                         isActive
                           ? "text-white opacity-100 font-semibold"
-                          : `opacity-80 group-hover:opacity-100 ${
+                          : `opacity-85 group-hover:opacity-100 ${
                               isDarkMode
                                 ? "group-hover:text-white"
-                                : "group-hover:text-gray-900"
+                                : "group-hover:text-emerald-900"
                             }`
                       }
                     `}
