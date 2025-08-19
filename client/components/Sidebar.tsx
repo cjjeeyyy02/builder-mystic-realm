@@ -113,24 +113,6 @@ export default function Sidebar({
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="w-64 mt-2 bg-emerald-900 border-emerald-700">
                     <div className="p-2">
-                      <div className="text-xs font-semibold text-emerald-200 uppercase tracking-wider mb-2 px-2">
-                        Available Systems
-                      </div>
-                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
-                            <Users className="w-4 h-4 text-emerald-300" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-sm text-white">
-                              Employee Management
-                            </p>
-                            <p className="text-xs text-emerald-200">
-                              HR & Personnel
-                            </p>
-                          </div>
-                        </div>
-                      </DropdownMenuItem>
                       <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
@@ -138,25 +120,10 @@ export default function Sidebar({
                           </div>
                           <div>
                             <p className="font-medium text-sm text-white">
-                              Document Management
+                              Task Management System
                             </p>
                             <p className="text-xs text-emerald-200">
-                              Files & Records
-                            </p>
-                          </div>
-                        </div>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
-                            <BarChart3 className="w-4 h-4 text-emerald-300" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-sm text-white">
-                              Analytics Dashboard
-                            </p>
-                            <p className="text-xs text-emerald-200">
-                              Reports & Insights
+                              Task & Project Management
                             </p>
                           </div>
                         </div>
