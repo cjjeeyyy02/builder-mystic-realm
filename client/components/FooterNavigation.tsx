@@ -226,8 +226,8 @@ export default function FooterNavigation({
         <div className="flex justify-center pb-1">
           <div
             className={`
-            w-20 h-1 rounded-full transition-colors duration-300
-            ${isDarkMode ? "bg-gray-700" : "bg-gray-300"}
+            w-16 h-0.5 rounded-full transition-colors duration-300
+            ${isDarkMode ? "bg-emerald-700" : "bg-emerald-300"}
           `}
           />
         </div>
