@@ -302,57 +302,55 @@ export default function Reminders() {
             isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
           }`}>
             <CardContent className="p-6">
-              <div className="flex flex-col space-y-6">
-                {/* Title and Stats */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      Reminders
-                    </h1>
-                    <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {counts.all} total reminders • {counts.today} due today • {counts.completed} completed
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant={viewMode === 'grid' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('grid')}
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                      </svg>
-                      Grid
-                    </Button>
-                    <Button
-                      variant={viewMode === 'list' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('list')}
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                      </svg>
-                      List
-                    </Button>
-                  </div>
+              <div className="flex flex-col space-y-4">
+                {/* Title */}
+                <div>
+                  <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    Reminders
+                  </h1>
                 </div>
 
-                {/* Search Bar */}
-                <div className="relative">
-                  <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search reminders by title, details, category, or department..."
-                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                    }`}
-                  />
+                {/* Search and Actions */}
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search reminders..."
+                        className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
+                            : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      className="border-2"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                      </svg>
+                      Filter Search
+                    </Button>
+                    <Button
+                      onClick={() => setShowCreateModal(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      Create and Upload File
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Filter and Sort Controls */}
