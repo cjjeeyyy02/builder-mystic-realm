@@ -96,8 +96,8 @@ export default function FooterNavigation({
         ${shouldHide || collapsed ? "transform translate-y-full opacity-0 pointer-events-none" : "transform translate-y-0 opacity-100"}
         ${
           isDarkMode
-            ? "bg-gray-900/95 backdrop-blur-xl border-gray-700"
-            : "bg-white/95 backdrop-blur-xl border-gray-200"
+            ? "bg-emerald-900/95 backdrop-blur-xl border-emerald-700"
+            : "bg-emerald-50/95 backdrop-blur-xl border-emerald-200"
         }
         border-t shadow-lg
       `}
