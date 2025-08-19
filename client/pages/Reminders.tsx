@@ -111,6 +111,22 @@ export default function Reminders() {
     }
   }, [showCreateModal]);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".relative")) {
+        setShowStatusFilter(false);
+        setShowDateFilter(false);
+      }
+    };
+
+    if (showStatusFilter || showDateFilter) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [showStatusFilter, showDateFilter]);
+
   const handleReminderFormChange = (field: string, value: string) => {
     setReminderForm((prev) => ({
       ...prev,
