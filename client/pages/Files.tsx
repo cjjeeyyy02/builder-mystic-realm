@@ -442,10 +442,10 @@ export default function Files() {
                 isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
               }`}>
                   {/* Header */}
-                  <div className={`px-6 py-4 border-b flex items-center justify-between ${
+                  <div className={`px-4 sm:px-6 py-3 sm:py-4 border-b flex items-center justify-between ${
                     isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
                   }`}>
-                    <h1 className={`text-xl font-semibold ${
+                    <h1 className={`text-lg sm:text-xl font-semibold ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
                     }`}>Create and Upload File</h1>
                     <button
