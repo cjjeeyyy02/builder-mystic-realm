@@ -118,6 +118,7 @@ export default function FooterNavigation({
             {navigationItems.map((item, index) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
+              const isMinimizedItem = shouldMinimizeItem(index);
 
               return (
                 <button
@@ -128,7 +129,9 @@ export default function FooterNavigation({
                     min-w-0 flex-1
                     ${shouldMinimize
                       ? "px-1 py-1.5 max-w-[60px]"
-                      : "px-2 sm:px-2.5 py-1.5 sm:py-2 max-w-[75px] sm:max-w-[90px]"
+                      : isMinimizedItem
+                        ? "px-1.5 sm:px-2 py-1 sm:py-1.5 max-w-[60px] sm:max-w-[70px]"
+                        : "px-2 sm:px-2.5 py-1.5 sm:py-2 max-w-[75px] sm:max-w-[90px]"
                     }
                     ${
                       isActive
