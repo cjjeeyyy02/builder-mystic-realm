@@ -782,49 +782,36 @@ export default function Meetings() {
               </div>
 
               {/* Time Fields */}
-              <div className="flex items-center gap-2">
-                <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  TIME:
-                </label>
-                <div className="flex items-center gap-2 flex-1">
-                  <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>FROM</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Start Time *
+                  </label>
                   <input
                     type="time"
                     value={meetingForm.timeFrom}
                     onChange={(e) => handleMeetingFormChange('timeFrom', e.target.value)}
-                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
                   />
-                  <select className={`px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}>
-                    <option>AM</option>
-                    <option>PM</option>
-                  </select>
-                  <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>TO</span>
+                </div>
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    End Time *
+                  </label>
                   <input
                     type="time"
                     value={meetingForm.timeTo}
                     onChange={(e) => handleMeetingFormChange('timeTo', e.target.value)}
-                    className={`px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
                   />
-                  <select className={`px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}>
-                    <option>AM</option>
-                    <option>PM</option>
-                  </select>
                 </div>
               </div>
 
