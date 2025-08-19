@@ -76,6 +76,11 @@ export default function FooterNavigation({
     navigate(path);
   };
 
+  // Helper function to check if item should be minimized (Chat to E-Forum)
+  const shouldMinimizeItem = (index: number) => {
+    return index >= 1 && index <= 5; // Chat (1) to E-Forum (5)
+  };
+
   // Determine if footer should be hidden based on sidebar state and screen size
   const shouldHide = isLargeScreen && sidebarCollapsed;
 
