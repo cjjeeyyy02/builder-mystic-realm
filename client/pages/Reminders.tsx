@@ -1380,69 +1380,6 @@ export default function Reminders() {
                   </div>
                 </div>
 
-                {/* Date and Time Row */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label
-                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                    >
-                      Date *
-                    </label>
-                    <input
-                      type="date"
-                      value={reminderForm.date}
-                      onChange={(e) =>
-                        handleReminderFormChange("date", e.target.value)
-                      }
-                      className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                        isDarkMode
-                          ? "bg-gray-700 border-gray-600 text-gray-200"
-                          : "bg-white border-gray-300 text-gray-900"
-                      }`}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label
-                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                    >
-                      Time *
-                    </label>
-                    <input
-                      type="time"
-                      value={reminderForm.time}
-                      onChange={(e) =>
-                        handleReminderFormChange("time", e.target.value)
-                      }
-                      className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                        isDarkMode
-                          ? "bg-gray-700 border-gray-600 text-gray-200"
-                          : "bg-white border-gray-300 text-gray-900"
-                      }`}
-                    />
-                  </div>
-                </div>
-
-                {/* Details Field */}
-                <div className="space-y-1">
-                  <label
-                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Additional Details
-                  </label>
-                  <textarea
-                    value={reminderForm.details}
-                    onChange={(e) =>
-                      handleReminderFormChange("details", e.target.value)
-                    }
-                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                      isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
-                        : "bg-white border-gray-300 text-gray-900"
-                    }`}
-                    placeholder="Enter additional details (optional)"
-                    rows={2}
-                  />
-                </div>
               </CardContent>
             </div>
 
