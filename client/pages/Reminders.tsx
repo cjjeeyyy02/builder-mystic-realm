@@ -707,24 +707,26 @@ export default function Reminders() {
                 />
               </div>
 
-              {/* Title and Details Row */}
-              <div className="grid grid-cols-1 gap-4">
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Reminder Title
-                  </label>
-                  <input
-                    type="text"
-                    value={reminderForm.title}
-                    onChange={(e) => handleReminderFormChange('title', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                    placeholder="Enter reminder title"
-                  />
-                </div>
+              {/* Title Field */}
+              <div className="space-y-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  value={reminderForm.title}
+                  onChange={(e) => handleReminderFormChange('title', e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter reminder title"
+                />
+              </div>
+
+              {/* Details Field */}
+              <div className="space-y-2">
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                     Reminder Details
