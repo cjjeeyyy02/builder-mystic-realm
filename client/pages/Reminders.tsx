@@ -23,10 +23,13 @@ export default function Reminders() {
     date: "",
     time: "",
     type: "",
-    category: "",
+    size: "",
+    category: "PRIVATE",
+    categorySpecific: "",
     department: "",
     priority: "",
-    share: "",
+    uploadedFile: null as File | null,
+    shareFile: "",
     repeat: ""
   });
 
