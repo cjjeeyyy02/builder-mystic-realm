@@ -215,8 +215,8 @@ export default function Sidebar({
                         variant="ghost"
                         className={`w-full justify-center h-12 px-3 rounded-lg transition-all duration-200 ${
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-lg ring-2 ring-primary/20"
-                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
+                            ? "bg-emerald-600 text-white shadow-lg ring-2 ring-emerald-400/30"
+                            : "text-emerald-100 hover:bg-emerald-800/50 hover:text-white"
                         }`}
                         asChild
                       >
