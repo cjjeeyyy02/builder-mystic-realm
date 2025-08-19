@@ -1299,66 +1299,12 @@ export default function Reminders() {
                   </select>
                 </div>
 
-                {/* 9. Upload File Field */}
+                {/* 9. Share Field */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    Upload File *
-                  </label>
-                  <div
-                    className={`border-2 border-dashed rounded-lg p-3 text-center ${
-                      isDarkMode
-                        ? "border-gray-600 bg-gray-700"
-                        : "border-gray-300 bg-gray-50"
-                    }`}
-                  >
-                    <input
-                      type="file"
-                      onChange={handleFileUpload}
-                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.xls,.xlsx"
-                      className="hidden"
-                      id="file-upload"
-                    />
-                    <label
-                      htmlFor="file-upload"
-                      className={`cursor-pointer inline-flex items-center gap-2 text-sm ${
-                        isDarkMode
-                          ? "text-gray-300 hover:text-white"
-                          : "text-gray-600 hover:text-gray-900"
-                      }`}
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                        />
-                      </svg>
-                      {reminderForm.uploadedFile
-                        ? reminderForm.uploadedFile.name
-                        : "Click to upload file"}
-                    </label>
-                    <p
-                      className={`text-xs mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                    >
-                      Support: DOC, PDF, PNG, JPG, XLS
-                    </p>
-                  </div>
-                </div>
-
-                {/* 10. Share File Field */}
-                <div className="space-y-1">
-                  <label
-                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                  >
-                    Share File *
+                    Share *
                   </label>
                   <select
                     value={reminderForm.shareFile}
@@ -1388,6 +1334,33 @@ export default function Reminders() {
                       <p>⚠ PRIVATE category restricts sharing options</p>
                     )}
                   </div>
+                </div>
+
+                {/* 10. Repeat Field */}
+                <div className="space-y-1">
+                  <label
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Repeat *
+                  </label>
+                  <select
+                    value={reminderForm.repeat}
+                    onChange={(e) =>
+                      handleReminderFormChange("repeat", e.target.value)
+                    }
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        : "bg-white border-gray-300 text-gray-900"
+                    }`}
+                  >
+                    <option value="">Select repeat option</option>
+                    {selectOptions.repeat.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
               </CardContent>
