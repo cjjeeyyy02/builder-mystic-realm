@@ -437,8 +437,8 @@ export default function Files() {
           {/* Main Content */}
           {/* Modal Overlay */}
           {showUploadForm && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-              <Card className={`w-full max-w-2xl max-h-[85vh] shadow-xl rounded-lg overflow-hidden ${
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+              <Card className={`w-full max-w-lg max-h-[90vh] shadow-xl rounded-lg overflow-hidden ${
                 isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
               }`}>
                   {/* Header */}
