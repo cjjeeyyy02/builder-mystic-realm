@@ -194,7 +194,7 @@ export default function Sidebar({
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="text-sidebar-foreground"
+            className="text-white hover:bg-emerald-800/50"
           >
             <X className="w-5 h-5" />
           </Button>
