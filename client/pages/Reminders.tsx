@@ -110,6 +110,64 @@ export default function Reminders() {
     }));
   };
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Auto-generate file type based on extension
+      const fileExtension = file.name.split('.').pop()?.toUpperCase() || "";
+      let autoType = "";
+
+      switch (fileExtension) {
+        case "PDF":
+          autoType = "PDF";
+          break;
+        case "DOC":
+        case "DOCX":
+          autoType = "DOC";
+          break;
+        case "PNG":
+          autoType = "PNG";
+          break;
+        case "JPG":
+        case "JPEG":
+          autoType = "JPG";
+          break;
+        case "XLS":
+        case "XLSX":
+          autoType = "XLS";
+          break;
+        default:
+          autoType = fileExtension;
+      }
+
+      // Auto-generate file size
+      const sizeInBytes = file.size;
+      let autoSize = "";
+      if (sizeInBytes < 1024) {
+        autoSize = `${sizeInBytes} B`;
+      } else if (sizeInBytes < 1024 * 1024) {
+        autoSize = `${(sizeInBytes / 1024).toFixed(1)} KB`;
+      } else {
+        autoSize = `${(sizeInBytes / (1024 * 1024)).toFixed(1)} MB`;
+      }
+
+      setReminderForm(prev => ({
+        ...prev,
+        uploadedFile: file,
+        type: autoType,
+        size: autoSize
+      }));
+    }
+  };
+
+  const getAvailableShareOptions = () => {
+    if (reminderForm.category === "PUBLIC") {
+      return ["EVERYONE"];
+    } else {
+      return ["TEAM OR TEAMS", "INDIVIDUAL", "MULTIPLE PEOPLE"];
+    }
+  };
+
   const handleCreateReminder = () => {
     if (!reminderForm.title || !reminderForm.details) {
       alert("Please fill in all required fields");
