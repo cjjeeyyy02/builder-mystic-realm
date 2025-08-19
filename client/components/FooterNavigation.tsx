@@ -129,8 +129,8 @@ export default function FooterNavigation({
                       isActive
                         ? `${
                             isDarkMode
-                              ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                              : "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                              ? "bg-emerald-600 text-white shadow-lg shadow-emerald-500/25"
+                              : "bg-emerald-600 text-white shadow-lg shadow-emerald-500/25"
                           } transform ${shouldMinimize ? "scale-100" : "scale-105"}`
                         : `${
                             isDarkMode
