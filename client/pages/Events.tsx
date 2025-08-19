@@ -226,7 +226,7 @@ export default function Events() {
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <Button
-                    onClick={() => navigate("/dashboard")}
+                    onClick={showCreateEvent ? handleCancelCreate : () => navigate("/dashboard")}
                     variant="outline"
                     size="sm"
                     className="bg-white/70 border-gray-300 hover:bg-white text-xs"
@@ -244,12 +244,14 @@ export default function Events() {
                         d="M15 19l-7-7 7-7"
                       />
                     </svg>
-                    Back to Dashboard
+                    {showCreateEvent ? "Back to Events" : "Back to Dashboard"}
                   </Button>
                 </div>
-                <h1 className="text-xl font-semibold text-gray-900">All Events</h1>
+                <h1 className="text-xl font-semibold text-gray-900">
+                  {showCreateEvent ? "Create New Event" : "All Events"}
+                </h1>
                 <p className="text-gray-500 mt-1 text-sm">
-                  Company events and workshops
+                  {showCreateEvent ? "Fill in the details to create a new event" : "Company events and workshops"}
                 </p>
               </div>
               <div className="flex items-center gap-2">
