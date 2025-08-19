@@ -692,16 +692,16 @@ export default function Reminders() {
               isDarkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
               {/* ID Field - Auto-generated */}
-              <div className="flex items-center space-x-4">
-                <label className={`text-sm font-semibold w-24 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                  ID:
+              <div className="space-y-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Reminder ID
                 </label>
                 <input
                   type="text"
                   value={reminderForm.id}
                   readOnly
-                  className={`flex-1 px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 ${
-                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+                  className={`w-full px-3 py-2 border rounded-md bg-gray-50 text-gray-500 text-sm ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-50 border-gray-300 text-gray-500'
                   }`}
                   placeholder="Auto-generated"
                 />
