@@ -461,7 +461,7 @@ export default function Files() {
                   </div>
 
                   {/* Form Content */}
-                  <CardContent className={`p-6 space-y-5 overflow-y-auto ${
+                  <CardContent className={`p-4 sm:p-6 space-y-4 overflow-y-auto ${
                     isDarkMode ? 'bg-gray-800' : 'bg-white'
                   }`}>
                     {/* ID Field */}
