@@ -744,25 +744,25 @@ export default function Reminders() {
               </div>
 
               {/* Date and Time Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Date
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Date *
                   </label>
                   <input
                     type="date"
                     value={reminderForm.date}
                     onChange={(e) => handleReminderFormChange('date', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
                   />
                 </div>
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Time
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Time *
                   </label>
                   <input
                     type="time"
