@@ -442,11 +442,17 @@ export default function Files() {
                 isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
               }`}>
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-center px-4 sm:px-6 py-3 sm:py-4 rounded-t-lg relative flex-shrink-0">
-                    <h1 className="text-lg sm:text-xl font-bold text-yellow-300">CREATE AND UPLOAD YOUR FILE HERE</h1>
+                  <div className={`px-6 py-4 border-b flex items-center justify-between ${
+                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+                  }`}>
+                    <h1 className={`text-xl font-semibold ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>Create and Upload File</h1>
                     <button
                       onClick={() => setShowUploadForm(false)}
-                      className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                        isDarkMode ? 'hover:bg-gray-700 text-gray-400 hover:text-gray-200' : 'hover:bg-gray-200 text-gray-500 hover:text-gray-700'
+                      }`}
                     >
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
