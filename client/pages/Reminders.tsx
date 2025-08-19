@@ -242,11 +242,13 @@ export default function Reminders() {
   const counts = getCounts();
 
   const selectOptions = {
-    type: ["PDF", "DOCS", "PNG", "XLS", "JPEG", "ZIP"],
-    category: ["Work", "Personal", "Finance", "Health", "Education", "Travel", "Marketing", "Business"],
+    type: ["PDF", "DOC", "PNG", "JPG", "XLS"],
+    category: ["PRIVATE", "PUBLIC"],
+    categoryPrivate: ["AN INDIVIDUAL", "MULTIPLE INDIVIDUALS", "A TEAM", "MULTIPLE TEAMS"],
+    categoryPublic: ["EVERYONE"],
     department: ["Engineering", "Finance", "Marketing", "HR", "Sales", "Design", "Product", "General"],
-    priority: ["LOW", "MEDIUM", "HIGH", "CRITICAL", "URGENT"],
-    repeat: ["NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY", "CUSTOM"]
+    priority: ["VERY HIGH", "HIGH", "MEDIUM", "LOW", "VERY LOW"],
+    shareFile: ["TEAM OR TEAMS", "INDIVIDUAL", "MULTIPLE PEOPLE", "EVERYONE"]
   };
 
   const getPriorityColor = (priority: string) => {
