@@ -180,10 +180,10 @@ export default function FooterNavigation({
                     {/* Badge for notifications (example for chat) */}
                     {item.path === "/chat" && (
                       <div className={`absolute -top-1 -right-1 bg-red-500 rounded-full border-2 border-white flex items-center justify-center ${
-                        shouldMinimize ? "w-2 h-2" : "w-3 h-3"
+                        shouldMinimize || isMinimizedItem ? "w-2 h-2" : "w-3 h-3"
                       }`}>
-                        {!shouldMinimize && (
-                          <span className="text-[8px] text-white font-bold">3</span>
+                        {!shouldMinimize && !isMinimizedItem && (
+                          <span className="text-[7px] text-white font-bold">3</span>
                         )}
                       </div>
                     )}
@@ -191,7 +191,7 @@ export default function FooterNavigation({
                     {/* Badge for reminders */}
                     {item.path === "/reminders" && (
                       <div className={`absolute -top-1 -right-1 bg-yellow-500 rounded-full border-2 border-white ${
-                        shouldMinimize ? "w-2 h-2" : "w-3 h-3"
+                        shouldMinimize || isMinimizedItem ? "w-2 h-2" : "w-3 h-3"
                       }`}></div>
                     )}
                   </div>
