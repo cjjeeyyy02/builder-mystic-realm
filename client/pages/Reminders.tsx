@@ -732,24 +732,24 @@ export default function Reminders() {
         </div>
       </Layout>
 
-      {/* Create/Edit Reminder Modal */}
+      {/* Create/Edit File Upload Modal */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <Card className={`w-full max-w-md max-h-[85vh] mx-auto shadow-xl rounded-lg overflow-hidden ${
+          <Card className={`w-full max-w-lg max-h-[90vh] mx-auto shadow-xl rounded-lg overflow-hidden ${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           }`}>
             {/* Modal Header */}
-            <div className={`px-6 py-4 border-b flex items-center justify-between ${
+            <div className={`px-4 py-3 border-b flex items-center justify-between ${
               isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
             }`}>
               <h2 className={`text-lg font-semibold ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Edit Reminder' : 'Create Reminder'}
+                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Edit File' : 'Create and Upload File'}
               </h2>
               <button
                 onClick={handleCloseModal}
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
                   isDarkMode ? 'hover:bg-gray-700 text-gray-400 hover:text-gray-200' : 'hover:bg-gray-200 text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -759,125 +759,154 @@ export default function Reminders() {
               </button>
             </div>
 
-            {/* Modal Body */}
-            <CardContent className={`p-4 space-y-4 overflow-y-auto ${
+            {/* Modal Body - Scrollable */}
+            <div className={`max-h-[70vh] overflow-y-auto ${
               isDarkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
-              {/* ID Field - Auto-generated */}
-              <div className="space-y-2">
-                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Reminder ID
-                </label>
-                <input
-                  type="text"
-                  value={reminderForm.id}
-                  readOnly
-                  className={`w-full px-3 py-2 border rounded-md bg-gray-50 text-gray-500 text-sm ${
-                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-50 border-gray-300 text-gray-500'
-                  }`}
-                  placeholder="Auto-generated"
-                />
-              </div>
+              <CardContent className="p-4 space-y-3">
 
-              {/* Title Field */}
-              <div className="space-y-2">
-                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Title *
-                </label>
-                <input
-                  type="text"
-                  value={reminderForm.title}
-                  onChange={(e) => handleReminderFormChange('title', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter reminder title"
-                />
-              </div>
-
-              {/* Details Field */}
-              <div className="space-y-2">
-                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Details
-                </label>
-                <textarea
-                  value={reminderForm.details}
-                  onChange={(e) => handleReminderFormChange('details', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                    isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-gray-200'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder="Enter reminder details (optional)"
-                  rows={2}
-                />
-              </div>
-
-              {/* Date and Time Row */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-2">
-                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    Date *
+                {/* Title Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Title *
                   </label>
                   <input
-                    type="date"
-                    value={reminderForm.date}
-                    onChange={(e) => handleReminderFormChange('date', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
+                    type="text"
+                    value={reminderForm.title}
+                    onChange={(e) => handleReminderFormChange('title', e.target.value)}
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
+                    placeholder="Enter file title"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    Time *
-                  </label>
-                  <input
-                    type="time"
-                    value={reminderForm.time}
-                    onChange={(e) => handleReminderFormChange('time', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                  />
-                </div>
-              </div>
 
-              {/* Category and Department Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Category
+                {/* Upload File Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Upload File *
+                  </label>
+                  <div className={`border-2 border-dashed rounded-lg p-3 text-center ${
+                    isDarkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-50'
+                  }`}>
+                    <input
+                      type="file"
+                      onChange={handleFileUpload}
+                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.xls,.xlsx"
+                      className="hidden"
+                      id="file-upload"
+                    />
+                    <label
+                      htmlFor="file-upload"
+                      className={`cursor-pointer inline-flex items-center gap-2 text-sm ${
+                        isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      {reminderForm.uploadedFile ? reminderForm.uploadedFile.name : 'Click to upload file'}
+                    </label>
+                    <p className={`text-xs mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      Support: DOC, PDF, PNG, JPG, XLS
+                    </p>
+                  </div>
+                </div>
+
+                {/* Auto-generated fields */}
+                <div className="grid grid-cols-2 gap-3">
+                  {/* Size - Auto-generated */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Size
+                    </label>
+                    <input
+                      type="text"
+                      value={reminderForm.size}
+                      readOnly
+                      className={`w-full px-2 py-2 border rounded-md text-sm ${
+                        isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-50 border-gray-300 text-gray-500'
+                      }`}
+                      placeholder="Auto-generated"
+                    />
+                  </div>
+
+                  {/* Type - Auto-generated */}
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Type
+                    </label>
+                    <input
+                      type="text"
+                      value={reminderForm.type}
+                      readOnly
+                      className={`w-full px-2 py-2 border rounded-md text-sm ${
+                        isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-50 border-gray-300 text-gray-500'
+                      }`}
+                      placeholder="Auto-generated"
+                    />
+                  </div>
+                </div>
+
+                {/* Category Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Category *
                   </label>
                   <select
                     value={reminderForm.category}
-                    onChange={(e) => handleReminderFormChange('category', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    onChange={(e) => {
+                      handleReminderFormChange('category', e.target.value);
+                      // Reset category specific when category changes
+                      handleReminderFormChange('categorySpecific', '');
+                      handleReminderFormChange('shareFile', '');
+                    }}
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
                   >
-                    <option value="">Select category</option>
                     {selectOptions.category.map(option => (
                       <option key={option} value={option}>{option}</option>
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Department
+
+                {/* Category Specific Field */}
+                {reminderForm.category && (
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      {reminderForm.category === "PRIVATE" ? "Private Access" : "Public Access"} *
+                    </label>
+                    <select
+                      value={reminderForm.categorySpecific}
+                      onChange={(e) => handleReminderFormChange('categorySpecific', e.target.value)}
+                      className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="">Select access level</option>
+                      {(reminderForm.category === "PRIVATE" ? selectOptions.categoryPrivate : selectOptions.categoryPublic).map(option => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {/* Department Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Department *
                   </label>
                   <select
                     value={reminderForm.department}
                     onChange={(e) => handleReminderFormChange('department', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
@@ -888,19 +917,20 @@ export default function Reminders() {
                       <option key={option} value={option}>{option}</option>
                     ))}
                   </select>
+                  <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    The department sending the file
+                  </p>
                 </div>
-              </div>
 
-              {/* Priority and Type Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Priority
+                {/* Priority Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Priority *
                   </label>
                   <select
                     value={reminderForm.priority}
                     onChange={(e) => handleReminderFormChange('priority', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
@@ -912,44 +942,111 @@ export default function Reminders() {
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Type
+
+                {/* Share File Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Share File *
                   </label>
                   <select
-                    value={reminderForm.type}
-                    onChange={(e) => handleReminderFormChange('type', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                    value={reminderForm.shareFile}
+                    onChange={(e) => handleReminderFormChange('shareFile', e.target.value)}
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? 'bg-gray-700 border-gray-600 text-gray-200'
                         : 'bg-white border-gray-300 text-gray-900'
                     }`}
+                    disabled={!reminderForm.category}
                   >
-                    <option value="">Select type</option>
-                    {selectOptions.type.map(option => (
+                    <option value="">Select sharing option</option>
+                    {getAvailableShareOptions().map(option => (
                       <option key={option} value={option}>{option}</option>
                     ))}
                   </select>
+                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    {reminderForm.category === "PUBLIC" ? (
+                      <p>✓ PUBLIC category allows sharing to everyone</p>
+                    ) : (
+                      <p>⚠ PRIVATE category restricts sharing options</p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Submit Button */}
-              <div className="flex justify-end space-x-3 pt-4">
-                <Button
-                  variant="outline"
-                  onClick={handleCloseModal}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handleCreateReminder}
-                  disabled={!reminderForm.title || !reminderForm.details}
-                  className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Update' : 'Create'}
-                </Button>
-              </div>
-            </CardContent>
+                {/* Date and Time Row */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Date *
+                    </label>
+                    <input
+                      type="date"
+                      value={reminderForm.date}
+                      onChange={(e) => handleReminderFormChange('date', e.target.value)}
+                      className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Time *
+                    </label>
+                    <input
+                      type="time"
+                      value={reminderForm.time}
+                      onChange={(e) => handleReminderFormChange('time', e.target.value)}
+                      className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                        isDarkMode
+                          ? 'bg-gray-700 border-gray-600 text-gray-200'
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {/* Details Field */}
+                <div className="space-y-1">
+                  <label className={`block text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Additional Details
+                  </label>
+                  <textarea
+                    value={reminderForm.details}
+                    onChange={(e) => handleReminderFormChange('details', e.target.value)}
+                    className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
+                      isDarkMode
+                        ? 'bg-gray-700 border-gray-600 text-gray-200'
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
+                    placeholder="Enter additional details (optional)"
+                    rows={2}
+                  />
+                </div>
+
+              </CardContent>
+            </div>
+
+            {/* Modal Footer */}
+            <div className={`px-4 py-3 border-t flex justify-end space-x-2 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+            }`}>
+              <Button
+                variant="outline"
+                onClick={handleCloseModal}
+                size="sm"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleCreateReminder}
+                disabled={!reminderForm.title || !reminderForm.category || !reminderForm.department || !reminderForm.priority || !reminderForm.shareFile}
+                className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                size="sm"
+              >
+                {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Update File' : 'Create File'}
+              </Button>
+            </div>
           </Card>
         </div>
       )}
