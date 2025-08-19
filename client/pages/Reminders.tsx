@@ -490,7 +490,7 @@ export default function Reminders() {
                           d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                         />
                       </svg>
-                      Create and Upload File
+                      Create Reminder
                     </Button>
                   </div>
                 </div>
@@ -1032,8 +1032,8 @@ export default function Reminders() {
               >
                 {reminderForm.id &&
                 reminders.find((r) => r.id === reminderForm.id)
-                  ? "Edit File"
-                  : "Create and Upload File"}
+                  ? "Edit Reminder"
+                  : "Create Reminder"}
               </h2>
               <button
                 onClick={handleCloseModal}
@@ -1102,7 +1102,7 @@ export default function Reminders() {
                         ? "bg-gray-700 border-gray-600 text-gray-200"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
-                    placeholder="Enter file title"
+                    placeholder="Enter reminder title"
                   />
                 </div>
 
@@ -1408,8 +1408,8 @@ export default function Reminders() {
               >
                 {reminderForm.id &&
                 reminders.find((r) => r.id === reminderForm.id)
-                  ? "Update and Upload File"
-                  : "Create and Upload File"}
+                  ? "Update Reminder"
+                  : "Create Reminder"}
               </Button>
             </div>
           </Card>
