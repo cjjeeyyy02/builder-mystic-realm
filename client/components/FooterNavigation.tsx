@@ -123,7 +123,7 @@ export default function FooterNavigation({
                     min-w-0 flex-1
                     ${shouldMinimize
                       ? "px-1 py-1.5 max-w-[60px]"
-                      : "px-2 sm:px-3 py-2 sm:py-3 max-w-[80px] sm:max-w-[100px]"
+                      : "px-2 sm:px-2.5 py-1.5 sm:py-2 max-w-[75px] sm:max-w-[90px]"
                     }
                     ${
                       isActive
