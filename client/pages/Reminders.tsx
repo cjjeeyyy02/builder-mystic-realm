@@ -341,7 +341,7 @@ export default function Reminders() {
     ],
     priority: ["VERY HIGH", "HIGH", "MEDIUM", "LOW", "VERY LOW"],
     shareFile: ["TEAM OR TEAMS", "INDIVIDUAL", "MULTIPLE PEOPLE", "EVERYONE"],
-    repeat: ["NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY"],
+    repeat: ["Every 5 minutes", "Every 1 hour", "Every 4 hours", "Custom Time", "Custom Day"],
   };
 
   const getPriorityColor = (priority: string) => {
