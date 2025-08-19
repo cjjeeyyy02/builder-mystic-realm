@@ -10,6 +10,8 @@ export default function Reminders() {
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
   const [activeFilter, setActiveFilter] = useState("today");
+  const [showStatusFilter, setShowStatusFilter] = useState(false);
+  const [showDateFilter, setShowDateFilter] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("date");
@@ -458,22 +460,112 @@ export default function Reminders() {
                   </div>
 
                   <div className="flex space-x-2">
-                    <Button variant="outline" className="border-2">
-                      <svg
-                        className="w-4 h-4 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    {/* Status Filter Dropdown */}
+                    <div className="relative">
+                      <Button
+                        onClick={() => setShowStatusFilter(!showStatusFilter)}
+                        variant="outline"
+                        className="border-2"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                        />
-                      </svg>
-                      Filter Search
-                    </Button>
+                        <svg
+                          className="w-4 h-4 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                          />
+                        </svg>
+                        Status
+                      </Button>
+                      {showStatusFilter && (
+                        <div className={`absolute top-full left-0 mt-1 w-48 rounded-md shadow-lg z-50 ${
+                          isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+                        }`}>
+                          <div className="py-1">
+                            {[
+                              { value: "all", label: "All Status" },
+                              { value: "today", label: "Today" },
+                              { value: "pending", label: "Pending" },
+                              { value: "upcoming", label: "Upcoming" },
+                              { value: "completed", label: "Completed" }
+                            ].map((option) => (
+                              <button
+                                key={option.value}
+                                onClick={() => {
+                                  setActiveFilter(option.value);
+                                  setShowStatusFilter(false);
+                                }}
+                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                                  activeFilter === option.value
+                                    ? isDarkMode ? "bg-gray-700 text-blue-400" : "bg-blue-50 text-blue-600"
+                                    : isDarkMode ? "text-gray-200" : "text-gray-700"
+                                }`}
+                              >
+                                {option.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Date Filter Dropdown */}
+                    <div className="relative">
+                      <Button
+                        onClick={() => setShowDateFilter(!showDateFilter)}
+                        variant="outline"
+                        className="border-2"
+                      >
+                        <svg
+                          className="w-4 h-4 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        Date
+                      </Button>
+                      {showDateFilter && (
+                        <div className={`absolute top-full left-0 mt-1 w-48 rounded-md shadow-lg z-50 ${
+                          isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+                        }`}>
+                          <div className="py-1">
+                            {[
+                              { value: "all", label: "All Dates" },
+                              { value: "today", label: "Today" },
+                              { value: "yesterday", label: "Yesterday" },
+                              { value: "week", label: "This Week" },
+                              { value: "month", label: "This Month" },
+                              { value: "custom", label: "Custom Date" }
+                            ].map((option) => (
+                              <button
+                                key={option.value}
+                                onClick={() => {
+                                  console.log("Date filter:", option.value);
+                                  setShowDateFilter(false);
+                                }}
+                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                                  isDarkMode ? "text-gray-200" : "text-gray-700"
+                                }`}
+                              >
+                                {option.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                     <Button
                       onClick={() => setShowCreateModal(true)}
                       className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
@@ -498,6 +590,103 @@ export default function Reminders() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Metrics Cards */}
+          <div className="p-6 pb-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {/* Today's Reminders */}
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+              }`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className={`text-sm font-medium ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Today's
+                      </p>
+                      <p className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                        {reminders.filter(r => r.status === "today").length}
+                      </p>
+                    </div>
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+                      <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Pending */}
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+              }`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className={`text-sm font-medium ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Pending
+                      </p>
+                      <p className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                        {reminders.filter(r => r.status === "pending").length}
+                      </p>
+                    </div>
+                    <div className="p-2 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
+                      <svg className="w-5 h-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Upcoming */}
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+              }`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className={`text-sm font-medium ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Upcoming
+                      </p>
+                      <p className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                        {reminders.filter(r => r.status === "upcoming").length}
+                      </p>
+                    </div>
+                    <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
+                      <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Completed */}
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+              }`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className={`text-sm font-medium ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Completed
+                      </p>
+                      <p className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                        {reminders.filter(r => r.completed).length}
+                      </p>
+                    </div>
+                    <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
+                      <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
 
           {/* Main Content */}
           <div className="p-6">
