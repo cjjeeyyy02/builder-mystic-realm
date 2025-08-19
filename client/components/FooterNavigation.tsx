@@ -159,14 +159,19 @@ export default function FooterNavigation({
                   <div
                     className={`
                     relative transition-all duration-200
-                    ${shouldMinimize ? "mb-0" : "mb-1"}
+                    ${shouldMinimize ? "mb-0" : isMinimizedItem ? "mb-0.5" : "mb-1"}
                     ${isActive ? "scale-110" : "group-hover:scale-110 group-active:scale-90"}
                   `}
                   >
                     <Icon
                       className={`
                         transition-all duration-200
-                        ${shouldMinimize ? "w-4 h-4" : "w-5 h-5 sm:w-6 sm:h-6"}
+                        ${shouldMinimize
+                          ? "w-4 h-4"
+                          : isMinimizedItem
+                            ? "w-4 h-4 sm:w-5 sm:h-5"
+                            : "w-5 h-5 sm:w-6 sm:h-6"
+                        }
                         ${isActive ? "drop-shadow-sm" : ""}
                       `}
                       strokeWidth={isActive ? 2.5 : 2}
