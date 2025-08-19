@@ -874,7 +874,7 @@ export default function Reminders() {
                   disabled={!reminderForm.title || !reminderForm.details}
                   className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Update Reminder' : 'Create Reminder'}
+                  {reminderForm.id && reminders.find(r => r.id === reminderForm.id) ? 'Update' : 'Create'}
                 </Button>
               </div>
             </CardContent>
