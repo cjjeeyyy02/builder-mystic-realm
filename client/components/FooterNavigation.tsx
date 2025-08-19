@@ -104,7 +104,7 @@ export default function FooterNavigation({
     >
       {/* Main Navigation Container */}
       <div className={`safe-area-inset-bottom transition-all duration-300 ${
-        shouldMinimize ? "px-1 py-1" : "px-2 sm:px-4 py-2"
+        shouldMinimize ? "px-1 py-1" : "px-2 sm:px-3 py-1.5"
       }`}>
         <div className="flex items-center justify-center">
           <div className={`flex items-center justify-between w-full transition-all duration-300 ${
