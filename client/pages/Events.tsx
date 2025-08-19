@@ -18,7 +18,7 @@ export default function Events() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-
+  
   // Create Event Form State
   const [showCreateEvent, setShowCreateEvent] = useState(false);
   const [createEventForm, setCreateEventForm] = useState({
@@ -34,7 +34,7 @@ export default function Events() {
   // Event type options
   const eventTypeOptions = [
     "Company Meeting",
-    "Workshop",
+    "Workshop", 
     "Training",
     "Team Outing",
     "Other"
@@ -57,7 +57,7 @@ export default function Events() {
 
     // Here you would typically send the data to your backend
     console.log("Creating event:", createEventForm);
-
+    
     // Reset form and return to list
     setCreateEventForm({
       eventName: "",
@@ -124,90 +124,31 @@ export default function Events() {
       tags: ["Awards", "Social", "Creative"],
       category: "Company Culture",
     },
-    {
-      id: 4,
-      title: "Q3 Performance Review Summit",
-      description:
-        "Quarterly performance evaluation and goal setting session for all departments",
-      date: "15/09/2024",
-      location: "Main Conference Hall",
-      attendees: 200,
-      status: "upcoming",
-      type: "meeting",
-      tags: ["Performance", "Review"],
-      category: "HR",
-    },
-    {
-      id: 5,
-      title: "Product Launch Webinar",
-      description:
-        "Virtual presentation of our latest product features and roadmap updates",
-      date: "05/08/2024",
-      location: "Virtual Event",
-      attendees: 500,
-      status: "awaited",
-      type: "webinar",
-      tags: ["Product", "Launch"],
-      category: "Marketing",
-    },
-    {
-      id: 6,
-      title: "Annual Leadership Retreat",
-      description:
-        "Strategic planning and leadership development for senior management",
-      date: "12/11/2024",
-      location: "Mountain Resort",
-      attendees: 25,
-      status: "invitation-only",
-      type: "retreat",
-      tags: ["Leadership", "Strategy"],
-      category: "Executive",
-    },
-  ];
-
-  const filters = [
-    { id: "all", label: "All Events", count: allEvents.length },
-    {
-      id: "awaited",
-      label: "Awaited",
-      count: allEvents.filter((e) => e.status === "awaited").length,
-    },
-    {
-      id: "upcoming",
-      label: "Upcoming",
-      count: allEvents.filter((e) => e.status === "upcoming").length,
-    },
-    {
-      id: "registration-due",
-      label: "Registration Due",
-      count: allEvents.filter((e) => e.status === "registration-due").length,
-    },
   ];
 
   const filteredEvents = allEvents.filter((event) => {
-    const matchesFilter =
-      activeFilter === "all" || event.status === activeFilter;
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.location.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
+    const matchesSearch = event.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesFilter = activeFilter === "all" || event.status === activeFilter;
+    return matchesSearch && matchesFilter;
   });
 
   const getStatusColor = (status: string) => {
     const colors = {
-      awaited: "bg-green-100 text-green-800 border-green-300",
-      upcoming: "bg-blue-100 text-blue-800 border-blue-300",
-      "registration-due": "bg-orange-100 text-orange-800 border-orange-300",
-      "invitation-only": "bg-purple-100 text-purple-800 border-purple-300",
+      awaited: "bg-green-100 text-green-800",
+      "registration-due": "bg-orange-100 text-orange-800",
+      upcoming: "bg-blue-100 text-blue-800",
+      confirmed: "bg-purple-100 text-purple-800",
     };
-    return colors[status as keyof typeof colors] || colors.upcoming;
+    return colors[status as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
 
   const getTypeColor = (type: string) => {
     const colors = {
-      conference: "bg-indigo-100 text-indigo-800",
-      workshop: "bg-purple-100 text-purple-800",
+      conference: "bg-blue-100 text-blue-800",
+      workshop: "bg-green-100 text-green-800",
+      training: "bg-yellow-100 text-yellow-800",
       social: "bg-pink-100 text-pink-800",
       meeting: "bg-gray-100 text-gray-800",
       webinar: "bg-cyan-100 text-cyan-800",
@@ -280,194 +221,344 @@ export default function Events() {
               )}
             </div>
 
-            {/* Search and Filters */}
-            <div className="flex flex-col lg:flex-row gap-3 items-start lg:items-center justify-between">
-              <div className="flex-1 max-w-sm">
-                <div className="relative">
-                  <svg
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            {showCreateEvent ? (
+              /* Create Event Form */
+              <div className="space-y-6 mt-6">
+                {/* Event Details Section */}
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-4">Event Details</h2>
+                    <div className="space-y-4">
+                      {/* Event Name */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Event Name *
+                        </label>
+                        <Input
+                          type="text"
+                          value={createEventForm.eventName}
+                          onChange={(e) => handleInputChange("eventName", e.target.value)}
+                          placeholder="Enter event name"
+                          className="w-full"
+                        />
+                      </div>
+
+                      {/* Event Type */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Event Type *
+                        </label>
+                        <Select value={createEventForm.eventType} onValueChange={(value) => handleInputChange("eventType", value)}>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select event type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {eventTypeOptions.map((type) => (
+                              <SelectItem key={type} value={type}>
+                                {type}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* Description */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Description
+                        </label>
+                        <Textarea
+                          value={createEventForm.description}
+                          onChange={(e) => handleInputChange("description", e.target.value)}
+                          placeholder="Enter event description (optional)"
+                          rows={3}
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Date & Time Section */}
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-4">Date & Time</h2>
+                    <div className="space-y-4">
+                      {/* All-Day Event Toggle */}
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="allDay"
+                          checked={createEventForm.isAllDay}
+                          onCheckedChange={(checked) => handleInputChange("isAllDay", !!checked)}
+                        />
+                        <label htmlFor="allDay" className="text-sm font-medium text-gray-700">
+                          All-Day Event
+                        </label>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Start Date & Time */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Start Date & Time *
+                          </label>
+                          <Input
+                            type={createEventForm.isAllDay ? "date" : "datetime-local"}
+                            value={createEventForm.startDateTime}
+                            onChange={(e) => handleInputChange("startDateTime", e.target.value)}
+                            className="w-full"
+                          />
+                        </div>
+
+                        {/* End Date & Time */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            End Date & Time *
+                          </label>
+                          <Input
+                            type={createEventForm.isAllDay ? "date" : "datetime-local"}
+                            value={createEventForm.endDateTime}
+                            onChange={(e) => handleInputChange("endDateTime", e.target.value)}
+                            className="w-full"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Location Section */}
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-4">Location</h2>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Location
+                      </label>
+                      <Input
+                        type="text"
+                        value={createEventForm.location}
+                        onChange={(e) => handleInputChange("location", e.target.value)}
+                        placeholder="Enter event location (optional if virtual)"
+                        className="w-full"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 justify-end pb-6">
+                  <Button
+                    variant="outline"
+                    onClick={handleCancelCreate}
+                    className="px-6"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Search events..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-8 pr-3 py-2 text-sm bg-white/70 border border-gray-300 rounded-lg focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
-                  />
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleCreateEvent}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-6"
+                  >
+                    Create Event
+                  </Button>
                 </div>
               </div>
-
-              <div className="flex items-center gap-1">
-                {filters.map((filter) => (
-                  <button
-                    key={filter.id}
-                    onClick={() => setActiveFilter(filter.id)}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium transition-all duration-200 ${
-                      activeFilter === filter.id
-                        ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-sm"
-                        : "bg-white/70 text-gray-600 hover:bg-white hover:text-orange-600 border border-gray-200"
-                    }`}
-                  >
-                    {filter.label} ({filter.count})
-                  </button>
-                ))}
-              </div>
-            </div>
+            ) : (
+              <>
+                {/* Search and Filters */}
+                <div className="flex flex-col lg:flex-row gap-3 items-start lg:items-center justify-between">
+                  <div className="flex-1 max-w-sm">
+                    <div className="relative">
+                      <svg
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                      <input
+                        type="text"
+                        placeholder="Search events..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-8 pr-3 py-2 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {["all", "awaited", "registration-due", "upcoming", "confirmed"].map(
+                      (filter) => (
+                        <Button
+                          key={filter}
+                          size="sm"
+                          variant={activeFilter === filter ? "default" : "outline"}
+                          className="text-xs capitalize"
+                          onClick={() => setActiveFilter(filter)}
+                        >
+                          {filter === "all"
+                            ? "All"
+                            : filter === "registration-due"
+                            ? "Registration Due"
+                            : filter}
+                        </Button>
+                      )
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
-        {/* Events List */}
-        <div className="p-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid gap-3">
+        {/* Main Content */}
+        {!showCreateEvent && (
+          <div className="max-w-6xl mx-auto px-4 py-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredEvents.map((event) => (
                 <Card
                   key={event.id}
-                  className="bg-white border border-gray-200 hover:shadow-md hover:border-gray-300 transition-all duration-200 group"
+                  className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
                 >
                   <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            <h3 className="text-sm font-medium text-gray-900 mb-1">
-                              {event.title}
-                            </h3>
-                            <p className="text-gray-600 text-xs leading-relaxed mb-2">
-                              {event.description}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1 ml-3">
+                    <div className="space-y-3">
+                      {/* Event Header */}
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-sm line-clamp-2">
+                            {event.title}
+                          </h3>
+                          <div className="flex items-center gap-2 mt-1">
                             <span
-                              className={`px-2 py-0.5 rounded text-xs font-medium border ${getStatusColor(event.status)}`}
+                              className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ${getStatusColor(
+                                event.status
+                              )}`}
                             >
-                              {event.status
-                                .replace("-", " ")
-                                .replace(/\b\w/g, (l) => l.toUpperCase())}
+                              {event.status === "registration-due"
+                                ? "REGISTRATION DUE"
+                                : event.status.toUpperCase()}
                             </span>
                             <span
-                              className={`px-2 py-0.5 rounded text-xs font-medium ${getTypeColor(event.type)}`}
+                              className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ${getTypeColor(
+                                event.type
+                              )}`}
                             >
-                              {event.type.charAt(0).toUpperCase() +
-                                event.type.slice(1)}
+                              {event.type.toUpperCase()}
                             </span>
                           </div>
                         </div>
+                      </div>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4 text-xs text-gray-500">
-                            <div className="flex items-center gap-1">
-                              <svg
-                                className="w-3 h-3"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                              </svg>
-                              <span className="font-medium text-orange-600">
-                                {event.date}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <svg
-                                className="w-3 h-3"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                />
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                              </svg>
-                              <span>{event.location}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <svg
-                                className="w-3 h-3"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                              </svg>
-                              <span>{event.attendees} Attendees</span>
-                            </div>
-                          </div>
+                      {/* Event Details */}
+                      <div className="space-y-2">
+                        <p className="text-xs text-gray-600 line-clamp-2">
+                          {event.description}
+                        </p>
 
+                        <div className="flex items-center gap-3 text-xs text-gray-500">
                           <div className="flex items-center gap-1">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
                             >
-                              <svg
-                                className="w-3 h-3 mr-0.5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-                                />
-                              </svg>
-                              Share
-                            </Button>
-                            <Button
-                              size="sm"
-                              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs h-6 px-2"
-                            >
-                              Join
-                            </Button>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span>{event.date}</span>
                           </div>
+                          <div className="flex items-center gap-1">
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                            <span>{event.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                              />
+                            </svg>
+                            <span>{event.attendees} Attendees</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1">
+                        {event.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex items-center justify-between pt-2">
+                        <div className="flex items-center gap-1">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="text-xs h-6 px-2"
+                          >
+                            <svg
+                              className="w-3 h-3 mr-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                              />
+                            </svg>
+                            Share
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs h-6 px-2"
+                          >
+                            Join
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -502,7 +593,7 @@ export default function Events() {
               </div>
             )}
           </div>
-        </div>
+        )}
       </div>
     </Layout>
   );
