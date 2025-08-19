@@ -815,47 +815,38 @@ export default function Meetings() {
                 </div>
               </div>
 
-              {/* Chair and Invite Fields */}
-              <div className="grid grid-cols-1 gap-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                      CHAIR:
-                    </label>
-                    <input
-                      type="text"
-                      value={meetingForm.chair}
-                      onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
-                      className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
-                      placeholder="ENTER DETAILS"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <label className={`text-sm font-semibold w-16 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                      INVITE:
-                    </label>
-                    <select
-                      value={meetingForm.invite}
-                      onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
-                      className={`flex-1 px-3 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
-                    >
-                      <option value="">Type here</option>
-                      <option value="team@company.com">Team Members</option>
-                      <option value="all@company.com">All Staff</option>
-                      <option value="external@partner.com">External Partners</option>
-                    </select>
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Meeting Host
+                </label>
+                <input
+                  type="text"
+                  value={meetingForm.chair}
+                  onChange={(e) => handleMeetingFormChange('chair', e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter host name (optional)"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Invite Participants
+                </label>
+                <input
+                  type="email"
+                  value={meetingForm.invite}
+                  onChange={(e) => handleMeetingFormChange('invite', e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter email addresses (optional)"
+                />
               </div>
 
               {/* Submit Button */}
