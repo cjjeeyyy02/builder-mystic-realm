@@ -727,22 +727,20 @@ export default function Reminders() {
 
               {/* Details Field */}
               <div className="space-y-2">
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Reminder Details
-                  </label>
-                  <textarea
-                    value={reminderForm.details}
-                    onChange={(e) => handleReminderFormChange('details', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-gray-200'
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
-                    placeholder="Enter reminder details"
-                    rows={3}
-                  />
-                </div>
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Details
+                </label>
+                <textarea
+                  value={reminderForm.details}
+                  onChange={(e) => handleReminderFormChange('details', e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-gray-200'
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  placeholder="Enter reminder details (optional)"
+                  rows={2}
+                />
               </div>
 
               {/* Date and Time Row */}
