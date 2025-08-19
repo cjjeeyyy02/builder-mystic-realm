@@ -254,28 +254,30 @@ export default function Events() {
                   {showCreateEvent ? "Fill in the details to create a new event" : "Company events and workshops"}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  size="sm"
-                  className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs rounded-lg shadow-sm"
-                  onClick={() => setShowCreateEvent(true)}
-                >
-                  <svg
-                    className="w-3 h-3 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              {!showCreateEvent && (
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs rounded-lg shadow-sm"
+                    onClick={() => setShowCreateEvent(true)}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                  Create Event
-                </Button>
-              </div>
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    Create Event
+                  </Button>
+                </div>
+              )}
             </div>
 
             {/* Search and Filters */}
