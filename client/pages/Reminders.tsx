@@ -1127,101 +1127,40 @@ export default function Reminders() {
                   />
                 </div>
 
-                {/* Upload File Field */}
+                {/* 4. Size Field - Auto-generated */}
                 <div className="space-y-1">
                   <label
                     className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    Upload File *
+                    Size
                   </label>
-                  <div
-                    className={`border-2 border-dashed rounded-lg p-3 text-center ${
-                      isDarkMode
-                        ? "border-gray-600 bg-gray-700"
-                        : "border-gray-300 bg-gray-50"
+                  <input
+                    type="text"
+                    value={reminderForm.size}
+                    readOnly
+                    className={`w-full px-2 py-2 border rounded-md text-sm ${
+                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
                     }`}
-                  >
-                    <input
-                      type="file"
-                      onChange={handleFileUpload}
-                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.xls,.xlsx"
-                      className="hidden"
-                      id="file-upload"
-                    />
-                    <label
-                      htmlFor="file-upload"
-                      className={`cursor-pointer inline-flex items-center gap-2 text-sm ${
-                        isDarkMode
-                          ? "text-gray-300 hover:text-white"
-                          : "text-gray-600 hover:text-gray-900"
-                      }`}
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                        />
-                      </svg>
-                      {reminderForm.uploadedFile
-                        ? reminderForm.uploadedFile.name
-                        : "Click to upload file"}
-                    </label>
-                    <p
-                      className={`text-xs mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                    >
-                      Support: DOC, PDF, PNG, JPG, XLS
-                    </p>
-                  </div>
+                    placeholder="Auto-generated"
+                  />
                 </div>
 
-                {/* Auto-generated fields */}
-                <div className="grid grid-cols-2 gap-3">
-                  {/* Size - Auto-generated */}
-                  <div className="space-y-1">
-                    <label
-                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                    >
-                      Size
-                    </label>
-                    <input
-                      type="text"
-                      value={reminderForm.size}
-                      readOnly
-                      className={`w-full px-2 py-2 border rounded-md text-sm ${
-                        isDarkMode
-                          ? "bg-gray-700 border-gray-600 text-gray-400"
-                          : "bg-gray-50 border-gray-300 text-gray-500"
-                      }`}
-                      placeholder="Auto-generated"
-                    />
-                  </div>
-
-                  {/* Type - Auto-generated */}
-                  <div className="space-y-1">
-                    <label
-                      className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                    >
-                      Type
-                    </label>
-                    <input
-                      type="text"
-                      value={reminderForm.type}
-                      readOnly
-                      className={`w-full px-2 py-2 border rounded-md text-sm ${
-                        isDarkMode
-                          ? "bg-gray-700 border-gray-600 text-gray-400"
-                          : "bg-gray-50 border-gray-300 text-gray-500"
-                      }`}
-                      placeholder="Auto-generated"
-                    />
-                  </div>
+                {/* 5. Type Field - Auto-generated */}
+                <div className="space-y-1">
+                  <label
+                    className={`block text-xs font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Type
+                  </label>
+                  <input
+                    type="text"
+                    value={reminderForm.type}
+                    readOnly
+                    className={`w-full px-2 py-2 border rounded-md text-sm ${
+                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                    }`}
+                    placeholder="Auto-generated"
+                  />
                 </div>
 
                 {/* Category Field */}
