@@ -849,15 +849,23 @@ export default function Meetings() {
                 />
               </div>
 
-              {/* Submit Button */}
-              <div className="flex justify-center pt-4">
-                <Button
-                  onClick={handleScheduleMeetingSubmit}
-                  disabled={!meetingForm.title || !meetingForm.timeFrom || !meetingForm.timeTo}
-                  className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-8 py-2 text-sm font-semibold"
-                >
-                  SCHEDULE MEETING
-                </Button>
+              <div className={`flex justify-end pt-4 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                <div className="flex space-x-3">
+                  <Button
+                    variant="outline"
+                    onClick={handleCloseModal}
+                    className="px-4 py-2"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleScheduleMeetingSubmit}
+                    disabled={!meetingForm.title || !meetingForm.timeFrom || !meetingForm.timeTo}
+                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2"
+                  >
+                    Create Meeting
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
