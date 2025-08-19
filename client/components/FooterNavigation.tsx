@@ -85,6 +85,9 @@ export default function FooterNavigation({
     return sidebarCollapsed ? "left-[80px]" : "left-[260px]";
   };
 
+  // Determine if footer should be minimized when sidebar is open
+  const shouldMinimize = isLargeScreen && !sidebarCollapsed;
+
   return (
     <footer
       className={`
