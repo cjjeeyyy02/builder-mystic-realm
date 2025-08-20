@@ -362,14 +362,20 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                 {/* Status and Action */}
                 <div className="pt-2 space-y-2">
-                  {/* Single Status Badge */}
+                  {/* Application Status (Close/Open) */}
                   <Badge
                     variant="outline"
                     className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded ${getApplicationStatusColor(candidate.applicationStatus)}`}
                   >
-                    {candidate.applicationStatus === "open" ? "QUEUE" :
-                     candidate.applicationStatus === "close" ? "REJECT" :
-                     candidate.status === "hired" ? "HIRED" : "QUEUE"}
+                    {candidate.applicationStatus.toUpperCase()}
+                  </Badge>
+
+                  {/* Main Status (Queue/Reject/Hired) */}
+                  <Badge
+                    variant="outline"
+                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded ${getMainStatusColor(candidate.status)}`}
+                  >
+                    {candidate.status === "hired" ? "APPROVED" : candidate.status.toUpperCase()}
                   </Badge>
 
                   {/* Action Button */}
