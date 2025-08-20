@@ -770,7 +770,7 @@ export default function Chat() {
                   variant="default"
                   size="sm"
                   onClick={handleCreateGroup}
-                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
