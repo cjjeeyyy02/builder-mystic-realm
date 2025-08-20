@@ -85,6 +85,94 @@ export default function FilterTabs() {
     },
   ];
 
+  // ATS/HRMS Integration Systems
+  const atsHrmsSystems = [
+    {
+      id: "workday",
+      name: "Workday HCM",
+      icon: Users,
+      description: "Enterprise-grade Human Capital Management",
+      category: "HRMS",
+      apiEndpoint: "api.workday.com",
+      authType: "OAuth 2.0",
+      features: ["Candidate Sync", "Real-time Updates", "Profile Mapping"],
+      status: integrationStatus.workday || 'disconnected',
+      setupComplexity: "Medium"
+    },
+    {
+      id: "greenhouse",
+      name: "Greenhouse",
+      icon: UserPlus,
+      description: "Modern Applicant Tracking System",
+      category: "ATS",
+      apiEndpoint: "harvest.greenhouse.io",
+      authType: "API Key",
+      features: ["Application Tracking", "Interview Scheduling", "Candidate Pipeline"],
+      status: integrationStatus.greenhouse || 'disconnected',
+      setupComplexity: "Easy"
+    },
+    {
+      id: "lever",
+      name: "Lever",
+      icon: Users,
+      description: "Talent acquisition platform",
+      category: "ATS",
+      apiEndpoint: "api.lever.co",
+      authType: "OAuth 2.0",
+      features: ["Talent Pipeline", "Interview Management", "Offer Management"],
+      status: integrationStatus.lever || 'disconnected',
+      setupComplexity: "Medium"
+    },
+    {
+      id: "bamboohr",
+      name: "BambooHR",
+      icon: Users,
+      description: "All-in-one HR software",
+      category: "HRMS",
+      apiEndpoint: "api.bamboohr.com",
+      authType: "API Key",
+      features: ["Employee Records", "Onboarding", "Performance Tracking"],
+      status: integrationStatus.bamboohr || 'disconnected',
+      setupComplexity: "Easy"
+    },
+    {
+      id: "successfactors",
+      name: "SAP SuccessFactors",
+      icon: Users,
+      description: "SAP's cloud-based HCM suite",
+      category: "HRMS",
+      apiEndpoint: "api.successfactors.com",
+      authType: "OAuth 2.0",
+      features: ["Talent Management", "Performance & Goals", "Learning & Development"],
+      status: integrationStatus.successfactors || 'disconnected',
+      setupComplexity: "Complex"
+    },
+    {
+      id: "smartrecruiters",
+      name: "SmartRecruiters",
+      icon: UserPlus,
+      description: "Talent Acquisition Suite",
+      category: "ATS",
+      apiEndpoint: "api.smartrecruiters.com",
+      authType: "OAuth 2.0",
+      features: ["Job Distribution", "Candidate Management", "Collaborative Hiring"],
+      status: integrationStatus.smartrecruiters || 'disconnected',
+      setupComplexity: "Medium"
+    },
+    {
+      id: "custom",
+      name: "Custom Integration",
+      icon: Link,
+      description: "Connect your proprietary system via REST API",
+      category: "Custom",
+      apiEndpoint: "custom-endpoint",
+      authType: "Custom",
+      features: ["Flexible Mapping", "Custom Webhooks", "Data Transformation"],
+      status: integrationStatus.custom || 'disconnected',
+      setupComplexity: "Complex"
+    }
+  ];
+
   const toggleSource = (sourceId: string) => {
     setSelectedSources(prev =>
       prev.includes(sourceId)
