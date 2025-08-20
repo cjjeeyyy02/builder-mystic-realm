@@ -801,7 +801,7 @@ export default function Chat() {
               <CardContent className="p-0 h-full flex flex-col">
                 {/* Sidebar Header */}
                 <div className={`p-2 border-b transition-colors duration-300 ${
-                  isDarkMode ? 'border-gray-700' : 'border-gray-200'
+                  isDarkMode ? 'border-emerald-700' : 'border-emerald-200'
                 }`}>
                   {/* Mobile Close Button */}
                   <div className="lg:hidden flex justify-between items-center mb-2">
