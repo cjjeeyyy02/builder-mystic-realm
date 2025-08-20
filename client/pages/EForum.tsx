@@ -424,7 +424,7 @@ export default function EForum() {
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-emerald-50/30 to-emerald-100/20">
           {/* Header */}
           <div
             className={`bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 shadow-sm transition-all duration-300 ${
