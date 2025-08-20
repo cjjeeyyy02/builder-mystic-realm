@@ -458,6 +458,16 @@ export default function FilterTabs() {
                         <FileSpreadsheet className="w-4 h-4" />
                         CSV/Excel Upload
                       </Button>
+
+                      <Button
+                        variant={hireMode === "ats-integration" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setHireMode("ats-integration")}
+                        className="flex items-center gap-2"
+                      >
+                        <Link className="w-4 h-4" />
+                        ATS/HRMS Integration
+                      </Button>
                     </div>
                   </div>
                 )}
