@@ -1037,7 +1037,7 @@ export default function Chat() {
                             <h3 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                               {isGroupChat ? selectedGroup?.name : selectedContact?.name}
                             </h3>
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
                               {isGroupChat
                                 ? `${selectedGroup?.members} Members • ${selectedGroup?.type} Group`
                                 : `${selectedContact?.role} • ${selectedContact?.status === 'online' ? 'Active now' : selectedContact?.time}`
