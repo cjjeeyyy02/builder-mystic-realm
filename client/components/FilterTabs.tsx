@@ -185,6 +185,76 @@ export default function FilterTabs() {
     setShowPlugAndHireModal(true);
   };
 
+  // ATS/HRMS Integration Handlers
+  const handleATSConnection = async (atsId: string, config: any) => {
+    setIntegrationStatus(prev => ({ ...prev, [atsId]: 'syncing' }));
+
+    try {
+      // Simulate API connection
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      setIntegrationStatus(prev => ({ ...prev, [atsId]: 'connected' }));
+      setAtsConfig(prev => ({ ...prev, [atsId]: config }));
+      setLastSyncTime(new Date());
+
+      // If real-time sync is enabled, start the sync interval
+      if (realTimeSyncEnabled) {
+        startRealTimeSync(atsId);
+      }
+    } catch (error) {
+      setIntegrationStatus(prev => ({ ...prev, [atsId]: 'disconnected' }));
+      console.error('Failed to connect to ATS:', error);
+    }
+  };
+
+  const startRealTimeSync = (atsId: string) => {
+    const intervalId = setInterval(async () => {
+      await syncCandidateProfiles(atsId);
+    }, syncInterval * 60 * 1000); // Convert minutes to milliseconds
+
+    // Store interval ID for cleanup
+    return intervalId;
+  };
+
+  const syncCandidateProfiles = async (atsId: string) => {
+    setIntegrationStatus(prev => ({ ...prev, [atsId]: 'syncing' }));
+
+    try {
+      // Simulate candidate profile sync
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      setIntegrationStatus(prev => ({ ...prev, [atsId]: 'connected' }));
+      setLastSyncTime(new Date());
+
+      // Update candidate profiles in the background
+      console.log(`Synced profiles from ${atsId} at ${new Date().toISOString()}`);
+    } catch (error) {
+      console.error(`Failed to sync profiles from ${atsId}:`, error);
+    }
+  };
+
+  const disconnectATS = (atsId: string) => {
+    setIntegrationStatus(prev => ({ ...prev, [atsId]: 'disconnected' }));
+    setAtsConfig(prev => {
+      const newConfig = { ...prev };
+      delete newConfig[atsId];
+      return newConfig;
+    });
+  };
+
+  const testConnection = async (atsId: string) => {
+    setIntegrationStatus(prev => ({ ...prev, [atsId]: 'syncing' }));
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setIntegrationStatus(prev => ({ ...prev, [atsId]: 'connected' }));
+      return true;
+    } catch (error) {
+      setIntegrationStatus(prev => ({ ...prev, [atsId]: 'disconnected' }));
+      return false;
+    }
+  };
+
   const startSync = async () => {
     setIsSyncing(true);
     setSyncProgress(0);
