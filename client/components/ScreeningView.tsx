@@ -228,14 +228,6 @@ export default function ScreeningView() {
     setShowResumeModal(true);
   };
 
-  const handleDownloadResume = (candidate: ScreeningCandidate) => {
-    if (candidate.resumeUrl) {
-      // Simulate download
-      console.log(`Downloading resume for ${candidate.name}`);
-      // In a real implementation, you would trigger an actual download
-    }
-  };
-
   const handleEmailCandidate = (candidate: ScreeningCandidate) => {
     // Navigate to chat with pre-selected candidate
     console.log(`Navigating to email/chat with ${candidate.name}`);
