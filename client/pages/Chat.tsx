@@ -1292,18 +1292,18 @@ export default function Chat() {
                   </Card>
 
                   {/* Messages Area */}
-                  <div className="flex-1 overflow-y-auto p-4 space-y-4 messages-container">
+                  <div className="flex-1 overflow-y-auto p-2 space-y-2 messages-container">
                     {(chatMessages[selectedChat as keyof typeof chatMessages] || []).map((msg) => (
                       <div key={msg.id} className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-md px-4 py-3 rounded-2xl shadow-sm ${
+                        <div className={`max-w-xs px-2 py-1.5 rounded-lg shadow-sm ${
                           msg.isOwn
                             ? 'bg-blue-600 text-white'
                             : isDarkMode
                               ? 'bg-gray-700 text-gray-200'
                               : 'bg-white text-gray-900 border border-gray-200'
                         }`}>
-                          <p className="text-sm leading-relaxed">{msg.message}</p>
-                          <p className={`text-xs mt-2 ${
+                          <p className="text-xs leading-relaxed">{msg.message}</p>
+                          <p className={`text-xs mt-1 ${
                             msg.isOwn
                               ? 'text-blue-100'
                               : isDarkMode
