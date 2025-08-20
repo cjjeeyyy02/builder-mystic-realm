@@ -821,10 +821,10 @@ export default function Meetings() {
               </div>
 
               {/* Create Meeting Button */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-3">
                 <Button
                   onClick={handleCreateMeeting}
-                  className={`px-8 py-3 text-base font-semibold rounded-lg transition-colors duration-200 flex items-center gap-3 mx-auto ${
+                  className={`px-6 py-2 text-sm font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2 mx-auto ${
                     isDarkMode
                       ? "bg-emerald-700 hover:bg-emerald-600 text-white"
                       : "bg-emerald-600 hover:bg-emerald-700 text-white"
