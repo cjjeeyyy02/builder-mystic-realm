@@ -621,7 +621,7 @@ export default function Files() {
                       onChange={(e) =>
                         handleInputChange("title", e.target.value)
                       }
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors ${
                         isDarkMode
                           ? "bg-gray-700 border-gray-600 text-gray-200"
                           : "bg-white border-gray-300 text-gray-900"
@@ -643,7 +643,7 @@ export default function Files() {
                       onChange={(e) =>
                         handleInputChange("date", e.target.value)
                       }
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors ${
                         isDarkMode
                           ? "bg-gray-700 border-gray-600 text-gray-200"
                           : "bg-white border-gray-300 text-gray-900"
@@ -695,7 +695,7 @@ export default function Files() {
                     <select
                       value={formData.category}
                       onChange={(e) => handleInputChange("category", e.target.value)}
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
                         isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
                       }`}
                     >
@@ -714,7 +714,7 @@ export default function Files() {
                     <select
                       value={formData.department}
                       onChange={(e) => handleInputChange("department", e.target.value)}
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
                         isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
                       }`}
                     >
@@ -733,7 +733,7 @@ export default function Files() {
                     <select
                       value={formData.priority}
                       onChange={(e) => handleInputChange("priority", e.target.value)}
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
                         isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
                       }`}
                     >
@@ -786,7 +786,7 @@ export default function Files() {
                     <select
                       value={formData.share}
                       onChange={(e) => handleInputChange("share", e.target.value)}
-                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+                      className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
                         isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
                       }`}
                     >
