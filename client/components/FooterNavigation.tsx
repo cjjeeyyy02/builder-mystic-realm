@@ -142,8 +142,8 @@ export default function FooterNavigation({
                           } transform ${shouldMinimize ? "scale-100" : "scale-105"}`
                         : `${
                             isDarkMode
-                              ? "text-emerald-300 hover:text-white hover:bg-emerald-800"
-                              : "text-emerald-700 hover:text-emerald-900 hover:bg-emerald-100"
+                              ? "text-gray-300 hover:text-white hover:bg-gray-800"
+                              : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                           } hover:scale-105 active:scale-95`
                     }
                   `}
