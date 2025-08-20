@@ -19,6 +19,10 @@ import {
   GraduationCap,
   Globe,
   Building,
+  Sparkles,
+  Eye,
+  UserCircle,
+  MousePointer,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
