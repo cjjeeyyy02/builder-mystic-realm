@@ -1316,7 +1316,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                     placeholder="Enter reminder title"
@@ -1337,7 +1337,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                     placeholder="Enter reminder details (optional)"
@@ -1360,7 +1360,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   />
@@ -1380,7 +1380,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   >
@@ -1410,7 +1410,7 @@ export default function Reminders() {
                     }}
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   >
@@ -1443,7 +1443,7 @@ export default function Reminders() {
                       }
                       className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                         isDarkMode
-                          ? "bg-gray-700 border-gray-600 text-gray-200"
+                          ? "bg-emerald-700 border-emerald-600 text-white"
                           : "bg-white border-gray-300 text-gray-900"
                       }`}
                     >
@@ -1474,7 +1474,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   >
@@ -1501,7 +1501,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   >
@@ -1528,7 +1528,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                     disabled={!reminderForm.category}
@@ -1565,7 +1565,7 @@ export default function Reminders() {
                     }
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
-                        ? "bg-gray-700 border-gray-600 text-gray-200"
+                        ? "bg-emerald-700 border-emerald-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   >
