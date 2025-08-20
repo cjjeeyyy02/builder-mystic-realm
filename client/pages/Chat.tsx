@@ -826,10 +826,10 @@ export default function Chat() {
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-2 py-1 text-xs font-medium rounded transition-all ${
                           activeTab === tab.id
-                            ? "bg-blue-600 text-white shadow-md"
+                            ? "bg-emerald-600 text-white shadow-md"
                             : isDarkMode
-                              ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                              ? "bg-emerald-700 text-emerald-300 hover:bg-emerald-600"
+                              : "bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
                         }`}
                       >
                         {tab.label} ({tab.count})
