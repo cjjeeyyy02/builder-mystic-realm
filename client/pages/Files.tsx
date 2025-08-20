@@ -663,7 +663,7 @@ export default function Files() {
                       value={formData.size}
                       readOnly
                       className={`w-full px-2 py-1.5 border rounded text-xs ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-emerald-300" : "bg-emerald-50 border-emerald-300 text-emerald-700"
                       }`}
                       placeholder="Auto-generated"
                     />
@@ -681,7 +681,7 @@ export default function Files() {
                       value={formData.type}
                       readOnly
                       className={`w-full px-2 py-1.5 border rounded text-xs ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-emerald-300" : "bg-emerald-50 border-emerald-300 text-emerald-700"
                       }`}
                       placeholder="Auto-generated"
                     />
@@ -696,7 +696,7 @@ export default function Files() {
                       value={formData.category}
                       onChange={(e) => handleInputChange("category", e.target.value)}
                       className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-white" : "bg-white border-emerald-300 text-gray-900"
                       }`}
                     >
                       <option value="">Select category</option>
@@ -715,7 +715,7 @@ export default function Files() {
                       value={formData.department}
                       onChange={(e) => handleInputChange("department", e.target.value)}
                       className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-white" : "bg-white border-emerald-300 text-gray-900"
                       }`}
                     >
                       <option value="">Select department</option>
@@ -734,7 +734,7 @@ export default function Files() {
                       value={formData.priority}
                       onChange={(e) => handleInputChange("priority", e.target.value)}
                       className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-white" : "bg-white border-emerald-300 text-gray-900"
                       }`}
                     >
                       <option value="">Select priority</option>
@@ -787,7 +787,7 @@ export default function Files() {
                       value={formData.share}
                       onChange={(e) => handleInputChange("share", e.target.value)}
                       className={`w-full px-2 py-1.5 border rounded text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
-                        isDarkMode ? "bg-gray-700 border-gray-600 text-gray-200" : "bg-white border-gray-300 text-gray-900"
+                        isDarkMode ? "bg-emerald-700 border-emerald-600 text-white" : "bg-white border-emerald-300 text-gray-900"
                       }`}
                     >
                       <option value="">Select sharing option</option>
