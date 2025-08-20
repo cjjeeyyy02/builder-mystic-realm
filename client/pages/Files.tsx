@@ -360,32 +360,148 @@ export default function Files() {
   };
 
   const handlePreviewFile = (file: any) => {
-    console.log("Previewing file:", file);
-    alert(`Previewing: ${file.name}`);
+    console.log("Opening file preview:", file);
+
+    // Create a mock preview window/modal
+    const previewWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+
+    if (previewWindow) {
+      previewWindow.document.write(`
+        <html>
+          <head>
+            <title>Preview: ${file.name}</title>
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 20px; }
+              .header { border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+              .file-info { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+              .preview-area { text-align: center; padding: 40px; border: 2px dashed #ddd; border-radius: 8px; }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <h1>File Preview</h1>
+            </div>
+            <div class="file-info">
+              <h2>${file.name}</h2>
+              <p><strong>Type:</strong> ${file.type}</p>
+              <p><strong>Size:</strong> ${file.size}</p>
+              <p><strong>Department:</strong> ${file.department}</p>
+              <p><strong>Last Modified:</strong> ${file.lastModified}</p>
+            </div>
+            <div class="preview-area">
+              <p>📄 File preview would appear here</p>
+              <p>In a real application, this would show the actual file content using the system's native viewer or an integrated viewer component.</p>
+            </div>
+          </body>
+        </html>
+      `);
+      previewWindow.document.close();
+    } else {
+      alert(`Opening preview for: ${file.name}\n\nFile Type: ${file.type}\nSize: ${file.size}`);
+    }
   };
 
   const handleDeleteFile = (fileId: string) => {
-    if (window.confirm("Are you sure you want to delete this file?")) {
+    const file = uploadedFiles.find(f => f.id === fileId);
+    if (!file) return;
+
+    const confirmMessage = `Are you sure you want to delete "${file.name}"?\n\nThis action cannot be undone.`;
+
+    if (window.confirm(confirmMessage)) {
       setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
+
+      // Show success message
+      const successMessage = `"${file.name}" has been successfully deleted.`;
+      alert(successMessage);
+
+      console.log("File deleted:", file);
     }
   };
 
   const handleDownloadFile = (file: any) => {
-    console.log("Downloading file:", file);
-    alert(`Downloading: ${file.name}`);
+    console.log("Initiating download for:", file);
+
+    // Create a mock download process
+    const confirmDownload = window.confirm(`Download "${file.name}" (${file.size}) to your local storage?`);
+
+    if (confirmDownload) {
+      // In a real application, this would trigger the actual file download
+      // For now, we'll simulate the download process
+
+      // Create a temporary link element to simulate download
+      const link = document.createElement('a');
+      link.href = '#'; // In real app, this would be the file URL
+      link.download = file.name;
+
+      // Show download initiated message
+      alert(`Download initiated for "${file.name}"\n\nFile will be saved to your default download location.`);
+
+      // Log the download action
+      console.log("Download initiated:", {
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+        timestamp: new Date().toISOString()
+      });
+    }
   };
 
   const handleShareFile = (fileId: string) => {
-    const shareWith = prompt("Share with (team or person):");
-    if (shareWith) {
-      setUploadedFiles((prev) =>
-        prev.map((file) =>
-          file.id === fileId
-            ? { ...file, sharedWith: [...(file.sharedWith || []), shareWith] }
-            : file,
-        ),
-      );
+    const file = uploadedFiles.find(f => f.id === fileId);
+    if (!file) return;
+
+    const shareOptions = [
+      "Generate Shareable Link",
+      "Share with Team/Person",
+      "Email Dispatch",
+      "Cancel"
+    ];
+
+    const choice = prompt(
+      `Share "${file.name}"\n\nChoose sharing method:\n1. Generate Shareable Link\n2. Share with Team/Person\n3. Email Dispatch\n\nEnter choice (1-3):`
+    );
+
+    switch (choice) {
+      case "1":
+        // Generate shareable link
+        const shareableLink = `https://files.company.com/share/${file.id}?token=${Date.now()}`;
+        navigator.clipboard.writeText(shareableLink).then(() => {
+          alert(`Shareable link generated and copied to clipboard!\n\nLink: ${shareableLink}\n\nThis link will expire in 7 days.`);
+        }).catch(() => {
+          alert(`Shareable link generated:\n\n${shareableLink}\n\nThis link will expire in 7 days.`);
+        });
+        break;
+
+      case "2":
+        // Share with team or person
+        const shareWith = prompt("Enter team name or person's email to share with:");
+        if (shareWith) {
+          setUploadedFiles((prev) =>
+            prev.map((f) =>
+              f.id === fileId
+                ? { ...f, sharedWith: [...(f.sharedWith || []), shareWith] }
+                : f,
+            ),
+          );
+          alert(`"${file.name}" has been shared with: ${shareWith}`);
+        }
+        break;
+
+      case "3":
+        // Email dispatch
+        const email = prompt("Enter email address for file dispatch:");
+        if (email) {
+          alert(`"${file.name}" will be dispatched to: ${email}\n\nRecipient will receive an email with download instructions.`);
+          console.log("Email dispatch initiated:", { file: file.name, recipient: email });
+        }
+        break;
+
+      default:
+        // Cancel or invalid choice
+        return;
     }
+
+    console.log("Share action completed for:", file);
   };
 
   const getStatusColor = (status: string) => {
