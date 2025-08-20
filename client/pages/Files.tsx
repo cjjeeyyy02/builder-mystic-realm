@@ -359,6 +359,35 @@ export default function Files() {
           }`}
           style={{ height: "calc(100vh - 4rem)", overflowY: "auto" }}
         >
+          {/* Back to Dashboard Button */}
+          <div className="p-4 pb-0">
+            <Button
+              onClick={() => navigate("/dashboard")}
+              variant="ghost"
+              size="sm"
+              className={`text-xs hover:bg-white/80 transition-colors duration-200 ${
+                isDarkMode
+                  ? 'text-gray-300 hover:text-gray-900 hover:bg-white/90'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
+              }`}
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to Dashboard
+            </Button>
+          </div>
+
           {/* Header Section */}
           <Card
             className={`rounded-none border-0 border-b transition-colors duration-300 ${
