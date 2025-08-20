@@ -538,6 +538,35 @@ export default function Chat() {
     }
   };
 
+  const handleShareGroup = (groupId: string) => {
+    const group = teamGroups.find(g => g.id === groupId);
+    if (group) {
+      const shareLink = `${window.location.origin}/chat/join/${groupId}`;
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(shareLink).then(() => {
+        console.log('Group link copied to clipboard:', shareLink);
+
+        // Show success message in chat
+        const systemMessage = {
+          id: Date.now(),
+          sender: "system",
+          message: `Group invite link copied to clipboard: ${shareLink}`,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isOwn: false,
+        };
+
+        setChatMessages(prev => ({
+          ...prev,
+          [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
+        }));
+      }).catch(() => {
+        // Fallback: show the link in an alert
+        alert(`Share this group link:\n${shareLink}`);
+      });
+    }
+  };
+
   const handleSaveGroupEdit = () => {
     if (groupToEdit && groupForm.name.trim()) {
       const updatedGroups = teamGroups.map(group =>
