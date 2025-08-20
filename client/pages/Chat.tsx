@@ -828,149 +828,154 @@ export default function Chat() {
 
                 {/* Contact List */}
                 <div className="flex-1 overflow-y-auto">
-                  <div className="p-2 space-y-1">
-                    {contactList.map((contact) => (
-                      <Card
-                        key={contact.id}
-                        className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                          selectedChat === contact.id
-                            ? "bg-blue-50 border-blue-200 ring-2 ring-blue-500 ring-opacity-20"
-                            : isDarkMode
-                              ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
-                              : "bg-white border-gray-200 hover:bg-gray-50"
-                        }`}
-                        onClick={() => {
-                          setSelectedChat(contact.id);
-                          setShowMobileSidebar(false);
-                        }}
-                      >
-                        <CardContent className="p-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="relative">
-                              <div
-                                className={`w-12 h-12 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center shadow-md`}
-                              >
-                                <span className="text-white text-sm font-bold">
-                                  {contact.avatar}
-                                </span>
-                              </div>
-                              <div
-                                className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(contact.status)} rounded-full border-2 border-white`}
-                              ></div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between">
-                                <h4 className={`font-semibold truncate ${
-                                  isDarkMode ? 'text-white' : 'text-gray-900'
-                                }`}>
-                                  {contact.name}
-                                </h4>
-                                {contact.hasNewMessage && (
-                                  <div className="flex items-center space-x-1">
-                                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                                  </div>
-                                )}
-                              </div>
-                              <p className={`text-sm truncate ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                              }`}>
-                                {contact.role}
-                              </p>
-                              <p className={`text-xs truncate ${
-                                isDarkMode ? 'text-gray-500' : 'text-gray-500'
-                              }`}>
-                                {contact.time}
-                              </p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-
-                  {/* Team Groups */}
-                  <div className="p-2">
-                    <h3 className={`px-2 py-2 text-sm font-semibold ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      Team Groups
-                    </h3>
-                    <div className="space-y-1">
-                      {teamGroups.map((group) => (
+                  {/* Show contacts for ALL and NOT tabs */}
+                  {(activeTab === "ALL" || activeTab === "NOT") && (
+                    <div className="p-2 space-y-1">
+                      {contactList.map((contact) => (
                         <Card
-                          key={group.id}
+                          key={contact.id}
                           className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                            selectedChat === group.id
-                              ? "bg-purple-50 border-purple-200 ring-2 ring-purple-500 ring-opacity-20"
+                            selectedChat === contact.id
+                              ? "bg-blue-50 border-blue-200 ring-2 ring-blue-500 ring-opacity-20"
                               : isDarkMode
                                 ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
                                 : "bg-white border-gray-200 hover:bg-gray-50"
                           }`}
                           onClick={() => {
-                            handleEnterGroup(group.id);
+                            setSelectedChat(contact.id);
                             setShowMobileSidebar(false);
                           }}
                         >
                           <CardContent className="p-3">
                             <div className="flex items-center space-x-3">
-                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
-                                <svg
-                                  className="w-6 h-6 text-white"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
+                              <div className="relative">
+                                <div
+                                  className={`w-12 h-12 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center shadow-md`}
                                 >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                  />
-                                </svg>
+                                  <span className="text-white text-sm font-bold">
+                                    {contact.avatar}
+                                  </span>
+                                </div>
+                                <div
+                                  className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(contact.status)} rounded-full border-2 border-white`}
+                                ></div>
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
-                                  <h4 className={`font-semibold truncate flex items-center ${
+                                  <h4 className={`font-semibold truncate ${
                                     isDarkMode ? 'text-white' : 'text-gray-900'
                                   }`}>
-                                    {group.name}
-                                    {groupMutedStatus[group.id] && (
-                                      <svg className="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                                      </svg>
-                                    )}
+                                    {contact.name}
                                   </h4>
-                                  <div className="flex items-center space-x-1">
-                                    {/* Three dots removed from team groups cards */}
-                                  </div>
+                                  {contact.hasNewMessage && (
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                    </div>
+                                  )}
                                 </div>
-                                <div className="flex items-center justify-between">
-                                  <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                    {group.type} • {group.members} Members
-                                  </p>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleEnterGroup(group.id);
-                                      setShowMobileSidebar(false);
-                                    }}
-                                    className="text-xs px-2 py-1 h-6"
-                                  >
-                                    ENTER GROUP
-                                  </Button>
-                                </div>
+                                <p className={`text-sm truncate ${
+                                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                }`}>
+                                  {contact.role}
+                                </p>
+                                <p className={`text-xs truncate ${
+                                  isDarkMode ? 'text-gray-500' : 'text-gray-500'
+                                }`}>
+                                  {contact.time}
+                                </p>
                               </div>
                             </div>
-
-                            {/* Sidebar group context menu removed */}
                           </CardContent>
                         </Card>
                       ))}
                     </div>
-                  </div>
+                  )}
+
+                  {/* Show Team Groups for ALL and TEAMS tabs */}
+                  {(activeTab === "ALL" || activeTab === "TEAMS") && (
+                    <div className="p-2">
+                      <h3 className={`px-2 py-2 text-sm font-semibold ${
+                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                      }`}>
+                        Team Groups
+                      </h3>
+                      <div className="space-y-1">
+                        {teamGroups.map((group) => (
+                          <Card
+                            key={group.id}
+                            className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                              selectedChat === group.id
+                                ? "bg-purple-50 border-purple-200 ring-2 ring-purple-500 ring-opacity-20"
+                                : isDarkMode
+                                  ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
+                                  : "bg-white border-gray-200 hover:bg-gray-50"
+                            }`}
+                            onClick={() => {
+                              handleEnterGroup(group.id);
+                              setShowMobileSidebar(false);
+                            }}
+                          >
+                            <CardContent className="p-3">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
+                                  <svg
+                                    className="w-6 h-6 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                                  </svg>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center justify-between">
+                                    <h4 className={`font-semibold truncate flex items-center ${
+                                      isDarkMode ? 'text-white' : 'text-gray-900'
+                                    }`}>
+                                      {group.name}
+                                      {groupMutedStatus[group.id] && (
+                                        <svg className="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                        </svg>
+                                      )}
+                                    </h4>
+                                    <div className="flex items-center space-x-1">
+                                      {/* Three dots removed from team groups cards */}
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                      {group.type} • {group.members} Members
+                                    </p>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleEnterGroup(group.id);
+                                        setShowMobileSidebar(false);
+                                      }}
+                                      className="text-xs px-2 py-1 h-6"
+                                    >
+                                      ENTER GROUP
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Sidebar group context menu removed */}
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
