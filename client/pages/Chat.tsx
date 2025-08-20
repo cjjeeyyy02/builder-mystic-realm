@@ -976,7 +976,7 @@ export default function Chat() {
                                     </h4>
                                   </div>
                                   <div className="flex items-center justify-between">
-                                    <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
                                       {group.type} • {group.members} Members
                                     </p>
                                     <Button
