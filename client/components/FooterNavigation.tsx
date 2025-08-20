@@ -211,7 +211,7 @@ export default function FooterNavigation({
                           : `opacity-85 group-hover:opacity-100 ${
                               isDarkMode
                                 ? "group-hover:text-white"
-                                : "group-hover:text-emerald-900"
+                                : "group-hover:text-gray-900"
                             }`
                       }
                     `}
