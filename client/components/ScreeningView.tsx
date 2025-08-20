@@ -672,14 +672,6 @@ export default function ScreeningView() {
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
                       <div className="space-y-2">
                         <Button
-                          size="sm"
-                          className="w-full justify-start text-xs sm:text-sm"
-                          onClick={() => handleDownloadResume(selectedCandidate)}
-                        >
-                          <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Download Resume
-                        </Button>
-                        <Button
                           variant="outline"
                           size="sm"
                           className="w-full justify-start text-xs sm:text-sm"
