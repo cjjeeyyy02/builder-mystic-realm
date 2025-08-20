@@ -747,7 +747,7 @@ export default function Meetings() {
             <>
 
               {/* Top Features Row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
                 {features.map((feature) => (
                   <Card
                     key={feature.id}
