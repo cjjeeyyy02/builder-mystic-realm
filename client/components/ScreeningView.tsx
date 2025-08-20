@@ -72,7 +72,7 @@ const screeningCandidates: ScreeningCandidate[] = [
     phone: "123-456-791",
     totalExperience: "5 years",
     relevantExperience: "5 years",
-    status: "pending",
+    status: "queue",
     resumeUrl: "/documents/emily-rodriguez-resume.pdf",
     summary: "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
     education: "Master's in Human-Computer Interaction, Stanford University",
