@@ -245,7 +245,7 @@ export default function FooterNavigation({
           <div
             className={`
             w-16 h-0.5 rounded-full transition-colors duration-300
-            ${isDarkMode ? "bg-emerald-700" : "bg-emerald-300"}
+            ${isDarkMode ? "bg-gray-700" : "bg-gray-300"}
           `}
           />
         </div>
