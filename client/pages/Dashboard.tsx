@@ -1531,6 +1531,7 @@ export default function Dashboard() {
                       size="sm"
                       variant="outline"
                       className="absolute bottom-3 right-3 text-xs h-6 px-2 flex items-center gap-1"
+                      onClick={() => navigate("/e-forum")}
                     >
                       <svg
                         className="w-3 h-3"
