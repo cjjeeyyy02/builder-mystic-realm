@@ -221,95 +221,98 @@ export default function Files() {
 
   const getFileIconComponent = (type: string) => {
     const fileType = type?.toUpperCase();
-    const iconClass = "w-12 h-12";
+    const iconClass = "w-8 h-8";
 
     switch (fileType) {
       case "PDF":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#ef4444" stroke="#dc2626" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#dc2626" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">PDF</text>
-          </svg>
+          <div className="w-8 h-8 bg-red-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
       case "DOC":
       case "DOCX":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#2563eb" stroke="#1d4ed8" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#1d4ed8" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">DOC</text>
-          </svg>
+          <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
       case "XLS":
       case "XLSX":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#059669" stroke="#047857" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#047857" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">XLS</text>
-          </svg>
+          <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
       case "PPT":
       case "PPTX":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#ea580c" stroke="#c2410c" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#c2410c" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">PPT</text>
-          </svg>
+          <div className="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
       case "PNG":
       case "JPG":
       case "JPEG":
       case "GIF":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#7c3aed" stroke="#6d28d9" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#6d28d9" strokeWidth="2"/>
-            <circle cx="10" cy="12" r="2" fill="white"/>
-            <path d="M16 16l-4-4-4 4" stroke="white" strokeWidth="2" fill="none"/>
-            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">{fileType}</text>
-          </svg>
+          <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21,15 16,10 5,21"/>
+            </svg>
+          </div>
         );
       case "ZIP":
       case "RAR":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#6b7280" stroke="#4b5563" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#4b5563" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">ZIP</text>
-          </svg>
+          <div className="w-8 h-8 bg-gray-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
       case "MP4":
       case "AVI":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#dc2626" stroke="#b91c1c" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#b91c1c" strokeWidth="2"/>
-            <polygon points="10,10 14,12 10,14" fill="white"/>
-            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">MP4</text>
-          </svg>
+          <div className="w-8 h-8 bg-red-600 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="5,3 19,12 5,21"/>
+            </svg>
+          </div>
         );
       case "MP3":
       case "WAV":
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#f59e0b" stroke="#d97706" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#d97706" strokeWidth="2"/>
-            <circle cx="9" cy="13" r="1" fill="white"/>
-            <circle cx="12" cy="11" r="1" fill="white"/>
-            <circle cx="15" cy="14" r="1" fill="white"/>
-            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">MP3</text>
-          </svg>
+          <div className="w-8 h-8 bg-yellow-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+          </div>
         );
       default:
         return (
-          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#6b7280" stroke="#4b5563" strokeWidth="2"/>
-            <polyline points="14,2 14,8 20,8" fill="none" stroke="#4b5563" strokeWidth="2"/>
-            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">FILE</text>
-          </svg>
+          <div className="w-8 h-8 bg-gray-400 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
         );
     }
   };
