@@ -615,6 +615,200 @@ export default function FilterTabs() {
                         )}
                       </div>
                     )}
+
+                    {/* ATS/HRMS Integration Mode */}
+                    {hireMode === "ats-integration" && (
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-lg font-semibold mb-4">Enterprise ATS/HRMS Integration</h3>
+                          <p className="text-gray-600 mb-6">
+                            Connect your existing Applicant Tracking System or Human Resource Management System
+                            for seamless candidate profile synchronization with real-time updates.
+                          </p>
+                        </div>
+
+                        {/* Real-time Sync Settings */}
+                        <Card>
+                          <CardContent className="p-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <div>
+                                <h4 className="font-semibold">Real-time Synchronization</h4>
+                                <p className="text-sm text-gray-600">Automatically sync candidate profiles as they are updated</p>
+                              </div>
+                              <Switch
+                                checked={realTimeSyncEnabled}
+                                onCheckedChange={setRealTimeSyncEnabled}
+                              />
+                            </div>
+
+                            {realTimeSyncEnabled && (
+                              <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                  <label className="text-sm font-medium">Sync Interval</label>
+                                  <Select value={syncInterval.toString()} onValueChange={(val) => setSyncInterval(parseInt(val))}>
+                                    <SelectTrigger>
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="5">Every 5 minutes</SelectItem>
+                                      <SelectItem value="15">Every 15 minutes</SelectItem>
+                                      <SelectItem value="30">Every 30 minutes</SelectItem>
+                                      <SelectItem value="60">Every hour</SelectItem>
+                                      <SelectItem value="240">Every 4 hours</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div>
+                                  <label className="text-sm font-medium">Last Sync</label>
+                                  <div className="text-sm text-gray-600 mt-2">
+                                    {lastSyncTime ? lastSyncTime.toLocaleString() : 'Never'}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </CardContent>
+                        </Card>
+
+                        {/* ATS/HRMS Systems Grid */}
+                        <div>
+                          <h4 className="font-semibold mb-4">Available ATS/HRMS Systems</h4>
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            {atsHrmsSystems.map((system) => {
+                              const Icon = system.icon;
+                              const isConnected = system.status === 'connected';
+                              const isSyncing = system.status === 'syncing';
+
+                              return (
+                                <Card
+                                  key={system.id}
+                                  className={`cursor-pointer transition-all ${
+                                    isConnected ? "ring-2 ring-green-500 bg-green-50" :
+                                    isSyncing ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"
+                                  }`}
+                                >
+                                  <CardContent className="p-4">
+                                    <div className="flex items-start gap-3">
+                                      <div className={`p-2 rounded-lg ${
+                                        isConnected ? "bg-green-200" :
+                                        isSyncing ? "bg-blue-200" : "bg-gray-100"
+                                      }`}>
+                                        {isSyncing ? (
+                                          <Loader2 className="w-5 h-5 text-blue-700 animate-spin" />
+                                        ) : (
+                                          <Icon className={`w-5 h-5 ${
+                                            isConnected ? "text-green-700" : "text-gray-600"
+                                          }`} />
+                                        )}
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h4 className="font-semibold">{system.name}</h4>
+                                          <Badge
+                                            variant={isConnected ? "default" : isSyncing ? "secondary" : "outline"}
+                                            className="text-xs"
+                                          >
+                                            {isSyncing ? "Connecting..." :
+                                             isConnected ? "Connected" : "Not Connected"}
+                                          </Badge>
+                                          <Badge variant="outline" className="text-xs">
+                                            {system.category}
+                                          </Badge>
+                                        </div>
+                                        <p className="text-sm text-gray-600 mb-2">{system.description}</p>
+                                        <div className="text-xs text-gray-500 space-y-1">
+                                          <div>API: {system.apiEndpoint}</div>
+                                          <div>Auth: {system.authType}</div>
+                                          <div>Setup: {system.setupComplexity}</div>
+                                        </div>
+                                        <div className="flex flex-wrap gap-1 mt-2">
+                                          {system.features.map((feature) => (
+                                            <Badge key={feature} variant="outline" className="text-xs">
+                                              {feature}
+                                            </Badge>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div className="mt-4 pt-3 border-t flex gap-2">
+                                      {isConnected ? (
+                                        <>
+                                          <Button
+                                            variant="outline"
+                                            size="sm"
+                                            className="flex-1"
+                                            onClick={() => syncCandidateProfiles(system.id)}
+                                            disabled={isSyncing}
+                                          >
+                                            <Download className="w-3 h-3 mr-1" />
+                                            Sync Now
+                                          </Button>
+                                          <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => testConnection(system.id)}
+                                            disabled={isSyncing}
+                                          >
+                                            Test
+                                          </Button>
+                                          <Button
+                                            variant="destructive"
+                                            size="sm"
+                                            onClick={() => disconnectATS(system.id)}
+                                            disabled={isSyncing}
+                                          >
+                                            Disconnect
+                                          </Button>
+                                        </>
+                                      ) : (
+                                        <Button
+                                          variant="default"
+                                          size="sm"
+                                          className="w-full"
+                                          onClick={() => {
+                                            // Open connection modal/form
+                                            setSelectedATS(system.id);
+                                            setShowIntegrationConfig(true);
+                                          }}
+                                          disabled={isSyncing}
+                                        >
+                                          <Link className="w-3 h-3 mr-1" />
+                                          Configure Integration
+                                        </Button>
+                                      )}
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Integration Status Summary */}
+                        {Object.keys(integrationStatus).some(key => integrationStatus[key] === 'connected') && (
+                          <Card>
+                            <CardContent className="p-4">
+                              <h4 className="font-semibold mb-3">Active Integrations</h4>
+                              <div className="space-y-2">
+                                {Object.entries(integrationStatus)
+                                  .filter(([_, status]) => status === 'connected')
+                                  .map(([systemId, _]) => {
+                                    const system = atsHrmsSystems.find(s => s.id === systemId);
+                                    return system ? (
+                                      <div key={systemId} className="flex items-center justify-between text-sm">
+                                        <span>{system.name}</span>
+                                        <Badge variant="default" className="text-xs">
+                                          {realTimeSyncEnabled ? `Auto-sync (${syncInterval}min)` : 'Manual sync'}
+                                        </Badge>
+                                      </div>
+                                    ) : null;
+                                  })}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ) : (
                   /* Sync Results */
