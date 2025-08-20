@@ -1297,10 +1297,10 @@ export default function Chat() {
                       <div key={msg.id} className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-xs px-2 py-1.5 rounded-lg shadow-sm ${
                           msg.isOwn
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-emerald-600 text-white'
                             : isDarkMode
-                              ? 'bg-gray-700 text-gray-200'
-                              : 'bg-white text-gray-900 border border-gray-200'
+                              ? 'bg-emerald-700 text-white'
+                              : 'bg-white text-gray-900 border border-emerald-200'
                         }`}>
                           <p className="text-xs leading-relaxed">{msg.message}</p>
                           <p className={`text-xs mt-1 ${
