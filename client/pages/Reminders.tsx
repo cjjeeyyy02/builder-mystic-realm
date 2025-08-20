@@ -811,7 +811,7 @@ export default function Reminders() {
                     key={reminder.id}
                     className={`hover:shadow-md transition-all duration-200 ${
                       isDarkMode
-                        ? "bg-gray-800 border-gray-700"
+                        ? "bg-emerald-800 border-emerald-700"
                         : "bg-white border-gray-200"
                     }`}
                   >
@@ -993,7 +993,7 @@ export default function Reminders() {
               <Card
                 className={`transition-colors duration-300 ${
                   isDarkMode
-                    ? "bg-gray-800 border-gray-700"
+                    ? "bg-emerald-800 border-emerald-700"
                     : "bg-white border-gray-200"
                 }`}
               >
@@ -1237,7 +1237,7 @@ export default function Reminders() {
             <div
               className={`px-4 py-3 border-b flex items-center justify-between ${
                 isDarkMode
-                  ? "bg-gray-800 border-gray-700"
+                  ? "bg-emerald-800 border-emerald-700"
                   : "bg-gray-50 border-gray-200"
               }`}
             >
@@ -1585,7 +1585,7 @@ export default function Reminders() {
             <div
               className={`px-4 py-3 border-t flex justify-end space-x-2 ${
                 isDarkMode
-                  ? "bg-gray-800 border-gray-700"
+                  ? "bg-emerald-800 border-emerald-700"
                   : "bg-gray-50 border-gray-200"
               }`}
             >
