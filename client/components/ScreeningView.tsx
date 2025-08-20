@@ -311,6 +311,7 @@ export default function ScreeningView() {
                         {getStatusIcon(candidate.status)}
                         {candidate.status === "approved" ? "Approved" :
                          candidate.status === "reject" ? "Rejected" :
+                         candidate.status === "queue" ? "Queued" :
                          candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
                       </Badge>
                     ) : (
