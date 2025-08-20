@@ -498,6 +498,15 @@ export default function Chat() {
   };
 
   const handleEditGroup = (groupId: string) => {
+    // Check if user has admin or sub-admin role
+    const userRole = "admin"; // This should come from your auth context or user state
+    const isAuthorized = userRole === "admin" || userRole === "sub-admin";
+
+    if (!isAuthorized) {
+      alert("Access denied. Only Admin or Sub-Admin can edit group settings.");
+      return;
+    }
+
     const group = teamGroups.find(g => g.id === groupId);
     if (group) {
       setGroupToEdit(group);
