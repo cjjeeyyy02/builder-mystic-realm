@@ -45,7 +45,7 @@ export default function Files() {
       type: "PDF",
       category: "Documents",
       department: "Finance",
-      priority: "CRITICAL",
+      priority: "VERY HIGH",
       status: "active",
       visibility: "Public",
       thumbnail: "PDF",
