@@ -693,7 +693,7 @@ export default function Chat() {
     <>
       <Layout>
         <div className={`h-[calc(100vh-4rem)] flex flex-col transition-colors duration-300 ${
-          isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+          isDarkMode ? 'bg-emerald-900' : 'bg-emerald-50'
         }`}>
           {/* Back to Dashboard Button */}
           <div className="p-4 pb-0">
