@@ -950,10 +950,12 @@ export default function Files() {
                           <div className="flex flex-col h-full">
                             {/* Top Section - File Icon, Type and Actions */}
                             <div className="flex items-start justify-between mb-1">
-                              <div className="flex items-center gap-1">
-                                <div className="text-4xl">{file.thumbnail}</div>
+                              <div className="flex items-center gap-2">
+                                <div className="flex-shrink-0">
+                                  {getFileIconComponent(file.type)}
+                                </div>
                                 <span
-                                  className={`text-sm px-3 py-1 rounded ${isDarkMode ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-600"}`}
+                                  className={`text-sm px-3 py-1 rounded ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
                                 >
                                   {file.type}
                                 </span>
