@@ -1340,10 +1340,10 @@ export default function Chat() {
                             onBlur={handleInputBlur}
                             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                             placeholder="Type message..."
-                            className={`w-full px-3 py-1.5 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 text-xs ${
+                            className={`w-full px-3 py-1.5 border rounded-full focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors duration-300 text-xs ${
                               isDarkMode
-                                ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                                : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                                ? 'bg-emerald-700 border-emerald-600 text-white placeholder-emerald-300'
+                                : 'bg-white border-emerald-300 text-gray-900 placeholder-emerald-600'
                             }`}
                           />
                         </div>
