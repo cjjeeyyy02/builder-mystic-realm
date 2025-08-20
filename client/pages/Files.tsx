@@ -48,7 +48,7 @@ export default function Files() {
       priority: "CRITICAL",
       status: "active",
       visibility: "Public",
-      thumbnail: "📊",
+      thumbnail: "PDF",
       lastModified: "1 day ago",
       sharedWith: ["Finance Team", "Executive Team"],
     },
