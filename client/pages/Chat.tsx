@@ -1012,32 +1012,32 @@ export default function Chat() {
                   <Card className={`flex-shrink-0 rounded-none border-0 border-b transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                   }`}>
-                    <CardContent className="p-4">
+                    <CardContent className="p-2">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2">
                           <div className="relative">
                             {isGroupChat ? (
-                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                               </div>
                             ) : (
                               <>
-                                <div className={`w-12 h-12 ${getAvatarColor(selectedContact?.name || '')} rounded-full flex items-center justify-center shadow-md`}>
-                                  <span className="text-white text-sm font-bold">
+                                <div className={`w-8 h-8 ${getAvatarColor(selectedContact?.name || '')} rounded-full flex items-center justify-center shadow-sm`}>
+                                  <span className="text-white text-xs font-bold">
                                     {selectedContact?.avatar}
                                   </span>
                                 </div>
-                                <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(selectedContact?.status || 'offline')} rounded-full border-2 border-white`}></div>
+                                <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 ${getStatusColor(selectedContact?.status || 'offline')} rounded-full border border-white`}></div>
                               </>
                             )}
                           </div>
                           <div>
-                            <h3 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            <h3 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                               {isGroupChat ? selectedGroup?.name : selectedContact?.name}
                             </h3>
-                            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                               {isGroupChat
                                 ? `${selectedGroup?.members} Members • ${selectedGroup?.type} Group`
                                 : `${selectedContact?.role} • ${selectedContact?.status === 'online' ? 'Active now' : selectedContact?.time}`
