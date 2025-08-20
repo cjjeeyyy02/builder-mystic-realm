@@ -1365,11 +1365,11 @@ export default function Chat() {
                 /* No Chat Selected */
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
+                    <div className={`w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center ${
                       isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
                     }`}>
                       <svg
-                        className={`w-12 h-12 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}
+                        className={`w-8 h-8 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1382,10 +1382,10 @@ export default function Chat() {
                         />
                       </svg>
                     </div>
-                    <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`text-sm font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       Welcome to Chat Center
                     </h3>
-                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                       Select a conversation to start messaging
                     </p>
                   </div>
