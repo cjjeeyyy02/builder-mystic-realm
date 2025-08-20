@@ -1144,14 +1144,14 @@ export default function Chat() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className={`hidden sm:flex transition-colors ${
+                            className={`hidden sm:flex transition-colors px-1 py-1 h-6 ${
                               isVideoActive
                                 ? 'bg-red-500 text-white border-red-500 hover:bg-red-600'
                                 : ''
                             }`}
                             onClick={handleStartVideo}
                           >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
                           </Button>
@@ -1164,7 +1164,7 @@ export default function Chat() {
                                   console.log('Three dots clicked!', showGroupMenu);
                                   setShowGroupMenu(!showGroupMenu);
                                 }}
-                                className={`p-3 rounded-lg transition-colors border-2 ${
+                                className={`p-1 rounded transition-colors border ${
                                   showGroupMenu
                                     ? 'bg-blue-500 text-white border-blue-500'
                                     : isDarkMode
@@ -1173,7 +1173,7 @@ export default function Chat() {
                                 }`}
                                 title="Group Options"
                               >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                                 </svg>
                               </button>
