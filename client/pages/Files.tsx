@@ -863,8 +863,8 @@ export default function Files() {
                         key={file.id}
                         className={`min-h-[240px] hover:shadow-md transition-all duration-200 ${
                           isDarkMode
-                            ? "bg-gray-800 border-gray-700"
-                            : "bg-white border-gray-200"
+                            ? "bg-emerald-800 border-emerald-700"
+                            : "bg-white border-emerald-200"
                         }`}
                       >
                         <CardContent className="p-3 h-full">
