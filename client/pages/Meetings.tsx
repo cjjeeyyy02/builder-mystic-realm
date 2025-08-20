@@ -859,17 +859,17 @@ export default function Meetings() {
                     } ${feature.bgColor}`}
                     onClick={feature.action}
                   >
-                    <CardContent className="p-8 text-center">
+                    <CardContent className="p-4 text-center">
                       {/* Icon Circle */}
                       <div
-                        className={`w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-16 h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <span className="text-3xl">{feature.icon}</span>
+                        <span className="text-xl">{feature.icon}</span>
                       </div>
 
                       {/* Title */}
                       <h3
-                        className={`text-xl font-bold mb-4 transition-colors duration-300 ${
+                        className={`text-lg font-bold mb-2 transition-colors duration-300 ${
                           isDarkMode ? "text-white" : "text-gray-900"
                         }`}
                       >
@@ -878,7 +878,7 @@ export default function Meetings() {
 
                       {/* Description */}
                       <p
-                        className={`text-sm leading-relaxed transition-colors duration-300 ${
+                        className={`text-xs leading-relaxed transition-colors duration-300 ${
                           isDarkMode ? "text-gray-300" : "text-gray-600"
                         }`}
                       >
