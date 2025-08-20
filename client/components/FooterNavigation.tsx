@@ -9,7 +9,6 @@ import {
   Clock,
   Calendar,
   MessageCircle,
-  ShoppingBag,
 } from "lucide-react";
 
 interface NavItem {
