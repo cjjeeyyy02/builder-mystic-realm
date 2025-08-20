@@ -679,9 +679,14 @@ export default function ScreeningView() {
                           <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Download Resume
                         </Button>
-                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full justify-start text-xs sm:text-sm"
+                          onClick={() => selectedCandidate && handleEmailCandidate(selectedCandidate)}
+                        >
                           <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Send Message
+                          Send Email
                         </Button>
                         <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
