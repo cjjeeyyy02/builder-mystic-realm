@@ -317,18 +317,12 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`relative overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-blue-50/20 border border-gray-200/60 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 backdrop-blur-sm ${
+            className={`relative overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ${
               candidate.isSelected
                 ? "ring-2 ring-blue-500/30 border-blue-300 shadow-blue-100"
                 : ""
             }`}
           >
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-100/40 to-transparent rounded-bl-full"></div>
-            <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-emerald-100/30 to-transparent rounded-tr-full"></div>
-            <div className="absolute top-2 right-2 text-blue-200">
-              <Sparkles className="w-4 h-4" />
-            </div>
 
             <CardContent className="p-4 relative z-10">
               <div className="space-y-3">
