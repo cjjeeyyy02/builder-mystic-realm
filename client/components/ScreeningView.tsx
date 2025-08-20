@@ -236,6 +236,25 @@ export default function ScreeningView() {
     }
   };
 
+  const handleEmailCandidate = (candidate: ScreeningCandidate) => {
+    // Navigate to chat with pre-selected candidate
+    console.log(`Navigating to email/chat with ${candidate.name}`);
+
+    // Store candidate info for the chat to pick up
+    sessionStorage.setItem('selectedChatContact', JSON.stringify({
+      id: candidate.id,
+      name: candidate.name,
+      email: candidate.email,
+      role: candidate.position,
+      avatar: candidate.name.split(' ').map(n => n[0]).join(''),
+      status: 'offline',
+      time: 'Just now'
+    }));
+
+    // Navigate to chat page
+    navigate('/chat');
+  };
+
   return (
     <div className="space-y-6">
       {/* Summary Stats */}
