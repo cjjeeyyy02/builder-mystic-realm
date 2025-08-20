@@ -924,7 +924,7 @@ export default function Chat() {
                   {(activeTab === "ALL" || activeTab === "TEAMS") && (
                     <div className="p-1">
                       <h3 className={`px-1 py-1 text-xs font-medium ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        isDarkMode ? 'text-emerald-300' : 'text-emerald-800'
                       }`}>
                         Team Groups
                       </h3>
