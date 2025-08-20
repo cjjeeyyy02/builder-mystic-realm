@@ -161,7 +161,7 @@ export default function Meetings() {
       id: "record",
       title: "Recording & Playback",
       description:
-        "Record your entire meeting with HD quality. Pause and resume recording at any time. Get automatic transcripts and summaries.",
+        "You can record the whole meeting. You can pause the recording anytime you wanted and resume the recording as per your choice.",
       icon: "🎥",
       color: "from-red-500 to-red-600",
       bgColor: isDarkMode ? "bg-red-500/10" : "bg-red-50",
@@ -170,9 +170,9 @@ export default function Meetings() {
     },
     {
       id: "schedule",
-      title: "Smart Scheduling",
+      title: "One-On-One Meeting",
       description:
-        "Schedule one-on-one or group meetings with automated calendar integration, timezone support, and reminder notifications.",
+        "One-On-One Meeting? GrouP-Team Meeting? Schedule Your Meeting Here.",
       icon: "📅",
       color: "from-blue-500 to-blue-600",
       bgColor: isDarkMode ? "bg-blue-500/10" : "bg-blue-50",
@@ -197,7 +197,7 @@ export default function Meetings() {
       id: "screenshot",
       title: "Live Screenshots",
       description:
-        "Capture important moments during meetings. Save screenshots as JPG, PNG, or IMG formats directly to your files.",
+        "Take Live screenshot during the meeting and save it under files as JPG or PNG or IMG",
       icon: "📸",
       color: "from-purple-500 to-purple-600",
       bgColor: isDarkMode ? "bg-purple-500/10" : "bg-purple-50",
@@ -208,7 +208,7 @@ export default function Meetings() {
       id: "questions",
       title: "Interactive Q&A",
       description:
-        "Submit questions during meetings with our interactive Q&A system. Moderate and prioritize questions effectively.",
+        "You can ask any question during the meeting by clicking on the \"Ask A Question\" button.",
       icon: "❓",
       color: "from-orange-500 to-orange-600",
       bgColor: isDarkMode ? "bg-orange-500/10" : "bg-orange-50",
