@@ -317,50 +317,78 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`relative overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ${
+            className={`relative overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-blue-50/20 border border-gray-200/60 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 backdrop-blur-sm ${
               candidate.isSelected
-                ? "ring-2 ring-blue-500/20 border-blue-300"
+                ? "ring-2 ring-blue-500/30 border-blue-300 shadow-blue-100"
                 : ""
             }`}
           >
-            <CardContent className="p-4">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-100/40 to-transparent rounded-bl-full"></div>
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-emerald-100/30 to-transparent rounded-tr-full"></div>
+            <div className="absolute top-2 right-2 text-blue-200">
+              <Sparkles className="w-4 h-4" />
+            </div>
+
+            <CardContent className="p-4 relative z-10">
               <div className="space-y-3">
                 {/* Applicant Name */}
                 <div className="space-y-1">
-                  <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLICANT NAME</span>
-                  <div className="text-sm font-semibold text-gray-900">{candidate.name}</div>
+                  <div className="flex items-center gap-1">
+                    <UserCircle className="w-3 h-3 text-blue-500" />
+                    <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLICANT NAME</span>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+                    {candidate.name}
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
 
                 {/* Applied Position */}
                 <div className="space-y-1">
-                  <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLIED POSITION</span>
-                  <div className="text-xs font-medium text-gray-700">{candidate.position}</div>
+                  <div className="flex items-center gap-1">
+                    <Briefcase className="w-3 h-3 text-emerald-500" />
+                    <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLIED POSITION</span>
+                  </div>
+                  <div className="text-xs font-medium text-gray-700 bg-gradient-to-r from-emerald-50 to-blue-50 px-2 py-1 rounded-md border border-emerald-100">{candidate.position}</div>
                 </div>
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-2 gap-3">
                   {/* Job Type */}
                   <div className="space-y-1">
-                    <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">JOB TYPE</span>
-                    <div className="text-[11px] text-gray-700">{candidate.workType}</div>
+                    <div className="flex items-center gap-1">
+                      <MousePointer className="w-2.5 h-2.5 text-purple-500" />
+                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">JOB TYPE</span>
+                    </div>
+                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.workType}</div>
                   </div>
 
                   {/* Applied Date */}
                   <div className="space-y-1">
-                    <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">APPLIED</span>
-                    <div className="text-[11px] text-gray-700">{candidate.appliedDate}</div>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-2.5 h-2.5 text-orange-500" />
+                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">APPLIED</span>
+                    </div>
+                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.appliedDate}</div>
                   </div>
 
                   {/* Location */}
                   <div className="space-y-1">
-                    <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">LOCATION</span>
-                    <div className="text-[11px] text-gray-700">{candidate.companyLocation}</div>
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-2.5 h-2.5 text-red-500" />
+                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">LOCATION</span>
+                    </div>
+                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.companyLocation}</div>
                   </div>
 
                   {/* Period */}
                   <div className="space-y-1">
-                    <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">PERIOD</span>
-                    <div className="text-[10px] text-gray-600">{candidate.applicationStart} - {candidate.applicationEnd}</div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-2.5 h-2.5 text-blue-500" />
+                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">PERIOD</span>
+                    </div>
+                    <div className="text-[10px] text-gray-600 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.applicationStart} - {candidate.applicationEnd}</div>
                   </div>
                 </div>
 
@@ -369,27 +397,36 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                   {/* Application Status (Close/Open) */}
                   <Badge
                     variant="outline"
-                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded-full shadow-sm ${getApplicationStatusColor(candidate.applicationStatus)}`}
                   >
-                    {candidate.applicationStatus.toUpperCase()}
+                    <div className="flex items-center gap-1">
+                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3" /> : <X className="w-3 h-3" />}
+                      {candidate.applicationStatus.toUpperCase()}
+                    </div>
                   </Badge>
 
                   {/* Main Status (Queue/Reject/Hired) */}
                   <Badge
                     variant="outline"
-                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded ${getMainStatusColor(candidate.status)}`}
+                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded-full shadow-sm ${getMainStatusColor(candidate.status)}`}
                   >
-                    {candidate.status === "hired" ? "APPROVED" : candidate.status.toUpperCase()}
+                    <div className="flex items-center gap-1">
+                      {getStatusIcon(candidate.status)}
+                      {candidate.status === "hired" ? "APPROVED" : candidate.status.toUpperCase()}
+                    </div>
                   </Badge>
 
                   {/* Action Button */}
                   <Button
                     size="sm"
                     variant="outline"
-                    className="w-full text-[10px] font-medium uppercase tracking-wide border border-gray-300 hover:border-gray-400 hover:bg-gray-50 h-7 px-3 rounded"
+                    className="w-full text-[10px] font-medium uppercase tracking-wide border border-blue-200 hover:border-blue-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 h-7 px-3 rounded-full shadow-sm transition-all duration-200 group"
                     onClick={() => handleViewProfile(candidate)}
                   >
-                    VIEW PROFILE
+                    <div className="flex items-center gap-1">
+                      <Eye className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                      VIEW PROFILE
+                    </div>
                   </Button>
                 </div>
               </div>
