@@ -199,6 +199,81 @@ export default function FilterTabs() {
     }
   ];
 
+  // EMS Internal Data Structure Mapping
+  const emsFieldStructure = {
+    personalInfo: {
+      fullName: { required: true, type: 'string', validation: /^[a-zA-Z\s]{2,50}$/ },
+      firstName: { required: false, type: 'string', validation: /^[a-zA-Z]{1,25}$/ },
+      lastName: { required: false, type: 'string', validation: /^[a-zA-Z]{1,25}$/ },
+      email: { required: true, type: 'email', validation: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+      phone: { required: false, type: 'phone', validation: /^\+?[\d\s\-\(\)]{10,20}$/ },
+      dateOfBirth: { required: false, type: 'date', validation: null },
+      nationality: { required: false, type: 'string', validation: null }
+    },
+    contactInfo: {
+      address: { required: false, type: 'string', validation: null },
+      city: { required: false, type: 'string', validation: null },
+      state: { required: false, type: 'string', validation: null },
+      zipCode: { required: false, type: 'string', validation: /^\d{5,10}$/ },
+      country: { required: false, type: 'string', validation: null },
+      linkedinUrl: { required: false, type: 'url', validation: /^https:\/\/(www\.)?linkedin\.com\/.*$/ }
+    },
+    professionalInfo: {
+      currentPosition: { required: false, type: 'string', validation: null },
+      currentCompany: { required: false, type: 'string', validation: null },
+      totalExperience: { required: false, type: 'number', validation: /^\d{1,2}$/ },
+      currentSalary: { required: false, type: 'number', validation: null },
+      expectedSalary: { required: false, type: 'number', validation: null },
+      noticePeriod: { required: false, type: 'string', validation: null },
+      skills: { required: false, type: 'array', validation: null }
+    },
+    applicationInfo: {
+      appliedPosition: { required: true, type: 'string', validation: null },
+      applicationDate: { required: true, type: 'date', validation: null },
+      applicationStatus: { required: true, type: 'enum', validation: ['screening', 'interview', 'activation', 'hired', 'rejected'] },
+      source: { required: true, type: 'string', validation: null },
+      resumeUrl: { required: false, type: 'url', validation: null },
+      coverLetterUrl: { required: false, type: 'url', validation: null },
+      portfolioUrl: { required: false, type: 'url', validation: null }
+    },
+    complianceInfo: {
+      gdprConsent: { required: true, type: 'boolean', validation: null },
+      dataProcessingConsent: { required: true, type: 'boolean', validation: null },
+      consentDate: { required: true, type: 'date', validation: null },
+      dataRetentionPeriod: { required: true, type: 'number', validation: null },
+      rightToWithdraw: { required: true, type: 'boolean', validation: null }
+    }
+  };
+
+  // Default field mappings for common ATS systems
+  const defaultFieldMappings = {
+    greenhouse: {
+      'candidate.name': 'personalInfo.fullName',
+      'candidate.email_addresses[0].value': 'personalInfo.email',
+      'candidate.phone_numbers[0].value': 'personalInfo.phone',
+      'application.jobs[0].name': 'applicationInfo.appliedPosition',
+      'application.applied_at': 'applicationInfo.applicationDate',
+      'application.status': 'applicationInfo.applicationStatus',
+      'candidate.attachments[0].url': 'applicationInfo.resumeUrl'
+    },
+    workday: {
+      'applicant.personalData.nameData.legalName': 'personalInfo.fullName',
+      'applicant.personalData.contactData.emailData.emailAddress': 'personalInfo.email',
+      'applicant.personalData.contactData.phoneData.phoneNumber': 'personalInfo.phone',
+      'application.jobRequisition.jobTitle': 'applicationInfo.appliedPosition',
+      'application.applicationDate': 'applicationInfo.applicationDate',
+      'application.applicationStatus': 'applicationInfo.applicationStatus'
+    },
+    lever: {
+      'name': 'personalInfo.fullName',
+      'emails[0]': 'personalInfo.email',
+      'phones[0].value': 'personalInfo.phone',
+      'applications[0].posting.text': 'applicationInfo.appliedPosition',
+      'applications[0].createdAt': 'applicationInfo.applicationDate',
+      'applications[0].stage': 'applicationInfo.applicationStatus'
+    }
+  };
+
   const toggleSource = (sourceId: string) => {
     setSelectedSources(prev =>
       prev.includes(sourceId)
