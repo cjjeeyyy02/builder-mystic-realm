@@ -295,12 +295,12 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         )}
       </div>
 
-      {/* Candidates List */}
-      <div className="space-y-4">
+      {/* Candidates Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`relative overflow-hidden bg-gradient-to-br from-white to-gray-50/30 border-0 shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 transform hover:-translate-y-1 ${
+            className={`relative overflow-hidden bg-gradient-to-br from-white to-gray-50/30 border-0 shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 transform hover:-translate-y-1 aspect-square ${
               candidate.isSelected
                 ? "ring-2 ring-blue-500/20 shadow-[0_8px_30px_rgba(59,130,246,0.15)] border-t-4 border-t-blue-500"
                 : ""
@@ -309,82 +309,72 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
 
-            <CardContent className="relative p-5">
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 items-start">
-                {/* Left Section - Candidate Details */}
-                <div className="lg:col-span-3">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Basic Info */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLICANT NAME</span>
-                        <div className="text-[15px] font-bold text-slate-900 font-heading leading-tight">{candidate.name}</div>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLIED POSITION</span>
-                        <div className="text-[12px] font-semibold text-slate-700 leading-snug">{candidate.position}</div>
-                      </div>
-                    </div>
+            <CardContent className="relative p-3 h-full flex flex-col justify-between">
+              {/* Top Section - Main Info */}
+              <div className="space-y-2">
+                {/* Applicant Name */}
+                <div className="space-y-1">
+                  <span className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLICANT NAME</span>
+                  <div className="text-[11px] font-bold text-slate-900 font-heading leading-tight line-clamp-2">{candidate.name}</div>
+                </div>
 
-                    {/* Application Details */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">JOB TYPE</span>
-                        <div className="text-[12px] font-medium text-slate-700">{candidate.workType}</div>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLIED</span>
-                        <div className="text-[12px] font-medium text-slate-700">{candidate.appliedDate}</div>
-                      </div>
-                    </div>
+                {/* Applied Position */}
+                <div className="space-y-1">
+                  <span className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLIED POSITION</span>
+                  <div className="text-[9px] font-semibold text-slate-700 leading-snug line-clamp-2">{candidate.position}</div>
+                </div>
 
-                    {/* Location & Period */}
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">COMPANY LOCATION</span>
-                        <div className="text-[12px] font-medium text-slate-700">{candidate.companyLocation}</div>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em] block">PERIOD</span>
-                        <div className="text-[11px] font-medium text-slate-600 leading-relaxed">{candidate.applicationStart} - {candidate.applicationEnd}</div>
-                      </div>
-                    </div>
+                {/* Job Type & Applied Date */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-1">
+                    <span className="text-[7px] font-bold text-slate-400 uppercase tracking-[0.08em] block">JOB TYPE</span>
+                    <div className="text-[8px] font-medium text-slate-700 line-clamp-1">{candidate.workType}</div>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[7px] font-bold text-slate-400 uppercase tracking-[0.08em] block">APPLIED</span>
+                    <div className="text-[8px] font-medium text-slate-700 line-clamp-1">{candidate.appliedDate}</div>
                   </div>
                 </div>
 
-                {/* Right Section - Status & Actions */}
-                <div className="lg:col-span-1 relative">
-                  {/* Elegant divider */}
-                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-200 to-transparent lg:block hidden"></div>
-
-                  <div className="lg:pl-5 space-y-2.5">
-                    {/* Status Badges */}
-                    <div className="space-y-2">
-                      <Badge
-                        variant="outline"
-                        className={`font-bold text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm ${getStatusBadgeClasses(candidate.status)}`}
-                      >
-                        Current Application Stage: {candidate.status === "reject" ? "rejected" : candidate.status}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className={`font-bold text-[9px] uppercase tracking-[0.08em] px-2.5 py-1.5 h-auto w-full justify-center rounded-md shadow-sm ${getApplicationStatusColor(candidate.applicationStatus)}`}
-                      >
-                        Status: {candidate.applicationStatus}
-                      </Badge>
-                    </div>
-
-                    {/* Action Button */}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="w-full text-[9px] font-bold uppercase tracking-[0.08em] border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md h-8 px-3 rounded-md transition-all duration-300 font-heading"
-                      onClick={() => handleViewProfile(candidate)}
-                    >
-                      VIEW PROFILE
-                    </Button>
-                  </div>
+                {/* Location & Period */}
+                <div className="space-y-1">
+                  <span className="text-[7px] font-bold text-slate-400 uppercase tracking-[0.08em] block">LOCATION</span>
+                  <div className="text-[8px] font-medium text-slate-700 line-clamp-1">{candidate.companyLocation}</div>
                 </div>
+
+                <div className="space-y-1">
+                  <span className="text-[7px] font-bold text-slate-400 uppercase tracking-[0.08em] block">PERIOD</span>
+                  <div className="text-[7px] font-medium text-slate-600 leading-tight line-clamp-1">{candidate.applicationStart} - {candidate.applicationEnd}</div>
+                </div>
+              </div>
+
+              {/* Bottom Section - Status & Actions */}
+              <div className="space-y-2 mt-2">
+                {/* Status Badges */}
+                <div className="space-y-1">
+                  <Badge
+                    variant="outline"
+                    className={`font-bold text-[6px] uppercase tracking-[0.08em] px-1.5 py-1 h-auto w-full justify-center rounded-sm shadow-sm ${getStatusBadgeClasses(candidate.status)}`}
+                  >
+                    STAGE: {candidate.status === "reject" ? "REJECTED" : candidate.status.toUpperCase()}
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className={`font-bold text-[6px] uppercase tracking-[0.08em] px-1.5 py-1 h-auto w-full justify-center rounded-sm shadow-sm ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                  >
+                    STATUS: {candidate.applicationStatus.toUpperCase()}
+                  </Badge>
+                </div>
+
+                {/* Action Button */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-[7px] font-bold uppercase tracking-[0.08em] border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md h-6 px-2 rounded-sm transition-all duration-300 font-heading"
+                  onClick={() => handleViewProfile(candidate)}
+                >
+                  VIEW PROFILE
+                </Button>
               </div>
             </CardContent>
           </Card>
