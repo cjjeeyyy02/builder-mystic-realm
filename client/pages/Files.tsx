@@ -213,27 +213,105 @@ export default function Files() {
   };
 
   const getFileIcon = (type: string) => {
-    const iconMap: { [key: string]: string } = {
-      PDF: "📄",
-      DOC: "���",
-      DOCX: "📝",
-      XLS: "📊",
-      XLSX: "��",
-      PPT: "📊",
-      PPTX: "📊",
-      TXT: "📄",
-      PNG: "🖼️",
-      JPG: "🖼️",
-      JPEG: "🖼️",
-      GIF: "🖼️",
-      ZIP: "���",
-      RAR: "📦",
-      MP4: "🎥",
-      AVI: "🎥",
-      MP3: "🎵",
-      WAV: "🎵",
-    };
-    return iconMap[type?.toUpperCase()] || "📄";
+    const fileType = type?.toUpperCase();
+
+    // Return the file type itself for display
+    return fileType || "FILE";
+  };
+
+  const getFileIconComponent = (type: string) => {
+    const fileType = type?.toUpperCase();
+    const iconClass = "w-12 h-12";
+
+    switch (fileType) {
+      case "PDF":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#ef4444" stroke="#dc2626" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#dc2626" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">PDF</text>
+          </svg>
+        );
+      case "DOC":
+      case "DOCX":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#2563eb" stroke="#1d4ed8" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#1d4ed8" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">DOC</text>
+          </svg>
+        );
+      case "XLS":
+      case "XLSX":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#059669" stroke="#047857" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#047857" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">XLS</text>
+          </svg>
+        );
+      case "PPT":
+      case "PPTX":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#ea580c" stroke="#c2410c" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#c2410c" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">PPT</text>
+          </svg>
+        );
+      case "PNG":
+      case "JPG":
+      case "JPEG":
+      case "GIF":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#7c3aed" stroke="#6d28d9" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#6d28d9" strokeWidth="2"/>
+            <circle cx="10" cy="12" r="2" fill="white"/>
+            <path d="M16 16l-4-4-4 4" stroke="white" strokeWidth="2" fill="none"/>
+            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">{fileType}</text>
+          </svg>
+        );
+      case "ZIP":
+      case "RAR":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#6b7280" stroke="#4b5563" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#4b5563" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">ZIP</text>
+          </svg>
+        );
+      case "MP4":
+      case "AVI":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#dc2626" stroke="#b91c1c" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#b91c1c" strokeWidth="2"/>
+            <polygon points="10,10 14,12 10,14" fill="white"/>
+            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">MP4</text>
+          </svg>
+        );
+      case "MP3":
+      case "WAV":
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#f59e0b" stroke="#d97706" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#d97706" strokeWidth="2"/>
+            <circle cx="9" cy="13" r="1" fill="white"/>
+            <circle cx="12" cy="11" r="1" fill="white"/>
+            <circle cx="15" cy="14" r="1" fill="white"/>
+            <text x="12" y="20" textAnchor="middle" className="text-xs font-bold fill-white">MP3</text>
+          </svg>
+        );
+      default:
+        return (
+          <svg className={iconClass} viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="#6b7280" stroke="#4b5563" strokeWidth="2"/>
+            <polyline points="14,2 14,8 20,8" fill="none" stroke="#4b5563" strokeWidth="2"/>
+            <text x="12" y="16" textAnchor="middle" className="text-xs font-bold fill-white">FILE</text>
+          </svg>
+        );
+    }
   };
 
   const selectOptions = {
