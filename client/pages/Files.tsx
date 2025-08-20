@@ -1125,10 +1125,6 @@ export default function Files() {
                               {/* All Badges in One Row */}
                               <div className="pt-2">
                                 <div className="flex items-center gap-2 flex-wrap justify-start">
-                                  {/* Category Badge - Light Pink */}
-                                  <span className="inline-block text-xs px-2 py-1 rounded-full font-medium bg-pink-100 text-pink-700">
-                                    {file.category.toUpperCase()}
-                                  </span>
                                   {/* Department Badge - Blue */}
                                   <span className="inline-block text-xs px-2 py-1 rounded-full font-medium bg-blue-100 text-blue-700">
                                     {file.department.toUpperCase()}
@@ -1147,7 +1143,12 @@ export default function Files() {
                                   <span
                                     className={`inline-block text-xs px-2 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
                                   >
-                                    {file.priority}
+                                    {file.priority === "VERY HIGH" ? "VERY HIGH" :
+                                     file.priority === "HIGH" ? "HIGH" :
+                                     file.priority === "MEDIUM" ? "MEDIUM" :
+                                     file.priority === "LOW" ? "LOW" :
+                                     file.priority === "VERY LOW" ? "VERY LOW" :
+                                     file.priority}
                                   </span>
                                 </div>
                               </div>
