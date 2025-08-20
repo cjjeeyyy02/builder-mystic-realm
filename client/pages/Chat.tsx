@@ -1012,6 +1012,9 @@ export default function Chat() {
                           <div>
                             <h3 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                               {isGroupChat ? selectedGroup?.name : selectedContact?.name}
+                              {isGroupChat && showGroupMenu && (
+                                <span className="ml-2 px-2 py-1 bg-green-500 text-white text-xs rounded">MENU OPEN</span>
+                              )}
                             </h3>
                             <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                               {isGroupChat
