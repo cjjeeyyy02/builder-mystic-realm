@@ -468,6 +468,7 @@ export default function ScreeningView() {
                     size="sm"
                     className="gap-1 text-white font-medium h-8 px-3"
                     style={{ backgroundColor: "#0065F8" }}
+                    onClick={() => handleEmailCandidate(candidate)}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.backgroundColor = "#0052C6")
                     }
@@ -476,7 +477,7 @@ export default function ScreeningView() {
                     }
                   >
                     <Send className="w-3 h-3" />
-                    Message
+                    Email
                   </Button>
                 </div>
               </div>
