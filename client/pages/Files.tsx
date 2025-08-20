@@ -33,7 +33,7 @@ export default function Files() {
       priority: "HIGH",
       status: "active",
       visibility: "Private",
-      thumbnail: "🎨",
+      thumbnail: "PNG",
       lastModified: "2 hours ago",
       sharedWith: ["Design Team", "Product Team"],
     },
