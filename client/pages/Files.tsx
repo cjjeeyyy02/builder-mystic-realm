@@ -63,7 +63,7 @@ export default function Files() {
       priority: "MEDIUM",
       status: "active",
       visibility: "Private",
-      thumbnail: "📦",
+      thumbnail: "ZIP",
       lastModified: "3 days ago",
       sharedWith: ["Marketing Team"],
     },
