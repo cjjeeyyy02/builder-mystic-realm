@@ -46,8 +46,15 @@ export default function FilterTabs() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncProgress, setSyncProgress] = useState(0);
   const [syncResults, setSyncResults] = useState<any>(null);
-  const [hireMode, setHireMode] = useState<"auto-sync" | "file-upload" | "individual">("auto-sync");
+  const [hireMode, setHireMode] = useState<"auto-sync" | "file-upload" | "individual" | "ats-integration">("auto-sync");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [showIntegrationConfig, setShowIntegrationConfig] = useState(false);
+  const [selectedATS, setSelectedATS] = useState<string>("");
+  const [atsConfig, setAtsConfig] = useState<any>({});
+  const [realTimeSyncEnabled, setRealTimeSyncEnabled] = useState(false);
+  const [syncInterval, setSyncInterval] = useState(15); // minutes
+  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null);
+  const [integrationStatus, setIntegrationStatus] = useState<{[key: string]: 'connected' | 'disconnected' | 'syncing'}>({});
   const [individualForm, setIndividualForm] = useState({
     name: "",
     email: "",
