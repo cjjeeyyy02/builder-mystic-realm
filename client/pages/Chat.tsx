@@ -1321,16 +1321,16 @@ export default function Chat() {
                   <Card className={`flex-shrink-0 rounded-none border-0 border-t transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                   }`}>
-                    <CardContent className="p-4">
-                      <div className="flex items-center space-x-3">
-                        <button className={`p-2 rounded-lg transition-colors ${
+                    <CardContent className="p-2">
+                      <div className="flex items-center space-x-2">
+                        <button className={`p-1 rounded transition-colors ${
                           isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                         }`}>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                           </svg>
                         </button>
-                        
+
                         <div className="flex-1 relative">
                           <input
                             type="text"
@@ -1339,8 +1339,8 @@ export default function Chat() {
                             onFocus={handleInputFocus}
                             onBlur={handleInputBlur}
                             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                            placeholder="Type your message..."
-                            className={`w-full px-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                            placeholder="Type message..."
+                            className={`w-full px-3 py-1.5 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors duration-300 text-xs ${
                               isDarkMode
                                 ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
                                 : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
@@ -1351,9 +1351,9 @@ export default function Chat() {
                         <button
                           onClick={handleSendMessage}
                           disabled={!message.trim()}
-                          className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+                          className="p-1.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                           </svg>
                         </button>
