@@ -1366,10 +1366,10 @@ export default function Chat() {
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
                     <div className={`w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center ${
-                      isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
+                      isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                     }`}>
                       <svg
-                        className={`w-8 h-8 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}
+                        className={`w-8 h-8 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
