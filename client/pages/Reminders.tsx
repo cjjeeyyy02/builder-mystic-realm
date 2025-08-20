@@ -1604,7 +1604,7 @@ export default function Reminders() {
                   !reminderForm.shareFile ||
                   !reminderForm.repeat
                 }
-                className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 size="sm"
               >
                 {reminderForm.id &&
