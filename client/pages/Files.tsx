@@ -1125,23 +1125,12 @@ export default function Files() {
                               {/* All Badges in One Row */}
                               <div className="pt-2">
                                 <div className="flex items-center gap-2 flex-wrap justify-start">
-                                  <span
-                                    className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
-                                      file.department === "Design"
-                                        ? "bg-purple-100 text-purple-800"
-                                        : file.department === "Finance"
-                                          ? "bg-green-100 text-green-800"
-                                          : file.department === "Marketing"
-                                            ? "bg-blue-100 text-blue-800"
-                                            : file.department === "Engineering"
-                                              ? "bg-orange-100 text-orange-800"
-                                              : file.department === "HR"
-                                                ? "bg-pink-100 text-pink-800"
-                                                : isDarkMode
-                                                  ? "bg-gray-700 text-gray-300"
-                                                  : "bg-gray-100 text-gray-600"
-                                    }`}
-                                  >
+                                  {/* Category Badge - Light Pink */}
+                                  <span className="inline-block text-xs px-2 py-1 rounded-full font-medium bg-pink-100 text-pink-700">
+                                    {file.category.toUpperCase()}
+                                  </span>
+                                  {/* Department Badge - Blue */}
+                                  <span className="inline-block text-xs px-2 py-1 rounded-full font-medium bg-blue-100 text-blue-700">
                                     {file.department.toUpperCase()}
                                   </span>
                                   <span
