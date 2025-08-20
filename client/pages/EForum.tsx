@@ -349,7 +349,7 @@ export default function EForum() {
 
                 <button
                   onClick={() => handleComment(post.id)}
-                  className="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-all duration-200 hover:bg-blue-50 px-2 py-1 rounded-lg"
+                  className="flex items-center space-x-2 text-gray-500 hover:text-emerald-500 transition-all duration-200 hover:bg-emerald-50 px-2 py-1 rounded-lg"
                 >
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center">
                     <svg
