@@ -613,7 +613,7 @@ export default function Reminders() {
                     </div>
                     <Button
                       onClick={() => setShowCreateModal(true)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
                     >
                       <svg
                         className="w-4 h-4 mr-2"
