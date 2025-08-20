@@ -845,11 +845,11 @@ export default function Chat() {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium text-xs">{currentUser.name}</h3>
-                        <p className="text-blue-100 text-xs">{currentUser.role}</p>
+                        <p className="text-emerald-100 text-xs">{currentUser.role}</p>
                       </div>
                       <div className="flex items-center space-x-1">
                         <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                        <span className="text-blue-100 text-xs">{currentUser.status}</span>
+                        <span className="text-emerald-100 text-xs">{currentUser.status}</span>
                       </div>
                     </div>
                   </div>
