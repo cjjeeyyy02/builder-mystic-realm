@@ -422,7 +422,7 @@ export default function Reminders() {
       <Layout>
         <div
           className={`min-h-screen transition-colors duration-300 ${
-            isDarkMode ? "bg-gray-900" : "bg-gray-50"
+            isDarkMode ? "bg-emerald-900" : "bg-emerald-50"
           }`}
         >
           {/* Back to Dashboard Button */}
