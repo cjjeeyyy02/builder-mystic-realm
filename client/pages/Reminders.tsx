@@ -547,7 +547,7 @@ export default function Reminders() {
                                 }}
                                 className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
                                   activeFilter === option.value
-                                    ? isDarkMode ? "bg-gray-700 text-blue-400" : "bg-blue-50 text-blue-600"
+                                    ? isDarkMode ? "bg-emerald-700 text-emerald-400" : "bg-emerald-50 text-emerald-600"
                                     : isDarkMode ? "text-gray-200" : "text-gray-700"
                                 }`}
                               >
