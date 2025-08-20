@@ -904,6 +904,300 @@ export default function FilterTabs() {
                           </CardContent>
                         </Card>
 
+                        {/* Field Mapping Configuration */}
+                        <Card>
+                          <CardContent className="p-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <div>
+                                <h4 className="font-semibold">Intelligent Field Mapping</h4>
+                                <p className="text-sm text-gray-600">Map external system fields to EMS data structure</p>
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setShowFieldMapping(!showFieldMapping)}
+                              >
+                                {showFieldMapping ? 'Hide' : 'Configure'} Mapping
+                              </Button>
+                            </div>
+
+                            {showFieldMapping && (
+                              <div className="space-y-4 mt-4 border-t pt-4">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                  {/* EMS Data Structure */}
+                                  <div>
+                                    <h5 className="font-medium mb-3">EMS Data Structure</h5>
+                                    <div className="space-y-2 max-h-64 overflow-y-auto">
+                                      {Object.entries(emsFieldStructure).map(([section, fields]) => (
+                                        <div key={section} className="border rounded p-2">
+                                          <h6 className="font-medium text-sm capitalize mb-2">{section.replace(/([A-Z])/g, ' $1')}</h6>
+                                          {Object.entries(fields).map(([fieldName, fieldConfig]: [string, any]) => (
+                                            <div key={fieldName} className="text-xs text-gray-600 ml-2">
+                                              • {fieldName} ({fieldConfig.type})
+                                              {fieldConfig.required && <span className="text-red-500">*</span>}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  {/* Auto-Mapping Preview */}
+                                  <div>
+                                    <h5 className="font-medium mb-3">Auto-Mapping Preview</h5>
+                                    <div className="text-sm space-y-2">
+                                      <div className="p-2 bg-green-50 rounded">
+                                        <div className="text-green-800 font-medium">✓ Automatically Mapped Fields</div>
+                                        <div className="text-green-600 text-xs mt-1">
+                                          • External "name" → EMS "personalInfo.fullName"<br/>
+                                          • External "email" → EMS "personalInfo.email"<br/>
+                                          • External "phone" → EMS "personalInfo.phone"<br/>
+                                          • External "position" → EMS "applicationInfo.appliedPosition"
+                                        </div>
+                                      </div>
+                                      <div className="p-2 bg-yellow-50 rounded">
+                                        <div className="text-yellow-800 font-medium">⚠ Requires Manual Mapping</div>
+                                        <div className="text-yellow-600 text-xs mt-1">
+                                          • Custom fields from external system<br/>
+                                          • Non-standard field names<br/>
+                                          • Complex nested structures
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </CardContent>
+                        </Card>
+
+                        {/* GDPR Compliance Settings */}
+                        <Card>
+                          <CardContent className="p-4">
+                            <h4 className="font-semibold mb-4">GDPR & Data Privacy Compliance</h4>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                              <div className="space-y-4">
+                                <div>
+                                  <label className="text-sm font-medium">Data Retention Period (days)</label>
+                                  <Select
+                                    value={gdprSettings.dataRetentionDays.toString()}
+                                    onValueChange={(val) => setGdprSettings(prev => ({...prev, dataRetentionDays: parseInt(val)}))}
+                                  >
+                                    <SelectTrigger>
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="90">90 days</SelectItem>
+                                      <SelectItem value="180">180 days</SelectItem>
+                                      <SelectItem value="365">1 year</SelectItem>
+                                      <SelectItem value="730">2 years</SelectItem>
+                                      <SelectItem value="1095">3 years</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <div className="text-sm font-medium">Require Explicit Consent</div>
+                                    <div className="text-xs text-gray-600">Enforce GDPR consent before processing</div>
+                                  </div>
+                                  <Switch
+                                    checked={gdprSettings.consentRequired}
+                                    onCheckedChange={(checked) => setGdprSettings(prev => ({...prev, consentRequired: checked}))}
+                                  />
+                                </div>
+
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <div className="text-sm font-medium">Allow Data Transfer</div>
+                                    <div className="text-xs text-gray-600">Enable cross-border data transfers</div>
+                                  </div>
+                                  <Switch
+                                    checked={gdprSettings.allowDataTransfer}
+                                    onCheckedChange={(checked) => setGdprSettings(prev => ({...prev, allowDataTransfer: checked}))}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="space-y-3">
+                                <div className="p-3 bg-blue-50 rounded">
+                                  <h5 className="font-medium text-blue-800 text-sm">Compliance Features</h5>
+                                  <ul className="text-xs text-blue-600 mt-2 space-y-1">
+                                    <li>✓ Right to be forgotten (data deletion)</li>
+                                    <li>✓ Data portability (export candidate data)</li>
+                                    <li>✓ Consent management & tracking</li>
+                                    <li>✓ Automated data anonymization</li>
+                                    <li>✓ Audit trail for all data operations</li>
+                                  </ul>
+                                </div>
+
+                                <div className="p-3 bg-green-50 rounded">
+                                  <h5 className="font-medium text-green-800 text-sm">Data Protection</h5>
+                                  <ul className="text-xs text-green-600 mt-2 space-y-1">
+                                    <li>✓ End-to-end encryption in transit</li>
+                                    <li>✓ Encrypted storage at rest</li>
+                                    <li>✓ Access controls & role-based permissions</li>
+                                    <li>✓ Regular security audits</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Duplicate Detection & Validation */}
+                        <Card>
+                          <CardContent className="p-4">
+                            <h4 className="font-semibold mb-4">Duplicate Detection & Data Validation</h4>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                              <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <div className="text-sm font-medium">Enable Duplicate Detection</div>
+                                    <div className="text-xs text-gray-600">Prevent duplicate candidate profiles</div>
+                                  </div>
+                                  <Switch
+                                    checked={duplicateDetection.enabled}
+                                    onCheckedChange={(checked) => setDuplicateDetection(prev => ({...prev, enabled: checked}))}
+                                  />
+                                </div>
+
+                                {duplicateDetection.enabled && (
+                                  <>
+                                    <div>
+                                      <label className="text-sm font-medium">Match Criteria</label>
+                                      <div className="space-y-2 mt-2">
+                                        {['email', 'phone', 'fullName'].map((criteria) => (
+                                          <label key={criteria} className="flex items-center space-x-2">
+                                            <input
+                                              type="checkbox"
+                                              checked={duplicateDetection.matchCriteria.includes(criteria)}
+                                              onChange={(e) => {
+                                                const newCriteria = e.target.checked
+                                                  ? [...duplicateDetection.matchCriteria, criteria]
+                                                  : duplicateDetection.matchCriteria.filter(c => c !== criteria);
+                                                setDuplicateDetection(prev => ({...prev, matchCriteria: newCriteria}));
+                                              }}
+                                              className="rounded"
+                                            />
+                                            <span className="text-sm capitalize">{criteria}</span>
+                                          </label>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <label className="text-sm font-medium">Action on Duplicate</label>
+                                      <Select
+                                        value={duplicateDetection.action}
+                                        onValueChange={(val) => setDuplicateDetection(prev => ({...prev, action: val}))}
+                                      >
+                                        <SelectTrigger>
+                                          <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                          <SelectItem value="skip">Skip duplicate</SelectItem>
+                                          <SelectItem value="update">Update existing</SelectItem>
+                                          <SelectItem value="merge">Merge data</SelectItem>
+                                        </SelectContent>
+                                      </Select>
+                                    </div>
+                                  </>
+                                )}
+                              </div>
+
+                              <div className="space-y-4">
+                                <h5 className="font-medium">Validation Rules</h5>
+                                <div className="space-y-3">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm">Email Format Validation</span>
+                                    <Switch
+                                      checked={validationRules.emailFormat}
+                                      onCheckedChange={(checked) => setValidationRules(prev => ({...prev, emailFormat: checked}))}
+                                    />
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm">Phone Format Validation</span>
+                                    <Switch
+                                      checked={validationRules.phoneFormat}
+                                      onCheckedChange={(checked) => setValidationRules(prev => ({...prev, phoneFormat: checked}))}
+                                    />
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm">Custom Validation Rules</span>
+                                    <Switch
+                                      checked={validationRules.customValidation}
+                                      onCheckedChange={(checked) => setValidationRules(prev => ({...prev, customValidation: checked}))}
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="p-3 bg-gray-50 rounded">
+                                  <h6 className="font-medium text-sm mb-2">Required Fields</h6>
+                                  <div className="flex flex-wrap gap-2">
+                                    {validationRules.requiredFields.map((field) => (
+                                      <Badge key={field} variant="secondary" className="text-xs">
+                                        {field}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Career Page Integration */}
+                        <Card>
+                          <CardContent className="p-4">
+                            <h4 className="font-semibold mb-4">Internal Career Page Integration</h4>
+                            <div className="space-y-4">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <div className="text-sm font-medium">Auto-Import from Career Page</div>
+                                  <div className="text-xs text-gray-600">Automatically import applications from company career portal</div>
+                                </div>
+                                <Switch
+                                  checked={careerPageIntegration.enabled}
+                                  onCheckedChange={(checked) => setCareerPageIntegration(prev => ({...prev, enabled: checked}))}
+                                />
+                              </div>
+
+                              {careerPageIntegration.enabled && (
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                  <div>
+                                    <label className="text-sm font-medium">Career Page API Endpoint</label>
+                                    <Input
+                                      value={careerPageIntegration.endpoint}
+                                      onChange={(e) => setCareerPageIntegration(prev => ({...prev, endpoint: e.target.value}))}
+                                      placeholder="https://careers.company.com/api/applications"
+                                      className="mt-1"
+                                    />
+                                  </div>
+
+                                  <div>
+                                    <label className="text-sm font-medium">Sync Frequency</label>
+                                    <Select
+                                      value={careerPageIntegration.syncFrequency}
+                                      onValueChange={(val) => setCareerPageIntegration(prev => ({...prev, syncFrequency: val}))}
+                                    >
+                                      <SelectTrigger>
+                                        <SelectValue />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectItem value="realtime">Real-time</SelectItem>
+                                        <SelectItem value="hourly">Every hour</SelectItem>
+                                        <SelectItem value="daily">Daily</SelectItem>
+                                        <SelectItem value="weekly">Weekly</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+
                         {/* ATS/HRMS Systems Grid */}
                         <div>
                           <h4 className="font-semibold mb-4">Available ATS/HRMS Systems</h4>
