@@ -530,6 +530,14 @@ export default function Chat() {
   };
 
   const handleDeleteGroup = (groupId: string) => {
+    // Check if user has admin role (Admin-only action)
+    const userRole = "admin"; // This should come from your auth context or user state
+
+    if (userRole !== "admin") {
+      alert("Access denied. Only Admin can delete groups.");
+      return;
+    }
+
     if (window.confirm('Are you sure you want to delete this group? This action cannot be undone.')) {
       setTeamGroups(prev => prev.filter(group => group.id !== groupId));
 
@@ -544,6 +552,24 @@ export default function Chat() {
       }
 
       console.log(`Group ${groupId} has been deleted`);
+
+      // Show system message about group deletion
+      const systemMessage = {
+        id: Date.now(),
+        sender: "system",
+        message: `Group has been permanently deleted by admin.`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isOwn: false,
+      };
+
+      // If there are other groups, show the message in the first available group
+      const remainingGroups = teamGroups.filter(group => group.id !== groupId);
+      if (remainingGroups.length > 0) {
+        setChatMessages(prev => ({
+          ...prev,
+          [remainingGroups[0].id]: [...(prev[remainingGroups[0].id as keyof typeof prev] || []), systemMessage]
+        }));
+      }
     }
   };
 
