@@ -1134,12 +1134,22 @@ export default function Chat() {
                           {isGroupChat && (
                             <div className="relative">
                               <button
-                                onClick={() => setShowGroupMenu(!showGroupMenu)}
-                                className={`p-2 rounded-lg transition-colors ${
-                                  isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  console.log('Three dots clicked!', showGroupMenu);
+                                  setShowGroupMenu(!showGroupMenu);
+                                }}
+                                className={`p-3 rounded-lg transition-colors border-2 ${
+                                  showGroupMenu
+                                    ? 'bg-blue-500 text-white border-blue-500'
+                                    : isDarkMode
+                                      ? 'text-gray-300 hover:text-white hover:bg-gray-600 border-gray-600 hover:border-gray-500'
+                                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 border-gray-300 hover:border-gray-400'
                                 }`}
+                                title="Group Options"
                               >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                                 </svg>
                               </button>
