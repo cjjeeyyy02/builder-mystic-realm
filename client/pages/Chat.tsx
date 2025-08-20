@@ -1385,7 +1385,7 @@ export default function Chat() {
                     <h3 className={`text-sm font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       Welcome to Chat Center
                     </h3>
-                    <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
                       Select a conversation to start messaging
                     </p>
                   </div>
