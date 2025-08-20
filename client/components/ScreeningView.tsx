@@ -199,6 +199,7 @@ function getStatusIcon(status: string) {
 }
 
 export default function ScreeningView() {
+  const navigate = useNavigate();
   const [candidates, setCandidates] = useState<ScreeningCandidate[]>(screeningCandidates);
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
