@@ -903,7 +903,7 @@ export default function Chat() {
                                   )}
                                 </div>
                                 <p className={`text-xs truncate ${
-                                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                  isDarkMode ? 'text-emerald-400' : 'text-emerald-700'
                                 }`}>
                                   {contact.role}
                                 </p>
