@@ -522,11 +522,30 @@ export default function Chat() {
 
   const handleMuteGroup = (groupId: string) => {
     const isMuted = groupMutedStatus[groupId] || false;
+    const newMutedState = !isMuted;
+
     setGroupMutedStatus(prev => ({
       ...prev,
-      [groupId]: !isMuted
+      [groupId]: newMutedState
     }));
-    console.log(`Group ${groupId} is now ${!isMuted ? 'muted' : 'unmuted'}`);
+
+    // Show system message about mute status change
+    const systemMessage = {
+      id: Date.now(),
+      sender: "system",
+      message: newMutedState
+        ? `You have muted this group. You won't receive notifications.`
+        : `You have unmuted this group. You will now receive notifications.`,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      isOwn: false,
+    };
+
+    setChatMessages(prev => ({
+      ...prev,
+      [groupId]: [...(prev[groupId as keyof typeof prev] || []), systemMessage]
+    }));
+
+    console.log(`Group ${groupId} is now ${newMutedState ? 'muted' : 'unmuted'}`);
   };
 
   const handleDeleteGroup = (groupId: string) => {
