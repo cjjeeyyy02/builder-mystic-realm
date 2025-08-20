@@ -1295,7 +1295,7 @@ export default function Reminders() {
                     value={reminderForm.id}
                     readOnly
                     className={`w-full px-2 py-2 border rounded-md text-sm ${
-                      isDarkMode ? "bg-gray-700 border-gray-600 text-gray-400" : "bg-gray-50 border-gray-300 text-gray-500"
+                      isDarkMode ? "bg-emerald-700 border-emerald-600 text-emerald-300" : "bg-gray-50 border-gray-300 text-gray-500"
                     }`}
                     placeholder="Auto-generated"
                   />
