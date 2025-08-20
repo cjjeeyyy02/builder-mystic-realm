@@ -785,14 +785,6 @@ export default function ScreeningView() {
                 <Button variant="outline" onClick={() => setShowResumeModal(false)} className="text-xs sm:text-sm">
                   Close
                 </Button>
-                <Button
-                  variant="outline"
-                  className="text-blue-600 border-blue-200 hover:bg-blue-50 text-xs sm:text-sm"
-                  onClick={() => handleDownloadResume(selectedCandidate)}
-                >
-                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                  Download Resume
-                </Button>
                 <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm">
                   <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Approve Candidate
