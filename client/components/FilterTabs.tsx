@@ -55,6 +55,32 @@ export default function FilterTabs() {
   const [syncInterval, setSyncInterval] = useState(15); // minutes
   const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null);
   const [integrationStatus, setIntegrationStatus] = useState<{[key: string]: 'connected' | 'disconnected' | 'syncing'}>({});
+  const [showFieldMapping, setShowFieldMapping] = useState(false);
+  const [fieldMapping, setFieldMapping] = useState<{[key: string]: any}>({});
+  const [duplicateDetection, setDuplicateDetection] = useState({
+    enabled: true,
+    matchCriteria: ['email', 'phone', 'fullName'],
+    action: 'skip' // 'skip', 'update', 'merge'
+  });
+  const [gdprSettings, setGdprSettings] = useState({
+    dataRetentionDays: 365,
+    consentRequired: true,
+    anonymizeAfterDays: 1095,
+    dataProcessingPurpose: 'recruitment',
+    allowDataTransfer: false
+  });
+  const [validationRules, setValidationRules] = useState({
+    emailFormat: true,
+    phoneFormat: true,
+    requiredFields: ['fullName', 'email'],
+    customValidation: true
+  });
+  const [careerPageIntegration, setCareerPageIntegration] = useState({
+    enabled: false,
+    endpoint: '',
+    syncFrequency: 'hourly',
+    autoProcess: true
+  });
   const [individualForm, setIndividualForm] = useState({
     name: "",
     email: "",
