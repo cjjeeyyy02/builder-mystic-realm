@@ -922,8 +922,8 @@ export default function Chat() {
 
                   {/* Show Team Groups for ALL and TEAMS tabs */}
                   {(activeTab === "ALL" || activeTab === "TEAMS") && (
-                    <div className="p-2">
-                      <h3 className={`px-2 py-2 text-sm font-semibold ${
+                    <div className="p-1">
+                      <h3 className={`px-1 py-1 text-xs font-medium ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         Team Groups
@@ -932,9 +932,9 @@ export default function Chat() {
                         {teamGroups.map((group) => (
                           <Card
                             key={group.id}
-                            className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                            className={`cursor-pointer transition-all duration-200 hover:shadow-sm ${
                               selectedChat === group.id
-                                ? "bg-purple-50 border-purple-200 ring-2 ring-purple-500 ring-opacity-20"
+                                ? "bg-purple-50 border-purple-200 ring-1 ring-purple-500 ring-opacity-20"
                                 : isDarkMode
                                   ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
                                   : "bg-white border-gray-200 hover:bg-gray-50"
@@ -944,11 +944,11 @@ export default function Chat() {
                               setShowMobileSidebar(false);
                             }}
                           >
-                            <CardContent className="p-3">
-                              <div className="flex items-center space-x-3">
-                                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
+                            <CardContent className="p-2">
+                              <div className="flex items-center space-x-2">
+                                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
                                   <svg
-                                    className="w-6 h-6 text-white"
+                                    className="w-4 h-4 text-white"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -963,23 +963,20 @@ export default function Chat() {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center justify-between">
-                                    <h4 className={`font-semibold truncate flex items-center ${
+                                    <h4 className={`font-medium truncate flex items-center text-xs ${
                                       isDarkMode ? 'text-white' : 'text-gray-900'
                                     }`}>
                                       {group.name}
                                       {groupMutedStatus[group.id] && (
-                                        <svg className="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3 h-3 ml-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                                         </svg>
                                       )}
                                     </h4>
-                                    <div className="flex items-center space-x-1">
-                                      {/* Three dots removed from team groups cards */}
-                                    </div>
                                   </div>
                                   <div className="flex items-center justify-between">
-                                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                       {group.type} • {group.members} Members
                                     </p>
                                     <Button
@@ -990,15 +987,13 @@ export default function Chat() {
                                         handleEnterGroup(group.id);
                                         setShowMobileSidebar(false);
                                       }}
-                                      className="text-xs px-2 py-1 h-6"
+                                      className="text-xs px-1 py-0.5 h-5"
                                     >
-                                      ENTER GROUP
+                                      ENTER
                                     </Button>
                                   </div>
                                 </div>
                               </div>
-
-                              {/* Sidebar group context menu removed */}
                             </CardContent>
                           </Card>
                         ))}
