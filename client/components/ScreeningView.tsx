@@ -254,7 +254,7 @@ export default function ScreeningView() {
           <div className="text-2xl font-bold text-yellow-600">
             {candidates.filter(c => c.status === "queue").length}
           </div>
-          <div className="text-sm text-muted-foreground">In Queue</div>
+          <div className="text-sm text-muted-foreground">Queued</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-gray-600">
