@@ -757,10 +757,10 @@ export default function Chat() {
                     <input
                       type="text"
                       placeholder="Search conversations..."
-                      className={`w-full pl-10 pr-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+                      className={`w-full pl-10 pr-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors duration-300 ${
                         isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400'
-                          : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                          ? 'bg-emerald-700 border-emerald-600 text-white placeholder-emerald-300'
+                          : 'bg-white border-emerald-300 text-gray-900 placeholder-emerald-600'
                       }`}
                     />
                   </div>
