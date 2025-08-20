@@ -539,8 +539,8 @@ export default function Files() {
               <Card
                 className={`w-full max-w-lg max-h-[90vh] shadow-xl rounded-lg overflow-hidden ${
                   isDarkMode
-                    ? "bg-gray-800 border-gray-700"
-                    : "bg-white border-gray-200"
+                    ? "bg-emerald-800 border-emerald-700"
+                    : "bg-white border-emerald-200"
                 }`}
               >
                 {/* Header */}
