@@ -356,6 +356,140 @@ export default function FilterTabs() {
     }
   };
 
+  // Enhanced Validation Functions
+  const validateFieldData = (fieldPath: string, value: any) => {
+    const pathParts = fieldPath.split('.');
+    const section = emsFieldStructure[pathParts[0] as keyof typeof emsFieldStructure];
+    const field = section?.[pathParts[1] as keyof typeof section];
+
+    if (!field) return { valid: false, error: 'Field not found in EMS structure' };
+
+    // Required field validation
+    if (field.required && (!value || value === '')) {
+      return { valid: false, error: 'Required field is empty' };
+    }
+
+    // Type validation
+    if (value && field.validation) {
+      if (field.type === 'email' && !field.validation.test(value)) {
+        return { valid: false, error: 'Invalid email format' };
+      }
+      if (field.type === 'phone' && !field.validation.test(value)) {
+        return { valid: false, error: 'Invalid phone format' };
+      }
+      if (field.type === 'string' && !field.validation.test(value)) {
+        return { valid: false, error: 'Invalid string format' };
+      }
+      if (field.type === 'enum' && !field.validation.includes(value)) {
+        return { valid: false, error: `Value must be one of: ${field.validation.join(', ')}` };
+      }
+    }
+
+    return { valid: true, error: null };
+  };
+
+  const detectDuplicates = async (candidateData: any) => {
+    const { matchCriteria } = duplicateDetection;
+    const duplicates = [];
+
+    // Simulate existing candidate database check
+    const existingCandidates = [
+      { id: 1, email: 'john.doe@example.com', phone: '+1234567890', fullName: 'John Doe' },
+      { id: 2, email: 'jane.smith@example.com', phone: '+1234567891', fullName: 'Jane Smith' }
+    ];
+
+    for (const existing of existingCandidates) {
+      let matchCount = 0;
+      let matchDetails = [];
+
+      if (matchCriteria.includes('email') && candidateData.personalInfo?.email === existing.email) {
+        matchCount++;
+        matchDetails.push('email');
+      }
+      if (matchCriteria.includes('phone') && candidateData.personalInfo?.phone === existing.phone) {
+        matchCount++;
+        matchDetails.push('phone');
+      }
+      if (matchCriteria.includes('fullName') && candidateData.personalInfo?.fullName === existing.fullName) {
+        matchCount++;
+        matchDetails.push('fullName');
+      }
+
+      if (matchCount > 0) {
+        duplicates.push({
+          existingId: existing.id,
+          matchedFields: matchDetails,
+          confidence: (matchCount / matchCriteria.length) * 100
+        });
+      }
+    }
+
+    return duplicates;
+  };
+
+  const mapExternalToEMS = (externalData: any, systemId: string) => {
+    const mapping = defaultFieldMappings[systemId as keyof typeof defaultFieldMappings] || {};
+    const mappedData: any = {};
+
+    Object.entries(mapping).forEach(([externalPath, emsPath]) => {
+      const value = getNestedValue(externalData, externalPath);
+      if (value !== undefined) {
+        setNestedValue(mappedData, emsPath, value);
+      }
+    });
+
+    // Add GDPR compliance data
+    mappedData.complianceInfo = {
+      gdprConsent: gdprSettings.consentRequired,
+      dataProcessingConsent: true,
+      consentDate: new Date().toISOString(),
+      dataRetentionPeriod: gdprSettings.dataRetentionDays,
+      rightToWithdraw: true
+    };
+
+    return mappedData;
+  };
+
+  const getNestedValue = (obj: any, path: string) => {
+    return path.split(/[\.\[\]]+/).filter(Boolean).reduce((current, key) => {
+      return current && current[key] !== undefined ? current[key] : undefined;
+    }, obj);
+  };
+
+  const setNestedValue = (obj: any, path: string, value: any) => {
+    const keys = path.split('.');
+    let current = obj;
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      if (!(keys[i] in current)) {
+        current[keys[i]] = {};
+      }
+      current = current[keys[i]];
+    }
+
+    current[keys[keys.length - 1]] = value;
+  };
+
+  const processGDPRCompliance = async (candidateData: any) => {
+    // Ensure GDPR compliance
+    if (gdprSettings.consentRequired && !candidateData.complianceInfo?.gdprConsent) {
+      throw new Error('GDPR consent is required but not provided');
+    }
+
+    // Set data retention schedule
+    const retentionDate = new Date();
+    retentionDate.setDate(retentionDate.getDate() + gdprSettings.dataRetentionDays);
+
+    candidateData.complianceInfo = {
+      ...candidateData.complianceInfo,
+      dataRetentionUntil: retentionDate.toISOString(),
+      processingPurpose: gdprSettings.dataProcessingPurpose,
+      canTransferData: gdprSettings.allowDataTransfer
+    };
+
+    return candidateData;
+  };
+
   const startSync = async () => {
     setIsSyncing(true);
     setSyncProgress(0);
