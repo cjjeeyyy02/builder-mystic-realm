@@ -752,7 +752,7 @@ export default function Files() {
                       Upload File *
                     </label>
                     <div className={`border-2 border-dashed rounded p-2 text-center ${
-                      isDarkMode ? "border-gray-600 bg-gray-700" : "border-gray-300 bg-gray-50"
+                      isDarkMode ? "border-emerald-600 bg-emerald-700" : "border-emerald-300 bg-emerald-50"
                     }`}>
                       <input
                         type="file"
