@@ -859,13 +859,13 @@ export default function Chat() {
                 <div className="flex-1 overflow-y-auto">
                   {/* Show contacts for ALL and NOT tabs */}
                   {(activeTab === "ALL" || activeTab === "NOT") && (
-                    <div className="p-2 space-y-1">
+                    <div className="p-1 space-y-1">
                       {contactList.map((contact) => (
                         <Card
                           key={contact.id}
-                          className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                          className={`cursor-pointer transition-all duration-200 hover:shadow-sm ${
                             selectedChat === contact.id
-                              ? "bg-blue-50 border-blue-200 ring-2 ring-blue-500 ring-opacity-20"
+                              ? "bg-blue-50 border-blue-200 ring-1 ring-blue-500 ring-opacity-20"
                               : isDarkMode
                                 ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
                                 : "bg-white border-gray-200 hover:bg-gray-50"
@@ -875,34 +875,34 @@ export default function Chat() {
                             setShowMobileSidebar(false);
                           }}
                         >
-                          <CardContent className="p-3">
-                            <div className="flex items-center space-x-3">
+                          <CardContent className="p-2">
+                            <div className="flex items-center space-x-2">
                               <div className="relative">
                                 <div
-                                  className={`w-12 h-12 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center shadow-md`}
+                                  className={`w-8 h-8 ${getAvatarColor(contact.name)} rounded-full flex items-center justify-center shadow-sm`}
                                 >
-                                  <span className="text-white text-sm font-bold">
+                                  <span className="text-white text-xs font-bold">
                                     {contact.avatar}
                                   </span>
                                 </div>
                                 <div
-                                  className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(contact.status)} rounded-full border-2 border-white`}
+                                  className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 ${getStatusColor(contact.status)} rounded-full border border-white`}
                                 ></div>
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
-                                  <h4 className={`font-semibold truncate ${
+                                  <h4 className={`font-medium truncate text-xs ${
                                     isDarkMode ? 'text-white' : 'text-gray-900'
                                   }`}>
                                     {contact.name}
                                   </h4>
                                   {contact.hasNewMessage && (
                                     <div className="flex items-center space-x-1">
-                                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                      <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
                                     </div>
                                   )}
                                 </div>
-                                <p className={`text-sm truncate ${
+                                <p className={`text-xs truncate ${
                                   isDarkMode ? 'text-gray-400' : 'text-gray-600'
                                 }`}>
                                   {contact.role}
