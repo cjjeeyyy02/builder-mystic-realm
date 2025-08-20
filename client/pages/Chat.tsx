@@ -934,10 +934,10 @@ export default function Chat() {
                             key={group.id}
                             className={`cursor-pointer transition-all duration-200 hover:shadow-sm ${
                               selectedChat === group.id
-                                ? "bg-purple-50 border-purple-200 ring-1 ring-purple-500 ring-opacity-20"
+                                ? "bg-emerald-50 border-emerald-200 ring-1 ring-emerald-500 ring-opacity-20"
                                 : isDarkMode
-                                  ? "bg-gray-700 border-gray-600 hover:bg-gray-650"
-                                  : "bg-white border-gray-200 hover:bg-gray-50"
+                                  ? "bg-emerald-700 border-emerald-600 hover:bg-emerald-650"
+                                  : "bg-white border-emerald-200 hover:bg-emerald-50"
                             }`}
                             onClick={() => {
                               handleEnterGroup(group.id);
