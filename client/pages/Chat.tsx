@@ -1324,7 +1324,7 @@ export default function Chat() {
                     <CardContent className="p-2">
                       <div className="flex items-center space-x-2">
                         <button className={`p-1 rounded transition-colors ${
-                          isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                          isDarkMode ? 'text-emerald-400 hover:text-emerald-300 hover:bg-emerald-700' : 'text-emerald-600 hover:text-emerald-800 hover:bg-emerald-100'
                         }`}>
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
