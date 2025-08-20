@@ -390,7 +390,7 @@ export default function ScreeningView() {
                     onClick={() => handleStatusChange(candidate.id, "queue")}
                   >
                     <Timer className="w-3 h-3" />
-                    Queued
+                    Queue
                   </Button>
                   <Button
                     variant={
