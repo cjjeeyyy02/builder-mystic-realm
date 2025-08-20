@@ -458,8 +458,8 @@ export default function Reminders() {
           <Card
             className={`rounded-none border-0 border-b transition-colors duration-300 ${
               isDarkMode
-                ? "bg-gray-800 border-gray-700"
-                : "bg-white border-gray-200"
+                ? "bg-emerald-800 border-emerald-700"
+                : "bg-white border-emerald-200"
             }`}
           >
             <CardContent className="p-6">
