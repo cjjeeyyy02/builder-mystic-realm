@@ -737,31 +737,18 @@ export default function Chat() {
                   </div>
                 </div>
 
-                <div className="flex space-x-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedChat("engineering");
-                      setActiveTab("TEAMS");
-                    }}
-                    className="bg-green-600 hover:bg-green-700 text-white shadow-md"
-                  >
-                    TEST GROUP
-                  </Button>
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={handleCreateGroup}
-                    className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
-                  >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                    </svg>
-                    <span className="hidden sm:inline">CREATE GROUP</span>
-                    <span className="sm:hidden">+</span>
-                  </Button>
-                </div>
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={handleCreateGroup}
+                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span className="hidden sm:inline">CREATE GROUP</span>
+                  <span className="sm:hidden">+</span>
+                </Button>
               </div>
             </CardContent>
           </Card>
