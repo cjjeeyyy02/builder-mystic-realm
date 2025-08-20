@@ -946,7 +946,7 @@ export default function Chat() {
                           >
                             <CardContent className="p-2">
                               <div className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-sm">
                                   <svg
                                     className="w-4 h-4 text-white"
                                     fill="none"
