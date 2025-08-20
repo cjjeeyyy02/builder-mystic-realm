@@ -1317,7 +1317,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                     placeholder="Enter reminder title"
                   />
@@ -1338,7 +1338,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                     placeholder="Enter reminder details (optional)"
                     rows={2}
@@ -1361,7 +1361,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   />
                 </div>
@@ -1381,7 +1381,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   >
                     <option value="">Select type</option>
@@ -1411,7 +1411,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   >
                     {selectOptions.category.map((option) => (
@@ -1444,7 +1444,7 @@ export default function Reminders() {
                       className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                         isDarkMode
                           ? "bg-emerald-700 border-emerald-600 text-white"
-                          : "bg-white border-gray-300 text-gray-900"
+                          : "bg-white border-emerald-300 text-gray-900"
                       }`}
                     >
                       <option value="">Select access level</option>
@@ -1475,7 +1475,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   >
                     <option value="">Select department</option>
@@ -1502,7 +1502,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   >
                     <option value="">Select priority</option>
@@ -1529,7 +1529,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                     disabled={!reminderForm.category}
                   >
@@ -1566,7 +1566,7 @@ export default function Reminders() {
                     className={`w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm ${
                       isDarkMode
                         ? "bg-emerald-700 border-emerald-600 text-white"
-                        : "bg-white border-gray-300 text-gray-900"
+                        : "bg-white border-emerald-300 text-gray-900"
                     }`}
                   >
                     <option value="">Select repeat option</option>
