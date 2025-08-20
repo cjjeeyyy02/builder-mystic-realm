@@ -45,12 +45,6 @@ const navigationItems: NavItem[] = [
     icon: MessageCircle,
     shortLabel: "Forum",
   },
-  {
-    label: "AI2AIM Store",
-    path: "/ai2aim-store",
-    icon: ShoppingBag,
-    shortLabel: "Store",
-  },
 ];
 
 export default function FooterNavigation({
