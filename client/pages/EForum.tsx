@@ -442,8 +442,8 @@ export default function EForum() {
                   size="sm"
                   className={`text-xs hover:bg-white/80 transition-colors duration-200 ${
                     isDarkMode
-                      ? 'text-gray-300 hover:text-gray-900 hover:bg-white/90'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
+                      ? 'text-emerald-300 hover:text-emerald-900 hover:bg-white/90'
+                      : 'text-emerald-700 hover:text-emerald-900 hover:bg-white/80'
                   }`}
                 >
                   <svg
