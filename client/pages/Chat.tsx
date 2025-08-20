@@ -1319,7 +1319,7 @@ export default function Chat() {
 
                   {/* Message Input Bar */}
                   <Card className={`flex-shrink-0 rounded-none border-0 border-t transition-colors duration-300 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                    isDarkMode ? 'bg-emerald-800 border-emerald-700' : 'bg-white border-emerald-200'
                   }`}>
                     <CardContent className="p-2">
                       <div className="flex items-center space-x-2">
