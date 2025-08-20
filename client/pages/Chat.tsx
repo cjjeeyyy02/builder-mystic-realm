@@ -734,7 +734,7 @@ export default function Chat() {
                 <button
                   onClick={() => setShowMobileSidebar(!showMobileSidebar)}
                   className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                    isDarkMode ? 'text-emerald-400 hover:text-emerald-300 hover:bg-emerald-700' : 'text-emerald-600 hover:text-emerald-800 hover:bg-emerald-100'
                   }`}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
