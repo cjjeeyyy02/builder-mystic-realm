@@ -1156,9 +1156,15 @@ export default function Chat() {
 
                               {/* Group Context Menu - Responsive */}
                               {showGroupMenu && (
-                                <div className={`absolute right-0 sm:right-0 top-12 w-48 sm:w-40 shadow-xl border-2 z-50 rounded-lg transition-all duration-300 ${
-                                  isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
-                                } transform sm:transform-none -translate-x-4 sm:translate-x-0`}>
+                                <div
+                                  className={`absolute right-0 top-14 w-52 shadow-2xl border-2 z-[9999] rounded-xl transition-all duration-300 ${
+                                    isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
+                                  }`}
+                                  style={{
+                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                                    zIndex: 9999
+                                  }}
+                                >
                                   <div className="py-2">
                                     <button
                                       onClick={() => {
