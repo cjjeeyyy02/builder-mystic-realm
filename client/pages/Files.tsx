@@ -801,7 +801,7 @@ export default function Files() {
                 </div>
 
                 {/* Submit Button */}
-                <div className={`px-3 py-2 border-t ${isDarkMode ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"}`}>
+                <div className={`px-3 py-2 border-t ${isDarkMode ? "bg-emerald-800 border-emerald-700" : "bg-emerald-50 border-emerald-200"}`}>
                   <Button
                     onClick={handleSubmit}
                     disabled={!formData.title || !formData.upload}
