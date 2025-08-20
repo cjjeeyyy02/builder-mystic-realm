@@ -234,7 +234,7 @@ export default function Meetings() {
         <div
           className={`min-h-screen transition-colors duration-300 ${
             isDarkMode ? "bg-gray-900" : "bg-gray-50"
-          } ${meetingInProgress ? "p-0" : "p-6 overflow-y-auto"}`}
+          } ${meetingInProgress ? "p-0" : "p-4"}`}
         >
           {!meetingInProgress && (
             /* Back to Dashboard Button */
