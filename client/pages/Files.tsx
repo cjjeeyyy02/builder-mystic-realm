@@ -355,7 +355,7 @@ export default function Files() {
         <div
           ref={scrollContainerRef}
           className={`min-h-screen transition-colors duration-300 ${
-            isDarkMode ? "bg-gray-900" : "bg-gray-50"
+            isDarkMode ? "bg-emerald-900" : "bg-emerald-50"
           }`}
           style={{ height: "calc(100vh - 4rem)", overflowY: "auto" }}
         >
