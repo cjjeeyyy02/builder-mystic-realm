@@ -547,8 +547,8 @@ export default function Files() {
                 <div
                   className={`px-4 sm:px-6 py-3 sm:py-4 border-b flex items-center justify-between ${
                     isDarkMode
-                      ? "bg-gray-800 border-gray-700"
-                      : "bg-gray-50 border-gray-200"
+                      ? "bg-emerald-800 border-emerald-700"
+                      : "bg-emerald-50 border-emerald-200"
                   }`}
                 >
                   <h1
