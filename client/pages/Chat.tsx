@@ -796,7 +796,7 @@ export default function Chat() {
             <Card className={`${
               showMobileSidebar ? 'fixed inset-y-0 left-0 z-40' : 'hidden'
             } lg:relative lg:flex w-80 flex-col rounded-none border-0 border-r transition-all duration-300 ${
-              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+              isDarkMode ? 'bg-emerald-800 border-emerald-700' : 'bg-white border-emerald-200'
             }`}>
               <CardContent className="p-0 h-full flex flex-col">
                 {/* Sidebar Header */}
