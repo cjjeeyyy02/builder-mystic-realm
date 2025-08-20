@@ -800,19 +800,19 @@ export default function Chat() {
             }`}>
               <CardContent className="p-0 h-full flex flex-col">
                 {/* Sidebar Header */}
-                <div className={`p-4 border-b transition-colors duration-300 ${
+                <div className={`p-2 border-b transition-colors duration-300 ${
                   isDarkMode ? 'border-gray-700' : 'border-gray-200'
                 }`}>
                   {/* Mobile Close Button */}
-                  <div className="lg:hidden flex justify-between items-center mb-4">
-                    <h2 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <div className="lg:hidden flex justify-between items-center mb-2">
+                    <h2 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       Conversations
                     </h2>
                     <button
                       onClick={() => setShowMobileSidebar(false)}
-                      className={`p-2 rounded ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`}
+                      className={`p-1 rounded ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
@@ -824,7 +824,7 @@ export default function Chat() {
                       <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                        className={`px-2 py-1 text-xs font-medium rounded transition-all ${
                           activeTab === tab.id
                             ? "bg-blue-600 text-white shadow-md"
                             : isDarkMode
@@ -838,18 +838,18 @@ export default function Chat() {
                   </div>
 
                   {/* Current User Status */}
-                  <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-bold">K</span>
+                  <div className="mt-2 p-2 rounded bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">K</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-semibold">{currentUser.name}</h3>
-                        <p className="text-blue-100 text-sm">{currentUser.role}</p>
+                        <h3 className="font-medium text-xs">{currentUser.name}</h3>
+                        <p className="text-blue-100 text-xs">{currentUser.role}</p>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                        <span className="text-blue-100 text-sm">{currentUser.status}</span>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span className="text-blue-100 text-xs">{currentUser.status}</span>
                       </div>
                     </div>
                   </div>
