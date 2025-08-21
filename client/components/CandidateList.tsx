@@ -688,12 +688,6 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 </Card>
               </div>
 
-              <DialogFooter className="flex gap-2">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </Button>
-              </DialogFooter>
             </>
           )}
         </DialogContent>
