@@ -170,7 +170,7 @@ export default function Meetings() {
     },
     {
       id: "schedule",
-      title: "One-On-One Meeting",
+      title: "Meeting Sheduling",
       description:
         "One-On-One Meeting? GrouP-Team Meeting? Schedule Your Meeting Here.",
       icon: "📅",
