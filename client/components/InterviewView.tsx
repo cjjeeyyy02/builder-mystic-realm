@@ -688,6 +688,11 @@ Google India`
     type: "round" | "final";
   } | null>(null);
 
+  // Track confirmed decisions for button styling
+  const [confirmedDecisions, setConfirmedDecisions] = useState<{
+    [key: string]: { decision: "YES" | "MAYBE" | "NO"; type: "round" | "final" }
+  }>({});
+
   // Email modal handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting email:", emailId);
