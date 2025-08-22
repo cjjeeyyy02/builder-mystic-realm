@@ -1387,6 +1387,7 @@ export default function InterviewView() {
                       <Button
                         variant="ghost"
                         size="sm"
+                        onClick={() => handleEmailDelete(email.id)}
                         className="h-5 w-5 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
                       >
                         <Trash2 className="w-3 h-3" />
