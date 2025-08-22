@@ -889,7 +889,7 @@ export default function Reminders() {
                           </div>
 
                           {/* Compact Action Menu */}
-                          <div className="flex items-center space-x-0.5">
+                          <div className="flex flex-col space-y-0.5">
                             <Button
                               size="sm"
                               variant="ghost"
@@ -928,7 +928,7 @@ export default function Reminders() {
                         {/* Reminder Title */}
                         <div className="mb-2">
                           <h3
-                            className={`text-xs font-normal break-words line-clamp-2 ${
+                            className={`text-xs font-bold break-words line-clamp-2 ${
                               reminder.completed
                                 ? "line-through opacity-60"
                                 : ""
