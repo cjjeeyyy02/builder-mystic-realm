@@ -2089,42 +2089,19 @@ export default function Dashboard() {
                 </div>
 
                 <div className="space-y-3">
-                  {/* Forum Post 1 */}
-                  <div className={`rounded-lg p-3 transition-colors duration-300 border-l-4 border-blue-500 ${
-                    isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'
-                  }`}>
-                    <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">
-                          SJ
-                        </span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className={`text-xs font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
-                          }`}>
-                            Sarah Johnson
-                          </h4>
-                          <span className={`text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                          }`}>
-                            HR • 1h ago
-                          </span>
-                        </div>
-                        <p className={`text-xs mb-2 leading-relaxed transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
-                        }`}>
-                          New Remote Policy Guidelines - Work-life balance approach for transparent workplace.
-                        </p>
-                        <div className={`flex items-center gap-3 text-xs transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                        }`}>
-                          <span>32 likes</span>
-                          <span>18 replies</span>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Visit all forums link */}
+                  <div className="mt-4">
+                    <Button
+                      variant="link"
+                      onClick={() => navigate("/e-forum")}
+                      className={`text-xs p-0 transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'text-gray-300 hover:text-blue-400'
+                          : 'text-gray-700 hover:text-blue-700'
+                      }`}
+                    >
+                      Visit all forums →
+                    </Button>
                   </div>
 
                   {/* Forum Post 2 */}
