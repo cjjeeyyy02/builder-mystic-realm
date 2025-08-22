@@ -2068,12 +2068,12 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            {/* Latest E-Forum - Maximized Chat */}
-            <Card className={`flex flex-col transition-all duration-300 ${
+            {/* Latest E-Forum */}
+            <Card className={`transition-all duration-300 ${
               isDarkMode
                 ? 'bg-gray-800/50 border border-gray-700'
                 : 'bg-white border border-gray-200'
-            }`} style={{ height: 'calc(100vh - 24rem)' }}>
+            }`}>
               <CardContent className="p-4 pb-2 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-3 flex-shrink-0">
                   <div>
