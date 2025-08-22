@@ -93,90 +93,183 @@ export default function ActivationView() {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
-            <Input
-              placeholder="SEARCH CANDIDATES"
-              value={searchCandidates}
-              onChange={(e) => setSearchCandidates(e.target.value)}
-              className="w-48 h-7 text-xs bg-white border border-gray-300 pl-7"
-            />
-          </div>
-
-          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-            <SelectTrigger className="w-24 h-7 text-xs bg-white border border-gray-300">
-              <SelectValue placeholder="COUNTRY" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="india" className="text-xs">India</SelectItem>
-              <SelectItem value="usa" className="text-xs">USA</SelectItem>
-              <SelectItem value="uk" className="text-xs">UK</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Button className="h-7 text-xs px-3 bg-black text-white hover:bg-gray-800">
-            <Plus className="w-3 h-3 mr-1" />
-            ADD NEW FIELDS
-          </Button>
-        </div>
-      </div>
-
-      {/* Onboarding Checklist Header */}
-      <div className="bg-black text-white text-center py-3">
-        <h1 className="text-sm font-bold tracking-wide">ONBOARDING CHECKLIST</h1>
-      </div>
-
-      {/* Checklist Items */}
-      <div className="space-y-1">
-        {checklistItems.map((item, index) => (
-          <div
-            key={item.id}
-            className="bg-red-600 text-white flex items-center justify-between px-4 py-2 border-b border-red-700"
-          >
-            <span className="text-xs font-medium">{item.title}</span>
-            
-            <div className="flex items-center gap-1">
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-6 w-6 p-0 hover:bg-red-700 text-white"
-                title="View"
-              >
-                <Eye className="w-3 h-3" />
-              </Button>
-              
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-6 w-6 p-0 hover:bg-green-600 text-white bg-green-500"
-                title="Download"
-              >
-                <Download className="w-3 h-3" />
-              </Button>
-              
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-6 w-6 p-0 hover:bg-red-800 text-white"
-                title="Delete"
-              >
-                <Trash2 className="w-3 h-3" />
-              </Button>
+        {activeTab === "activation-room" ? (
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Input
+                placeholder="SEARCH CANDIDATES"
+                value={searchCandidates}
+                onChange={(e) => setSearchCandidates(e.target.value)}
+                className="w-48 h-7 text-xs bg-white border border-gray-300 pl-7"
+              />
             </div>
+
+            <Select value={confirmFilter} onValueChange={setConfirmFilter}>
+              <SelectTrigger className="w-20 h-7 text-xs bg-white border border-gray-300">
+                <SelectValue placeholder="CONFIRM" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="confirmed" className="text-xs">Confirmed</SelectItem>
+                <SelectItem value="pending" className="text-xs">Pending</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={finalDecisionFilter} onValueChange={setFinalDecisionFilter}>
+              <SelectTrigger className="w-32 h-7 text-xs bg-white border border-gray-300">
+                <SelectValue placeholder="FINAL DECISION" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="activated" className="text-xs">Employee Activated</SelectItem>
+                <SelectItem value="pending" className="text-xs">Activate Employee</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-        ))}
+        ) : (
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Input
+                placeholder="SEARCH CANDIDATES"
+                value={searchCandidates}
+                onChange={(e) => setSearchCandidates(e.target.value)}
+                className="w-48 h-7 text-xs bg-white border border-gray-300 pl-7"
+              />
+            </div>
+
+            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+              <SelectTrigger className="w-24 h-7 text-xs bg-white border border-gray-300">
+                <SelectValue placeholder="COUNTRY" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="india" className="text-xs">India</SelectItem>
+                <SelectItem value="usa" className="text-xs">USA</SelectItem>
+                <SelectItem value="uk" className="text-xs">UK</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button className="h-7 text-xs px-3 bg-black text-white hover:bg-gray-800">
+              <Plus className="w-3 h-3 mr-1" />
+              ADD NEW FIELDS
+            </Button>
+          </div>
+        )}
       </div>
 
-      {/* Bottom Action Buttons */}
-      <div className="flex items-center justify-center gap-4 pt-4">
-        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
-          SAVE CHECKLIST
-        </Button>
-        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
-          EDIT CHECKLIST
-        </Button>
-      </div>
+      {activeTab === "activation-room" ? (
+        <div className="space-y-3">
+          {/* Employee Activation Table */}
+          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-gray-50">
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">JOB ID</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">NAME</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">COUNTRY</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">APPLIED JOB ROLE</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">JOINING DATE</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">FILES UPLOADED</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">FINAL DECISION</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">UPDATE</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {employeeData.map((employee) => (
+                  <TableRow key={employee.jobId} className="border-b border-gray-100 hover:bg-gray-50">
+                    <TableCell className="text-xs font-medium px-3 py-2">{employee.jobId}</TableCell>
+                    <TableCell className="text-xs font-medium px-3 py-2">{employee.name}</TableCell>
+                    <TableCell className="text-xs px-3 py-2">{employee.country}</TableCell>
+                    <TableCell className="text-xs px-3 py-2">{employee.appliedJobRole}</TableCell>
+                    <TableCell className="text-xs px-3 py-2">{employee.joiningDate}</TableCell>
+                    <TableCell className="text-xs px-3 py-2">{employee.filesUploaded}</TableCell>
+                    <TableCell className="px-3 py-2">
+                      {renderProgressBar(employee.activationProgress)}
+                    </TableCell>
+                    <TableCell className="px-3 py-2">
+                      <Button
+                        className={`h-6 text-xs px-3 font-medium ${
+                          employee.finalDecision === "EMPLOYEE ACTIVATED"
+                            ? "bg-yellow-400 hover:bg-yellow-500 text-black"
+                            : "bg-yellow-500 hover:bg-yellow-600 text-black"
+                        }`}
+                      >
+                        {employee.finalDecision}
+                      </Button>
+                    </TableCell>
+                    <TableCell className="px-3 py-2">
+                      <Button
+                        className="h-6 w-6 p-0 bg-black hover:bg-gray-800 text-white"
+                        title="Send Email"
+                      >
+                        <Mail className="w-3 h-3" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {/* Onboarding Checklist Header */}
+          <div className="bg-black text-white text-center py-3">
+            <h1 className="text-sm font-bold tracking-wide">ONBOARDING CHECKLIST</h1>
+          </div>
+
+          {/* Checklist Items */}
+          <div className="space-y-1">
+            {checklistItems.map((item, index) => (
+              <div
+                key={item.id}
+                className="bg-red-600 text-white flex items-center justify-between px-4 py-2 border-b border-red-700"
+              >
+                <span className="text-xs font-medium">{item.title}</span>
+
+                <div className="flex items-center gap-1">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 w-6 p-0 hover:bg-red-700 text-white"
+                    title="View"
+                  >
+                    <Eye className="w-3 h-3" />
+                  </Button>
+
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 w-6 p-0 hover:bg-green-600 text-white bg-green-500"
+                    title="Download"
+                  >
+                    <Download className="w-3 h-3" />
+                  </Button>
+
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 w-6 p-0 hover:bg-red-800 text-white"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Action Buttons */}
+          <div className="flex items-center justify-center gap-4 pt-4">
+            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+              SAVE CHECKLIST
+            </Button>
+            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+              EDIT CHECKLIST
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
