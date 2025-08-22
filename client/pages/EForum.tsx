@@ -585,6 +585,129 @@ export default function EForum() {
         </div>
       </Layout>
 
+      {/* Create Post Modal */}
+      <Dialog open={showCreatePost} onOpenChange={setShowCreatePost}>
+        <DialogContent className="w-[95vw] max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Create New Post
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {/* Title Field */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 block">
+                Title (Optional)
+              </label>
+              <Input
+                placeholder="Enter post title..."
+                value={newPost.title}
+                onChange={(e) => handleFormChange("title", e.target.value)}
+                className="w-full"
+              />
+            </div>
+
+            {/* Content Field */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 block">
+                Content *
+              </label>
+              <Textarea
+                placeholder="What's on your mind? Share your thoughts, ideas, or updates with the team..."
+                value={newPost.content}
+                onChange={(e) => handleFormChange("content", e.target.value)}
+                className="w-full min-h-[120px] resize-none"
+                maxLength={500}
+              />
+              <div className="text-xs text-gray-500 mt-1 text-right">
+                {newPost.content.length}/500 characters
+              </div>
+            </div>
+
+            {/* Department and Category */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-2 block">
+                  Department
+                </label>
+                <Select value={newPost.department} onValueChange={(value) => handleFormChange("department", value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="General">General</SelectItem>
+                    <SelectItem value="HR Department">HR Department</SelectItem>
+                    <SelectItem value="Engineering">Engineering</SelectItem>
+                    <SelectItem value="Design">Design</SelectItem>
+                    <SelectItem value="Operations">Operations</SelectItem>
+                    <SelectItem value="Marketing">Marketing</SelectItem>
+                    <SelectItem value="Sales">Sales</SelectItem>
+                    <SelectItem value="Finance">Finance</SelectItem>
+                    <SelectItem value="Product">Product</SelectItem>
+                    <SelectItem value="Customer Success">Customer Success</SelectItem>
+                    <SelectItem value="Quality Assurance">Quality Assurance</SelectItem>
+                    <SelectItem value="Data Analytics">Data Analytics</SelectItem>
+                    <SelectItem value="Security">Security</SelectItem>
+                    <SelectItem value="Legal">Legal</SelectItem>
+                    <SelectItem value="DevOps">DevOps</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-2 block">
+                  Category
+                </label>
+                <Select value={newPost.category} onValueChange={(value) => handleFormChange("category", value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="General">General</SelectItem>
+                    <SelectItem value="Announcement">Announcement</SelectItem>
+                    <SelectItem value="Discussion">Discussion</SelectItem>
+                    <SelectItem value="Question">Question</SelectItem>
+                    <SelectItem value="Achievement">Achievement</SelectItem>
+                    <SelectItem value="Update">Update</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2 mt-6">
+            <Button
+              variant="outline"
+              onClick={handleCancelPost}
+              className="px-4"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleCreatePost}
+              disabled={!newPost.content.trim()}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              Post
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Footer Navigation */}
       <FooterNavigation collapsed={footerCollapsed} />
     </>
