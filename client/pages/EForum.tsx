@@ -264,7 +264,7 @@ export default function EForum() {
   };
 
   const handleNewPost = () => {
-    console.log("Opening new post dialog");
+    setShowCreatePost(true);
   };
 
   const handleHeart = (postId: number) => {
