@@ -27,6 +27,27 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Suppress ResizeObserver loop errors - common issue with UI libraries
+const suppressResizeObserverError = () => {
+  const resizeObserverErrDiv = document.getElementById('webpack-dev-server-client-overlay-div');
+  const resizeObserverErr = document.getElementById('webpack-dev-server-client-overlay');
+  if (resizeObserverErrDiv) {
+    resizeObserverErrDiv.setAttribute('style', 'display: none');
+  }
+  if (resizeObserverErr) {
+    resizeObserverErr.setAttribute('style', 'display: none');
+  }
+};
+
+// Global error handler for ResizeObserver
+window.addEventListener('error', (e) => {
+  if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+    suppressResizeObserverError();
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <DarkModeProvider>
