@@ -2462,41 +2462,6 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                {/* Chat Input and Action Buttons */}
-                <div className="flex-shrink-0 mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="text"
-                      placeholder="Type your message..."
-                      className={`flex-1 px-3 py-2 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
-                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                      }`}
-                    />
-                    <Button
-                      size="sm"
-                      className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs"
-                    >
-                      Send
-                    </Button>
-                  </div>
-
-                  {/* Visit Forum Button */}
-                  <div className="mt-2 text-center">
-                    <Button
-                      variant="link"
-                      onClick={() => navigate("/e-forum")}
-                      className={`text-xs p-0 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'text-gray-300 hover:text-blue-400'
-                          : 'text-gray-700 hover:text-blue-700'
-                      }`}
-                    >
-                      Open Full Forum →
-                    </Button>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
