@@ -267,6 +267,54 @@ export default function EForum() {
     setShowCreatePost(true);
   };
 
+  const handleFormChange = (field: string, value: string) => {
+    setNewPost(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleCreatePost = () => {
+    if (!newPost.content.trim()) {
+      return; // Don't create empty posts
+    }
+
+    const post = {
+      id: nextPostIdRef.current,
+      author: "You", // In a real app, this would come from user authentication
+      department: newPost.department,
+      timestamp: "Just now",
+      content: newPost.content,
+      hearts: 0,
+      comments: 0,
+      shares: 0,
+      views: 1,
+      avatar: "YO", // In a real app, this would be user's actual initials
+      category: newPost.category,
+      isHot: false,
+      title: newPost.title
+    };
+
+    setPosts(prev => [post, ...prev]);
+    nextPostIdRef.current += 1;
+
+    // Reset form and close modal
+    setNewPost({
+      title: "",
+      content: "",
+      category: "General",
+      department: "General"
+    });
+    setShowCreatePost(false);
+  };
+
+  const handleCancelPost = () => {
+    setNewPost({
+      title: "",
+      content: "",
+      category: "General",
+      department: "General"
+    });
+    setShowCreatePost(false);
+  };
+
   const handleHeart = (postId: number) => {
     setPosts((prev) =>
       prev.map((post) =>
