@@ -380,17 +380,83 @@ export default function Reminders() {
   };
 
   const getCategoryIcon = (category: string) => {
-    const iconMap: { [key: string]: string } = {
-      Marketing: "📢",
-      Finance: "💰",
-      Business: "💼",
-      Work: "💻",
-      Personal: "👤",
-      Health: "🏥",
-      Education: "📚",
-      Travel: "✈️",
-    };
-    return iconMap[category] || "📝";
+    const iconClass = "w-6 h-6";
+
+    switch (category.toLowerCase()) {
+      case "marketing":
+        return (
+          <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+        );
+      case "finance":
+        return (
+          <div className="w-6 h-6 bg-green-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
+            </svg>
+          </div>
+        );
+      case "business":
+        return (
+          <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 16V8a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1h-2a1 1 0 01-1-1zM6 16V12a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H7a1 1 0 01-1-1zM14 16V10a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1z"/>
+            </svg>
+          </div>
+        );
+      case "work":
+        return (
+          <div className="w-6 h-6 bg-indigo-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 2h4a2 2 0 012 2v2h4a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h4V4a2 2 0 012-2z"/>
+            </svg>
+          </div>
+        );
+      case "personal":
+        return (
+          <div className="w-6 h-6 bg-pink-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        );
+      case "health":
+        return (
+          <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.73 12.02l3.98-3.98c.39-.39.39-1.02 0-1.41l-4.34-4.34c-.39-.39-1.02-.39-1.41 0l-3.98 3.98L8 2.29C7.8 2.1 7.55 2 7.29 2c-.25 0-.51.1-.7.29L2.25 6.63c-.39.39-.39 1.02 0 1.41l3.98 3.98L2.25 16c-.39.39-.39 1.02 0 1.41l4.34 4.34c.39.39 1.02.39 1.41 0l3.98-3.98 3.98 3.98c.2.2.45.29.71.29.26 0 .51-.1.7-.29l4.34-4.34c.39-.39.39-1.02 0-1.41l-3.99-3.98z"/>
+            </svg>
+          </div>
+        );
+      case "education":
+        return (
+          <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+            </svg>
+          </div>
+        );
+      case "travel":
+        return (
+          <div className="w-6 h-6 bg-cyan-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+            </svg>
+          </div>
+        );
+      default:
+        return (
+          <div className="w-6 h-6 bg-gray-500 rounded-md flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </div>
+        );
+    }
   };
 
   const sortedReminders = [...getFilteredReminders()].sort((a, b) => {
