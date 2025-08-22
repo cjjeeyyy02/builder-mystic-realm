@@ -1583,59 +1583,428 @@ Google India`
           )}
 
           {activeMainTab === "decision-room" && (
-            <div className="space-y-4">
-              <Card className="border-0 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="text-center space-y-4">
-                    <CheckCircle className="w-12 h-12 mx-auto text-emerald-600" />
-                    <h3 className="text-lg font-semibold text-foreground">Decision Room</h3>
-                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      Review candidates, make final decisions, and manage the hiring process.
-                      Compare candidates, view their interview progress, and make informed decisions.
-                    </p>
+            <div className="space-y-2">
+              {/* Search and Filter Bar */}
+              <div className="flex items-center gap-2 mb-2">
+                <Input
+                  placeholder="SEARCH CANDIDATES"
+                  className="w-48 h-6 text-xs"
+                />
+                <Select>
+                  <SelectTrigger className="w-24 h-6 text-xs">
+                    <SelectValue placeholder="COUNTRY" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="usa">USA</SelectItem>
+                    <SelectItem value="india">India</SelectItem>
+                    <SelectItem value="europe">Europe</SelectItem>
+                    <SelectItem value="russia">Russia</SelectItem>
+                    <SelectItem value="china">China</SelectItem>
+                    <SelectItem value="canada">Canada</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select>
+                  <SelectTrigger className="w-32 h-6 text-xs">
+                    <SelectValue placeholder="FINAL DECISION" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="approved">Approved</SelectItem>
+                    <SelectItem value="rejected">Rejected</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
-                        <div className="text-center space-y-2">
-                          <Users className="w-8 h-8 mx-auto text-emerald-600" />
-                          <h4 className="font-medium text-sm">Candidate Review</h4>
-                          <p className="text-xs text-muted-foreground">
-                            Review and compare candidate profiles and interview results
-                          </p>
-                        </div>
-                      </Card>
+              {/* Decision Table */}
+              <Card className="border-0 shadow-sm overflow-hidden">
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-muted/30 border-b">
+                        <TableHead className="text-center font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">COUNTRY</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">APPLIED JOB ROLE</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS DECISION</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">FINAL DECISION</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">UPDATE</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">001</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Jaya</TableCell>
+                        <TableCell className="py-2 text-xs">India</TableCell>
+                        <TableCell className="py-2 text-xs">Senior Developer</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 1
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
-                        <div className="text-center space-y-2">
-                          <CheckCircle className="w-8 h-8 mx-auto text-emerald-600" />
-                          <h4 className="font-medium text-sm">Final Decisions</h4>
-                          <p className="text-xs text-muted-foreground">
-                            Make hire/reject decisions and track decision history
-                          </p>
-                        </div>
-                      </Card>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">002</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Mark</TableCell>
+                        <TableCell className="py-2 text-xs">USA</TableCell>
+                        <TableCell className="py-2 text-xs">Graphic Designer</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 2
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
-                        <div className="text-center space-y-2">
-                          <FileText className="w-8 h-8 mx-auto text-emerald-600" />
-                          <h4 className="font-medium text-sm">Reports & Analytics</h4>
-                          <p className="text-xs text-muted-foreground">
-                            Generate hiring reports and analyze decision patterns
-                          </p>
-                        </div>
-                      </Card>
-                    </div>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">003</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">John</TableCell>
+                        <TableCell className="py-2 text-xs">USA</TableCell>
+                        <TableCell className="py-2 text-xs">Content Writer</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 1
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-                    <div className="mt-8 space-y-3">
-                      <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                        <CheckCircle className="w-4 h-4 mr-2" />
-                        Start Decision Process
-                      </Button>
-                      <p className="text-xs text-muted-foreground">
-                        Decision Room features coming soon...
-                      </p>
-                    </div>
-                  </div>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">004</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Sara</TableCell>
+                        <TableCell className="py-2 text-xs">Europe</TableCell>
+                        <TableCell className="py-2 text-xs">Copywriter</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 4
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">005</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Shruti</TableCell>
+                        <TableCell className="py-2 text-xs">India</TableCell>
+                        <TableCell className="py-2 text-xs">Sale Associate</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 5
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">006</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Robin</TableCell>
+                        <TableCell className="py-2 text-xs">Russia</TableCell>
+                        <TableCell className="py-2 text-xs">AI Engineer</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 2
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">007</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Kayle</TableCell>
+                        <TableCell className="py-2 text-xs">Russia</TableCell>
+                        <TableCell className="py-2 text-xs">ML Engineer</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 1
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">008</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Vali</TableCell>
+                        <TableCell className="py-2 text-xs">China</TableCell>
+                        <TableCell className="py-2 text-xs">Data Analyst</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 3
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">009</TableCell>
+                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="py-2 text-xs">Anne</TableCell>
+                        <TableCell className="py-2 text-xs">Canada</TableCell>
+                        <TableCell className="py-2 text-xs">Finance Analyst</TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
+                            ROUND 3
+                          </Button>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              YES
+                            </Button>
+                            <Button className="bg-orange-500 hover:bg-orange-600 text-white h-5 px-2 text-xs rounded">
+                              MAYBE
+                            </Button>
+                            <Button className="bg-gray-400 hover:bg-gray-500 text-white h-5 px-2 text-xs rounded">
+                              NO
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-1">
+                            <Button className="bg-green-600 hover:bg-green-700 text-white h-5 px-2 text-xs rounded">
+                              APPROVE
+                            </Button>
+                            <Button className="bg-red-600 hover:bg-red-700 text-white h-5 px-2 text-xs rounded">
+                              REJECT
+                            </Button>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-5 px-2 text-xs rounded">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </CardContent>
               </Card>
             </div>
