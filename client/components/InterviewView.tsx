@@ -406,8 +406,8 @@ export default function InterviewView() {
     final: true
   });
 
-  // Email Modal States
-  const [showEmailModal, setShowEmailModal] = useState(false);
+  // Email Screen States
+  const [showEmailScreen, setShowEmailScreen] = useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
   const [activeEmailTab, setActiveEmailTab] = useState("inbox");
