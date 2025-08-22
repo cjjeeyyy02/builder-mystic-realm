@@ -1348,7 +1348,10 @@ export default function InterviewView() {
                   onChange={(e) => setEmailSearch(e.target.value)}
                   className="flex-1 h-6 text-xs"
                 />
-                <Button className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs">
+                <Button
+                  onClick={handleComposeEmail}
+                  className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs"
+                >
                   COMPOSE EMAIL
                 </Button>
                 <div className="flex items-center gap-1 text-xs text-gray-600">
