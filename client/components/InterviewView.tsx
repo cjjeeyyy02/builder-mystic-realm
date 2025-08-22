@@ -949,45 +949,42 @@ export default function InterviewView() {
               </div>
 
               {/* Round Type Tabs */}
-              <div className="flex items-center gap-1 mb-4">
-                <Button
-                  variant={activeRoundType === "technical" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("technical")}
-                  className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
-                >
-                  TECHNICAL
-                </Button>
-                <Button
-                  variant={activeRoundType === "non-technical" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("non-technical")}
-                  className="h-7 px-4 text-xs"
-                >
-                  NON-TECHNICAL
-                </Button>
-                <Button
-                  variant={activeRoundType === "final" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("final")}
-                  className="h-7 px-4 text-xs"
-                >
-                  FINAL
-                </Button>
-
-                {/* Single switch at the end */}
-                <div className="ml-3 flex items-center gap-2">
-                  <Switch
-                    checked={roundTypeEnabled[activeRoundType]}
-                    onCheckedChange={(checked) =>
-                      setRoundTypeEnabled(prev => ({ ...prev, [activeRoundType]: checked }))
-                    }
-                    className="scale-75"
-                  />
-                  <span className="text-xs text-gray-600 font-medium">
-                    {roundTypeEnabled[activeRoundType] ? 'Enabled' : 'Disabled'}
-                  </span>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant={activeRoundType === "technical" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("technical")}
+                    className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
+                  >
+                    TECHNICAL
+                  </Button>
+                  <Button
+                    variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("non-technical")}
+                    className="h-7 px-4 text-xs"
+                  >
+                    NON-TECHNICAL
+                  </Button>
+                  <Button
+                    variant={activeRoundType === "final" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("final")}
+                    className="h-7 px-4 text-xs"
+                  >
+                    FINAL
+                  </Button>
                 </div>
+
+                {/* Single switch at the very end */}
+                <Switch
+                  checked={roundTypeEnabled[activeRoundType]}
+                  onCheckedChange={(checked) =>
+                    setRoundTypeEnabled(prev => ({ ...prev, [activeRoundType]: checked }))
+                  }
+                  className="scale-75"
+                />
               </div>
 
               {/* Rounds */}
