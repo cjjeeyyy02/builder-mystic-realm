@@ -1132,92 +1132,65 @@ export default function Files() {
                               </div>
                             </div>
 
-                            {/* Middle Section - File Info */}
-                            {/* FILE NAME - Close to file type */}
-                            <div className="mb-4">
-                              <p
-                                className={`text-sm font-semibold ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                              >
-                                FILE NAME
-                              </p>
+                            {/* File Name */}
+                            <div className="mb-2">
                               <h3
-                                className={`text-sm font-medium break-words ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                                className={`text-xs font-medium break-words line-clamp-2 ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                                title={file.name}
                               >
                                 {file.name}
                               </h3>
                             </div>
 
-                            {/* Rest of the content with more space */}
-                            <div className="flex-1 space-y-2 mb-2">
-                              {/* FILE ID */}
-                              <div>
-                                <p
-                                  className={`text-sm font-semibold ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                                >
-                                  FILE ID
-                                </p>
-                                <p
-                                  className={`text-sm font-mono ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                                >
-                                  {file.id}
-                                </p>
-                              </div>
-
-                              {/* FILE SIZE & DATE */}
-                              <div className="grid grid-cols-2 gap-3">
+                            {/* Compact Info */}
+                            <div className="flex-1 space-y-1.5">
+                              {/* ID & Size */}
+                              <div className="grid grid-cols-2 gap-1 text-xs">
                                 <div>
-                                  <p
-                                    className={`text-sm font-semibold ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                                  >
-                                    SIZE
+                                  <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>ID:</span>
+                                  <p className={`font-mono ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                    {file.id}
                                   </p>
-                                  <p
-                                    className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                                  >
+                                </div>
+                                <div>
+                                  <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Size:</span>
+                                  <p className={`${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
                                     {file.size}
                                   </p>
                                 </div>
-                                <div>
-                                  <p
-                                    className={`text-sm font-semibold ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
-                                  >
-                                    DATE
-                                  </p>
-                                  <p
-                                    className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
-                                  >
-                                    {file.date}
-                                  </p>
-                                </div>
                               </div>
 
-                              {/* Badges Section */}
-                              {/* All Badges in One Row */}
-                              <div className="pt-2">
-                                <div className="flex items-center gap-2 flex-wrap justify-start">
-                                  {/* Department Badge - Blue */}
-                                  <span className="inline-block text-xs px-2 py-1 rounded-full font-medium bg-blue-100 text-blue-700">
-                                    {file.department.toUpperCase()}
+                              {/* Date */}
+                              <div className="text-xs">
+                                <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Date:</span>
+                                <span className={`ml-1 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                  {file.date}
+                                </span>
+                              </div>
+
+                              {/* Compact Badges */}
+                              <div className="pt-1">
+                                <div className="flex flex-wrap gap-1">
+                                  <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
+                                    {file.department}
                                   </span>
                                   <span
-                                    className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${
+                                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
                                       file.visibility === "Public"
-                                        ? "bg-green-100 text-green-800"
-                                        : "bg-red-100 text-red-800"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-red-100 text-red-700"
                                     }`}
                                   >
-                                    {file.visibility === "Public"
-                                      ? "PUBLIC"
-                                      : "PRIVATE"}
+                                    {file.visibility === "Public" ? "PUB" : "PVT"}
                                   </span>
                                   <span
-                                    className={`inline-block text-xs px-2 py-1 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
+                                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
                                   >
-                                    {file.priority === "VERY HIGH" ? "VERY HIGH" :
-                                     file.priority === "HIGH" ? "HIGH" :
-                                     file.priority === "MEDIUM" ? "MEDIUM" :
-                                     file.priority === "LOW" ? "LOW" :
-                                     file.priority === "VERY LOW" ? "VERY LOW" :
+                                    {file.priority === "VERY HIGH" ? "VH" :
+                                     file.priority === "HIGH" ? "H" :
+                                     file.priority === "MEDIUM" ? "M" :
+                                     file.priority === "LOW" ? "L" :
+                                     file.priority === "VERY LOW" ? "VL" :
                                      file.priority}
                                   </span>
                                 </div>
