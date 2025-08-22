@@ -19,6 +19,13 @@ export default function EForum() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [newPost, setNewPost] = useState({
+    title: "",
+    content: "",
+    category: "General",
+    department: "General"
+  });
   const nextPostIdRef = useRef(1000); // Use ref to avoid race conditions, start from 1000
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
