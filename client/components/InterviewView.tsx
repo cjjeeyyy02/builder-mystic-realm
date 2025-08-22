@@ -1031,154 +1031,275 @@ export default function InterviewView() {
           )}
 
           {activeMainTab === "rounds-room" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-medium">
-                  {adminConfig[activeRoundType]?.name} Rounds Management
-                </h2>
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    {getFilteredRounds().length} rounds configured
-                  </Badge>
-                  <Badge
-                    variant="default"
-                    className="text-xs bg-green-100 text-green-700 border-green-200"
-                  >
-                    {getFilteredRounds().filter(r => r.status === "completed").length} completed
-                  </Badge>
-                </div>
+            <div className="space-y-3">
+              {/* Search Filters */}
+              <div className="flex items-center gap-2 mb-4">
+                <Select value={searchCandidates} onValueChange={setSearchCandidates}>
+                  <SelectTrigger className="w-40 h-7 text-xs">
+                    <SelectValue placeholder="SEARCH CANDIDATES" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Candidates</SelectItem>
+                    <SelectItem value="selected">Selected</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select value={jobRole} onValueChange={setJobRole}>
+                  <SelectTrigger className="w-32 h-7 text-xs">
+                    <SelectValue placeholder="JOB_ROLE" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="developer">Developer</SelectItem>
+                    <SelectItem value="designer">Designer</SelectItem>
+                    <SelectItem value="manager">Manager</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select value={country} onValueChange={setCountry}>
+                  <SelectTrigger className="w-32 h-7 text-xs">
+                    <SelectValue placeholder="COUNTRY" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="usa">USA</SelectItem>
+                    <SelectItem value="india">India</SelectItem>
+                    <SelectItem value="uk">UK</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white h-7 px-3 text-xs">
+                  ADD NEW ROUND
+                </Button>
               </div>
 
-              {/* Rounds Table */}
-              <Card className="border-0 shadow-sm overflow-hidden">
-                <CardContent className="p-0">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="bg-muted/30 border-b">
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Round</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Round Name</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Interview Mode</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Scheduled Date/Time</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Status</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Candidates</TableHead>
-                        <TableHead className="font-medium text-foreground py-3 text-xs">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {getFilteredRounds().map((round) => (
-                        <TableRow
-                          key={round.id}
-                          className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                        >
-                          <TableCell className="py-4">
-                            <div className="font-medium text-foreground text-xs">
-                              {round.roundHeader}
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <div className="font-medium text-foreground text-xs">
-                              {round.roundName}
-                            </div>
-                            {round.testDescription && (
-                              <div className="text-xs text-gray-500 mt-1">
-                                {round.testDescription}
-                              </div>
-                            )}
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <Badge variant="outline" className="text-xs">
-                              {round.interviewMode.replace('-', ' ')}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <div className="text-xs">
-                              <div className="font-medium">{round.scheduledDate}</div>
-                              <div className="text-gray-500">{round.scheduledTime}</div>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <Badge
-                              variant={round.status === "completed" ? "default" : "secondary"}
-                              className="text-xs cursor-pointer hover:opacity-80"
-                            >
-                              {round.status === "completed" ? (
-                                <CheckCircle className="w-2 h-2 mr-1" />
-                              ) : (
-                                <Clock className="w-2 h-2 mr-1" />
-                              )}
-                              {round.status}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <div className="text-xs font-medium text-blue-600">
-                              {round.candidates.length} assigned
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-4">
-                            <div className="flex items-center gap-1">
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="text-xs h-6 px-2 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
-                              >
-                                <Users className="w-2 h-2 mr-1" />
-                                Assign
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="text-xs h-6 px-2"
-                              >
-                                <Send className="w-2 h-2 mr-1" />
-                                Email
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleEditRound(round)}
-                                className="text-xs h-6 px-2"
-                              >
-                                <Edit3 className="w-2 h-2 mr-1" />
-                                Edit
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleDeleteRound(round.id)}
-                                className="text-xs h-6 px-2 text-red-600 hover:text-red-700"
-                              >
-                                <Trash2 className="w-2 h-2" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+              {/* Round Type Tabs */}
+              <div className="flex gap-1 mb-4">
+                <Button
+                  variant={activeRoundType === "technical" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setActiveRoundType("technical")}
+                  className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
+                >
+                  TECHNICAL
+                </Button>
+                <Button
+                  variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setActiveRoundType("non-technical")}
+                  className="h-7 px-4 text-xs"
+                >
+                  NON-TECHNICAL
+                </Button>
+                <Button
+                  variant={activeRoundType === "final" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setActiveRoundType("final")}
+                  className="h-7 px-4 text-xs"
+                >
+                  FINAL
+                </Button>
+              </div>
 
-                  {getFilteredRounds().length === 0 && (
-                    <div className="text-center py-12">
-                      <Clock className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                      <h3 className="text-lg font-semibold text-gray-600 mb-2">
-                        No {adminConfig[activeRoundType]?.name} Rounds Yet
-                      </h3>
-                      <p className="text-gray-500 mb-4">
-                        Create your first {activeRoundType} round to get started with the interview process.
-                      </p>
+              {/* Rounds */}
+              <div className="space-y-2">
+                {/* ROUND 1 - Expanded */}
+                <Card className="border-2 border-gray-300">
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-bold text-sm">ROUND 1</h3>
                       <Button
-                        onClick={() => {
-                          resetForm();
-                          setShowRoundModal(true);
-                        }}
-                        className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setExpandedRound(expandedRound === 1 ? 0 : 1)}
+                        className="h-6 w-6 p-0"
                       >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Create First Round
+                        {expandedRound === 1 ? "▲" : "▼"}
                       </Button>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
+
+                    {expandedRound === 1 && (
+                      <div className="space-y-3">
+                        {/* Form Grid */}
+                        <div className="grid grid-cols-5 gap-2 text-xs">
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Round Name</label>
+                            <Select value={currentRoundForm.roundName} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundName: value}))}>
+                              <SelectTrigger className="h-6 text-xs">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Project Design">Project Design</SelectItem>
+                                <SelectItem value="System Design">System Design</SelectItem>
+                                <SelectItem value="Code Review">Code Review</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Round Type</label>
+                            <Select value={currentRoundForm.roundType} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundType: value}))}>
+                              <SelectTrigger className="h-6 text-xs">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Telephone">Telephone</SelectItem>
+                                <SelectItem value="Video Call">Video Call</SelectItem>
+                                <SelectItem value="In Person">In Person</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Interview Mode</label>
+                            <Select value={currentRoundForm.interviewMode} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, interviewMode: value}))}>
+                              <SelectTrigger className="h-6 text-xs">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Online Interview">Online Interview</SelectItem>
+                                <SelectItem value="Assessment">Assessment</SelectItem>
+                                <SelectItem value="Presentation">Presentation</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Scheduled Date</label>
+                            <Input
+                              type="date"
+                              value={currentRoundForm.scheduledDate}
+                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledDate: e.target.value}))}
+                              className="h-6 text-xs"
+                              placeholder="MM/DD/YYY"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Scheduled Time</label>
+                            <Input
+                              type="time"
+                              value={currentRoundForm.scheduledTime}
+                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledTime: e.target.value}))}
+                              className="h-6 text-xs"
+                              placeholder="HH:MM AM/PM"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Round Details */}
+                        <div>
+                          <label className="block text-xs font-medium mb-1">Round Details</label>
+                          <Textarea
+                            value={currentRoundForm.roundDetails}
+                            onChange={(e) => setCurrentRoundForm(prev => ({...prev, roundDetails: e.target.value}))}
+                            className="h-16 text-xs resize-none"
+                            placeholder="Add Round Description Here"
+                          />
+                        </div>
+
+                        {/* Additional Fields */}
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Assignment Submission Deadline:</label>
+                            <Input
+                              type="date"
+                              value={currentRoundForm.submissionDeadline}
+                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, submissionDeadline: e.target.value}))}
+                              className="h-6 text-xs"
+                              placeholder="Select the date from the calendar"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Send Round:</label>
+                            <Select value={currentRoundForm.sendRound} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, sendRound: value}))}>
+                              <SelectTrigger className="h-6 text-xs">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Applicant, Group of Applicants, Job Role">Applicant, Group of Applicants, Job Role</SelectItem>
+                                <SelectItem value="Individual Applicant">Individual Applicant</SelectItem>
+                                <SelectItem value="Group of Applicants">Group of Applicants</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-2 mt-3">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                            EDIT THIS TEMPLATE
+                          </Button>
+                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                            SAVE ROUND
+                          </Button>
+                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                            EMAIL
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* ROUND 2 - Collapsed */}
+                <Card className="border-2 border-red-500 bg-red-600">
+                  <CardContent className="p-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-sm text-white">ROUND 2</h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setExpandedRound(expandedRound === 2 ? 0 : 2)}
+                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                      >
+                        ▼
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* ROUND 3 - Collapsed */}
+                <Card className="border-2 border-red-500 bg-red-600">
+                  <CardContent className="p-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-sm text-white">ROUND 3</h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setExpandedRound(expandedRound === 3 ? 0 : 3)}
+                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                      >
+                        ▼
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* ROUND 4 - Collapsed */}
+                <Card className="border-2 border-red-500 bg-red-600">
+                  <CardContent className="p-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-sm text-white">ROUND 4</h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setExpandedRound(expandedRound === 4 ? 0 : 4)}
+                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                      >
+                        ▼
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Add New Round Text */}
+              <div className="text-center mt-6 pt-4">
+                <p className="text-gray-500 text-sm mb-1">Want to add another round?</p>
+                <p className="text-emerald-600 font-medium text-sm cursor-pointer hover:text-emerald-700">
+                  Click "ADD NEW ROUND"
+                </p>
+              </div>
             </div>
           )}
         </div>
