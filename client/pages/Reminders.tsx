@@ -385,74 +385,89 @@ export default function Reminders() {
     switch (category.toLowerCase()) {
       case "marketing":
         return (
-          <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          <div className="w-6 h-6 bg-blue-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M12 3l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "finance":
         return (
-          <div className="w-6 h-6 bg-green-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
+          <div className="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 6v12" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 9a3 3 0 0 0-3-3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 15a3 3 0 0 0 3 3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "business":
         return (
-          <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10 16V8a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1h-2a1 1 0 01-1-1zM6 16V12a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H7a1 1 0 01-1-1zM14 16V10a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1z"/>
+          <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 21h18" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M6 18v-3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10 18v-6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 18v-4" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M18 18v-8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "work":
         return (
-          <div className="w-6 h-6 bg-indigo-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10 2h4a2 2 0 012 2v2h4a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h4V4a2 2 0 012-2z"/>
+          <div className="w-6 h-6 bg-indigo-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "personal":
         return (
-          <div className="w-6 h-6 bg-pink-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          <div className="w-6 h-6 bg-pink-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="8" r="5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M20 21a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "health":
         return (
-          <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.73 12.02l3.98-3.98c.39-.39.39-1.02 0-1.41l-4.34-4.34c-.39-.39-1.02-.39-1.41 0l-3.98 3.98L8 2.29C7.8 2.1 7.55 2 7.29 2c-.25 0-.51.1-.7.29L2.25 6.63c-.39.39-.39 1.02 0 1.41l3.98 3.98L2.25 16c-.39.39-.39 1.02 0 1.41l4.34 4.34c.39.39 1.02.39 1.41 0l3.98-3.98 3.98 3.98c.2.2.45.29.71.29.26 0 .51-.1.7-.29l4.34-4.34c.39-.39.39-1.02 0-1.41l-3.99-3.98z"/>
+          <div className="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "education":
         return (
-          <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+          <div className="w-6 h-6 bg-yellow-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "travel":
         return (
-          <div className="w-6 h-6 bg-cyan-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+          <div className="w-6 h-6 bg-cyan-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M17 8h5l-3 8h-5l3-8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M2 16l3-8h5l-3 8H2z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="12" cy="17" r="1" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       default:
         return (
-          <div className="w-6 h-6 bg-gray-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2"/>
+          <div className="w-6 h-6 bg-gray-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <polyline points="14,2 14,8 20,8" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="16" y1="13" x2="8" y2="13" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="16" y1="17" x2="8" y2="17" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
