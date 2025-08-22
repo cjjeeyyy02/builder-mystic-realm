@@ -847,7 +847,7 @@ Google India`
             </SelectContent>
           </Select>
 
-          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+          <Select value={country} onValueChange={setCountry}>
             <SelectTrigger className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400">
               <SelectValue placeholder="COUNTRY" />
             </SelectTrigger>
@@ -862,7 +862,7 @@ Google India`
             </SelectContent>
           </Select>
 
-          <Select value={selectedJobRole} onValueChange={setSelectedJobRole}>
+          <Select value={jobRole} onValueChange={setJobRole}>
             <SelectTrigger className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400">
               <SelectValue placeholder="JOB ROLE" />
             </SelectTrigger>
