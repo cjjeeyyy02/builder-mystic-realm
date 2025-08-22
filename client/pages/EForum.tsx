@@ -267,11 +267,11 @@ export default function EForum() {
     setShowCreatePost(true);
   };
 
-  const handleFormChange = (field: string, value: string) => {
+  const handleFormChange = useCallback((field: string, value: string) => {
     setNewPost(prev => ({ ...prev, [field]: value }));
-  };
+  }, []);
 
-  const handleCreatePost = () => {
+  const handleCreatePost = useCallback(() => {
     if (!newPost.content.trim()) {
       return; // Don't create empty posts
     }
@@ -303,9 +303,9 @@ export default function EForum() {
       department: "General"
     });
     setShowCreatePost(false);
-  };
+  }, [newPost]);
 
-  const handleCancelPost = () => {
+  const handleCancelPost = useCallback(() => {
     setNewPost({
       title: "",
       content: "",
@@ -313,7 +313,7 @@ export default function EForum() {
       department: "General"
     });
     setShowCreatePost(false);
-  };
+  }, []);
 
   const handleHeart = (postId: number) => {
     setPosts((prev) =>
