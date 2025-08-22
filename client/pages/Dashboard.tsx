@@ -2167,13 +2167,13 @@ export default function Dashboard() {
                   </div>
 
                   {/* Forum Post 3 */}
-                  <div className={`rounded-lg p-2 transition-colors duration-300 ${
-                    isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+                  <div className={`rounded-lg p-3 transition-colors duration-300 border-l-4 border-purple-500 ${
+                    isDarkMode ? 'bg-purple-900/20' : 'bg-purple-50'
                   }`}>
                     <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
-                          MJ
+                          LM
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
