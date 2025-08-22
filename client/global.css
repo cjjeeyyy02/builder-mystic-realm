@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Suppress ResizeObserver error overlays */
+#webpack-dev-server-client-overlay-div,
+#webpack-dev-server-client-overlay {
+  display: none !important;
+}
+
+/* Additional error overlay suppression */
+.__react-error-overlay-wrapper__,
+.react-hot-toast-error {
+  display: none !important;
+}
+
 @layer base {
   /**
    * Tailwind CSS theme
