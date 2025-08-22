@@ -4,12 +4,60 @@ import { useSidebar } from "@/contexts/SidebarContext";
 import { useDarkMode } from "@/components/DarkModeProvider";
 import {
   LayoutDashboard,
-  MessageSquare,
   Folder,
-  Clock,
   Calendar,
   MessageCircle,
 } from "lucide-react";
+
+// Nucleo-style Chat Icon
+const NucleoChatIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.298 22 8.695 21.61 7.29 20.907L3.5 21.5C3.224 21.5 3 21.276 3 21V17.21C2.39 15.805 2 14.202 2 12.5C2 6.977 6.477 2.5 12 2.5Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <path
+      d="M8 12H8.01M12 12H12.01M16 12H16.01"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Nucleo-style Reminders Icon
+const NucleoRemindersIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <path
+      d="M12 7V12L15.5 14"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="1.5"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 interface NavItem {
   label: string;
