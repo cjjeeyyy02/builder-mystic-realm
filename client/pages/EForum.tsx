@@ -587,7 +587,7 @@ export default function EForum() {
 
       {/* Create Post Modal */}
       <Dialog open={showCreatePost} onOpenChange={setShowCreatePost}>
-        <DialogContent className="w-[95vw] max-w-2xl">
+        <DialogContent className="w-full max-w-2xl mx-4 sm:mx-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Create New Post
