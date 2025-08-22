@@ -2147,7 +2147,7 @@ export default function Dashboard() {
                           <span className={`text-xs transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-500'
                           }`}>
-                            HR ��� 2h ago
+                            Engineering • 2h ago
                           </span>
                         </div>
                         <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
