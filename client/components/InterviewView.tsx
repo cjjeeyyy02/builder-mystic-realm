@@ -54,12 +54,9 @@ import {
   UserPlus,
   Filter,
   AlertTriangle,
-  Target,
   Copy,
   ArrowRight,
-  Check,
-  Menu,
-  PanelLeftClose
+  Check
 } from "lucide-react";
 
 interface InterviewCandidate {
