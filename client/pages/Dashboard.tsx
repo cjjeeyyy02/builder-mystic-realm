@@ -2142,7 +2142,7 @@ export default function Dashboard() {
                           <h4 className={`text-xs font-semibold transition-colors duration-300 ${
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>
-                            Sarah Jhonson
+                            Mike Johnson
                           </h4>
                           <span className={`text-xs transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-500'
