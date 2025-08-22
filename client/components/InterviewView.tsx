@@ -1735,7 +1735,7 @@ Google India`
                             value={selectedRounds["001"]?.toString() || "1"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "001": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["001"] || 1}
                               </SelectValue>
@@ -1803,7 +1803,7 @@ Google India`
                             value={selectedRounds["002"]?.toString() || "2"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "002": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["002"] || 2}
                               </SelectValue>
@@ -1871,7 +1871,7 @@ Google India`
                             value={selectedRounds["003"]?.toString() || "1"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "003": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["003"] || 1}
                               </SelectValue>
@@ -1939,7 +1939,7 @@ Google India`
                             value={selectedRounds["004"]?.toString() || "4"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "004": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["004"] || 4}
                               </SelectValue>
@@ -1992,7 +1992,7 @@ Google India`
                             value={selectedRounds["005"]?.toString() || "5"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "005": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["005"] || 5}
                               </SelectValue>
@@ -2045,7 +2045,7 @@ Google India`
                             value={selectedRounds["006"]?.toString() || "2"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "006": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["006"] || 2}
                               </SelectValue>
@@ -2098,7 +2098,7 @@ Google India`
                             value={selectedRounds["007"]?.toString() || "1"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "007": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["007"] || 1}
                               </SelectValue>
@@ -2151,7 +2151,7 @@ Google India`
                             value={selectedRounds["008"]?.toString() || "3"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "008": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["008"] || 3}
                               </SelectValue>
@@ -2204,7 +2204,7 @@ Google India`
                             value={selectedRounds["009"]?.toString() || "3"}
                             onValueChange={(value) => setSelectedRounds(prev => ({...prev, "009": parseInt(value)}))}
                           >
-                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                            <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
                                 ROUND {selectedRounds["009"] || 3}
                               </SelectValue>
