@@ -2600,38 +2600,6 @@ export default function Dashboard() {
               </span>
             </div>
 
-            {/* AI2AIM Store */}
-            <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-3 rounded-lg ${
-                isDarkMode
-                  ? 'hover:bg-gray-700/50'
-                  : 'hover:bg-gray-50/80'
-              }`}
-              onClick={() => navigate("/ai2aim-store")}
-            >
-              <div className="w-7 h-7 bg-gradient-to-br from-red-400 to-red-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <svg
-                  className="w-3.5 h-3.5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </div>
-              <span className={`text-[10px] font-medium transition-colors ${
-                isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
-                  : 'text-gray-600 group-hover:text-gray-600'
-              }`}>
-                Store
-              </span>
-            </div>
           </div>
         </div>
       </div>
