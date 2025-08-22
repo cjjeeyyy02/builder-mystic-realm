@@ -852,238 +852,242 @@ export default function InterviewView() {
         {/* Main Content */}
         <div className={`${activeMainTab === "rounds-room" ? "flex-1" : "w-full"} overflow-y-auto`}>
           {activeMainTab === "interview-status" && (
-            <Tabs value={activeInterviewTab} onValueChange={setActiveInterviewTab}>
-              <div className="mb-6">
-                <TabsList className="bg-muted">
-                  <TabsTrigger value="ongoing">Ongoing Interview</TabsTrigger>
-                  <TabsTrigger value="upcoming">Upcoming Interview</TabsTrigger>
-                </TabsList>
-              </div>
+            <div className="space-y-4">
+              {/* Interview Table based on provided image */}
+              <Card className="border-0 shadow-sm overflow-hidden">
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-muted/30 border-b">
+                        <TableHead className="text-center font-medium text-foreground py-2 text-xs">
+                          JOB_ID
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          NAME
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          COUNTRY
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          APPLIED_JOB_ROLE
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          CURRENT_ROUND
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          NEXT_ROUND
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          INTERVIEW_PROGRESS
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                          UPDATE
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">001</TableCell>
+                        <TableCell className="py-3 text-xs">Jaya</TableCell>
+                        <TableCell className="py-3 text-xs">India</TableCell>
+                        <TableCell className="py-3 text-xs">Senior Developer</TableCell>
+                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">90%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-              <TabsContent value="ongoing" className="space-y-6">
-                {/* Summary Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-blue-600">
-                      {filteredCandidates.filter(c => c.status === "in-progress").length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">In Progress</div>
-                  </Card>
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-emerald-600">
-                      {filteredCandidates.filter(c => c.status === "completed").length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Completed</div>
-                  </Card>
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-amber-600">
-                      {filteredCandidates.filter(c => c.status === "pending").length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Pending</div>
-                  </Card>
-                </div>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">002</TableCell>
+                        <TableCell className="py-3 text-xs">Mark</TableCell>
+                        <TableCell className="py-3 text-xs">USA</TableCell>
+                        <TableCell className="py-3 text-xs">Graphic Designer</TableCell>
+                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">90%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-                {/* Interview Table */}
-                <Card className="border-0 shadow-sm overflow-hidden">
-                  <CardContent className="p-0">
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="bg-muted/30 border-b">
-                          <TableHead className="w-16 text-center font-semibold text-foreground py-4">
-                            #
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            CANDIDATE NAME
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            POSITION
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            DEPARTMENT
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            CURRENT INTERVIEW ROUND
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            STATUS
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {filteredCandidates.map((candidate, index) => {
-                          const progress = getRoundProgress(candidate);
-                          const isMissingRounds = !candidate.assignedRounds || candidate.assignedRounds.length === 0;
-                          
-                          return (
-                            <TableRow
-                              key={candidate.id}
-                              className={`hover:bg-muted/20 transition-colors border-b border-border/40 ${
-                                isMissingRounds ? "bg-red-50 border-red-200" : ""
-                              }`}
-                            >
-                              <TableCell className="text-center font-medium text-muted-foreground py-6">
-                                {index + 1}
-                              </TableCell>
-                              <TableCell className="py-6">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                                    <span className="text-primary font-medium text-xs">
-                                      {candidate.applicantName.split(' ').map(n => n[0]).join('')}
-                                    </span>
-                                  </div>
-                                  <div>
-                                    <div className="font-semibold text-foreground">
-                                      {candidate.applicantName}
-                                    </div>
-                                    <div className="text-xs text-gray-500">
-                                      {candidate.email}
-                                    </div>
-                                  </div>
-                                </div>
-                              </TableCell>
-                              <TableCell className="py-6">
-                                <div className="font-medium text-foreground">
-                                  {candidate.appliedPosition}
-                                </div>
-                              </TableCell>
-                              <TableCell className="py-6">
-                                <Badge
-                                  variant="secondary"
-                                  className={`font-medium ${getDepartmentColor(candidate.department)}`}
-                                >
-                                  {candidate.department}
-                                </Badge>
-                              </TableCell>
-                              <TableCell className="py-6">
-                                <div className="text-foreground font-medium">
-                                  {candidate.currentRound}
-                                </div>
-                              </TableCell>
-                              <TableCell className="py-6">
-                                <Badge
-                                  variant="outline"
-                                  className={`font-medium ${getStatusColor(candidate.status)}`}
-                                >
-                                  {candidate.status === "in-progress"
-                                    ? "In Progress"
-                                    : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                                </Badge>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">003</TableCell>
+                        <TableCell className="py-3 text-xs">John</TableCell>
+                        <TableCell className="py-3 text-xs">USA</TableCell>
+                        <TableCell className="py-3 text-xs">Content writer</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">100%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-              <TabsContent value="upcoming" className="space-y-6">
-                {/* Summary Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-[#0065F8]">
-                      {upcomingInterviews.length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Total Upcoming</div>
-                  </Card>
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-orange-600">
-                      {upcomingInterviews.filter(i => i.department === "Engineering").length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Engineering Dept.</div>
-                  </Card>
-                  <Card className="p-4">
-                    <div className="text-2xl font-bold text-purple-600">
-                      {upcomingInterviews.filter(i => i.interviewRound.includes("Final")).length}
-                    </div>
-                    <div className="text-sm text-muted-foreground">Final Rounds</div>
-                  </Card>
-                </div>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">004</TableCell>
+                        <TableCell className="py-3 text-xs">Sara</TableCell>
+                        <TableCell className="py-3 text-xs">Europe</TableCell>
+                        <TableCell className="py-3 text-xs">Copywriter</TableCell>
+                        <TableCell className="py-3 text-xs">Editing Test - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">90%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
 
-                {/* Upcoming Interview Table */}
-                <Card className="border-0 shadow-sm overflow-hidden">
-                  <CardContent className="p-0">
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="bg-muted/30 border-b">
-                          <TableHead className="w-16 text-center font-semibold text-foreground py-4">
-                            S-No.
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            CANDIDATE NAME
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            POSITION
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            DEPARTMENT
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            INTERVIEW DATE | TIME
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            INTERVIEW ROUND
-                          </TableHead>
-                          <TableHead className="font-semibold text-foreground py-4">
-                            QUICK UPDATE
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {upcomingInterviews.map((interview) => (
-                          <TableRow
-                            key={interview.id}
-                            className="hover:bg-muted/20 transition-colors border-b border-border/40"
-                          >
-                            <TableCell className="text-center font-medium text-foreground py-6">
-                              {interview.sNo}
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <div className="font-medium text-foreground">
-                                {interview.applicantName}
-                              </div>
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <div className="font-medium text-foreground">
-                                {interview.appliedPosition}
-                              </div>
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <Badge
-                                variant="secondary"
-                                className={`font-medium ${getDepartmentColor(interview.department)}`}
-                              >
-                                {interview.department}
-                              </Badge>
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <div className="text-foreground font-medium">
-                                {interview.interviewDateTime}
-                              </div>
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <div className="text-foreground font-medium">
-                                {interview.interviewRound}
-                              </div>
-                            </TableCell>
-                            <TableCell className="py-6">
-                              <Button
-                                size="sm"
-                                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white font-medium px-3 py-1.5 text-xs h-8"
-                              >
-                                <Mail className="w-3 h-3 mr-1.5" />
-                                SEND EMAIL
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">005</TableCell>
+                        <TableCell className="py-3 text-xs">Shruti</TableCell>
+                        <TableCell className="py-3 text-xs">India</TableCell>
+                        <TableCell className="py-3 text-xs">Sale Associate</TableCell>
+                        <TableCell className="py-3 text-xs">Culture Test - 3/5</TableCell>
+                        <TableCell className="py-3 text-xs">Case Study Debate - 4/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '70%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">70%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">006</TableCell>
+                        <TableCell className="py-3 text-xs">Robin</TableCell>
+                        <TableCell className="py-3 text-xs">Russia</TableCell>
+                        <TableCell className="py-3 text-xs">AI Engineer</TableCell>
+                        <TableCell className="py-3 text-xs">Project Design - 3/5</TableCell>
+                        <TableCell className="py-3 text-xs">Behavioral - 4/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style={{width: '60%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">60%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">007</TableCell>
+                        <TableCell className="py-3 text-xs">Kayle</TableCell>
+                        <TableCell className="py-3 text-xs">Russia</TableCell>
+                        <TableCell className="py-3 text-xs">ML Engineer</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">100%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">008</TableCell>
+                        <TableCell className="py-3 text-xs">Vali</TableCell>
+                        <TableCell className="py-3 text-xs">China</TableCell>
+                        <TableCell className="py-3 text-xs">Data Analyst</TableCell>
+                        <TableCell className="py-3 text-xs">Data Analysis - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">90%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">009</TableCell>
+                        <TableCell className="py-3 text-xs">Anne</TableCell>
+                        <TableCell className="py-3 text-xs">Canada</TableCell>
+                        <TableCell className="py-3 text-xs">Finance Analyst</TableCell>
+                        <TableCell className="py-3 text-xs">Business Analysis - 2/5</TableCell>
+                        <TableCell className="py-3 text-xs">Case Study Debate - 3/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '40%'}}></div>
+                            </div>
+                            <span className="text-xs font-medium">40%</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-3">
+                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                            EMAIL
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </div>
           )}
 
           {activeMainTab === "rounds-room" && (
