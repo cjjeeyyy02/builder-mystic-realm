@@ -410,7 +410,7 @@ export default function InterviewView() {
   const [showEmailScreen, setShowEmailScreen] = useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
-  const [activeEmailTab, setActiveEmailTab] = useState("inbox");
+  const [activeEmailTab, setActiveEmailTab] = useState("");
   const [showEmailCompose, setShowEmailCompose] = useState(false);
   const [emailForm, setEmailForm] = useState({
     to: "jayamishra@gmail.com",
