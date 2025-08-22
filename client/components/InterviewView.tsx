@@ -831,50 +831,37 @@ Google India`
           </Tabs>
         </div>
 
-        {/* Filter Dropdowns */}
+        {/* Filter Search Inputs */}
         <div className="flex items-center gap-3 mt-4 mb-4">
-          <Select value={searchCandidates} onValueChange={setSearchCandidates}>
-            <SelectTrigger className="w-48 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400">
-              <SelectValue placeholder="SEARCH CANDIDATES" />
-            </SelectTrigger>
-            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-              <SelectItem value="all" className="text-xs hover:bg-gray-50">All Candidates</SelectItem>
-              <SelectItem value="jaya" className="text-xs hover:bg-gray-50">Jaya</SelectItem>
-              <SelectItem value="mark" className="text-xs hover:bg-gray-50">Mark</SelectItem>
-              <SelectItem value="john" className="text-xs hover:bg-gray-50">John</SelectItem>
-              <SelectItem value="sara" className="text-xs hover:bg-gray-50">Sara</SelectItem>
-              <SelectItem value="shruti" className="text-xs hover:bg-gray-50">Shruti</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+            <Input
+              placeholder="SEARCH CANDIDATES"
+              value={searchCandidates}
+              onChange={(e) => setSearchCandidates(e.target.value)}
+              className="w-48 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400 pl-8"
+            />
+          </div>
 
-          <Select value={country} onValueChange={setCountry}>
-            <SelectTrigger className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400">
-              <SelectValue placeholder="COUNTRY" />
-            </SelectTrigger>
-            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-              <SelectItem value="all" className="text-xs hover:bg-gray-50">All Countries</SelectItem>
-              <SelectItem value="india" className="text-xs hover:bg-gray-50">India</SelectItem>
-              <SelectItem value="usa" className="text-xs hover:bg-gray-50">USA</SelectItem>
-              <SelectItem value="europe" className="text-xs hover:bg-gray-50">Europe</SelectItem>
-              <SelectItem value="russia" className="text-xs hover:bg-gray-50">Russia</SelectItem>
-              <SelectItem value="china" className="text-xs hover:bg-gray-50">China</SelectItem>
-              <SelectItem value="canada" className="text-xs hover:bg-gray-50">Canada</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+            <Input
+              placeholder="COUNTRY"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400 pl-8"
+            />
+          </div>
 
-          <Select value={jobRole} onValueChange={setJobRole}>
-            <SelectTrigger className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400">
-              <SelectValue placeholder="JOB ROLE" />
-            </SelectTrigger>
-            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-              <SelectItem value="all" className="text-xs hover:bg-gray-50">All Roles</SelectItem>
-              <SelectItem value="developer" className="text-xs hover:bg-gray-50">Developer</SelectItem>
-              <SelectItem value="designer" className="text-xs hover:bg-gray-50">Designer</SelectItem>
-              <SelectItem value="analyst" className="text-xs hover:bg-gray-50">Analyst</SelectItem>
-              <SelectItem value="engineer" className="text-xs hover:bg-gray-50">Engineer</SelectItem>
-              <SelectItem value="writer" className="text-xs hover:bg-gray-50">Writer</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+            <Input
+              placeholder="JOB ROLE"
+              value={jobRole}
+              onChange={(e) => setJobRole(e.target.value)}
+              className="w-32 h-8 text-xs bg-white border border-gray-300 hover:border-gray-400 pl-8"
+            />
+          </div>
         </div>
       </div>
 
