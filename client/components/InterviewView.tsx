@@ -406,6 +406,41 @@ export default function InterviewView() {
     final: true
   });
 
+  // Email Modal States
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
+  const [emailSearch, setEmailSearch] = useState("");
+  const [activeEmailTab, setActiveEmailTab] = useState("inbox");
+
+  // Sample email data
+  const emailData = [
+    {
+      id: "1",
+      subject: "Application for Senior Developer - Request for Interview Scheduling",
+      checked: false
+    },
+    {
+      id: "2",
+      subject: "Proposed Interview Time - Jaya Mishra",
+      checked: false
+    },
+    {
+      id: "3",
+      subject: "Availability for Interview - Senior Developer Application",
+      checked: false
+    },
+    {
+      id: "4",
+      subject: "Scheduling Interview for Senior Developer Position",
+      checked: false
+    },
+    {
+      id: "5",
+      subject: "Confirming Availability for Interview - Jaya Mishra",
+      checked: false
+    }
+  ];
+
   // Form States
   const [roundForm, setRoundForm] = useState({
     roundHeader: "",
