@@ -387,6 +387,11 @@ export default function InterviewView() {
   const [searchCandidates, setSearchCandidates] = useState("");
   const [jobRole, setJobRole] = useState("");
   const [country, setCountry] = useState("");
+
+  // Dropdown visibility states
+  const [showCandidatesDropdown, setShowCandidatesDropdown] = useState(false);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const [showJobRoleDropdown, setShowJobRoleDropdown] = useState(false);
   const [expandedRound, setExpandedRound] = useState<number>(1);
   const [currentRoundForm, setCurrentRoundForm] = useState({
     roundName: "Project Design",
