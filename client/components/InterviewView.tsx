@@ -955,7 +955,7 @@ export default function InterviewView() {
                     variant={activeRoundType === "technical" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("technical")}
-                    className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
+                    className="h-6 px-3 text-xs bg-red-600 text-white hover:bg-red-700"
                   >
                     TECHNICAL
                   </Button>
@@ -963,7 +963,7 @@ export default function InterviewView() {
                     variant={activeRoundType === "non-technical" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("non-technical")}
-                    className="h-7 px-4 text-xs"
+                    className="h-6 px-3 text-xs"
                   >
                     NON-TECHNICAL
                   </Button>
@@ -971,20 +971,29 @@ export default function InterviewView() {
                     variant={activeRoundType === "final" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("final")}
-                    className="h-7 px-4 text-xs"
+                    className="h-6 px-3 text-xs"
                   >
                     FINAL
                   </Button>
                 </div>
 
-                {/* Single switch at the very end */}
-                <Switch
-                  checked={roundTypeEnabled[activeRoundType]}
-                  onCheckedChange={(checked) =>
-                    setRoundTypeEnabled(prev => ({ ...prev, [activeRoundType]: checked }))
-                  }
-                  className="scale-75"
-                />
+                {/* Switches only for TECHNICAL and NON-TECHNICAL */}
+                <div className="flex items-center gap-3">
+                  {(activeRoundType === "technical" || activeRoundType === "non-technical") && (
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs font-medium text-gray-600">
+                        {activeRoundType.toUpperCase()}
+                      </span>
+                      <Switch
+                        checked={roundTypeEnabled[activeRoundType]}
+                        onCheckedChange={(checked) =>
+                          setRoundTypeEnabled(prev => ({ ...prev, [activeRoundType]: checked }))
+                        }
+                        className="scale-75"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Rounds */}
