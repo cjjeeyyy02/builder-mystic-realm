@@ -386,6 +386,22 @@ export default function InterviewView() {
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
   const [isQuickActionsSidebarOpen, setIsQuickActionsSidebarOpen] = useState(true);
 
+  // New Rounds Room Interface States
+  const [searchCandidates, setSearchCandidates] = useState("");
+  const [jobRole, setJobRole] = useState("");
+  const [country, setCountry] = useState("");
+  const [expandedRound, setExpandedRound] = useState<number>(1);
+  const [currentRoundForm, setCurrentRoundForm] = useState({
+    roundName: "Project Design",
+    roundType: "Telephone",
+    interviewMode: "Online Interview",
+    scheduledDate: "",
+    scheduledTime: "",
+    roundDetails: "One-On-One Discussion with the Marketing Manager",
+    submissionDeadline: "",
+    sendRound: "Applicant, Group of Applicants, Job Role"
+  });
+
   // Form States
   const [roundForm, setRoundForm] = useState({
     roundHeader: "",
