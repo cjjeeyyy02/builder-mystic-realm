@@ -1361,14 +1361,14 @@ Google India`
                     INBOX
                   </Button>
                   <Button
-                    variant={activeEmailTab === "sent" ? "default" : "ghost"}
+                    variant={activeEmailTab === "sent" && !showEmailCompose ? "default" : "ghost"}
                     size="sm"
                     onClick={() => {
                       setActiveEmailTab("sent");
                       setShowEmailCompose(false);
                     }}
                     className={`h-6 text-xs font-medium mb-1 rounded-none ${
-                      activeEmailTab === "sent"
+                      activeEmailTab === "sent" && !showEmailCompose
                         ? "bg-black text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
@@ -1376,14 +1376,14 @@ Google India`
                     SENT
                   </Button>
                   <Button
-                    variant={activeEmailTab === "spam" ? "default" : "ghost"}
+                    variant={activeEmailTab === "spam" && !showEmailCompose ? "default" : "ghost"}
                     size="sm"
                     onClick={() => {
                       setActiveEmailTab("spam");
                       setShowEmailCompose(false);
                     }}
                     className={`h-6 text-xs font-medium rounded-none ${
-                      activeEmailTab === "spam"
+                      activeEmailTab === "spam" && !showEmailCompose
                         ? "bg-black text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
