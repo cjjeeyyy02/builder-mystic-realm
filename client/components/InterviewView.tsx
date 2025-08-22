@@ -1485,13 +1485,25 @@ Google India`
 
                         {/* Action Buttons */}
                         <div className="flex items-center gap-2 pt-2">
-                          <Button variant="outline" className="bg-yellow-400 hover:bg-yellow-500 text-black h-7 px-3 text-xs">
+                          <Button
+                            variant="outline"
+                            onClick={handleSaveAsDraft}
+                            className="bg-yellow-400 hover:bg-yellow-500 text-black h-7 px-3 text-xs"
+                          >
                             SAVE AS DRAFT
                           </Button>
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs">
+                          <Button
+                            onClick={handleSendEmail}
+                            className="bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs"
+                          >
                             SEND EMAIL
                           </Button>
-                          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 ml-auto">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleSendEmail}
+                            className="h-7 w-7 p-0 ml-auto"
+                          >
                             <Send className="w-4 h-4" />
                           </Button>
                         </div>
