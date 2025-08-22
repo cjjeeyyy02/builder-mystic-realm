@@ -1466,7 +1466,12 @@ Google India`
                         <div className="space-y-1 flex-1">
                           <div className="flex items-center justify-between">
                             <label className="text-xs font-medium text-gray-700">Message</label>
-                            <Button variant="outline" size="sm" className="h-6 px-2 text-xs">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={handleAttachFiles}
+                              className="h-6 px-2 text-xs"
+                            >
                               <Upload className="w-3 h-3 mr-1" />
                               ATTACH FILES
                             </Button>
