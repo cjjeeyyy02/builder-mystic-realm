@@ -1196,7 +1196,7 @@ export default function Files() {
                                 </svg>
                               </Button>
                             </div>
-                            </div>
+                          </div>
 
                             <div style={{ display: "none" }}>
                               <Button
