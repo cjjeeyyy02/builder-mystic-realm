@@ -152,7 +152,7 @@ export default function FooterNavigation({
                   <div
                     className={`
                     relative transition-all duration-200
-                    ${shouldMinimize ? "mb-0" : isMinimizedItem ? "mb-0.5" : "mb-1"}
+                    ${shouldMinimize ? "mb-0" : isMinimizedItem ? "mb-1" : "mb-1.5"}
                     ${isActive ? "scale-110" : "group-hover:scale-110 group-active:scale-90"}
                   `}
                   >
