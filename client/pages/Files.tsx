@@ -1059,7 +1059,7 @@ export default function Files() {
                   </div>
                 ) : (
                   /* Grid View */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                     {sortedFiles.map((file) => (
                       <Card
                         key={file.id}
@@ -1123,28 +1123,23 @@ export default function Files() {
 
                                 {/* Compact Badges */}
                                 <div className="pt-1">
-                                  <div className="flex flex-nowrap gap-0.5 overflow-hidden">
-                                    <span className="text-xs px-1 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700 truncate">
+                                  <div className="flex flex-nowrap gap-1 overflow-hidden">
+                                    <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700 whitespace-nowrap">
                                       {file.department}
                                     </span>
                                     <span
-                                      className={`text-xs px-1 py-0.5 rounded-full font-medium truncate ${
+                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${
                                         file.visibility === "Public"
                                           ? "bg-green-100 text-green-700"
                                           : "bg-red-100 text-red-700"
                                       }`}
                                     >
-                                      {file.visibility === "Public" ? "Pub" : "Prv"}
+                                      {file.visibility === "Public" ? "Public" : "Private"}
                                     </span>
                                     <span
-                                      className={`text-xs px-1 py-0.5 rounded-full font-medium text-white truncate ${getPriorityColor(file.priority)}`}
+                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white whitespace-nowrap ${getPriorityColor(file.priority)}`}
                                     >
-                                      {file.priority === "VERY HIGH" ? "VH" :
-                                       file.priority === "VERY LOW" ? "VL" :
-                                       file.priority === "HIGH" ? "H" :
-                                       file.priority === "MEDIUM" ? "M" :
-                                       file.priority === "LOW" ? "L" :
-                                       file.priority}
+                                      {file.priority}
                                     </span>
                                   </div>
                                 </div>
