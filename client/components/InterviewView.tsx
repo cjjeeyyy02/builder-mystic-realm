@@ -76,15 +76,6 @@ interface InterviewCandidate {
   missingRounds?: string[];
 }
 
-interface UpcomingInterview {
-  id: string;
-  sNo: number;
-  applicantName: string;
-  appliedPosition: string;
-  department: string;
-  interviewDateTime: string;
-  interviewRound: string;
-}
 
 interface InterviewRound {
   id: string;
