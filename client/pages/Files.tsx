@@ -225,44 +225,53 @@ export default function Files() {
     switch (fileType) {
       case "PDF":
         return (
-          <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M8 13h8M8 16h6"/>
+          <div className="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="9" cy="13" r="1" fill="currentColor"/>
+              <circle cx="12" cy="13" r="1" fill="currentColor"/>
+              <circle cx="15" cy="13" r="1" fill="currentColor"/>
+              <path d="M9 16h6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "DOC":
       case "DOCX":
         return (
-          <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M10 12h4M8 16h8"/>
+          <div className="w-6 h-6 bg-blue-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 14h8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 16h6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "XLS":
       case "XLSX":
         return (
-          <div className="w-6 h-6 bg-green-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M8 12h8M8 16h8M12 12v8"/>
+          <div className="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 12v6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 15h3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M13 15h3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "PPT":
       case "PPTX":
         return (
-          <div className="w-6 h-6 bg-orange-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M10 11h2a2 2 0 0 1 0 4h-2V11zM8 17h8"/>
+          <div className="w-6 h-6 bg-orange-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <rect x="9" y="12" width="6" height="4" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="10.5" cy="14" r="0.5" fill="currentColor"/>
             </svg>
           </div>
         );
@@ -271,51 +280,58 @@ export default function Files() {
       case "JPEG":
       case "GIF":
         return (
-          <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21,15 16,10 5,21"/>
+          <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="3" ry="3" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="8.5" cy="8.5" r="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M21 15l-5-5L5 21" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "ZIP":
       case "RAR":
         return (
-          <div className="w-6 h-6 bg-gray-600 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M10 10v2M12 10v2M10 14v2M12 14v2"/>
+          <div className="w-6 h-6 bg-gray-600 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10 10h1" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M11 11h1" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10 12h1" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M11 13h1" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10 14h1" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "MP4":
       case "AVI":
         return (
-          <div className="w-6 h-6 bg-red-600 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
+          <div className="w-6 h-6 bg-red-600 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10 8l6 4-6 4V8z" fill="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       case "MP3":
       case "WAV":
         return (
-          <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 18V5l12-2v13"/>
-              <circle cx="6" cy="18" r="3"/>
-              <circle cx="18" cy="16" r="3"/>
+          <div className="w-6 h-6 bg-yellow-500 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 9h6v6" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="9" cy="15" r="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
       default:
         return (
-          <div className="w-6 h-6 bg-gray-400 rounded-md flex items-center justify-center shadow-sm">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
+          <div className="w-6 h-6 bg-gray-400 rounded-lg flex items-center justify-center shadow-sm">
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 13h6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 16h4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         );
