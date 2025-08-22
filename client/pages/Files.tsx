@@ -1054,11 +1054,11 @@ export default function Files() {
                   </div>
                 ) : (
                   /* Grid View */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
                     {sortedFiles.map((file) => (
                       <Card
                         key={file.id}
-                        className={`min-h-[240px] hover:shadow-md transition-all duration-200 ${
+                        className={`min-h-[160px] hover:shadow-md transition-all duration-200 ${
                           isDarkMode
                             ? "bg-emerald-800 border-emerald-700"
                             : "bg-white border-emerald-200"
