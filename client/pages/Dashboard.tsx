@@ -2098,8 +2098,7 @@ export default function Dashboard() {
                   </Button>
                 </div>
 
-                {/* Chat Messages Container - Scrollable */}
-                <div className="flex-1 overflow-y-auto space-y-3 pr-2" style={{ maxHeight: 'calc(100vh - 30rem)' }}>
+                <div className="space-y-3">
                   {/* Forum Post 1 */}
                   <div className={`rounded-lg p-2 transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
