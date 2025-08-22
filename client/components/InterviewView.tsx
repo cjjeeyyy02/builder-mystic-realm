@@ -1346,14 +1346,14 @@ Google India`
                 {/* Email Sidebar */}
                 <div className="w-20 border-r border-gray-200 flex flex-col">
                   <Button
-                    variant={activeEmailTab === "inbox" ? "default" : "ghost"}
+                    variant={activeEmailTab === "inbox" && showEmailCompose ? "default" : "ghost"}
                     size="sm"
                     onClick={() => {
                       setActiveEmailTab("inbox");
                       setShowEmailCompose(true);
                     }}
                     className={`h-6 text-xs font-medium mb-1 rounded-none ${
-                      activeEmailTab === "inbox"
+                      activeEmailTab === "inbox" && showEmailCompose
                         ? "bg-black text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
