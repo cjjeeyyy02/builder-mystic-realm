@@ -728,7 +728,17 @@ Google India`
   const handleConfirmDecision = () => {
     if (selectedDecision) {
       console.log(`Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`);
-      // Here you would typically update the candidate's status in your data
+
+      // Save the confirmed decision for button styling
+      const decisionKey = `${selectedDecision.candidateId}-${selectedDecision.type}`;
+      setConfirmedDecisions(prev => ({
+        ...prev,
+        [decisionKey]: {
+          decision: selectedDecision.decision,
+          type: selectedDecision.type
+        }
+      }));
+
       setShowDecisionModal(false);
       setSelectedDecision(null);
     }
