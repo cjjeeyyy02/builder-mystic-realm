@@ -1371,62 +1371,165 @@ Google India`
 
                 {/* Email Content */}
                 <div className="flex-1 flex flex-col">
-                  {/* Search and Compose Header */}
-                  <div className="flex items-center gap-2 p-2 border-b border-gray-200">
-                    <Input
-                      placeholder="SEARCH MAIL/CHAT"
-                      value={emailSearch}
-                      onChange={(e) => setEmailSearch(e.target.value)}
-                      className="flex-1 h-6 text-xs"
-                    />
-                    <Button
-                      onClick={handleComposeEmail}
-                      className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs"
-                    >
-                      COMPOSE EMAIL
-                    </Button>
-                    <div className="flex items-center gap-1 text-xs text-gray-600">
-                      <span>1-50 of 1263</span>
-                      <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
-                        ‹
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
-                        ›
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Email List */}
-                  <div className="flex-1 overflow-y-auto">
-                    <div className="space-y-1 p-2">
-                      {emailData.map((email) => (
-                        <div key={email.id} className="flex items-center gap-2 p-1 hover:bg-gray-50 rounded">
-                          <Checkbox
-                            checked={selectedEmails.includes(email.id)}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                setSelectedEmails(prev => [...prev, email.id]);
-                              } else {
-                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
-                              }
-                            }}
-                            className="scale-75"
-                          />
-                          <div className="flex-1 text-xs text-gray-700 truncate">
-                            {email.subject}
+                  {showEmailCompose ? (
+                    /* Email Composition Interface */
+                    <div className="flex-1 flex flex-col">
+                      {/* Template Header */}
+                      <div className="flex items-center justify-between p-2 border-b border-gray-200">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-gray-600">Email Templates for Video Interviews</span>
+                          <Select defaultValue="neutral">
+                            <SelectTrigger className="w-32 h-5 text-xs">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="neutral">Choose from the Template Styles</SelectItem>
+                              <SelectItem value="formal">Formal</SelectItem>
+                              <SelectItem value="casual">Casual</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                              ‹
+                            </Button>
+                            <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                              ›
+                            </Button>
                           </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEmailDelete(email.id)}
-                            className="h-5 w-5 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                          >
-                            <Trash2 className="w-3 h-3" />
+                        </div>
+                        <Button className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs">
+                          COMPOSE EMAIL
+                        </Button>
+                      </div>
+
+                      {/* Template Selection */}
+                      <div className="flex justify-center p-2 border-b border-gray-200">
+                        <div className="flex items-center gap-1">
+                          <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                            ‹
+                          </Button>
+                          <Button variant="outline" size="sm" className="h-6 px-3 text-xs">
+                            NEUTRAL TEMPLATE
+                          </Button>
+                          <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                            ›
                           </Button>
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Email Form */}
+                      <div className="flex-1 p-3 space-y-2 overflow-y-auto">
+                        {/* To Field */}
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-gray-700">To</label>
+                          <Input
+                            value={emailForm.to}
+                            onChange={(e) => setEmailForm(prev => ({ ...prev, to: e.target.value }))}
+                            className="h-6 text-xs"
+                          />
+                        </div>
+
+                        {/* Subject Field */}
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-gray-700">Subject</label>
+                          <Input
+                            value={emailForm.subject}
+                            onChange={(e) => setEmailForm(prev => ({ ...prev, subject: e.target.value }))}
+                            className="h-6 text-xs"
+                          />
+                        </div>
+
+                        {/* Message Field */}
+                        <div className="space-y-1 flex-1">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-medium text-gray-700">Message</label>
+                            <Button variant="outline" size="sm" className="h-6 px-2 text-xs">
+                              <Upload className="w-3 h-3 mr-1" />
+                              ATTACH FILES
+                            </Button>
+                          </div>
+                          <Textarea
+                            value={emailForm.message}
+                            onChange={(e) => setEmailForm(prev => ({ ...prev, message: e.target.value }))}
+                            className="min-h-[300px] text-xs resize-none"
+                          />
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex items-center gap-2 pt-2">
+                          <Button variant="outline" className="bg-yellow-400 hover:bg-yellow-500 text-black h-7 px-3 text-xs">
+                            SAVE AS DRAFT
+                          </Button>
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs">
+                            SEND EMAIL
+                          </Button>
+                          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 ml-auto">
+                            <Send className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    /* Default Email List View */
+                    <>
+                      {/* Search and Compose Header */}
+                      <div className="flex items-center gap-2 p-2 border-b border-gray-200">
+                        <Input
+                          placeholder="SEARCH MAIL/CHAT"
+                          value={emailSearch}
+                          onChange={(e) => setEmailSearch(e.target.value)}
+                          className="flex-1 h-6 text-xs"
+                        />
+                        <Button
+                          onClick={handleComposeEmail}
+                          className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs"
+                        >
+                          COMPOSE EMAIL
+                        </Button>
+                        <div className="flex items-center gap-1 text-xs text-gray-600">
+                          <span>1-50 of 1263</span>
+                          <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                            ‹
+                          </Button>
+                          <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                            ›
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Email List */}
+                      <div className="flex-1 overflow-y-auto">
+                        <div className="space-y-1 p-2">
+                          {emailData.map((email) => (
+                            <div key={email.id} className="flex items-center gap-2 p-1 hover:bg-gray-50 rounded">
+                              <Checkbox
+                                checked={selectedEmails.includes(email.id)}
+                                onCheckedChange={(checked) => {
+                                  if (checked) {
+                                    setSelectedEmails(prev => [...prev, email.id]);
+                                  } else {
+                                    setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                                  }
+                                }}
+                                className="scale-75"
+                              />
+                              <div className="flex-1 text-xs text-gray-700 truncate">
+                                {email.subject}
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleEmailDelete(email.id)}
+                                className="h-5 w-5 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
