@@ -234,11 +234,11 @@ export default function FooterNavigation({
 
       {/* Home Indicator for iOS-style design - Hidden when minimized */}
       {!shouldMinimize && (
-        <div className="flex justify-center pb-1">
+        <div className="flex justify-center py-1 pb-2">
           <div
             className={`
-            w-16 h-0.5 rounded-full transition-colors duration-300
-            ${isDarkMode ? "bg-gray-700" : "bg-gray-300"}
+            w-12 h-1 rounded-full transition-colors duration-300
+            ${isDarkMode ? "bg-gray-600" : "bg-gray-400"}
           `}
           />
         </div>
