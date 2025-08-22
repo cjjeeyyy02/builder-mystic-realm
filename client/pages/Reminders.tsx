@@ -888,9 +888,11 @@ export default function Reminders() {
                           {/* Header - Reminder Icon and Status */}
                           <div className="flex items-center gap-1 mb-1.5">
                             <div className="flex-shrink-0">
-                              <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
-                                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                              <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center shadow-sm">
+                                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                  <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <circle cx="12" cy="12" r="1" fill="currentColor"/>
                                 </svg>
                               </div>
                             </div>
