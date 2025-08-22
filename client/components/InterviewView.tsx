@@ -658,6 +658,15 @@ export default function InterviewView() {
     return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
   };
 
+  // Email modal handlers
+  const handleEmailDelete = (emailId: string) => {
+    console.log("Deleting email:", emailId);
+  };
+
+  const handleComposeEmail = () => {
+    console.log("Opening compose email");
+  };
+
   return (
     <div className="space-y-6">
       {/* Navigation Tabs with Search */}
