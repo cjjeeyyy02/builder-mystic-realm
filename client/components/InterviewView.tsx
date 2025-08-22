@@ -693,6 +693,15 @@ Google India`
     [key: string]: { decision: "YES" | "MAYBE" | "NO"; type: "round" | "final" }
   }>({});
 
+  // Track selected round for each candidate
+  const [selectedRounds, setSelectedRounds] = useState<{
+    [candidateId: string]: number;
+  }>({
+    "001": 1,
+    "002": 2,
+    "003": 1,
+  });
+
   // Email modal handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting email:", emailId);
