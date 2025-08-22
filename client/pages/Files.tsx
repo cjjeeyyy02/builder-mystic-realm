@@ -1071,8 +1071,8 @@ export default function Files() {
                       >
                         <CardContent className="p-2">
                           <div className="flex h-full">
-                            {/* Left side - Vertical Action Buttons */}
-                            <div className="flex flex-col space-y-1 mr-2">
+                            {/* Left side - File Content */}
+                            <div className="flex-1 flex flex-col">
                               <Button
                                 onClick={() => handlePreviewFile(file)}
                                 size="sm"
