@@ -708,6 +708,11 @@ Google India`
     "009": 3,
   });
 
+  // Filter dropdown states
+  const [searchCandidates, setSearchCandidates] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedJobRole, setSelectedJobRole] = useState("");
+
   // Email modal handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting email:", emailId);
