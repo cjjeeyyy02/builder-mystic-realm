@@ -399,6 +399,13 @@ export default function InterviewView() {
     sendRound: "Applicant, Group of Applicants, Job Role"
   });
 
+  // Round Type Enable/Disable States
+  const [roundTypeEnabled, setRoundTypeEnabled] = useState({
+    technical: true,
+    "non-technical": true,
+    final: true
+  });
+
   // Form States
   const [roundForm, setRoundForm] = useState({
     roundHeader: "",
