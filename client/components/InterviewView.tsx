@@ -1581,6 +1581,65 @@ Google India`
               </div>
             </div>
           )}
+
+          {activeMainTab === "decision-room" && (
+            <div className="space-y-4">
+              <Card className="border-0 shadow-sm">
+                <CardContent className="p-6">
+                  <div className="text-center space-y-4">
+                    <CheckCircle className="w-12 h-12 mx-auto text-emerald-600" />
+                    <h3 className="text-lg font-semibold text-foreground">Decision Room</h3>
+                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                      Review candidates, make final decisions, and manage the hiring process.
+                      Compare candidates, view their interview progress, and make informed decisions.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
+                        <div className="text-center space-y-2">
+                          <Users className="w-8 h-8 mx-auto text-emerald-600" />
+                          <h4 className="font-medium text-sm">Candidate Review</h4>
+                          <p className="text-xs text-muted-foreground">
+                            Review and compare candidate profiles and interview results
+                          </p>
+                        </div>
+                      </Card>
+
+                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
+                        <div className="text-center space-y-2">
+                          <CheckCircle className="w-8 h-8 mx-auto text-emerald-600" />
+                          <h4 className="font-medium text-sm">Final Decisions</h4>
+                          <p className="text-xs text-muted-foreground">
+                            Make hire/reject decisions and track decision history
+                          </p>
+                        </div>
+                      </Card>
+
+                      <Card className="p-4 border-2 border-emerald-100 hover:border-emerald-200 transition-colors">
+                        <div className="text-center space-y-2">
+                          <FileText className="w-8 h-8 mx-auto text-emerald-600" />
+                          <h4 className="font-medium text-sm">Reports & Analytics</h4>
+                          <p className="text-xs text-muted-foreground">
+                            Generate hiring reports and analyze decision patterns
+                          </p>
+                        </div>
+                      </Card>
+                    </div>
+
+                    <div className="mt-8 space-y-3">
+                      <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        Start Decision Process
+                      </Button>
+                      <p className="text-xs text-muted-foreground">
+                        Decision Room features coming soon...
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
 
