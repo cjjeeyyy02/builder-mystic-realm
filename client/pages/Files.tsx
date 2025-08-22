@@ -1066,21 +1066,21 @@ export default function Files() {
                       >
                         <CardContent className="p-2">
                           <div className="flex flex-col h-full">
-                            {/* Top Section - File Icon, Type and Actions */}
-                            <div className="flex items-start justify-between mb-1">
-                              <div className="flex items-center gap-2">
+                            {/* Header - File Icon, Type and Actions */}
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-1">
                                 <div className="flex-shrink-0">
                                   {getFileIconComponent(file.type)}
                                 </div>
                                 <span
-                                  className={`text-sm px-3 py-1 rounded ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
+                                  className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
                                 >
                                   {file.type}
                                 </span>
                               </div>
 
-                              {/* Action Icons - Right Section */}
-                              <div className="flex flex-col space-y-1">
+                              {/* Compact Action Menu */}
+                              <div className="flex items-center space-x-0.5">
                                 {/* VIEW Icon */}
                                 <Button
                                   onClick={() => handlePreviewFile(file)}
