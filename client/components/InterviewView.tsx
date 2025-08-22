@@ -950,30 +950,62 @@ export default function InterviewView() {
 
               {/* Round Type Tabs */}
               <div className="flex gap-1 mb-4">
-                <Button
-                  variant={activeRoundType === "technical" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("technical")}
-                  className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
-                >
-                  TECHNICAL
-                </Button>
-                <Button
-                  variant={activeRoundType === "non-technical" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("non-technical")}
-                  className="h-7 px-4 text-xs"
-                >
-                  NON-TECHNICAL
-                </Button>
-                <Button
-                  variant={activeRoundType === "final" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveRoundType("final")}
-                  className="h-7 px-4 text-xs"
-                >
-                  FINAL
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant={activeRoundType === "technical" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("technical")}
+                    className="h-7 px-4 text-xs bg-red-600 text-white hover:bg-red-700"
+                    disabled={!roundTypeEnabled.technical}
+                  >
+                    TECHNICAL
+                  </Button>
+                  <Switch
+                    checked={roundTypeEnabled.technical}
+                    onCheckedChange={(checked) =>
+                      setRoundTypeEnabled(prev => ({ ...prev, technical: checked }))
+                    }
+                    className="scale-75"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("non-technical")}
+                    className="h-7 px-4 text-xs"
+                    disabled={!roundTypeEnabled["non-technical"]}
+                  >
+                    NON-TECHNICAL
+                  </Button>
+                  <Switch
+                    checked={roundTypeEnabled["non-technical"]}
+                    onCheckedChange={(checked) =>
+                      setRoundTypeEnabled(prev => ({ ...prev, "non-technical": checked }))
+                    }
+                    className="scale-75"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant={activeRoundType === "final" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveRoundType("final")}
+                    className="h-7 px-4 text-xs"
+                    disabled={!roundTypeEnabled.final}
+                  >
+                    FINAL
+                  </Button>
+                  <Switch
+                    checked={roundTypeEnabled.final}
+                    onCheckedChange={(checked) =>
+                      setRoundTypeEnabled(prev => ({ ...prev, final: checked }))
+                    }
+                    className="scale-75"
+                  />
+                </div>
               </div>
 
               {/* Rounds */}
