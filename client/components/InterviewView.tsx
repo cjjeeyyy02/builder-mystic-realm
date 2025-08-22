@@ -1648,23 +1648,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1689,23 +1689,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1730,23 +1730,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1771,23 +1771,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1812,23 +1812,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1853,23 +1853,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1894,23 +1894,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1935,23 +1935,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
@@ -1976,23 +1976,23 @@ Google India`
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
                             </Button>
-                            <Button className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               MAYBE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               NO
                             </Button>
                           </div>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
-                            <Button className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
                             </Button>
-                            <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-50 h-5 px-2 text-xs rounded">
+                            <Button className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               REJECT
                             </Button>
                           </div>
