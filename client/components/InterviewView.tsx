@@ -713,6 +713,21 @@ Google India`
     "009": 3,
   });
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.dropdown-container')) {
+        setShowCandidatesDropdown(false);
+        setShowCountryDropdown(false);
+        setShowJobRoleDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
 
   // Email modal handlers
   const handleEmailDelete = (emailId: string) => {
