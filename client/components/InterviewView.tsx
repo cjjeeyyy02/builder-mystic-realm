@@ -1329,9 +1329,17 @@ Google India`
                 {/* Email Sidebar */}
                 <div className="w-20 border-r border-gray-200 flex flex-col">
                   <Button
-                    disabled
+                    variant={activeEmailTab === "inbox" ? "default" : "ghost"}
                     size="sm"
-                    className="h-6 text-xs font-medium mb-1 rounded-none bg-gray-300 text-gray-500 cursor-not-allowed"
+                    onClick={() => {
+                      setActiveEmailTab("inbox");
+                      setShowEmailCompose(true);
+                    }}
+                    className={`h-6 text-xs font-medium mb-1 rounded-none ${
+                      activeEmailTab === "inbox"
+                        ? "bg-black text-white hover:bg-gray-800"
+                        : "hover:bg-gray-100"
+                    }`}
                   >
                     INBOX
                   </Button>
