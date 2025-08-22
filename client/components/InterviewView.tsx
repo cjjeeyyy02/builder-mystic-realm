@@ -2135,11 +2135,13 @@ Google India`
       {/* Decision Confirmation Modal */}
       <Dialog open={showDecisionModal} onOpenChange={setShowDecisionModal}>
         <DialogContent className="w-96 max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-bold text-gray-800 uppercase tracking-wide text-center">
+              CONFIRMATION
+            </DialogTitle>
+          </DialogHeader>
           <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-4">
             <div className="text-center space-y-4">
-              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">
-                CONFIRMATION
-              </h3>
               <p className="text-sm text-gray-700">
                 {selectedDecision ? (
                   selectedDecision.type === "final" ? (
