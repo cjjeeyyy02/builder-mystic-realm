@@ -749,6 +749,36 @@ Google India`
     setSelectedDecision(null);
   };
 
+  // Helper function to get button styles based on confirmed decisions
+  const getButtonStyles = (candidateId: string, buttonDecision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+    const decisionKey = `${candidateId}-${type}`;
+    const confirmedDecision = confirmedDecisions[decisionKey];
+
+    // If this specific button was confirmed, show it as filled/shaded
+    if (confirmedDecision && confirmedDecision.decision === buttonDecision) {
+      switch (buttonDecision) {
+        case "YES":
+          return "bg-green-600 border border-green-600 text-white hover:bg-green-700 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+        case "MAYBE":
+          return "bg-orange-500 border border-orange-500 text-white hover:bg-orange-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+        case "NO":
+          return "bg-red-600 border border-red-600 text-white hover:bg-red-700 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+      }
+    }
+
+    // Default transparent style with colored border
+    switch (buttonDecision) {
+      case "YES":
+        return "bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+      case "MAYBE":
+        return "bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+      case "NO":
+        return "bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+      default:
+        return "bg-transparent border border-gray-400 text-gray-600 hover:bg-gray-50 hover:border-gray-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm";
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Navigation Tabs with Search */}
