@@ -730,6 +730,13 @@ Google India`
                 <Settings className="w-4 h-4 mr-2" />
                 Rounds Room
               </TabsTrigger>
+              <TabsTrigger
+                value="decision-room"
+                className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
+              >
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Decision Room
+              </TabsTrigger>
             </TabsList>
           </Tabs>
           
