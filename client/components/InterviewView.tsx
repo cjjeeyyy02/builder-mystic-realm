@@ -2141,7 +2141,17 @@ Google India`
                 CONFIRMATION
               </h3>
               <p className="text-sm text-gray-700">
-                Would you like to proceed with this candidate?
+                {selectedDecision ? (
+                  selectedDecision.type === "final" ? (
+                    selectedDecision.decision === "NO" ?
+                      "Are you sure you want to reject this candidate?" :
+                      "Are you sure you want to approve this candidate?"
+                  ) : (
+                    "Would you like to proceed with this candidate?"
+                  )
+                ) : (
+                  "Would you like to proceed with this candidate?"
+                )}
               </p>
               {selectedDecision && (
                 <p className="text-xs text-gray-600">
