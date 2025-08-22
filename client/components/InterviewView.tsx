@@ -411,6 +411,27 @@ export default function InterviewView() {
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
   const [activeEmailTab, setActiveEmailTab] = useState("inbox");
+  const [showEmailCompose, setShowEmailCompose] = useState(false);
+  const [emailForm, setEmailForm] = useState({
+    to: "jayamishra@gmail.com",
+    subject: "Proposed Interview Time - Jaya Mishra",
+    message: `Hi Jaya Mishra,
+
+Thank you for your interest in Senior Developer role at Google India.
+
+To schedule your second round of interview, please use the link below to view our calendar and choose a time that works for you:
+https://ai2aim.com/google-india/schedule-interview-slot
+
+Note that the red slots are already booked, and the empty slots are still available.
+Once you book a slot, you'll receive a confirmation with the interview details.
+
+If none of the available times work for you, or if you run into any issues while booking, feel free to reply to this email and we'll try to accommodate. Looking forward to speaking with you.
+
+Best regards,
+Kayle Jenny
+HR Associate
+Google India`
+  });
 
   // Sample email data
   const emailData = [
