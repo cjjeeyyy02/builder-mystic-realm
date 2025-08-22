@@ -1064,8 +1064,7 @@ export default function Files() {
                             : "bg-white border-emerald-200"
                         }`}
                       >
-                        <CardContent className="p-3 h-full">
-                          {/* Square Layout */}
+                        <CardContent className="p-2">
                           <div className="flex flex-col h-full">
                             {/* Top Section - File Icon, Type and Actions */}
                             <div className="flex items-start justify-between mb-1">
