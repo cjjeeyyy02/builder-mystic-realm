@@ -49,6 +49,8 @@ export default function ActivationView() {
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [confirmFilter, setConfirmFilter] = useState("");
+  const [finalDecisionFilter, setFinalDecisionFilter] = useState("");
 
   return (
     <div className="space-y-3">
