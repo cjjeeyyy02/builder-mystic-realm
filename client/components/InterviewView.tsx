@@ -1988,9 +1988,21 @@ Google India`
                         <TableCell className="py-2 text-xs">India</TableCell>
                         <TableCell className="py-2 text-xs">Sale Associate</TableCell>
                         <TableCell className="py-2">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
-                            ROUND 5
-                          </Button>
+                          <Select
+                            value={selectedRounds["005"]?.toString() || "5"}
+                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "005": parseInt(value)}))}
+                          >
+                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                              <SelectValue>
+                                ROUND {selectedRounds["005"] || 5}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">ROUND 1</SelectItem>
+                              <SelectItem value="2">ROUND 2</SelectItem>
+                              <SelectItem value="3">ROUND 3</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
