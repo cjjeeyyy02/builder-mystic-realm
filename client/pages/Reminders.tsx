@@ -871,11 +871,11 @@ export default function Reminders() {
               </div>
             ) : viewMode === "grid" ? (
               /* Grid View */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                 {sortedReminders.map((reminder) => (
                   <Card
                     key={reminder.id}
-                    className={`min-h-[160px] hover:shadow-md transition-all duration-200 ${
+                    className={`min-h-[180px] hover:shadow-md transition-all duration-200 ${
                       isDarkMode
                         ? "bg-emerald-800 border-emerald-700"
                         : "bg-white border-gray-200"
@@ -883,11 +883,22 @@ export default function Reminders() {
                   >
                     <CardContent className="p-2">
                       <div className="flex flex-col h-full">
-                        {/* Header - Icon, Type and Actions */}
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-1">
-                          </div>
+                        {/* Reminder Title - Moved to Top */}
+                        <div className="mb-3">
+                          <h3
+                            className={`text-sm font-bold break-words line-clamp-2 ${
+                              reminder.completed
+                                ? "line-through opacity-60"
+                                : ""
+                            } ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                            title={reminder.title}
+                          >
+                            {reminder.title}
+                          </h3>
+                        </div>
 
+                        {/* Header - Actions */}
+                        <div className="flex items-center justify-end mb-2">
                           {/* Compact Action Menu */}
                           <div className="flex flex-col space-y-0.5">
                             <Button
@@ -923,20 +934,6 @@ export default function Reminders() {
                             </svg>
                             </Button>
                           </div>
-                        </div>
-
-                        {/* Reminder Title */}
-                        <div className="mb-2">
-                          <h3
-                            className={`text-xs font-bold break-words line-clamp-2 ${
-                              reminder.completed
-                                ? "line-through opacity-60"
-                                : ""
-                            } ${isDarkMode ? "text-white" : "text-gray-900"}`}
-                            title={reminder.title}
-                          >
-                            {reminder.title}
-                          </h3>
                         </div>
 
                         {/* Compact Info */}
