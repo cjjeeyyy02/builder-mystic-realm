@@ -1346,7 +1346,10 @@ Google India`
                   <Button
                     variant={activeEmailTab === "sent" ? "default" : "ghost"}
                     size="sm"
-                    onClick={() => setActiveEmailTab("sent")}
+                    onClick={() => {
+                      setActiveEmailTab("sent");
+                      setShowEmailCompose(false);
+                    }}
                     className={`h-6 text-xs font-medium mb-1 rounded-none ${
                       activeEmailTab === "sent"
                         ? "bg-black text-white hover:bg-gray-800"
@@ -1358,7 +1361,10 @@ Google India`
                   <Button
                     variant={activeEmailTab === "spam" ? "default" : "ghost"}
                     size="sm"
-                    onClick={() => setActiveEmailTab("spam")}
+                    onClick={() => {
+                      setActiveEmailTab("spam");
+                      setShowEmailCompose(false);
+                    }}
                     className={`h-6 text-xs font-medium rounded-none ${
                       activeEmailTab === "spam"
                         ? "bg-black text-white hover:bg-gray-800"
