@@ -805,17 +805,17 @@ export default function Reminders() {
               </div>
             ) : viewMode === "grid" ? (
               /* Grid View */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
                 {sortedReminders.map((reminder) => (
                   <Card
                     key={reminder.id}
-                    className={`hover:shadow-md transition-all duration-200 ${
+                    className={`min-h-[160px] hover:shadow-md transition-all duration-200 ${
                       isDarkMode
                         ? "bg-emerald-800 border-emerald-700"
                         : "bg-white border-gray-200"
                     }`}
                   >
-                    <CardContent className="p-4 h-full">
+                    <CardContent className="p-2">
                       <div className="flex h-full">
                         {/* Left Section - Metadata Display */}
                         <div className="flex-1 space-y-3 mr-4">
