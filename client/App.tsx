@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DarkModeProvider from "./components/DarkModeProvider";
 import { SidebarProvider } from "./contexts/SidebarContext";
+import { initResizeObserverErrorHandling } from "./lib/resizeObserverUtils";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
