@@ -955,7 +955,11 @@ export default function InterviewView() {
                     variant={activeRoundType === "technical" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("technical")}
-                    className="h-6 px-3 text-xs bg-red-600 text-white hover:bg-red-700"
+                    className={`h-6 px-3 text-xs ${
+                      activeRoundType === "technical"
+                        ? "bg-red-600 text-white hover:bg-red-700"
+                        : "hover:bg-gray-100"
+                    }`}
                   >
                     TECHNICAL
                   </Button>
@@ -963,7 +967,11 @@ export default function InterviewView() {
                     variant={activeRoundType === "non-technical" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("non-technical")}
-                    className="h-6 px-3 text-xs"
+                    className={`h-6 px-3 text-xs ${
+                      activeRoundType === "non-technical"
+                        ? "bg-red-600 text-white hover:bg-red-700"
+                        : "hover:bg-gray-100"
+                    }`}
                   >
                     NON-TECHNICAL
                   </Button>
@@ -971,7 +979,11 @@ export default function InterviewView() {
                     variant={activeRoundType === "final" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveRoundType("final")}
-                    className="h-6 px-3 text-xs"
+                    className={`h-6 px-3 text-xs ${
+                      activeRoundType === "final"
+                        ? "bg-red-600 text-white hover:bg-red-700"
+                        : "hover:bg-gray-100"
+                    }`}
                   >
                     FINAL
                   </Button>
