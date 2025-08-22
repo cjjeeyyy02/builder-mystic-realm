@@ -121,10 +121,10 @@ export default function FooterNavigation({
                     relative flex flex-col items-center justify-center rounded-xl transition-all duration-200 ease-in-out group
                     min-w-0 flex-1
                     ${shouldMinimize
-                      ? "px-1 py-1.5 max-w-[60px]"
+                      ? "px-2 py-2 max-w-[65px]"
                       : isMinimizedItem
-                        ? "px-1.5 sm:px-2 py-1 sm:py-1.5 max-w-[60px] sm:max-w-[70px]"
-                        : "px-2 sm:px-2.5 py-1.5 sm:py-2 max-w-[75px] sm:max-w-[90px]"
+                        ? "px-2 py-2 max-w-[70px] sm:max-w-[75px]"
+                        : "px-3 py-2.5 max-w-[80px] sm:max-w-[90px]"
                     }
                     ${
                       isActive
