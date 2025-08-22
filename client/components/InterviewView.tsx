@@ -2094,9 +2094,21 @@ Google India`
                         <TableCell className="py-2 text-xs">Russia</TableCell>
                         <TableCell className="py-2 text-xs">ML Engineer</TableCell>
                         <TableCell className="py-2">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
-                            ROUND 1
-                          </Button>
+                          <Select
+                            value={selectedRounds["007"]?.toString() || "1"}
+                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "007": parseInt(value)}))}
+                          >
+                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                              <SelectValue>
+                                ROUND {selectedRounds["007"] || 1}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">ROUND 1</SelectItem>
+                              <SelectItem value="2">ROUND 2</SelectItem>
+                              <SelectItem value="3">ROUND 3</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
@@ -2135,9 +2147,21 @@ Google India`
                         <TableCell className="py-2 text-xs">China</TableCell>
                         <TableCell className="py-2 text-xs">Data Analyst</TableCell>
                         <TableCell className="py-2">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
-                            ROUND 3
-                          </Button>
+                          <Select
+                            value={selectedRounds["008"]?.toString() || "3"}
+                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "008": parseInt(value)}))}
+                          >
+                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                              <SelectValue>
+                                ROUND {selectedRounds["008"] || 3}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">ROUND 1</SelectItem>
+                              <SelectItem value="2">ROUND 2</SelectItem>
+                              <SelectItem value="3">ROUND 3</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
@@ -2176,9 +2200,21 @@ Google India`
                         <TableCell className="py-2 text-xs">Canada</TableCell>
                         <TableCell className="py-2 text-xs">Finance Analyst</TableCell>
                         <TableCell className="py-2">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-5 px-2 text-xs rounded">
-                            ROUND 3
-                          </Button>
+                          <Select
+                            value={selectedRounds["009"]?.toString() || "3"}
+                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "009": parseInt(value)}))}
+                          >
+                            <SelectTrigger className="w-20 h-5 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0">
+                              <SelectValue>
+                                ROUND {selectedRounds["009"] || 3}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">ROUND 1</SelectItem>
+                              <SelectItem value="2">ROUND 2</SelectItem>
+                              <SelectItem value="3">ROUND 3</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
