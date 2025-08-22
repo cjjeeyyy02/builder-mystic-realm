@@ -1063,17 +1063,70 @@ export default function Files() {
                     {sortedFiles.map((file) => (
                       <Card
                         key={file.id}
-                        className={`min-h-[160px] hover:shadow-md transition-all duration-200 ${
+                        className={`min-h-[130px] hover:shadow-md transition-all duration-200 ${
                           isDarkMode
                             ? "bg-emerald-800 border-emerald-700"
                             : "bg-white border-emerald-200"
                         }`}
                       >
                         <CardContent className="p-2">
-                          <div className="flex flex-col h-full">
-                            {/* Header - File Icon, Type and Actions */}
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center gap-1">
+                          <div className="flex h-full">
+                            {/* Left side - Vertical Action Buttons */}
+                            <div className="flex flex-col space-y-1 mr-2">
+                              <Button
+                                onClick={() => handlePreviewFile(file)}
+                                size="sm"
+                                variant="ghost"
+                                className="p-0.5 h-5 w-5 hover:bg-blue-100 hover:text-blue-600"
+                                title="View"
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                              </Button>
+
+                              <Button
+                                onClick={() => handleDownloadFile(file)}
+                                size="sm"
+                                variant="ghost"
+                                className="p-0.5 h-5 w-5 hover:bg-green-100 hover:text-green-600"
+                                title="Download"
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 712-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                              </Button>
+
+                              <Button
+                                onClick={() => handleShareFile(file.id)}
+                                size="sm"
+                                variant="ghost"
+                                className="p-0.5 h-5 w-5 hover:bg-orange-100 hover:text-orange-600"
+                                title="Share"
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                </svg>
+                              </Button>
+
+                              <Button
+                                onClick={() => handleDeleteFile(file.id)}
+                                size="sm"
+                                variant="ghost"
+                                className="p-0.5 h-5 w-5 text-red-500 hover:bg-red-100 hover:text-red-600"
+                                title="Delete"
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                              </Button>
+                            </div>
+
+                            {/* Right side - File Content */}
+                            <div className="flex-1 flex flex-col">
+                              {/* Header - File Icon and Type */}
+                              <div className="flex items-center gap-1 mb-1.5">
                                 <div className="flex-shrink-0">
                                   {getFileIconComponent(file.type)}
                                 </div>
@@ -1084,120 +1137,63 @@ export default function Files() {
                                 </span>
                               </div>
 
-                              {/* Compact Action Menu */}
-                              <div className="flex items-center space-x-0.5">
-                                <Button
-                                  onClick={() => handlePreviewFile(file)}
-                                  size="sm"
-                                  variant="ghost"
-                                  className="p-0.5 h-5 w-5 hover:bg-blue-100 hover:text-blue-600"
-                                  title="View"
+                              {/* File Name */}
+                              <div className="mb-1.5">
+                                <h3
+                                  className={`text-xs font-medium break-words line-clamp-2 ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                                  title={file.name}
                                 >
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                  </svg>
-                                </Button>
-
-                                <Button
-                                  onClick={() => handleDownloadFile(file)}
-                                  size="sm"
-                                  variant="ghost"
-                                  className="p-0.5 h-5 w-5 hover:bg-green-100 hover:text-green-600"
-                                  title="Download"
-                                >
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 712-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                  </svg>
-                                </Button>
-
-                                <Button
-                                  onClick={() => handleShareFile(file.id)}
-                                  size="sm"
-                                  variant="ghost"
-                                  className="p-0.5 h-5 w-5 hover:bg-orange-100 hover:text-orange-600"
-                                  title="Share"
-                                >
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                                  </svg>
-                                </Button>
-
-                                <Button
-                                  onClick={() => handleDeleteFile(file.id)}
-                                  size="sm"
-                                  variant="ghost"
-                                  className="p-0.5 h-5 w-5 text-red-500 hover:bg-red-100 hover:text-red-600"
-                                  title="Delete"
-                                >
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                  </svg>
-                                </Button>
+                                  {file.name}
+                                </h3>
                               </div>
-                            </div>
 
-                            {/* File Name */}
-                            <div className="mb-2">
-                              <h3
-                                className={`text-xs font-medium break-words line-clamp-2 ${isDarkMode ? "text-white" : "text-gray-900"}`}
-                                title={file.name}
-                              >
-                                {file.name}
-                              </h3>
-                            </div>
-
-                            {/* Compact Info */}
-                            <div className="flex-1 space-y-1.5">
-                              {/* ID & Size */}
-                              <div className="grid grid-cols-2 gap-1 text-xs">
-                                <div>
-                                  <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>ID:</span>
-                                  <p className={`font-mono ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                                    {file.id}
-                                  </p>
+                              {/* Compact Info */}
+                              <div className="flex-1 space-y-1">
+                                {/* ID & Size */}
+                                <div className="grid grid-cols-2 gap-1 text-xs">
+                                  <div>
+                                    <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>ID:</span>
+                                    <p className={`font-mono ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                      {file.id}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Size:</span>
+                                    <p className={`${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                      {file.size}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div>
-                                  <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Size:</span>
-                                  <p className={`${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                                    {file.size}
-                                  </p>
+
+                                {/* Date */}
+                                <div className="text-xs">
+                                  <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Date:</span>
+                                  <span className={`ml-1 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                    {file.date}
+                                  </span>
                                 </div>
-                              </div>
 
-                              {/* Date */}
-                              <div className="text-xs">
-                                <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Date:</span>
-                                <span className={`ml-1 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                                  {file.date}
-                                </span>
-                              </div>
-
-                              {/* Compact Badges */}
-                              <div className="pt-1">
-                                <div className="flex flex-wrap gap-1">
-                                  <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
-                                    {file.department}
-                                  </span>
-                                  <span
-                                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
-                                      file.visibility === "Public"
-                                        ? "bg-green-100 text-green-700"
-                                        : "bg-red-100 text-red-700"
-                                    }`}
-                                  >
-                                    {file.visibility === "Public" ? "PUB" : "PVT"}
-                                  </span>
-                                  <span
-                                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
-                                  >
-                                    {file.priority === "VERY HIGH" ? "VH" :
-                                     file.priority === "HIGH" ? "H" :
-                                     file.priority === "MEDIUM" ? "M" :
-                                     file.priority === "LOW" ? "L" :
-                                     file.priority === "VERY LOW" ? "VL" :
-                                     file.priority}
-                                  </span>
+                                {/* Compact Badges */}
+                                <div className="pt-1">
+                                  <div className="flex flex-wrap gap-1">
+                                    <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
+                                      {file.department}
+                                    </span>
+                                    <span
+                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
+                                        file.visibility === "Public"
+                                          ? "bg-green-100 text-green-700"
+                                          : "bg-red-100 text-red-700"
+                                      }`}
+                                    >
+                                      {file.visibility === "Public" ? "Public" : "Private"}
+                                    </span>
+                                    <span
+                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
+                                    >
+                                      {file.priority}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
