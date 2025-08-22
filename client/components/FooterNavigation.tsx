@@ -105,7 +105,7 @@ export default function FooterNavigation({
         shouldMinimize ? "px-2 py-2" : "px-3 sm:px-4 py-2 sm:py-3"
       }`}>
         <div className="flex items-center justify-center">
-          <div className={`flex items-center justify-between w-full transition-all duration-300 ${
+          <div className={`flex items-center justify-between w-full transition-all duration-300 gap-1 ${
             shouldMinimize ? "max-w-lg" : "max-w-2xl"
           }`}>
             {navigationItems.map((item, index) => {
