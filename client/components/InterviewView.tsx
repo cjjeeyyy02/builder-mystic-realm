@@ -1043,11 +1043,11 @@ export default function InterviewView() {
                     {expandedRound === 1 && (
                       <div className="space-y-3">
                         {/* Form Grid */}
-                        <div className="grid grid-cols-5 gap-2 text-xs">
+                        <div className="grid grid-cols-5 gap-1 text-xs">
                           <div>
                             <label className="block text-xs font-medium mb-1">Round Name</label>
                             <Select value={currentRoundForm.roundName} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundName: value}))}>
-                              <SelectTrigger className="h-6 text-xs">
+                              <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -1061,7 +1061,7 @@ export default function InterviewView() {
                           <div>
                             <label className="block text-xs font-medium mb-1">Round Type</label>
                             <Select value={currentRoundForm.roundType} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundType: value}))}>
-                              <SelectTrigger className="h-6 text-xs">
+                              <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -1075,7 +1075,7 @@ export default function InterviewView() {
                           <div>
                             <label className="block text-xs font-medium mb-1">Interview Mode</label>
                             <Select value={currentRoundForm.interviewMode} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, interviewMode: value}))}>
-                              <SelectTrigger className="h-6 text-xs">
+                              <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -1092,7 +1092,7 @@ export default function InterviewView() {
                               type="date"
                               value={currentRoundForm.scheduledDate}
                               onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledDate: e.target.value}))}
-                              className="h-6 text-xs"
+                              className="h-5 text-xs"
                               placeholder="MM/DD/YYY"
                             />
                           </div>
@@ -1103,7 +1103,7 @@ export default function InterviewView() {
                               type="time"
                               value={currentRoundForm.scheduledTime}
                               onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledTime: e.target.value}))}
-                              className="h-6 text-xs"
+                              className="h-5 text-xs"
                               placeholder="HH:MM AM/PM"
                             />
                           </div>
