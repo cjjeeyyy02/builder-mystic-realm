@@ -886,14 +886,6 @@ export default function Reminders() {
                         {/* Header - Icon, Type and Actions */}
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-1">
-                            <div className="flex-shrink-0">
-                              {getCategoryIcon(reminder.category)}
-                            </div>
-                            <span
-                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
-                            >
-                              {reminder.type}
-                            </span>
                           </div>
 
                           {/* Compact Action Menu */}
@@ -936,7 +928,7 @@ export default function Reminders() {
                         {/* Reminder Title */}
                         <div className="mb-2">
                           <h3
-                            className={`text-xs font-medium break-words line-clamp-2 ${
+                            className={`text-xs font-normal break-words line-clamp-2 ${
                               reminder.completed
                                 ? "line-through opacity-60"
                                 : ""

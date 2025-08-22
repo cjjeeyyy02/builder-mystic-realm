@@ -1063,7 +1063,7 @@ export default function Files() {
                     {sortedFiles.map((file) => (
                       <Card
                         key={file.id}
-                        className={`min-h-[130px] hover:shadow-md transition-all duration-200 ${
+                        className={`min-h-[150px] hover:shadow-md transition-all duration-200 ${
                           isDarkMode
                             ? "bg-emerald-800 border-emerald-700"
                             : "bg-white border-emerald-200"
