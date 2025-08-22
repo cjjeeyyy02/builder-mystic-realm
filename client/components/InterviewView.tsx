@@ -679,6 +679,15 @@ Google India`
     return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
   };
 
+  // Decision Confirmation Modal States
+  const [showDecisionModal, setShowDecisionModal] = useState(false);
+  const [selectedDecision, setSelectedDecision] = useState<{
+    candidateId: string;
+    candidateName: string;
+    decision: "YES" | "MAYBE" | "NO";
+    type: "round" | "final";
+  } | null>(null);
+
   // Email modal handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting email:", emailId);
