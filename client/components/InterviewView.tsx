@@ -1724,19 +1724,19 @@ Google India`
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() => handleDecisionClick("001", "Jaya", "YES", "round")}
-                              className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                              className={getButtonStyles("001", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
                               onClick={() => handleDecisionClick("001", "Jaya", "MAYBE", "round")}
-                              className="bg-transparent border border-orange-400 text-orange-600 hover:bg-orange-50 hover:border-orange-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                              className={getButtonStyles("001", "MAYBE", "round")}
                             >
                               MAYBE
                             </Button>
                             <Button
                               onClick={() => handleDecisionClick("001", "Jaya", "NO", "round")}
-                              className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                              className={getButtonStyles("001", "NO", "round")}
                             >
                               NO
                             </Button>
@@ -1746,13 +1746,13 @@ Google India`
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() => handleDecisionClick("001", "Jaya", "YES", "final")}
-                              className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                              className={getButtonStyles("001", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
                               onClick={() => handleDecisionClick("001", "Jaya", "NO", "final")}
-                              className="bg-transparent border border-red-400 text-red-600 hover:bg-red-50 hover:border-red-500 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                              className={getButtonStyles("001", "NO", "final")}
                             >
                               REJECT
                             </Button>
