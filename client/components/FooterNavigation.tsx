@@ -102,11 +102,11 @@ export default function FooterNavigation({
     >
       {/* Main Navigation Container */}
       <div className={`safe-area-inset-bottom transition-all duration-300 ${
-        shouldMinimize ? "px-1 py-1" : "px-2 sm:px-3 py-1.5"
+        shouldMinimize ? "px-2 py-2" : "px-3 sm:px-4 py-2 sm:py-3"
       }`}>
         <div className="flex items-center justify-center">
           <div className={`flex items-center justify-between w-full transition-all duration-300 ${
-            shouldMinimize ? "max-w-2xl" : "max-w-4xl"
+            shouldMinimize ? "max-w-lg" : "max-w-2xl"
           }`}>
             {navigationItems.map((item, index) => {
               const isActive = location.pathname === item.path;
