@@ -875,92 +875,121 @@ export default function Reminders() {
                 {sortedReminders.map((reminder) => (
                   <Card
                     key={reminder.id}
-                    className={`min-h-[180px] hover:shadow-md transition-all duration-200 ${
+                    className={`min-h-[150px] hover:shadow-md transition-all duration-200 ${
                       isDarkMode
                         ? "bg-emerald-800 border-emerald-700"
-                        : "bg-white border-gray-200"
+                        : "bg-white border-emerald-200"
                     }`}
                   >
-                    <CardContent className="p-4 relative">
-                      {/* Action Buttons - Top Right */}
-                      <div className="absolute top-3 right-3 flex space-x-1">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="p-1 h-6 w-6 hover:bg-orange-100 hover:text-orange-600"
-                          title="Share"
-                        >
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM4.5 6h11l-5-5v5z"/>
-                          </svg>
-                        </Button>
-                        <Button
-                          onClick={() => handleDeleteReminder(reminder.id)}
-                          size="sm"
-                          variant="ghost"
-                          className="p-1 h-6 w-6 text-red-500 hover:bg-red-100 hover:text-red-600"
-                          title="Delete"
-                        >
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                          </svg>
-                        </Button>
-                      </div>
+                    <CardContent className="p-2">
+                      <div className="flex h-full">
+                        {/* Left side - Reminder Content */}
+                        <div className="flex-1 flex flex-col">
+                          {/* Header - Reminder Icon and Status */}
+                          <div className="flex items-center gap-1 mb-1.5">
+                            <div className="flex-shrink-0">
+                              <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center shadow-sm">
+                                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                              </div>
+                            </div>
+                            <span
+                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
+                            >
+                              REMINDER
+                            </span>
+                          </div>
 
-                      <div className="space-y-2">
-                        {/* Reminder ID */}
-                        <div>
-                          <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">
-                            REMINDER ID: {reminder.id}
-                          </span>
+                          {/* Reminder Title */}
+                          <div className="mb-1.5">
+                            <h3
+                              className={`text-xs font-medium break-words line-clamp-2 ${
+                                reminder.completed
+                                  ? "line-through opacity-60"
+                                  : ""
+                              } ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                              title={reminder.title}
+                            >
+                              {reminder.title}
+                            </h3>
+                          </div>
+
+                          {/* Compact Info */}
+                          <div className="flex-1 space-y-1">
+                            {/* ID & Date */}
+                            <div className="grid grid-cols-2 gap-1 text-xs">
+                              <div>
+                                <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>ID:</span>
+                                <p className={`font-mono ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                  {reminder.id}
+                                </p>
+                              </div>
+                              <div>
+                                <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Date:</span>
+                                <p className={`${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                  {reminder.date}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Time */}
+                            <div className="text-xs">
+                              <span className={`font-medium ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Time:</span>
+                              <span className={`ml-1 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                                {reminder.time}
+                              </span>
+                            </div>
+
+                            {/* Compact Badges */}
+                            <div className="pt-1">
+                              <div className="flex flex-nowrap gap-1 overflow-hidden">
+                                <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700 whitespace-nowrap">
+                                  {reminder.department}
+                                </span>
+                                <span
+                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${
+                                    reminder.privacy === "Public"
+                                      ? "bg-green-100 text-green-700"
+                                      : "bg-red-100 text-red-700"
+                                  }`}
+                                >
+                                  {reminder.privacy === "Public" ? "Public" : "Private"}
+                                </span>
+                                <span
+                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white whitespace-nowrap ${getPriorityColor(reminder.priority)}`}
+                                >
+                                  {reminder.priority}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
-                        {/* Reminder Title */}
-                        <div>
-                          <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">
-                            REMINDER TITLE:
-                          </span>
-                          <span className={`text-xs font-medium ml-1 ${
-                            reminder.completed ? "line-through opacity-60" : ""
-                          } ${isDarkMode ? "text-white" : "text-gray-900"}`}>
-                            {reminder.title}
-                          </span>
-                        </div>
+                        {/* Right side - Vertical Action Buttons */}
+                        <div className="flex flex-col space-y-1 ml-2">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="p-0.5 h-5 w-5 hover:bg-orange-100 hover:text-orange-600"
+                            title="Share"
+                          >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                            </svg>
+                          </Button>
 
-                        {/* Reminder Details */}
-                        <div>
-                          <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">
-                            REMINDER DETAILS:
-                          </span>
-                          <span className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                            Ensure all campaigns, visuals, and messaging align with the company's tone, style, and values.
-                          </span>
-                        </div>
-
-                        {/* Reminder Date */}
-                        <div className="pb-2">
-                          <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">
-                            REMINDER DATE:
-                          </span>
-                          <span className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                            {reminder.date}
-                          </span>
-                        </div>
-
-                        {/* Bottom Badges */}
-                        <div className="flex flex-wrap gap-1 pt-2">
-                          <span className="text-xs px-2 py-1 border border-gray-400 text-gray-700 bg-gray-100 font-medium uppercase">
-                            {reminder.department}
-                          </span>
-                          <span className="text-xs px-2 py-1 border border-gray-400 text-gray-700 bg-pink-100 font-medium uppercase">
-                            {reminder.privacy === "Public" ? "PUBLIC" : "PRIVATE"}
-                          </span>
-                          <span className="text-xs px-2 py-1 border border-gray-400 text-gray-700 bg-orange-100 font-medium uppercase">
-                            {reminder.priority}
-                          </span>
-                          <span className="text-xs px-2 py-1 border border-gray-400 text-white bg-red-500 font-medium uppercase">
-                            PENDING
-                          </span>
+                          <Button
+                            onClick={() => handleDeleteReminder(reminder.id)}
+                            size="sm"
+                            variant="ghost"
+                            className="p-0.5 h-5 w-5 text-red-500 hover:bg-red-100 hover:text-red-600"
+                            title="Delete"
+                          >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                          </Button>
                         </div>
                       </div>
                     </CardContent>
