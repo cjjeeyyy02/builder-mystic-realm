@@ -52,6 +52,26 @@ export default function ActivationView() {
   const [confirmFilter, setConfirmFilter] = useState("");
   const [finalDecisionFilter, setFinalDecisionFilter] = useState("");
 
+  const renderProgressBar = (progress: number) => {
+    const getProgressColor = () => {
+      if (progress < 50) return "bg-red-500";
+      if (progress < 100) return "bg-orange-500";
+      return "bg-green-500";
+    };
+
+    return (
+      <div className="flex items-center gap-2">
+        <div className="w-24 bg-gray-200 rounded-full h-2">
+          <div
+            className={`h-2 rounded-full transition-all duration-300 ${getProgressColor()}`}
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <span className="text-xs font-medium text-gray-700">{progress}%</span>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-3">
       {/* Header Tabs and Controls */}
