@@ -190,7 +190,7 @@ export default function ActivationView() {
                       <Button
                         className={`h-6 text-xs px-3 font-medium ${
                           employee.finalDecision === "EMPLOYEE ACTIVATED"
-                            ? "bg-yellow-400 hover:bg-yellow-500 text-black"
+                            ? "bg-green-500 hover:bg-green-600 text-white"
                             : "bg-yellow-500 hover:bg-yellow-600 text-black"
                         }`}
                       >
