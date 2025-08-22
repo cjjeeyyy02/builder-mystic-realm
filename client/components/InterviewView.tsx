@@ -2042,6 +2042,41 @@ Google India`
       </div>
 
 
+      {/* Decision Confirmation Modal */}
+      <Dialog open={showDecisionModal} onOpenChange={setShowDecisionModal}>
+        <DialogContent className="w-96 max-w-sm">
+          <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-4">
+            <div className="text-center space-y-4">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                CONFIRMATION
+              </h3>
+              <p className="text-sm text-gray-700">
+                Would you like to proceed with this candidate?
+              </p>
+              {selectedDecision && (
+                <p className="text-xs text-gray-600">
+                  {selectedDecision.candidateName} - {selectedDecision.decision} ({selectedDecision.type === "round" ? "Round Decision" : "Final Decision"})
+                </p>
+              )}
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <Button
+                  onClick={handleConfirmDecision}
+                  className="bg-green-600 hover:bg-green-700 text-white h-8 px-6 text-sm font-medium rounded"
+                >
+                  YES
+                </Button>
+                <Button
+                  onClick={handleCancelDecision}
+                  className="bg-black hover:bg-gray-800 text-white h-8 px-6 text-sm font-medium rounded"
+                >
+                  NO
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Add/Edit Round Modal */}
       <Dialog open={showRoundModal} onOpenChange={setShowRoundModal}>
         <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
