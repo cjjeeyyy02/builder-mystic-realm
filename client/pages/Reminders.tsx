@@ -718,30 +718,30 @@ export default function Reminders() {
           </Card>
 
           {/* Metrics Cards */}
-          <div className="px-6 pt-6 pb-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="px-6 pt-4 pb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {/* Today's Reminders */}
               <Card className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
                 isDarkMode ? "bg-gradient-to-br from-blue-900/20 to-blue-800/10" : "bg-gradient-to-br from-blue-50 to-blue-100/50"
               }`}>
-                <CardContent className="p-5">
-                  <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-xl ${
+                <CardContent className="p-3">
+                  <div className="flex items-center space-x-2">
+                    <div className={`p-1.5 rounded-lg ${
                       isDarkMode ? "bg-blue-500/20" : "bg-blue-500/10"
                     }`}>
-                      <svg className={`w-6 h-6 ${
+                      <svg className={`w-4 h-4 ${
                         isDarkMode ? "text-blue-400" : "text-blue-600"
                       }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className={`text-xs font-medium uppercase tracking-wide ${
+                      <p className={`text-[10px] font-medium uppercase tracking-wide ${
                         isDarkMode ? "text-gray-400" : "text-gray-500"
                       }`}>
                         Today's
                       </p>
-                      <p className={`text-2xl font-bold ${
+                      <p className={`text-lg font-bold ${
                         isDarkMode ? "text-white" : "text-gray-900"
                       }`}>
                         {reminders.filter(r => r.status === "today").length}
@@ -755,24 +755,24 @@ export default function Reminders() {
               <Card className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
                 isDarkMode ? "bg-gradient-to-br from-orange-900/20 to-orange-800/10" : "bg-gradient-to-br from-orange-50 to-orange-100/50"
               }`}>
-                <CardContent className="p-5">
-                  <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-xl ${
+                <CardContent className="p-3">
+                  <div className="flex items-center space-x-2">
+                    <div className={`p-1.5 rounded-lg ${
                       isDarkMode ? "bg-orange-500/20" : "bg-orange-500/10"
                     }`}>
-                      <svg className={`w-6 h-6 ${
+                      <svg className={`w-4 h-4 ${
                         isDarkMode ? "text-orange-400" : "text-orange-600"
                       }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                       </svg>
                     </div>
                     <div>
-                      <p className={`text-xs font-medium uppercase tracking-wide ${
+                      <p className={`text-[10px] font-medium uppercase tracking-wide ${
                         isDarkMode ? "text-gray-400" : "text-gray-500"
                       }`}>
                         Pending
                       </p>
-                      <p className={`text-2xl font-bold ${
+                      <p className={`text-lg font-bold ${
                         isDarkMode ? "text-white" : "text-gray-900"
                       }`}>
                         {reminders.filter(r => r.status === "pending").length}
@@ -786,24 +786,24 @@ export default function Reminders() {
               <Card className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
                 isDarkMode ? "bg-gradient-to-br from-green-900/20 to-green-800/10" : "bg-gradient-to-br from-green-50 to-green-100/50"
               }`}>
-                <CardContent className="p-5">
-                  <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-xl ${
+                <CardContent className="p-3">
+                  <div className="flex items-center space-x-2">
+                    <div className={`p-1.5 rounded-lg ${
                       isDarkMode ? "bg-green-500/20" : "bg-green-500/10"
                     }`}>
-                      <svg className={`w-6 h-6 ${
+                      <svg className={`w-4 h-4 ${
                         isDarkMode ? "text-green-400" : "text-green-600"
                       }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
                     <div>
-                      <p className={`text-xs font-medium uppercase tracking-wide ${
+                      <p className={`text-[10px] font-medium uppercase tracking-wide ${
                         isDarkMode ? "text-gray-400" : "text-gray-500"
                       }`}>
                         Upcoming
                       </p>
-                      <p className={`text-2xl font-bold ${
+                      <p className={`text-lg font-bold ${
                         isDarkMode ? "text-white" : "text-gray-900"
                       }`}>
                         {reminders.filter(r => r.status === "upcoming").length}
@@ -817,24 +817,24 @@ export default function Reminders() {
               <Card className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
                 isDarkMode ? "bg-gradient-to-br from-purple-900/20 to-purple-800/10" : "bg-gradient-to-br from-purple-50 to-purple-100/50"
               }`}>
-                <CardContent className="p-5">
-                  <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-xl ${
+                <CardContent className="p-3">
+                  <div className="flex items-center space-x-2">
+                    <div className={`p-1.5 rounded-lg ${
                       isDarkMode ? "bg-purple-500/20" : "bg-purple-500/10"
                     }`}>
-                      <svg className={`w-6 h-6 ${
+                      <svg className={`w-4 h-4 ${
                         isDarkMode ? "text-purple-400" : "text-purple-600"
                       }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className={`text-xs font-medium uppercase tracking-wide ${
+                      <p className={`text-[10px] font-medium uppercase tracking-wide ${
                         isDarkMode ? "text-gray-400" : "text-gray-500"
                       }`}>
                         Completed
                       </p>
-                      <p className={`text-2xl font-bold ${
+                      <p className={`text-lg font-bold ${
                         isDarkMode ? "text-white" : "text-gray-900"
                       }`}>
                         {reminders.filter(r => r.completed).length}
