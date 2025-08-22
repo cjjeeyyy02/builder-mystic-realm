@@ -33,6 +33,18 @@ const checklistItems: ChecklistItem[] = [
   { id: "7", title: "Email ID & Account Setup", completed: true },
 ];
 
+const employeeData: Employee[] = [
+  { jobId: "001", name: "Jaya", country: "India", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "002", name: "Mark", country: "USA", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "003", name: "John", country: "USA", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "004", name: "Sara", country: "Europe", appliedJobRole: "Copywriter", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "005", name: "Shruti", country: "India", appliedJobRole: "Sale Associate", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "006", name: "Robin", country: "Russia", appliedJobRole: "AI Engineer", joiningDate: "8/15/2025", filesUploaded: "1/5", activationProgress: 15, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "007", name: "Kayle", country: "Russia", appliedJobRole: "ML Engineer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "008", name: "Vali", country: "China", appliedJobRole: "Data Analyst", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "009", name: "Anne", country: "Canada", appliedJobRole: "Finance Analyst", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" }
+];
+
 export default function ActivationView() {
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
