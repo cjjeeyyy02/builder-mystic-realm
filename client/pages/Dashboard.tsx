@@ -2068,19 +2068,19 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            {/* Latest E-Forum */}
-            <Card className={`transition-all duration-300 ${
+            {/* Latest E-Forum - Maximized Chat */}
+            <Card className={`flex flex-col transition-all duration-300 ${
               isDarkMode
                 ? 'bg-gray-800/50 border border-gray-700'
                 : 'bg-white border border-gray-200'
-            }`}>
-              <CardContent className="p-6 pb-12">
-                <div className="flex items-center justify-between mb-3">
+            }`} style={{ height: 'calc(100vh - 24rem)' }}>
+              <CardContent className="p-4 pb-2 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-3 flex-shrink-0">
                   <div>
-                    <h3 className={`text-sm font-semibold transition-colors duration-300 ${
+                    <h3 className={`text-base font-semibold transition-colors duration-300 ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
                     }`}>
-                      Latest E-Forum
+                      Latest E-Forum Chat
                     </h3>
                     <p className={`text-xs mt-1 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-500'
@@ -2090,7 +2090,8 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                {/* Chat Messages Container - Scrollable */}
+                <div className="flex-1 overflow-y-auto space-y-3 pr-2" style={{ maxHeight: 'calc(100vh - 30rem)' }}>
                   {/* Forum Post 1 */}
                   <div className={`rounded-lg p-2 transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
