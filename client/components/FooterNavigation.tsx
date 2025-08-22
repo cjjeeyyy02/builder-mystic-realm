@@ -77,13 +77,13 @@ const navigationItems: NavItem[] = [
     icon: LayoutDashboard,
     shortLabel: "Home",
   },
-  { label: "Chat", path: "/chat", icon: MessageSquare, shortLabel: "Chat" },
+  { label: "Chat", path: "/chat", icon: NucleoChatIcon, shortLabel: "Chat" },
   { label: "Files", path: "/files", icon: Folder, shortLabel: "Files" },
   { label: "Meetings", path: "/meetings", icon: Calendar, shortLabel: "Meet" },
   {
     label: "Reminders",
     path: "/reminders",
-    icon: Clock,
+    icon: NucleoRemindersIcon,
     shortLabel: "Reminders",
   },
   {
