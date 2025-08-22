@@ -928,7 +928,7 @@ Google India`
           </div>
 
           {/* Job Role */}
-          <div className="relative">
+          <div className="relative dropdown-container">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
             <Input
               placeholder="JOB ROLE"
