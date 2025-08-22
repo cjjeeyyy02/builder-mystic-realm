@@ -685,7 +685,24 @@ Google India`
   };
 
   const handleComposeEmail = () => {
-    console.log("Opening compose email");
+    setShowEmailCompose(true);
+    setActiveEmailTab("inbox");
+  };
+
+  const handleSaveAsDraft = () => {
+    console.log("Saving as draft:", emailForm);
+    // Handle save as draft logic
+  };
+
+  const handleSendEmail = () => {
+    console.log("Sending email:", emailForm);
+    // Handle send email logic
+    setShowEmailCompose(false);
+  };
+
+  const handleAttachFiles = () => {
+    console.log("Opening file attachment");
+    // Handle file attachment logic
   };
 
   return (
