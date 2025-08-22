@@ -2099,20 +2099,6 @@ export default function Dashboard() {
                 </div>
 
                 <div className="space-y-3">
-                  {/* Visit all forums link */}
-                  <div className="mt-4">
-                    <Button
-                      variant="link"
-                      onClick={() => navigate("/e-forum")}
-                      className={`text-xs p-0 transition-colors duration-300 ${
-                        isDarkMode
-                          ? 'text-gray-300 hover:text-blue-400'
-                          : 'text-gray-700 hover:text-blue-700'
-                      }`}
-                    >
-                      Visit all forums →
-                    </Button>
-                  </div>
 
                   {/* Forum Post 2 */}
                   <div className={`rounded-lg p-3 transition-colors duration-300 border-l-4 border-green-500 ${
