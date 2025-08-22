@@ -714,6 +714,26 @@ Google India`
     // Handle file attachment logic
   };
 
+  // Decision confirmation handlers
+  const handleDecisionClick = (candidateId: string, candidateName: string, decision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+    setSelectedDecision({ candidateId, candidateName, decision, type });
+    setShowDecisionModal(true);
+  };
+
+  const handleConfirmDecision = () => {
+    if (selectedDecision) {
+      console.log(`Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`);
+      // Here you would typically update the candidate's status in your data
+      setShowDecisionModal(false);
+      setSelectedDecision(null);
+    }
+  };
+
+  const handleCancelDecision = () => {
+    setShowDecisionModal(false);
+    setSelectedDecision(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Navigation Tabs with Search */}
