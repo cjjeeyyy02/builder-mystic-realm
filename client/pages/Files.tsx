@@ -1123,23 +1123,28 @@ export default function Files() {
 
                                 {/* Compact Badges */}
                                 <div className="pt-1">
-                                  <div className="flex flex-wrap gap-1">
-                                    <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
+                                  <div className="flex flex-nowrap gap-0.5 overflow-hidden">
+                                    <span className="text-xs px-1 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700 truncate">
                                       {file.department}
                                     </span>
                                     <span
-                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
+                                      className={`text-xs px-1 py-0.5 rounded-full font-medium truncate ${
                                         file.visibility === "Public"
                                           ? "bg-green-100 text-green-700"
                                           : "bg-red-100 text-red-700"
                                       }`}
                                     >
-                                      {file.visibility === "Public" ? "Public" : "Private"}
+                                      {file.visibility === "Public" ? "Pub" : "Prv"}
                                     </span>
                                     <span
-                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white ${getPriorityColor(file.priority)}`}
+                                      className={`text-xs px-1 py-0.5 rounded-full font-medium text-white truncate ${getPriorityColor(file.priority)}`}
                                     >
-                                      {file.priority}
+                                      {file.priority === "VERY HIGH" ? "VH" :
+                                       file.priority === "VERY LOW" ? "VL" :
+                                       file.priority === "HIGH" ? "H" :
+                                       file.priority === "MEDIUM" ? "M" :
+                                       file.priority === "LOW" ? "L" :
+                                       file.priority}
                                     </span>
                                   </div>
                                 </div>
