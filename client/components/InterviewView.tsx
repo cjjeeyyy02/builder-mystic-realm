@@ -978,7 +978,10 @@ export default function InterviewView() {
                   </SelectContent>
                 </Select>
 
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white h-7 px-3 text-xs">
+                <Button
+                  onClick={() => setShowEmailModal(true)}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white h-7 px-3 text-xs"
+                >
                   ADD NEW ROUND
                 </Button>
               </div>
