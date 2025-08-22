@@ -12,6 +12,17 @@ interface ChecklistItem {
   completed: boolean;
 }
 
+interface Employee {
+  jobId: string;
+  name: string;
+  country: string;
+  appliedJobRole: string;
+  joiningDate: string;
+  filesUploaded: string;
+  activationProgress: number;
+  finalDecision: "ACTIVATE EMPLOYEE" | "EMPLOYEE ACTIVATED";
+}
+
 const checklistItems: ChecklistItem[] = [
   { id: "1", title: "Offer Letter Signed", completed: true },
   { id: "2", title: "Welcome Email Sent", completed: true },
