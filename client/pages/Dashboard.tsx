@@ -2075,36 +2075,26 @@ export default function Dashboard() {
                 : 'bg-white border border-gray-200'
             }`}>
               <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-gray-900'
-                    }`}>
-                      Latest E-Forum
-                    </h3>
-                    <p className={`text-xs mt-1 transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                    }`}>
-                      Recent discussions
-                    </p>
-                  </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => navigate("/e-forum")}
-                    className="text-xs h-7 px-3"
-                  >
-                    View All
-                  </Button>
+                <div className="mb-3">
+                  <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    Latest E-Forum
+                  </h3>
+                  <p className={`text-xs mt-1 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                  }`}>
+                    Recent discussions
+                  </p>
                 </div>
 
                 <div className="space-y-3">
                   {/* Forum Post 1 */}
-                  <div className={`rounded-lg p-3 transition-colors duration-300 ${
-                    isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+                  <div className={`rounded-lg p-3 transition-colors duration-300 border-l-4 border-blue-500 ${
+                    isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'
                   }`}>
                     <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-semibold">
                           SJ
                         </span>
