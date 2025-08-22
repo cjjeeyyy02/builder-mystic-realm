@@ -998,20 +998,47 @@ export default function InterviewView() {
 
               {/* Rounds */}
               <div className="space-y-2">
-                {/* ROUND 1 - Expanded */}
-                <Card className="border-2 border-gray-300">
-                  <CardContent className="p-3">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-bold text-sm">ROUND 1</h3>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setExpandedRound(expandedRound === 1 ? 0 : 1)}
-                        className="h-6 w-6 p-0"
-                      >
-                        {expandedRound === 1 ? "▲" : "▼"}
-                      </Button>
+                {/* Show disabled message if current round type is disabled */}
+                {!roundTypeEnabled[activeRoundType] ? (
+                  <div className="text-center py-12 space-y-4">
+                    <div className="text-gray-500 space-y-2">
+                      <p className="text-sm font-medium">
+                        Sorry!! There are no rounds here. If you have disabled the round, please enable to see all the rounds.
+                      </p>
+                      <p className="text-xs">
+                        Find the best that fits the role with AI2AIM EMS. We simplified your hiring roadmap.
+                      </p>
+                      <p className="text-xs">
+                        If you have any issues with this system, write to us at info@ai2aim.com
+                      </p>
+                      <p className="text-xs font-medium text-gray-700">
+                        Happy Hiring!!
+                      </p>
                     </div>
+
+                    <div className="mt-8 space-y-1">
+                      <p className="text-gray-500 text-xs">Want to add another round?</p>
+                      <p className="text-emerald-600 font-medium text-xs cursor-pointer hover:text-emerald-700">
+                        Click "ADD NEW ROUND"
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {/* ROUND 1 - Expanded */}
+                    <Card className="border-2 border-gray-300">
+                      <CardContent className="p-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-bold text-xs">ROUND 1</h3>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setExpandedRound(expandedRound === 1 ? 0 : 1)}
+                            className="h-5 w-5 p-0"
+                          >
+                            {expandedRound === 1 ? "▲" : "▼"}
+                          </Button>
+                        </div>
 
                     {expandedRound === 1 && (
                       <div className="space-y-3">
@@ -1088,20 +1115,20 @@ export default function InterviewView() {
                           <Textarea
                             value={currentRoundForm.roundDetails}
                             onChange={(e) => setCurrentRoundForm(prev => ({...prev, roundDetails: e.target.value}))}
-                            className="h-16 text-xs resize-none"
+                            className="h-12 text-xs resize-none"
                             placeholder="Add Round Description Here"
                           />
                         </div>
 
                         {/* Additional Fields */}
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-2 gap-1">
                           <div>
                             <label className="block text-xs font-medium mb-1">Assignment Submission Deadline:</label>
                             <Input
                               type="date"
                               value={currentRoundForm.submissionDeadline}
                               onChange={(e) => setCurrentRoundForm(prev => ({...prev, submissionDeadline: e.target.value}))}
-                              className="h-6 text-xs"
+                              className="h-5 text-xs"
                               placeholder="Select the date from the calendar"
                             />
                           </div>
@@ -1109,7 +1136,7 @@ export default function InterviewView() {
                           <div>
                             <label className="block text-xs font-medium mb-1">Send Round:</label>
                             <Select value={currentRoundForm.sendRound} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, sendRound: value}))}>
-                              <SelectTrigger className="h-6 text-xs">
+                              <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -1122,14 +1149,14 @@ export default function InterviewView() {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-2 mt-3">
-                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                        <div className="flex gap-1 mt-2">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
                             EDIT THIS TEMPLATE
                           </Button>
-                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
                             SAVE ROUND
                           </Button>
-                          <Button className="bg-black hover:bg-gray-800 text-white h-7 px-3 text-xs">
+                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
                             EMAIL
                           </Button>
                         </div>
@@ -1140,14 +1167,14 @@ export default function InterviewView() {
 
                 {/* ROUND 2 - Collapsed */}
                 <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-2">
+                  <CardContent className="p-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-sm text-white">ROUND 2</h3>
+                      <h3 className="font-bold text-xs text-white">ROUND 2</h3>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 2 ? 0 : 2)}
-                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
                       >
                         ▼
                       </Button>
@@ -1157,14 +1184,14 @@ export default function InterviewView() {
 
                 {/* ROUND 3 - Collapsed */}
                 <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-2">
+                  <CardContent className="p-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-sm text-white">ROUND 3</h3>
+                      <h3 className="font-bold text-xs text-white">ROUND 3</h3>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 3 ? 0 : 3)}
-                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
                       >
                         ▼
                       </Button>
@@ -1174,28 +1201,30 @@ export default function InterviewView() {
 
                 {/* ROUND 4 - Collapsed */}
                 <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-2">
+                  <CardContent className="p-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-sm text-white">ROUND 4</h3>
+                      <h3 className="font-bold text-xs text-white">ROUND 4</h3>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 4 ? 0 : 4)}
-                        className="h-6 w-6 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
                       >
                         ▼
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
 
-              {/* Add New Round Text */}
-              <div className="text-center mt-6 pt-4">
-                <p className="text-gray-500 text-sm mb-1">Want to add another round?</p>
-                <p className="text-emerald-600 font-medium text-sm cursor-pointer hover:text-emerald-700">
-                  Click "ADD NEW ROUND"
-                </p>
+                {/* Add New Round Text */}
+                <div className="text-center mt-4 pt-2">
+                  <p className="text-gray-500 text-xs mb-1">Want to add another round?</p>
+                  <p className="text-emerald-600 font-medium text-xs cursor-pointer hover:text-emerald-700">
+                    Click "ADD NEW ROUND"
+                  </p>
+                </div>
+                  </>
+                )}
               </div>
             </div>
           )}
