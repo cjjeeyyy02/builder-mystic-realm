@@ -1740,10 +1740,10 @@ Google India`
                                 ROUND {selectedRounds["001"] || 1}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -1808,10 +1808,10 @@ Google India`
                                 ROUND {selectedRounds["002"] || 2}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -1876,10 +1876,10 @@ Google India`
                                 ROUND {selectedRounds["003"] || 1}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -1944,10 +1944,10 @@ Google India`
                                 ROUND {selectedRounds["004"] || 4}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -1997,10 +1997,10 @@ Google India`
                                 ROUND {selectedRounds["005"] || 5}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2050,10 +2050,10 @@ Google India`
                                 ROUND {selectedRounds["006"] || 2}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2103,10 +2103,10 @@ Google India`
                                 ROUND {selectedRounds["007"] || 1}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2156,10 +2156,10 @@ Google India`
                                 ROUND {selectedRounds["008"] || 3}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2209,10 +2209,10 @@ Google India`
                                 ROUND {selectedRounds["009"] || 3}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">ROUND 1</SelectItem>
-                              <SelectItem value="2">ROUND 2</SelectItem>
-                              <SelectItem value="3">ROUND 3</SelectItem>
+                            <SelectContent className="shadow-lg border border-gray-200 rounded-md">
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
+                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
