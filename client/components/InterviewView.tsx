@@ -1281,6 +1281,119 @@ export default function InterviewView() {
         </div>
       </div>
 
+      {/* Email Modal for ADD NEW ROUND */}
+      <Dialog open={showEmailModal} onOpenChange={setShowEmailModal}>
+        <DialogContent className="w-[95vw] max-w-5xl max-h-[90vh] overflow-hidden">
+          <DialogHeader className="pb-2">
+            <DialogTitle className="text-sm font-medium">Email Interface</DialogTitle>
+          </DialogHeader>
+
+          <div className="flex h-[70vh]">
+            {/* Email Sidebar */}
+            <div className="w-20 border-r border-gray-200 flex flex-col">
+              <Button
+                variant={activeEmailTab === "inbox" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setActiveEmailTab("inbox")}
+                className={`h-6 text-xs font-medium mb-1 rounded-none ${
+                  activeEmailTab === "inbox"
+                    ? "bg-black text-white hover:bg-gray-800"
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                INBOX
+              </Button>
+              <Button
+                variant={activeEmailTab === "sent" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setActiveEmailTab("sent")}
+                className={`h-6 text-xs font-medium mb-1 rounded-none ${
+                  activeEmailTab === "sent"
+                    ? "bg-black text-white hover:bg-gray-800"
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                SENT
+              </Button>
+              <Button
+                variant={activeEmailTab === "spam" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setActiveEmailTab("spam")}
+                className={`h-6 text-xs font-medium rounded-none ${
+                  activeEmailTab === "spam"
+                    ? "bg-black text-white hover:bg-gray-800"
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                SPAM
+              </Button>
+            </div>
+
+            {/* Email Content */}
+            <div className="flex-1 flex flex-col">
+              {/* Search and Compose Header */}
+              <div className="flex items-center gap-2 p-2 border-b border-gray-200">
+                <Input
+                  placeholder="SEARCH MAIL/CHAT"
+                  value={emailSearch}
+                  onChange={(e) => setEmailSearch(e.target.value)}
+                  className="flex-1 h-6 text-xs"
+                />
+                <Button className="bg-black hover:bg-gray-800 text-white h-6 px-3 text-xs">
+                  COMPOSE EMAIL
+                </Button>
+                <div className="flex items-center gap-1 text-xs text-gray-600">
+                  <span>1-50 of 1263</span>
+                  <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                    ‹
+                  </Button>
+                  <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
+                    ›
+                  </Button>
+                </div>
+              </div>
+
+              {/* Email List */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="space-y-1 p-2">
+                  {emailData.map((email) => (
+                    <div key={email.id} className="flex items-center gap-2 p-1 hover:bg-gray-50 rounded">
+                      <Checkbox
+                        checked={selectedEmails.includes(email.id)}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setSelectedEmails(prev => [...prev, email.id]);
+                          } else {
+                            setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                          }
+                        }}
+                        className="scale-75"
+                      />
+                      <div className="flex-1 text-xs text-gray-700 truncate">
+                        {email.subject}
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-5 w-5 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="pt-2">
+            <Button variant="outline" onClick={() => setShowEmailModal(false)} className="h-6 px-3 text-xs">
+              Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Add/Edit Round Modal */}
       <Dialog open={showRoundModal} onOpenChange={setShowRoundModal}>
         <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
