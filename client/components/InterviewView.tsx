@@ -440,7 +440,6 @@ function getDepartmentColor(department: string): string {
 export default function InterviewView() {
   // Main Panel States
   const [activeMainTab, setActiveMainTab] = useState("interview-status");
-  const [activeInterviewTab, setActiveInterviewTab] = useState("ongoing");
 
   // Rounds Room States
   const [activeRoundType, setActiveRoundType] = useState<"technical" | "non-technical" | "final">("technical");
