@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Search, ChevronDown, Download, Globe, Linkedin, MapPin, CheckCircle, AlertCircle, Loader2, Users, FileText, Link, Upload, UserPlus, FileSpreadsheet } from "lucide-react";
+import { useDarkMode } from "@/components/DarkModeProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,6 +38,7 @@ const tabs = [
 ];
 
 export default function FilterTabs() {
+  const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState("hiring");
   const [selectedStage, setSelectedStage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -605,21 +607,38 @@ export default function FilterTabs() {
     <div className="space-y-6">
       {/* Button Tabs */}
       <div className="w-full">
-        <div className="items-center justify-center rounded-md text-muted-foreground grid w-full grid-cols-5 bg-muted p-1 h-auto">
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              variant="ghost"
-              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-2.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 py-2.5 px-4 ${
-                activeTab === tab.id
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "hover:bg-accent hover:text-accent-foreground"
-              }`}
-            >
-              {tab.label}
-            </Button>
-          ))}
+        <div className={`relative rounded-lg p-1.5 shadow-sm border transition-all duration-300 ${
+          isDarkMode
+            ? 'bg-emerald-900/50 border-emerald-700'
+            : 'bg-emerald-50/80 border-emerald-200'
+        }`}>
+          <div className="grid w-full grid-cols-5 gap-1">
+            {tabs.map((tab) => (
+              <Button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                variant="ghost"
+                className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-3 text-sm font-semibold transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+                  activeTab === tab.id
+                    ? isDarkMode
+                      ? "bg-emerald-700 text-white shadow-lg border border-emerald-600 hover:bg-emerald-600"
+                      : "bg-white text-emerald-700 shadow-md border border-emerald-300 hover:bg-emerald-50"
+                    : isDarkMode
+                      ? "text-emerald-300 hover:text-white hover:bg-emerald-800/70"
+                      : "text-emerald-600 hover:text-emerald-700 hover:bg-white/60"
+                }`}
+              >
+                <span className="relative z-10">{tab.label}</span>
+                {activeTab === tab.id && (
+                  <div className={`absolute inset-0 rounded-md ${
+                    isDarkMode
+                      ? 'bg-gradient-to-r from-emerald-700 to-emerald-600'
+                      : 'bg-gradient-to-r from-white to-emerald-50'
+                  } shadow-sm`} />
+                )}
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
 
