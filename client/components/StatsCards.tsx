@@ -62,28 +62,32 @@ export default function StatsCards() {
         const Icon = stat.icon;
         const emeraldShades = [
           {
-            bg: "bg-emerald-600",
-            darkBg: "bg-emerald-700",
-            border: "border-emerald-600",
-            darkBorder: "border-emerald-700"
+            bg: "bg-emerald-50",
+            darkBg: "bg-emerald-900/50",
+            border: "border-emerald-200",
+            darkBorder: "border-emerald-700",
+            iconBg: "bg-emerald-600"
           },
           {
-            bg: "bg-emerald-700",
-            darkBg: "bg-emerald-600",
-            border: "border-emerald-700",
-            darkBorder: "border-emerald-600"
+            bg: "bg-emerald-100",
+            darkBg: "bg-emerald-800/50",
+            border: "border-emerald-300",
+            darkBorder: "border-emerald-600",
+            iconBg: "bg-emerald-700"
           },
           {
-            bg: "bg-emerald-800",
-            darkBg: "bg-emerald-500",
-            border: "border-emerald-800",
-            darkBorder: "border-emerald-500"
+            bg: "bg-emerald-200",
+            darkBg: "bg-emerald-700/50",
+            border: "border-emerald-400",
+            darkBorder: "border-emerald-500",
+            iconBg: "bg-emerald-800"
           },
           {
-            bg: "bg-emerald-500",
-            darkBg: "bg-emerald-800",
+            bg: "bg-emerald-300",
+            darkBg: "bg-emerald-600/50",
             border: "border-emerald-500",
-            darkBorder: "border-emerald-800"
+            darkBorder: "border-emerald-400",
+            iconBg: "bg-emerald-900"
           },
         ];
 
@@ -92,31 +96,46 @@ export default function StatsCards() {
         return (
           <Card
             key={stat.title}
-            className={`border ${
+            className={`shadow-sm hover:shadow-md transition-all duration-300 ${
               isDarkMode
-                ? `${shade.darkBg} ${shade.darkBorder}`
-                : `${shade.bg} ${shade.border}`
+                ? `${shade.darkBg} border ${shade.darkBorder}`
+                : `${shade.bg} border ${shade.border}`
             }`}
           >
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-white text-lg font-bold">
-                    {stat.value}
-                  </div>
-                  <div className="text-white/90 text-sm font-medium">
-                    {stat.title}
-                  </div>
+            <CardContent className="p-3">
+              <div className="flex items-start justify-between mb-2">
+                <div className={`p-1 ${shade.iconBg} rounded`}>
+                  <Icon className="w-3 h-3 text-white" />
                 </div>
-                <div className="flex flex-col items-end gap-2">
-                  <Icon className="w-5 h-5 text-white" />
-                  {stat.change && (
-                    <div className="flex items-center gap-1 text-xs font-bold text-white">
-                      <ArrowUpRight className="w-3 h-3" />
+              </div>
+              <div>
+                <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  {stat.title}
+                </h3>
+                <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {stat.value}
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
+                    </svg>
+                    <span className={`text-xs font-medium transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
                       {stat.change}
-                    </div>
-                  )}
+                    </span>
+                  </div>
                 </div>
+                <p className={`text-xs mt-1 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  {stat.description}
+                </p>
               </div>
             </CardContent>
           </Card>
