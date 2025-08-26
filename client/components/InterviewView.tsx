@@ -1183,41 +1183,54 @@ Google India`
 
           {activeMainTab === "rounds-room" && showEmailScreen && (
             <div className="bg-white border rounded-lg h-full flex">
-              {/* Left Sidebar - Email Templates */}
-              <div className="w-64 border-r bg-gray-50 flex flex-col">
-                <div className="p-4 border-b">
-                  <h3 className="text-sm font-medium text-gray-900">Email Templates For Video Interviews</h3>
-                  <p className="text-xs text-gray-600 mt-1">Choose from different email styles</p>
-                </div>
-                <div className="flex-1 p-3">
-                  <div className="space-y-2">
-                    <Button
-                      variant="default"
-                      className="w-full justify-start h-8 bg-black text-white hover:bg-gray-800 text-xs font-medium rounded-md"
-                    >
-                      NEUTRAL
-                    </Button>
+              {/* Left Sidebar - Email Templates (Minimized) */}
+              {showEmailTemplatesPanel && (
+                <div className="w-48 border-r bg-gray-50 flex flex-col">
+                  <div className="p-2 border-b flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-medium text-gray-900">Email Templates</h3>
+                      <p className="text-xs text-gray-600">Video Interviews</p>
+                    </div>
                     <Button
                       variant="ghost"
-                      className="w-full justify-start h-8 text-gray-600 hover:bg-gray-100 text-xs rounded-md"
+                      size="sm"
+                      onClick={() => setShowEmailTemplatesPanel(false)}
+                      className="h-6 w-6 p-0 hover:bg-gray-200"
                     >
-                      FRIENDLY
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start h-8 text-gray-600 hover:bg-gray-100 text-xs rounded-md"
-                    >
-                      FORMAL
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start h-8 text-gray-600 hover:bg-gray-100 text-xs rounded-md"
-                    >
-                      URGENT
+                      ✕
                     </Button>
                   </div>
+                  <div className="flex-1 p-2">
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-gray-700">Template Style</label>
+                      <Select value={selectedEmailTemplate} onValueChange={setSelectedEmailTemplate}>
+                        <SelectTrigger className="w-full h-7 text-xs">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="NEUTRAL">NEUTRAL</SelectItem>
+                          <SelectItem value="FRIENDLY">FRIENDLY</SelectItem>
+                          <SelectItem value="FORMAL">FORMAL</SelectItem>
+                          <SelectItem value="URGENT">URGENT</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Toggle button when panel is closed */}
+              {!showEmailTemplatesPanel && (
+                <div className="flex flex-col border-r bg-gray-50">
+                  <Button
+                    variant="ghost"
+                    onClick={() => setShowEmailTemplatesPanel(true)}
+                    className="h-10 w-8 p-0 hover:bg-gray-200 border-b text-xs font-medium"
+                  >
+                    ≡
+                  </Button>
+                </div>
+              )}
 
               {/* Main Email Interface */}
               <div className="flex-1 flex flex-col">
