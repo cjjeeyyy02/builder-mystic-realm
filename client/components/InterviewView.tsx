@@ -1864,6 +1864,18 @@ Google India`
 
               {/* Main Email Content */}
               <div className="flex-1 flex flex-col">
+                {/* Back Button - Moved to Top */}
+                <div className="p-3 border-b bg-gray-50">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowRoundsEmailInterface(false)}
+                    className="text-xs h-7 px-3"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Back to Rounds Room
+                  </Button>
+                </div>
+
                 {/* Top Bar - Enhanced for Recruitment */}
                 <div className="flex items-center justify-between p-3 border-b bg-white">
                   <div className="flex items-center gap-2 flex-1">
