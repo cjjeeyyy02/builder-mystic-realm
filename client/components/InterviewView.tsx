@@ -1634,7 +1634,10 @@ Google India`
                           <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
                             SAVE ROUND
                           </Button>
-                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
+                          <Button
+                            onClick={() => setShowRoundsEmailInterface(true)}
+                            className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs"
+                          >
                             EMAIL
                           </Button>
                         </div>
