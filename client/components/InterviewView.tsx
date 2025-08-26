@@ -479,34 +479,110 @@ HR Associate
 Google India`
   });
 
-  // Sample email data
-  const emailData = [
-    {
-      id: "1",
-      subject: "Application for Senior Developer - Request for Interview Scheduling",
-      checked: false
-    },
-    {
-      id: "2",
-      subject: "Proposed Interview Time - Jaya Mishra",
-      checked: false
-    },
-    {
-      id: "3",
-      subject: "Availability for Interview - Senior Developer Application",
-      checked: false
-    },
-    {
-      id: "4",
-      subject: "Scheduling Interview for Senior Developer Position",
-      checked: false
-    },
-    {
-      id: "5",
-      subject: "Confirming Availability for Interview - Jaya Mishra",
-      checked: false
-    }
-  ];
+  // Recruitment email data with applicant details
+  const recruitmentEmailData = {
+    inbox: [
+      {
+        id: "1",
+        applicantName: "Sarah Mitchell",
+        position: "Senior Developer",
+        subject: "Application for Senior Developer - Request for Interview Scheduling",
+        preview: "Thank you for considering my application. I'm available for the interview...",
+        timestamp: "2 hours ago",
+        checked: false,
+        priority: "high"
+      },
+      {
+        id: "2",
+        applicantName: "Jaya Mishra",
+        position: "Senior Developer",
+        subject: "Proposed Interview Time - Availability Confirmation",
+        preview: "I would like to confirm my availability for the interview scheduled...",
+        timestamp: "4 hours ago",
+        checked: false,
+        priority: "normal"
+      },
+      {
+        id: "3",
+        applicantName: "Mark Johnson",
+        position: "Graphic Designer",
+        subject: "Portfolio Submission and Interview Request",
+        preview: "Please find attached my portfolio. I'm excited about the opportunity...",
+        timestamp: "6 hours ago",
+        checked: false,
+        priority: "normal"
+      },
+      {
+        id: "4",
+        applicantName: "Emily Chen",
+        position: "UX Designer",
+        subject: "Thank you for the interview - Next steps inquiry",
+        preview: "Thank you for the wonderful interview yesterday. I wanted to follow up...",
+        timestamp: "1 day ago",
+        checked: false,
+        priority: "low"
+      },
+      {
+        id: "5",
+        applicantName: "David Rodriguez",
+        position: "Software Engineer",
+        subject: "Technical Assessment Completion and Results",
+        preview: "I have completed the technical assessment as requested...",
+        timestamp: "2 days ago",
+        checked: false,
+        priority: "high"
+      }
+    ],
+    sent: [
+      {
+        id: "s1",
+        applicantName: "Jaya Mishra",
+        position: "Senior Developer",
+        subject: "Interview Invitation - Technical Round",
+        preview: "We are pleased to invite you for the technical interview round...",
+        timestamp: "3 hours ago",
+        checked: false
+      },
+      {
+        id: "s2",
+        applicantName: "Mark Johnson",
+        position: "Graphic Designer",
+        subject: "Interview Confirmation and Meeting Details",
+        preview: "This email confirms your interview scheduled for tomorrow...",
+        timestamp: "1 day ago",
+        checked: false
+      },
+      {
+        id: "s3",
+        applicantName: "Sarah Mitchell",
+        position: "Senior Developer",
+        subject: "Welcome to AI2AIM - Offer Letter Attached",
+        preview: "Congratulations! We are delighted to extend an offer...",
+        timestamp: "3 days ago",
+        checked: false
+      }
+    ],
+    spam: [
+      {
+        id: "sp1",
+        applicantName: "Unknown Sender",
+        position: "N/A",
+        subject: "Urgent: Claim Your Prize Now!",
+        preview: "You have won a million dollars! Click here to claim...",
+        timestamp: "1 week ago",
+        checked: false
+      },
+      {
+        id: "sp2",
+        applicantName: "Fake Recruiter",
+        position: "N/A",
+        subject: "Investment Opportunity - Limited Time",
+        preview: "Make money fast with our investment scheme...",
+        timestamp: "2 weeks ago",
+        checked: false
+      }
+    ]
+  };
 
   // Form States
   const [roundForm, setRoundForm] = useState({
