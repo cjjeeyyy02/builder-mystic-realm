@@ -1405,8 +1405,7 @@ Google India`
 
                 <Button
                   onClick={() => {
-                    setShowNewRoundsEmailScreen(true);
-                    setActiveEmailTab("inbox");
+                    console.log("Add new rounds functionality to be implemented");
                   }}
                   className="h-7 px-3 text-xs bg-black hover:bg-gray-800 text-white font-medium"
                 >
