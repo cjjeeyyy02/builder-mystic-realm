@@ -899,23 +899,14 @@ Google India`
             <div className="space-y-4">
               {/* Search Filters */}
               <div className="flex items-center gap-2 mb-4">
-                <Select value={searchCandidates} onValueChange={setSearchCandidates}>
-                  <SelectTrigger className="w-40 h-7 text-xs">
-                    <SelectValue placeholder="SEARCH CANDIDATES" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Candidates</SelectItem>
-                    <SelectItem value="jaya">Jaya</SelectItem>
-                    <SelectItem value="mark">Mark</SelectItem>
-                    <SelectItem value="john">John</SelectItem>
-                    <SelectItem value="sara">Sara</SelectItem>
-                    <SelectItem value="shruti">Shruti</SelectItem>
-                    <SelectItem value="robin">Robin</SelectItem>
-                    <SelectItem value="kayle">Kayle</SelectItem>
-                    <SelectItem value="vali">Vali</SelectItem>
-                    <SelectItem value="anne">Anne</SelectItem>
-                  </SelectContent>
-                </Select>
+                <SearchWithDropdown
+                  placeholder="SEARCH CANDIDATES"
+                  value={searchCandidates}
+                  onChange={setSearchCandidates}
+                  options={candidateOptions}
+                  className="w-40"
+                  inputClassName="h-7 text-xs"
+                />
 
                 <Select value={country} onValueChange={setCountry}>
                   <SelectTrigger className="w-32 h-7 text-xs">
