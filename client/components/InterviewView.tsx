@@ -1768,9 +1768,13 @@ Google India`
             <div className="space-y-2">
               {/* Search and Filter Bar */}
               <div className="flex items-center gap-2 mb-2">
-                <Input
+                <SearchWithDropdown
                   placeholder="SEARCH CANDIDATES"
-                  className="w-48 h-6 text-xs"
+                  value={searchCandidates}
+                  onChange={setSearchCandidates}
+                  options={candidateOptions}
+                  className="w-48"
+                  inputClassName="h-6 text-xs"
                 />
                 <Select>
                   <SelectTrigger className="w-24 h-6 text-xs">
