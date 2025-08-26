@@ -848,30 +848,75 @@ Google India`
   }, []);
 
 
-  // Email modal handlers
+  // Recruitment email handlers
   const handleEmailDelete = (emailId: string) => {
-    console.log("Deleting email:", emailId);
+    console.log("Deleting recruitment email:", emailId);
+    // Remove from selected emails if it was selected
+    setSelectedEmails(prev => prev.filter(id => id !== emailId));
   };
 
   const handleComposeEmail = () => {
     setShowEmailCompose(true);
     setActiveEmailTab("inbox");
+    console.log("Composing new email to applicant");
   };
 
   const handleSaveAsDraft = () => {
-    console.log("Saving as draft:", emailForm);
-    // Handle save as draft logic
+    console.log("Saving recruitment email as draft:", emailForm);
+    // Handle save as draft logic for applicant communication
   };
 
   const handleSendEmail = () => {
-    console.log("Sending email:", emailForm);
-    // Handle send email logic
+    console.log("Sending recruitment email:", emailForm);
+    // Handle send email logic for applicant communication
     setShowEmailCompose(false);
   };
 
   const handleAttachFiles = () => {
-    console.log("Opening file attachment");
-    // Handle file attachment logic
+    console.log("Attaching files to recruitment email");
+    // Handle file attachment logic (interview docs, offer letters, etc.)
+  };
+
+  // Enhanced search for recruitment emails
+  const searchRecruitmentEmails = (query: string, emailList: any[]) => {
+    if (!query.trim()) return emailList;
+
+    return emailList.filter(email => {
+      const searchTerm = query.toLowerCase();
+      return (
+        email.applicantName.toLowerCase().includes(searchTerm) ||
+        email.subject.toLowerCase().includes(searchTerm) ||
+        email.position.toLowerCase().includes(searchTerm) ||
+        email.preview.toLowerCase().includes(searchTerm)
+      );
+    });
+  };
+
+  // Bulk email actions
+  const handleSelectAllEmails = (emailList: any[]) => {
+    if (selectedEmails.length === emailList.length) {
+      setSelectedEmails([]);
+    } else {
+      setSelectedEmails(emailList.map(email => email.id));
+    }
+  };
+
+  const handleBulkDelete = () => {
+    console.log("Bulk deleting emails:", selectedEmails);
+    setSelectedEmails([]);
+    setShowBulkActions(false);
+  };
+
+  const handleBulkArchive = () => {
+    console.log("Bulk archiving emails:", selectedEmails);
+    setSelectedEmails([]);
+    setShowBulkActions(false);
+  };
+
+  const handleBulkSendTemplate = () => {
+    console.log("Sending interview template to selected applicants:", selectedEmails);
+    setSelectedEmails([]);
+    setShowBulkActions(false);
   };
 
   // Decision confirmation handlers
