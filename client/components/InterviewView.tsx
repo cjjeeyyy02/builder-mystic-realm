@@ -1264,7 +1264,36 @@ Google India`
                       </div>
                     </div>
 
-                    {/* Email Form */}
+                    {/* Email Form - REPLACED WITH SIMPLE LIST */}
+                    <div className="divide-y divide-gray-200">
+                      {emailData.map((email) => (
+                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                          <Checkbox
+                            checked={selectedEmails.includes(email.id)}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                setSelectedEmails(prev => [...prev, email.id]);
+                              } else {
+                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                              }
+                            }}
+                            className="scale-90"
+                          />
+                          <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                            {email.subject}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleEmailDelete(email.id)}
+                            className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                    {/* END REPLACED EMAIL LIST */}
                     <div className="p-6 space-y-4">
                       {/* To Field */}
                       <div className="flex items-center gap-4">
