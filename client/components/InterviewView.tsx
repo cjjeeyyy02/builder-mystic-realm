@@ -57,6 +57,7 @@ import {
   Filter,
   AlertTriangle,
   Copy,
+  ArrowLeft,
   ArrowRight,
   Check
 } from "lucide-react";
