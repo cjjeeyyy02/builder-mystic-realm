@@ -1977,45 +1977,65 @@ Google India`
                   )}
 
                   {activeEmailTab === "sent" && (
-                    <div className="divide-y divide-gray-200">
-                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
-                        <Checkbox className="scale-90" />
-                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                          Interview Confirmation - Jaya Mishra (Sent)
+                    <div>
+                      {/* Bulk Actions Header for Sent */}
+                      {recruitmentEmailData.sent.length > 0 && (
+                        <div className="flex items-center gap-2 p-3 border-b bg-gray-50">
+                          <Checkbox
+                            checked={selectedEmails.length === recruitmentEmailData.sent.length}
+                            onCheckedChange={() => handleSelectAllEmails(recruitmentEmailData.sent)}
+                            className="scale-90"
+                          />
+                          <span className="text-xs text-gray-600">
+                            {selectedEmails.length > 0 ? `${selectedEmails.length} selected` : 'Select all sent emails'}
+                          </span>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
-                        <Checkbox className="scale-90" />
-                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                          Re: Technical Round Schedule - Mark Johnson (Sent)
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
-                        <Checkbox className="scale-90" />
-                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                          Welcome to AI2AIM - Next Steps (Sent)
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+                      )}
+                      <div className="divide-y divide-gray-200">
+                        {searchRecruitmentEmails(emailSearch, recruitmentEmailData.sent).map((email) => (
+                          <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                            <Checkbox
+                              checked={selectedEmails.includes(email.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setSelectedEmails(prev => [...prev, email.id]);
+                                } else {
+                                  setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                                }
+                              }}
+                              className="scale-90"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-sm text-gray-900">{email.applicantName}</span>
+                                <Badge className="text-xs px-2 py-0 bg-green-100 text-green-700">
+                                  {email.position}
+                                </Badge>
+                                <Badge className="text-xs px-2 py-0 bg-gray-100 text-gray-600">
+                                  Sent
+                                </Badge>
+                              </div>
+                              <div className="text-sm font-medium text-gray-800 truncate">
+                                {email.subject}
+                              </div>
+                              <div className="text-xs text-gray-500 truncate">
+                                {email.preview}
+                              </div>
+                              <div className="text-xs text-gray-400 mt-1">
+                                {email.timestamp}
+                              </div>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEmailDelete(email.id)}
+                              className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                              title="Delete sent email"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
