@@ -1246,44 +1246,7 @@ Google India`
                   </div>
                 </div>
 
-                {/* Email Tabs */}
-                <div className="flex border-b bg-white">
-                  <Button
-                    variant="ghost"
-                    className={`h-10 px-6 rounded-none border-b-2 text-xs font-medium ${
-                      activeEmailTab === "inbox"
-                        ? "border-black text-black bg-black text-white"
-                        : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                    }`}
-                    onClick={() => setActiveEmailTab("inbox")}
-                  >
-                    INBOX
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className={`h-10 px-6 rounded-none border-b-2 text-xs font-medium ${
-                      activeEmailTab === "sent"
-                        ? "border-black text-black bg-black text-white"
-                        : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                    }`}
-                    onClick={() => setActiveEmailTab("sent")}
-                  >
-                    SENT
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className={`h-10 px-6 rounded-none border-b-2 text-xs font-medium ${
-                      activeEmailTab === "spam"
-                        ? "border-black text-black bg-black text-white"
-                        : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                    }`}
-                    onClick={() => setActiveEmailTab("spam")}
-                  >
-                    SPAM
-                  </Button>
-                </div>
-
-                {/* Email Content Area */}
+                {/* Email List */}
                 <div className="flex-1 flex">
                   <div className="flex-1 bg-white border-r">
                     {/* Template Navigation */}
