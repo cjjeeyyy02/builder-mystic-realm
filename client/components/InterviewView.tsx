@@ -1261,7 +1261,7 @@ Google India`
                           NEUTRAL TEMPLATE 1
                         </span>
                         <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
-                          <span className="text-gray-600">���</span>
+                          <span className="text-gray-600">→</span>
                         </Button>
                       </div>
                     </div>
@@ -1710,75 +1710,112 @@ Google India`
 
           {/* New Rounds Email Screen */}
           {activeMainTab === "rounds-room" && showNewRoundsEmailScreen && (
-            <div className="bg-white border rounded-lg h-full flex flex-col">
-              {/* Top Bar */}
-              <div className="flex items-center justify-between p-3 border-b bg-white">
-                <Input
-                  placeholder="SEARCH"
-                  className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
-                  value={emailSearch}
-                  onChange={(e) => setEmailSearch(e.target.value)}
-                />
-                <div className="flex items-center gap-3">
-                  <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium">
-                    COMPOSE EMAIL
-                  </Button>
-                  <span className="text-xs text-gray-600">1-50 of 1,263</span>
-                  <div className="flex items-center gap-1">
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
-                      ◀
-                    </Button>
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
-                      ▶
-                    </Button>
-                  </div>
-                  <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
-                    <span className="text-sm">👤</span>
-                  </Button>
-                </div>
+            <div className="bg-white border rounded-lg h-full flex">
+              {/* Left Sidebar - Mailbox Navigation */}
+              <div className="w-24 border-r bg-black flex flex-col">
+                <Button
+                  className={`h-12 text-xs font-medium rounded-none border-b border-gray-700 ${
+                    activeEmailTab === "inbox"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
+                  }`}
+                  onClick={() => setActiveEmailTab("inbox")}
+                >
+                  INBOX
+                </Button>
+                <Button
+                  className={`h-12 text-xs font-medium rounded-none border-b border-gray-700 ${
+                    activeEmailTab === "sent"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
+                  }`}
+                  onClick={() => setActiveEmailTab("sent")}
+                >
+                  SENT
+                </Button>
+                <Button
+                  className={`h-12 text-xs font-medium rounded-none ${
+                    activeEmailTab === "spam"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
+                  }`}
+                  onClick={() => setActiveEmailTab("spam")}
+                >
+                  SPAM
+                </Button>
               </div>
 
-              {/* Email List */}
-              <div className="flex-1 bg-white">
-                <div className="divide-y divide-gray-200">
-                  {emailData.map((email) => (
-                    <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
-                      <Checkbox
-                        checked={selectedEmails.includes(email.id)}
-                        onCheckedChange={(checked) => {
-                          if (checked) {
-                            setSelectedEmails(prev => [...prev, email.id]);
-                          } else {
-                            setSelectedEmails(prev => prev.filter(id => id !== email.id));
-                          }
-                        }}
-                        className="scale-90"
-                      />
-                      <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                        {email.subject}
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleEmailDelete(email.id)}
-                        className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Trash2 className="w-4 h-4" />
+              {/* Main Email Content */}
+              <div className="flex-1 flex flex-col">
+                {/* Top Bar */}
+                <div className="flex items-center justify-between p-3 border-b bg-white">
+                  <Input
+                    placeholder="SEARCH"
+                    className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
+                    value={emailSearch}
+                    onChange={(e) => setEmailSearch(e.target.value)}
+                  />
+                  <div className="flex items-center gap-3">
+                    <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium">
+                      COMPOSE EMAIL
+                    </Button>
+                    <span className="text-xs text-gray-600">1-50 of 1,263</span>
+                    <div className="flex items-center gap-1">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ◀
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ▶
                       </Button>
                     </div>
-                  ))}
+                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                      <span className="text-sm">👤</span>
+                    </Button>
+                  </div>
                 </div>
-              </div>
 
-              {/* Back Button */}
-              <div className="p-3 border-t bg-gray-50">
-                <Button
-                  onClick={() => setShowNewRoundsEmailScreen(false)}
-                  variant="outline"
-                  className="text-xs h-7 px-3"
-                >
-                  ← Back to Rounds Room
-                </Button>
+                {/* Email List */}
+                <div className="flex-1 bg-white">
+                  <div className="divide-y divide-gray-200">
+                    {emailData.map((email) => (
+                      <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox
+                          checked={selectedEmails.includes(email.id)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setSelectedEmails(prev => [...prev, email.id]);
+                            } else {
+                              setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                            }
+                          }}
+                          className="scale-90"
+                        />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          {email.subject}
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleEmailDelete(email.id)}
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Back Button */}
+                <div className="p-3 border-t bg-gray-50">
+                  <Button
+                    onClick={() => setShowNewRoundsEmailScreen(false)}
+                    variant="outline"
+                    className="text-xs h-7 px-3"
+                  >
+                    ← Back to Rounds Room
+                  </Button>
+                </div>
               </div>
             </div>
           )}
