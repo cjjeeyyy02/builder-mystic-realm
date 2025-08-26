@@ -1836,7 +1836,7 @@ Google India`
           {/* Rounds Room Email Interface */}
           {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
             <div className="bg-white border rounded-lg h-full flex">
-              {/* Left Sidebar - Email Tabs */}
+              {/* Left Sidebar - Mailbox Navigation */}
               <div className="w-24 border-r bg-black flex flex-col">
                 <Button
                   className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
@@ -1860,19 +1860,40 @@ Google India`
 
               {/* Main Email Content */}
               <div className="flex-1 flex flex-col">
-                {/* Top Bar */}
+                {/* Top Bar - Enhanced for Recruitment */}
                 <div className="flex items-center justify-between p-3 border-b bg-white">
-                  <Input
-                    placeholder="SEARCH"
-                    className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
-                    value={emailSearch}
-                    onChange={(e) => setEmailSearch(e.target.value)}
-                  />
+                  <div className="flex items-center gap-2 flex-1">
+                    <Input
+                      placeholder="Search by applicant name, position, or subject..."
+                      className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
+                      value={emailSearch}
+                      onChange={(e) => setEmailSearch(e.target.value)}
+                    />
+                    {selectedEmails.length > 0 && (
+                      <div className="flex items-center gap-2">
+                        <Button
+                          onClick={handleBulkDelete}
+                          className="bg-red-600 hover:bg-red-700 text-white h-8 px-3 text-xs font-medium"
+                        >
+                          Delete ({selectedEmails.length})
+                        </Button>
+                        <Button
+                          onClick={handleBulkSendTemplate}
+                          className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3 text-xs font-medium"
+                        >
+                          Send Template ({selectedEmails.length})
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                   <div className="flex items-center gap-3">
-                    <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium">
+                    <Button
+                      onClick={handleComposeEmail}
+                      className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium"
+                    >
                       COMPOSE EMAIL
                     </Button>
-                    <span className="text-xs text-gray-600">1-50 of 1,263</span>
+                    <span className="text-xs text-gray-600">1-50 of 1,263 applicant emails</span>
                     <div className="flex items-center gap-1">
                       <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
                         ◀
@@ -1881,7 +1902,7 @@ Google India`
                         ▶
                       </Button>
                     </div>
-                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300" title="Recruiter Settings">
                       <span className="text-sm">👤</span>
                     </Button>
                   </div>
