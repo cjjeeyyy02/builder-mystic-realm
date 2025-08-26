@@ -1486,8 +1486,8 @@ Google India`
 
                     <div className="mt-8 space-y-1">
                       <p className="text-gray-500 text-xs">Want to add another round?</p>
-                      <p className="text-emerald-600 font-medium text-xs cursor-pointer hover:text-emerald-700">
-                        Click "ADD NEW ROUND"
+                      <p className="text-gray-500 font-medium text-xs">
+                        Add new round functionality removed
                       </p>
                     </div>
                   </div>
