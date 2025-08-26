@@ -451,7 +451,6 @@ export default function InterviewView() {
 
   // Email Screen States
   const [showEmailScreen, setShowEmailScreen] = useState(false);
-  const [showNewRoundsEmailScreen, setShowNewRoundsEmailScreen] = useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
   const [activeEmailTab, setActiveEmailTab] = useState("inbox");
