@@ -859,6 +859,60 @@ Google India`
         <div className="w-full overflow-y-auto">
           {activeMainTab === "interview-status" && (
             <div className="space-y-4">
+              {/* Search Filters */}
+              <div className="flex items-center gap-2 mb-4">
+                <Select value={searchCandidates} onValueChange={setSearchCandidates}>
+                  <SelectTrigger className="w-40 h-7 text-xs">
+                    <SelectValue placeholder="SEARCH CANDIDATES" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Candidates</SelectItem>
+                    <SelectItem value="jaya">Jaya</SelectItem>
+                    <SelectItem value="mark">Mark</SelectItem>
+                    <SelectItem value="john">John</SelectItem>
+                    <SelectItem value="sara">Sara</SelectItem>
+                    <SelectItem value="shruti">Shruti</SelectItem>
+                    <SelectItem value="robin">Robin</SelectItem>
+                    <SelectItem value="kayle">Kayle</SelectItem>
+                    <SelectItem value="vali">Vali</SelectItem>
+                    <SelectItem value="anne">Anne</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select value={country} onValueChange={setCountry}>
+                  <SelectTrigger className="w-32 h-7 text-xs">
+                    <SelectValue placeholder="COUNTRY" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Countries</SelectItem>
+                    <SelectItem value="india">India</SelectItem>
+                    <SelectItem value="usa">USA</SelectItem>
+                    <SelectItem value="europe">Europe</SelectItem>
+                    <SelectItem value="russia">Russia</SelectItem>
+                    <SelectItem value="china">China</SelectItem>
+                    <SelectItem value="canada">Canada</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select value={jobRole} onValueChange={setJobRole}>
+                  <SelectTrigger className="w-32 h-7 text-xs">
+                    <SelectValue placeholder="JOB ROLE" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Roles</SelectItem>
+                    <SelectItem value="senior-developer">Senior Developer</SelectItem>
+                    <SelectItem value="graphic-designer">Graphic Designer</SelectItem>
+                    <SelectItem value="content-writer">Content Writer</SelectItem>
+                    <SelectItem value="copywriter">Copywriter</SelectItem>
+                    <SelectItem value="sale-associate">Sale Associate</SelectItem>
+                    <SelectItem value="ai-engineer">AI Engineer</SelectItem>
+                    <SelectItem value="ml-engineer">ML Engineer</SelectItem>
+                    <SelectItem value="data-analyst">Data Analyst</SelectItem>
+                    <SelectItem value="finance-analyst">Finance Analyst</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
               {/* Interview Table based on provided image */}
               <Card className="border-0 shadow-sm overflow-hidden">
                 <CardContent className="p-0">
