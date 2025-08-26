@@ -1709,22 +1709,22 @@ Google India`
           {activeMainTab === "rounds-room" && showNewRoundsEmailScreen && (
             <div className="bg-white border rounded-lg h-full flex">
               {/* Left Sidebar - Email Tabs */}
-              <div className="w-20 border-r bg-gray-50 flex flex-col">
+              <div className="w-20 border-r bg-black flex flex-col">
                 <Button
-                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                  className={`h-10 text-xs font-medium rounded-none border-b border-gray-700 ${
                     activeEmailTab === "inbox" || activeEmailTab === ""
-                      ? "bg-black text-white"
-                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
                   }`}
                   onClick={() => setActiveEmailTab("inbox")}
                 >
                   INBOX
                 </Button>
                 <Button
-                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                  className={`h-10 text-xs font-medium rounded-none border-b border-gray-700 ${
                     activeEmailTab === "sent"
-                      ? "bg-black text-white"
-                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
                   }`}
                   onClick={() => setActiveEmailTab("sent")}
                 >
@@ -1733,8 +1733,8 @@ Google India`
                 <Button
                   className={`h-10 text-xs font-medium rounded-none ${
                     activeEmailTab === "spam"
-                      ? "bg-black text-white"
-                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                      ? "bg-gray-800 text-white"
+                      : "bg-black text-white hover:bg-gray-800"
                   }`}
                   onClick={() => setActiveEmailTab("spam")}
                 >
