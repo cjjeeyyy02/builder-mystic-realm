@@ -1183,54 +1183,39 @@ Google India`
 
           {activeMainTab === "rounds-room" && showEmailScreen && (
             <div className="bg-white border rounded-lg h-full flex">
-              {/* Left Sidebar - Email Templates (Minimized) */}
-              {showEmailTemplatesPanel && (
-                <div className="w-48 border-r bg-gray-50 flex flex-col">
-                  <div className="p-2 border-b flex items-center justify-between">
-                    <div>
-                      <h3 className="text-xs font-medium text-gray-900">Email Templates</h3>
-                      <p className="text-xs text-gray-600">Video Interviews</p>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setShowEmailTemplatesPanel(false)}
-                      className="h-6 w-6 p-0 hover:bg-gray-200"
-                    >
-                      ✕
-                    </Button>
-                  </div>
-                  <div className="flex-1 p-2">
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-gray-700">Template Style</label>
-                      <Select value={selectedEmailTemplate} onValueChange={setSelectedEmailTemplate}>
-                        <SelectTrigger className="w-full h-7 text-xs">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="NEUTRAL">NEUTRAL</SelectItem>
-                          <SelectItem value="FRIENDLY">FRIENDLY</SelectItem>
-                          <SelectItem value="FORMAL">FORMAL</SelectItem>
-                          <SelectItem value="URGENT">URGENT</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Toggle button when panel is closed */}
-              {!showEmailTemplatesPanel && (
-                <div className="flex flex-col border-r bg-gray-50">
-                  <Button
-                    variant="ghost"
-                    onClick={() => setShowEmailTemplatesPanel(true)}
-                    className="h-10 w-8 p-0 hover:bg-gray-200 border-b text-xs font-medium"
-                  >
-                    ≡
-                  </Button>
-                </div>
-              )}
+              {/* Left Sidebar - Email Tabs */}
+              <div className="w-20 border-r bg-gray-50 flex flex-col">
+                <Button
+                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                    activeEmailTab === "inbox" || activeEmailTab === ""
+                      ? "bg-black text-white"
+                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                  }`}
+                  onClick={() => setActiveEmailTab("inbox")}
+                >
+                  INBOX
+                </Button>
+                <Button
+                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                    activeEmailTab === "sent"
+                      ? "bg-black text-white"
+                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                  }`}
+                  onClick={() => setActiveEmailTab("sent")}
+                >
+                  SENT
+                </Button>
+                <Button
+                  className={`h-10 text-xs font-medium rounded-none ${
+                    activeEmailTab === "spam"
+                      ? "bg-black text-white"
+                      : "bg-transparent text-gray-600 hover:bg-gray-100"
+                  }`}
+                  onClick={() => setActiveEmailTab("spam")}
+                >
+                  SPAM
+                </Button>
+              </div>
 
               {/* Main Email Interface */}
               <div className="flex-1 flex flex-col">
