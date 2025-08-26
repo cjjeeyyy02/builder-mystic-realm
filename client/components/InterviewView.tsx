@@ -454,6 +454,8 @@ export default function InterviewView() {
   const [showRoundsEmailInterface, setShowRoundsEmailInterface] = useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
+  const [showBulkActions, setShowBulkActions] = useState(false);
+  const [filteredEmails, setFilteredEmails] = useState<any[]>([]);
   const [activeEmailTab, setActiveEmailTab] = useState("inbox");
   const [showEmailCompose, setShowEmailCompose] = useState(false);
   const [showEmailTemplatesPanel, setShowEmailTemplatesPanel] = useState(true);
