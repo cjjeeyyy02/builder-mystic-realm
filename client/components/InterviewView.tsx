@@ -2130,21 +2130,6 @@ Google India`
                   )}
                 </div>
 
-                {/* Back Button */}
-                <div className="p-3 border-t bg-gray-50">
-                  <div className="flex items-center justify-between">
-                    <Button
-                      onClick={() => setShowRoundsEmailInterface(false)}
-                      variant="outline"
-                      className="text-xs h-7 px-3"
-                    >
-                      ← Back to Rounds Room
-                    </Button>
-                    <div className="text-xs text-gray-500">
-                      Recruitment Communication Dashboard - All applicant emails centralized
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           )}
