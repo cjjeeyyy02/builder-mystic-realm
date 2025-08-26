@@ -1762,36 +1762,125 @@ Google India`
                   </div>
                 </div>
 
-                {/* Email List */}
+                {/* Email Content based on active tab */}
                 <div className="flex-1 bg-white">
-                  <div className="divide-y divide-gray-200">
-                    {emailData.map((email) => (
-                      <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
-                        <Checkbox
-                          checked={selectedEmails.includes(email.id)}
-                          onCheckedChange={(checked) => {
-                            if (checked) {
-                              setSelectedEmails(prev => [...prev, email.id]);
-                            } else {
-                              setSelectedEmails(prev => prev.filter(id => id !== email.id));
-                            }
-                          }}
-                          className="scale-90"
-                        />
+                  {activeEmailTab === "inbox" && (
+                    <div className="divide-y divide-gray-200">
+                      {emailData.map((email) => (
+                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                          <Checkbox
+                            checked={selectedEmails.includes(email.id)}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                setSelectedEmails(prev => [...prev, email.id]);
+                              } else {
+                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                              }
+                            }}
+                            className="scale-90"
+                          />
+                          <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                            {email.subject}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleEmailDelete(email.id)}
+                            className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeEmailTab === "sent" && (
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
                         <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                          {email.subject}
+                          Interview Confirmation - Jaya Mishra (Sent)
                         </div>
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleEmailDelete(email.id)}
                           className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
-                    ))}
-                  </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Re: Technical Round Schedule - Mark Johnson (Sent)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Welcome to AI2AIM - Next Steps (Sent)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeEmailTab === "spam" && (
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Urgent: Claim Your Prize Now! (Spam)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Investment Opportunity - Limited Time (Spam)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="p-6 text-center text-gray-500">
+                        <p className="text-sm">2 spam messages</p>
+                        <Button className="mt-2 text-xs h-6 px-3" variant="outline">
+                          Empty Spam Folder
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {!activeEmailTab && (
+                    <div className="flex items-center justify-center h-full text-gray-500">
+                      <p className="text-sm">Select a mailbox to view emails</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Back Button */}
