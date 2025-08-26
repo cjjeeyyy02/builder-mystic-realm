@@ -1401,12 +1401,6 @@ Google India`
                   </SelectContent>
                 </Select>
 
-                <Button
-                  onClick={() => setShowEmailScreen(true)}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white h-7 px-3 text-xs"
-                >
-                  ADD NEW ROUND
-                </Button>
               </div>
 
               {/* Round Type Tabs */}
