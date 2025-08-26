@@ -1368,7 +1368,7 @@ Google India`
             </div>
           )}
 
-          {activeMainTab === "rounds-room" && (
+          {activeMainTab === "rounds-room" && !showNewRoundsEmailScreen && (
             <div className="space-y-3">
               {/* Search Filters */}
               <div className="flex items-center gap-2 mb-4">
