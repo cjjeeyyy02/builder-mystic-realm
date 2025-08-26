@@ -1712,7 +1712,7 @@ Google India`
               <div className="w-20 border-r bg-black flex flex-col">
                 <Button
                   className={`h-10 text-xs font-medium rounded-none border-b border-gray-700 ${
-                    activeEmailTab === "inbox" || activeEmailTab === ""
+                    activeEmailTab === "inbox"
                       ? "bg-gray-800 text-white"
                       : "bg-black text-white hover:bg-gray-800"
                   }`}
