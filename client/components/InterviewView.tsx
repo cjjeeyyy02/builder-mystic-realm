@@ -1404,7 +1404,10 @@ Google India`
                 </Select>
 
                 <Button
-                  onClick={() => setShowNewRoundsEmailScreen(true)}
+                  onClick={() => {
+                    setShowNewRoundsEmailScreen(true);
+                    setActiveEmailTab("inbox");
+                  }}
                   className="h-7 px-3 text-xs bg-black hover:bg-gray-800 text-white font-medium"
                 >
                   ADD NEW ROUNDS
