@@ -2118,20 +2118,29 @@ Google India`
 
                   {!activeEmailTab && (
                     <div className="flex items-center justify-center h-full text-gray-500">
-                      <p className="text-sm">Select a mailbox to view emails</p>
+                      <div className="text-center">
+                        <Mail className="w-12 h-12 mx-auto mb-3 text-gray-400" />
+                        <p className="text-sm font-medium">Recruitment Email Management</p>
+                        <p className="text-xs mt-1">Select a mailbox to view applicant communications</p>
+                      </div>
                     </div>
                   )}
                 </div>
 
                 {/* Back Button */}
                 <div className="p-3 border-t bg-gray-50">
-                  <Button
-                    onClick={() => setShowRoundsEmailInterface(false)}
-                    variant="outline"
-                    className="text-xs h-7 px-3"
-                  >
-                    ← Back to Rounds Room
-                  </Button>
+                  <div className="flex items-center justify-between">
+                    <Button
+                      onClick={() => setShowRoundsEmailInterface(false)}
+                      variant="outline"
+                      className="text-xs h-7 px-3"
+                    >
+                      ← Back to Rounds Room
+                    </Button>
+                    <div className="text-xs text-gray-500">
+                      Recruitment Communication Dashboard - All applicant emails centralized
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
