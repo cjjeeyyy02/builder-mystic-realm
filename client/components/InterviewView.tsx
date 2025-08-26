@@ -1714,31 +1714,19 @@ Google India`
               {/* Left Sidebar - Mailbox Navigation */}
               <div className="w-24 border-r bg-black flex flex-col">
                 <Button
-                  className={`h-12 text-xs font-medium rounded-none border-b border-gray-700 ${
-                    activeEmailTab === "inbox"
-                      ? "bg-gray-800 text-white"
-                      : "bg-black text-white hover:bg-gray-800"
-                  }`}
+                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
                   onClick={() => setActiveEmailTab("inbox")}
                 >
                   INBOX
                 </Button>
                 <Button
-                  className={`h-12 text-xs font-medium rounded-none border-b border-gray-700 ${
-                    activeEmailTab === "sent"
-                      ? "bg-gray-800 text-white"
-                      : "bg-black text-white hover:bg-gray-800"
-                  }`}
+                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
                   onClick={() => setActiveEmailTab("sent")}
                 >
                   SENT
                 </Button>
                 <Button
-                  className={`h-12 text-xs font-medium rounded-none ${
-                    activeEmailTab === "spam"
-                      ? "bg-gray-800 text-white"
-                      : "bg-black text-white hover:bg-gray-800"
-                  }`}
+                  className="h-12 text-xs font-medium rounded-none bg-black text-white hover:bg-gray-900"
                   onClick={() => setActiveEmailTab("spam")}
                 >
                   SPAM
