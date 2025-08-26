@@ -1911,33 +1911,68 @@ Google India`
                 {/* Email Content based on active tab */}
                 <div className="flex-1 bg-white">
                   {activeEmailTab === "inbox" && (
-                    <div className="divide-y divide-gray-200">
-                      {emailData.map((email) => (
-                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                    <div>
+                      {/* Bulk Actions Header */}
+                      {recruitmentEmailData.inbox.length > 0 && (
+                        <div className="flex items-center gap-2 p-3 border-b bg-gray-50">
                           <Checkbox
-                            checked={selectedEmails.includes(email.id)}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                setSelectedEmails(prev => [...prev, email.id]);
-                              } else {
-                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
-                              }
-                            }}
+                            checked={selectedEmails.length === recruitmentEmailData.inbox.length}
+                            onCheckedChange={() => handleSelectAllEmails(recruitmentEmailData.inbox)}
                             className="scale-90"
                           />
-                          <div className="flex-1 text-sm text-gray-700 truncate pr-3">
-                            {email.subject}
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEmailDelete(email.id)}
-                            className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
+                          <span className="text-xs text-gray-600">
+                            {selectedEmails.length > 0 ? `${selectedEmails.length} selected` : 'Select all'}
+                          </span>
                         </div>
-                      ))}
+                      )}
+                      <div className="divide-y divide-gray-200">
+                        {searchRecruitmentEmails(emailSearch, recruitmentEmailData.inbox).map((email) => (
+                          <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                            <Checkbox
+                              checked={selectedEmails.includes(email.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setSelectedEmails(prev => [...prev, email.id]);
+                                } else {
+                                  setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                                }
+                              }}
+                              className="scale-90"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-sm text-gray-900">{email.applicantName}</span>
+                                <Badge className="text-xs px-2 py-0 bg-blue-100 text-blue-700">
+                                  {email.position}
+                                </Badge>
+                                {email.priority === "high" && (
+                                  <Badge className="text-xs px-2 py-0 bg-red-100 text-red-700">
+                                    High Priority
+                                  </Badge>
+                                )}
+                              </div>
+                              <div className="text-sm font-medium text-gray-800 truncate">
+                                {email.subject}
+                              </div>
+                              <div className="text-xs text-gray-500 truncate">
+                                {email.preview}
+                              </div>
+                              <div className="text-xs text-gray-400 mt-1">
+                                {email.timestamp}
+                              </div>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEmailDelete(email.id)}
+                              className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                              title="Delete email"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
