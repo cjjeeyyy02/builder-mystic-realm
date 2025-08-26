@@ -1710,6 +1710,194 @@ Google India`
             </div>
           )}
 
+          {/* Rounds Room Email Interface */}
+          {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
+            <div className="bg-white border rounded-lg h-full flex">
+              {/* Left Sidebar - Email Tabs */}
+              <div className="w-24 border-r bg-black flex flex-col">
+                <Button
+                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
+                  onClick={() => setActiveEmailTab("inbox")}
+                >
+                  INBOX
+                </Button>
+                <Button
+                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
+                  onClick={() => setActiveEmailTab("sent")}
+                >
+                  SENT
+                </Button>
+                <Button
+                  className="h-12 text-xs font-medium rounded-none bg-black text-white hover:bg-gray-900"
+                  onClick={() => setActiveEmailTab("spam")}
+                >
+                  SPAM
+                </Button>
+              </div>
+
+              {/* Main Email Content */}
+              <div className="flex-1 flex flex-col">
+                {/* Top Bar */}
+                <div className="flex items-center justify-between p-3 border-b bg-white">
+                  <Input
+                    placeholder="SEARCH"
+                    className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
+                    value={emailSearch}
+                    onChange={(e) => setEmailSearch(e.target.value)}
+                  />
+                  <div className="flex items-center gap-3">
+                    <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium">
+                      COMPOSE EMAIL
+                    </Button>
+                    <span className="text-xs text-gray-600">1-50 of 1,263</span>
+                    <div className="flex items-center gap-1">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ◀
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ▶
+                      </Button>
+                    </div>
+                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                      <span className="text-sm">👤</span>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Email Content based on active tab */}
+                <div className="flex-1 bg-white">
+                  {activeEmailTab === "inbox" && (
+                    <div className="divide-y divide-gray-200">
+                      {emailData.map((email) => (
+                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                          <Checkbox
+                            checked={selectedEmails.includes(email.id)}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                setSelectedEmails(prev => [...prev, email.id]);
+                              } else {
+                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                              }
+                            }}
+                            className="scale-90"
+                          />
+                          <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                            {email.subject}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleEmailDelete(email.id)}
+                            className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeEmailTab === "sent" && (
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Interview Confirmation - Jaya Mishra (Sent)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Re: Technical Round Schedule - Mark Johnson (Sent)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Welcome to AI2AIM - Next Steps (Sent)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeEmailTab === "spam" && (
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Urgent: Claim Your Prize Now! (Spam)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <Checkbox className="scale-90" />
+                        <div className="flex-1 text-sm text-gray-700 truncate pr-3">
+                          Investment Opportunity - Limited Time (Spam)
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="p-6 text-center text-gray-500">
+                        <p className="text-sm">2 spam messages</p>
+                        <Button className="mt-2 text-xs h-6 px-3" variant="outline">
+                          Empty Spam Folder
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {!activeEmailTab && (
+                    <div className="flex items-center justify-center h-full text-gray-500">
+                      <p className="text-sm">Select a mailbox to view emails</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Back Button */}
+                <div className="p-3 border-t bg-gray-50">
+                  <Button
+                    onClick={() => setShowRoundsEmailInterface(false)}
+                    variant="outline"
+                    className="text-xs h-7 px-3"
+                  >
+                    ← Back to Rounds Room
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {activeMainTab === "decision-room" && (
             <div className="space-y-2">
