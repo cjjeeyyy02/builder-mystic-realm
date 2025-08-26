@@ -1758,7 +1758,10 @@ Google India`
                             SAVE ROUND
                           </Button>
                           <Button
-                            onClick={() => setShowRoundsEmailInterface(true)}
+                            onClick={() => {
+                              setShowRoundsEmailInterface(true);
+                              setActiveEmailTab("inbox"); // Default to inbox for recruitment emails
+                            }}
                             className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs"
                           >
                             EMAIL
