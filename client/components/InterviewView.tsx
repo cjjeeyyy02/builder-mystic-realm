@@ -1181,7 +1181,8 @@ Google India`
             </div>
           )}
 
-          {activeMainTab === "rounds-room" && showEmailScreen && (
+          {/* Email screen removed - no longer accessible */}
+          {false && activeMainTab === "rounds-room" && showEmailScreen && (
             <div className="bg-white border rounded-lg h-full flex">
               {/* Left Sidebar - Email Tabs */}
               <div className="w-20 border-r bg-gray-50 flex flex-col">
