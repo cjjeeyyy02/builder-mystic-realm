@@ -1220,30 +1220,28 @@ Google India`
               {/* Main Email Interface */}
               <div className="flex-1 flex flex-col">
                 {/* Top Bar */}
-                <div className="flex items-center justify-between p-4 border-b bg-white">
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setShowEmailScreen(false)}
-                      className="h-8 px-3 text-xs hover:bg-gray-100 rounded-md"
-                    >
-                      ← BACK
-                    </Button>
-                    <div className="h-4 w-px bg-gray-300"></div>
-                    <Input
-                      placeholder="SEARCH IN ALL THREE"
-                      className="w-64 h-8 text-xs border-gray-300 rounded-md"
-                      value={emailSearch}
-                      onChange={(e) => setEmailSearch(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium rounded-md">
+                <div className="flex items-center justify-between p-3 border-b bg-white">
+                  <Input
+                    placeholder="SEARCH"
+                    className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
+                    value={emailSearch}
+                    onChange={(e) => setEmailSearch(e.target.value)}
+                  />
+                  <div className="flex items-center gap-3">
+                    <Button className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium">
                       COMPOSE EMAIL
                     </Button>
-                    <Button variant="outline" className="h-8 w-8 p-0 rounded-md border-gray-300">
-                      <span className="text-lg">👤</span>
+                    <span className="text-xs text-gray-600">1-50 of 1,263</span>
+                    <div className="flex items-center gap-1">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ◀
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ▶
+                      </Button>
+                    </div>
+                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                      <span className="text-sm">👤</span>
                     </Button>
                   </div>
                 </div>
