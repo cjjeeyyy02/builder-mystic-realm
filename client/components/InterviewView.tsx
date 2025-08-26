@@ -125,6 +125,43 @@ interface AdminConfig {
   };
 }
 
+// Search options for dropdowns
+const candidateOptions = [
+  { value: "all", label: "All Candidates" },
+  { value: "jaya", label: "Jaya" },
+  { value: "mark", label: "Mark" },
+  { value: "john", label: "John" },
+  { value: "sara", label: "Sara" },
+  { value: "shruti", label: "Shruti" },
+  { value: "robin", label: "Robin" },
+  { value: "kayle", label: "Kayle" },
+  { value: "vali", label: "Vali" },
+  { value: "anne", label: "Anne" },
+];
+
+const countryOptions = [
+  { value: "all", label: "All Countries" },
+  { value: "india", label: "India" },
+  { value: "usa", label: "USA" },
+  { value: "europe", label: "Europe" },
+  { value: "russia", label: "Russia" },
+  { value: "china", label: "China" },
+  { value: "canada", label: "Canada" },
+];
+
+const jobRoleOptions = [
+  { value: "all", label: "All Roles" },
+  { value: "senior-developer", label: "Senior Developer" },
+  { value: "graphic-designer", label: "Graphic Designer" },
+  { value: "content-writer", label: "Content Writer" },
+  { value: "copywriter", label: "Copywriter" },
+  { value: "sale-associate", label: "Sale Associate" },
+  { value: "ai-engineer", label: "AI Engineer" },
+  { value: "ml-engineer", label: "ML Engineer" },
+  { value: "data-analyst", label: "Data Analyst" },
+  { value: "finance-analyst", label: "Finance Analyst" },
+];
+
 const interviewCandidates: InterviewCandidate[] = [
   {
     id: "1",
