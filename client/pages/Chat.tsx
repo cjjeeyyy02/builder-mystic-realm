@@ -1402,13 +1402,26 @@ export default function Chat() {
           <Card className={`w-full max-w-lg mx-auto shadow-2xl border-0 rounded-2xl overflow-hidden ${
             isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-900'
           }`}>
-            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-              <h2 className="text-lg font-bold">Create New Group</h2>
+            <div className={`px-8 py-6 border-b flex items-center justify-between ${
+              isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'
+            }`}>
+              <div>
+                <h2 className={`text-xl font-semibold ${
+                  isDarkMode ? 'text-white' : 'text-slate-900'
+                }`}>Create New Group</h2>
+                <p className={`text-sm mt-1 ${
+                  isDarkMode ? 'text-slate-400' : 'text-slate-600'
+                }`}>Set up your team communication space</p>
+              </div>
               <button
                 onClick={handleCloseModal}
-                className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                  isDarkMode
+                    ? 'hover:bg-slate-700 text-slate-400 hover:text-white'
+                    : 'hover:bg-slate-200 text-slate-500 hover:text-slate-700'
+                }`}
               >
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
