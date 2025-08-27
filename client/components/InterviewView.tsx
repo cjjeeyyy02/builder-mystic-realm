@@ -2053,17 +2053,29 @@ Google India`
 
                   {activeEmailTab === "sent" && (
                     <div>
-                      {/* Bulk Actions Header for Sent */}
+                      {/* Enhanced Bulk Actions Header for Sent */}
                       {recruitmentEmailData.sent.length > 0 && (
-                        <div className="flex items-center gap-2 p-3 border-b bg-gray-50">
+                        <div className="flex items-center gap-3 p-4 border-b border-slate-200 bg-white">
                           <Checkbox
                             checked={selectedEmails.length === recruitmentEmailData.sent.length}
                             onCheckedChange={() => handleSelectAllEmails(recruitmentEmailData.sent)}
-                            className="scale-90"
+                            className="scale-110 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                           />
-                          <span className="text-xs text-gray-600">
-                            {selectedEmails.length > 0 ? `${selectedEmails.length} selected` : 'Select all sent emails'}
+                          <span className="text-sm font-medium text-slate-700">
+                            {selectedEmails.length > 0 ? `${selectedEmails.length} sent emails selected` : 'Select all sent emails'}
                           </span>
+                          {selectedEmails.length > 0 && (
+                            <div className="ml-auto flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedEmails([])}
+                                className="text-slate-600 border-slate-300 hover:bg-slate-50"
+                              >
+                                Clear selection
+                              </Button>
+                            </div>
+                          )}
                         </div>
                       )}
                       <div className="divide-y divide-gray-200">
