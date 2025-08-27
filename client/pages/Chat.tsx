@@ -1398,9 +1398,9 @@ export default function Chat() {
 
       {/* Create Group Modal */}
       {showCreateGroupModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <Card className={`w-full max-w-md mx-auto shadow-2xl ${
-            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className={`w-full max-w-lg mx-auto shadow-2xl border-0 rounded-2xl overflow-hidden ${
+            isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-900'
           }`}>
             <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
               <h2 className="text-lg font-bold">Create New Group</h2>
