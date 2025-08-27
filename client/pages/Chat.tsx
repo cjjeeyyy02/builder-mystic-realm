@@ -1507,27 +1507,47 @@ export default function Chat() {
                 </select>
               </div>
 
-              <div className="flex items-center justify-end space-x-3 pt-4">
-                {groupSaved ? (
-                  <Button disabled className="bg-green-500 text-white cursor-not-allowed">
-                    Group Saved ✓
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={handleSaveGroup}
-                    disabled={!groupForm.name.trim()}
-                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
-                  >
-                    Save Group
-                  </Button>
-                )}
-                <Button
-                  onClick={handleSendGroupInvite}
-                  disabled={!groupSaved}
-                  className="bg-green-600 hover:bg-green-700 text-white disabled:opacity-50"
+              <div className={`flex items-center justify-between pt-6 border-t ${
+                isDarkMode ? 'border-slate-700' : 'border-slate-200'
+              }`}>
+                <button
+                  onClick={handleCloseModal}
+                  className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    isDarkMode
+                      ? 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'
+                      : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
+                  }`}
                 >
-                  Send Invite
-                </Button>
+                  Cancel
+                </button>
+                <div className="flex items-center space-x-3">
+                  {groupSaved ? (
+                    <Button disabled className="bg-emerald-500 text-white cursor-not-allowed px-6 py-2.5 text-sm font-medium rounded-lg shadow-sm">
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Group Saved
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleSaveGroup}
+                      disabled={!groupForm.name.trim()}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2.5 text-sm font-medium rounded-lg shadow-sm transition-all duration-200"
+                    >
+                      Save Group
+                    </Button>
+                  )}
+                  <Button
+                    onClick={handleSendGroupInvite}
+                    disabled={!groupSaved}
+                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2.5 text-sm font-medium rounded-lg shadow-sm transition-all duration-200"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                    Send Invite
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
