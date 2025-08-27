@@ -1839,65 +1839,97 @@ Google India`
 
           {/* Rounds Room Email Interface */}
           {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
-            <div className="bg-white border rounded-lg h-full flex">
+            <div className="bg-white border-0 shadow-xl rounded-2xl h-full flex overflow-hidden">
               {/* Left Sidebar - Mailbox Navigation */}
-              <div className="w-24 border-r bg-black flex flex-col">
+              <div className="w-20 border-r border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
                 <Button
-                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
+                  className={`h-16 text-xs font-semibold rounded-none border-b border-slate-200 transition-all duration-200 ${
+                    activeEmailTab === "inbox"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "bg-transparent text-slate-600 hover:bg-emerald-50 hover:text-emerald-700"
+                  }`}
                   onClick={() => setActiveEmailTab("inbox")}
                 >
+                  <Mail className="w-4 h-4 mb-1" />
                   INBOX
                 </Button>
                 <Button
-                  className="h-12 text-xs font-medium rounded-none border-b border-gray-700 bg-black text-white hover:bg-gray-900"
+                  className={`h-16 text-xs font-semibold rounded-none border-b border-slate-200 transition-all duration-200 ${
+                    activeEmailTab === "sent"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "bg-transparent text-slate-600 hover:bg-emerald-50 hover:text-emerald-700"
+                  }`}
                   onClick={() => setActiveEmailTab("sent")}
                 >
+                  <Send className="w-4 h-4 mb-1" />
                   SENT
                 </Button>
                 <Button
-                  className="h-12 text-xs font-medium rounded-none bg-black text-white hover:bg-gray-900"
+                  className={`h-16 text-xs font-semibold rounded-none transition-all duration-200 ${
+                    activeEmailTab === "spam"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "bg-transparent text-slate-600 hover:bg-emerald-50 hover:text-emerald-700"
+                  }`}
                   onClick={() => setActiveEmailTab("spam")}
                 >
+                  <AlertTriangle className="w-4 h-4 mb-1" />
                   SPAM
                 </Button>
               </div>
 
               {/* Main Email Content */}
-              <div className="flex-1 flex flex-col">
-                {/* Back Button - Moved to Top */}
-                <div className="p-3 border-b bg-gray-50">
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowRoundsEmailInterface(false)}
-                    className="text-xs h-7 px-3"
-                  >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Rounds Room
-                  </Button>
+              <div className="flex-1 flex flex-col bg-white">
+                {/* Enhanced Header with Back Button */}
+                <div className="p-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowRoundsEmailInterface(false)}
+                        className="h-9 px-4 bg-white border-slate-300 hover:bg-emerald-50 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 font-medium transition-all duration-200 shadow-sm"
+                      >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back to Rounds Room
+                      </Button>
+                      <div className="h-6 w-px bg-slate-300"></div>
+                      <h2 className="text-lg font-semibold text-slate-800">Recruitment Communications</h2>
+                    </div>
+                    <div className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                      Professional Email Management
+                    </div>
+                  </div>
                 </div>
 
-                {/* Top Bar - Enhanced for Recruitment */}
-                <div className="flex items-center justify-between p-3 border-b bg-white">
-                  <div className="flex items-center gap-2 flex-1">
-                    <Input
-                      placeholder="Search by applicant name, position, or subject..."
-                      className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
-                      value={emailSearch}
-                      onChange={(e) => setEmailSearch(e.target.value)}
-                    />
+                {/* Enhanced Search and Action Bar */}
+                <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-white">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="relative flex-1 max-w-md">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <Input
+                        placeholder="Search applicants, positions, or subjects..."
+                        className="pl-10 h-10 border-slate-300 rounded-lg focus:border-emerald-400 focus:ring-emerald-400/20 text-sm"
+                        value={emailSearch}
+                        onChange={(e) => setEmailSearch(e.target.value)}
+                      />
+                    </div>
                     {selectedEmails.length > 0 && (
                       <div className="flex items-center gap-2">
+                        <Badge className="bg-emerald-100 text-emerald-700 text-sm px-3 py-1">
+                          {selectedEmails.length} selected
+                        </Badge>
                         <Button
                           onClick={handleBulkDelete}
-                          className="bg-red-600 hover:bg-red-700 text-white h-8 px-3 text-xs font-medium"
+                          className="bg-red-500 hover:bg-red-600 text-white h-9 px-4 text-sm font-medium rounded-lg transition-colors"
                         >
-                          Delete ({selectedEmails.length})
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          Delete
                         </Button>
                         <Button
                           onClick={handleBulkSendTemplate}
-                          className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3 text-xs font-medium"
+                          className="bg-emerald-600 hover:bg-emerald-700 text-white h-9 px-4 text-sm font-medium rounded-lg transition-colors"
                         >
-                          Send Template ({selectedEmails.length})
+                          <Send className="w-4 h-4 mr-2" />
+                          Send Template
                         </Button>
                       </div>
                     )}
@@ -1905,45 +1937,60 @@ Google India`
                   <div className="flex items-center gap-3">
                     <Button
                       onClick={handleComposeEmail}
-                      className="bg-black hover:bg-gray-800 text-white h-8 px-4 text-xs font-medium"
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white h-10 px-6 text-sm font-medium rounded-lg transition-all duration-200 shadow-sm"
                     >
-                      COMPOSE EMAIL
+                      <Plus className="w-4 h-4 mr-2" />
+                      Compose Email
                     </Button>
-                    <span className="text-xs text-gray-600">1-50 of 1,263 applicant emails</span>
-                    <div className="flex items-center gap-1">
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
-                        ◀
+                    <div className="text-sm text-slate-500 bg-slate-100 px-3 py-2 rounded-lg">
+                      1-50 of 1,263 emails
+                    </div>
+                    <div className="flex items-center gap-1 border border-slate-300 rounded-lg p-1">
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-600 hover:bg-slate-100 rounded">
+                        <ArrowLeft className="w-4 h-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
-                        ▶
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-600 hover:bg-slate-100 rounded">
+                        <ArrowRight className="w-4 h-4" />
                       </Button>
                     </div>
-                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300" title="Recruiter Settings">
-                      <span className="text-sm">👤</span>
+                    <Button variant="outline" className="h-10 w-10 p-0 rounded-lg border-slate-300 hover:bg-slate-50" title="Recruiter Settings">
+                      <Users className="w-4 h-4 text-slate-600" />
                     </Button>
                   </div>
                 </div>
 
                 {/* Email Content based on active tab */}
-                <div className="flex-1 bg-white">
+                <div className="flex-1 bg-slate-50">
                   {activeEmailTab === "inbox" && (
                     <div>
-                      {/* Bulk Actions Header */}
+                      {/* Enhanced Bulk Actions Header */}
                       {recruitmentEmailData.inbox.length > 0 && (
-                        <div className="flex items-center gap-2 p-3 border-b bg-gray-50">
+                        <div className="flex items-center gap-3 p-4 border-b border-slate-200 bg-white">
                           <Checkbox
                             checked={selectedEmails.length === recruitmentEmailData.inbox.length}
                             onCheckedChange={() => handleSelectAllEmails(recruitmentEmailData.inbox)}
-                            className="scale-90"
+                            className="scale-110 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                           />
-                          <span className="text-xs text-gray-600">
-                            {selectedEmails.length > 0 ? `${selectedEmails.length} selected` : 'Select all'}
+                          <span className="text-sm font-medium text-slate-700">
+                            {selectedEmails.length > 0 ? `${selectedEmails.length} emails selected` : 'Select all emails'}
                           </span>
+                          {selectedEmails.length > 0 && (
+                            <div className="ml-auto flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedEmails([])}
+                                className="text-slate-600 border-slate-300 hover:bg-slate-50"
+                              >
+                                Clear selection
+                              </Button>
+                            </div>
+                          )}
                         </div>
                       )}
-                      <div className="divide-y divide-gray-200">
+                      <div className="divide-y divide-slate-200">
                         {searchRecruitmentEmails(emailSearch, recruitmentEmailData.inbox).map((email) => (
-                          <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                          <div key={email.id} className="flex items-center gap-4 p-4 hover:bg-white hover:shadow-sm group transition-all duration-200 cursor-pointer border-l-4 border-transparent hover:border-l-emerald-400">
                             <Checkbox
                               checked={selectedEmails.includes(email.id)}
                               onCheckedChange={(checked) => {
@@ -1953,39 +2000,51 @@ Google India`
                                   setSelectedEmails(prev => prev.filter(id => id !== email.id));
                                 }
                               }}
-                              className="scale-90"
+                              className="scale-110 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                             />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-medium text-sm text-gray-900">{email.applicantName}</span>
-                                <Badge className="text-xs px-2 py-0 bg-blue-100 text-blue-700">
+                            <div className="flex-1 min-w-0 space-y-2">
+                              <div className="flex items-center gap-3">
+                                <span className="font-semibold text-base text-slate-900">{email.applicantName}</span>
+                                <Badge className="text-xs px-3 py-1 bg-emerald-100 text-emerald-700 font-medium rounded-full">
                                   {email.position}
                                 </Badge>
                                 {email.priority === "high" && (
-                                  <Badge className="text-xs px-2 py-0 bg-red-100 text-red-700">
+                                  <Badge className="text-xs px-3 py-1 bg-red-100 text-red-700 font-medium rounded-full flex items-center gap-1">
+                                    <AlertTriangle className="w-3 h-3" />
                                     High Priority
                                   </Badge>
                                 )}
                               </div>
-                              <div className="text-sm font-medium text-gray-800 truncate">
+                              <div className="text-sm font-medium text-slate-800 line-clamp-1">
                                 {email.subject}
                               </div>
-                              <div className="text-xs text-gray-500 truncate">
+                              <div className="text-sm text-slate-600 line-clamp-2">
                                 {email.preview}
                               </div>
-                              <div className="text-xs text-gray-400 mt-1">
+                              <div className="flex items-center gap-2 text-xs text-slate-500">
+                                <Clock className="w-3 h-3" />
                                 {email.timestamp}
                               </div>
                             </div>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleEmailDelete(email.id)}
-                              className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
-                              title="Delete email"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
+                            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-8 w-8 p-0 border-slate-300 hover:bg-emerald-50 hover:border-emerald-300"
+                                title="Reply to email"
+                              >
+                                <RotateCcw className="w-4 h-4 text-emerald-600" />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleEmailDelete(email.id)}
+                                className="h-8 w-8 p-0 border-red-300 hover:bg-red-50 hover:border-red-400"
+                                title="Delete email"
+                              >
+                                <Trash2 className="w-4 h-4 text-red-500" />
+                              </Button>
+                            </div>
                           </div>
                         ))}
                       </div>
