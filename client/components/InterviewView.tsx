@@ -2217,11 +2217,31 @@ Google India`
                   )}
 
                   {!activeEmailTab && (
-                    <div className="flex items-center justify-center h-full text-gray-500">
-                      <div className="text-center">
-                        <Mail className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-                        <p className="text-sm font-medium">Recruitment Email Management</p>
-                        <p className="text-xs mt-1">Select a mailbox to view applicant communications</p>
+                    <div className="flex items-center justify-center h-full bg-gradient-to-br from-slate-50 to-white">
+                      <div className="text-center space-y-4 p-8">
+                        <div className="w-20 h-20 mx-auto bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center">
+                          <Mail className="w-10 h-10 text-emerald-600" />
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-semibold text-slate-800">Professional Email Management</h3>
+                          <p className="text-sm text-slate-600 max-w-sm mx-auto">
+                            Select a mailbox to view and manage your recruitment communications with applicants
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-center gap-4 pt-4">
+                          <div className="flex items-center gap-2 text-xs text-slate-500">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                            Inbox Messages
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-slate-500">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            Sent Messages
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-slate-500">
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            Spam Messages
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
