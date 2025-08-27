@@ -79,15 +79,17 @@ export default function Sidebar({
             <div className="space-y-4">
               {/* Company Logo and Name */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-emerald-400/30">
-                  <Users className="w-6 h-6 text-white" />
+                <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-md border border-emerald-100">
+                  <div className="w-5 h-5 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-sm flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-xl font-bold text-white tracking-tight">
+                  <h1 className="text-base font-semibold text-white tracking-tight leading-tight">
                     AI2AIM
                   </h1>
-                  <p className="text-xs font-medium text-emerald-200 uppercase tracking-wider">
-                    WORKSPACE
+                  <p className="text-xs font-normal text-emerald-300 tracking-wide">
+                    Workspace
                   </p>
                 </div>
               </div>
@@ -137,8 +139,10 @@ export default function Sidebar({
             <div className="flex justify-center">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-emerald-400/30">
-                    <Users className="w-6 h-6 text-white" />
+                  <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-md border border-emerald-100">
+                    <div className="w-5 h-5 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-sm flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
                   </div>
                 </TooltipTrigger>
                 <TooltipContent side="right" className="bg-emerald-800 text-white border-emerald-700">
