@@ -1409,9 +1409,6 @@ export default function Chat() {
                 <h2 className={`text-xl font-semibold ${
                   isDarkMode ? 'text-white' : 'text-slate-900'
                 }`}>Create New Group</h2>
-                <p className={`text-sm mt-1 ${
-                  isDarkMode ? 'text-slate-400' : 'text-slate-600'
-                }`}>Set up your team communication space</p>
               </div>
               <button
                 onClick={handleCloseModal}
