@@ -384,33 +384,39 @@ export default function ScreeningView() {
                 {/* Status Action Buttons */}
                 <div className="flex items-center gap-1.5">
                   <Button
-                    variant={
-                      candidate.status === "approved" ? "default" : "outline"
-                    }
+                    variant={candidate.status === "approved" ? "default" : "outline"}
                     size="sm"
-                    className="gap-1 text-xs font-medium h-8 px-3"
+                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
+                      candidate.status === "approved"
+                        ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-md"
+                        : "hover:bg-green-50 hover:border-green-300 hover:text-green-700"
+                    }`}
                     onClick={() => handleStatusChange(candidate.id, "approved")}
                   >
                     <Check className="w-3 h-3" />
                     Approve
                   </Button>
                   <Button
-                    variant={
-                      candidate.status === "queue" ? "secondary" : "outline"
-                    }
+                    variant={candidate.status === "queue" ? "secondary" : "outline"}
                     size="sm"
-                    className="gap-1 text-xs font-medium h-8 px-3"
+                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
+                      candidate.status === "queue"
+                        ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500 shadow-md"
+                        : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
+                    }`}
                     onClick={() => handleStatusChange(candidate.id, "queue")}
                   >
                     <Timer className="w-3 h-3" />
                     Queue
                   </Button>
                   <Button
-                    variant={
-                      candidate.status === "reject" ? "destructive" : "outline"
-                    }
+                    variant={candidate.status === "reject" ? "destructive" : "outline"}
                     size="sm"
-                    className="gap-1 text-xs font-medium h-8 px-3"
+                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
+                      candidate.status === "reject"
+                        ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-md"
+                        : "hover:bg-red-50 hover:border-red-300 hover:text-red-700"
+                    }`}
                     onClick={() => handleStatusChange(candidate.id, "reject")}
                   >
                     <X className="w-3 h-3" />
@@ -728,7 +734,11 @@ export default function ScreeningView() {
                         <Button
                           variant={selectedCandidate.status === "approved" ? "default" : "outline"}
                           size="sm"
-                          className="w-full justify-start text-xs sm:text-sm"
+                          className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
+                            selectedCandidate.status === "approved"
+                              ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-md"
+                              : "hover:bg-green-50 hover:border-green-300 hover:text-green-700"
+                          }`}
                           onClick={() => handleStatusChange(selectedCandidate.id, "approved")}
                         >
                           <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
@@ -737,7 +747,11 @@ export default function ScreeningView() {
                         <Button
                           variant={selectedCandidate.status === "queue" ? "secondary" : "outline"}
                           size="sm"
-                          className="w-full justify-start text-xs sm:text-sm"
+                          className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
+                            selectedCandidate.status === "queue"
+                              ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500 shadow-md"
+                              : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
+                          }`}
                           onClick={() => handleStatusChange(selectedCandidate.id, "queue")}
                         >
                           <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
@@ -746,7 +760,11 @@ export default function ScreeningView() {
                         <Button
                           variant={selectedCandidate.status === "reject" ? "destructive" : "outline"}
                           size="sm"
-                          className="w-full justify-start text-xs sm:text-sm"
+                          className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
+                            selectedCandidate.status === "reject"
+                              ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-md"
+                              : "hover:bg-red-50 hover:border-red-300 hover:text-red-700"
+                          }`}
                           onClick={() => handleStatusChange(selectedCandidate.id, "reject")}
                         >
                           <X className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
