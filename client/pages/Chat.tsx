@@ -1427,19 +1427,23 @@ export default function Chat() {
               </button>
             </div>
 
-            <CardContent className="p-6 space-y-4">
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+            <CardContent className="p-8 space-y-6">
+              <div className="space-y-2">
+                <label className={`block text-sm font-medium ${
+                  isDarkMode ? 'text-slate-200' : 'text-slate-700'
+                }`}>
                   Group Name
                 </label>
                 <input
                   type="text"
                   value={groupForm.name}
                   onChange={(e) => setGroupForm({...groupForm, name: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-900'
+                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 ${
+                    isDarkMode
+                      ? 'bg-slate-700 border-slate-600 text-slate-200 placeholder-slate-400'
+                      : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-500'
                   }`}
-                  placeholder="Enter group name"
+                  placeholder="Enter a descriptive group name"
                 />
               </div>
 
