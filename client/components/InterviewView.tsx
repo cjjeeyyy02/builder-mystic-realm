@@ -2129,26 +2129,39 @@ Google India`
 
                   {activeEmailTab === "spam" && (
                     <div>
-                      {/* Bulk Actions Header for Spam */}
+                      {/* Enhanced Bulk Actions Header for Spam */}
                       {recruitmentEmailData.spam.length > 0 && (
-                        <div className="flex items-center gap-2 p-3 border-b bg-red-50">
+                        <div className="flex items-center gap-3 p-4 border-b border-slate-200 bg-white">
                           <Checkbox
                             checked={selectedEmails.length === recruitmentEmailData.spam.length}
                             onCheckedChange={() => handleSelectAllEmails(recruitmentEmailData.spam)}
-                            className="scale-90"
+                            className="scale-110 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                           />
-                          <span className="text-xs text-red-600">
-                            {selectedEmails.length > 0 ? `${selectedEmails.length} spam selected` : 'Select all spam emails'}
+                          <span className="text-sm font-medium text-slate-700">
+                            {selectedEmails.length > 0 ? `${selectedEmails.length} spam emails selected` : 'Select all spam emails'}
                           </span>
-                          <Button
-                            onClick={() => {
-                              console.log("Emptying spam folder");
-                              setSelectedEmails([]);
-                            }}
-                            className="ml-auto bg-red-600 hover:bg-red-700 text-white h-6 px-3 text-xs"
-                          >
-                            Empty Spam Folder
-                          </Button>
+                          <div className="ml-auto flex items-center gap-2">
+                            {selectedEmails.length > 0 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedEmails([])}
+                                className="text-slate-600 border-slate-300 hover:bg-slate-50"
+                              >
+                                Clear selection
+                              </Button>
+                            )}
+                            <Button
+                              onClick={() => {
+                                console.log("Emptying spam folder");
+                                setSelectedEmails([]);
+                              }}
+                              className="bg-red-500 hover:bg-red-600 text-white h-8 px-4 text-sm font-medium rounded-lg transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              Empty Spam
+                            </Button>
+                          </div>
                         </div>
                       )}
                       <div className="divide-y divide-gray-200">
