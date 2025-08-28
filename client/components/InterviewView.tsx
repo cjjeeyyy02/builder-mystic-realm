@@ -1523,13 +1523,30 @@ Google India`
                       </div>
 
                       {/* Email Body */}
-                      <div className="border border-gray-300 rounded-md">
-                        <Textarea
-                          value={emailForm.message}
-                          onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
-                          className="w-full h-80 text-sm border-0 resize-none rounded-md p-4 focus:ring-0 focus:border-transparent"
-                          placeholder="Compose your email here..."
-                        />
+                      <div className="p-6">
+                        <div className="border border-gray-300 rounded-md bg-white">
+                          <Textarea
+                            value={emailForm.message}
+                            onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                            className="w-full h-96 text-sm border-0 resize-none p-4 leading-relaxed focus:ring-0 focus:border-transparent"
+                            placeholder="Hi Jaya Mishra,
+
+Thank you for your interest in Senior Developer role at Google India.
+
+To schedule your second round of interview, please use the link below to view our calendar and choose a time that works for you:
+https://ai2aim.com/google-india/schedule-interview-slot
+
+Note that the red slots are already booked, and the empty slots are still available.
+Once you book a slot, you'll receive a confirmation with the interview details.
+
+If none of the available times work for you, or if you run into any issues while booking, feel free to reply to this email and we'll try to accommodate. Looking forward to speaking with you.
+
+Best regards,
+Kayle Jenny
+HR Associate
+Google India"
+                          />
+                        </div>
                       </div>
 
                       {/* Action Buttons */}
