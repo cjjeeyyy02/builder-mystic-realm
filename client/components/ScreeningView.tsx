@@ -75,23 +75,33 @@ const screeningCandidates: ScreeningCandidate[] = [
     relevantExperience: "5 years",
     status: "queue",
     resumeUrl: "/documents/emily-rodriguez-resume.pdf",
-    summary: "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
+    summary:
+      "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
     education: "Master's in Human-Computer Interaction, Stanford University",
     workHistory: [
       {
         company: "TechCorp Solutions",
         position: "Senior UX Designer",
         duration: "2022 - Present",
-        description: "Led design for mobile banking app used by 2M+ users. Improved user satisfaction by 40% through redesign initiative."
+        description:
+          "Led design for mobile banking app used by 2M+ users. Improved user satisfaction by 40% through redesign initiative.",
       },
       {
         company: "Design Studio Inc",
         position: "UX Designer",
         duration: "2020 - 2022",
-        description: "Designed web applications for e-commerce clients. Conducted user research and usability testing."
-      }
+        description:
+          "Designed web applications for e-commerce clients. Conducted user research and usability testing.",
+      },
     ],
-    skills: ["Figma", "Sketch", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+    skills: [
+      "Figma",
+      "Sketch",
+      "Adobe XD",
+      "User Research",
+      "Prototyping",
+      "Design Systems",
+    ],
     certifications: ["Google UX Design Certificate", "Adobe Certified Expert"],
     location: "San Francisco, CA",
     salaryExpectation: "$95,000 - $110,000",
@@ -108,23 +118,34 @@ const screeningCandidates: ScreeningCandidate[] = [
     relevantExperience: "6 years",
     status: "queue",
     resumeUrl: "/documents/david-kim-resume.pdf",
-    summary: "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
+    summary:
+      "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
     education: "Bachelor's in Computer Science, UC Berkeley",
     workHistory: [
       {
         company: "CloudTech Inc",
         position: "Senior Backend Developer",
         duration: "2021 - Present",
-        description: "Architected microservices handling 10M+ requests daily. Reduced system latency by 60% through optimization."
+        description:
+          "Architected microservices handling 10M+ requests daily. Reduced system latency by 60% through optimization.",
       },
       {
         company: "StartupXYZ",
         position: "Backend Developer",
         duration: "2019 - 2021",
-        description: "Built RESTful APIs and implemented real-time features using WebSocket technology."
-      }
+        description:
+          "Built RESTful APIs and implemented real-time features using WebSocket technology.",
+      },
     ],
-    skills: ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Redis", "GraphQL"],
+    skills: [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Redis",
+      "GraphQL",
+    ],
     certifications: ["AWS Solutions Architect", "Google Cloud Professional"],
     location: "Seattle, WA",
     salaryExpectation: "$120,000 - $140,000",
@@ -141,24 +162,37 @@ const screeningCandidates: ScreeningCandidate[] = [
     relevantExperience: "7 years",
     status: "pending",
     resumeUrl: "/documents/lisa-wang-resume.pdf",
-    summary: "Strategic Product Manager with 8 years of experience driving product vision and execution. Proven track record of launching successful products and managing cross-functional teams.",
+    summary:
+      "Strategic Product Manager with 8 years of experience driving product vision and execution. Proven track record of launching successful products and managing cross-functional teams.",
     education: "MBA from Wharton, BS in Engineering from MIT",
     workHistory: [
       {
         company: "Product Innovations Corp",
         position: "Senior Product Manager",
         duration: "2020 - Present",
-        description: "Led product strategy for B2B SaaS platform. Increased customer retention by 35% and drove $5M ARR growth."
+        description:
+          "Led product strategy for B2B SaaS platform. Increased customer retention by 35% and drove $5M ARR growth.",
       },
       {
         company: "Tech Giant Co",
         position: "Product Manager",
         duration: "2018 - 2020",
-        description: "Managed consumer mobile app with 1M+ users. Collaborated with engineering and design teams on feature development."
-      }
+        description:
+          "Managed consumer mobile app with 1M+ users. Collaborated with engineering and design teams on feature development.",
+      },
     ],
-    skills: ["Product Strategy", "Agile/Scrum", "Data Analysis", "A/B Testing", "Roadmap Planning", "Stakeholder Management"],
-    certifications: ["Certified Scrum Product Owner", "Google Analytics Certified"],
+    skills: [
+      "Product Strategy",
+      "Agile/Scrum",
+      "Data Analysis",
+      "A/B Testing",
+      "Roadmap Planning",
+      "Stakeholder Management",
+    ],
+    certifications: [
+      "Certified Scrum Product Owner",
+      "Google Analytics Certified",
+    ],
     location: "New York, NY",
     salaryExpectation: "$140,000 - $160,000",
     availability: "1 month notice",
@@ -200,8 +234,10 @@ function getStatusIcon(status: string) {
 
 export default function ScreeningView() {
   const navigate = useNavigate();
-  const [candidates, setCandidates] = useState<ScreeningCandidate[]>(screeningCandidates);
-  const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
+  const [candidates, setCandidates] =
+    useState<ScreeningCandidate[]>(screeningCandidates);
+  const [selectedCandidate, setSelectedCandidate] =
+    useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
 
@@ -209,17 +245,19 @@ export default function ScreeningView() {
     candidateId: string,
     newStatus: "approved" | "reject" | "queue",
   ) => {
-    setCandidates(prevCandidates =>
-      prevCandidates.map(candidate =>
+    setCandidates((prevCandidates) =>
+      prevCandidates.map((candidate) =>
         candidate.id === candidateId
           ? { ...candidate, status: newStatus }
-          : candidate
-      )
+          : candidate,
+      ),
     );
 
     // Update selected candidate if it's currently open in modal
     if (selectedCandidate && selectedCandidate.id === candidateId) {
-      setSelectedCandidate(prev => prev ? { ...prev, status: newStatus } : null);
+      setSelectedCandidate((prev) =>
+        prev ? { ...prev, status: newStatus } : null,
+      );
     }
   };
 
@@ -233,18 +271,24 @@ export default function ScreeningView() {
     console.log(`Navigating to email/chat with ${candidate.name}`);
 
     // Store candidate info for the chat to pick up
-    sessionStorage.setItem('selectedChatContact', JSON.stringify({
-      id: candidate.id,
-      name: candidate.name,
-      email: candidate.email,
-      role: candidate.position,
-      avatar: candidate.name.split(' ').map(n => n[0]).join(''),
-      status: 'offline',
-      time: 'Just now'
-    }));
+    sessionStorage.setItem(
+      "selectedChatContact",
+      JSON.stringify({
+        id: candidate.id,
+        name: candidate.name,
+        email: candidate.email,
+        role: candidate.position,
+        avatar: candidate.name
+          .split(" ")
+          .map((n) => n[0])
+          .join(""),
+        status: "offline",
+        time: "Just now",
+      }),
+    );
 
     // Navigate to chat page
-    navigate('/chat');
+    navigate("/chat");
   };
 
   return (
@@ -253,25 +297,25 @@ export default function ScreeningView() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <Card className="p-4">
           <div className="text-2xl font-bold text-green-600">
-            {candidates.filter(c => c.status === "approved").length}
+            {candidates.filter((c) => c.status === "approved").length}
           </div>
           <div className="text-sm text-muted-foreground">Approved</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-red-600">
-            {candidates.filter(c => c.status === "reject").length}
+            {candidates.filter((c) => c.status === "reject").length}
           </div>
           <div className="text-sm text-muted-foreground">Rejected</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-yellow-600">
-            {candidates.filter(c => c.status === "queue").length}
+            {candidates.filter((c) => c.status === "queue").length}
           </div>
           <div className="text-sm text-muted-foreground">Queued</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-gray-600">
-            {candidates.filter(c => c.status === "pending").length}
+            {candidates.filter((c) => c.status === "pending").length}
           </div>
           <div className="text-sm text-muted-foreground">Pending Review</div>
         </Card>
@@ -315,17 +359,21 @@ export default function ScreeningView() {
                           candidate.status === "approved"
                             ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
                             : candidate.status === "queue"
-                            ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
-                            : candidate.status === "reject"
-                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
-                            : ""
+                              ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
+                              : candidate.status === "reject"
+                                ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
+                                : ""
                         }`}
                       >
                         {getStatusIcon(candidate.status)}
-                        {candidate.status === "approved" ? "Approved" :
-                         candidate.status === "reject" ? "Rejected" :
-                         candidate.status === "queue" ? "Queued" :
-                         candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
+                        {candidate.status === "approved"
+                          ? "Approved"
+                          : candidate.status === "reject"
+                            ? "Rejected"
+                            : candidate.status === "queue"
+                              ? "Queued"
+                              : candidate.status.charAt(0).toUpperCase() +
+                                candidate.status.slice(1)}
                       </Badge>
                     ) : (
                       <span className="text-xs text-gray-500 italic">
@@ -384,7 +432,9 @@ export default function ScreeningView() {
                 {/* Status Action Buttons */}
                 <div className="flex items-center gap-1.5">
                   <Button
-                    variant={candidate.status === "approved" ? "default" : "outline"}
+                    variant={
+                      candidate.status === "approved" ? "default" : "outline"
+                    }
                     size="sm"
                     className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
                       candidate.status === "approved"
@@ -397,7 +447,9 @@ export default function ScreeningView() {
                     Approve
                   </Button>
                   <Button
-                    variant={candidate.status === "queue" ? "secondary" : "outline"}
+                    variant={
+                      candidate.status === "queue" ? "secondary" : "outline"
+                    }
                     size="sm"
                     className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
                       candidate.status === "queue"
@@ -410,7 +462,9 @@ export default function ScreeningView() {
                     Queue
                   </Button>
                   <Button
-                    variant={candidate.status === "reject" ? "destructive" : "outline"}
+                    variant={
+                      candidate.status === "reject" ? "destructive" : "outline"
+                    }
                     size="sm"
                     className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
                       candidate.status === "reject"
@@ -479,15 +533,21 @@ export default function ScreeningView() {
                   <div className="flex items-center gap-3">
                     <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                     <div>
-                      <h2 className="text-lg sm:text-xl font-bold">{selectedCandidate.name} - Resume</h2>
-                      <p className="text-xs sm:text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
+                      <h2 className="text-lg sm:text-xl font-bold">
+                        {selectedCandidate.name} - Resume
+                      </h2>
+                      <p className="text-xs sm:text-sm text-gray-600 font-normal">
+                        {selectedCandidate.position}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 sm:ml-auto">
                     {selectedCandidate.rating && (
                       <div className="flex items-center gap-1">
                         <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
-                        <span className="text-xs sm:text-sm font-medium">{selectedCandidate.rating}/5</span>
+                        <span className="text-xs sm:text-sm font-medium">
+                          {selectedCandidate.rating}/5
+                        </span>
                       </div>
                     )}
                     <Badge
@@ -496,17 +556,19 @@ export default function ScreeningView() {
                         selectedCandidate.status === "approved"
                           ? "bg-green-100 text-green-700 border-green-200"
                           : selectedCandidate.status === "queue"
-                          ? "bg-orange-100 text-orange-700 border-orange-200"
-                          : selectedCandidate.status === "reject"
-                          ? "bg-red-100 text-red-700 border-red-200"
-                          : ""
+                            ? "bg-orange-100 text-orange-700 border-orange-200"
+                            : selectedCandidate.status === "reject"
+                              ? "bg-red-100 text-red-700 border-red-200"
+                              : ""
                       }`}
                     >
                       {getStatusIcon(selectedCandidate.status)}
                       <span className="ml-1">
-                        {selectedCandidate.status === "approved" ? "Approved" :
-                         selectedCandidate.status === "reject" ? "Rejected" :
-                         selectedCandidate.status}
+                        {selectedCandidate.status === "approved"
+                          ? "Approved"
+                          : selectedCandidate.status === "reject"
+                            ? "Rejected"
+                            : selectedCandidate.status}
                       </span>
                     </Badge>
                   </div>
@@ -520,17 +582,25 @@ export default function ScreeningView() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
                     <div className="text-center">
                       <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.totalExperience}</div>
-                      <div className="text-xs text-gray-600">Total Experience</div>
+                      <div className="font-semibold text-xs sm:text-sm">
+                        {selectedCandidate.totalExperience}
+                      </div>
+                      <div className="text-xs text-gray-600">
+                        Total Experience
+                      </div>
                     </div>
                     <div className="text-center">
                       <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.location}</div>
+                      <div className="font-semibold text-xs sm:text-sm">
+                        {selectedCandidate.location}
+                      </div>
                       <div className="text-xs text-gray-600">Location</div>
                     </div>
                     <div className="text-center">
                       <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.availability}</div>
+                      <div className="font-semibold text-xs sm:text-sm">
+                        {selectedCandidate.availability}
+                      </div>
                       <div className="text-xs text-gray-600">Availability</div>
                     </div>
                   </div>
@@ -545,7 +615,9 @@ export default function ScreeningView() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                         <div className="flex items-center gap-2">
                           <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
-                          <span className="truncate">{selectedCandidate.email}</span>
+                          <span className="truncate">
+                            {selectedCandidate.email}
+                          </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
@@ -559,42 +631,56 @@ export default function ScreeningView() {
                   {selectedCandidate.summary && (
                     <Card>
                       <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Professional Summary</h3>
-                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{selectedCandidate.summary}</p>
+                        <h3 className="font-semibold mb-3 text-sm sm:text-base">
+                          Professional Summary
+                        </h3>
+                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
+                          {selectedCandidate.summary}
+                        </p>
                       </CardContent>
                     </Card>
                   )}
 
                   {/* Work Experience */}
-                  {selectedCandidate.workHistory && selectedCandidate.workHistory.length > 0 && (
-                    <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
-                          <Briefcase className="w-4 h-4" />
-                          Work Experience
-                        </h3>
-                        <div className="space-y-3 sm:space-y-4">
-                          {selectedCandidate.workHistory.map((job, index) => (
-                            <div key={index} className="border-l-2 border-blue-200 pl-3 sm:pl-4 pb-3 sm:pb-4">
-                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
-                                <div className="flex-1">
-                                  <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
-                                  <div className="flex items-center gap-2 text-xs text-gray-600">
-                                    <Building className="w-3 h-3 flex-shrink-0" />
-                                    <span className="truncate">{job.company}</span>
+                  {selectedCandidate.workHistory &&
+                    selectedCandidate.workHistory.length > 0 && (
+                      <Card>
+                        <CardContent className="p-3 sm:p-4">
+                          <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                            <Briefcase className="w-4 h-4" />
+                            Work Experience
+                          </h3>
+                          <div className="space-y-3 sm:space-y-4">
+                            {selectedCandidate.workHistory.map((job, index) => (
+                              <div
+                                key={index}
+                                className="border-l-2 border-blue-200 pl-3 sm:pl-4 pb-3 sm:pb-4"
+                              >
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
+                                  <div className="flex-1">
+                                    <h4 className="font-medium text-xs sm:text-sm">
+                                      {job.position}
+                                    </h4>
+                                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                                      <Building className="w-3 h-3 flex-shrink-0" />
+                                      <span className="truncate">
+                                        {job.company}
+                                      </span>
+                                    </div>
                                   </div>
+                                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">
+                                    {job.duration}
+                                  </span>
                                 </div>
-                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">
-                                  {job.duration}
-                                </span>
+                                <p className="text-xs text-gray-700 leading-relaxed">
+                                  {job.description}
+                                </p>
                               </div>
-                              <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
 
                   {/* Education */}
                   {selectedCandidate.education && (
@@ -604,66 +690,93 @@ export default function ScreeningView() {
                           <GraduationCap className="w-4 h-4" />
                           Education
                         </h3>
-                        <p className="text-xs sm:text-sm text-gray-700">{selectedCandidate.education}</p>
+                        <p className="text-xs sm:text-sm text-gray-700">
+                          {selectedCandidate.education}
+                        </p>
                       </CardContent>
                     </Card>
                   )}
 
                   {/* Skills */}
-                  {selectedCandidate.skills && selectedCandidate.skills.length > 0 && (
-                    <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Skills & Technologies</h3>
-                        <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {selectedCandidate.skills.map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
+                  {selectedCandidate.skills &&
+                    selectedCandidate.skills.length > 0 && (
+                      <Card>
+                        <CardContent className="p-3 sm:p-4">
+                          <h3 className="font-semibold mb-3 text-sm sm:text-base">
+                            Skills & Technologies
+                          </h3>
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
+                            {selectedCandidate.skills.map((skill, index) => (
+                              <Badge
+                                key={index}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
 
                   {/* Certifications */}
-                  {selectedCandidate.certifications && selectedCandidate.certifications.length > 0 && (
-                    <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
-                          <Award className="w-4 h-4" />
-                          Certifications
-                        </h3>
-                        <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {selectedCandidate.certifications.map((cert, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
-                              {cert}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
+                  {selectedCandidate.certifications &&
+                    selectedCandidate.certifications.length > 0 && (
+                      <Card>
+                        <CardContent className="p-3 sm:p-4">
+                          <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                            <Award className="w-4 h-4" />
+                            Certifications
+                          </h3>
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
+                            {selectedCandidate.certifications.map(
+                              (cert, index) => (
+                                <Badge
+                                  key={index}
+                                  variant="outline"
+                                  className="text-xs"
+                                >
+                                  {cert}
+                                </Badge>
+                              ),
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
                 </div>
 
                 {/* Screening Tools Panel */}
                 <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3 sm:space-y-4">
-                  <h3 className="font-semibold text-base sm:text-lg">Screening Assessment</h3>
+                  <h3 className="font-semibold text-base sm:text-lg">
+                    Screening Assessment
+                  </h3>
 
                   {/* Quick Actions */}
                   <Card>
                     <CardContent className="p-3 sm:p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">
+                        Quick Actions
+                      </h4>
                       <div className="space-y-2">
                         <Button
                           variant="outline"
                           size="sm"
                           className="w-full justify-start text-xs sm:text-sm"
-                          onClick={() => selectedCandidate && handleEmailCandidate(selectedCandidate)}
+                          onClick={() =>
+                            selectedCandidate &&
+                            handleEmailCandidate(selectedCandidate)
+                          }
                         >
                           <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Send Email
                         </Button>
-                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full justify-start text-xs sm:text-sm"
+                        >
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Schedule Interview
                         </Button>
@@ -674,38 +787,58 @@ export default function ScreeningView() {
                   {/* Candidate Details */}
                   <Card>
                     <CardContent className="p-3 sm:p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Candidate Details</h4>
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">
+                        Candidate Details
+                      </h4>
                       <div className="space-y-3 text-xs sm:text-sm">
                         <div>
-                          <label className="text-gray-600 text-xs">Salary Expectation</label>
-                          <p className="font-medium">{selectedCandidate.salaryExpectation}</p>
+                          <label className="text-gray-600 text-xs">
+                            Salary Expectation
+                          </label>
+                          <p className="font-medium">
+                            {selectedCandidate.salaryExpectation}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-gray-600 text-xs">Total Experience</label>
-                          <p className="font-medium">{selectedCandidate.totalExperience}</p>
+                          <label className="text-gray-600 text-xs">
+                            Total Experience
+                          </label>
+                          <p className="font-medium">
+                            {selectedCandidate.totalExperience}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-gray-600 text-xs">Relevant Experience</label>
-                          <p className="font-medium">{selectedCandidate.relevantExperience}</p>
+                          <label className="text-gray-600 text-xs">
+                            Relevant Experience
+                          </label>
+                          <p className="font-medium">
+                            {selectedCandidate.relevantExperience}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-gray-600 text-xs">Current Status</label>
+                          <label className="text-gray-600 text-xs">
+                            Current Status
+                          </label>
                           <div className="mt-1">
                             <Badge
-                              variant={getStatusVariant(selectedCandidate.status)}
+                              variant={getStatusVariant(
+                                selectedCandidate.status,
+                              )}
                               className={`text-xs ${
                                 selectedCandidate.status === "approved"
                                   ? "bg-green-100 text-green-700 border-green-200"
                                   : selectedCandidate.status === "queue"
-                                  ? "bg-orange-100 text-orange-700 border-orange-200"
-                                  : selectedCandidate.status === "reject"
-                                  ? "bg-red-100 text-red-700 border-red-200"
-                                  : ""
+                                    ? "bg-orange-100 text-orange-700 border-orange-200"
+                                    : selectedCandidate.status === "reject"
+                                      ? "bg-red-100 text-red-700 border-red-200"
+                                      : ""
                               }`}
                             >
-                              {selectedCandidate.status === "approved" ? "Approved" :
-                               selectedCandidate.status === "reject" ? "Rejected" :
-                               selectedCandidate.status}
+                              {selectedCandidate.status === "approved"
+                                ? "Approved"
+                                : selectedCandidate.status === "reject"
+                                  ? "Rejected"
+                                  : selectedCandidate.status}
                             </Badge>
                           </div>
                         </div>
@@ -716,7 +849,9 @@ export default function ScreeningView() {
                   {/* Screening Notes */}
                   <Card>
                     <CardContent className="p-3 sm:p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">
+                        Screening Notes
+                      </h4>
                       <Textarea
                         placeholder="Add your screening notes here..."
                         value={screeningNotes}
@@ -729,43 +864,63 @@ export default function ScreeningView() {
                   {/* Status Actions */}
                   <Card>
                     <CardContent className="p-3 sm:p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">
+                        Update Status
+                      </h4>
                       <div className="space-y-2">
                         <Button
-                          variant={selectedCandidate.status === "approved" ? "default" : "outline"}
+                          variant={
+                            selectedCandidate.status === "approved"
+                              ? "default"
+                              : "outline"
+                          }
                           size="sm"
                           className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
                             selectedCandidate.status === "approved"
                               ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-md"
                               : "hover:bg-green-50 hover:border-green-300 hover:text-green-700"
                           }`}
-                          onClick={() => handleStatusChange(selectedCandidate.id, "approved")}
+                          onClick={() =>
+                            handleStatusChange(selectedCandidate.id, "approved")
+                          }
                         >
                           <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Approve for Next Round
                         </Button>
                         <Button
-                          variant={selectedCandidate.status === "queue" ? "secondary" : "outline"}
+                          variant={
+                            selectedCandidate.status === "queue"
+                              ? "secondary"
+                              : "outline"
+                          }
                           size="sm"
                           className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
                             selectedCandidate.status === "queue"
                               ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500 shadow-md"
                               : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
                           }`}
-                          onClick={() => handleStatusChange(selectedCandidate.id, "queue")}
+                          onClick={() =>
+                            handleStatusChange(selectedCandidate.id, "queue")
+                          }
                         >
                           <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Put in Queue
                         </Button>
                         <Button
-                          variant={selectedCandidate.status === "reject" ? "destructive" : "outline"}
+                          variant={
+                            selectedCandidate.status === "reject"
+                              ? "destructive"
+                              : "outline"
+                          }
                           size="sm"
                           className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
                             selectedCandidate.status === "reject"
                               ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-md"
                               : "hover:bg-red-50 hover:border-red-300 hover:text-red-700"
                           }`}
-                          onClick={() => handleStatusChange(selectedCandidate.id, "reject")}
+                          onClick={() =>
+                            handleStatusChange(selectedCandidate.id, "reject")
+                          }
                         >
                           <X className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Reject Application
@@ -777,7 +932,11 @@ export default function ScreeningView() {
               </div>
 
               <DialogFooter className="flex flex-col sm:flex-row gap-2 p-4 sm:p-6 border-t">
-                <Button variant="outline" onClick={() => setShowResumeModal(false)} className="text-xs sm:text-sm">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowResumeModal(false)}
+                  className="text-xs sm:text-sm"
+                >
                   Close
                 </Button>
                 <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm">

@@ -30,11 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Mail,
   Plus,
@@ -59,7 +55,7 @@ import {
   Copy,
   ArrowLeft,
   ArrowRight,
-  Check
+  Check,
 } from "lucide-react";
 
 interface InterviewCandidate {
@@ -67,7 +63,10 @@ interface InterviewCandidate {
   applicantName: string;
   appliedPosition: string;
   department: string;
-  currentRound: "Technical Assessment Round 1" | "Technical Round 2" | "Non Technical Round 2";
+  currentRound:
+    | "Technical Assessment Round 1"
+    | "Technical Round 2"
+    | "Non Technical Round 2";
   status: "in-progress" | "completed" | "pending";
   email?: string;
   phone?: string;
@@ -75,13 +74,17 @@ interface InterviewCandidate {
   missingRounds?: string[];
 }
 
-
 interface InterviewRound {
   id: string;
   roundHeader: string;
   roundName: string;
   roundType: "technical" | "non-technical" | "final";
-  interviewMode: "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment";
+  interviewMode:
+    | "online-assessment"
+    | "video-call"
+    | "in-person"
+    | "oral-assessment"
+    | "group-assessment";
   testDescription?: string;
   attachedFiles: string[];
   scheduledDate: string;
@@ -338,10 +341,30 @@ const roundTemplates: RoundTemplate[] = [
     name: "Software Engineer Template",
     description: "Complete interview process for software engineering roles",
     rounds: [
-      { roundName: "Technical Screening", roundType: "technical", interviewMode: "online-assessment", order: 1 },
-      { roundName: "System Design", roundType: "technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Behavioral Interview", roundType: "non-technical", interviewMode: "video-call", order: 3 },
-      { roundName: "Final Interview", roundType: "final", interviewMode: "in-person", order: 4 },
+      {
+        roundName: "Technical Screening",
+        roundType: "technical",
+        interviewMode: "online-assessment",
+        order: 1,
+      },
+      {
+        roundName: "System Design",
+        roundType: "technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Behavioral Interview",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 3,
+      },
+      {
+        roundName: "Final Interview",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 4,
+      },
     ],
   },
   {
@@ -349,9 +372,24 @@ const roundTemplates: RoundTemplate[] = [
     name: "Product Manager Template",
     description: "Interview process for product management roles",
     rounds: [
-      { roundName: "Product Case Study", roundType: "non-technical", interviewMode: "video-call", order: 1 },
-      { roundName: "Strategy Discussion", roundType: "non-technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Executive Review", roundType: "final", interviewMode: "in-person", order: 3 },
+      {
+        roundName: "Product Case Study",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 1,
+      },
+      {
+        roundName: "Strategy Discussion",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Executive Review",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 3,
+      },
     ],
   },
   {
@@ -359,13 +397,27 @@ const roundTemplates: RoundTemplate[] = [
     name: "Designer Template",
     description: "Interview process for design roles",
     rounds: [
-      { roundName: "Portfolio Review", roundType: "non-technical", interviewMode: "video-call", order: 1 },
-      { roundName: "Design Challenge", roundType: "technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Team Fit Interview", roundType: "final", interviewMode: "in-person", order: 3 },
+      {
+        roundName: "Portfolio Review",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 1,
+      },
+      {
+        roundName: "Design Challenge",
+        roundType: "technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Team Fit Interview",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 3,
+      },
     ],
   },
 ];
-
 
 function getStatusColor(status: string): string {
   switch (status) {
@@ -404,23 +456,34 @@ export default function InterviewView() {
   const [activeMainTab, setActiveMainTab] = useState("interview-status");
 
   // Rounds Room States
-  const [activeRoundType, setActiveRoundType] = useState<"technical" | "non-technical" | "final">("technical");
-  const [rounds, setRounds] = useState<InterviewRound[]>(defaultInterviewRounds);
-  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(null);
+  const [activeRoundType, setActiveRoundType] = useState<
+    "technical" | "non-technical" | "final"
+  >("technical");
+  const [rounds, setRounds] = useState<InterviewRound[]>(
+    defaultInterviewRounds,
+  );
+  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(
+    null,
+  );
   const [showRoundModal, setShowRoundModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   // Assignment States
   const [showBulkAssignModal, setShowBulkAssignModal] = useState(false);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
-  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] = useState<string[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<RoundTemplate | null>(null);
+  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] =
+    useState<string[]>([]);
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<RoundTemplate | null>(null);
   const [bulkSelectedRounds, setBulkSelectedRounds] = useState<string[]>([]);
 
   // Search and Filter States
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
-  const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
+  const [filteredCandidates, setFilteredCandidates] =
+    useState(interviewCandidates);
+  const [assignmentFilter, setAssignmentFilter] = useState<
+    "all" | "missing" | "partial" | "complete"
+  >("all");
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
@@ -440,19 +503,20 @@ export default function InterviewView() {
     scheduledTime: "",
     roundDetails: "One-On-One Discussion with the Marketing Manager",
     submissionDeadline: "",
-    sendRound: "Applicant, Group of Applicants, Job Role"
+    sendRound: "Applicant, Group of Applicants, Job Role",
   });
 
   // Round Type Enable/Disable States
   const [roundTypeEnabled, setRoundTypeEnabled] = useState({
     technical: true,
     "non-technical": true,
-    final: true
+    final: true,
   });
 
   // Email Screen States
   const [showEmailScreen, setShowEmailScreen] = useState(false);
-  const [showRoundsEmailInterface, setShowRoundsEmailInterface] = useState(false);
+  const [showRoundsEmailInterface, setShowRoundsEmailInterface] =
+    useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
   const [showBulkActions, setShowBulkActions] = useState(false);
@@ -479,7 +543,7 @@ If none of the available times work for you, or if you run into any issues while
 Best regards,
 Kayle Jenny
 HR Associate
-Google India`
+Google India`,
   });
 
   // Recruitment email data with applicant details
@@ -489,41 +553,46 @@ Google India`
         id: "1",
         applicantName: "Sarah Mitchell",
         position: "Senior Developer",
-        subject: "Application for Senior Developer - Request for Interview Scheduling",
-        preview: "Thank you for considering my application. I'm available for the interview...",
+        subject:
+          "Application for Senior Developer - Request for Interview Scheduling",
+        preview:
+          "Thank you for considering my application. I'm available for the interview...",
         timestamp: "2 hours ago",
         checked: false,
-        priority: "high"
+        priority: "high",
       },
       {
         id: "2",
         applicantName: "Jaya Mishra",
         position: "Senior Developer",
         subject: "Proposed Interview Time - Availability Confirmation",
-        preview: "I would like to confirm my availability for the interview scheduled...",
+        preview:
+          "I would like to confirm my availability for the interview scheduled...",
         timestamp: "4 hours ago",
         checked: false,
-        priority: "normal"
+        priority: "normal",
       },
       {
         id: "3",
         applicantName: "Mark Johnson",
         position: "Graphic Designer",
         subject: "Portfolio Submission and Interview Request",
-        preview: "Please find attached my portfolio. I'm excited about the opportunity...",
+        preview:
+          "Please find attached my portfolio. I'm excited about the opportunity...",
         timestamp: "6 hours ago",
         checked: false,
-        priority: "normal"
+        priority: "normal",
       },
       {
         id: "4",
         applicantName: "Emily Chen",
         position: "UX Designer",
         subject: "Thank you for the interview - Next steps inquiry",
-        preview: "Thank you for the wonderful interview yesterday. I wanted to follow up...",
+        preview:
+          "Thank you for the wonderful interview yesterday. I wanted to follow up...",
         timestamp: "1 day ago",
         checked: false,
-        priority: "low"
+        priority: "low",
       },
       {
         id: "5",
@@ -533,8 +602,8 @@ Google India`
         preview: "I have completed the technical assessment as requested...",
         timestamp: "2 days ago",
         checked: false,
-        priority: "high"
-      }
+        priority: "high",
+      },
     ],
     sent: [
       {
@@ -542,9 +611,10 @@ Google India`
         applicantName: "Jaya Mishra",
         position: "Senior Developer",
         subject: "Interview Invitation - Technical Round",
-        preview: "We are pleased to invite you for the technical interview round...",
+        preview:
+          "We are pleased to invite you for the technical interview round...",
         timestamp: "3 hours ago",
-        checked: false
+        checked: false,
       },
       {
         id: "s2",
@@ -553,7 +623,7 @@ Google India`
         subject: "Interview Confirmation and Meeting Details",
         preview: "This email confirms your interview scheduled for tomorrow...",
         timestamp: "1 day ago",
-        checked: false
+        checked: false,
       },
       {
         id: "s3",
@@ -562,8 +632,8 @@ Google India`
         subject: "Welcome to AI2AIM - Offer Letter Attached",
         preview: "Congratulations! We are delighted to extend an offer...",
         timestamp: "3 days ago",
-        checked: false
-      }
+        checked: false,
+      },
     ],
     spam: [
       {
@@ -573,7 +643,7 @@ Google India`
         subject: "Urgent: Claim Your Prize Now!",
         preview: "You have won a million dollars! Click here to claim...",
         timestamp: "1 week ago",
-        checked: false
+        checked: false,
       },
       {
         id: "sp2",
@@ -582,9 +652,9 @@ Google India`
         subject: "Investment Opportunity - Limited Time",
         preview: "Make money fast with our investment scheme...",
         timestamp: "2 weeks ago",
-        checked: false
-      }
-    ]
+        checked: false,
+      },
+    ],
   };
 
   // Form States
@@ -592,7 +662,12 @@ Google India`
     roundHeader: "",
     roundName: "",
     roundType: "technical" as "technical" | "non-technical" | "final",
-    interviewMode: "online-assessment" as "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment",
+    interviewMode: "online-assessment" as
+      | "online-assessment"
+      | "video-call"
+      | "in-person"
+      | "oral-assessment"
+      | "group-assessment",
     testDescription: "",
     scheduledDate: "",
     scheduledTime: "",
@@ -609,16 +684,24 @@ Google India`
 
     // Apply search filter
     if (query.trim()) {
-      candidates = candidates.filter(candidate => {
-        const searchTerms = query.toLowerCase().split(' ');
-        const candidateText = `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
+      candidates = candidates.filter((candidate) => {
+        const searchTerms = query.toLowerCase().split(" ");
+        const candidateText =
+          `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
 
-        return searchTerms.every(term => {
-          return candidateText.includes(term) ||
-                 candidateText.split(' ').some(word =>
-                   word.startsWith(term) ||
-                   word.includes(term.substring(0, Math.max(2, term.length - 1)))
-                 );
+        return searchTerms.every((term) => {
+          return (
+            candidateText.includes(term) ||
+            candidateText
+              .split(" ")
+              .some(
+                (word) =>
+                  word.startsWith(term) ||
+                  word.includes(
+                    term.substring(0, Math.max(2, term.length - 1)),
+                  ),
+              )
+          );
         });
       });
     }
@@ -626,34 +709,47 @@ Google India`
     // Apply assignment filter
     switch (filter) {
       case "missing":
-        candidates = candidates.filter(c => !c.assignedRounds || c.assignedRounds.length === 0);
+        candidates = candidates.filter(
+          (c) => !c.assignedRounds || c.assignedRounds.length === 0,
+        );
         break;
       case "partial":
-        candidates = candidates.filter(c => c.missingRounds && c.missingRounds.length > 0 && c.assignedRounds && c.assignedRounds.length > 0);
+        candidates = candidates.filter(
+          (c) =>
+            c.missingRounds &&
+            c.missingRounds.length > 0 &&
+            c.assignedRounds &&
+            c.assignedRounds.length > 0,
+        );
         break;
       case "complete":
-        candidates = candidates.filter(c => !c.missingRounds || c.missingRounds.length === 0);
+        candidates = candidates.filter(
+          (c) => !c.missingRounds || c.missingRounds.length === 0,
+        );
         break;
     }
 
     setFilteredCandidates(candidates);
   };
 
-  const handleAssignmentFilterChange = (filter: "all" | "missing" | "partial" | "complete") => {
+  const handleAssignmentFilterChange = (
+    filter: "all" | "missing" | "partial" | "complete",
+  ) => {
     setAssignmentFilter(filter);
     filterCandidates(searchQuery, filter);
   };
 
   // Get filtered rounds based on active type
   const getFilteredRounds = () => {
-    return rounds.filter(round => round.roundType === activeRoundType);
+    return rounds.filter((round) => round.roundType === activeRoundType);
   };
 
   // CRUD Operations
   const handleCreateRound = () => {
     const newRound: InterviewRound = {
       id: `${activeRoundType}-${Date.now()}`,
-      roundHeader: roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
+      roundHeader:
+        roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
       roundName: roundForm.roundName,
       roundType: activeRoundType,
       interviewMode: roundForm.interviewMode,
@@ -665,7 +761,7 @@ Google India`
       candidates: [],
     };
 
-    setRounds(prev => [...prev, newRound]);
+    setRounds((prev) => [...prev, newRound]);
     resetForm();
     setShowRoundModal(false);
   };
@@ -673,11 +769,11 @@ Google India`
   const handleUpdateRound = () => {
     if (!selectedRound) return;
 
-    setRounds(prev => prev.map(round =>
-      round.id === selectedRound.id
-        ? { ...round, ...roundForm }
-        : round
-    ));
+    setRounds((prev) =>
+      prev.map((round) =>
+        round.id === selectedRound.id ? { ...round, ...roundForm } : round,
+      ),
+    );
 
     resetForm();
     setSelectedRound(null);
@@ -686,7 +782,7 @@ Google India`
   };
 
   const handleDeleteRound = (roundId: string) => {
-    setRounds(prev => prev.filter(round => round.id !== roundId));
+    setRounds((prev) => prev.filter((round) => round.id !== roundId));
   };
 
   const handleEditRound = (round: InterviewRound) => {
@@ -725,30 +821,37 @@ Google India`
   };
 
   const handleCandidateSelectionToggle = (candidateId: string) => {
-    setSelectedCandidatesForAssignment(prev =>
+    setSelectedCandidatesForAssignment((prev) =>
       prev.includes(candidateId)
-        ? prev.filter(id => id !== candidateId)
-        : [...prev, candidateId]
+        ? prev.filter((id) => id !== candidateId)
+        : [...prev, candidateId],
     );
   };
 
   const handleRoundSelectionToggle = (roundId: string) => {
-    setBulkSelectedRounds(prev =>
+    setBulkSelectedRounds((prev) =>
       prev.includes(roundId)
-        ? prev.filter(id => id !== roundId)
-        : [...prev, roundId]
+        ? prev.filter((id) => id !== roundId)
+        : [...prev, roundId],
     );
   };
 
   const handleBulkAssignmentSave = () => {
     // Update rounds to include selected candidates
-    setRounds(prev => prev.map(round => {
-      if (bulkSelectedRounds.includes(round.id)) {
-        const newCandidates = [...new Set([...round.candidates, ...selectedCandidatesForAssignment])];
-        return { ...round, candidates: newCandidates };
-      }
-      return round;
-    }));
+    setRounds((prev) =>
+      prev.map((round) => {
+        if (bulkSelectedRounds.includes(round.id)) {
+          const newCandidates = [
+            ...new Set([
+              ...round.candidates,
+              ...selectedCandidatesForAssignment,
+            ]),
+          ];
+          return { ...round, candidates: newCandidates };
+        }
+        return round;
+      }),
+    );
 
     // Reset states
     setShowBulkAssignModal(false);
@@ -763,10 +866,11 @@ Google India`
   };
 
   const applyTemplate = () => {
-    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0) return;
+    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0)
+      return;
 
     // Create rounds from template if they don't exist
-    const newRounds = selectedTemplate.rounds.map(templateRound => ({
+    const newRounds = selectedTemplate.rounds.map((templateRound) => ({
       id: `${templateRound.roundType}-${Date.now()}-${templateRound.order}`,
       roundHeader: `Round ${templateRound.order}`,
       roundName: templateRound.roundName,
@@ -780,7 +884,7 @@ Google India`
       candidates: selectedCandidatesForAssignment,
     }));
 
-    setRounds(prev => [...prev, ...newRounds]);
+    setRounds((prev) => [...prev, ...newRounds]);
     setShowTemplateModal(false);
     setSelectedTemplate(null);
     setSelectedCandidatesForAssignment([]);
@@ -788,12 +892,12 @@ Google India`
 
   // Get candidate details by ID
   const getCandidateById = (id: string) => {
-    return interviewCandidates.find(candidate => candidate.id === id);
+    return interviewCandidates.find((candidate) => candidate.id === id);
   };
 
   // Get assigned rounds for a candidate
   const getAssignedRounds = (candidateId: string) => {
-    return rounds.filter(round => round.candidates.includes(candidateId));
+    return rounds.filter((round) => round.candidates.includes(candidateId));
   };
 
   // Get round progress for a candidate
@@ -801,7 +905,12 @@ Google India`
     const assigned = candidate.assignedRounds?.length || 0;
     const missing = candidate.missingRounds?.length || 0;
     const total = assigned + missing;
-    return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
+    return {
+      assigned,
+      missing,
+      total,
+      completion: total > 0 ? (assigned / total) * 100 : 0,
+    };
   };
 
   // Decision Confirmation Modal States
@@ -815,7 +924,10 @@ Google India`
 
   // Track confirmed decisions for button styling
   const [confirmedDecisions, setConfirmedDecisions] = useState<{
-    [key: string]: { decision: "YES" | "MAYBE" | "NO"; type: "round" | "final" }
+    [key: string]: {
+      decision: "YES" | "MAYBE" | "NO";
+      type: "round" | "final";
+    };
   }>({});
 
   // Track selected round for each candidate
@@ -837,23 +949,22 @@ Google India`
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (!target.closest('.dropdown-container')) {
+      if (!target.closest(".dropdown-container")) {
         setShowCandidatesDropdown(false);
         setShowCountryDropdown(false);
         setShowJobRoleDropdown(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
 
   // Recruitment email handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting recruitment email:", emailId);
     // Remove from selected emails if it was selected
-    setSelectedEmails(prev => prev.filter(id => id !== emailId));
+    setSelectedEmails((prev) => prev.filter((id) => id !== emailId));
   };
 
   const handleComposeEmail = () => {
@@ -882,7 +993,7 @@ Google India`
   const searchRecruitmentEmails = (query: string, emailList: any[]) => {
     if (!query.trim()) return emailList;
 
-    return emailList.filter(email => {
+    return emailList.filter((email) => {
       const searchTerm = query.toLowerCase();
       return (
         email.applicantName.toLowerCase().includes(searchTerm) ||
@@ -898,7 +1009,7 @@ Google India`
     if (selectedEmails.length === emailList.length) {
       setSelectedEmails([]);
     } else {
-      setSelectedEmails(emailList.map(email => email.id));
+      setSelectedEmails(emailList.map((email) => email.id));
     }
   };
 
@@ -915,29 +1026,39 @@ Google India`
   };
 
   const handleBulkSendTemplate = () => {
-    console.log("Sending interview template to selected applicants:", selectedEmails);
+    console.log(
+      "Sending interview template to selected applicants:",
+      selectedEmails,
+    );
     setSelectedEmails([]);
     setShowBulkActions(false);
   };
 
   // Decision confirmation handlers
-  const handleDecisionClick = (candidateId: string, candidateName: string, decision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+  const handleDecisionClick = (
+    candidateId: string,
+    candidateName: string,
+    decision: "YES" | "MAYBE" | "NO",
+    type: "round" | "final",
+  ) => {
     setSelectedDecision({ candidateId, candidateName, decision, type });
     setShowDecisionModal(true);
   };
 
   const handleConfirmDecision = () => {
     if (selectedDecision) {
-      console.log(`Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`);
+      console.log(
+        `Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`,
+      );
 
       // Save the confirmed decision for button styling
       const decisionKey = `${selectedDecision.candidateId}-${selectedDecision.type}`;
-      setConfirmedDecisions(prev => ({
+      setConfirmedDecisions((prev) => ({
         ...prev,
         [decisionKey]: {
           decision: selectedDecision.decision,
-          type: selectedDecision.type
-        }
+          type: selectedDecision.type,
+        },
       }));
 
       setShowDecisionModal(false);
@@ -951,7 +1072,11 @@ Google India`
   };
 
   // Helper function to get button styles based on confirmed decisions
-  const getButtonStyles = (candidateId: string, buttonDecision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+  const getButtonStyles = (
+    candidateId: string,
+    buttonDecision: "YES" | "MAYBE" | "NO",
+    type: "round" | "final",
+  ) => {
     const decisionKey = `${candidateId}-${type}`;
     const confirmedDecision = confirmedDecisions[decisionKey];
 
@@ -1015,7 +1140,6 @@ Google India`
             </TabsList>
           </Tabs>
         </div>
-
       </div>
 
       {/* Main Layout */}
@@ -1056,15 +1180,25 @@ Google India`
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Roles</SelectItem>
-                    <SelectItem value="senior-developer">Senior Developer</SelectItem>
-                    <SelectItem value="graphic-designer">Graphic Designer</SelectItem>
-                    <SelectItem value="content-writer">Content Writer</SelectItem>
+                    <SelectItem value="senior-developer">
+                      Senior Developer
+                    </SelectItem>
+                    <SelectItem value="graphic-designer">
+                      Graphic Designer
+                    </SelectItem>
+                    <SelectItem value="content-writer">
+                      Content Writer
+                    </SelectItem>
                     <SelectItem value="copywriter">Copywriter</SelectItem>
-                    <SelectItem value="sale-associate">Sale Associate</SelectItem>
+                    <SelectItem value="sale-associate">
+                      Sale Associate
+                    </SelectItem>
                     <SelectItem value="ai-engineer">AI Engineer</SelectItem>
                     <SelectItem value="ml-engineer">ML Engineer</SelectItem>
                     <SelectItem value="data-analyst">Data Analyst</SelectItem>
-                    <SelectItem value="finance-analyst">Finance Analyst</SelectItem>
+                    <SelectItem value="finance-analyst">
+                      Finance Analyst
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -1103,198 +1237,324 @@ Google India`
                     </TableHeader>
                     <TableBody>
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">001</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          001
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Jaya</TableCell>
                         <TableCell className="py-3 text-xs">India</TableCell>
-                        <TableCell className="py-3 text-xs">Senior Developer</TableCell>
-                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Senior Developer
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Managerial - 4/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "90%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">002</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          002
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Mark</TableCell>
                         <TableCell className="py-3 text-xs">USA</TableCell>
-                        <TableCell className="py-3 text-xs">Graphic Designer</TableCell>
-                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Graphic Designer
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Managerial - 4/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "90%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">003</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          003
+                        </TableCell>
                         <TableCell className="py-3 text-xs">John</TableCell>
                         <TableCell className="py-3 text-xs">USA</TableCell>
-                        <TableCell className="py-3 text-xs">Content writer</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Content writer
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          NO ROUNDS
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "100%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">100%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">004</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          004
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Sara</TableCell>
                         <TableCell className="py-3 text-xs">Europe</TableCell>
-                        <TableCell className="py-3 text-xs">Copywriter</TableCell>
-                        <TableCell className="py-3 text-xs">Editing Test - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Copywriter
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Editing Test - 4/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "90%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">005</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          005
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Shruti</TableCell>
                         <TableCell className="py-3 text-xs">India</TableCell>
-                        <TableCell className="py-3 text-xs">Sale Associate</TableCell>
-                        <TableCell className="py-3 text-xs">Culture Test - 3/5</TableCell>
-                        <TableCell className="py-3 text-xs">Case Study Debate - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Sale Associate
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Culture Test - 3/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Case Study Debate - 4/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '70%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
+                                style={{ width: "70%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">70%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">006</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          006
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Robin</TableCell>
                         <TableCell className="py-3 text-xs">Russia</TableCell>
-                        <TableCell className="py-3 text-xs">AI Engineer</TableCell>
-                        <TableCell className="py-3 text-xs">Project Design - 3/5</TableCell>
-                        <TableCell className="py-3 text-xs">Behavioral - 4/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          AI Engineer
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Project Design - 3/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Behavioral - 4/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style={{width: '60%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full"
+                                style={{ width: "60%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">60%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">007</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          007
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Kayle</TableCell>
                         <TableCell className="py-3 text-xs">Russia</TableCell>
-                        <TableCell className="py-3 text-xs">ML Engineer</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          ML Engineer
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          NO ROUNDS
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "100%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">100%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">008</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          008
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Vali</TableCell>
                         <TableCell className="py-3 text-xs">China</TableCell>
-                        <TableCell className="py-3 text-xs">Data Analyst</TableCell>
-                        <TableCell className="py-3 text-xs">Data Analysis - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Data Analyst
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Data Analysis - 4/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Human Resources - 5/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full"
+                                style={{ width: "90%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">009</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">
+                          009
+                        </TableCell>
                         <TableCell className="py-3 text-xs">Anne</TableCell>
                         <TableCell className="py-3 text-xs">Canada</TableCell>
-                        <TableCell className="py-3 text-xs">Finance Analyst</TableCell>
-                        <TableCell className="py-3 text-xs">Business Analysis - 2/5</TableCell>
-                        <TableCell className="py-3 text-xs">Case Study Debate - 3/5</TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Finance Analyst
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Business Analysis - 2/5
+                        </TableCell>
+                        <TableCell className="py-3 text-xs">
+                          Case Study Debate - 3/5
+                        </TableCell>
                         <TableCell className="py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '40%'}}></div>
+                              <div
+                                className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
+                                style={{ width: "40%" }}
+                              ></div>
                             </div>
                             <span className="text-xs font-medium">40%</span>
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button
+                            size="sm"
+                            className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6"
+                          >
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1359,14 +1619,25 @@ Google India`
                     </Button>
                     <span className="text-xs text-gray-600">1-50 of 1,263</span>
                     <div className="flex items-center gap-1">
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600"
+                      >
                         ◀
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600"
+                      >
                         ▶
                       </Button>
                     </div>
-                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                    <Button
+                      variant="outline"
+                      className="h-8 w-8 p-0 rounded-full border-gray-300"
+                    >
                       <span className="text-sm">👤</span>
                     </Button>
                   </div>
@@ -1378,13 +1649,21 @@ Google India`
                     {/* Template Navigation */}
                     <div className="flex items-center justify-center p-4 border-b bg-gray-50">
                       <div className="flex items-center gap-3">
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-gray-200"
+                        >
                           <span className="text-gray-600">←</span>
                         </Button>
                         <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
                           NEUTRAL TEMPLATE 1
                         </span>
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-gray-200"
+                        >
                           <span className="text-gray-600">→</span>
                         </Button>
                       </div>
@@ -1393,14 +1672,22 @@ Google India`
                     {/* Email Form - REPLACED WITH SIMPLE LIST */}
                     <div className="divide-y divide-gray-200">
                       {emailData.map((email) => (
-                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <div
+                          key={email.id}
+                          className="flex items-center gap-3 p-3 hover:bg-gray-50 group"
+                        >
                           <Checkbox
                             checked={selectedEmails.includes(email.id)}
                             onCheckedChange={(checked) => {
                               if (checked) {
-                                setSelectedEmails(prev => [...prev, email.id]);
+                                setSelectedEmails((prev) => [
+                                  ...prev,
+                                  email.id,
+                                ]);
                               } else {
-                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                                setSelectedEmails((prev) =>
+                                  prev.filter((id) => id !== email.id),
+                                );
                               }
                             }}
                             className="scale-90"
@@ -1424,8 +1711,12 @@ Google India`
                     <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 rounded-t-lg">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-800">Email Templates For Video Interviews</h3>
-                          <p className="text-sm text-gray-600 mt-1">Choose Template based on Interview Stage</p>
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            Email Templates For Video Interviews
+                          </h3>
+                          <p className="text-sm text-gray-600 mt-1">
+                            Choose Template based on Interview Stage
+                          </p>
                         </div>
                         <div className="flex items-center gap-4">
                           <Button
@@ -1492,10 +1783,17 @@ Google India`
                     <div className="p-6 space-y-4">
                       {/* Professional Email Form */}
                       <div className="flex items-center py-3 border-b border-gray-100">
-                        <label className="text-sm font-medium text-gray-700 w-16">To</label>
+                        <label className="text-sm font-medium text-gray-700 w-16">
+                          To
+                        </label>
                         <Input
                           value={emailForm.to}
-                          onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                          onChange={(e) =>
+                            setEmailForm((prev) => ({
+                              ...prev,
+                              to: e.target.value,
+                            }))
+                          }
                           className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="jayamishra@gmail.com"
                         />
@@ -1503,11 +1801,18 @@ Google India`
 
                       {/* Subject Field */}
                       <div className="flex items-center py-3 border-b border-gray-100">
-                        <label className="text-sm font-medium text-gray-700 w-16">Subject</label>
+                        <label className="text-sm font-medium text-gray-700 w-16">
+                          Subject
+                        </label>
                         <div className="flex-1 flex items-center gap-2">
                           <Input
                             value={emailForm.subject}
-                            onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                            onChange={(e) =>
+                              setEmailForm((prev) => ({
+                                ...prev,
+                                subject: e.target.value,
+                              }))
+                            }
                             className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Proposed Interview Time – Jaya Mishra"
                           />
@@ -1527,7 +1832,12 @@ Google India`
                         <div className="border border-gray-300 rounded-md bg-white">
                           <Textarea
                             value={emailForm.message}
-                            onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                            onChange={(e) =>
+                              setEmailForm((prev) => ({
+                                ...prev,
+                                message: e.target.value,
+                              }))
+                            }
                             className="w-full h-96 text-sm border-0 resize-none p-4 leading-relaxed focus:ring-0 focus:border-transparent"
                             placeholder="Hi Jaya Mishra,
 
@@ -1617,20 +1927,23 @@ Google India"
 
                 <Button
                   onClick={() => {
-                    console.log("Add new rounds functionality to be implemented");
+                    console.log(
+                      "Add new rounds functionality to be implemented",
+                    );
                   }}
                   className="h-7 px-3 text-xs bg-black hover:bg-gray-800 text-white font-medium"
                 >
                   ADD NEW ROUNDS
                 </Button>
-
               </div>
 
               {/* Round Type Tabs */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1">
                   <Button
-                    variant={activeRoundType === "technical" ? "default" : "outline"}
+                    variant={
+                      activeRoundType === "technical" ? "default" : "outline"
+                    }
                     size="sm"
                     onClick={() => setActiveRoundType("technical")}
                     className={`h-6 px-3 text-xs ${
@@ -1642,7 +1955,11 @@ Google India"
                     TECHNICAL
                   </Button>
                   <Button
-                    variant={activeRoundType === "non-technical" ? "default" : "outline"}
+                    variant={
+                      activeRoundType === "non-technical"
+                        ? "default"
+                        : "outline"
+                    }
                     size="sm"
                     onClick={() => setActiveRoundType("non-technical")}
                     className={`h-6 px-3 text-xs ${
@@ -1654,7 +1971,9 @@ Google India"
                     NON-TECHNICAL
                   </Button>
                   <Button
-                    variant={activeRoundType === "final" ? "default" : "outline"}
+                    variant={
+                      activeRoundType === "final" ? "default" : "outline"
+                    }
                     size="sm"
                     onClick={() => setActiveRoundType("final")}
                     className={`h-6 px-3 text-xs ${
@@ -1669,7 +1988,8 @@ Google India"
 
                 {/* Switches only for TECHNICAL and NON-TECHNICAL */}
                 <div className="flex items-center gap-3">
-                  {(activeRoundType === "technical" || activeRoundType === "non-technical") && (
+                  {(activeRoundType === "technical" ||
+                    activeRoundType === "non-technical") && (
                     <div className="flex items-center gap-1">
                       <span className="text-xs font-medium text-gray-600">
                         {activeRoundType.toUpperCase()}
@@ -1677,7 +1997,10 @@ Google India"
                       <Switch
                         checked={roundTypeEnabled[activeRoundType]}
                         onCheckedChange={(checked) =>
-                          setRoundTypeEnabled(prev => ({ ...prev, [activeRoundType]: checked }))
+                          setRoundTypeEnabled((prev) => ({
+                            ...prev,
+                            [activeRoundType]: checked,
+                          }))
                         }
                         className="scale-75"
                       />
@@ -1693,13 +2016,16 @@ Google India"
                   <div className="text-center py-12 space-y-4">
                     <div className="text-gray-500 space-y-2">
                       <p className="text-sm font-medium">
-                        Sorry!! There are no rounds here. If you have disabled the round, please enable to see all the rounds.
+                        Sorry!! There are no rounds here. If you have disabled
+                        the round, please enable to see all the rounds.
                       </p>
                       <p className="text-xs">
-                        Find the best that fits the role with AI2AIM EMS. We simplified your hiring roadmap.
+                        Find the best that fits the role with AI2AIM EMS. We
+                        simplified your hiring roadmap.
                       </p>
                       <p className="text-xs">
-                        If you have any issues with this system, write to us at info@ai2aim.com
+                        If you have any issues with this system, write to us at
+                        info@ai2aim.com
                       </p>
                       <p className="text-xs font-medium text-gray-700">
                         Happy Hiring!!
@@ -1707,7 +2033,9 @@ Google India"
                     </div>
 
                     <div className="mt-8 space-y-1">
-                      <p className="text-gray-500 text-xs">Want to add another round?</p>
+                      <p className="text-gray-500 text-xs">
+                        Want to add another round?
+                      </p>
                       <p className="text-gray-500 font-medium text-xs">
                         Add new round functionality removed
                       </p>
@@ -1723,202 +2051,310 @@ Google India"
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => setExpandedRound(expandedRound === 1 ? 0 : 1)}
+                            onClick={() =>
+                              setExpandedRound(expandedRound === 1 ? 0 : 1)
+                            }
                             className="h-5 w-5 p-0"
                           >
                             {expandedRound === 1 ? "▲" : "▼"}
                           </Button>
                         </div>
 
-                    {expandedRound === 1 && (
-                      <div className="space-y-3">
-                        {/* Form Grid */}
-                        <div className="grid grid-cols-5 gap-1 text-xs">
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Round Name</label>
-                            <Select value={currentRoundForm.roundName} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundName: value}))}>
-                              <SelectTrigger className="h-5 text-xs">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Project Design">Project Design</SelectItem>
-                                <SelectItem value="System Design">System Design</SelectItem>
-                                <SelectItem value="Code Review">Code Review</SelectItem>
-                              </SelectContent>
-                            </Select>
+                        {expandedRound === 1 && (
+                          <div className="space-y-3">
+                            {/* Form Grid */}
+                            <div className="grid grid-cols-5 gap-1 text-xs">
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Round Name
+                                </label>
+                                <Select
+                                  value={currentRoundForm.roundName}
+                                  onValueChange={(value) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      roundName: value,
+                                    }))
+                                  }
+                                >
+                                  <SelectTrigger className="h-5 text-xs">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="Project Design">
+                                      Project Design
+                                    </SelectItem>
+                                    <SelectItem value="System Design">
+                                      System Design
+                                    </SelectItem>
+                                    <SelectItem value="Code Review">
+                                      Code Review
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Round Type
+                                </label>
+                                <Select
+                                  value={currentRoundForm.roundType}
+                                  onValueChange={(value) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      roundType: value,
+                                    }))
+                                  }
+                                >
+                                  <SelectTrigger className="h-5 text-xs">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="Telephone">
+                                      Telephone
+                                    </SelectItem>
+                                    <SelectItem value="Video Call">
+                                      Video Call
+                                    </SelectItem>
+                                    <SelectItem value="In Person">
+                                      In Person
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Interview Mode
+                                </label>
+                                <Select
+                                  value={currentRoundForm.interviewMode}
+                                  onValueChange={(value) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      interviewMode: value,
+                                    }))
+                                  }
+                                >
+                                  <SelectTrigger className="h-5 text-xs">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="Online Interview">
+                                      Online Interview
+                                    </SelectItem>
+                                    <SelectItem value="Assessment">
+                                      Assessment
+                                    </SelectItem>
+                                    <SelectItem value="Presentation">
+                                      Presentation
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Scheduled Date
+                                </label>
+                                <Input
+                                  type="date"
+                                  value={currentRoundForm.scheduledDate}
+                                  onChange={(e) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      scheduledDate: e.target.value,
+                                    }))
+                                  }
+                                  className="h-5 text-xs"
+                                  placeholder="MM/DD/YYY"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Scheduled Time
+                                </label>
+                                <Input
+                                  type="time"
+                                  value={currentRoundForm.scheduledTime}
+                                  onChange={(e) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      scheduledTime: e.target.value,
+                                    }))
+                                  }
+                                  className="h-5 text-xs"
+                                  placeholder="HH:MM AM/PM"
+                                />
+                              </div>
+                            </div>
+
+                            {/* Round Details */}
+                            <div>
+                              <label className="block text-xs font-medium mb-1">
+                                Round Details
+                              </label>
+                              <Textarea
+                                value={currentRoundForm.roundDetails}
+                                onChange={(e) =>
+                                  setCurrentRoundForm((prev) => ({
+                                    ...prev,
+                                    roundDetails: e.target.value,
+                                  }))
+                                }
+                                className="h-12 text-xs resize-none"
+                                placeholder="Add Round Description Here"
+                              />
+                            </div>
+
+                            {/* Additional Fields */}
+                            <div className="grid grid-cols-2 gap-1">
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Assignment Submission Deadline:
+                                </label>
+                                <Input
+                                  type="date"
+                                  value={currentRoundForm.submissionDeadline}
+                                  onChange={(e) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      submissionDeadline: e.target.value,
+                                    }))
+                                  }
+                                  className="h-5 text-xs"
+                                  placeholder="Select the date from the calendar"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-xs font-medium mb-1">
+                                  Send Round:
+                                </label>
+                                <Select
+                                  value={currentRoundForm.sendRound}
+                                  onValueChange={(value) =>
+                                    setCurrentRoundForm((prev) => ({
+                                      ...prev,
+                                      sendRound: value,
+                                    }))
+                                  }
+                                >
+                                  <SelectTrigger className="h-5 text-xs">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="Applicant, Group of Applicants, Job Role">
+                                      Applicant, Group of Applicants, Job Role
+                                    </SelectItem>
+                                    <SelectItem value="Individual Applicant">
+                                      Individual Applicant
+                                    </SelectItem>
+                                    <SelectItem value="Group of Applicants">
+                                      Group of Applicants
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-1 mt-2">
+                              <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
+                                EDIT THIS TEMPLATE
+                              </Button>
+                              <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
+                                SAVE ROUND
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  setShowRoundsEmailInterface(true);
+                                  setActiveEmailTab("inbox"); // Default to inbox for recruitment emails
+                                }}
+                                className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs"
+                              >
+                                EMAIL
+                              </Button>
+                            </div>
                           </div>
+                        )}
+                      </CardContent>
+                    </Card>
 
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Round Type</label>
-                            <Select value={currentRoundForm.roundType} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundType: value}))}>
-                              <SelectTrigger className="h-5 text-xs">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Telephone">Telephone</SelectItem>
-                                <SelectItem value="Video Call">Video Call</SelectItem>
-                                <SelectItem value="In Person">In Person</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Interview Mode</label>
-                            <Select value={currentRoundForm.interviewMode} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, interviewMode: value}))}>
-                              <SelectTrigger className="h-5 text-xs">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Online Interview">Online Interview</SelectItem>
-                                <SelectItem value="Assessment">Assessment</SelectItem>
-                                <SelectItem value="Presentation">Presentation</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Scheduled Date</label>
-                            <Input
-                              type="date"
-                              value={currentRoundForm.scheduledDate}
-                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledDate: e.target.value}))}
-                              className="h-5 text-xs"
-                              placeholder="MM/DD/YYY"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Scheduled Time</label>
-                            <Input
-                              type="time"
-                              value={currentRoundForm.scheduledTime}
-                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, scheduledTime: e.target.value}))}
-                              className="h-5 text-xs"
-                              placeholder="HH:MM AM/PM"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Round Details */}
-                        <div>
-                          <label className="block text-xs font-medium mb-1">Round Details</label>
-                          <Textarea
-                            value={currentRoundForm.roundDetails}
-                            onChange={(e) => setCurrentRoundForm(prev => ({...prev, roundDetails: e.target.value}))}
-                            className="h-12 text-xs resize-none"
-                            placeholder="Add Round Description Here"
-                          />
-                        </div>
-
-                        {/* Additional Fields */}
-                        <div className="grid grid-cols-2 gap-1">
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Assignment Submission Deadline:</label>
-                            <Input
-                              type="date"
-                              value={currentRoundForm.submissionDeadline}
-                              onChange={(e) => setCurrentRoundForm(prev => ({...prev, submissionDeadline: e.target.value}))}
-                              className="h-5 text-xs"
-                              placeholder="Select the date from the calendar"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium mb-1">Send Round:</label>
-                            <Select value={currentRoundForm.sendRound} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, sendRound: value}))}>
-                              <SelectTrigger className="h-5 text-xs">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Applicant, Group of Applicants, Job Role">Applicant, Group of Applicants, Job Role</SelectItem>
-                                <SelectItem value="Individual Applicant">Individual Applicant</SelectItem>
-                                <SelectItem value="Group of Applicants">Group of Applicants</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex gap-1 mt-2">
-                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
-                            EDIT THIS TEMPLATE
-                          </Button>
-                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
-                            SAVE ROUND
-                          </Button>
+                    {/* ROUND 2 - Collapsed */}
+                    <Card className="border-2 border-red-500 bg-red-600">
+                      <CardContent className="p-1">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-bold text-xs text-white">
+                            ROUND 2
+                          </h3>
                           <Button
-                            onClick={() => {
-                              setShowRoundsEmailInterface(true);
-                              setActiveEmailTab("inbox"); // Default to inbox for recruitment emails
-                            }}
-                            className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              setExpandedRound(expandedRound === 2 ? 0 : 2)
+                            }
+                            className="h-5 w-5 p-0 text-white hover:bg-red-700"
                           >
-                            EMAIL
+                            ▼
                           </Button>
                         </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
+                      </CardContent>
+                    </Card>
 
-                {/* ROUND 2 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xs text-white">ROUND 2</h3>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setExpandedRound(expandedRound === 2 ? 0 : 2)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
-                      >
-                        ▼
-                      </Button>
+                    {/* ROUND 3 - Collapsed */}
+                    <Card className="border-2 border-red-500 bg-red-600">
+                      <CardContent className="p-1">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-bold text-xs text-white">
+                            ROUND 3
+                          </h3>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              setExpandedRound(expandedRound === 3 ? 0 : 3)
+                            }
+                            className="h-5 w-5 p-0 text-white hover:bg-red-700"
+                          >
+                            ▼
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* ROUND 4 - Collapsed */}
+                    <Card className="border-2 border-red-500 bg-red-600">
+                      <CardContent className="p-1">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-bold text-xs text-white">
+                            ROUND 4
+                          </h3>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              setExpandedRound(expandedRound === 4 ? 0 : 4)
+                            }
+                            className="h-5 w-5 p-0 text-white hover:bg-red-700"
+                          >
+                            ▼
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Add New Round Text */}
+                    <div className="text-center mt-4 pt-2">
+                      <p className="text-gray-500 text-xs mb-1">
+                        Want to add another round?
+                      </p>
+                      <p className="text-emerald-600 font-medium text-xs cursor-pointer hover:text-emerald-700">
+                        Click "ADD NEW ROUND"
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* ROUND 3 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xs text-white">ROUND 3</h3>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setExpandedRound(expandedRound === 3 ? 0 : 3)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
-                      >
-                        ▼
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* ROUND 4 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
-                  <CardContent className="p-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xs text-white">ROUND 4</h3>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setExpandedRound(expandedRound === 4 ? 0 : 4)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
-                      >
-                        ▼
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Add New Round Text */}
-                <div className="text-center mt-4 pt-2">
-                  <p className="text-gray-500 text-xs mb-1">Want to add another round?</p>
-                  <p className="text-emerald-600 font-medium text-xs cursor-pointer hover:text-emerald-700">
-                    Click "ADD NEW ROUND"
-                  </p>
-                </div>
                   </>
                 )}
               </div>
@@ -1933,8 +2369,12 @@ Google India"
                 <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 rounded-t-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Email Templates For Video Interviews</h3>
-                      <p className="text-sm text-gray-600 mt-1">Choose Template based on Interview Stage</p>
+                      <h3 className="text-lg font-semibold text-gray-800">
+                        Email Templates For Video Interviews
+                      </h3>
+                      <p className="text-sm text-gray-600 mt-1">
+                        Choose Template based on Interview Stage
+                      </p>
                     </div>
                     <div className="flex items-center gap-4">
                       <Button
@@ -2012,10 +2452,17 @@ Google India"
                 <div className="flex-1 p-6 space-y-4 overflow-y-auto">
                   {/* To Field */}
                   <div className="flex items-center py-3 border-b border-gray-100">
-                    <label className="text-sm font-medium text-gray-700 w-16">To</label>
+                    <label className="text-sm font-medium text-gray-700 w-16">
+                      To
+                    </label>
                     <Input
                       value={emailForm.to}
-                      onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                      onChange={(e) =>
+                        setEmailForm((prev) => ({
+                          ...prev,
+                          to: e.target.value,
+                        }))
+                      }
                       className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                       placeholder="jayamishra@gmail.com"
                     />
@@ -2023,10 +2470,17 @@ Google India"
 
                   {/* Subject Field */}
                   <div className="flex items-center py-3 border-b border-gray-100">
-                    <label className="text-sm font-medium text-gray-700 w-16">Subject</label>
+                    <label className="text-sm font-medium text-gray-700 w-16">
+                      Subject
+                    </label>
                     <Input
                       value={emailForm.subject}
-                      onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                      onChange={(e) =>
+                        setEmailForm((prev) => ({
+                          ...prev,
+                          subject: e.target.value,
+                        }))
+                      }
                       className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                       placeholder="Proposed Interview Time - Jaya Mishra"
                     />
@@ -2036,7 +2490,12 @@ Google India"
                   <div className="flex-1">
                     <Textarea
                       value={emailForm.message}
-                      onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                      onChange={(e) =>
+                        setEmailForm((prev) => ({
+                          ...prev,
+                          message: e.target.value,
+                        }))
+                      }
                       className="w-full h-64 text-sm border-gray-300 resize-none p-4 leading-relaxed focus:ring-blue-500 focus:border-blue-500"
                       placeholder="Hi Jaya Mishra,
 
@@ -2133,28 +2592,57 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-muted/30 border-b">
-                        <TableHead className="text-center font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">COUNTRY</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">APPLIED JOB ROLE</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS DECISION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">FINAL DECISION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">UPDATE</TableHead>
+                        <TableHead className="text-center font-medium text-foreground py-1 text-xs">
+                          JOB ID
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          DATE
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          NAME
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          COUNTRY
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          APPLIED JOB ROLE
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          ROUNDS
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          ROUNDS DECISION
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          FINAL DECISION
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          UPDATE
+                        </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">001</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          001
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Jaya</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">Senior Developer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Senior Developer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["001"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "001": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "001": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2162,28 +2650,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("001", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "MAYBE", "round")}
-                              className={getButtonStyles("001", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "001",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("001", "NO", "round")}
                             >
                               NO
@@ -2193,13 +2721,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("001", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("001", "NO", "final")}
                             >
                               REJECT
@@ -2214,15 +2756,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">002</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          002
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Mark</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">Graphic Designer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Graphic Designer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["002"]?.toString() || "2"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "002": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "002": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2230,28 +2783,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("002", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "MAYBE", "round")}
-                              className={getButtonStyles("002", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "002",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("002", "NO", "round")}
                             >
                               NO
@@ -2261,13 +2854,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("002", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("002", "NO", "final")}
                             >
                               REJECT
@@ -2282,15 +2889,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">003</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          003
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">John</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">Content Writer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Content Writer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["003"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "003": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "003": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2298,28 +2916,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("003", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "MAYBE", "round")}
-                              className={getButtonStyles("003", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "003",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("003", "NO", "round")}
                             >
                               NO
@@ -2329,13 +2987,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("003", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("003", "NO", "final")}
                             >
                               REJECT
@@ -2350,15 +3022,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">004</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          004
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Sara</TableCell>
                         <TableCell className="py-2 text-xs">Europe</TableCell>
-                        <TableCell className="py-2 text-xs">Copywriter</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Copywriter
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["004"]?.toString() || "4"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "004": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "004": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2366,9 +3049,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2403,15 +3101,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">005</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          005
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Shruti</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">Sale Associate</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Sale Associate
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["005"]?.toString() || "5"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "005": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "005": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2419,9 +3128,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2456,15 +3180,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">006</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          006
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Robin</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">AI Engineer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          AI Engineer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["006"]?.toString() || "2"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "006": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "006": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2472,9 +3207,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2509,15 +3259,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">007</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          007
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Kayle</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">ML Engineer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          ML Engineer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["007"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "007": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "007": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2525,9 +3286,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2562,15 +3338,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">008</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          008
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Vali</TableCell>
                         <TableCell className="py-2 text-xs">China</TableCell>
-                        <TableCell className="py-2 text-xs">Data Analyst</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Data Analyst
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["008"]?.toString() || "3"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "008": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "008": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2578,9 +3365,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2615,15 +3417,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">009</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">
+                          009
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Anne</TableCell>
                         <TableCell className="py-2 text-xs">Canada</TableCell>
-                        <TableCell className="py-2 text-xs">Finance Analyst</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Finance Analyst
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["009"]?.toString() || "3"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "009": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "009": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2631,9 +3444,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                ROUND 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2675,7 +3503,6 @@ Google India"
         </div>
       </div>
 
-
       {/* Decision Confirmation Modal */}
       <Dialog open={showDecisionModal} onOpenChange={setShowDecisionModal}>
         <DialogContent className="w-96 max-w-sm">
@@ -2687,21 +3514,22 @@ Google India"
           <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-4">
             <div className="text-center space-y-4">
               <p className="text-sm text-gray-700">
-                {selectedDecision ? (
-                  selectedDecision.type === "final" ? (
-                    selectedDecision.decision === "NO" ?
-                      "Are you sure you want to reject this candidate?" :
-                      "Are you sure you want to approve this candidate?"
-                  ) : (
-                    "Would you like to proceed with this candidate?"
-                  )
-                ) : (
-                  "Would you like to proceed with this candidate?"
-                )}
+                {selectedDecision
+                  ? selectedDecision.type === "final"
+                    ? selectedDecision.decision === "NO"
+                      ? "Are you sure you want to reject this candidate?"
+                      : "Are you sure you want to approve this candidate?"
+                    : "Would you like to proceed with this candidate?"
+                  : "Would you like to proceed with this candidate?"}
               </p>
               {selectedDecision && (
                 <p className="text-xs text-gray-600">
-                  {selectedDecision.candidateName} - {selectedDecision.decision} ({selectedDecision.type === "round" ? "Round Decision" : "Final Decision"})
+                  {selectedDecision.candidateName} - {selectedDecision.decision}{" "}
+                  (
+                  {selectedDecision.type === "round"
+                    ? "Round Decision"
+                    : "Final Decision"}
+                  )
                 </p>
               )}
               <div className="flex items-center justify-center gap-3 mt-4">
@@ -2743,7 +3571,12 @@ Google India"
                 </label>
                 <Input
                   value={roundForm.roundHeader}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundHeader: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      roundHeader: e.target.value,
+                    }))
+                  }
                   placeholder="e.g., Round 1, Round 2"
                 />
               </div>
@@ -2753,7 +3586,12 @@ Google India"
                 </label>
                 <Input
                   value={roundForm.roundName}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundName: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      roundName: e.target.value,
+                    }))
+                  }
                   placeholder="e.g., Technical Assessment"
                 />
               </div>
@@ -2766,7 +3604,9 @@ Google India"
                 </label>
                 <Select
                   value={roundForm.roundType}
-                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, roundType: value }))}
+                  onValueChange={(value: any) =>
+                    setRoundForm((prev) => ({ ...prev, roundType: value }))
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -2784,17 +3624,25 @@ Google India"
                 </label>
                 <Select
                   value={roundForm.interviewMode}
-                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, interviewMode: value }))}
+                  onValueChange={(value: any) =>
+                    setRoundForm((prev) => ({ ...prev, interviewMode: value }))
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="online-assessment">Online Assessment</SelectItem>
+                    <SelectItem value="online-assessment">
+                      Online Assessment
+                    </SelectItem>
                     <SelectItem value="video-call">Video Call</SelectItem>
                     <SelectItem value="in-person">In-Person</SelectItem>
-                    <SelectItem value="oral-assessment">Oral Assessment</SelectItem>
-                    <SelectItem value="group-assessment">Group Assessment</SelectItem>
+                    <SelectItem value="oral-assessment">
+                      Oral Assessment
+                    </SelectItem>
+                    <SelectItem value="group-assessment">
+                      Group Assessment
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -2806,7 +3654,12 @@ Google India"
               </label>
               <Textarea
                 value={roundForm.testDescription}
-                onChange={(e) => setRoundForm(prev => ({ ...prev, testDescription: e.target.value }))}
+                onChange={(e) =>
+                  setRoundForm((prev) => ({
+                    ...prev,
+                    testDescription: e.target.value,
+                  }))
+                }
                 placeholder="Optional description of the test associated with the round"
                 rows={3}
               />
@@ -2820,7 +3673,12 @@ Google India"
                 <Input
                   type="date"
                   value={roundForm.scheduledDate}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledDate: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      scheduledDate: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div>
@@ -2830,7 +3688,12 @@ Google India"
                 <Input
                   type="time"
                   value={roundForm.scheduledTime}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledTime: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      scheduledTime: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
@@ -2842,8 +3705,12 @@ Google India"
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Upload test documents or files</p>
-                <p className="text-xs text-gray-500 mt-1">DOC, PDF, Excel, JPG, PNG, MP4, MP5</p>
+                <p className="text-sm text-gray-600">
+                  Upload test documents or files
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  DOC, PDF, Excel, JPG, PNG, MP4, MP5
+                </p>
               </div>
             </div>
           </div>
@@ -2854,7 +3721,11 @@ Google India"
             </Button>
             <Button
               onClick={isEditing ? handleUpdateRound : handleCreateRound}
-              disabled={!roundForm.roundName || !roundForm.scheduledDate || !roundForm.scheduledTime}
+              disabled={
+                !roundForm.roundName ||
+                !roundForm.scheduledDate ||
+                !roundForm.scheduledTime
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               {isEditing ? "Save Round" : "Add Round"}
@@ -2867,9 +3738,7 @@ Google India"
       <Dialog open={showBulkAssignModal} onOpenChange={setShowBulkAssignModal}>
         <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
-              Bulk Assign Rounds to Candidates
-            </DialogTitle>
+            <DialogTitle>Bulk Assign Rounds to Candidates</DialogTitle>
             <DialogDescription>
               Select candidates and rounds to create bulk assignments.
             </DialogDescription>
@@ -2878,7 +3747,10 @@ Google India"
           <div className="grid grid-cols-2 gap-6">
             {/* Candidates Selection */}
             <div>
-              <h3 className="font-semibold mb-4">Select Candidates ({selectedCandidatesForAssignment.length} selected)</h3>
+              <h3 className="font-semibold mb-4">
+                Select Candidates ({selectedCandidatesForAssignment.length}{" "}
+                selected)
+              </h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {interviewCandidates.map((candidate) => (
                   <div
@@ -2886,12 +3758,19 @@ Google India"
                     className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50"
                   >
                     <Checkbox
-                      checked={selectedCandidatesForAssignment.includes(candidate.id)}
-                      onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
+                      checked={selectedCandidatesForAssignment.includes(
+                        candidate.id,
+                      )}
+                      onCheckedChange={() =>
+                        handleCandidateSelectionToggle(candidate.id)
+                      }
                     />
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                       <span className="text-primary font-medium text-xs">
-                        {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                        {candidate.applicantName
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -2917,7 +3796,9 @@ Google India"
 
             {/* Rounds Selection */}
             <div>
-              <h3 className="font-semibold mb-4">Select Rounds ({bulkSelectedRounds.length} selected)</h3>
+              <h3 className="font-semibold mb-4">
+                Select Rounds ({bulkSelectedRounds.length} selected)
+              </h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {rounds.map((round) => (
                   <div
@@ -2926,7 +3807,9 @@ Google India"
                   >
                     <Checkbox
                       checked={bulkSelectedRounds.includes(round.id)}
-                      onCheckedChange={() => handleRoundSelectionToggle(round.id)}
+                      onCheckedChange={() =>
+                        handleRoundSelectionToggle(round.id)
+                      }
                     />
                     <div className="flex-1">
                       <div className="font-semibold text-foreground text-sm">
@@ -2944,7 +3827,9 @@ Google India"
                         {round.candidates.length} assigned
                       </Badge>
                       <Badge
-                        variant={round.status === "completed" ? "default" : "secondary"}
+                        variant={
+                          round.status === "completed" ? "default" : "secondary"
+                        }
                         className="text-xs"
                       >
                         {round.status}
@@ -2957,23 +3842,39 @@ Google India"
           </div>
 
           {/* Summary */}
-          {selectedCandidatesForAssignment.length > 0 && bulkSelectedRounds.length > 0 && (
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <h4 className="font-medium text-blue-800 mb-2">Assignment Summary</h4>
-              <p className="text-sm text-blue-700">
-                You are about to assign <strong>{bulkSelectedRounds.length} rounds</strong> to <strong>{selectedCandidatesForAssignment.length} candidates</strong>.
-                This will create {selectedCandidatesForAssignment.length * bulkSelectedRounds.length} new assignments.
-              </p>
-            </div>
-          )}
+          {selectedCandidatesForAssignment.length > 0 &&
+            bulkSelectedRounds.length > 0 && (
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h4 className="font-medium text-blue-800 mb-2">
+                  Assignment Summary
+                </h4>
+                <p className="text-sm text-blue-700">
+                  You are about to assign{" "}
+                  <strong>{bulkSelectedRounds.length} rounds</strong> to{" "}
+                  <strong>
+                    {selectedCandidatesForAssignment.length} candidates
+                  </strong>
+                  . This will create{" "}
+                  {selectedCandidatesForAssignment.length *
+                    bulkSelectedRounds.length}{" "}
+                  new assignments.
+                </p>
+              </div>
+            )}
 
           <DialogFooter className="flex gap-2">
-            <Button variant="outline" onClick={() => setShowBulkAssignModal(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setShowBulkAssignModal(false)}
+            >
               Cancel
             </Button>
             <Button
               onClick={handleBulkAssignmentSave}
-              disabled={selectedCandidatesForAssignment.length === 0 || bulkSelectedRounds.length === 0}
+              disabled={
+                selectedCandidatesForAssignment.length === 0 ||
+                bulkSelectedRounds.length === 0
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <UserPlus className="w-4 h-4 mr-2" />
@@ -2989,7 +3890,8 @@ Google India"
           <DialogHeader>
             <DialogTitle>Use Round Templates</DialogTitle>
             <DialogDescription>
-              Apply pre-defined round templates to streamline your interview process.
+              Apply pre-defined round templates to streamline your interview
+              process.
             </DialogDescription>
           </DialogHeader>
 
@@ -3011,22 +3913,32 @@ Google India"
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-sm">{template.name}</h4>
-                          <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                          <h4 className="font-semibold text-sm">
+                            {template.name}
+                          </h4>
+                          <p className="text-sm text-gray-600 mb-3">
+                            {template.description}
+                          </p>
                           <div className="flex flex-wrap gap-2">
                             {template.rounds.map((round, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge
+                                key={index}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {round.order}. {round.roundName}
                               </Badge>
                             ))}
                           </div>
                         </div>
                         <div className="flex items-center">
-                          <div className={`w-4 h-4 rounded-full border-2 ${
-                            selectedTemplate?.id === template.id 
-                              ? "border-primary bg-primary" 
-                              : "border-gray-300"
-                          }`}>
+                          <div
+                            className={`w-4 h-4 rounded-full border-2 ${
+                              selectedTemplate?.id === template.id
+                                ? "border-primary bg-primary"
+                                : "border-gray-300"
+                            }`}
+                          >
                             {selectedTemplate?.id === template.id && (
                               <Check className="w-2 h-2 text-white m-0.5" />
                             )}
@@ -3042,22 +3954,33 @@ Google India"
             {/* Candidate Selection for Template */}
             {selectedTemplate && (
               <div>
-                <h3 className="font-semibold mb-4">Select Candidates for Template</h3>
+                <h3 className="font-semibold mb-4">
+                  Select Candidates for Template
+                </h3>
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {interviewCandidates.map((candidate) => (
                     <div
                       key={candidate.id}
                       className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      onClick={() => handleCandidateSelectionToggle(candidate.id)}
+                      onClick={() =>
+                        handleCandidateSelectionToggle(candidate.id)
+                      }
                     >
                       <Checkbox
-                        checked={selectedCandidatesForAssignment.includes(candidate.id)}
-                        onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
+                        checked={selectedCandidatesForAssignment.includes(
+                          candidate.id,
+                        )}
+                        onCheckedChange={() =>
+                          handleCandidateSelectionToggle(candidate.id)
+                        }
                         onClick={(e) => e.stopPropagation()}
                       />
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                         <span className="text-primary font-medium text-xs">
-                          {candidate.applicantName.split(" ").map((n) => n[0]).join("")}
+                          {candidate.applicantName
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
                         </span>
                       </div>
                       <div className="flex-1">
@@ -3077,16 +4000,24 @@ Google India"
             {/* Template Preview */}
             {selectedTemplate && (
               <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-medium mb-3">Template Preview: {selectedTemplate.name}</h4>
+                <h4 className="font-medium mb-3">
+                  Template Preview: {selectedTemplate.name}
+                </h4>
                 <div className="space-y-2">
                   {selectedTemplate.rounds.map((round, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-medium text-xs">{round.order}</span>
+                        <span className="text-primary font-medium text-xs">
+                          {round.order}
+                        </span>
                       </div>
                       <div className="flex-1">
-                        <div className="text-sm font-medium">{round.roundName}</div>
-                        <div className="text-xs text-gray-500">{round.roundType} • {round.interviewMode}</div>
+                        <div className="text-sm font-medium">
+                          {round.roundName}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {round.roundType} • {round.interviewMode}
+                        </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-gray-400" />
                     </div>
@@ -3097,16 +4028,22 @@ Google India"
           </div>
 
           <DialogFooter className="flex gap-2">
-            <Button variant="outline" onClick={() => {
-              setShowTemplateModal(false);
-              setSelectedTemplate(null);
-              setSelectedCandidatesForAssignment([]);
-            }}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowTemplateModal(false);
+                setSelectedTemplate(null);
+                setSelectedCandidatesForAssignment([]);
+              }}
+            >
               Cancel
             </Button>
             <Button
               onClick={applyTemplate}
-              disabled={!selectedTemplate || selectedCandidatesForAssignment.length === 0}
+              disabled={
+                !selectedTemplate ||
+                selectedCandidatesForAssignment.length === 0
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <Copy className="w-4 h-4 mr-2" />
