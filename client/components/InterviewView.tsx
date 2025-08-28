@@ -1926,6 +1926,187 @@ Google India"
           )}
 
 
+          {/* Email Interface matching provided design */}
+          {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
+            <div className="bg-white border rounded-lg h-full flex">
+              {/* Left Sidebar - Email Templates */}
+              <div className="w-80 border-r bg-gray-50 flex flex-col">
+                {/* Header */}
+                <div className="p-4 border-b bg-white">
+                  <h3 className="font-semibold text-gray-800 text-sm">Email Templates For Video Interviews</h3>
+                  <p className="text-xs text-gray-600 mt-1">Choose From Pre Templates Styles</p>
+                </div>
+
+                {/* Template Navigation */}
+                <div className="flex items-center justify-center p-4 border-b bg-gray-50">
+                  <div className="flex items-center gap-3">
+                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                      <span className="text-gray-600">‹</span>
+                    </Button>
+                    <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
+                      NEUTRAL
+                    </span>
+                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                      <span className="text-gray-600">›</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Main Email Interface */}
+              <div className="flex-1 flex flex-col">
+                {/* Top Navigation */}
+                <div className="flex items-center justify-between p-4 border-b bg-white">
+                  <Input
+                    placeholder="Search email here..."
+                    className="flex-1 max-w-md h-8 text-xs border-gray-300 rounded-md"
+                    value={emailSearch}
+                    onChange={(e) => setEmailSearch(e.target.value)}
+                  />
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-gray-600">1-50 of 1,263</span>
+                    <div className="flex items-center gap-1">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ‹
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                        ›
+                      </Button>
+                    </div>
+                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                      <span className="text-sm">👤</span>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Email Tabs */}
+                <div className="flex items-center gap-4 px-6 py-3 border-b bg-gray-50">
+                  <Button
+                    className={`h-8 px-4 text-xs font-medium ${
+                      activeEmailTab === "inbox" || activeEmailTab === ""
+                        ? "bg-gray-800 text-white"
+                        : "bg-transparent text-gray-600 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setActiveEmailTab("inbox")}
+                  >
+                    INBOX
+                  </Button>
+                  <Button
+                    className={`h-8 px-4 text-xs font-medium ${
+                      activeEmailTab === "sent"
+                        ? "bg-gray-800 text-white"
+                        : "bg-transparent text-gray-600 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setActiveEmailTab("sent")}
+                  >
+                    SENT
+                  </Button>
+                  <Button
+                    className={`h-8 px-4 text-xs font-medium ${
+                      activeEmailTab === "spam"
+                        ? "bg-gray-800 text-white"
+                        : "bg-transparent text-gray-600 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setActiveEmailTab("spam")}
+                  >
+                    SPAM
+                  </Button>
+                </div>
+
+                {/* Template Selection */}
+                <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
+                  <div className="flex items-center justify-center">
+                    <div className="flex items-center gap-3">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <span className="text-gray-600">‹</span>
+                      </Button>
+                      <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
+                        NEUTRAL TEMPLATE 1
+                      </span>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <span className="text-gray-600">›</span>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email Form */}
+                <div className="flex-1 bg-white">
+                  <div className="p-6 space-y-4">
+                    {/* To Field */}
+                    <div className="flex items-center">
+                      <label className="text-sm font-medium text-gray-700 w-16">To:</label>
+                      <Input
+                        value={emailForm.to}
+                        onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                        className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500 bg-gray-100"
+                        placeholder="jayamishra@gmail.com"
+                      />
+                    </div>
+
+                    {/* Subject Field */}
+                    <div className="flex items-center">
+                      <label className="text-sm font-medium text-gray-700 w-16">Subject:</label>
+                      <Input
+                        value={emailForm.subject}
+                        onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                        className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500 bg-gray-100"
+                        placeholder="Proposed Interview Time - Jaya Mishra"
+                      />
+                    </div>
+
+                    {/* Message Body */}
+                    <div className="flex-1">
+                      <Textarea
+                        value={emailForm.message}
+                        onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                        className="w-full h-64 text-sm border-gray-300 resize-none p-4 leading-relaxed focus:ring-blue-500 focus:border-blue-500 bg-gray-100"
+                        placeholder="Hi Jaya Mishra,
+
+Thank you for your interest in Senior Developer role at Google India.
+
+To schedule your second round of interview, please use the link below to view our calendar and choose a time that works for you:
+https://ai2aim.com/google-india/schedule-interview-slot
+
+Note that the red slots are already booked, and the empty slots are still available.
+Once you book a slot, you'll receive a confirmation with the interview details.
+
+If none of the available times work for you, or if you run into any issues while booking, feel free to reply to this email and we'll try to accommodate. Looking forward to speaking with you.
+
+Best regards,
+Kayle Jenny
+HR Associate
+Google India"
+                      />
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex items-center justify-end gap-3 pt-4">
+                      <Button
+                        onClick={handleSaveAsDraft}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 h-10 px-6 text-sm font-medium"
+                      >
+                        Save as Draft
+                      </Button>
+                      <Button
+                        onClick={handleSendEmail}
+                        className="bg-blue-600 hover:bg-blue-700 text-white h-10 px-6 text-sm font-medium"
+                      >
+                        Send Email
+                      </Button>
+                      <Button
+                        onClick={() => setShowRoundsEmailInterface(false)}
+                        className="bg-gray-500 hover:bg-gray-600 text-white h-10 px-6 text-sm font-medium"
+                      >
+                        Share
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {activeMainTab === "decision-room" && (
             <div className="space-y-2">
               {/* Search and Filter Bar */}
