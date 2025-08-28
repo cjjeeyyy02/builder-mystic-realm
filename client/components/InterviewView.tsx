@@ -1927,85 +1927,92 @@ Google India"
           )}
 
 
-          {/* Email Interface with Professional Design */}
+          {/* Professional Email Interface with Enhanced Design */}
           {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
-            <div className="bg-white shadow-lg border border-slate-200 rounded-xl h-full flex overflow-hidden">
-              {/* Left Sidebar - Email Templates */}
-              <div className={`${emailSidebarCollapsed ? 'w-12' : 'w-80'} border-r border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col transition-all duration-300`}>
-                {/* Header with Toggle */}
-                <div className="p-6 border-b border-slate-200 bg-white shadow-sm flex items-center justify-between">
+            <div className="bg-white shadow-2xl border border-gray-200 rounded-2xl h-full flex overflow-hidden">
+              {/* Enhanced Left Sidebar - Email Templates */}
+              <div className={`${emailSidebarCollapsed ? 'w-14' : 'w-84'} border-r border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col transition-all duration-500 ease-in-out`}>
+                {/* Premium Header with Toggle */}
+                <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50 shadow-md flex items-center justify-between">
                   <div className={`${emailSidebarCollapsed ? 'hidden' : 'block'}`}>
-                    <h3 className="font-semibold text-slate-800 text-base">Email Templates</h3>
-                    <p className="text-sm text-slate-600 mt-1">For Video Interviews</p>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Mail className="w-5 h-5 text-green-600" />
+                      <h3 className="font-bold text-gray-800 text-lg">Email Templates</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 ml-7">Professional Interview Communications</p>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 rounded-full hover:bg-slate-200 flex-shrink-0 transition-colors"
+                    className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 hover:text-green-700 flex-shrink-0 transition-all duration-300 border border-gray-200"
                     onClick={() => setEmailSidebarCollapsed(!emailSidebarCollapsed)}
                   >
                     {emailSidebarCollapsed ? (
-                      <ArrowRight className="w-4 h-4 text-slate-600" />
+                      <ArrowRight className="w-4 h-4 text-gray-600" />
                     ) : (
-                      <ArrowLeft className="w-4 h-4 text-slate-600" />
+                      <ArrowLeft className="w-4 h-4 text-gray-600" />
                     )}
                   </Button>
                 </div>
 
-                {/* Template Navigation - Only show when expanded */}
+                {/* Enhanced Template Navigation */}
                 {!emailSidebarCollapsed && (
-                  <div className="flex items-center justify-center p-6 border-b border-slate-200">
-                    <div className="flex items-center gap-4">
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-full hover:bg-slate-200">
-                        <span className="text-slate-600 text-lg">‹</span>
-                      </Button>
-                      <span className="text-sm font-medium text-slate-800 px-4 py-2 bg-white border border-slate-300 rounded-lg shadow-sm">
-                        NEUTRAL
-                      </span>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-full hover:bg-slate-200">
-                        <span className="text-slate-600 text-lg">›</span>
-                      </Button>
+                  <div className="p-6 border-b border-gray-200 bg-white">
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                      <div className="flex items-center justify-center gap-4">
+                        <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 border border-green-200">
+                          <ArrowLeft className="w-4 h-4 text-green-600" />
+                        </Button>
+                        <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-green-300">
+                          <span className="text-sm font-semibold text-green-800">NEUTRAL TEMPLATE</span>
+                        </div>
+                        <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 border border-green-200">
+                          <ArrowRight className="w-4 h-4 text-green-600" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Main Email Interface */}
+              {/* Enhanced Main Email Interface */}
               <div className="flex-1 flex flex-col bg-white">
-                {/* Top Navigation Bar */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-white to-slate-50">
+                {/* Premium Top Navigation Bar */}
+                <div className="flex items-center justify-between px-8 py-5 border-b border-gray-200 bg-gradient-to-r from-white via-gray-50 to-white shadow-sm">
                   <div className="flex items-center gap-4">
-                    <Mail className="w-5 h-5 text-blue-600" />
+                    <div className="p-2 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 border border-green-200">
+                      <Mail className="w-5 h-5 text-green-600" />
+                    </div>
                     <Input
-                      placeholder="Search conversations..."
-                      className="w-80 h-9 text-sm border-slate-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                      placeholder="Search your emails..."
+                      className="w-96 h-11 text-sm border-gray-300 rounded-xl shadow-sm focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white"
                       value={emailSearch}
                       onChange={(e) => setEmailSearch(e.target.value)}
                     />
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm text-slate-500">1-50 of 1,263</span>
-                    <div className="flex items-center gap-2 border border-slate-300 rounded-lg p-1">
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-slate-600 hover:bg-slate-100">
+                  <div className="flex items-center gap-5">
+                    <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-lg">1-50 of 1,263 emails</span>
+                    <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-xl p-1 shadow-sm">
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gray-600 hover:bg-gray-100 rounded-lg">
                         <ArrowLeft className="w-4 h-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-slate-600 hover:bg-slate-100">
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gray-600 hover:bg-gray-100 rounded-lg">
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">U</span>
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md">
+                      <span className="text-white text-sm font-bold">HR</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Email Tabs */}
-                <div className="flex items-center gap-1 px-6 py-3 border-b border-slate-200 bg-slate-50">
+                {/* Professional Email Tabs with Green Theme */}
+                <div className="flex items-center gap-2 px-8 py-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
                   <Button
-                    className={`h-9 px-4 text-sm font-medium rounded-lg transition-all ${
+                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
                       activeEmailTab === "inbox" || activeEmailTab === ""
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
+                        : "bg-white text-gray-700 hover:bg-green-50 hover:text-green-700 border-2 border-gray-200 hover:border-green-300"
                     }`}
                     onClick={() => setActiveEmailTab("inbox")}
                   >
@@ -2013,10 +2020,10 @@ Google India"
                     INBOX
                   </Button>
                   <Button
-                    className={`h-9 px-4 text-sm font-medium rounded-lg transition-all ${
+                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
                       activeEmailTab === "sent"
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
+                        : "bg-white text-gray-700 hover:bg-green-50 hover:text-green-700 border-2 border-gray-200 hover:border-green-300"
                     }`}
                     onClick={() => setActiveEmailTab("sent")}
                   >
@@ -2024,10 +2031,10 @@ Google India"
                     SENT
                   </Button>
                   <Button
-                    className={`h-9 px-4 text-sm font-medium rounded-lg transition-all ${
+                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
                       activeEmailTab === "spam"
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
+                        : "bg-white text-gray-700 hover:bg-green-50 hover:text-green-700 border-2 border-gray-200 hover:border-green-300"
                     }`}
                     onClick={() => setActiveEmailTab("spam")}
                   >
@@ -2036,81 +2043,92 @@ Google India"
                   </Button>
                 </div>
 
-                {/* Template Selection */}
-                <div className="px-6 py-3 bg-slate-50 border-b border-slate-200">
+                {/* Enhanced Template Selection */}
+                <div className="px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-green-200">
                   <div className="flex items-center justify-center">
-                    <div className="flex items-center gap-4 bg-white rounded-lg p-2 shadow-sm border border-slate-200">
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-full hover:bg-slate-100">
-                        <ArrowLeft className="w-4 h-4 text-slate-600" />
+                    <div className="flex items-center gap-4 bg-white rounded-xl p-3 shadow-lg border-2 border-green-200">
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-lg hover:bg-green-100">
+                        <ArrowLeft className="w-4 h-4 text-green-600" />
                       </Button>
-                      <span className="text-sm font-medium text-slate-800 px-3 py-1">
+                      <span className="text-sm font-bold text-green-800 px-4 py-1 bg-green-100 rounded-lg">
                         NEUTRAL TEMPLATE 1
                       </span>
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-full hover:bg-slate-100">
-                        <ArrowRight className="w-4 h-4 text-slate-600" />
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-lg hover:bg-green-100">
+                        <ArrowRight className="w-4 h-4 text-green-600" />
                       </Button>
                     </div>
                   </div>
                 </div>
 
-                {/* Email Composition Form */}
-                <div className="flex-1 bg-white overflow-y-auto">
-                  <div className="p-8 space-y-6">
-                    {/* To Field */}
-                    <div className="flex items-center gap-4">
-                      <label className="text-sm font-semibold text-slate-700 w-20 flex-shrink-0">To:</label>
+                {/* Professional Email Composition Form */}
+                <div className="flex-1 bg-gradient-to-br from-white to-gray-50 overflow-y-auto">
+                  <div className="p-10 space-y-8">
+                    {/* Enhanced To Field */}
+                    <div className="flex items-center gap-6">
+                      <label className="text-sm font-bold text-gray-800 w-24 flex-shrink-0 flex items-center gap-2">
+                        <Users className="w-4 h-4 text-green-600" />
+                        To:
+                      </label>
                       <Input
                         value={emailForm.to}
                         onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
-                        className="flex-1 h-11 border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 rounded-lg text-sm"
-                        placeholder="Enter recipient email..."
+                        className="flex-1 h-12 border-2 border-gray-300 focus:border-green-500 focus:ring-4 focus:ring-green-500/20 bg-white rounded-xl text-sm shadow-sm"
+                        placeholder="Enter recipient email address..."
                       />
                     </div>
 
-                    {/* Subject Field */}
-                    <div className="flex items-center gap-4">
-                      <label className="text-sm font-semibold text-slate-700 w-20 flex-shrink-0">Subject:</label>
+                    {/* Enhanced Subject Field */}
+                    <div className="flex items-center gap-6">
+                      <label className="text-sm font-bold text-gray-800 w-24 flex-shrink-0 flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-green-600" />
+                        Subject:
+                      </label>
                       <Input
                         value={emailForm.subject}
                         onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
-                        className="flex-1 h-11 border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 rounded-lg text-sm"
-                        placeholder="Enter email subject..."
+                        className="flex-1 h-12 border-2 border-gray-300 focus:border-green-500 focus:ring-4 focus:ring-green-500/20 bg-white rounded-xl text-sm shadow-sm"
+                        placeholder="Enter email subject line..."
                       />
                     </div>
 
-                    {/* Message Body */}
-                    <div className="space-y-3">
-                      <label className="text-sm font-semibold text-slate-700">Message:</label>
-                      <Textarea
-                        value={emailForm.message}
-                        onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
-                        className="w-full h-80 text-sm border-slate-300 rounded-lg p-4 leading-relaxed focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 resize-none"
-                        placeholder="Compose your email message here..."
-                      />
+                    {/* Enhanced Message Body */}
+                    <div className="space-y-4">
+                      <label className="text-sm font-bold text-gray-800 flex items-center gap-2">
+                        <MessageSquare className="w-4 h-4 text-green-600" />
+                        Compose Message:
+                      </label>
+                      <div className="bg-white rounded-xl border-2 border-gray-300 focus-within:border-green-500 focus-within:ring-4 focus-within:ring-green-500/20 shadow-lg overflow-hidden">
+                        <Textarea
+                          value={emailForm.message}
+                          onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                          className="w-full h-96 text-sm border-0 rounded-xl p-6 leading-relaxed focus:ring-0 focus:border-0 bg-white resize-none"
+                          placeholder="Compose your professional email message here..."
+                        />
+                      </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex items-center justify-between pt-6 border-t border-slate-200">
+                    {/* Enhanced Action Buttons */}
+                    <div className="flex items-center justify-between pt-8 border-t-2 border-gray-200">
                       <Button
                         onClick={() => setShowRoundsEmailInterface(false)}
                         variant="outline"
-                        className="h-11 px-6 text-sm font-medium border-slate-300 text-slate-600 hover:bg-slate-50"
+                        className="h-12 px-8 text-sm font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl shadow-sm"
                       >
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        Close
+                        Close Editor
                       </Button>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-4">
                         <Button
                           onClick={handleSaveAsDraft}
                           variant="outline"
-                          className="h-11 px-6 text-sm font-medium border-slate-300 text-slate-600 hover:bg-slate-50"
+                          className="h-12 px-8 text-sm font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl shadow-sm"
                         >
                           <FileText className="w-4 h-4 mr-2" />
-                          Save as Draft
+                          Save Draft
                         </Button>
                         <Button
                           onClick={handleSendEmail}
-                          className="h-11 px-8 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                          className="h-12 px-10 text-sm font-bold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-xl rounded-xl transform hover:scale-105 transition-all duration-300"
                         >
                           <Send className="w-4 h-4 mr-2" />
                           Send Email
