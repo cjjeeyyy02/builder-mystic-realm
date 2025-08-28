@@ -483,6 +483,34 @@ HR Associate
 Google India`
   });
 
+  // Function to render message with clickable links
+  const renderMessageWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline font-medium transition-colors duration-200"
+            onClick={(e) => {
+              e.preventDefault();
+              // Navigate to a new screen/page here
+              window.open(part, '_blank');
+            }}
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   // Recruitment email data with applicant details
   const recruitmentEmailData = {
     inbox: [
