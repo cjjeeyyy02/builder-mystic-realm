@@ -2125,13 +2125,10 @@ Google India"
                         <MessageSquare className="w-4 h-4 text-green-600" />
                         Compose Message:
                       </label>
-                      <div className="bg-white rounded-xl border-2 border-gray-300 focus-within:border-green-500 focus-within:ring-4 focus-within:ring-green-500/20 shadow-lg overflow-hidden">
-                        <Textarea
-                          value={emailForm.message}
-                          onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
-                          className="w-full h-96 text-sm border-0 rounded-xl p-6 leading-relaxed focus:ring-0 focus:border-0 bg-white resize-none"
-                          placeholder="Compose your professional email message here..."
-                        />
+                      <div className="bg-white rounded-xl border-2 border-gray-300 shadow-lg overflow-hidden">
+                        <div className="w-full h-96 text-sm p-6 leading-relaxed bg-white whitespace-pre-wrap">
+                          {renderMessageWithLinks(emailForm.message)}
+                        </div>
                       </div>
                     </div>
 
