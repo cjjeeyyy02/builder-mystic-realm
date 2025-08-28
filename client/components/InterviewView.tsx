@@ -1550,7 +1550,7 @@ Google India"
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex items-center justify-between pt-4">
+                      <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-lg">
                         <div className="flex items-center gap-3">
                           <Button
                             onClick={handleSaveAsDraft}
