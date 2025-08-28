@@ -1925,6 +1925,168 @@ Google India"
             </div>
           )}
 
+          {/* Rounds Room Email Interface - Compact Design */}
+          {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg shadow-xl w-[90%] max-w-4xl h-[85vh] flex flex-col">
+                {/* Header */}
+                <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 rounded-t-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Email Templates For Video Interviews</h3>
+                      <p className="text-sm text-gray-600 mt-1">Choose Template based on Interview Stage</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowRoundsEmailInterface(false)}
+                        className="h-8 px-4 text-xs font-medium border-gray-300 hover:bg-gray-50"
+                      >
+                        <ArrowLeft className="w-3 h-3 mr-1" />
+                        Back
+                      </Button>
+                      <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
+                        <span className="text-gray-600 text-sm">👤</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Navigation Tabs */}
+                <div className="flex items-center justify-between bg-white border-b border-gray-200 px-6 py-3">
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-3 text-xs font-medium bg-gray-800 text-white hover:bg-gray-700"
+                    >
+                      NEUTRAL
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      INBOX
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      SENT
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      SPAM
+                    </Button>
+                  </div>
+                  <Button
+                    onClick={handleComposeEmail}
+                    className="bg-gray-800 hover:bg-gray-900 text-white h-8 px-4 text-xs font-medium"
+                  >
+                    COMPOSE EMAIL
+                  </Button>
+                </div>
+
+                {/* Template Selection */}
+                <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
+                  <div className="flex items-center justify-center">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-7 px-3 text-xs font-medium border-gray-300 bg-white flex items-center gap-2"
+                    >
+                      <ArrowLeft className="w-3 h-3" />
+                      NEUTRAL TEMPLATE 1
+                      <ArrowRight className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Email Form */}
+                <div className="flex-1 p-6 space-y-4 overflow-y-auto">
+                  {/* To Field */}
+                  <div className="flex items-center py-3 border-b border-gray-100">
+                    <label className="text-sm font-medium text-gray-700 w-16">To</label>
+                    <Input
+                      value={emailForm.to}
+                      onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                      className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="jayamishra@gmail.com"
+                    />
+                  </div>
+
+                  {/* Subject Field */}
+                  <div className="flex items-center py-3 border-b border-gray-100">
+                    <label className="text-sm font-medium text-gray-700 w-16">Subject</label>
+                    <Input
+                      value={emailForm.subject}
+                      onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                      className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Proposed Interview Time - Jaya Mishra"
+                    />
+                  </div>
+
+                  {/* Email Body */}
+                  <div className="flex-1">
+                    <Textarea
+                      value={emailForm.message}
+                      onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                      className="w-full h-64 text-sm border-gray-300 resize-none p-4 leading-relaxed focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Hi Jaya Mishra,
+
+Thank you for your interest in Senior Developer role at Google India.
+
+To schedule your second round of interview, please use the link below to view our calendar and choose a time that works for you:
+https://ai2aim.com/google-india/schedule-interview-slot
+
+Note that the red slots are already booked, and the empty slots are still available.
+Once you book a slot, you'll receive a confirmation with the interview details.
+
+If none of the available times work for you, or if you run into any issues while booking, feel free to reply to this email and we'll try to accommodate. Looking forward to speaking with you.
+
+Best regards,
+Kayle Jenny
+HR Associate
+Google India"
+                    />
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+                  <Button
+                    onClick={handleAttachFiles}
+                    variant="outline"
+                    className="h-10 px-6 text-sm font-medium border-gray-300 hover:bg-gray-50"
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    ATTACH FILES
+                  </Button>
+                  <div className="flex items-center gap-3">
+                    <Button
+                      onClick={handleSaveAsDraft}
+                      variant="outline"
+                      className="h-10 px-6 text-sm font-medium border-gray-300 hover:bg-gray-50"
+                    >
+                      SAVE AS DRAFT
+                    </Button>
+                    <Button
+                      onClick={handleSendEmail}
+                      className="bg-blue-600 hover:bg-blue-700 text-white h-10 px-6 text-sm font-medium"
+                    >
+                      SEND EMAIL
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {activeMainTab === "decision-room" && (
             <div className="space-y-2">
