@@ -1491,13 +1491,13 @@ Google India`
 
                     <div className="p-6 space-y-4">
                       {/* Professional Email Form */}
-                      <div className="flex items-center gap-4">
-                        <label className="text-xs font-medium text-gray-700 w-12">To</label>
+                      <div className="flex items-center py-3 border-b border-gray-100">
+                        <label className="text-sm font-medium text-gray-700 w-16">To</label>
                         <Input
                           value={emailForm.to}
                           onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
-                          className="flex-1 h-8 text-xs border-gray-300 rounded-md"
-                          placeholder="Enter email address"
+                          className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="jayamishra@gmail.com"
                         />
                       </div>
 
