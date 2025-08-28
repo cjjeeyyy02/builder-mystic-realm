@@ -1502,22 +1502,24 @@ Google India`
                       </div>
 
                       {/* Subject Field */}
-                      <div className="flex items-center gap-4">
-                        <label className="text-xs font-medium text-gray-700 w-12">Subject</label>
-                        <Input
-                          value={emailForm.subject}
-                          onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
-                          className="flex-1 h-8 text-xs border-gray-300 rounded-md"
-                          placeholder="Enter subject"
-                        />
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="h-8 px-3 text-xs border-gray-300 rounded-md hover:bg-gray-50"
-                          onClick={handleAttachFiles}
-                        >
-                          ATTACH FILES ✏️
-                        </Button>
+                      <div className="flex items-center py-3 border-b border-gray-100">
+                        <label className="text-sm font-medium text-gray-700 w-16">Subject</label>
+                        <div className="flex-1 flex items-center gap-2">
+                          <Input
+                            value={emailForm.subject}
+                            onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                            className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Proposed Interview Time – Jaya Mishra"
+                          />
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-10 px-4 text-sm border-gray-300 hover:bg-gray-50"
+                            onClick={handleAttachFiles}
+                          >
+                            ATTACH FILES ✏️
+                          </Button>
+                        </div>
                       </div>
 
                       {/* Email Body */}
