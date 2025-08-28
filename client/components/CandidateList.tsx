@@ -48,7 +48,7 @@ interface Candidate {
   appliedDate: string;
   applicationStart: string;
   applicationEnd: string;
-  status: "hired" | "reject" | "queue";
+  status: "hired" | "reject" | "interview";
   workType: "Remote" | "On-site" | "Hybrid";
   stage: "screening" | "interview" | "activation" | "hired";
   applicationStatus: "open" | "close";
@@ -113,7 +113,7 @@ const candidates: Candidate[] = [
     appliedDate: "07-07-2025",
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
-    status: "queue",
+    status: "interview",
     workType: "On-site",
     stage: "interview",
     applicationStatus: "open",
@@ -173,7 +173,7 @@ const candidates: Candidate[] = [
     appliedDate: "07-07-2025",
     applicationStart: "07-02-2025",
     applicationEnd: "07-10-2025",
-    status: "queue",
+    status: "interview",
     workType: "Hybrid",
     stage: "screening",
     applicationStatus: "open",
@@ -205,7 +205,7 @@ function getStatusVariant(
       return "default"; // This will be overridden by custom classes
     case "reject":
       return "destructive";
-    case "queue":
+    case "interview":
       return "outline";
     default:
       return "secondary";
@@ -218,7 +218,7 @@ function getStatusBadgeClasses(status: string): string {
       return "bg-green-100 text-green-800 border-green-200 hover:bg-green-200";
     case "reject":
       return "bg-red-100 text-red-800 border-red-200 hover:bg-red-200";
-    case "queue":
+    case "interview":
       return "bg-orange-100 text-orange-800 border-orange-200 hover:bg-orange-200";
     default:
       return "bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200";
@@ -231,7 +231,7 @@ function getStatusIcon(status: string) {
       return <CheckCircle className="w-3 h-3" />;
     case "reject":
       return <X className="w-3 h-3" />;
-    case "queue":
+    case "interview":
       return <Clock className="w-3 h-3" />;
     default:
       return <Clock className="w-3 h-3" />;
@@ -268,7 +268,7 @@ function getMainStatusColor(status: string): string {
       return "bg-green-100 text-green-800 border-green-200";
     case "reject":
       return "bg-red-100 text-red-800 border-red-200";
-    case "queue":
+    case "interview":
       return "bg-orange-100 text-orange-800 border-orange-200";
     default:
       return "bg-gray-100 text-gray-800 border-gray-200";
