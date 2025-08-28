@@ -2006,6 +2006,42 @@ Google India"
                   </div>
                 </div>
 
+                {/* White Email Navigation Buttons - Inbox, Sent, Spam */}
+                <div className="flex items-center gap-3 px-8 py-4 border-b border-gray-200 bg-white">
+                  <Button
+                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                      activeEmailTab === "inbox"
+                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
+                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    }`}
+                    onClick={() => setActiveEmailTab("inbox")}
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    INBOX
+                  </Button>
+                  <Button
+                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                      activeEmailTab === "sent"
+                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
+                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    }`}
+                    onClick={() => setActiveEmailTab("sent")}
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    SENT
+                  </Button>
+                  <Button
+                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                      activeEmailTab === "spam"
+                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
+                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    }`}
+                    onClick={() => setActiveEmailTab("spam")}
+                  >
+                    <AlertTriangle className="w-4 h-4 mr-2" />
+                    SPAM
+                  </Button>
+                </div>
 
                 {/* Enhanced Template Selection */}
                 <div className="px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-green-200">
