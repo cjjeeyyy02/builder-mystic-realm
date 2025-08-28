@@ -1931,27 +1931,43 @@ Google India"
           {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
             <div className="bg-white border rounded-lg h-full flex">
               {/* Left Sidebar - Email Templates */}
-              <div className="w-80 border-r bg-gray-50 flex flex-col">
-                {/* Header */}
-                <div className="p-4 border-b bg-white">
-                  <h3 className="font-semibold text-gray-800 text-sm">Email Templates For Video Interviews</h3>
-                  <p className="text-xs text-gray-600 mt-1">Choose From Pre Templates Styles</p>
+              <div className={`${emailSidebarCollapsed ? 'w-12' : 'w-80'} border-r bg-gray-50 flex flex-col transition-all duration-300`}>
+                {/* Header with Toggle */}
+                <div className="p-4 border-b bg-white flex items-center justify-between">
+                  <div className={`${emailSidebarCollapsed ? 'hidden' : 'block'}`}>
+                    <h3 className="font-semibold text-gray-800 text-sm">Email Templates For Video Interviews</h3>
+                    <p className="text-xs text-gray-600 mt-1">Choose From Pre Templates Styles</p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 rounded-md hover:bg-gray-200 flex-shrink-0"
+                    onClick={() => setEmailSidebarCollapsed(!emailSidebarCollapsed)}
+                  >
+                    {emailSidebarCollapsed ? (
+                      <ArrowRight className="w-4 h-4 text-gray-600" />
+                    ) : (
+                      <ArrowLeft className="w-4 h-4 text-gray-600" />
+                    )}
+                  </Button>
                 </div>
 
-                {/* Template Navigation */}
-                <div className="flex items-center justify-center p-4 border-b bg-gray-50">
-                  <div className="flex items-center gap-3">
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
-                      <span className="text-gray-600">‹</span>
-                    </Button>
-                    <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
-                      NEUTRAL
-                    </span>
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
-                      <span className="text-gray-600">›</span>
-                    </Button>
+                {/* Template Navigation - Only show when expanded */}
+                {!emailSidebarCollapsed && (
+                  <div className="flex items-center justify-center p-4 border-b bg-gray-50">
+                    <div className="flex items-center gap-3">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <span className="text-gray-600">‹</span>
+                      </Button>
+                      <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
+                        NEUTRAL
+                      </span>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <span className="text-gray-600">›</span>
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Main Email Interface */}
