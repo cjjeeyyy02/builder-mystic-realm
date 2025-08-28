@@ -2122,14 +2122,34 @@ Google India"
 
                     {/* Enhanced Message Body */}
                     <div className="space-y-4">
-                      <label className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                        <MessageSquare className="w-4 h-4 text-green-600" />
-                        Compose Message:
-                      </label>
-                      <div className="bg-white rounded-xl border-2 border-gray-300 shadow-lg overflow-hidden">
-                        <div className="w-full h-96 text-sm p-6 leading-relaxed bg-white whitespace-pre-wrap">
-                          {renderMessageWithLinks(emailForm.message)}
-                        </div>
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-bold text-gray-800 flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4 text-green-600" />
+                          Compose Message:
+                        </label>
+                        <Button
+                          onClick={() => setIsEditingMessage(!isEditingMessage)}
+                          variant="outline"
+                          size="sm"
+                          className="h-8 px-3 text-xs font-medium border-gray-300 text-gray-600 hover:bg-gray-50"
+                        >
+                          <Edit3 className="w-3 h-3 mr-1" />
+                          {isEditingMessage ? 'Preview' : 'Edit'}
+                        </Button>
+                      </div>
+                      <div className="bg-white rounded-xl border-2 border-gray-300 focus-within:border-green-500 focus-within:ring-4 focus-within:ring-green-500/20 shadow-lg overflow-hidden">
+                        {isEditingMessage ? (
+                          <Textarea
+                            value={emailForm.message}
+                            onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                            className="w-full h-96 text-sm border-0 rounded-xl p-6 leading-relaxed focus:ring-0 focus:border-0 bg-white resize-none"
+                            placeholder="Compose your professional email message here..."
+                          />
+                        ) : (
+                          <div className="w-full h-96 text-sm p-6 leading-relaxed bg-white whitespace-pre-wrap overflow-y-auto">
+                            {renderMessageWithLinks(emailForm.message)}
+                          </div>
+                        )}
                       </div>
                     </div>
 
