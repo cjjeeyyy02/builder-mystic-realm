@@ -312,115 +312,103 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         )}
       </div>
 
-      {/* Candidates Grid - Clean Minimized Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Candidates Grid - Professional Clean Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
-            className={`relative overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ${
+            className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
               candidate.isSelected
-                ? "ring-2 ring-blue-500/30 border-blue-300 shadow-blue-100"
+                ? "ring-2 ring-primary/20 shadow-lg"
                 : ""
             }`}
           >
-
-            <CardContent className="p-4 relative z-10">
-              <div className="space-y-3">
-                {/* Applicant Name */}
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <UserCircle className="w-3 h-3 text-blue-500" />
-                    <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLICANT NAME</span>
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                {/* Header with Avatar and Name */}
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center border border-border">
+                    <User className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="text-sm font-semibold text-gray-900 flex items-center gap-2">
-                    {candidate.name}
-                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Candidate:</div>
+                    <div className="font-semibold text-foreground text-base">{candidate.name}</div>
                   </div>
                 </div>
 
                 {/* Applied Position */}
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <Briefcase className="w-3 h-3 text-emerald-500" />
-                    <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">APPLIED POSITION</span>
-                  </div>
-                  <div className="text-xs font-medium text-gray-700 bg-gradient-to-r from-emerald-50 to-blue-50 px-2 py-1 rounded-md border border-emerald-100">{candidate.position}</div>
+                <div>
+                  <div className="text-sm text-muted-foreground font-medium mb-1">Applied Position:</div>
+                  <div className="font-medium text-foreground">{candidate.position}</div>
                 </div>
 
                 {/* Details Grid */}
-                <div className="grid grid-cols-2 gap-3">
-                  {/* Job Type */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1">
-                      <MousePointer className="w-2.5 h-2.5 text-purple-500" />
-                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">JOB TYPE</span>
-                    </div>
-                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.workType}</div>
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Work Type */}
+                  <div>
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Type:</div>
+                    <Badge
+                      variant="secondary"
+                      className={`text-xs ${getDepartmentColor(candidate.workType)}`}
+                    >
+                      {candidate.workType}
+                    </Badge>
                   </div>
 
                   {/* Applied Date */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-2.5 h-2.5 text-orange-500" />
-                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">APPLIED</span>
+                  <div>
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Applied:</div>
+                    <div className="flex items-center gap-2 text-foreground text-sm">
+                      <Calendar className="w-3 h-3 text-muted-foreground" />
+                      {candidate.appliedDate}
                     </div>
-                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.appliedDate}</div>
                   </div>
 
                   {/* Location */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-2.5 h-2.5 text-red-500" />
-                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">LOCATION</span>
+                  <div className="col-span-2">
+                    <div className="text-sm text-muted-foreground font-medium mb-1">Location:</div>
+                    <div className="flex items-center gap-2 text-foreground text-sm">
+                      <MapPin className="w-3 h-3 text-muted-foreground" />
+                      {candidate.companyLocation}
                     </div>
-                    <div className="text-[11px] text-gray-700 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.companyLocation}</div>
-                  </div>
-
-                  {/* Period */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-2.5 h-2.5 text-blue-500" />
-                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wide">PERIOD</span>
-                    </div>
-                    <div className="text-[10px] text-gray-600 bg-white/60 px-2 py-1 rounded border border-gray-100">{candidate.applicationStart} - {candidate.applicationEnd}</div>
                   </div>
                 </div>
 
-                {/* Status and Action */}
-                <div className="pt-2 space-y-2">
-                  {/* Application Status (Close/Open) */}
-                  <Badge
-                    variant="outline"
-                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded-full shadow-sm ${getApplicationStatusColor(candidate.applicationStatus)}`}
-                  >
-                    <div className="flex items-center gap-1">
-                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3" /> : <X className="w-3 h-3" />}
-                      {candidate.applicationStatus.toUpperCase()}
-                    </div>
-                  </Badge>
+                {/* Status Section */}
+                <div className="pt-2 border-t border-border space-y-3">
+                  {/* Application Status */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground font-medium">Status:</span>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs font-medium ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                    >
+                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3 mr-1" /> : <X className="w-3 h-3 mr-1" />}
+                      {candidate.applicationStatus.charAt(0).toUpperCase() + candidate.applicationStatus.slice(1)}
+                    </Badge>
+                  </div>
 
-                  {/* Main Status (Queue/Reject/Hired) */}
-                  <Badge
-                    variant="outline"
-                    className={`font-semibold text-[10px] uppercase px-3 py-1 w-full justify-center rounded-full shadow-sm ${getMainStatusColor(candidate.status)}`}
-                  >
-                    <div className="flex items-center gap-1">
+                  {/* Main Status */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground font-medium">Stage:</span>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs font-medium ${getMainStatusColor(candidate.status)}`}
+                    >
                       {getStatusIcon(candidate.status)}
-                      {candidate.status === "hired" ? "APPROVED" : candidate.status.toUpperCase()}
-                    </div>
-                  </Badge>
+                      <span className="ml-1">{candidate.status === "hired" ? "Hired" : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}</span>
+                    </Badge>
+                  </div>
 
                   {/* Action Button */}
                   <Button
                     size="sm"
                     variant="outline"
-                    className="w-full text-[10px] font-medium uppercase tracking-wide border border-blue-200 hover:border-blue-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 h-7 px-3 rounded-full shadow-sm transition-all duration-200 group"
+                    className="w-full text-xs font-medium"
                     onClick={() => handleViewProfile(candidate)}
                   >
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-3 h-3 group-hover:scale-110 transition-transform" />
-                      VIEW PROFILE
-                    </div>
+                    <Eye className="w-3 h-3 mr-1" />
+                    View Profile
                   </Button>
                 </div>
               </div>
