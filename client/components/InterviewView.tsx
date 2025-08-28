@@ -1420,6 +1420,75 @@ Google India`
                       ))}
                     </div>
                     {/* END REPLACED EMAIL LIST */}
+                    {/* Professional Email Interface Header */}
+                    <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 rounded-t-lg">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-800">Email Templates For Video Interviews</h3>
+                          <p className="text-sm text-gray-600 mt-1">Choose Template based on Interview Stage</p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-8 px-4 text-xs font-medium border-gray-300 hover:bg-gray-50"
+                          >
+                            <ArrowLeft className="w-3 h-3 mr-1" />
+                            Back
+                          </Button>
+                          <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
+                            <User className="w-4 h-4 text-gray-600" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Template Navigation */}
+                    <div className="flex items-center justify-between bg-white border-b border-gray-200 px-6 py-3">
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-3 text-xs font-medium bg-gray-800 text-white hover:bg-gray-700"
+                        >
+                          NEUTRAL
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                        >
+                          SENT
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                        >
+                          SPAM
+                        </Button>
+                      </div>
+                      <Button
+                        onClick={handleComposeEmail}
+                        className="bg-gray-800 hover:bg-gray-900 text-white h-8 px-4 text-xs font-medium"
+                      >
+                        COMPOSE EMAIL
+                      </Button>
+                    </div>
+
+                    {/* Template Selection */}
+                    <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-7 px-3 text-xs font-medium border-gray-300 bg-white"
+                      >
+                        <ArrowLeft className="w-3 h-3 mr-1" />
+                        NEUTRAL TEMPLATE 1
+                        <ArrowRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </div>
+
                     <div className="p-6 space-y-4">
                       {/* Professional Email Form */}
                       <div className="flex items-center gap-4">
