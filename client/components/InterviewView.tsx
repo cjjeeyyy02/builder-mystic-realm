@@ -2006,42 +2006,6 @@ Google India"
                   </div>
                 </div>
 
-                {/* Clean Email Tabs - All White Initially, Green When Clicked */}
-                <div className="flex items-center gap-2 px-8 py-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
-                  <Button
-                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
-                      activeEmailTab === "inbox"
-                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-white shadow-sm hover:bg-white hover:text-gray-800"
-                    }`}
-                    onClick={() => setActiveEmailTab("inbox")}
-                  >
-                    <Mail className="w-4 h-4 mr-2" />
-                    INBOX
-                  </Button>
-                  <Button
-                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
-                      activeEmailTab === "sent"
-                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-white shadow-sm hover:bg-white hover:text-gray-800"
-                    }`}
-                    onClick={() => setActiveEmailTab("sent")}
-                  >
-                    <Send className="w-4 h-4 mr-2" />
-                    SENT
-                  </Button>
-                  <Button
-                    className={`h-11 px-6 text-sm font-semibold rounded-xl transition-all duration-300 shadow-sm ${
-                      activeEmailTab === "spam"
-                        ? "bg-green-600 text-white shadow-lg transform scale-105 border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-white shadow-sm hover:bg-white hover:text-gray-800"
-                    }`}
-                    onClick={() => setActiveEmailTab("spam")}
-                  >
-                    <AlertTriangle className="w-4 h-4 mr-2" />
-                    SPAM
-                  </Button>
-                </div>
 
                 {/* Enhanced Template Selection */}
                 <div className="px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-green-200">
