@@ -25,8 +25,7 @@ export default function ScheduleInterview() {
 
   // Mock data for fully booked time slots
   const bookedSlots = [
-    '5:15 AM', '6:30 AM', '7:45 AM', '9:00 AM', '10:15 AM',
-    '11:30 AM', '8:15 AM', '6:00 AM', '9:45 AM'
+    '10:00 AM', '1:00 PM', '3:30 PM', '5:00 PM'
   ];
 
   const handleFormChange = (field: string, value: string) => {
