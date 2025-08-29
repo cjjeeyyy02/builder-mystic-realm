@@ -449,7 +449,7 @@ export default function ScreeningView() {
                   <Button
                     variant="default"
                     size="sm"
-                    className="gap-1 text-white font-medium h-8 px-3"
+                    className="gap-1 text-white font-medium h-8 px-3 border-l-4 border-green-500"
                     style={{ backgroundColor: "#0065F8" }}
                     onClick={() => handleEmailCandidate(candidate)}
                     onMouseEnter={(e) =>
