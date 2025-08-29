@@ -313,7 +313,7 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
       </div>
 
       {/* Candidates Grid - Professional Clean Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
           <Card
             key={candidate.id}
@@ -323,8 +323,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 : ""
             }`}
           >
-            <CardContent className="p-6">
-              <div className="space-y-4">
+            <CardContent className="p-4">
+              <div className="space-y-3">
                 {/* Header with Avatar and Name */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center border border-border">
