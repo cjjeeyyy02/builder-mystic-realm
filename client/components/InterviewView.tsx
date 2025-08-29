@@ -499,7 +499,8 @@ Google India`
             onClick={(e) => {
               e.preventDefault();
               if (part.includes('schedule-interview-slot')) {
-                setShowSchedulingModal(true);
+                // Navigate to scheduling page
+                window.location.href = '/schedule-interview';
               } else {
                 window.open(part, '_blank');
               }
