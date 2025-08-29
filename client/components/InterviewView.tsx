@@ -1555,12 +1555,12 @@ Google India`
                       </div>
 
                       {/* Email Body */}
-                      <div className="p-3">
+                      <div className="p-2">
                         <div className="border border-gray-300 rounded-md bg-white">
                           <Textarea
                             value={emailForm.message}
                             onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
-                            className="w-full h-48 text-xs border-0 resize-none p-3 leading-relaxed focus:ring-0 focus:border-transparent"
+                            className="w-full h-32 text-xs border-0 resize-none p-2 leading-normal focus:ring-0 focus:border-transparent"
                             placeholder="Hi Jaya Mishra,
 
 Thank you for your interest in Senior Developer role at Google India.
