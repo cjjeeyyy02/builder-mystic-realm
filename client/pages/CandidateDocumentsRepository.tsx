@@ -139,6 +139,38 @@ export default function CandidateDocumentsRepository() {
           </Button>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      <Dialog open={showConfirmModal} onOpenChange={setShowConfirmModal}>
+        <DialogContent className="max-w-md bg-gray-100 border-2 border-gray-300">
+          <DialogHeader className="text-center">
+            <DialogTitle className="text-lg font-bold text-purple-600 mb-4">
+              CONFIRMATION
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="text-center py-4">
+            <p className="text-sm text-gray-800 mb-6">
+              Do you want to send the files?
+            </p>
+
+            <div className="flex justify-center gap-8">
+              <Button
+                onClick={handleConfirmSend}
+                className="bg-black hover:bg-gray-800 text-white px-8 py-2 text-sm font-medium"
+              >
+                YES
+              </Button>
+              <Button
+                onClick={handleCancelSend}
+                className="bg-black hover:bg-gray-800 text-white px-8 py-2 text-sm font-medium"
+              >
+                NO
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
