@@ -1354,7 +1354,7 @@ Google India`
                   INBOX
                 </Button>
                 <Button
-                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                  className={`h-7 text-xs font-medium rounded-none border-b ${
                     activeEmailTab === "sent"
                       ? "bg-black text-white"
                       : "bg-transparent text-gray-600 hover:bg-gray-100"
@@ -1364,7 +1364,7 @@ Google India`
                   SENT
                 </Button>
                 <Button
-                  className={`h-10 text-xs font-medium rounded-none ${
+                  className={`h-7 text-xs font-medium rounded-none ${
                     activeEmailTab === "spam"
                       ? "bg-black text-white"
                       : "bg-transparent text-gray-600 hover:bg-gray-100"
