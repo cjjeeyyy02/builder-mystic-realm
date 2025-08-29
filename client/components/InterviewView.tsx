@@ -1560,7 +1560,7 @@ Google India`
                           <Textarea
                             value={emailForm.message}
                             onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
-                            className="w-full h-96 text-sm border-0 resize-none p-4 leading-relaxed focus:ring-0 focus:border-transparent"
+                            className="w-full h-48 text-xs border-0 resize-none p-3 leading-relaxed focus:ring-0 focus:border-transparent"
                             placeholder="Hi Jaya Mishra,
 
 Thank you for your interest in Senior Developer role at Google India.
