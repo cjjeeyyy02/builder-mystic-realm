@@ -1592,7 +1592,7 @@ Google India"
                           </Button>
                           <Button
                             onClick={handleSendEmail}
-                            className="bg-blue-600 hover:bg-blue-700 text-white h-7 px-4 text-xs font-medium"
+                            className="bg-blue-600 hover:bg-blue-700 text-white h-6 px-3 text-xs font-medium"
                           >
                             SEND
                           </Button>
@@ -1600,7 +1600,7 @@ Google India"
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-7 w-7 p-0 rounded-full border-gray-300 hover:bg-gray-50"
+                          className="h-6 w-6 p-0 rounded-full border-gray-300 hover:bg-gray-50"
                         >
                           <span className="text-blue-600">���</span>
                         </Button>
