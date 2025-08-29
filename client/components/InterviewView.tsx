@@ -463,6 +463,7 @@ export default function InterviewView() {
   const [selectedEmailTemplate, setSelectedEmailTemplate] = useState("NEUTRAL");
   const [emailSidebarCollapsed, setEmailSidebarCollapsed] = useState(false);
   const [isEditingMessage, setIsEditingMessage] = useState(false);
+  const [showSchedulingModal, setShowSchedulingModal] = useState(false);
   const [emailForm, setEmailForm] = useState({
     to: "jayamishra@gmail.com",
     subject: "Proposed Interview Time - Jaya Mishra",
