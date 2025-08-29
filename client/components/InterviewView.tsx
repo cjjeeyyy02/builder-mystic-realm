@@ -1582,8 +1582,8 @@ Google India"
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-lg">
-                        <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between px-3 py-2 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+                        <div className="flex items-center gap-2">
                           <Button
                             onClick={handleSaveAsDraft}
                             className="bg-yellow-500 hover:bg-yellow-600 text-white h-10 px-6 text-sm font-medium"
