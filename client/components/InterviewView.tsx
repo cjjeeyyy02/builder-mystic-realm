@@ -1481,21 +1481,21 @@ Google India`
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 px-3 text-xs font-medium bg-gray-800 text-white hover:bg-gray-700"
+                          className="h-6 px-2 text-xs font-medium bg-gray-800 text-white hover:bg-gray-700"
                         >
                           NEUTRAL
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                          className="h-6 px-2 text-xs font-medium text-gray-600 hover:bg-gray-100"
                         >
                           SENT
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 px-3 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                          className="h-6 px-2 text-xs font-medium text-gray-600 hover:bg-gray-100"
                         >
                           SPAM
                         </Button>
