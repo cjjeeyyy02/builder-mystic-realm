@@ -393,28 +393,28 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 </div>
 
                 {/* Status Section */}
-                <div className="pt-2 border-t border-border space-y-3">
+                <div className="pt-1.5 border-t border-border space-y-2">
                   {/* Application Status */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground font-medium">Status:</span>
+                    <span className="text-xs text-muted-foreground font-medium">Status:</span>
                     <Badge
                       variant="outline"
                       className={`text-xs font-medium ${getApplicationStatusColor(candidate.applicationStatus)}`}
                     >
-                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3 mr-1" /> : <X className="w-3 h-3 mr-1" />}
+                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3 mr-0.5" /> : <X className="w-3 h-3 mr-0.5" />}
                       {candidate.applicationStatus.charAt(0).toUpperCase() + candidate.applicationStatus.slice(1)}
                     </Badge>
                   </div>
 
                   {/* Main Status */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground font-medium">Stage:</span>
+                    <span className="text-xs text-muted-foreground font-medium">Stage:</span>
                     <Badge
                       variant="outline"
                       className={`text-xs font-medium ${getMainStatusColor(candidate.status)}`}
                     >
                       {getStatusIcon(candidate.status)}
-                      <span className="ml-1">{candidate.status === "hired" ? "Hired" : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}</span>
+                      <span className="ml-0.5">{candidate.status === "hired" ? "Hired" : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}</span>
                     </Badge>
                   </div>
 
@@ -422,7 +422,7 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                   <Button
                     size="sm"
                     variant="outline"
-                    className="w-full text-xs font-medium"
+                    className="w-full text-xs font-medium h-7"
                     onClick={() => handleViewProfile(candidate)}
                   >
                     <Eye className="w-3 h-3 mr-1" />
