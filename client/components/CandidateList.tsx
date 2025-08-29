@@ -338,8 +338,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                 {/* Applied Position */}
                 <div>
-                  <div className="text-sm text-muted-foreground font-medium mb-1">Applied Position:</div>
-                  <div className="font-medium text-foreground">{candidate.position}</div>
+                  <div className="text-xs text-muted-foreground font-medium mb-0.5">Applied Position:</div>
+                  <div className="font-medium text-foreground text-sm">{candidate.position}</div>
                 </div>
 
                 {/* Details Grid */}
