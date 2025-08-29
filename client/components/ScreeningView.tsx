@@ -442,7 +442,7 @@ export default function ScreeningView() {
                   <Button
                     variant="default"
                     size="sm"
-                    className="gap-1 text-white font-medium h-8 px-3 bg-green-600 hover:bg-green-700"
+                    className="gap-1 text-white font-medium h-8 px-3 bg-emerald-500 hover:bg-emerald-600"
                     onClick={() => handleEmailCandidate(candidate)}
                   >
                     <Send className="w-3 h-3" />
