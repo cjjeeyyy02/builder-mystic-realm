@@ -672,7 +672,7 @@ export default function FilterTabs() {
           {activeTab === "hiring" && (
             <Dialog open={showPlugAndHireModal} onOpenChange={setShowPlugAndHireModal}>
               <DialogTrigger asChild>
-                <Button onClick={handlePlugAndHire} className="bg-blue-500 hover:bg-blue-600 text-white">
+                <Button onClick={handlePlugAndHire} className="bg-green-500 hover:bg-green-600 text-white">
                   <Download className="w-4 h-4 mr-2" />
                   Plug and Hire
                 </Button>
