@@ -1521,35 +1521,35 @@ Google India`
                       </Button>
                     </div>
 
-                    <div className="p-6 space-y-4">
+                    <div className="p-3 space-y-2">
                       {/* Professional Email Form */}
-                      <div className="flex items-center py-3 border-b border-gray-100">
-                        <label className="text-sm font-medium text-gray-700 w-16">To</label>
+                      <div className="flex items-center py-2 border-b border-gray-100">
+                        <label className="text-xs font-medium text-gray-700 w-12">To</label>
                         <Input
                           value={emailForm.to}
                           onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
-                          className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          className="flex-1 h-7 text-xs border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="jayamishra@gmail.com"
                         />
                       </div>
 
                       {/* Subject Field */}
-                      <div className="flex items-center py-3 border-b border-gray-100">
-                        <label className="text-sm font-medium text-gray-700 w-16">Subject</label>
+                      <div className="flex items-center py-2 border-b border-gray-100">
+                        <label className="text-xs font-medium text-gray-700 w-12">Subject</label>
                         <div className="flex-1 flex items-center gap-2">
                           <Input
                             value={emailForm.subject}
                             onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
-                            className="flex-1 h-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                            className="flex-1 h-7 text-xs border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Proposed Interview Time – Jaya Mishra"
                           />
                           <Button
                             variant="outline"
                             size="sm"
-                            className="h-10 px-4 text-sm border-gray-300 hover:bg-gray-50"
+                            className="h-7 px-3 text-xs border-gray-300 hover:bg-gray-50"
                             onClick={handleAttachFiles}
                           >
-                            ATTACH FILES ✏️
+                            ATTACH ✏️
                           </Button>
                         </div>
                       </div>
