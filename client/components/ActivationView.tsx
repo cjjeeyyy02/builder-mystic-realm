@@ -150,7 +150,7 @@ export default function ActivationView() {
               </SelectContent>
             </Select>
 
-            <Button className="h-7 text-xs px-3 bg-black text-white hover:bg-gray-800">
+            <Button className="h-7 text-xs px-3 bg-emerald-500 text-white hover:bg-emerald-600">
               <Plus className="w-3 h-3 mr-1" />
               ADD NEW FIELDS
             </Button>
