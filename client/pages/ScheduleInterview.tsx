@@ -164,24 +164,24 @@ export default function ScheduleInterview() {
             </div>
 
             {/* Right Section - Form */}
-            <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-1">
+            <div className="lg:col-span-2 bg-gray-50 rounded-lg p-4">
+              <h3 className="text-sm font-medium text-gray-900 mb-4">
                 Interview Details
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">NAME:</label>
+                  <label className="text-sm font-medium text-gray-700 block mb-2">Full Name</label>
                   <Input
-                    className="h-7 text-xs border-gray-300"
+                    className="h-9 text-sm border-gray-300"
                     value={formData.name}
                     onChange={(e) => handleFormChange('name', e.target.value)}
                     placeholder="Enter your full name"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">EMAIL ID:</label>
+                  <label className="text-sm font-medium text-gray-700 block mb-2">Email Address</label>
                   <Input
-                    className="h-7 text-xs border-gray-300"
+                    className="h-9 text-sm border-gray-300"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleFormChange('email', e.target.value)}
@@ -189,47 +189,31 @@ export default function ScheduleInterview() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">CONTACT:</label>
+                  <label className="text-sm font-medium text-gray-700 block mb-2">Phone Number</label>
                   <Input
-                    className="h-7 text-xs border-gray-300"
+                    className="h-9 text-sm border-gray-300"
                     value={formData.contact}
                     onChange={(e) => handleFormChange('contact', e.target.value)}
                     placeholder="Enter your phone number"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">JOB ROLE:</label>
+                  <label className="text-sm font-medium text-gray-700 block mb-2">Position</label>
                   <Input
-                    className="h-7 text-xs border-gray-300"
+                    className="h-9 text-sm border-gray-300"
                     value={formData.jobRole}
                     onChange={(e) => handleFormChange('jobRole', e.target.value)}
                     placeholder="Senior Developer"
+                    readOnly
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">INTERVIEW DATE SLOT:</label>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-blue-600 font-medium">FROM</span>
-                    <Input
-                      className="h-7 text-xs border-gray-300 w-20"
-                      value={formData.fromTime}
-                      onChange={(e) => handleFormChange('fromTime', e.target.value)}
-                    />
-                    <span className="text-blue-600 font-medium">TO</span>
-                    <Input
-                      className="h-7 text-xs border-gray-300 w-20"
-                      value={formData.toTime}
-                      onChange={(e) => handleFormChange('toTime', e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-blue-600 block mb-1">INTERVIEW TIME SLOT:</label>
+                  <label className="text-sm font-medium text-gray-700 block mb-2">Selected Time</label>
                   <Input
-                    className="h-7 text-xs border-gray-300"
-                    value={selectedTime || formData.timeSlot}
-                    onChange={(e) => handleFormChange('timeSlot', e.target.value)}
-                    placeholder="Select time from slots above"
+                    className="h-9 text-sm border-gray-300 bg-blue-50"
+                    value={selectedTime || "No time selected"}
+                    readOnly
+                    placeholder="Select a time slot from the left"
                   />
                 </div>
               </div>
@@ -237,9 +221,10 @@ export default function ScheduleInterview() {
               {/* Book Button */}
               <Button
                 onClick={handleBookSlot}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs h-8 mt-3"
+                disabled={!selectedTime}
+                className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white font-medium text-sm h-10 mt-6"
               >
-                BOOK YOUR INTERVIEW SLOT HERE
+                Book Interview Slot
               </Button>
             </div>
           </div>
