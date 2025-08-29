@@ -283,31 +283,14 @@ export default function HiredView() {
                   </div>
                 </div>
 
-                {/* Actions & Status */}
-                <div className="lg:col-span-4 space-y-3">
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="flex-1 text-xs">
-                      <Mail className="w-3 h-3 mr-1" />
-                      Email
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1 text-xs">
-                      <Phone className="w-3 h-3 mr-1" />
-                      Contact
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1 text-xs">
-                      <FileText className="w-3 h-3 mr-1" />
-                      Profile
-                    </Button>
-                  </div>
-                  
-                  <div className="flex justify-end">
-                    <Badge
-                      variant="outline"
-                      className="bg-emerald-100 text-emerald-700 border-emerald-200 font-medium px-4 py-2"
-                    >
-                      HIRED
-                    </Badge>
-                  </div>
+                {/* Status */}
+                <div className="lg:col-span-4 flex justify-end">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-100 text-emerald-700 border-emerald-200 font-medium px-4 py-2"
+                  >
+                    HIRED
+                  </Badge>
                 </div>
               </div>
             </CardContent>
