@@ -63,27 +63,23 @@ export default function ScheduleInterview() {
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             {/* Left Section - Date & Time Selection */}
-            <div className="lg:col-span-2 space-y-3">
+            <div className="lg:col-span-3 space-y-4">
               {/* Date Selection */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Button className="bg-gray-200 text-gray-800 text-xs px-3 py-1 font-medium h-7">
-                    SELECT DATE SLOT HERE
-                  </Button>
-                </div>
-                <div className="flex items-center gap-2">
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-gray-900">Select Date</h3>
+                <div className="flex items-center gap-3">
                   <Select>
-                    <SelectTrigger className="w-28 h-7 text-xs">
-                      <SelectValue placeholder="AUGUST" />
+                    <SelectTrigger className="w-32 h-9 text-sm border-gray-300">
+                      <SelectValue placeholder="August" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="august">AUGUST</SelectItem>
-                      <SelectItem value="september">SEPTEMBER</SelectItem>
-                      <SelectItem value="october">OCTOBER</SelectItem>
+                      <SelectItem value="august">August</SelectItem>
+                      <SelectItem value="september">September</SelectItem>
+                      <SelectItem value="october">October</SelectItem>
                     </SelectContent>
                   </Select>
                   <Select>
-                    <SelectTrigger className="w-20 h-7 text-xs">
+                    <SelectTrigger className="w-24 h-9 text-sm border-gray-300">
                       <SelectValue placeholder="2025" />
                     </SelectTrigger>
                     <SelectContent>
@@ -97,46 +93,41 @@ export default function ScheduleInterview() {
                     <Button
                       key={date}
                       onClick={() => setSelectedDate(date)}
-                      className={`w-8 h-8 text-xs font-semibold rounded-md transition-all ${
+                      variant={selectedDate === date ? "default" : "outline"}
+                      className={`w-10 h-10 text-sm font-medium ${
                         selectedDate === date
-                          ? "bg-purple-700 text-white shadow-lg"
-                          : "bg-purple-600 hover:bg-purple-700 text-white"
+                          ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                          : "border-gray-300 hover:border-blue-300 hover:bg-blue-50"
                       }`}
                     >
                       {date}
                     </Button>
                   ))}
-                  <Button className="w-8 h-8 bg-green-500 hover:bg-green-600 text-white rounded-md">
-                    <ArrowRight className="w-3 h-3" />
+                  <Button
+                    variant="outline"
+                    className="w-10 h-10 border-gray-300 hover:border-blue-300 hover:bg-blue-50"
+                  >
+                    <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
 
               {/* Time Selection */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Button className="bg-gray-200 text-gray-800 text-xs px-3 py-1 font-medium h-7">
-                    SELECT TIME SLOT HERE
-                  </Button>
-                  <Select>
-                    <SelectTrigger className="w-28 h-7 text-xs">
-                      <SelectValue placeholder="TIME ZONES" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="est">EST</SelectItem>
-                      <SelectItem value="pst">PST</SelectItem>
-                      <SelectItem value="ist">IST</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select>
-                    <SelectTrigger className="w-16 h-7 text-xs">
-                      <SelectValue placeholder="AM" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="am">AM</SelectItem>
-                      <SelectItem value="pm">PM</SelectItem>
-                    </SelectContent>
-                  </Select>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-medium text-gray-900">Select Time</h3>
+                  <div className="flex items-center gap-2">
+                    <Select>
+                      <SelectTrigger className="w-24 h-8 text-xs border-gray-300">
+                        <SelectValue placeholder="IST" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="est">EST</SelectItem>
+                        <SelectItem value="pst">PST</SelectItem>
+                        <SelectItem value="ist">IST</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
                 
                 {/* Time Slots Grid */}
