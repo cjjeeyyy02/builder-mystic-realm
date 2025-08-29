@@ -1464,7 +1464,7 @@ export default function FilterTabs() {
                         <Button
                           onClick={processFileUpload}
                           disabled={!uploadedFile}
-                          className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                          className="bg-blue-500 hover:bg-blue-600 text-white"
                         >
                           <Upload className="w-4 h-4 mr-2" />
                           Import File
