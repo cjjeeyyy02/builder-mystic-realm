@@ -432,7 +432,7 @@ export default function ScreeningView() {
                     <Button
                       variant="default"
                       size="sm"
-                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none bg-green-600 hover:bg-green-700"
+                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none bg-emerald-500 hover:bg-emerald-600"
                       onClick={() => handleViewResume(candidate)}
                     >
                       <Eye className="w-3 h-3" />
