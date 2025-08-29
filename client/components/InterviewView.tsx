@@ -1051,7 +1051,7 @@ Google India`
       </div>
 
       {/* Main Layout */}
-      <div className="h-[calc(100vh-200px)]">
+      <div className="h-[calc(100vh-280px)]">
         {/* Main Content */}
         <div className="w-full overflow-y-auto">
           {activeMainTab === "interview-status" && (
