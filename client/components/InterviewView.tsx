@@ -1651,7 +1651,7 @@ Google India"
                   onClick={() => {
                     console.log("Add new rounds functionality to be implemented");
                   }}
-                  className="h-7 px-3 text-xs bg-black hover:bg-gray-800 text-white font-medium"
+                  className="h-7 px-3 text-xs bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
                 >
                   ADD NEW ROUNDS
                 </Button>
@@ -1872,10 +1872,10 @@ Google India"
 
                         {/* Action Buttons */}
                         <div className="flex gap-1 mt-2">
-                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
+                          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-6 px-2 text-xs">
                             EDIT THIS TEMPLATE
                           </Button>
-                          <Button className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs">
+                          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-6 px-2 text-xs">
                             SAVE ROUND
                           </Button>
                           <Button
@@ -1883,7 +1883,7 @@ Google India"
                               setShowRoundsEmailInterface(true);
                               setActiveEmailTab("inbox"); // Default to inbox for recruitment emails
                             }}
-                            className="bg-black hover:bg-gray-800 text-white h-6 px-2 text-xs"
+                            className="bg-emerald-500 hover:bg-emerald-600 text-white h-6 px-2 text-xs"
                           >
                             EMAIL
                           </Button>
