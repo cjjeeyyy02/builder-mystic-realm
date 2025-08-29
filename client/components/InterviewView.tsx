@@ -1586,9 +1586,9 @@ Google India"
                         <div className="flex items-center gap-2">
                           <Button
                             onClick={handleSaveAsDraft}
-                            className="bg-yellow-500 hover:bg-yellow-600 text-white h-10 px-6 text-sm font-medium"
+                            className="bg-yellow-500 hover:bg-yellow-600 text-white h-7 px-4 text-xs font-medium"
                           >
-                            SAVE AS DRAFT
+                            SAVE DRAFT
                           </Button>
                           <Button
                             onClick={handleSendEmail}
