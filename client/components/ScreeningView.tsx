@@ -432,14 +432,7 @@ export default function ScreeningView() {
                     <Button
                       variant="default"
                       size="sm"
-                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none border-l-4 border-green-500"
-                      style={{ backgroundColor: "#0065F8" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#0052C6")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#0065F8")
-                      }
+                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none bg-green-600 hover:bg-green-700"
                       onClick={() => handleViewResume(candidate)}
                     >
                       <Eye className="w-3 h-3" />
