@@ -271,7 +271,10 @@ export default function ActivationView() {
                 EDIT CHECKLIST
               </Button>
             </div>
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-6 py-2">
+            <Button
+              onClick={() => navigate("/candidate-documents-repository")}
+              className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-6 py-2"
+            >
               CANDIDATE DOCUMENTS REPOSITORY
             </Button>
           </div>
