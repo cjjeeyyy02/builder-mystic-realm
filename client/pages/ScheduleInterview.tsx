@@ -149,20 +149,28 @@ export default function ScheduleInterview() {
                     '9:00 AM', '9:15 AM', '9:30 AM', '9:45 AM', '10:00 AM',
                     '10:00 AM', '10:15 AM', '10:30 AM', '10:45 AM', '11:00 AM',
                     '11:00 AM', '11:15 AM', '11:30 AM', '11:45 AM', '12:00 PM'
-                  ].map((time, index) => (
-                    <Button
-                      key={index}
-                      onClick={() => setSelectedTime(time)}
-                      variant="outline"
-                      className={`h-9 text-sm px-3 transition-all ${
-                        selectedTime === time
-                          ? "border-green-500 bg-green-50 text-green-700 font-semibold"
-                          : "border-green-300 text-green-700 hover:bg-green-50"
-                      }`}
-                    >
-                      {time}
-                    </Button>
-                  ))}
+                  ].map((time, index) => {
+                    const isBooked = bookedSlots.includes(time);
+                    const isSelected = selectedTime === time;
+
+                    return (
+                      <Button
+                        key={index}
+                        onClick={() => !isBooked && setSelectedTime(time)}
+                        variant="outline"
+                        disabled={isBooked}
+                        className={`h-9 text-sm px-3 transition-all ${
+                          isBooked
+                            ? "border-red-500 bg-red-100 text-red-700 cursor-not-allowed opacity-75"
+                            : isSelected
+                            ? "border-green-500 bg-green-50 text-green-700 font-semibold"
+                            : "border-green-300 text-green-700 hover:bg-green-50"
+                        }`}
+                      >
+                        {time}
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
