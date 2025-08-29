@@ -25,6 +25,7 @@ import MediaResources from "./pages/MediaResources";
 import Payroll from "./pages/Payroll";
 import Offboarding from "./pages/Offboarding";
 import ScheduleInterview from "./pages/ScheduleInterview";
+import CandidateDocumentsRepository from "./pages/CandidateDocumentsRepository";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
