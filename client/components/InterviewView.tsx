@@ -1509,11 +1509,11 @@ Google India`
                     </div>
 
                     {/* Template Selection */}
-                    <div className="px-3 py-2 bg-gray-50 border-b border-gray-200">
+                    <div className="px-3 py-1 bg-gray-50 border-b border-gray-200">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-6 px-2 text-xs font-medium border-gray-300 bg-white"
+                        className="h-5 px-2 text-xs font-medium border-gray-300 bg-white"
                       >
                         <ArrowLeft className="w-3 h-3 mr-1" />
                         TEMPLATE 1
