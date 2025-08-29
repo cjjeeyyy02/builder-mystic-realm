@@ -41,9 +41,18 @@ export default function CandidateDocumentsRepository() {
   };
 
   const handleSendFiles = () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirmSend = () => {
     const uploadedDocs = documents.filter(doc => doc.uploaded);
     console.log("Sending files:", uploadedDocs);
-    alert(`${uploadedDocs.length} files ready to send!`);
+    alert(`${uploadedDocs.length} files sent successfully!`);
+    setShowConfirmModal(false);
+  };
+
+  const handleCancelSend = () => {
+    setShowConfirmModal(false);
   };
 
   return (
