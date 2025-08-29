@@ -1583,12 +1583,12 @@ Google India"
 
                       {/* Action Buttons */}
                       <div className="flex items-center justify-between px-2 py-1.5 border-t border-gray-200 bg-gray-50 rounded-b-lg">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                           <Button
                             onClick={handleSaveAsDraft}
-                            className="bg-yellow-500 hover:bg-yellow-600 text-white h-7 px-4 text-xs font-medium"
+                            className="bg-yellow-500 hover:bg-yellow-600 text-white h-6 px-3 text-xs font-medium"
                           >
-                            SAVE DRAFT
+                            DRAFT
                           </Button>
                           <Button
                             onClick={handleSendEmail}
