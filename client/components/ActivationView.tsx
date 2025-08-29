@@ -273,7 +273,7 @@ export default function ActivationView() {
             </div>
             <Button
               onClick={() => navigate("/candidate-documents-repository")}
-              className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-6 py-2"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium px-6 py-2"
             >
               CANDIDATE DOCUMENTS REPOSITORY
             </Button>
