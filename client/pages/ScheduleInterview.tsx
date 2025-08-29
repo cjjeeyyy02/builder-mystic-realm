@@ -63,17 +63,17 @@ export default function ScheduleInterview() {
         <div className="bg-white rounded-lg shadow-md p-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Left Section - Date & Time Selection */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Date Selection */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <Button className="bg-gray-200 text-gray-800 text-sm px-4 py-2 font-medium">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Button className="bg-gray-200 text-gray-800 text-xs px-3 py-1 font-medium h-7">
                     SELECT DATE SLOT HERE
                   </Button>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Select>
-                    <SelectTrigger className="w-32 h-9 text-sm">
+                    <SelectTrigger className="w-28 h-7 text-xs">
                       <SelectValue placeholder="AUGUST" />
                     </SelectTrigger>
                     <SelectContent>
@@ -83,7 +83,7 @@ export default function ScheduleInterview() {
                     </SelectContent>
                   </Select>
                   <Select>
-                    <SelectTrigger className="w-24 h-9 text-sm">
+                    <SelectTrigger className="w-20 h-7 text-xs">
                       <SelectValue placeholder="2025" />
                     </SelectTrigger>
                     <SelectContent>
@@ -92,12 +92,12 @@ export default function ScheduleInterview() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   {[16, 17, 18, 19, 20, 21].map((date) => (
                     <Button
                       key={date}
                       onClick={() => setSelectedDate(date)}
-                      className={`w-12 h-12 text-sm font-semibold rounded-lg transition-all ${
+                      className={`w-8 h-8 text-xs font-semibold rounded-md transition-all ${
                         selectedDate === date
                           ? "bg-purple-700 text-white shadow-lg"
                           : "bg-purple-600 hover:bg-purple-700 text-white"
@@ -106,20 +106,20 @@ export default function ScheduleInterview() {
                       {date}
                     </Button>
                   ))}
-                  <Button className="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-lg">
-                    <ArrowRight className="w-4 h-4" />
+                  <Button className="w-8 h-8 bg-green-500 hover:bg-green-600 text-white rounded-md">
+                    <ArrowRight className="w-3 h-3" />
                   </Button>
                 </div>
               </div>
 
               {/* Time Selection */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <Button className="bg-gray-200 text-gray-800 text-sm px-4 py-2 font-medium">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Button className="bg-gray-200 text-gray-800 text-xs px-3 py-1 font-medium h-7">
                     SELECT TIME SLOT HERE
                   </Button>
                   <Select>
-                    <SelectTrigger className="w-32 h-9 text-sm">
+                    <SelectTrigger className="w-28 h-7 text-xs">
                       <SelectValue placeholder="TIME ZONES" />
                     </SelectTrigger>
                     <SelectContent>
@@ -129,7 +129,7 @@ export default function ScheduleInterview() {
                     </SelectContent>
                   </Select>
                   <Select>
-                    <SelectTrigger className="w-20 h-9 text-sm">
+                    <SelectTrigger className="w-16 h-7 text-xs">
                       <SelectValue placeholder="AM" />
                     </SelectTrigger>
                     <SelectContent>
