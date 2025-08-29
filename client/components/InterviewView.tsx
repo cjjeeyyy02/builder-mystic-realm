@@ -1344,7 +1344,7 @@ Google India`
               {/* Left Sidebar - Email Tabs */}
               <div className="w-20 border-r bg-gray-50 flex flex-col">
                 <Button
-                  className={`h-10 text-xs font-medium rounded-none border-b ${
+                  className={`h-7 text-xs font-medium rounded-none border-b ${
                     activeEmailTab === "inbox" || activeEmailTab === ""
                       ? "bg-black text-white"
                       : "bg-transparent text-gray-600 hover:bg-gray-100"
