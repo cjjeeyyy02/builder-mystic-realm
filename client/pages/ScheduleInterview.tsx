@@ -131,13 +131,12 @@ export default function ScheduleInterview() {
                 </div>
                 
                 {/* Time Slots Grid */}
-                <div className="grid grid-cols-6 gap-1.5">
+                <div className="grid grid-cols-5 gap-2">
                   {[
-                    '5:00 AM', '5:15 AM', '5:30 AM', '5:45 AM', '6:00 AM', '6:15 AM',
-                    '6:30 AM', '6:45 AM', '7:00 AM', '7:15 AM', '7:30 AM', '7:45 AM',
-                    '8:00 AM', '8:15 AM', '8:30 AM', '8:45 AM', '9:00 AM', '9:15 AM',
-                    '9:30 AM', '9:45 AM', '10:00 AM', '10:15 AM', '10:30 AM', '10:45 AM',
-                    '11:00 AM', '11:15 AM', '11:30 AM', '11:45 AM', '12:00 PM', '12:15 PM'
+                    '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM',
+                    '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM',
+                    '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM',
+                    '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM'
                   ].map((time, index) => {
                     const isBooked = bookedSlots.includes(time);
                     const isSelected = selectedTime === time;
@@ -148,12 +147,12 @@ export default function ScheduleInterview() {
                         onClick={() => !isBooked && setSelectedTime(time)}
                         variant="outline"
                         disabled={isBooked}
-                        className={`h-6 text-xs px-1 transition-all ${
+                        className={`h-9 text-sm px-3 transition-all border ${
                           isBooked
-                            ? "border-red-500 bg-red-100 text-red-700 cursor-not-allowed opacity-75"
+                            ? "border-red-200 bg-red-50 text-red-600 cursor-not-allowed opacity-60"
                             : isSelected
-                            ? "border-green-500 bg-green-50 text-green-700 font-semibold"
-                            : "border-green-300 text-green-700 hover:bg-green-50"
+                            ? "border-blue-500 bg-blue-500 text-white hover:bg-blue-600"
+                            : "border-gray-300 text-gray-700 hover:border-blue-300 hover:bg-blue-50"
                         }`}
                       >
                         {time}
