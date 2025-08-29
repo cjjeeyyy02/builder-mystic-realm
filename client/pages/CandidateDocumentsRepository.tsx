@@ -19,6 +19,7 @@ interface DocumentSection {
 
 export default function CandidateDocumentsRepository() {
   const navigate = useNavigate();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [documents, setDocuments] = useState<DocumentSection[]>([
     { id: "offer-letter", title: "Signed Offer Letter", uploaded: false },
     { id: "address-proofs", title: "Address Proofs", uploaded: false },
