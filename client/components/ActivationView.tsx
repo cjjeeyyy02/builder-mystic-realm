@@ -47,6 +47,7 @@ const employeeData: Employee[] = [
 ];
 
 export default function ActivationView() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
