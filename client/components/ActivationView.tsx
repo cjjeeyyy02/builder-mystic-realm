@@ -201,7 +201,7 @@ export default function ActivationView() {
                     </TableCell>
                     <TableCell className="px-3 py-2">
                       <Button
-                        className="h-6 w-6 p-0 bg-black hover:bg-gray-800 text-white"
+                        className="h-6 w-6 p-0 bg-emerald-500 hover:bg-emerald-600 text-white"
                         title="Send Email"
                       >
                         <Mail className="w-3 h-3" />
