@@ -260,12 +260,17 @@ export default function ActivationView() {
           </div>
 
           {/* Bottom Action Buttons */}
-          <div className="flex items-center justify-center gap-4 pt-4">
-            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
-              SAVE CHECKLIST
-            </Button>
-            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
-              EDIT CHECKLIST
+          <div className="flex items-center justify-between pt-4">
+            <div className="flex items-center gap-4">
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+                SAVE CHECKLIST
+              </Button>
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+                EDIT CHECKLIST
+              </Button>
+            </div>
+            <Button className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-6 py-2">
+              CANDIDATE DOCUMENTS REPOSITORY
             </Button>
           </div>
         </div>
