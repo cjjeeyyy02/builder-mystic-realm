@@ -1150,7 +1150,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1172,7 +1172,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1194,7 +1194,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1216,7 +1216,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1238,7 +1238,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1260,7 +1260,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1282,7 +1282,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1304,7 +1304,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
@@ -1326,7 +1326,7 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-black hover:bg-gray-800 text-white font-medium px-2 py-1 text-xs h-6">
+                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
                             EMAIL
                           </Button>
                         </TableCell>
