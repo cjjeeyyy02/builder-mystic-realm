@@ -1454,7 +1454,7 @@ export default function FilterTabs() {
                         <Button
                           onClick={startSync}
                           disabled={selectedSources.length === 0}
-                          className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                          className="bg-blue-500 hover:bg-blue-600 text-white"
                         >
                           <Download className="w-4 h-4 mr-2" />
                           Start Sync ({selectedSources.length} sources)
