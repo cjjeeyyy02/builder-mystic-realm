@@ -343,10 +343,10 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 </div>
 
                 {/* Details Grid */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   {/* Work Type */}
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Type:</div>
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Type:</div>
                     <Badge
                       variant="secondary"
                       className={`text-xs ${getDepartmentColor(candidate.workType)}`}
@@ -357,8 +357,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                   {/* Applied Date */}
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Applied:</div>
-                    <div className="flex items-center gap-2 text-foreground text-sm">
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Applied:</div>
+                    <div className="flex items-center gap-1 text-foreground text-xs">
                       <Calendar className="w-3 h-3 text-muted-foreground" />
                       {candidate.appliedDate}
                     </div>
@@ -366,8 +366,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                   {/* Application Start */}
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Start:</div>
-                    <div className="flex items-center gap-2 text-foreground text-sm">
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Start:</div>
+                    <div className="flex items-center gap-1 text-foreground text-xs">
                       <Clock className="w-3 h-3 text-muted-foreground" />
                       {candidate.applicationStart}
                     </div>
@@ -375,8 +375,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                   {/* Application Close */}
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Close:</div>
-                    <div className="flex items-center gap-2 text-foreground text-sm">
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Close:</div>
+                    <div className="flex items-center gap-1 text-foreground text-xs">
                       <Clock className="w-3 h-3 text-muted-foreground" />
                       {candidate.applicationEnd}
                     </div>
@@ -384,8 +384,8 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
                   {/* Location */}
                   <div className="col-span-2">
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Location:</div>
-                    <div className="flex items-center gap-2 text-foreground text-sm">
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Location:</div>
+                    <div className="flex items-center gap-1 text-foreground text-xs">
                       <MapPin className="w-3 h-3 text-muted-foreground" />
                       {candidate.companyLocation}
                     </div>
