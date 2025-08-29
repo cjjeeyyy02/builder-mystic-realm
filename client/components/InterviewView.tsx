@@ -1502,21 +1502,21 @@ Google India`
                       </div>
                       <Button
                         onClick={handleComposeEmail}
-                        className="bg-gray-800 hover:bg-gray-900 text-white h-8 px-4 text-xs font-medium"
+                        className="bg-gray-800 hover:bg-gray-900 text-white h-6 px-3 text-xs font-medium"
                       >
-                        COMPOSE EMAIL
+                        COMPOSE
                       </Button>
                     </div>
 
                     {/* Template Selection */}
-                    <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
+                    <div className="px-3 py-2 bg-gray-50 border-b border-gray-200">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-7 px-3 text-xs font-medium border-gray-300 bg-white"
+                        className="h-6 px-2 text-xs font-medium border-gray-300 bg-white"
                       >
                         <ArrowLeft className="w-3 h-3 mr-1" />
-                        NEUTRAL TEMPLATE 1
+                        TEMPLATE 1
                         <ArrowRight className="w-3 h-3 ml-1" />
                       </Button>
                     </div>
