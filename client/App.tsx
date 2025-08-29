@@ -24,6 +24,7 @@ import Performance from "./pages/Performance";
 import MediaResources from "./pages/MediaResources";
 import Payroll from "./pages/Payroll";
 import Offboarding from "./pages/Offboarding";
+import ScheduleInterview from "./pages/ScheduleInterview";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
