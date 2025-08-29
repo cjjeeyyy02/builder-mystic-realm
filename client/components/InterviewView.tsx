@@ -1600,7 +1600,7 @@ Google India"
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-9 w-9 p-0 rounded-full border-gray-300 hover:bg-gray-50"
+                          className="h-7 w-7 p-0 rounded-full border-gray-300 hover:bg-gray-50"
                         >
                           <span className="text-blue-600">���</span>
                         </Button>
