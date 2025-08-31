@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Eye, Download, Trash2, Plus, Search, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useDarkMode } from "@/components/DarkModeProvider";
 
 interface ChecklistItem {
   id: string;
@@ -48,6 +49,7 @@ const employeeData: Employee[] = [
 
 export default function ActivationView() {
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -63,33 +65,59 @@ export default function ActivationView() {
 
     return (
       <div className="flex items-center gap-2">
-        <div className="w-24 bg-gray-200 rounded-full h-2">
+        <div className={`w-24 rounded-full h-2 transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-600' : 'bg-gray-200'
+        }`}>
           <div
             className={`h-2 rounded-full transition-all duration-300 ${getProgressColor()}`}
             style={{ width: `${progress}%` }}
           ></div>
         </div>
-        <span className="text-xs font-medium text-gray-700">{progress}%</span>
+        <span className={`text-xs font-medium transition-colors duration-300 ${
+          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>{progress}%</span>
       </div>
     );
   };
 
   return (
-    <div className="space-y-3">
+    <div className={`space-y-3 transition-colors duration-300 ${
+      isDarkMode ? 'text-white' : 'text-gray-900'
+    }`}>
       {/* Header Tabs and Controls */}
-      <div className="flex items-center justify-between bg-white border-b border-gray-200 pb-2">
+      <div className={`flex items-center justify-between border-b pb-2 transition-colors duration-300 ${
+        isDarkMode
+          ? 'bg-gray-800 border-gray-700'
+          : 'bg-white border-gray-200'
+      }`}>
         <div className="flex items-center gap-1">
           <Button
             variant={activeTab === "checklist-builder" ? "default" : "outline"}
             onClick={() => setActiveTab("checklist-builder")}
-            className="h-7 text-xs px-3 font-medium"
+            className={`h-7 text-xs px-3 font-medium transition-colors duration-300 ${
+              activeTab === "checklist-builder"
+                ? isDarkMode
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                  : 'bg-gray-900 text-white hover:bg-gray-800'
+                : isDarkMode
+                  ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
           >
             CHECKLIST BUILDER
           </Button>
           <Button
             variant={activeTab === "activation-room" ? "default" : "outline"}
             onClick={() => setActiveTab("activation-room")}
-            className="h-7 text-xs px-3 font-medium"
+            className={`h-7 text-xs px-3 font-medium transition-colors duration-300 ${
+              activeTab === "activation-room"
+                ? isDarkMode
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                  : 'bg-gray-900 text-white hover:bg-gray-800'
+                : isDarkMode
+                  ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
           >
             ACTIVATION ROOM
           </Button>
@@ -98,17 +126,27 @@ export default function ActivationView() {
         {activeTab === "activation-room" ? (
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Search className={`absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-500' : 'text-gray-400'
+              }`} />
               <Input
                 placeholder="SEARCH CANDIDATES"
                 value={searchCandidates}
                 onChange={(e) => setSearchCandidates(e.target.value)}
-                className="w-48 h-7 text-xs bg-white border border-gray-300 pl-7"
+                className={`w-48 h-7 text-xs border pl-7 transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
               />
             </div>
 
             <Select value={confirmFilter} onValueChange={setConfirmFilter}>
-              <SelectTrigger className="w-20 h-7 text-xs bg-white border border-gray-300">
+              <SelectTrigger className={`w-20 h-7 text-xs border transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-gray-700 border-gray-600 text-white'
+                  : 'bg-white border-gray-300 text-gray-900'
+              }`}>
                 <SelectValue placeholder="CONFIRM" />
               </SelectTrigger>
               <SelectContent>
@@ -118,7 +156,11 @@ export default function ActivationView() {
             </Select>
 
             <Select value={finalDecisionFilter} onValueChange={setFinalDecisionFilter}>
-              <SelectTrigger className="w-32 h-7 text-xs bg-white border border-gray-300">
+              <SelectTrigger className={`w-32 h-7 text-xs border transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-gray-700 border-gray-600 text-white'
+                  : 'bg-white border-gray-300 text-gray-900'
+              }`}>
                 <SelectValue placeholder="FINAL DECISION" />
               </SelectTrigger>
               <SelectContent>
@@ -130,17 +172,27 @@ export default function ActivationView() {
         ) : (
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Search className={`absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-500' : 'text-gray-400'
+              }`} />
               <Input
                 placeholder="SEARCH CANDIDATES"
                 value={searchCandidates}
                 onChange={(e) => setSearchCandidates(e.target.value)}
-                className="w-48 h-7 text-xs bg-white border border-gray-300 pl-7"
+                className={`w-48 h-7 text-xs border pl-7 transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
               />
             </div>
 
             <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className="w-24 h-7 text-xs bg-white border border-gray-300">
+              <SelectTrigger className={`w-24 h-7 text-xs border transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-gray-700 border-gray-600 text-white'
+                  : 'bg-white border-gray-300 text-gray-900'
+              }`}>
                 <SelectValue placeholder="COUNTRY" />
               </SelectTrigger>
               <SelectContent>
@@ -161,30 +213,70 @@ export default function ActivationView() {
       {activeTab === "activation-room" ? (
         <div className="space-y-3">
           {/* Employee Activation Table */}
-          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div className={`border rounded-lg overflow-hidden transition-colors duration-300 ${
+            isDarkMode
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-white border-gray-200'
+          }`}>
             <Table>
               <TableHeader>
-                <TableRow className="bg-gray-50">
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">JOB ID</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">NAME</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">COUNTRY</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">APPLIED JOB ROLE</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">JOINING DATE</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">FILES UPLOADED</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">FINAL DECISION</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-600 px-3 py-2">UPDATE</TableHead>
+                <TableRow className={`transition-colors duration-300 ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
+                }`}>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>JOB ID</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>NAME</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>COUNTRY</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>APPLIED JOB ROLE</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>JOINING DATE</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>FILES UPLOADED</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>ACTIVATION PROGRESS</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>FINAL DECISION</TableHead>
+                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>UPDATE</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {employeeData.map((employee) => (
-                  <TableRow key={employee.jobId} className="border-b border-gray-100 hover:bg-gray-50">
-                    <TableCell className="text-xs font-medium px-3 py-2">{employee.jobId}</TableCell>
-                    <TableCell className="text-xs font-medium px-3 py-2">{employee.name}</TableCell>
-                    <TableCell className="text-xs px-3 py-2">{employee.country}</TableCell>
-                    <TableCell className="text-xs px-3 py-2">{employee.appliedJobRole}</TableCell>
-                    <TableCell className="text-xs px-3 py-2">{employee.joiningDate}</TableCell>
-                    <TableCell className="text-xs px-3 py-2">{employee.filesUploaded}</TableCell>
+                  <TableRow key={employee.jobId} className={`border-b transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'border-gray-700 hover:bg-gray-700/50'
+                      : 'border-gray-100 hover:bg-gray-50'
+                  }`}>
+                    <TableCell className={`text-xs font-medium px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-200' : 'text-gray-900'
+                    }`}>{employee.jobId}</TableCell>
+                    <TableCell className={`text-xs font-medium px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-200' : 'text-gray-900'
+                    }`}>{employee.name}</TableCell>
+                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{employee.country}</TableCell>
+                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{employee.appliedJobRole}</TableCell>
+                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{employee.joiningDate}</TableCell>
+                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{employee.filesUploaded}</TableCell>
                     <TableCell className="px-3 py-2">
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
@@ -216,7 +308,11 @@ export default function ActivationView() {
       ) : (
         <div className="space-y-3">
           {/* Onboarding Checklist Header */}
-          <div className="bg-black text-white text-center py-3">
+          <div className={`text-center py-3 transition-colors duration-300 ${
+            isDarkMode
+              ? 'bg-gray-900 text-white'
+              : 'bg-black text-white'
+          }`}>
             <h1 className="text-sm font-bold tracking-wide">ONBOARDING CHECKLIST</h1>
           </div>
 
@@ -225,7 +321,11 @@ export default function ActivationView() {
             {checklistItems.map((item, index) => (
               <div
                 key={item.id}
-                className="bg-red-600 text-white flex items-center justify-between px-4 py-2 border-b border-red-700"
+                className={`text-white flex items-center justify-between px-4 py-2 border-b transition-colors duration-300 ${
+                  isDarkMode
+                    ? 'bg-red-700 border-red-800'
+                    : 'bg-red-600 border-red-700'
+                }`}
               >
                 <span className="text-xs font-medium">{item.title}</span>
 
@@ -233,7 +333,9 @@ export default function ActivationView() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-6 w-6 p-0 hover:bg-red-700 text-white"
+                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
+                      isDarkMode ? 'hover:bg-red-800' : 'hover:bg-red-700'
+                    }`}
                     title="View"
                   >
                     <Eye className="w-3 h-3" />
@@ -242,7 +344,11 @@ export default function ActivationView() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-6 w-6 p-0 hover:bg-green-600 text-white bg-green-500"
+                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-green-600 hover:bg-green-700'
+                        : 'bg-green-500 hover:bg-green-600'
+                    }`}
                     title="Download"
                   >
                     <Download className="w-3 h-3" />
@@ -251,7 +357,9 @@ export default function ActivationView() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-6 w-6 p-0 hover:bg-red-800 text-white"
+                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
+                      isDarkMode ? 'hover:bg-red-900' : 'hover:bg-red-800'
+                    }`}
                     title="Delete"
                   >
                     <Trash2 className="w-3 h-3" />
@@ -264,10 +372,18 @@ export default function ActivationView() {
           {/* Bottom Action Buttons */}
           <div className="flex items-center justify-between pt-4">
             <div className="flex items-center gap-4">
-              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+              <Button className={`text-xs font-medium px-6 py-2 transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
+                  : 'bg-yellow-500 hover:bg-yellow-600 text-black'
+              }`}>
                 SAVE CHECKLIST
               </Button>
-              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs font-medium px-6 py-2">
+              <Button className={`text-xs font-medium px-6 py-2 transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
+                  : 'bg-yellow-500 hover:bg-yellow-600 text-black'
+              }`}>
                 EDIT CHECKLIST
               </Button>
             </div>
