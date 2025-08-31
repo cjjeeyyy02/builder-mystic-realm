@@ -1965,13 +1965,13 @@ Google India"
               {/* Enhanced Left Sidebar - Email Templates */}
               <div className={`${emailSidebarCollapsed ? 'w-14' : 'w-84'} border-r border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col transition-all duration-500 ease-in-out`}>
                 {/* Premium Header with Toggle */}
-                <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50 shadow-md flex items-center justify-between">
+                <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50 shadow-md flex items-center justify-between">
                   <div className={`${emailSidebarCollapsed ? 'hidden' : 'block'}`}>
                     <div className="flex items-center gap-2 mb-1">
-                      <Mail className="w-5 h-5 text-green-600" />
-                      <h3 className="font-bold text-gray-800 text-lg">Email Templates</h3>
+                      <Mail className="w-4 h-4 text-green-600" />
+                      <h3 className="font-semibold text-gray-800 text-base">Email Templates</h3>
                     </div>
-                    <p className="text-sm text-gray-600 ml-7">Professional Interview Communications</p>
+                    <p className="text-xs text-gray-600 ml-6">Professional Interview Communications</p>
                   </div>
                   <Button
                     variant="ghost"
@@ -1989,8 +1989,8 @@ Google India"
 
                 {/* Enhanced Template Navigation */}
                 {!emailSidebarCollapsed && (
-                  <div className="p-6 border-b border-gray-200 bg-white">
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                  <div className="p-4 border-b border-gray-200 bg-white">
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                       <div className="flex items-center justify-center gap-4">
                         <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300">
                           <ArrowLeft className="w-3 h-3 text-green-600" />
