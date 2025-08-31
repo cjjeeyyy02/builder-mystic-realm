@@ -348,7 +348,11 @@ export default function EForum() {
   };
 
   const PostCard = ({ post }: { post: any }) => (
-    <Card className="bg-white/80 backdrop-blur-sm border border-gray-100 hover:shadow-lg hover:scale-[1.01] transition-all duration-300 mb-4">
+    <Card className={`backdrop-blur-sm hover:shadow-lg hover:scale-[1.01] transition-all duration-300 mb-4 ${
+      isDarkMode
+        ? 'bg-gray-800/80 border-gray-700'
+        : 'bg-white/80 border-gray-100'
+    }`}>
       <CardContent className="p-5">
         <div className="flex items-start space-x-4">
           <div
@@ -361,7 +365,9 @@ export default function EForum() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-3">
-                <h4 className="text-base font-semibold text-gray-900">
+                <h4 className={`text-base font-semibold transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>
                   {post.author}
                 </h4>
                 {post.isHot && (
@@ -372,23 +378,41 @@ export default function EForum() {
               </div>
             </div>
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-sm text-blue-600 font-medium">
+              <span className={`text-sm font-medium transition-colors duration-300 ${
+                isDarkMode ? 'text-emerald-400' : 'text-blue-600'
+              }`}>
                 {post.department}
               </span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm text-gray-500">{post.timestamp}</span>
+              <span className={`transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-500' : 'text-gray-300'
+              }`}>•</span>
+              <span className={`text-sm transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-400' : 'text-gray-500'
+              }`}>{post.timestamp}</span>
             </div>
-            <p className="text-gray-700 mb-5 leading-relaxed text-sm">
+            <p className={`mb-5 leading-relaxed text-sm transition-colors duration-300 ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
               {post.content}
             </p>
 
-            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+            <div className={`flex items-center justify-between pt-4 border-t transition-colors duration-300 ${
+              isDarkMode ? 'border-gray-700' : 'border-gray-50'
+            }`}>
               <div className="flex items-center space-x-6">
                 <button
                   onClick={() => handleHeart(post.id)}
-                  className="flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-all duration-200 hover:bg-red-50 px-2 py-1 rounded-lg"
+                  className={`flex items-center space-x-2 transition-all duration-200 px-2 py-1 rounded-lg ${
+                    isDarkMode
+                      ? 'text-gray-400 hover:text-red-400 hover:bg-red-900/20'
+                      : 'text-gray-500 hover:text-red-500 hover:bg-red-50'
+                  }`}
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-red-50 to-red-100 rounded-full flex items-center justify-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-red-900/30 to-red-800/30'
+                      : 'bg-gradient-to-br from-red-50 to-red-100'
+                  }`}>
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -403,14 +427,24 @@ export default function EForum() {
                       />
                     </svg>
                   </div>
-                  <span className="text-sm font-medium">{post.hearts}</span>
+                  <span className={`text-sm font-medium transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>{post.hearts}</span>
                 </button>
 
                 <button
                   onClick={() => handleComment(post.id)}
-                  className="flex items-center space-x-2 text-gray-500 hover:text-emerald-500 transition-all duration-200 hover:bg-emerald-50 px-2 py-1 rounded-lg"
+                  className={`flex items-center space-x-2 transition-all duration-200 px-2 py-1 rounded-lg ${
+                    isDarkMode
+                      ? 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-900/20'
+                      : 'text-gray-500 hover:text-emerald-500 hover:bg-emerald-50'
+                  }`}
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-emerald-900/30 to-emerald-800/30'
+                      : 'bg-gradient-to-br from-emerald-50 to-emerald-100'
+                  }`}>
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -425,14 +459,24 @@ export default function EForum() {
                       />
                     </svg>
                   </div>
-                  <span className="text-sm font-medium">{post.comments}</span>
+                  <span className={`text-sm font-medium transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>{post.comments}</span>
                 </button>
 
                 <button
                   onClick={() => handleShare(post.id)}
-                  className="flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-all duration-200 hover:bg-green-50 px-2 py-1 rounded-lg"
+                  className={`flex items-center space-x-2 transition-all duration-200 px-2 py-1 rounded-lg ${
+                    isDarkMode
+                      ? 'text-gray-400 hover:text-green-400 hover:bg-green-900/20'
+                      : 'text-gray-500 hover:text-green-500 hover:bg-green-50'
+                  }`}
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-green-900/30 to-green-800/30'
+                      : 'bg-gradient-to-br from-green-50 to-green-100'
+                  }`}>
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -447,11 +491,17 @@ export default function EForum() {
                       />
                     </svg>
                   </div>
-                  <span className="text-sm font-medium">{post.shares}</span>
+                  <span className={`text-sm font-medium transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>{post.shares}</span>
                 </button>
               </div>
 
-              <div className="text-sm text-gray-400 flex items-center space-x-1 bg-gray-50 px-3 py-1 rounded-full">
+              <div className={`text-sm flex items-center space-x-1 px-3 py-1 rounded-full transition-colors duration-300 ${
+                isDarkMode
+                  ? 'text-gray-400 bg-gray-700/50'
+                  : 'text-gray-400 bg-gray-50'
+              }`}>
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -483,10 +533,18 @@ export default function EForum() {
   return (
     <>
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-emerald-50/30 to-emerald-100/20">
+        <div className={`min-h-screen transition-colors duration-300 ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900'
+            : 'bg-gradient-to-br from-emerald-50 via-emerald-50/30 to-emerald-100/20'
+        }`}>
           {/* Header */}
           <div
-            className={`bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 shadow-sm transition-all duration-300 ${
+            className={`backdrop-blur-sm border-b px-4 py-3 shadow-sm transition-all duration-300 ${
+              isDarkMode
+                ? 'bg-gray-800/90 border-gray-700'
+                : 'bg-white/90 border-gray-100'
+            } ${
               headerCollapsed
                 ? "transform -translate-y-full opacity-0"
                 : "transform translate-y-0 opacity-100"
@@ -499,9 +557,9 @@ export default function EForum() {
                   onClick={() => navigate("/dashboard")}
                   variant="ghost"
                   size="sm"
-                  className={`text-xs hover:bg-white/80 transition-colors duration-200 ${
+                  className={`text-xs transition-colors duration-200 ${
                     isDarkMode
-                      ? 'text-emerald-300 hover:text-emerald-900 hover:bg-white/90'
+                      ? 'text-emerald-300 hover:text-emerald-200 hover:bg-gray-700/80'
                       : 'text-emerald-700 hover:text-emerald-900 hover:bg-white/80'
                   }`}
                 >
@@ -525,16 +583,26 @@ export default function EForum() {
               {/* Main Header Section */}
               <div className="flex items-center justify-between mb-2">
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <h1 className={`text-2xl font-bold transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'text-white'
+                      : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                  }`}>
                     E-Forum
                   </h1>
-                  <p className="text-gray-600 text-sm mt-1">
+                  <p className={`text-sm mt-1 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
                     Connect, collaborate, and share knowledge with your team
                   </p>
                 </div>
                 <Button
                   onClick={handleNewPost}
-                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-1.5 text-sm rounded-lg shadow-sm"
+                  className={`px-4 py-1.5 text-sm rounded-lg shadow-sm transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                      : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white'
+                  }`}
                 >
                   <svg
                     className="w-4 h-4 mr-2"
@@ -573,8 +641,12 @@ export default function EForum() {
 
                 {loading && (
                   <div className="flex justify-center items-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                    <span className="ml-3 text-gray-600">
+                    <div className={`animate-spin rounded-full h-8 w-8 border-b-2 ${
+                      isDarkMode ? 'border-emerald-500' : 'border-blue-500'
+                    }`}></div>
+                    <span className={`ml-3 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
                       Loading more posts...
                     </span>
                   </div>
