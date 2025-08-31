@@ -57,7 +57,7 @@ export default function StatsCards() {
   const { isDarkMode } = useDarkMode();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 mb-5">
       {stats.map((stat) => {
         const Icon = stat.icon;
 
@@ -70,16 +70,16 @@ export default function StatsCards() {
                 : "bg-white border-gray-200 hover:shadow-md"
             }`}
           >
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className={`p-2 rounded-lg ${
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className={`p-1.5 rounded-md ${
                   isDarkMode ? "bg-blue-600" : "bg-blue-500"
                 }`}>
-                  <Icon className="w-4 h-4 text-white" />
+                  <Icon className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3 text-green-500" />
-                  <span className={`text-xs font-medium ${
+                  <TrendingUp className="w-2.5 h-2.5 text-green-500" />
+                  <span className={`text-[10px] font-medium ${
                     isDarkMode ? 'text-green-400' : 'text-green-600'
                   }`}>
                     {stat.change}
@@ -88,17 +88,17 @@ export default function StatsCards() {
               </div>
 
               <div>
-                <h3 className={`text-sm font-medium mb-1 ${
+                <h3 className={`text-xs font-medium mb-0.5 ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}>
                   {stat.title}
                 </h3>
-                <p className={`text-2xl font-bold mb-2 ${
+                <p className={`text-lg font-bold mb-1.5 ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
                 }`}>
                   {stat.value}
                 </p>
-                <p className={`text-xs ${
+                <p className={`text-[10px] ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-500'
                 }`}>
                   {stat.description}
