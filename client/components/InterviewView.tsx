@@ -59,7 +59,8 @@ import {
   Copy,
   ArrowLeft,
   ArrowRight,
-  Check
+  Check,
+  Share2
 } from "lucide-react";
 
 interface InterviewCandidate {
@@ -2157,19 +2158,12 @@ Google India"
 
                     {/* Enhanced Action Buttons */}
                     <div className="flex items-center justify-between pt-8 border-t-2 border-gray-200">
-                      <Button
-                        onClick={() => setShowRoundsEmailInterface(false)}
-                        variant="outline"
-                        className="h-12 px-8 text-sm font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl shadow-sm"
-                      >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Close Editor
-                      </Button>
+                      {/* Left side - Save Draft and Send buttons */}
                       <div className="flex items-center gap-4">
                         <Button
                           onClick={handleSaveAsDraft}
                           variant="outline"
-                          className="h-12 px-8 text-sm font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl shadow-sm"
+                          className="h-12 px-8 text-sm font-semibold border-2 border-green-600 hover:border-green-700 hover:bg-green-50 text-green-700 rounded-xl shadow-sm"
                         >
                           <FileText className="w-4 h-4 mr-2" />
                           Save Draft
@@ -2180,6 +2174,21 @@ Google India"
                         >
                           <Send className="w-4 h-4 mr-2" />
                           Send Email
+                        </Button>
+                      </div>
+
+                      {/* Right side - Share button */}
+                      <div className="flex items-center gap-4">
+                        <Button
+                          onClick={() => {
+                            console.log('Sharing email template or content');
+                            // Handle share functionality here
+                          }}
+                          variant="outline"
+                          className="h-12 px-8 text-sm font-semibold border-2 border-blue-600 hover:border-blue-700 hover:bg-blue-50 text-blue-700 rounded-xl shadow-sm"
+                        >
+                          <Share2 className="w-4 h-4 mr-2" />
+                          Share
                         </Button>
                       </div>
                     </div>
