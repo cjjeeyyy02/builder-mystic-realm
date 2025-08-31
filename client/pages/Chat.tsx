@@ -923,8 +923,8 @@ export default function Chat() {
                   {/* Show Team Groups for ALL and TEAMS tabs */}
                   {(activeTab === "ALL" || activeTab === "TEAMS") && (
                     <div className="p-1">
-                      <h3 className={`px-1 py-1 text-xs font-medium ${
-                        isDarkMode ? 'text-emerald-300' : 'text-emerald-800'
+                      <h3 className={`px-1 py-1 text-xs font-medium transition-colors duration-300 ${
+                        isDarkMode ? 'text-emerald-200' : 'text-emerald-800'
                       }`}>
                         Team Groups
                       </h3>
@@ -963,8 +963,8 @@ export default function Chat() {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center justify-between">
-                                    <h4 className={`font-medium truncate flex items-center text-xs ${
-                                      isDarkMode ? 'text-white' : 'text-gray-900'
+                                    <h4 className={`font-medium truncate flex items-center text-xs transition-colors duration-300 ${
+                                      isDarkMode ? 'text-gray-100' : 'text-gray-900'
                                     }`}>
                                       {group.name}
                                       {groupMutedStatus[group.id] && (
@@ -976,7 +976,9 @@ export default function Chat() {
                                     </h4>
                                   </div>
                                   <div className="flex items-center justify-between">
-                                    <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
+                                    <p className={`text-xs transition-colors duration-300 ${
+                                      isDarkMode ? 'text-emerald-300' : 'text-emerald-700'
+                                    }`}>
                                       {group.type} • {group.members} Members
                                     </p>
                                     <Button
@@ -1034,10 +1036,14 @@ export default function Chat() {
                             )}
                           </div>
                           <div>
-                            <h3 className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            <h3 className={`text-sm font-semibold transition-colors duration-300 ${
+                              isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                            }`}>
                               {isGroupChat ? selectedGroup?.name : selectedContact?.name}
                             </h3>
-                            <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
+                            <p className={`text-xs transition-colors duration-300 ${
+                              isDarkMode ? 'text-emerald-300' : 'text-emerald-700'
+                            }`}>
                               {isGroupChat
                                 ? `${selectedGroup?.members} Members • ${selectedGroup?.type} Group`
                                 : `${selectedContact?.role} • ${selectedContact?.status === 'online' ? 'Active now' : selectedContact?.time}`
@@ -1295,19 +1301,19 @@ export default function Chat() {
                   <div className="flex-1 overflow-y-auto p-2 space-y-2 messages-container">
                     {(chatMessages[selectedChat as keyof typeof chatMessages] || []).map((msg) => (
                       <div key={msg.id} className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-xs px-2 py-1.5 rounded-lg shadow-sm ${
-                          msg.isOwn
-                            ? 'bg-emerald-600 text-white'
-                            : isDarkMode
-                              ? 'bg-emerald-700 text-white'
-                              : 'bg-white text-gray-900 border border-emerald-200'
-                        }`}>
+                        <div className={`max-w-xs px-2 py-1.5 rounded-lg shadow-sm transition-colors duration-300 ${
+                        msg.isOwn
+                          ? 'bg-emerald-600 text-white'
+                          : isDarkMode
+                            ? 'bg-gray-700 text-gray-100'
+                            : 'bg-white text-gray-900 border border-emerald-200'
+                      }`}>
                           <p className="text-xs leading-relaxed">{msg.message}</p>
-                          <p className={`text-xs mt-1 ${
+                          <p className={`text-xs mt-1 transition-colors duration-300 ${
                             msg.isOwn
                               ? 'text-emerald-100'
                               : isDarkMode
-                                ? 'text-emerald-300'
+                                ? 'text-gray-400'
                                 : 'text-emerald-600'
                           }`}>
                             {msg.time}
@@ -1382,10 +1388,14 @@ export default function Chat() {
                         />
                       </svg>
                     </div>
-                    <h3 className={`text-sm font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`text-sm font-semibold mb-1 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                    }`}>
                       Welcome to Chat Center
                     </h3>
-                    <p className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
+                    <p className={`text-xs transition-colors duration-300 ${
+                      isDarkMode ? 'text-emerald-300' : 'text-emerald-700'
+                    }`}>
                       Select a conversation to start messaging
                     </p>
                   </div>
