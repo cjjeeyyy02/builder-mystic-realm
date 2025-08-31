@@ -1976,13 +1976,13 @@ Google India"
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 hover:text-green-700 flex-shrink-0 transition-all duration-300 border border-gray-200"
+                    className="h-7 w-7 p-0 rounded-lg hover:bg-green-100 hover:text-green-700 flex-shrink-0 transition-all duration-200 border border-gray-300"
                     onClick={() => setEmailSidebarCollapsed(!emailSidebarCollapsed)}
                   >
                     {emailSidebarCollapsed ? (
-                      <ArrowRight className="w-4 h-4 text-gray-600" />
+                      <ArrowRight className="w-3 h-3 text-gray-600" />
                     ) : (
-                      <ArrowLeft className="w-4 h-4 text-gray-600" />
+                      <ArrowLeft className="w-3 h-3 text-gray-600" />
                     )}
                   </Button>
                 </div>
@@ -1992,14 +1992,14 @@ Google India"
                   <div className="p-6 border-b border-gray-200 bg-white">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
                       <div className="flex items-center justify-center gap-4">
-                        <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 border border-green-200">
-                          <ArrowLeft className="w-4 h-4 text-green-600" />
+                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300">
+                          <ArrowLeft className="w-3 h-3 text-green-600" />
                         </Button>
-                        <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-green-300">
-                          <span className="text-sm font-semibold text-green-800">NEUTRAL TEMPLATE</span>
+                        <div className="bg-white rounded-md px-3 py-1 shadow-sm border border-green-300">
+                          <span className="text-xs font-medium text-green-800">NEUTRAL TEMPLATE</span>
                         </div>
-                        <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-green-100 border border-green-200">
-                          <ArrowRight className="w-4 h-4 text-green-600" />
+                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300">
+                          <ArrowRight className="w-3 h-3 text-green-600" />
                         </Button>
                       </div>
                     </div>
@@ -2012,28 +2012,28 @@ Google India"
                 {/* Premium Top Navigation Bar */}
                 <div className="flex items-center justify-between px-8 py-5 border-b border-gray-200 bg-gradient-to-r from-white via-gray-50 to-white shadow-sm">
                   <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 border border-green-200">
-                      <Mail className="w-5 h-5 text-green-600" />
+                    <div className="p-1.5 rounded-lg bg-gradient-to-br from-green-100 to-emerald-100 border border-green-200">
+                      <Mail className="w-4 h-4 text-green-600" />
                     </div>
                     <Input
                       placeholder="Search your emails..."
-                      className="w-96 h-11 text-sm border-gray-300 rounded-xl shadow-sm focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white"
+                      className="w-80 h-9 text-sm border-gray-300 rounded-lg shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500/20 bg-white"
                       value={emailSearch}
                       onChange={(e) => setEmailSearch(e.target.value)}
                     />
                   </div>
                   <div className="flex items-center gap-5">
-                    <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-lg">1-50 of 1,263 emails</span>
-                    <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-xl p-1 shadow-sm">
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gray-600 hover:bg-gray-100 rounded-lg">
-                        <ArrowLeft className="w-4 h-4" />
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-md">1-50 of 1,263 emails</span>
+                    <div className="flex items-center gap-1 bg-white border border-gray-300 rounded-lg p-0.5 shadow-sm">
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md">
+                        <ArrowLeft className="w-3 h-3" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gray-600 hover:bg-gray-100 rounded-lg">
-                        <ArrowRight className="w-4 h-4" />
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md">
+                        <ArrowRight className="w-3 h-3" />
                       </Button>
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md">
-                      <span className="text-white text-sm font-bold">HR</span>
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md">
+                      <span className="text-white text-xs font-bold">HR</span>
                     </div>
                   </div>
                 </div>
@@ -2157,22 +2157,22 @@ Google India"
                     </div>
 
                     {/* Enhanced Action Buttons */}
-                    <div className="flex items-center justify-between pt-8 border-t-2 border-gray-200">
+                    <div className="flex items-center justify-between pt-6 border-t border-gray-200">
                       {/* Left side - Save Draft and Send buttons */}
                       <div className="flex items-center gap-4">
                         <Button
                           onClick={handleSaveAsDraft}
                           variant="outline"
-                          className="h-12 px-8 text-sm font-semibold border-2 border-green-600 hover:border-green-700 hover:bg-green-50 text-green-700 rounded-xl shadow-sm"
+                          className="h-9 px-6 text-sm font-medium border border-green-600 hover:border-green-700 hover:bg-green-50 text-green-700 rounded-lg shadow-sm"
                         >
-                          <FileText className="w-4 h-4 mr-2" />
+                          <FileText className="w-3 h-3 mr-2" />
                           Save Draft
                         </Button>
                         <Button
                           onClick={handleSendEmail}
-                          className="h-12 px-10 text-sm font-bold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-xl rounded-xl transform hover:scale-105 transition-all duration-300"
+                          className="h-9 px-8 text-sm font-semibold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg rounded-lg transition-all duration-200"
                         >
-                          <Send className="w-4 h-4 mr-2" />
+                          <Send className="w-3 h-3 mr-2" />
                           Send Email
                         </Button>
                       </div>
@@ -2185,9 +2185,9 @@ Google India"
                             // Handle share functionality here
                           }}
                           variant="outline"
-                          className="h-12 px-8 text-sm font-semibold border-2 border-blue-600 hover:border-blue-700 hover:bg-blue-50 text-blue-700 rounded-xl shadow-sm"
+                          className="h-9 px-6 text-sm font-medium border border-blue-600 hover:border-blue-700 hover:bg-blue-50 text-blue-700 rounded-lg shadow-sm"
                         >
-                          <Share2 className="w-4 h-4 mr-2" />
+                          <Share2 className="w-3 h-3 mr-2" />
                           Share
                         </Button>
                       </div>
