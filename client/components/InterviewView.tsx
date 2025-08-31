@@ -2041,36 +2041,36 @@ Google India"
                 {/* White Email Navigation Buttons - Inbox, Sent, Spam */}
                 <div className="flex items-center gap-3 px-8 py-4 border-b border-gray-200 bg-white">
                   <Button
-                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                    className={`h-8 px-4 text-xs font-medium rounded-md transition-all duration-200 shadow-sm ${
                       activeEmailTab === "inbox"
-                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                        ? "bg-green-600 text-white shadow-md border border-green-700"
+                        : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50 hover:text-gray-800"
                     }`}
                     onClick={() => setActiveEmailTab("inbox")}
                   >
-                    <Mail className="w-4 h-4 mr-2" />
+                    <Mail className="w-3 h-3 mr-1" />
                     INBOX
                   </Button>
                   <Button
-                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                    className={`h-8 px-4 text-xs font-medium rounded-md transition-all duration-200 shadow-sm ${
                       activeEmailTab === "sent"
-                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                        ? "bg-green-600 text-white shadow-md border border-green-700"
+                        : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50 hover:text-gray-800"
                     }`}
                     onClick={() => setActiveEmailTab("sent")}
                   >
-                    <Send className="w-4 h-4 mr-2" />
+                    <Send className="w-3 h-3 mr-1" />
                     SENT
                   </Button>
                   <Button
-                    className={`h-10 px-6 text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm ${
+                    className={`h-8 px-4 text-xs font-medium rounded-md transition-all duration-200 shadow-sm ${
                       activeEmailTab === "spam"
-                        ? "bg-green-600 text-white shadow-lg border-2 border-green-700"
-                        : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                        ? "bg-green-600 text-white shadow-md border border-green-700"
+                        : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50 hover:text-gray-800"
                     }`}
                     onClick={() => setActiveEmailTab("spam")}
                   >
-                    <AlertTriangle className="w-4 h-4 mr-2" />
+                    <AlertTriangle className="w-3 h-3 mr-1" />
                     SPAM
                   </Button>
                 </div>
@@ -2104,7 +2104,7 @@ Google India"
                       <Input
                         value={emailForm.to}
                         onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
-                        className="flex-1 h-12 border-2 border-gray-300 focus:border-green-500 focus:ring-4 focus:ring-green-500/20 bg-white rounded-xl text-sm shadow-sm"
+                        className="flex-1 h-9 border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white rounded-lg text-sm shadow-sm"
                         placeholder="Enter recipient email address..."
                       />
                     </div>
@@ -2118,7 +2118,7 @@ Google India"
                       <Input
                         value={emailForm.subject}
                         onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
-                        className="flex-1 h-12 border-2 border-gray-300 focus:border-green-500 focus:ring-4 focus:ring-green-500/20 bg-white rounded-xl text-sm shadow-sm"
+                        className="flex-1 h-9 border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white rounded-lg text-sm shadow-sm"
                         placeholder="Enter email subject line..."
                       />
                     </div>
@@ -2140,7 +2140,7 @@ Google India"
                           {isEditingMessage ? 'Preview' : 'Edit'}
                         </Button>
                       </div>
-                      <div className="bg-white rounded-xl border-2 border-gray-300 focus-within:border-green-500 focus-within:ring-4 focus-within:ring-green-500/20 shadow-lg overflow-hidden">
+                      <div className="bg-white rounded-lg border border-gray-300 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-500/20 shadow-md overflow-hidden">
                         {isEditingMessage ? (
                           <Textarea
                             value={emailForm.message}
