@@ -5,9 +5,9 @@ import FilterTabs from "@/components/FilterTabs";
 export default function Index() {
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-5">
         {/* Page Title */}
-        <h1 className="text-3xl font-medium">Onboarding</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Onboarding</h1>
 
         {/* Stats Cards */}
         <StatsCards />
