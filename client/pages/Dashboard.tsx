@@ -468,12 +468,12 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div>
-                          <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+                          <h3 className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-300' : 'text-gray-700'
                           }`}>
                             Pending Onboarding
                           </h3>
-                          <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
+                          <p className={`text-lg font-bold mb-1 transition-colors duration-300 ${
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>
                             10
@@ -483,14 +483,14 @@ export default function Dashboard() {
                               <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
-                              <span className={`text-xs font-medium transition-colors duration-300 ${
+                              <span className={`text-[10px] font-medium transition-colors duration-300 ${
                                 isDarkMode ? 'text-gray-400' : 'text-gray-700'
                               }`}>
                                 +4 next week
                               </span>
                             </div>
                           </div>
-                          <p className={`text-xs mt-1 transition-colors duration-300 ${
+                          <p className={`text-[10px] mt-0.5 transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-600'
                           }`}>
                             Awaiting onboarding
