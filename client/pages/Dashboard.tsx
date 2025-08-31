@@ -1900,9 +1900,13 @@ export default function Dashboard() {
                     isDarkMode ? 'border-gray-600' : 'border-gray-100'
                   }`}>
                     <div className="flex items-start gap-2 flex-1">
-                      <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                        isDarkMode ? 'bg-gray-600' : 'bg-gray-200'
+                      }`}>
                         <svg
-                          className="w-3 h-3 text-gray-700"
+                          className={`w-3 h-3 transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1945,9 +1949,13 @@ export default function Dashboard() {
                     isDarkMode ? 'border-gray-600' : 'border-gray-100'
                   }`}>
                     <div className="flex items-start gap-2 flex-1">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                        isDarkMode ? 'bg-green-800/50' : 'bg-green-100'
+                      }`}>
                         <svg
-                          className="w-3 h-3 text-gray-600"
+                          className={`w-3 h-3 transition-colors duration-300 ${
+                            isDarkMode ? 'text-green-300' : 'text-gray-600'
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1967,24 +1975,36 @@ export default function Dashboard() {
                           Sarah Johnson Completed AI Assessment
                         </p>
                         <div className="flex items-center gap-1.5">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700">
+                          <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-medium transition-colors duration-300 ${
+                            isDarkMode ? 'bg-green-900/30 text-green-300' : 'bg-green-50 text-green-700'
+                          }`}>
                             Assessment
                           </span>
-                          <span className="text-xs text-gray-500">HR</span>
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>HR</span>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">
+                    <span className={`text-xs flex-shrink-0 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                    }`}>
                       1 hour ago
                     </span>
                   </div>
 
                   {/* Activity Item 3 */}
-                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                  <div className={`flex items-start justify-between gap-2 py-2 border-b last:border-b-0 transition-colors duration-300 ${
+                    isDarkMode ? 'border-gray-600' : 'border-gray-100'
+                  }`}>
                     <div className="flex items-start gap-2 flex-1">
-                      <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                        isDarkMode ? 'bg-purple-800/50' : 'bg-purple-100'
+                      }`}>
                         <svg
-                          className="w-3 h-3 text-gray-600"
+                          className={`w-3 h-3 transition-colors duration-300 ${
+                            isDarkMode ? 'text-purple-300' : 'text-gray-600'
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1998,28 +2018,42 @@ export default function Dashboard() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-900 mb-0.5">
+                        <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Q2 Performance reviews completed for engineering team
                         </p>
                         <div className="flex items-center gap-1.5">
-                          <span className="inline-flex items-center rounded-md bg-purple-50 px-1.5 py-0.5 text-xs font-medium text-purple-700">
+                          <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-medium transition-colors duration-300 ${
+                            isDarkMode ? 'bg-purple-900/30 text-purple-300' : 'bg-purple-50 text-purple-700'
+                          }`}>
                             Review
                           </span>
-                          <span className="text-xs text-gray-500">HR</span>
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>HR</span>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">
+                    <span className={`text-xs flex-shrink-0 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                    }`}>
                       1 day ago
                     </span>
                   </div>
 
                   {/* Activity Item 4 */}
-                  <div className="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-b-0">
+                  <div className={`flex items-start justify-between gap-2 py-2 border-b last:border-b-0 transition-colors duration-300 ${
+                    isDarkMode ? 'border-gray-600' : 'border-gray-100'
+                  }`}>
                     <div className="flex items-start gap-2 flex-1">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                        isDarkMode ? 'bg-green-800/50' : 'bg-green-100'
+                      }`}>
                         <svg
-                          className="w-3 h-3 text-gray-600"
+                          className={`w-3 h-3 transition-colors duration-300 ${
+                            isDarkMode ? 'text-green-300' : 'text-gray-600'
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -2033,19 +2067,27 @@ export default function Dashboard() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-900 mb-0.5">
+                        <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>
                           Monthly payroll process successfully for 1245
                           employees
                         </p>
                         <div className="flex items-center gap-1.5">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700">
+                          <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-medium transition-colors duration-300 ${
+                            isDarkMode ? 'bg-green-900/30 text-green-300' : 'bg-green-50 text-green-700'
+                          }`}>
                             Payroll
                           </span>
-                          <span className="text-xs text-gray-500">HR</span>
+                          <span className={`text-xs transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>HR</span>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">
+                    <span className={`text-xs flex-shrink-0 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                    }`}>
                       2 days ago
                     </span>
                   </div>
