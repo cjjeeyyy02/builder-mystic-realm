@@ -176,14 +176,14 @@ export default function FooterNavigation({
                     }
                     ${
                       isActive
-                        ? `${
+                        ? `transition-all duration-300 ${
                             isDarkMode
-                              ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                              ? "bg-emerald-600 text-white shadow-lg shadow-emerald-500/25"
                               : "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
                           } transform ${shouldMinimize ? "scale-100" : "scale-105"}`
-                        : `${
+                        : `transition-all duration-300 ${
                             isDarkMode
-                              ? "text-gray-300 hover:text-white hover:bg-gray-800"
+                              ? "text-gray-400 hover:text-gray-100 hover:bg-gray-700/80"
                               : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                           } hover:scale-105 active:scale-95`
                     }
@@ -193,7 +193,9 @@ export default function FooterNavigation({
                 >
                   {/* Active Indicator */}
                   {isActive && !shouldMinimize && (
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-white rounded-full opacity-90" />
+                    <div className={`absolute -top-1 left-1/2 transform -translate-x-1/2 w-8 h-1 rounded-full opacity-90 transition-colors duration-300 ${
+                      isDarkMode ? 'bg-emerald-300' : 'bg-white'
+                    }`} />
                   )}
 
                   {/* Icon Container */}
@@ -220,7 +222,9 @@ export default function FooterNavigation({
 
                     {/* Badge for notifications (example for chat) */}
                     {item.path === "/chat" && (
-                      <div className={`absolute -top-1 -right-1 bg-red-500 rounded-full border-2 border-white flex items-center justify-center ${
+                      <div className={`absolute -top-1 -right-1 bg-red-500 rounded-full border-2 flex items-center justify-center transition-colors duration-300 ${
+                        isDarkMode ? 'border-gray-800' : 'border-white'
+                      } ${
                         shouldMinimize || isMinimizedItem ? "w-2 h-2" : "w-3 h-3"
                       }`}>
                         {!shouldMinimize && !isMinimizedItem && (
@@ -231,7 +235,9 @@ export default function FooterNavigation({
 
                     {/* Badge for reminders */}
                     {item.path === "/reminders" && (
-                      <div className={`absolute -top-1 -right-1 bg-yellow-500 rounded-full border-2 border-white ${
+                      <div className={`absolute -top-1 -right-1 bg-yellow-500 rounded-full border-2 transition-colors duration-300 ${
+                        isDarkMode ? 'border-gray-800' : 'border-white'
+                      } ${
                         shouldMinimize || isMinimizedItem ? "w-2 h-2" : "w-3 h-3"
                       }`}></div>
                     )}
@@ -245,14 +251,14 @@ export default function FooterNavigation({
                         ? "text-[7px] sm:text-[8px] font-normal"
                         : "text-[9px] sm:text-[10px] font-medium"
                       } leading-tight truncate max-w-full
-                      transition-all duration-200
+                      transition-all duration-300
                       ${
                         isActive
                           ? "text-white opacity-100 font-semibold"
-                          : `opacity-85 group-hover:opacity-100 ${
+                          : `opacity-90 group-hover:opacity-100 ${
                               isDarkMode
-                                ? "group-hover:text-white"
-                                : "group-hover:text-gray-900"
+                                ? "text-gray-300 group-hover:text-gray-100"
+                                : "text-gray-600 group-hover:text-gray-900"
                             }`
                       }
                     `}
@@ -286,7 +292,7 @@ export default function FooterNavigation({
           <div
             className={`
             w-12 h-1 rounded-full transition-colors duration-300
-            ${isDarkMode ? "bg-gray-600" : "bg-gray-400"}
+            ${isDarkMode ? "bg-gray-600/80" : "bg-gray-400"}
           `}
           />
         </div>
