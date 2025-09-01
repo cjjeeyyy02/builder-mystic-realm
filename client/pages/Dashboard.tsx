@@ -462,8 +462,8 @@ export default function Dashboard() {
                     {/* Pending Onboarding */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -522,8 +522,8 @@ export default function Dashboard() {
                     {/* On Probation */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -588,8 +588,8 @@ export default function Dashboard() {
                     {/* Offboarding */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -654,8 +654,8 @@ export default function Dashboard() {
                     {/* Completed Tasks */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
