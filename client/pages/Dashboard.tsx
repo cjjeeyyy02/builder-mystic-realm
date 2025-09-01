@@ -489,7 +489,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Pending Onboarding
                           </h3>
