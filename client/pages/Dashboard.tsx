@@ -214,7 +214,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -280,7 +280,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -346,7 +346,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -408,7 +408,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -472,7 +472,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -532,7 +532,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -598,7 +598,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -664,7 +664,7 @@ export default function Dashboard() {
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
-                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                                isDarkMode ? 'text-white' : 'text-white'
                               }`}
                               fill="none"
                               stroke="currentColor"
