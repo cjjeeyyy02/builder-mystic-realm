@@ -920,7 +920,7 @@ export default function Dashboard() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Employee Growth Trends
                         </h3>
