@@ -1023,13 +1023,13 @@ export default function Dashboard() {
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-0.5 bg-gray-600 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-200' : 'text-white'
+                        isDarkMode ? 'text-gray-200' : 'text-gray-700'
                       }`}>New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-0.5 bg-gray-400 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-200' : 'text-white'
+                        isDarkMode ? 'text-gray-200' : 'text-gray-700'
                       }`}>Exit</span>
                     </div>
                   </div>
