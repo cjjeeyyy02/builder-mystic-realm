@@ -1151,27 +1151,27 @@ export default function Dashboard() {
                       <div className="absolute bottom-0 left-0 w-full flex justify-between items-end h-6">
                         {isGrowthExpanded ? (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jan</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jul</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Aug</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Sep</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Oct</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Nov</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Dec</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jul</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Aug</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Sep</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Oct</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Nov</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Dec</span>
                           </>
                         ) : (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jan</span>
                           </>
                         )}
                       </div>
