@@ -213,7 +213,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -277,7 +279,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -341,7 +345,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -401,7 +407,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -463,7 +471,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -521,7 +531,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -585,7 +597,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -649,7 +663,9 @@ export default function Dashboard() {
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
                           }`}>
                             <svg
-                              className="w-3 h-3 text-white"
+                              className={`w-3 h-3 ${
+                                isDarkMode ? 'text-white' : 'text-emerald-700'
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -2120,7 +2136,7 @@ export default function Dashboard() {
                         : 'text-gray-700 hover:text-blue-700'
                     }`}
                   >
-                    View All Activities ��
+                    View All Activities →
                   </Button>
                 </div>
               </CardContent>
