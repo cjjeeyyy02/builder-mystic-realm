@@ -242,7 +242,7 @@ export default function Dashboard() {
                             Total Employees
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             1,247
                           </p>
@@ -308,7 +308,7 @@ export default function Dashboard() {
                             Active Candidates
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             24
                           </p>
@@ -370,7 +370,7 @@ export default function Dashboard() {
                             Average Performance
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             4.5/5
                           </p>
@@ -436,7 +436,7 @@ export default function Dashboard() {
                             Pending Tasks
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             18
                           </p>
@@ -560,7 +560,7 @@ export default function Dashboard() {
                             On Probation
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             15
                           </p>
@@ -626,7 +626,7 @@ export default function Dashboard() {
                             Offboarding
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             5
                           </p>
@@ -686,7 +686,7 @@ export default function Dashboard() {
                             Completed Tasks
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             142
                           </p>
