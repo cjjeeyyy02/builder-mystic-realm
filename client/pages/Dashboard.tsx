@@ -333,7 +333,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-800 rounded">
+                          <div className="p-1 bg-emerald-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -391,7 +391,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-900 rounded">
+                          <div className="p-1 bg-emerald-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -569,7 +569,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-800 rounded">
+                          <div className="p-1 bg-emerald-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -631,7 +631,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-900 rounded">
+                          <div className="p-1 bg-emerald-700 rounded">
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
