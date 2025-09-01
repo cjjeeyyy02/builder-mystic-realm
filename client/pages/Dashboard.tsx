@@ -504,7 +504,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-[10px] font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +4 next week
                               </span>
