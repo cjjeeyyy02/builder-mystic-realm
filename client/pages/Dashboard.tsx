@@ -273,7 +273,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -335,7 +337,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -393,7 +397,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -511,7 +517,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -573,7 +581,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -635,7 +645,9 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1 bg-emerald-700 rounded">
+                          <div className={`p-1 rounded ${
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                          }`}>
                             <svg
                               className="w-3 h-3 text-white"
                               fill="none"
@@ -2108,7 +2120,7 @@ export default function Dashboard() {
                         : 'text-gray-700 hover:text-blue-700'
                     }`}
                   >
-                    View All Activities →
+                    View All Activities ��
                   </Button>
                 </div>
               </CardContent>
@@ -2346,7 +2358,7 @@ export default function Dashboard() {
                           <span className={`text-xs transition-colors duration-300 ${
                             isDarkMode ? 'text-gray-400' : 'text-gray-500'
                           }`}>
-                            Engineering ��� 3h ago
+                            Engineering • 3h ago
                           </span>
                         </div>
                         <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
