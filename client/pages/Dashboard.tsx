@@ -175,7 +175,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? 'text-white' : 'text-white'
               }`}>
                 EMS Dashboard
               </h1>
@@ -233,12 +233,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Total Employees
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             1,247
                           </p>
@@ -248,14 +248,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +30 this month
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Active workspace size
                           </p>
@@ -295,12 +295,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Active Candidates
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             24
                           </p>
@@ -310,14 +310,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +3 this week
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             New hires and candidates
                           </p>
@@ -353,12 +353,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Average Performance
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             4.5/5
                           </p>
@@ -368,14 +368,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +0.3 improvement
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Overall team performance
                           </p>
@@ -415,24 +415,24 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Pending Tasks
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             18
                           </p>
                           <div className="flex items-center justify-between">
                             <span className={`text-xs font-medium transition-colors duration-300 ${
-                              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                              isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                             }`}>
                               5 from last week
                             </span>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Outstanding hiring tasks
                           </p>
@@ -469,12 +469,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Pending Onboarding
                           </h3>
                           <p className={`text-lg font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             10
                           </p>
@@ -484,14 +484,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-[10px] font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-700'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +4 next week
                               </span>
                             </div>
                           </div>
                           <p className={`text-[10px] mt-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Awaiting onboarding
                           </p>
@@ -531,12 +531,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             On Probation
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             15
                           </p>
@@ -546,14 +546,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 3 ending soon
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Probationary employees
                           </p>
@@ -593,12 +593,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Offboarding
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             5
                           </p>
@@ -608,14 +608,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 7l-5 5-5-5m10 10l-5 5-5-5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 -3 next week
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Exit in progress
                           </p>
@@ -649,12 +649,12 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}>
                             Completed Tasks
                           </h3>
                           <p className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             142
                           </p>
@@ -664,14 +664,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                               }`}>
                                 +12 today
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Successfully completed
                           </p>
@@ -888,7 +888,7 @@ export default function Dashboard() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Employee Growth Trends
                         </h3>
@@ -991,13 +991,13 @@ export default function Dashboard() {
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-0.5 bg-gray-600 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        isDarkMode ? 'text-gray-200' : 'text-white'
                       }`}>New Hires</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-0.5 bg-gray-400 rounded"></div>
                       <span className={`text-xs transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                        isDarkMode ? 'text-gray-200' : 'text-white'
                       }`}>Exit</span>
                     </div>
                   </div>
@@ -1119,27 +1119,27 @@ export default function Dashboard() {
                       <div className="absolute bottom-0 left-0 w-full flex justify-between items-end h-6">
                         {isGrowthExpanded ? (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Jan</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Jul</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Sep</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Oct</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Nov</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dec</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jul</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Aug</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Sep</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Oct</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Nov</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Dec</span>
                           </>
                         ) : (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-emerald-100'}`}>Jan</span>
                           </>
                         )}
                       </div>
@@ -1158,7 +1158,7 @@ export default function Dashboard() {
                   <CardContent className="p-6">
                     <div className="mb-3">
                       <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-gray-900'
+                        isDarkMode ? 'text-white' : 'text-white'
                       }`}>
                         Department Distribution
                       </h3>
@@ -1249,31 +1249,31 @@ export default function Dashboard() {
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          isDarkMode ? 'text-gray-200' : 'text-white'
                         }`}>Engineering</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          isDarkMode ? 'text-gray-200' : 'text-white'
                         }`}>Finance</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          isDarkMode ? 'text-gray-200' : 'text-white'
                         }`}>HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          isDarkMode ? 'text-gray-200' : 'text-white'
                         }`}>Sales</span>
                       </div>
                       <div className="flex items-center gap-1.5 col-span-2 justify-center">
                         <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          isDarkMode ? 'text-gray-200' : 'text-white'
                         }`}>Marketing</span>
                       </div>
                     </div>
@@ -1292,7 +1292,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-gray-900'
+                      isDarkMode ? 'text-white' : 'text-white'
                     }`}>
                       Company Events
                     </h3>
@@ -1333,7 +1333,7 @@ export default function Dashboard() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Tech Summer 2024
                         </h4>
@@ -1350,7 +1350,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                       }`}>
                         Join us for the biggest Tech event discussing innovative
                         and industry insights
@@ -1446,7 +1446,7 @@ export default function Dashboard() {
                     <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Team Building and Innovation Workshop
                         </h4>
@@ -1463,7 +1463,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                       }`}>
                         Collaboration Workshop focusing on innovation
                         methodologies and Team dynamics
@@ -1557,7 +1557,7 @@ export default function Dashboard() {
                     <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Holiday Celebration and Award Night
                         </h4>
@@ -1574,7 +1574,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                       }`}>
                         Annual Celebration and Award ceremony, dinner and
                         entertainment
@@ -1680,7 +1680,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <h3 className={`text-lg font-bold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           {getMonthName(currentDate)}
                         </h3>
@@ -1729,7 +1729,7 @@ export default function Dashboard() {
                       <div className="grid grid-cols-7 gap-1">
                         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                           <div key={day} className={`text-center text-xs font-medium py-2 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             {day}
                           </div>
@@ -1793,10 +1793,10 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className={`text-sm font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>Annual Marketing Summit</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             <span>June 12, 9:00 AM</span>
                             <span>New York, NY</span>
@@ -1820,10 +1820,10 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className={`text-sm font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>Networking Mixer</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             <span>June 20, 6:00 PM</span>
                             <span>Downtown</span>
@@ -1847,10 +1847,10 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className={`text-sm font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>Data Science Conference</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             <span>July 3, 10:00 AM</span>
                             <span>Chicago, IL</span>
@@ -1883,7 +1883,7 @@ export default function Dashboard() {
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className={`text-sm font-semibold mb-0.5 transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
+                    isDarkMode ? 'text-white' : 'text-white'
                   }`}>
                     Recent Activities
                   </h3>
@@ -1905,7 +1905,7 @@ export default function Dashboard() {
                       }`}>
                         <svg
                           className={`w-3 h-3 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-white'
                           }`}
                           fill="none"
                           stroke="currentColor"
@@ -1921,7 +1921,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           New Candidate John Doe joined the HR Department
                         </p>
@@ -1970,7 +1970,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Sarah Johnson Completed AI Assessment
                         </p>
@@ -2019,7 +2019,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Q2 Performance reviews completed for engineering team
                         </p>
@@ -2068,7 +2068,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-gray-900'
+                          isDarkMode ? 'text-white' : 'text-white'
                         }`}>
                           Monthly payroll process successfully for 1245
                           employees
@@ -2119,7 +2119,7 @@ export default function Dashboard() {
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
+                    isDarkMode ? 'text-white' : 'text-white'
                   }`}>
                     Latest E-Forum
                   </h3>
@@ -2145,7 +2145,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className={`text-xs font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             Sarah Jhonson
                           </h4>
@@ -2240,7 +2240,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className={`text-xs font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             Mike Johnson
                           </h4>
@@ -2335,7 +2335,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className={`text-xs font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             John Davis
                           </h4>
@@ -2396,7 +2396,7 @@ export default function Dashboard() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className={`text-xs font-semibold transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             Emily Smith
                           </h4>
@@ -2698,7 +2698,7 @@ export default function Dashboard() {
           }`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className={`text-lg font-semibold transition-colors duration-300 ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? 'text-white' : 'text-white'
               }`}>
                 Add Event
               </h3>
@@ -2736,7 +2736,7 @@ export default function Dashboard() {
             <div className="space-y-4">
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  isDarkMode ? 'text-gray-200' : 'text-white'
                 }`}>
                   Event Title *
                 </label>
@@ -2755,7 +2755,7 @@ export default function Dashboard() {
 
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  isDarkMode ? 'text-gray-200' : 'text-white'
                 }`}>
                   Time
                 </label>
@@ -2773,7 +2773,7 @@ export default function Dashboard() {
 
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  isDarkMode ? 'text-gray-200' : 'text-white'
                 }`}>
                   Description
                 </label>
