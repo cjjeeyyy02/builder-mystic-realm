@@ -248,7 +248,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 +30 this month
                               </span>
@@ -310,7 +310,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 +3 this week
                               </span>
@@ -368,7 +368,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 +0.3 improvement
                               </span>
@@ -484,7 +484,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-[10px] font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 +4 next week
                               </span>
@@ -546,7 +546,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 3 ending soon
                               </span>
@@ -608,7 +608,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 7l-5 5-5-5m10 10l-5 5-5-5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 -3 next week
                               </span>
@@ -664,7 +664,7 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-gray-300' : 'text-emerald-600'
                               }`}>
                                 +12 today
                               </span>
