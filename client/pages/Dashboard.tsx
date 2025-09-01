@@ -511,7 +511,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-[10px] mt-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Awaiting onboarding
                           </p>
