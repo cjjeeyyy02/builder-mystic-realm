@@ -276,7 +276,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
@@ -342,7 +342,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
@@ -404,7 +404,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
@@ -528,7 +528,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
@@ -594,7 +594,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
@@ -660,7 +660,7 @@ export default function Dashboard() {
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-100'
+                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
                               className={`w-3 h-3 ${
