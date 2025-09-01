@@ -1365,7 +1365,7 @@ export default function Dashboard() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Tech Summer 2024
                         </h4>
@@ -1382,7 +1382,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
                       }`}>
                         Join us for the biggest Tech event discussing innovative
                         and industry insights
@@ -1478,7 +1478,7 @@ export default function Dashboard() {
                     <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Team Building and Innovation Workshop
                         </h4>
@@ -1495,7 +1495,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
                       }`}>
                         Collaboration Workshop focusing on innovation
                         methodologies and Team dynamics
@@ -1589,7 +1589,7 @@ export default function Dashboard() {
                     <div className="pr-4">
                       <div className="flex items-center gap-2 mb-2">
                         <h4 className={`text-sm font-semibold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Holiday Celebration and Award Night
                         </h4>
@@ -1606,7 +1606,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
                       }`}>
                         Annual Celebration and Award ceremony, dinner and
                         entertainment
@@ -1712,7 +1712,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <h3 className={`text-lg font-bold transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           {getMonthName(currentDate)}
                         </h3>
@@ -1915,7 +1915,7 @@ export default function Dashboard() {
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className={`text-sm font-semibold mb-0.5 transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-white'
+                    isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Recent Activities
                   </h3>
@@ -1953,7 +1953,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           New Candidate John Doe joined the HR Department
                         </p>
@@ -2002,7 +2002,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Sarah Johnson Completed AI Assessment
                         </p>
@@ -2051,7 +2051,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Q2 Performance reviews completed for engineering team
                         </p>
@@ -2100,7 +2100,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className={`text-xs font-medium mb-0.5 transition-colors duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-white'
+                          isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Monthly payroll process successfully for 1245
                           employees
@@ -2151,7 +2151,7 @@ export default function Dashboard() {
               <CardContent className="p-4">
                 <div className="mb-3">
                   <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-white'
+                    isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Latest E-Forum
                   </h3>
