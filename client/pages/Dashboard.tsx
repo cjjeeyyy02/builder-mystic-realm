@@ -1281,31 +1281,31 @@ export default function Dashboard() {
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-200' : 'text-white'
+                          isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Engineering</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-200' : 'text-white'
+                          isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Finance</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-200' : 'text-white'
+                          isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-200' : 'text-white'
+                          isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Sales</span>
                       </div>
                       <div className="flex items-center gap-1.5 col-span-2 justify-center">
                         <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-200' : 'text-white'
+                          isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Marketing</span>
                       </div>
                     </div>
