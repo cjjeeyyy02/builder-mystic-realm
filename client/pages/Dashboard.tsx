@@ -1190,7 +1190,7 @@ export default function Dashboard() {
                   <CardContent className="p-6">
                     <div className="mb-3">
                       <h3 className={`text-base font-semibold transition-colors duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-white'
+                        isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}>
                         Department Distribution
                       </h3>
