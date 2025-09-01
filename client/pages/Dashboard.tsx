@@ -237,7 +237,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Total Employees
                           </h3>
@@ -303,7 +303,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Active Candidates
                           </h3>
@@ -365,7 +365,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Average Performance
                           </h3>
@@ -431,7 +431,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Pending Tasks
                           </h3>
@@ -555,7 +555,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             On Probation
                           </h3>
@@ -621,7 +621,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Offboarding
                           </h3>
@@ -681,7 +681,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-200'
                           }`}>
                             Completed Tasks
                           </h3>
