@@ -175,7 +175,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
-                isDarkMode ? 'text-white' : 'text-white'
+                isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
                 EMS Dashboard
               </h1>
