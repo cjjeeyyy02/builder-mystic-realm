@@ -205,7 +205,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -267,7 +267,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -329,7 +329,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -387,7 +387,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -447,7 +447,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -503,7 +503,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -565,7 +565,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -627,7 +627,7 @@ export default function Dashboard() {
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-white border border-gray-200'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
