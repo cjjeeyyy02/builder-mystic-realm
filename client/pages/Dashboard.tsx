@@ -204,8 +204,8 @@ export default function Dashboard() {
                     {/* Total Employees */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -270,8 +270,8 @@ export default function Dashboard() {
                     {/* Active Candidates */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -336,8 +336,8 @@ export default function Dashboard() {
                     {/* Average Performance */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
@@ -398,8 +398,8 @@ export default function Dashboard() {
                     {/* Pending Tasks */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
-                        ? 'bg-emerald-900/70 border border-emerald-700'
-                        : 'bg-white border border-gray-200'
+                        ? 'bg-emerald-800 border border-emerald-700'
+                        : 'bg-emerald-800 border border-emerald-700'
                     }`}>
                       <CardContent className="p-3">
                         <div className="flex items-start justify-between mb-2">
