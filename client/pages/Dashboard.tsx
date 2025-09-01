@@ -259,7 +259,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Active workspace size
                           </p>
@@ -325,7 +325,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             New hires and candidates
                           </p>
@@ -387,7 +387,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Overall team performance
                           </p>
@@ -448,7 +448,7 @@ export default function Dashboard() {
                             </span>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Outstanding hiring tasks
                           </p>
@@ -577,7 +577,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Probationary employees
                           </p>
@@ -643,7 +643,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Exit in progress
                           </p>
@@ -703,7 +703,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
                           }`}>
                             Successfully completed
                           </p>
