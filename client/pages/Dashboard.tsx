@@ -255,7 +255,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Active workspace size
                           </p>
@@ -317,7 +317,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             New hires and candidates
                           </p>
@@ -375,7 +375,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Overall team performance
                           </p>
@@ -426,13 +426,13 @@ export default function Dashboard() {
                           </p>
                           <div className="flex items-center justify-between">
                             <span className={`text-xs font-medium transition-colors duration-300 ${
-                              isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                              isDarkMode ? 'text-gray-300' : 'text-gray-500'
                             }`}>
                               5 from last week
                             </span>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Outstanding hiring tasks
                           </p>
@@ -491,7 +491,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-[10px] mt-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Awaiting onboarding
                           </p>
@@ -553,7 +553,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Probationary employees
                           </p>
@@ -615,7 +615,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Exit in progress
                           </p>
@@ -671,7 +671,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             Successfully completed
                           </p>
@@ -1729,7 +1729,7 @@ export default function Dashboard() {
                       <div className="grid grid-cols-7 gap-1">
                         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                           <div key={day} className={`text-center text-xs font-medium py-2 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             {day}
                           </div>
@@ -1796,7 +1796,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Annual Marketing Summit</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             <span>June 12, 9:00 AM</span>
                             <span>New York, NY</span>
@@ -1823,7 +1823,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Networking Mixer</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             <span>June 20, 6:00 PM</span>
                             <span>Downtown</span>
@@ -1850,7 +1850,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Data Science Conference</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
                           }`}>
                             <span>July 3, 10:00 AM</span>
                             <span>Chicago, IL</span>
