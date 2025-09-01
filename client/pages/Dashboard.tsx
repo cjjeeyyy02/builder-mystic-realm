@@ -494,7 +494,7 @@ export default function Dashboard() {
                             Pending Onboarding
                           </h3>
                           <p className={`text-lg font-bold mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
+                            isDarkMode ? 'text-white' : 'text-white'
                           }`}>
                             10
                           </p>
