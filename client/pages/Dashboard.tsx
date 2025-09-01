@@ -233,7 +233,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Total Employees
                           </h3>
@@ -295,7 +295,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Active Candidates
                           </h3>
@@ -353,7 +353,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Average Performance
                           </h3>
@@ -415,7 +415,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Pending Tasks
                           </h3>
@@ -469,7 +469,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Pending Onboarding
                           </h3>
@@ -531,7 +531,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             On Probation
                           </h3>
@@ -593,7 +593,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Offboarding
                           </h3>
@@ -649,7 +649,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className={`text-xs font-medium mb-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}>
                             Completed Tasks
                           </h3>
@@ -1905,7 +1905,7 @@ export default function Dashboard() {
                       }`}>
                         <svg
                           className={`w-3 h-3 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-200' : 'text-white'
+                            isDarkMode ? 'text-gray-200' : 'text-gray-700'
                           }`}
                           fill="none"
                           stroke="currentColor"
