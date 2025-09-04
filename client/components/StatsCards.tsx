@@ -66,21 +66,21 @@ export default function StatsCards() {
             key={stat.title}
             className={`border transition-all duration-200 ${
               isDarkMode
-                ? "bg-gray-800 border-gray-700 hover:bg-gray-750"
-                : "bg-white border-gray-200 hover:shadow-md"
+                ? "bg-emerald-800 border-emerald-700 hover:shadow-md"
+                : "bg-emerald-800 border-emerald-700 hover:shadow-md"
             }`}
           >
             <CardContent className="p-3">
               <div className="flex items-center justify-between mb-2">
                 <div className={`p-1.5 rounded-md ${
-                  isDarkMode ? "bg-blue-600" : "bg-blue-500"
+                  isDarkMode ? "bg-emerald-600" : "bg-emerald-600"
                 }`}>
                   <Icon className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="flex items-center gap-1">
-                  <TrendingUp className="w-2.5 h-2.5 text-green-500" />
+                  <TrendingUp className="w-2.5 h-2.5 text-emerald-300" />
                   <span className={`text-[10px] font-medium ${
-                    isDarkMode ? 'text-green-400' : 'text-green-600'
+                    isDarkMode ? 'text-emerald-200' : 'text-emerald-200'
                   }`}>
                     {stat.change}
                   </span>
@@ -89,17 +89,17 @@ export default function StatsCards() {
 
               <div>
                 <h3 className={`text-xs font-medium mb-0.5 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                 }`}>
                   {stat.title}
                 </h3>
                 <p className={`text-lg font-bold mb-1.5 ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
+                  isDarkMode ? 'text-white' : 'text-white'
                 }`}>
                   {stat.value}
                 </p>
                 <p className={`text-[10px] ${
-                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                  isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                 }`}>
                   {stat.description}
                 </p>
