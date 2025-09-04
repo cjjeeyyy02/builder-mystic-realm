@@ -2506,7 +2506,7 @@ export default function Dashboard() {
           : 'bg-white border-gray-200'
       }`}>
         <div className="max-w-2xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-center gap-6 sm:gap-8">
+          <div className="flex items-center justify-center gap-10 sm:gap-12 md:gap-16">
             {/* Activity Feed */}
             <div className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
               isDarkMode
