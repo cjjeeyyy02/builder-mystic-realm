@@ -1320,7 +1320,7 @@ export default function Dashboard() {
                 ? 'bg-gray-800/50 border border-gray-700'
                 : 'bg-white border border-gray-200'
             }`}>
-              <CardContent className="p-6 mb-1">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
@@ -1905,7 +1905,7 @@ export default function Dashboard() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="col-span-4 space-y-6">
+          <div className="col-span-4 flex flex-col space-y-4">
             {/* Recent Activities */}
             <Card className={`transition-all duration-300 ${
               isDarkMode
@@ -2143,7 +2143,7 @@ export default function Dashboard() {
             </Card>
 
             {/* Latest E-Forum */}
-            <Card className={`transition-all duration-300 ${
+            <Card className={`transition-all duration-300 mt-auto ${
               isDarkMode
                 ? 'bg-gray-800/50 border border-gray-700'
                 : 'bg-white border border-gray-200'
