@@ -7,7 +7,7 @@ export default function Index() {
     <Layout>
       <div className="space-y-5">
         {/* Page Title */}
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Onboarding</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Onboarding</h1>
 
         {/* Stats Cards */}
         <StatsCards />
