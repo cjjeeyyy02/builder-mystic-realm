@@ -2445,15 +2445,15 @@ export default function Dashboard() {
           ? 'bg-gray-800 border-gray-700'
           : 'bg-white border-gray-200'
       }`}>
-        <div className="max-w-2xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-center gap-10 sm:gap-12 md:gap-16">
+        <div className="max-w-xl mx-auto px-3 py-2">
+          <div className="flex items-center justify-center gap-8 sm:gap-10 md:gap-12">
             {/* Activity Feed */}
-            <div className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+            <div className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
               isDarkMode
                 ? 'hover:bg-gray-700/50'
                 : 'hover:bg-gray-50/80'
             }`}>
-              <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
                   className="w-3.5 h-3.5 text-white"
                   fill="none"
@@ -2479,14 +2479,14 @@ export default function Dashboard() {
 
             {/* Chat */}
             <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
                 isDarkMode
                   ? 'hover:bg-gray-700/50'
                   : 'hover:bg-gray-50/80'
               }`}
               onClick={() => navigate("/chat")}
             >
-              <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.298 22 8.695 21.61 7.29 20.907L3.5 21.5C3.224 21.5 3 21.276 3 21V17.21C2.39 15.805 2 14.202 2 12.5C2 6.977 6.477 2.5 12 2.5Z"
@@ -2516,14 +2516,14 @@ export default function Dashboard() {
 
             {/* Files */}
             <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
                 isDarkMode
                   ? 'hover:bg-gray-700/50'
                   : 'hover:bg-gray-50/80'
               }`}
               onClick={() => navigate("/files")}
             >
-              <div className="w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
                   className="w-3.5 h-3.5 text-white"
                   fill="none"
@@ -2549,14 +2549,14 @@ export default function Dashboard() {
 
             {/* Meetings */}
             <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
                 isDarkMode
                   ? 'hover:bg-gray-700/50'
                   : 'hover:bg-gray-50/80'
               }`}
               onClick={() => navigate("/meetings")}
             >
-              <div className="w-6 h-6 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
                   className="w-3.5 h-3.5 text-white"
                   fill="none"
@@ -2582,14 +2582,14 @@ export default function Dashboard() {
 
             {/* Reminders */}
             <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
                 isDarkMode
                   ? 'hover:bg-gray-700/50'
                   : 'hover:bg-gray-50/80'
               }`}
               onClick={() => navigate("/reminders")}
             >
-              <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle
                     cx="12"
@@ -2627,14 +2627,14 @@ export default function Dashboard() {
 
             {/* E-Forum */}
             <div
-              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2.5 rounded-lg ${
+              className={`flex flex-col items-center space-y-1.5 cursor-pointer hover:scale-105 transition-all duration-200 group p-2 rounded-lg ${
                 isDarkMode
                   ? 'hover:bg-gray-700/50'
                   : 'hover:bg-gray-50/80'
               }`}
               onClick={() => navigate("/e-forum")}
             >
-              <div className="w-6 h-6 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-5 h-5 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                 <svg
                   className="w-3.5 h-3.5 text-white"
                   fill="none"
