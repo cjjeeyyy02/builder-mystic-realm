@@ -1905,7 +1905,7 @@ export default function Dashboard() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="col-span-4 flex flex-col space-y-4">
+          <div className="col-span-4 flex flex-col lg:justify-between h-full space-y-4">
             {/* Recent Activities */}
             <Card className={`transition-all duration-300 ${
               isDarkMode
@@ -2143,7 +2143,7 @@ export default function Dashboard() {
             </Card>
 
             {/* Latest E-Forum */}
-            <Card className={`transition-all duration-300 mt-auto ${
+            <Card className={`transition-all duration-300 lg:mt-auto ${
               isDarkMode
                 ? 'bg-gray-800/50 border border-gray-700'
                 : 'bg-white border border-gray-200'
