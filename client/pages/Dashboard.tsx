@@ -919,7 +919,7 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                        <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                           isDarkMode ? 'text-white' : 'text-gray-900'
                         }`}>
                           Employee Growth Trends
@@ -1189,7 +1189,7 @@ export default function Dashboard() {
                 }`}>
                   <CardContent className="p-6">
                     <div className="mb-3">
-                      <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                      <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}>
                         Department Distribution
@@ -1323,7 +1323,7 @@ export default function Dashboard() {
               <CardContent className="p-6 mb-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                    <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
                     }`}>
                       Company Events
@@ -1914,7 +1914,7 @@ export default function Dashboard() {
             }`}>
               <CardContent className="p-4">
                 <div className="mb-3">
-                  <h3 className={`text-sm font-semibold mb-0.5 transition-colors duration-300 ${
+                  <h3 className={`text-sm font-semibold tracking-tight mb-0.5 transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Recent Activities
@@ -2150,7 +2150,7 @@ export default function Dashboard() {
             }`}>
               <CardContent className="p-4">
                 <div className="mb-3">
-                  <h3 className={`text-base font-semibold transition-colors duration-300 ${
+                  <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Latest E-Forum
@@ -2528,7 +2528,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
@@ -2565,7 +2565,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
@@ -2598,7 +2598,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
@@ -2631,7 +2631,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
@@ -2676,7 +2676,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
@@ -2709,7 +2709,7 @@ export default function Dashboard() {
                   />
                 </svg>
               </div>
-              <span className={`text-[10px] font-medium transition-colors ${
+              <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
                   ? 'text-gray-300 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
