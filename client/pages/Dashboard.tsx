@@ -174,7 +174,7 @@ export default function Dashboard() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+              <h1 className={`text-3xl font-bold tracking-tight mb-2 transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
                 EMS Dashboard
@@ -1214,7 +1214,7 @@ export default function Dashboard() {
                             cy="21"
                             r="15.915"
                             fill="transparent"
-                            stroke="#f3f4f6"
+                            stroke={isDarkMode ? '#374151' : '#f3f4f6'}
                             strokeWidth="3"
                           />
                           {/* Engineering - 35% */}
@@ -1279,25 +1279,25 @@ export default function Dashboard() {
                     {/* Legend */}
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-emerald-600 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Engineering</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Finance</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-purple-600 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>HR</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
                         <span className={`transition-colors duration-300 ${
                           isDarkMode ? 'text-gray-200' : 'text-gray-700'
                         }`}>Sales</span>
@@ -2730,7 +2730,7 @@ export default function Dashboard() {
           }`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className={`text-lg font-semibold transition-colors duration-300 ${
-                isDarkMode ? 'text-white' : 'text-white'
+                isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
                 Add Event
               </h3>
@@ -2768,7 +2768,7 @@ export default function Dashboard() {
             <div className="space-y-4">
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-white'
+                  isDarkMode ? 'text-gray-200' : 'text-gray-900'
                 }`}>
                   Event Title *
                 </label>
@@ -2787,7 +2787,7 @@ export default function Dashboard() {
 
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-white'
+                  isDarkMode ? 'text-gray-200' : 'text-gray-900'
                 }`}>
                   Time
                 </label>
@@ -2805,7 +2805,7 @@ export default function Dashboard() {
 
               <div>
                 <label className={`block text-sm font-medium mb-1 transition-colors duration-300 ${
-                  isDarkMode ? 'text-gray-200' : 'text-white'
+                  isDarkMode ? 'text-gray-200' : 'text-gray-900'
                 }`}>
                   Description
                 </label>
