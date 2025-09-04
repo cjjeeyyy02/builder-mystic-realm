@@ -912,7 +912,7 @@ export default function Reminders() {
                               </div>
                             </div>
                             <span
-                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-emerald-700 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
+                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                             >
                               REMINDER
                             </span>
@@ -961,20 +961,16 @@ export default function Reminders() {
                             {/* Compact Badges */}
                             <div className="pt-1">
                               <div className="flex flex-nowrap gap-1 overflow-hidden">
-                                <span className="text-xs px-1.5 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700 whitespace-nowrap">
+                                <span className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}>
                                   {reminder.department}
                                 </span>
                                 <span
-                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${
-                                    reminder.privacy === "Public"
-                                      ? "bg-green-100 text-green-700"
-                                      : "bg-red-100 text-red-700"
-                                  }`}
+                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                 >
                                   {reminder.privacy === "Public" ? "Public" : "Private"}
                                 </span>
                                 <span
-                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium text-white whitespace-nowrap ${getPriorityColor(reminder.priority)}`}
+                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                 >
                                   {reminder.priority}
                                 </span>
@@ -1136,7 +1132,7 @@ export default function Reminders() {
                             </td>
                             <td className="p-4">
                               <span
-                                className={`px-2 py-1 rounded text-xs font-medium text-white ${getPriorityColor(reminder.priority)}`}
+                                className={`px-2 py-1 rounded text-xs font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                               >
                                 {reminder.priority}
                               </span>
@@ -1153,15 +1149,7 @@ export default function Reminders() {
                             </td>
                             <td className="p-4">
                               <span
-                                className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                  reminder.completed
-                                    ? "bg-green-100 text-green-800"
-                                    : reminder.status === "today"
-                                      ? "bg-yellow-100 text-yellow-800"
-                                      : reminder.status === "pending"
-                                        ? "bg-red-100 text-red-800"
-                                        : "bg-blue-100 text-blue-800"
-                                }`}
+                                className={`px-2 py-1 rounded-full text-xs font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                               >
                                 {reminder.completed
                                   ? "Completed"
