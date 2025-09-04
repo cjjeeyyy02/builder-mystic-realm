@@ -1095,7 +1095,7 @@ export default function Files() {
                                   {getFileIconComponent(file.type)}
                                 </div>
                                 <span
-                                  className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                  className={`text-xs px-2 py-1 rounded font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                 >
                                   {file.type}
                                 </span>
@@ -1139,17 +1139,17 @@ export default function Files() {
 
                                 {/* Compact Badges */}
                                 <div className="pt-1">
-                                  <div className="flex flex-nowrap gap-1 overflow-hidden">
-                                    <span className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}>
+                                  <div className="flex flex-nowrap gap-1.5 overflow-hidden">
+                                    <span className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}>
                                       {file.department}
                                     </span>
                                     <span
-                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                      className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                     >
                                       {file.visibility === "Public" ? "Public" : "Private"}
                                     </span>
                                     <span
-                                      className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                      className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                     >
                                       {file.priority}
                                     </span>
