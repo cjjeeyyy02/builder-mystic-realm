@@ -1109,7 +1109,7 @@ Google India`
                     <TableHeader>
                       <TableRow className="bg-muted/30 border-b">
                         <TableHead className="text-center font-medium text-foreground py-2 text-xs">
-                          JOB_ID
+                          JOB ID
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
                           NAME
@@ -1118,16 +1118,16 @@ Google India`
                           COUNTRY
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          APPLIED_JOB_ROLE
+                          APPLIED JOB ROLE
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          CURRENT_ROUND
+                          CURRENT ROUND
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          NEXT_ROUND
+                          NEXT ROUND
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          INTERVIEW_PROGRESS
+                          INTERVIEW PROGRESS
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
                           UPDATE
