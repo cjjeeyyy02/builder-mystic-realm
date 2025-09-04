@@ -1628,7 +1628,7 @@ Google India"
 
                 <Select value={jobRole} onValueChange={setJobRole}>
                   <SelectTrigger className="w-32 h-7 text-xs">
-                    <SelectValue placeholder="JOB_ROLE" />
+                    <SelectValue placeholder="JOB ROLE" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="developer">Developer</SelectItem>
