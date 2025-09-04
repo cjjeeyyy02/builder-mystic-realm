@@ -248,8 +248,8 @@ export default function FooterNavigation({
                     <span
                       className={`
                       ${isMinimizedItem
-                        ? "text-[7px] sm:text-[8px] font-normal"
-                        : "text-[9px] sm:text-[10px] font-medium"
+                        ? "text-[7px] sm:text-[8px] font-normal tracking-tight"
+                        : "text-[9px] sm:text-[10px] font-medium tracking-tight"
                       } leading-tight truncate max-w-full
                       transition-all duration-300
                       ${
