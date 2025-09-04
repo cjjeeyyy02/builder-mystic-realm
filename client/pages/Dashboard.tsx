@@ -164,14 +164,14 @@ export default function Dashboard() {
     <Layout>
       <div
         ref={scrollContainerRef}
-        className={`min-h-screen p-6 overflow-y-auto transition-colors duration-300 ${
+        className={`min-h-screen p-4 overflow-y-auto transition-colors duration-300 ${
           isDarkMode
             ? 'bg-gray-900'
             : 'bg-gray-50'
         }`}
       >
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className={`text-3xl font-bold tracking-tight mb-2 transition-colors duration-300 ${
@@ -189,25 +189,25 @@ export default function Dashboard() {
         </div>
 
         {/* Main Dashboard Grid */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-4">
           {/* Left Column - Main Content */}
-          <div className="col-span-8 space-y-6">
+          <div className="col-span-8 space-y-4">
             {/* Metrics Cards */}
             <div className="relative">
               <div
                 ref={metricsScrollRef}
                 className="overflow-x-auto scrollbar-hide"
               >
-                <div className="flex gap-4 pb-2">
+                <div className="flex gap-3 pb-1">
                   {/* First 4 Cards - Always Visible */}
-                  <div className="grid grid-cols-4 gap-4 flex-shrink-0 w-full">
+                  <div className="grid grid-cols-4 gap-3 flex-shrink-0 w-full">
                     {/* Total Employees */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
                       isDarkMode
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-600'
@@ -273,7 +273,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -339,7 +339,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -401,7 +401,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -458,14 +458,14 @@ export default function Dashboard() {
                   </div>
 
                   {/* Additional Cards - Scrollable */}
-                  <div className="flex gap-4 flex-shrink-0">
+                  <div className="flex gap-3 flex-shrink-0">
                     {/* Pending Onboarding */}
                     <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-600'
@@ -525,7 +525,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -591,7 +591,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -657,7 +657,7 @@ export default function Dashboard() {
                         ? 'bg-emerald-800 border border-emerald-700'
                         : 'bg-emerald-800 border border-emerald-700'
                     }`}>
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className={`p-1 rounded ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
@@ -748,7 +748,7 @@ export default function Dashboard() {
 
                     {/* Card 1 - Total Employees */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -767,7 +767,7 @@ export default function Dashboard() {
 
                     {/* Card 2 - Active Candidates */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -786,7 +786,7 @@ export default function Dashboard() {
 
                     {/* Card 3 - Average Performance */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -805,7 +805,7 @@ export default function Dashboard() {
 
                     {/* Card 4 - Completed Tasks */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -824,7 +824,7 @@ export default function Dashboard() {
 
                     {/* Card 5 - Pending Reviews */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-gray-700 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -843,7 +843,7 @@ export default function Dashboard() {
 
                     {/* Card 6 - Department Goals */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-indigo-500 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -862,7 +862,7 @@ export default function Dashboard() {
 
                     {/* Card 7 - Budget Utilization */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-rose-500 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -881,7 +881,7 @@ export default function Dashboard() {
 
                     {/* Card 8 - Team Satisfaction */}
                     <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <CardContent className="p-3">
+                      <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1 bg-teal-500 rounded">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -904,7 +904,7 @@ export default function Dashboard() {
 
             {/* Second Row - Charts */}
             <div
-              className={`${isGrowthExpanded ? "grid grid-cols-1" : "grid grid-cols-2"} gap-6`}
+              className={`${isGrowthExpanded ? "grid grid-cols-1" : "grid grid-cols-2"} gap-4`}
             >
               {/* Employee Growth Trends */}
               <Card
@@ -915,7 +915,7 @@ export default function Dashboard() {
                 }`}
                 onClick={() => setIsGrowthExpanded(!isGrowthExpanded)}
               >
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
@@ -1187,7 +1187,7 @@ export default function Dashboard() {
                     ? 'bg-gray-800/50 border border-gray-700'
                     : 'bg-white border border-gray-200'
                 }`}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="mb-3">
                       <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-gray-900'
@@ -1321,7 +1321,7 @@ export default function Dashboard() {
                 : 'bg-white border border-gray-200'
             }`}>
               <CardContent className="p-6 mb-1">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
@@ -2728,7 +2728,7 @@ export default function Dashboard() {
           <div className={`rounded-lg p-6 w-full max-w-md transition-colors duration-300 ${
             isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
           }`}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-3">
               <h3 className={`text-lg font-semibold transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
