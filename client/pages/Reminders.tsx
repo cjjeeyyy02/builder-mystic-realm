@@ -912,7 +912,7 @@ export default function Reminders() {
                               </div>
                             </div>
                             <span
-                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                              className={`text-xs px-2 py-1 rounded font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                             >
                               REMINDER
                             </span>
@@ -960,17 +960,17 @@ export default function Reminders() {
 
                             {/* Compact Badges */}
                             <div className="pt-1">
-                              <div className="flex flex-nowrap gap-1 overflow-hidden">
-                                <span className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}>
+                              <div className="flex flex-nowrap gap-1.5 overflow-hidden">
+                                <span className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}>
                                   {reminder.department}
                                 </span>
                                 <span
-                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                  className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                 >
                                   {reminder.privacy === "Public" ? "Public" : "Private"}
                                 </span>
                                 <span
-                                  className={`text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                  className={`text-xs px-2 py-1 rounded font-medium whitespace-nowrap ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                                 >
                                   {reminder.priority}
                                 </span>
@@ -1149,7 +1149,7 @@ export default function Reminders() {
                             </td>
                             <td className="p-4">
                               <span
-                                className={`px-2 py-1 rounded-full text-xs font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                                className={`px-2 py-1 rounded text-xs font-medium ${isDarkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"}`}
                               >
                                 {reminder.completed
                                   ? "Completed"
