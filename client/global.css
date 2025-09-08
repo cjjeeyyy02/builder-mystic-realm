@@ -148,6 +148,23 @@
       -apple-system,
       sans-serif;
   }
+
+  /* Enterprise typography adjustments */
+  .enterprise-theme h1,
+  .enterprise-theme h2,
+  .enterprise-theme h3,
+  .enterprise-theme h4,
+  .enterprise-theme h5,
+  .enterprise-theme h6 {
+    font-weight: 600; /* medium for headers */
+  }
+
+  .enterprise-theme body,
+  .enterprise-theme p,
+  .enterprise-theme span,
+  .enterprise-theme a {
+    font-weight: 400; /* regular for body */
+  }
 }
 
 @layer utilities {
