@@ -212,7 +212,7 @@ export default function Sidebar({
                   asChild
                 >
                   <Link to={item.path} onClick={onClose}>
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5 text-current" />
                     <span className="font-medium">{item.label}</span>
                   </Link>
                 </Button>
