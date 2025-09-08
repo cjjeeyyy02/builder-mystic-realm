@@ -273,9 +273,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
@@ -339,9 +337,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
@@ -401,9 +397,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
@@ -523,9 +517,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
@@ -589,9 +581,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
@@ -655,9 +645,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1.5 rounded-md ${
-                            isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
-                          }`}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
                               className={`w-3.5 h-3.5 ${
                                 isDarkMode ? 'text-white' : 'text-white'
