@@ -141,15 +141,15 @@ export default function Sidebar({
             <div className="flex justify-center">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-md border border-emerald-100">
-                    <div className="w-5 h-5 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-sm flex items-center justify-center">
+                  <div className="w-9 h-9 bg-gray-50 rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
+                    <div className="w-5 h-5 bg-black rounded-sm flex items-center justify-center">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="bg-emerald-800 text-white border-emerald-700">
+                <TooltipContent side="right" className="bg-white text-black border border-gray-200">
                   <p className="font-semibold">AI2AIM WORKSPACE</p>
-                  <p className="text-xs text-emerald-200">
+                  <p className="text-xs text-gray-500">
                     Task Management System
                   </p>
                 </TooltipContent>
