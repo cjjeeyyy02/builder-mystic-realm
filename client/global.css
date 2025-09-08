@@ -512,3 +512,110 @@
 .onboarding-corporate .divider {
   border-bottom: 1px solid hsl(var(--border));
 }
+
+/* Dashboard corporate theme: reuse onboarding corporate styles */
+.dashboard-corporate {
+  /* inherit variables and styles from onboarding-corporate */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --card: 210 20% 98%;
+  --card-foreground: 0 0% 0%;
+  --border: 210 20% 92%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+}
+
+/* reuse button/badge/typography mappings for dashboard */
+.dashboard-corporate h1,
+.dashboard-corporate h2,
+.dashboard-corporate h3,
+.dashboard-corporate h4 {
+  font-family: "Poppins", "Roboto", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+.dashboard-corporate p,
+.dashboard-corporate span,
+.dashboard-corporate a,
+.dashboard-corporate li {
+  font-weight: 400;
+  color: hsl(var(--foreground));
+}
+
+.dashboard-corporate .btn-corp,
+.dashboard-corporate button.btn-corp {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  border: none;
+  transition: transform .08s ease, opacity .12s ease, box-shadow .12s ease;
+}
+.dashboard-corporate .btn-corp:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+}
+
+.dashboard-corporate .badge-corp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.dashboard-corporate .bg-emerald-900,
+.dashboard-corporate .bg-emerald-800,
+.dashboard-corporate .bg-emerald-700,
+.dashboard-corporate .bg-emerald-400,
+.dashboard-corporate .bg-emerald-300,
+.dashboard-corporate .bg-emerald-200,
+.dashboard-corporate .bg-emerald-100,
+.dashboard-corporate .bg-emerald-50 {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground)) !important;
+  border-color: transparent !important;
+}
+
+.dashboard-corporate .bg-emerald-600,
+.dashboard-corporate .bg-emerald-500 {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.dashboard-corporate .text-emerald-700,
+.dashboard-corporate .text-emerald-600,
+.dashboard-corporate .text-emerald-500,
+.dashboard-corporate .text-emerald-400,
+.dashboard-corporate .text-emerald-300,
+.dashboard-corporate .text-emerald-200,
+.dashboard-corporate .text-emerald-100 {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dashboard-corporate .border-emerald-700,
+.dashboard-corporate .border-emerald-600,
+.dashboard-corporate .border-emerald-500,
+.dashboard-corporate .border-emerald-400,
+.dashboard-corporate .border-emerald-300,
+.dashboard-corporate .border-emerald-200,
+.dashboard-corporate .border-emerald-100 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dashboard-corporate .shadow-sm {
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04) !important;
+}
+.dashboard-corporate .hover\:shadow-md:hover {
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06) !important;
+}
+
+.dashboard-corporate .divider {
+  border-bottom: 1px solid hsl(var(--border));
+}
