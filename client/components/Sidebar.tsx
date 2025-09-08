@@ -183,18 +183,18 @@ export default function Sidebar({
                         variant="ghost"
                         className={`w-full justify-center h-12 px-3 rounded-lg transition-all duration-200 ${
                           isActive
-                            ? "bg-emerald-600 text-white shadow-lg ring-2 ring-emerald-400/30"
-                            : "text-emerald-100 hover:bg-emerald-800/50 hover:text-white"
+                            ? "bg-gray-900 text-white shadow font-semibold"
+                            : "text-gray-700 hover:bg-gray-50"
                         }`}
                         asChild
                       >
                         <Link to={item.path} onClick={onClose}>
-                          <Icon className="w-5 h-5" />
+                          <Icon className="w-5 h-5 text-current" />
                         </Link>
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent side="right">
-                      <p className="font-medium">{item.label}</p>
+                    <TooltipContent side="right" className="bg-white border border-gray-200">
+                      <p className="font-medium text-black">{item.label}</p>
                     </TooltipContent>
                   </Tooltip>
                 );
