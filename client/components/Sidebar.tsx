@@ -69,7 +69,7 @@ export default function Sidebar({
 
       {/* Sidebar */}
       <div
-        className={`${isCollapsed ? "w-[80px]" : "w-[280px] lg:w-[260px]"} bg-emerald-900 h-screen fixed left-0 top-0 z-30 transform transition-all duration-300 ease-in-out shadow-2xl border-r border-emerald-800 ${
+        className={`${isCollapsed ? "w-[80px]" : "w-[280px] lg:w-[260px]"} bg-white h-screen fixed left-0 top-0 z-30 transform transition-all duration-300 ease-in-out shadow-md border-r border-gray-200 ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
