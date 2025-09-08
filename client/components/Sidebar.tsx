@@ -79,16 +79,16 @@ export default function Sidebar({
             <div className="space-y-4">
               {/* Company Logo and Name */}
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-md border border-emerald-100">
-                  <div className="w-5 h-5 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-sm flex items-center justify-center">
+                <div className="w-9 h-9 bg-gray-50 rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
+                  <div className="w-5 h-5 bg-black rounded-sm flex items-center justify-center">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-base font-semibold text-white tracking-tight leading-tight">
+                  <h1 className="text-base font-semibold text-black tracking-tight leading-tight">
                     AI2AIM
                   </h1>
-                  <p className="text-xs font-normal text-emerald-300 tracking-wide">
+                  <p className="text-xs font-normal text-gray-500 tracking-wide">
                     Workspace
                   </p>
                 </div>
