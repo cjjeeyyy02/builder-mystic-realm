@@ -95,36 +95,36 @@ export default function Sidebar({
               </div>
 
               {/* System Selector */}
-              <div className="bg-emerald-800/50 rounded-lg p-3 shadow-sm border border-emerald-700/50 backdrop-blur-sm">
+              <div className="bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-100">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="w-full h-auto p-0 justify-between hover:bg-emerald-700/50 rounded-md px-2 py-2"
+                      className="w-full h-auto p-0 justify-between hover:bg-gray-100 rounded-md px-2 py-2"
                     >
                       <div className="flex items-center gap-2 text-left">
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
                         <div>
-                          <p className="text-sm font-semibold text-white">
+                          <p className="text-sm font-semibold text-black">
                             Employee Management
                           </p>
                         </div>
                       </div>
-                      <ChevronDown className="w-4 h-4 text-emerald-300" />
+                      <ChevronDown className="w-4 h-4 text-gray-400" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-64 mt-2 bg-emerald-900 border-emerald-700">
+                  <DropdownMenuContent align="start" className="w-64 mt-2 bg-white border border-gray-200">
                     <div className="p-2">
-                      <DropdownMenuItem className="rounded-md p-3 hover:bg-emerald-800">
+                      <DropdownMenuItem className="rounded-md p-3 hover:bg-gray-50">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
-                            <FileText className="w-4 h-4 text-emerald-300" />
+                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <FileText className="w-4 h-4 text-gray-600" />
                           </div>
                           <div>
-                            <p className="font-medium text-sm text-white">
+                            <p className="font-medium text-sm text-black">
                               Task Management System
                             </p>
-                            <p className="text-xs text-emerald-200">
+                            <p className="text-xs text-gray-500">
                               Task & Project Management
                             </p>
                           </div>
