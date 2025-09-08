@@ -209,7 +209,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-600'
                           }`}>
                             <svg
@@ -275,7 +275,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
@@ -341,7 +341,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
@@ -403,7 +403,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
@@ -467,7 +467,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-600' : 'bg-emerald-600'
                           }`}>
                             <svg
@@ -527,7 +527,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
@@ -593,7 +593,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
@@ -659,7 +659,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className={`p-1 rounded ${
+                          <div className={`p-1.5 rounded-md ${
                             isDarkMode ? 'bg-emerald-700' : 'bg-emerald-700'
                           }`}>
                             <svg
