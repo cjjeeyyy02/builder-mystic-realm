@@ -211,9 +211,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-1)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -275,9 +273,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -339,9 +335,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -399,9 +393,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -461,9 +453,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-1)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -519,9 +509,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -583,9 +571,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -647,9 +633,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-2)' }}>
                             <svg
-                              className={`w-3.5 h-3.5 ${
-                                isDarkMode ? 'text-white' : 'text-white'
-                              }`}
+                              className="w-3.5 h-3.5 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
