@@ -164,7 +164,7 @@ export default function Dashboard() {
     <Layout>
       <div
         ref={scrollContainerRef}
-        className={`enterprise-theme min-h-screen p-4 overflow-y-auto transition-colors duration-300 ${
+        className={`dashboard-corporate min-h-screen p-4 overflow-y-auto transition-colors duration-300 ${
           isDarkMode
             ? 'bg-gray-900'
             : 'bg-gray-50'
