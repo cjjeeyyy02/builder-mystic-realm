@@ -315,8 +315,6 @@
 .enterprise-theme .bg-emerald-900,
 .enterprise-theme .bg-emerald-800,
 .enterprise-theme .bg-emerald-700,
-.enterprise-theme .bg-emerald-600,
-.enterprise-theme .bg-emerald-500,
 .enterprise-theme .bg-emerald-400,
 .enterprise-theme .bg-emerald-300,
 .enterprise-theme .bg-emerald-200,
@@ -324,6 +322,14 @@
 .enterprise-theme .bg-emerald-50 {
   background-color: hsl(var(--card)) !important; /* convert colored sections to light gray */
   color: hsl(var(--card-foreground)) !important;
+  border-color: transparent !important;
+}
+
+/* Keep actionable emerald shades as primary accent */
+.enterprise-theme .bg-emerald-600,
+.enterprise-theme .bg-emerald-500 {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
   border-color: transparent !important;
 }
 
