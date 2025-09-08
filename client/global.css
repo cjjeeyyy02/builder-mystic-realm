@@ -311,6 +311,58 @@
   box-shadow: none;
 }
 
+/* Map existing emerald utility classes to enterprise palette inside dashboard only */
+.enterprise-theme .bg-emerald-900,
+.enterprise-theme .bg-emerald-800,
+.enterprise-theme .bg-emerald-700,
+.enterprise-theme .bg-emerald-600,
+.enterprise-theme .bg-emerald-500,
+.enterprise-theme .bg-emerald-400,
+.enterprise-theme .bg-emerald-300,
+.enterprise-theme .bg-emerald-200,
+.enterprise-theme .bg-emerald-100,
+.enterprise-theme .bg-emerald-50 {
+  background-color: hsl(var(--card)) !important; /* convert colored sections to light gray */
+  color: hsl(var(--card-foreground)) !important;
+  border-color: transparent !important;
+}
+
+/* Accent indicators (dots, badges) that used emerald should become primary */
+.enterprise-theme .text-emerald-700,
+.enterprise-theme .text-emerald-600,
+.enterprise-theme .text-emerald-500,
+.enterprise-theme .text-emerald-400,
+.enterprise-theme .text-emerald-300,
+.enterprise-theme .text-emerald-200,
+.enterprise-theme .text-emerald-100 {
+  color: hsl(var(--primary)) !important;
+}
+
+.enterprise-theme .border-emerald-700,
+.enterprise-theme .border-emerald-600,
+.enterprise-theme .border-emerald-500,
+.enterprise-theme .border-emerald-400,
+.enterprise-theme .border-emerald-300,
+.enterprise-theme .border-emerald-200,
+.enterprise-theme .border-emerald-100 {
+  border-color: hsl(var(--border)) !important; /* subtle borders */
+}
+
+/* Small accent backgrounds (badges) should use a soft primary tint */
+.enterprise-theme .bg-emerald-50,
+.enterprise-theme .bg-emerald-100 {
+  background-color: rgba(37,99,235,0.06) !important; /* light primary tint */
+  color: hsl(var(--primary)) !important;
+}
+
+/* Subtle shadow replacement */
+.enterprise-theme .shadow-sm {
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06) !important;
+}
+.enterprise-theme .hover\:shadow-md:hover {
+  box-shadow: 0 4px 10px rgba(15,23,42,0.08) !important;
+}
+
 .colorful {
   filter: none !important;
   /* Calmer, professional palette */
