@@ -284,6 +284,33 @@
   filter: none !important;
 }
 
+/* Enterprise theme helper for dashboard: minimal, professional */
+.enterprise-theme {
+  --background: 0 0% 100%;
+  --foreground: 220 10% 18%;
+  --card: 210 20% 98%;
+  --card-foreground: 220 10% 18%;
+  --border: 210 20% 92%;
+  --primary: 224 73% 56%; /* blue accent */
+  --primary-foreground: 0 0% 100%;
+  --ring: 224 73% 56%;
+}
+
+/* Subtle card styling enforced inside enterprise-theme */
+.enterprise-theme .card-subtle {
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06); /* subtle */
+  border: none !important;
+  background: hsl(var(--card));
+}
+
+/* Buttons within enterprise theme use primary accent */
+.enterprise-theme .btn-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.375rem;
+  box-shadow: none;
+}
+
 .colorful {
   filter: none !important;
   /* Calmer, professional palette */
