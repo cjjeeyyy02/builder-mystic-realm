@@ -284,11 +284,12 @@
 
 .colorful {
   filter: none !important;
-  --chart-1: #10b981;
-  --chart-2: #3b82f6;
-  --chart-3: #8b5cf6;
-  --chart-4: #f59e0b;
-  --chart-5: #ef4444;
-  --line-new: #374151;
-  --line-exit: #9ca3af;
+  /* Calmer, professional palette */
+  --chart-1: #2563EB; /* Indigo/Blue */
+  --chart-2: #14B8A6; /* Teal */
+  --chart-3: #7C3AED; /* Violet */
+  --chart-4: #F59E0B; /* Amber */
+  --chart-5: #EF4444; /* Red */
+  --line-new: #0F172A; /* Dark slate for new hires line */
+  --line-exit: #6B7280; /* Muted gray for exit line */
 }
