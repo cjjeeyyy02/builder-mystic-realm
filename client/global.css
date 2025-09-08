@@ -397,3 +397,118 @@
   --line-new: #0F172A; /* Dark slate for new hires line */
   --line-exit: #6B7280; /* Muted gray for exit line */
 }
+
+/* Onboarding corporate theme: black & white, clean corporate look */
+.onboarding-corporate {
+  filter: none !important;
+  --background: 0 0% 100%; /* white */
+  --foreground: 0 0% 0%; /* black */
+  --card: 210 20% 98%; /* very light gray */
+  --card-foreground: 0 0% 0%;
+  --border: 210 20% 92%;
+  --primary: 0 0% 0%; /* black */
+  --primary-foreground: 0 0% 100%;
+  --muted: 210 10% 96%;
+}
+
+/* Typography for onboarding module */
+.onboarding-corporate h1,
+.onboarding-corporate h2,
+.onboarding-corporate h3,
+.onboarding-corporate h4 {
+  font-family: "Poppins", "Roboto", system-ui, -apple-system, sans-serif;
+  font-weight: 700; /* bold for titles */
+  color: hsl(var(--foreground));
+}
+.onboarding-corporate p,
+.onboarding-corporate span,
+.onboarding-corporate a,
+.onboarding-corporate li {
+  font-weight: 400;
+  color: hsl(var(--foreground));
+}
+
+/* Buttons and badges for onboarding */
+.onboarding-corporate .btn-corp,
+.onboarding-corporate button.btn-corp {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  border: none;
+  transition: transform .08s ease, opacity .12s ease, box-shadow .12s ease;
+}
+.onboarding-corporate .btn-corp:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+}
+
+.onboarding-corporate .badge-corp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+/* Map emerald utilities inside onboarding to monochrome equivalents */
+.onboarding-corporate .bg-emerald-900,
+.onboarding-corporate .bg-emerald-800,
+.onboarding-corporate .bg-emerald-700,
+.onboarding-corporate .bg-emerald-400,
+.onboarding-corporate .bg-emerald-300,
+.onboarding-corporate .bg-emerald-200,
+.onboarding-corporate .bg-emerald-100,
+.onboarding-corporate .bg-emerald-50 {
+  background-color: hsl(var(--card)) !important; /* light gray */
+  color: hsl(var(--card-foreground)) !important;
+  border-color: transparent !important;
+}
+
+/* keep actionable emerald shades as black primary */
+.onboarding-corporate .bg-emerald-600,
+.onboarding-corporate .bg-emerald-500 {
+  background-color: hsl(var(--primary)) !important; /* black */
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+/* text emerald -> black primary */
+.onboarding-corporate .text-emerald-700,
+.onboarding-corporate .text-emerald-600,
+.onboarding-corporate .text-emerald-500,
+.onboarding-corporate .text-emerald-400,
+.onboarding-corporate .text-emerald-300,
+.onboarding-corporate .text-emerald-200,
+.onboarding-corporate .text-emerald-100 {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* borders from emerald -> subtle gray */
+.onboarding-corporate .border-emerald-700,
+.onboarding-corporate .border-emerald-600,
+.onboarding-corporate .border-emerald-500,
+.onboarding-corporate .border-emerald-400,
+.onboarding-corporate .border-emerald-300,
+.onboarding-corporate .border-emerald-200,
+.onboarding-corporate .border-emerald-100 {
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Soft shadows for cards */
+.onboarding-corporate .shadow-sm {
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04) !important;
+}
+.onboarding-corporate .hover\:shadow-md:hover {
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06) !important;
+}
+
+/* Subtle dividers */
+.onboarding-corporate .divider {
+  border-bottom: 1px solid hsl(var(--border));
+}
