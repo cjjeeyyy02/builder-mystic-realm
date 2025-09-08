@@ -209,7 +209,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-1)' }}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'hsl(var(--primary))' }}>
                             <svg
                               className="w-3.5 h-3.5 text-white"
                               fill="none"
@@ -451,7 +451,7 @@ export default function Dashboard() {
                     }`}>
                       <CardContent className="p-2.5">
                         <div className="flex items-start justify-between mb-2">
-                          <div className="p-1.5 rounded-md" style={{ background: 'var(--chart-1)' }}>
+                          <div className="p-1.5 rounded-md" style={{ background: 'hsl(var(--primary))' }}>
                             <svg
                               className="w-3.5 h-3.5 text-white"
                               fill="none"
