@@ -195,3 +195,84 @@
     min-width: 44px;
   }
 }
+
+/* Black & White theme helper for pages that need a monochrome palette */
+.bw-theme {
+  /* Force grayscale rendering of all children to remove color accents */
+  filter: grayscale(1) saturate(0.0);
+  /* Ensure controls remain readable by overriding core color variables */
+  --background: 0 0% 100%; /* white */
+  --foreground: 0 0% 0%; /* black */
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 0%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 20%;
+
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+
+  --accent: 0 0% 96%;
+  --accent-foreground: 0 0% 20%;
+
+  --destructive: 0 0% 0%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 0 0% 90%;
+  --input: 0 0% 96%;
+  --ring: 0 0% 0%;
+
+  --sidebar-background: 0 0% 10%;
+  --sidebar-foreground: 0 0% 95%;
+  --sidebar-primary: 0 0% 0%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 15%;
+  --sidebar-accent-foreground: 0 0% 95%;
+  --sidebar-border: 0 0% 12%;
+  --sidebar-ring: 0 0% 0%;
+}
+
+/* If dark mode is active on a page with bw-theme, prefer a dark monochrome background */
+.bw-theme.dark {
+  filter: grayscale(1) saturate(0.0);
+  --background: 0 0% 6%; /* near black */
+  --foreground: 0 0% 95%; /* near white */
+
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 95%;
+
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 95%;
+
+  --primary: 0 0% 70%;
+  --primary-foreground: 0 0% 6%;
+
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 70%;
+
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 50%;
+
+  --accent: 0 0% 12%;
+  --accent-foreground: 0 0% 95%;
+
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 0 0% 70%;
+
+  --sidebar-background: 0 0% 4%;
+  --sidebar-foreground: 0 0% 75%;
+  --sidebar-primary: 0 0% 70%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 8%;
+  --sidebar-accent-foreground: 0 0% 85%;
+  --sidebar-border: 0 0% 12%;
+  --sidebar-ring: 0 0% 70%;
+}
