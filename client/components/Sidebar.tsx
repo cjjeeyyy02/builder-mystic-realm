@@ -74,7 +74,7 @@ export default function Sidebar({
         }`}
       >
         {/* Logo/Brand */}
-        <div className="p-6 border-b border-emerald-800 bg-gradient-to-br from-emerald-800 to-emerald-900">
+        <div className="p-6 border-b border-gray-100 bg-white">
           {!isCollapsed ? (
             <div className="space-y-4">
               {/* Company Logo and Name */}
