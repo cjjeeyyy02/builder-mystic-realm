@@ -202,7 +202,7 @@ export default function Dashboard() {
                   {/* First 4 Cards - Always Visible */}
                   <div className="grid grid-cols-4 gap-3 flex-shrink-0 w-full">
                     {/* Total Employees */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                    <Card className={`border transition-all duration-200 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -268,7 +268,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Active Candidates */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                    <Card className={`border transition-all duration-200 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -334,7 +334,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Average Performance */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                    <Card className={`border transition-all duration-200 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -396,7 +396,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Pending Tasks */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 ${
+                    <Card className={`border transition-all duration-200 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -460,7 +460,7 @@ export default function Dashboard() {
                   {/* Additional Cards - Scrollable */}
                   <div className="flex gap-3 flex-shrink-0">
                     {/* Pending Onboarding */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                    <Card className={`border transition-all duration-200 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -520,7 +520,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* On Probation */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                    <Card className={`border transition-all duration-200 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -586,7 +586,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Offboarding */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                    <Card className={`border transition-all duration-200 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
@@ -652,7 +652,7 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Completed Tasks */}
-                    <Card className={`shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-48 ${
+                    <Card className={`border transition-all duration-200 flex-shrink-0 w-48 ${
                       isDarkMode
                         ? 'bg-emerald-800 border-emerald-700 hover:shadow-md'
                         : 'bg-emerald-800 border-emerald-700 hover:shadow-md'
