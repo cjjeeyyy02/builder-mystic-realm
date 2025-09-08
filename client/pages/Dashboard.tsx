@@ -180,7 +180,7 @@ export default function Dashboard() {
                 EMS Dashboard
               </h1>
               <p className={`transition-colors duration-300 ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                isDarkMode ? 'text-emerald-100' : 'text-gray-600'
               }`}>
                 Employee Management System - Real-Time Analytics
               </p>
@@ -252,14 +252,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 +30 this month
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Active workspace size
                           </p>
@@ -318,14 +318,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 +3 this week
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             New hires and candidates
                           </p>
@@ -380,14 +380,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 +0.3 improvement
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Overall team performance
                           </p>
@@ -442,13 +442,13 @@ export default function Dashboard() {
                           </p>
                           <div className="flex items-center justify-between">
                             <span className={`text-xs font-medium transition-colors duration-300 ${
-                              isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                              isDarkMode ? 'text-emerald-100' : 'text-gray-500'
                             }`}>
                               5 from last week
                             </span>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Outstanding hiring tasks
                           </p>
@@ -504,14 +504,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-[10px] font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 +4 next week
                               </span>
                             </div>
                           </div>
                           <p className={`text-[10px] mt-0.5 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Awaiting onboarding
                           </p>
@@ -570,14 +570,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 3 ending soon
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Probationary employees
                           </p>
@@ -636,14 +636,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 7l-5 5-5-5m10 10l-5 5-5-5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 -3 next week
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Exit in progress
                           </p>
@@ -696,14 +696,14 @@ export default function Dashboard() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l5-5 5 5M7 7l5-5 5 5" />
                               </svg>
                               <span className={`text-xs font-medium transition-colors duration-300 ${
-                                isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                                isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                               }`}>
                                 +12 today
                               </span>
                             </div>
                           </div>
                           <p className={`text-xs mt-1 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-emerald-100'
+                            isDarkMode ? 'text-emerald-100' : 'text-emerald-100'
                           }`}>
                             Successfully completed
                           </p>
@@ -1005,7 +1005,7 @@ export default function Dashboard() {
                                       ? "bg-blue-900/50 text-blue-300 font-medium"
                                       : "bg-blue-50 text-blue-700 font-medium"
                                     : isDarkMode
-                                      ? "text-gray-300 hover:bg-gray-700"
+                                      ? "text-emerald-100 hover:bg-gray-700"
                                       : "text-gray-700 hover:bg-gray-50"
                                 }`}
                               >
@@ -1151,27 +1151,27 @@ export default function Dashboard() {
                       <div className="absolute bottom-0 left-0 w-full flex justify-between items-end h-6">
                         {isGrowthExpanded ? (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jan</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jul</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Aug</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Sep</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Oct</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Nov</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Dec</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Jul</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Aug</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Sep</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Oct</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Nov</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Dec</span>
                           </>
                         ) : (
                           <>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jun</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>May</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Apr</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Mar</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Feb</span>
-                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Jan</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Jun</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>May</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Apr</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Mar</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Feb</span>
+                            <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-emerald-100' : 'text-gray-600'}`}>Jan</span>
                           </>
                         )}
                       </div>
@@ -1382,7 +1382,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        isDarkMode ? 'text-emerald-100' : 'text-gray-600'
                       }`}>
                         Join us for the biggest Tech event discussing innovative
                         and industry insights
@@ -1495,7 +1495,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        isDarkMode ? 'text-emerald-100' : 'text-gray-600'
                       }`}>
                         Collaboration Workshop focusing on innovation
                         methodologies and Team dynamics
@@ -1606,7 +1606,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <p className={`text-xs mb-2 transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        isDarkMode ? 'text-emerald-100' : 'text-gray-600'
                       }`}>
                         Annual Celebration and Award ceremony, dinner and
                         entertainment
@@ -1761,7 +1761,7 @@ export default function Dashboard() {
                       <div className="grid grid-cols-7 gap-1">
                         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                           <div key={day} className={`text-center text-xs font-medium py-2 transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-emerald-100' : 'text-gray-500'
                           }`}>
                             {day}
                           </div>
@@ -1794,7 +1794,7 @@ export default function Dashboard() {
                                     ? 'bg-emerald-600 text-white ring-2 ring-emerald-400'
                                     : 'bg-emerald-600 text-white ring-2 ring-emerald-400'
                                   : isDarkMode
-                                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                    ? 'bg-gray-700 text-emerald-100 hover:bg-gray-600'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }
                                 ${hasEvents(day) ? 'ring-1 ring-emerald-400' : ''}
@@ -1828,7 +1828,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Annual Marketing Summit</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-emerald-100' : 'text-gray-500'
                           }`}>
                             <span>June 12, 9:00 AM</span>
                             <span>New York, NY</span>
@@ -1855,7 +1855,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Networking Mixer</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-emerald-100' : 'text-gray-500'
                           }`}>
                             <span>June 20, 6:00 PM</span>
                             <span>Downtown</span>
@@ -1882,7 +1882,7 @@ export default function Dashboard() {
                             isDarkMode ? 'text-white' : 'text-gray-900'
                           }`}>Data Science Conference</h3>
                           <div className={`flex items-center gap-3 mt-1 text-xs transition-colors duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                            isDarkMode ? 'text-emerald-100' : 'text-gray-500'
                           }`}>
                             <span>July 3, 10:00 AM</span>
                             <span>Chicago, IL</span>
@@ -2132,7 +2132,7 @@ export default function Dashboard() {
                     onClick={() => navigate("/activities")}
                     className={`text-xs transition-colors duration-300 ${
                       isDarkMode
-                        ? 'text-gray-300 hover:text-blue-400'
+                        ? 'text-emerald-100 hover:text-blue-400'
                         : 'text-gray-700 hover:text-blue-700'
                     }`}
                   >
@@ -2188,7 +2188,7 @@ export default function Dashboard() {
                           </span>
                         </div>
                         <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
+                          isDarkMode ? 'text-emerald-100' : 'text-gray-800'
                         }`}>
                           Q2 Performance Updates: Team performance metrics and
                           development goals discussion.
@@ -2283,7 +2283,7 @@ export default function Dashboard() {
                           </span>
                         </div>
                         <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
+                          isDarkMode ? 'text-emerald-100' : 'text-gray-800'
                         }`}>
                           Tech Stack Update: New tools and frameworks adoption
                           for enhanced productivity.
@@ -2378,7 +2378,7 @@ export default function Dashboard() {
                           </span>
                         </div>
                         <p className={`text-xs mb-1 leading-relaxed transition-colors duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-800'
+                          isDarkMode ? 'text-emerald-100' : 'text-gray-800'
                         }`}>
                           Looking forward to the upcoming tech summit! Anyone else excited about the AI sessions?
                         </p>
@@ -2425,7 +2425,7 @@ export default function Dashboard() {
                     onClick={() => navigate("/e-forum")}
                     className={`text-xs p-0 transition-colors duration-300 ${
                       isDarkMode
-                        ? 'text-gray-300 hover:text-blue-400'
+                        ? 'text-emerald-100 hover:text-blue-400'
                         : 'text-gray-700 hover:text-blue-700'
                     }`}
                   >
@@ -2470,7 +2470,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 Activity
@@ -2507,7 +2507,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Chat
@@ -2540,7 +2540,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Files
@@ -2573,7 +2573,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Meetings
@@ -2618,7 +2618,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-600'
               }`}>
                 Reminders
@@ -2651,7 +2651,7 @@ export default function Dashboard() {
               </div>
               <span className={`text-[11px] font-medium tracking-tight leading-tight transition-colors ${
                 isDarkMode
-                  ? 'text-gray-300 group-hover:text-gray-400'
+                  ? 'text-emerald-100 group-hover:text-gray-400'
                   : 'text-gray-600 group-hover:text-gray-700'
               }`}>
                 E-Forum
@@ -2694,7 +2694,7 @@ export default function Dashboard() {
 
             {selectedDate && (
               <p className={`text-sm mb-4 transition-colors duration-300 ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                isDarkMode ? 'text-emerald-100' : 'text-gray-600'
               }`}>
                 {selectedDate.toLocaleDateString('en-US', {
                   weekday: 'long',
@@ -2782,7 +2782,7 @@ export default function Dashboard() {
                 }}
                 className={`transition-colors duration-300 ${
                   isDarkMode
-                    ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                    ? 'border-gray-600 text-emerald-100 hover:bg-gray-700'
                     : 'border-gray-300 text-gray-700 hover:bg-gray-50'
                 }`}
               >
