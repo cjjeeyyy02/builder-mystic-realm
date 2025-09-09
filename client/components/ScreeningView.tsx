@@ -489,7 +489,7 @@ export default function ScreeningView() {
                     <Badge
                       variant={getStatusVariant(selectedCandidate.status)}
                       className={`text-xs sm:text-sm ${
-                        selectedCandidate.status === "approved"
+                        selectedCandidate.status === "approved" || selectedCandidate.status === "pending"
                           ? "bg-green-100 text-green-700 border-green-200"
                           : selectedCandidate.status === "queue"
                           ? "bg-orange-100 text-orange-700 border-orange-200"
