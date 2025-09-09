@@ -342,7 +342,7 @@ export default function ScreeningView() {
                   {candidate.status === "queue" ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1">
+                        <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1" onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}>
                           {getStatusIcon(candidate.status)}
                           <span>Status</span>
                         </Button>
