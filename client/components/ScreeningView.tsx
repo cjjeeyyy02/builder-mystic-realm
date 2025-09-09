@@ -368,6 +368,7 @@ export default function ScreeningView() {
                           ? "bg-red-100 text-red-700 border-red-200"
                           : "bg-gray-100 text-gray-700 border-gray-200"
                       }`}
+                      onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}
                     >
                       {getStatusIcon(candidate.status === 'pending' ? 'approved' : candidate.status)}
                       <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "pending" ? "Pending" : ""}</span>
