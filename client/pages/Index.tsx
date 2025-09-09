@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import StatsCards from "@/components/StatsCards";
 import FilterTabs from "@/components/FilterTabs";
 
 export default function Index() {
