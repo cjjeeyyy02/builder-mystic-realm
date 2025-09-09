@@ -1668,7 +1668,7 @@ Google India"
                     onClick={() => setActiveRoundType("technical")}
                     className={`h-6 px-3 text-xs ${
                       activeRoundType === "technical"
-                        ? "bg-red-600 text-white hover:bg-red-700"
+                        ? "bg-gray-900 text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
                   >
@@ -1680,7 +1680,7 @@ Google India"
                     onClick={() => setActiveRoundType("non-technical")}
                     className={`h-6 px-3 text-xs ${
                       activeRoundType === "non-technical"
-                        ? "bg-red-600 text-white hover:bg-red-700"
+                        ? "bg-gray-900 text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
                   >
@@ -1692,7 +1692,7 @@ Google India"
                     onClick={() => setActiveRoundType("final")}
                     className={`h-6 px-3 text-xs ${
                       activeRoundType === "final"
-                        ? "bg-red-600 text-white hover:bg-red-700"
+                        ? "bg-gray-900 text-white hover:bg-gray-800"
                         : "hover:bg-gray-100"
                     }`}
                   >
