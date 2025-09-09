@@ -1895,7 +1895,7 @@ Google India"
                 </Card>
 
                 {/* STEP 2 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
+                <Card className="border-2 border-gray-300 bg-white">
                   <CardContent className="p-1">
                     <div className="flex items-center justify-between">
                       <h3 className="font-bold text-xs text-white">STEP 2</h3>
@@ -1912,7 +1912,7 @@ Google India"
                 </Card>
 
                 {/* STEP 3 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
+                <Card className="border-2 border-gray-300 bg-white">
                   <CardContent className="p-1">
                     <div className="flex items-center justify-between">
                       <h3 className="font-bold text-xs text-white">STEP 3</h3>
@@ -1929,7 +1929,7 @@ Google India"
                 </Card>
 
                 {/* STEP 4 - Collapsed */}
-                <Card className="border-2 border-red-500 bg-red-600">
+                <Card className="border-2 border-gray-300 bg-white">
                   <CardContent className="p-1">
                     <div className="flex items-center justify-between">
                       <h3 className="font-bold text-xs text-white">STEP 4</h3>
