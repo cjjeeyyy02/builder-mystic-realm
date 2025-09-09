@@ -447,43 +447,25 @@ export default function ScreeningView() {
 
               {/* Actions Section (Columns 9-12) */}
               <div className="lg:col-span-4 flex flex-wrap items-center gap-2 justify-end">
-                {/* Status Action Buttons */}
+                {/* Status Action Button (neutral) */}
                 <div className="flex items-center gap-2">
-                  {candidate.status === "queue" ? (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1" onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}>
-                          {getStatusIcon(candidate.status)}
-                          <span>Status</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-40">
-                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
-                          <Check className="w-3 h-3" />
-                          Approve
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
-                          <X className="w-3 h-3" />
-                          Reject
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  ) : (
-                    <Badge
-                      variant={getStatusVariant(candidate.status)}
-                      className={`text-xs font-medium px-2 py-1 cursor-pointer ${
-                        candidate.status === "approved" || candidate.status === "pending"
-                          ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
-                          : candidate.status === "reject"
-                          ? "bg-red-100 text-red-700 border-red-200"
-                          : "bg-gray-100 text-gray-700 border-gray-200"
-                      }`}
-                      onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}
-                    >
-                      {getStatusIcon(candidate.status === 'pending' ? 'approved' : candidate.status)}
-                      <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "pending" ? "Pending" : ""}</span>
-                    </Badge>
-                  )}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm" className="h-7 text-xs px-3 gap-1" onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}>
+                        <span>Status</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-40">
+                      <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
+                        <Check className="w-3 h-3" />
+                        Approve
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
+                        <X className="w-3 h-3" />
+                        Reject
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
 
                 <Separator orientation="vertical" className="h-5 mx-1" />
@@ -492,9 +474,9 @@ export default function ScreeningView() {
                 <div className="flex items-center gap-1.5">
                   <div className="flex items-center">
                     <Button
-                      variant="default"
+                      variant="ghost"
                       size="sm"
-                      className="gap-1 text-white font-medium h-7 px-2 rounded-r-none bg-emerald-500 hover:bg-emerald-600 text-xs"
+                      className="gap-1 text-black font-medium h-7 px-3 border border-gray-200 bg-white hover:bg-gray-50 text-xs"
                       onClick={() => handleViewResume(candidate)}
                     >
                       <Eye className="w-3 h-3" />
@@ -502,9 +484,9 @@ export default function ScreeningView() {
                     </Button>
                   </div>
                   <Button
-                    variant="default"
+                    variant="ghost"
                     size="sm"
-                    className="gap-1 text-white font-medium h-7 px-2 bg-emerald-500 hover:bg-emerald-600 text-xs"
+                    className="gap-1 text-black font-medium h-7 px-3 border border-gray-200 bg-white hover:bg-gray-50 text-xs"
                     onClick={() => handleEmailCandidate(candidate)}
                   >
                     <Send className="w-3 h-3" />
