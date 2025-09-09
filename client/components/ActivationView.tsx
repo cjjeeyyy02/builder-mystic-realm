@@ -278,12 +278,22 @@ export default function ActivationView() {
                       </Button>
                     </TableCell>
                     <TableCell className="px-3 py-2">
-                      <Button
-                        className="h-6 w-6 p-0 bg-emerald-500 hover:bg-emerald-600 text-white"
-                        title="Send Email"
-                      >
-                        <Mail className="w-3 h-3" />
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          className="h-6 w-6 p-0 bg-emerald-500 hover:bg-emerald-600 text-white"
+                          title="Send Email"
+                        >
+                          <Mail className="w-3 h-3" />
+                        </Button>
+
+                        <Button
+                          className="h-6 text-xs px-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                          title="Action"
+                          onClick={() => setActiveTab('checklist-builder')}
+                        >
+                          Action
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
