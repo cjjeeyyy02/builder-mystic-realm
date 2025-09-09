@@ -1838,7 +1838,7 @@ Google India"
                           <Textarea
                             value={currentRoundForm.roundDetails}
                             onChange={(e) => setCurrentRoundForm(prev => ({...prev, roundDetails: e.target.value}))}
-                            className="h-12 text-xs resize-none"
+                            className="h-20 text-xs resize-none"
                             placeholder="Add Round Description Here"
                           />
                         </div>
