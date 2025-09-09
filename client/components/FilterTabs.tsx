@@ -611,16 +611,17 @@ export default function FilterTabs() {
             ? 'bg-emerald-900/40 border-emerald-700'
             : 'bg-emerald-50/70 border-emerald-200'
         }`}>
-          <div className="flex w-full gap-4 border-b border-gray-200 items-center">
+          <div className="flex w-full gap-3 items-center border-b border-gray-200">
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 variant="ghost"
-                className={`relative inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-md transition-colors focus:outline-none ${
+                aria-current={activeTab === tab.id ? 'page' : undefined}
+                className={`relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide rounded-md transition-colors focus:outline-none ${
                   activeTab === tab.id
-                    ? 'text-black bg-white shadow-sm ring-1 ring-gray-100'
-                    : 'text-gray-600 hover:text-black hover:bg-white/60'
+                    ? 'text-black bg-white shadow-sm ring-1 ring-gray-100 border-b-2 border-primary'
+                    : 'text-gray-500 hover:text-gray-900 hover:bg-white/40'
                 }`}
               >
                 <span className="relative z-10">{tab.label}</span>
