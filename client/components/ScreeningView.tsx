@@ -350,9 +350,13 @@ export default function ScreeningView() {
                         </Badge>
                       )
                     ) : (
-                      <span className="text-xs text-gray-500 italic">
-                        Pending Review
-                      </span>
+                      <Badge
+                        variant={getStatusVariant('approved')}
+                        className={`gap-1 text-xs font-medium flex-shrink-0 bg-green-100 text-green-700 border-green-200 hover:bg-green-200`}
+                      >
+                        {getStatusIcon('approved')}
+                        Pending
+                      </Badge>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground font-medium">
