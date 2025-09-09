@@ -1748,11 +1748,11 @@ Google India"
                   </div>
                 ) : (
                   <>
-                    {/* ROUND 1 - Expanded */}
+                    {/* STEP 1 - Expanded */}
                     <Card className="border-2 border-gray-300">
                       <CardContent className="p-2">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-bold text-xs">ROUND 1</h3>
+                          <h3 className="font-bold text-xs">STEP 1</h3>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -2272,7 +2272,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2340,7 +2340,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2408,7 +2408,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2476,7 +2476,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2529,7 +2529,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2582,7 +2582,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2635,7 +2635,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2688,7 +2688,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
@@ -2741,7 +2741,7 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 1</SelectItem>
+                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
                               <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 2</SelectItem>
                               <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">ROUND 3</SelectItem>
                             </SelectContent>
