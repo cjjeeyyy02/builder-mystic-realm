@@ -619,12 +619,8 @@ export default function FilterTabs() {
                 variant="ghost"
                 className={`relative inline-flex items-center justify-center px-4 py-3 text-sm font-semibold transition-colors ${
                   activeTab === tab.id
-                    ? isDarkMode
-                      ? "bg-emerald-700 text-white shadow-lg border border-emerald-600 hover:bg-emerald-600"
-                      : "bg-white text-emerald-700 shadow-md border border-emerald-300 hover:bg-emerald-50"
-                    : isDarkMode
-                      ? "text-emerald-300 hover:text-white hover:bg-emerald-800/70"
-                      : "text-emerald-600 hover:text-emerald-700 hover:bg-white/60"
+                    ? 'text-black border-b-2 border-black pb-3'
+                    : 'text-gray-600 hover:text-black'
                 }`}
               >
                 <span className="relative z-10">{tab.label}</span>
