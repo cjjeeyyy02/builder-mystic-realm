@@ -137,39 +137,6 @@ const screeningCandidates: ScreeningCandidate[] = [
     availability: "Immediate",
     rating: 4.8,
   },
-  {
-    id: "3",
-    name: "Lisa Wang",
-    position: "Product Manager",
-    email: "lisa.wang@gmail.com",
-    phone: "123-456-793",
-    totalExperience: "8 years",
-    relevantExperience: "7 years",
-    status: "pending",
-    resumeUrl: "/documents/lisa-wang-resume.pdf",
-    summary: "Strategic Product Manager with 8 years of experience driving product vision and execution. Proven track record of launching successful products and managing cross-functional teams.",
-    education: "MBA from Wharton, BS in Engineering from MIT",
-    workHistory: [
-      {
-        company: "Product Innovations Corp",
-        position: "Senior Product Manager",
-        duration: "2020 - Present",
-        description: "Led product strategy for B2B SaaS platform. Increased customer retention by 35% and drove $5M ARR growth."
-      },
-      {
-        company: "Tech Giant Co",
-        position: "Product Manager",
-        duration: "2018 - 2020",
-        description: "Managed consumer mobile app with 1M+ users. Collaborated with engineering and design teams on feature development."
-      }
-    ],
-    skills: ["Product Strategy", "Agile/Scrum", "Data Analysis", "A/B Testing", "Roadmap Planning", "Stakeholder Management"],
-    certifications: ["Certified Scrum Product Owner", "Google Analytics Certified"],
-    location: "New York, NY",
-    salaryExpectation: "$140,000 - $160,000",
-    availability: "1 month notice",
-    rating: 4.6,
-  },
 ];
 
 function getStatusVariant(
