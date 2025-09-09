@@ -30,7 +30,6 @@ import HiredView from "./HiredView";
 import CandidateList from "./CandidateList";
 
 const tabs = [
-  { id: "hiring", label: "Hiring" },
   { id: "screening", label: "Screening" },
   { id: "interview", label: "Interview" },
   { id: "activation", label: "Activation" },
