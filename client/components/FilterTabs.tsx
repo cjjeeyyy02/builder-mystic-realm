@@ -1041,7 +1041,7 @@ export default function FilterTabs() {
                                 <div className="p-3 bg-blue-50 rounded">
                                   <h5 className="font-medium text-blue-800 text-sm">Compliance Features</h5>
                                   <ul className="text-xs text-blue-600 mt-2 space-y-1">
-                                    <li>�� Right to be forgotten (data deletion)</li>
+                                    <li>✓ Right to be forgotten (data deletion)</li>
                                     <li>✓ Data portability (export candidate data)</li>
                                     <li>✓ Consent management & tracking</li>
                                     <li>✓ Automated data anonymization</li>
@@ -1494,7 +1494,6 @@ export default function FilterTabs() {
         {activeTab === "interview" && <InterviewView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "activation" && <ActivationView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "hired" && <HiredView searchQuery={searchQuery} selectedStage={selectedStage} />}
-        {activeTab === "hiring" && <CandidateList searchQuery={searchQuery} selectedStage={selectedStage} />}
       </div>
     </div>
   );
