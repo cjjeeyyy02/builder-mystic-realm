@@ -91,21 +91,7 @@ export default function ActivationView() {
           : 'bg-white border-gray-200'
       }`}>
         <div className="flex items-center gap-1">
-          <Button
-            variant={activeTab === "checklist-builder" ? "default" : "outline"}
-            onClick={() => setActiveTab("checklist-builder")}
-            className={`h-7 text-xs px-3 font-medium transition-colors duration-300 ${
-              activeTab === "checklist-builder"
-                ? isDarkMode
-                  ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                  : 'bg-gray-900 text-white hover:bg-gray-800'
-                : isDarkMode
-                  ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            CHECKLIST BUILDER
-          </Button>
+          {/* Checklist Builder hidden by default - removed from header */}
           <Button
             variant={activeTab === "activation-room" ? "default" : "outline"}
             onClick={() => setActiveTab("activation-room")}
