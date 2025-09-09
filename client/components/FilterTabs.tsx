@@ -606,22 +606,22 @@ export default function FilterTabs() {
     <div className="space-y-6">
       {/* Button Tabs */}
       <div className="w-full">
-        <div className={`relative rounded-lg p-1 shadow-sm border transition-all duration-300 ${
+        <div className={`relative p-0 transition-all duration-300 ${
           isDarkMode
-            ? 'bg-emerald-900/40 border-emerald-700'
-            : 'bg-emerald-50/70 border-emerald-200'
+            ? 'bg-transparent border-transparent'
+            : 'bg-transparent border-transparent'
         }`}>
-          <div className="flex w-full gap-3 items-center border-b border-gray-200">
+          <div className="flex w-full items-center border-b border-gray-200">
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 variant="ghost"
                 aria-current={activeTab === tab.id ? 'page' : undefined}
-                className={`flex-1 min-w-[88px] max-w-[240px] text-center inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide rounded-md transition-colors focus:outline-none ${
+                className={`flex-1 min-w-[88px] text-center inline-flex items-center justify-center px-4 py-3 text-sm font-medium tracking-wide rounded-none transition-colors focus:outline-none border-b-2 ${
                   activeTab === tab.id
-                    ? 'text-black bg-white shadow-sm ring-1 ring-gray-100 border-b-2 border-primary'
-                    : 'text-gray-500 hover:text-gray-900 hover:bg-white/40'
+                    ? 'border-black text-black font-semibold'
+                    : 'border-transparent text-gray-500 hover:text-black hover:border-gray-200'
                 }`}
               >
                 <span className="relative z-10">{tab.label}</span>
