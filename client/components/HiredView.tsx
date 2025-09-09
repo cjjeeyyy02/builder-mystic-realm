@@ -242,21 +242,21 @@ export default function HiredView() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
                 {/* Employee Info */}
                 <div className="lg:col-span-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-200">
-                      <User className="w-6 h-6 text-emerald-600" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
+                      <User className="w-5 h-5 text-emerald-600" />
                     </div>
-                    <div className="space-y-2 flex-1">
+                    <div className="space-y-1 flex-1">
                       <div>
-                        <div className="text-sm text-muted-foreground font-medium">Candidate:</div>
-                        <div className="font-semibold text-foreground text-lg">{employee.candidateName}</div>
+                        <div className="text-xs text-muted-foreground font-medium">Candidate:</div>
+                        <div className="font-semibold text-foreground text-base">{employee.candidateName}</div>
                         {employee.employeeId && (
                           <div className="text-xs text-muted-foreground">ID: {employee.employeeId}</div>
                         )}
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground font-medium">Applied Position:</div>
-                        <div className="font-medium text-foreground">{employee.appliedPosition}</div>
+                        <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
+                        <div className="font-medium text-foreground text-sm">{employee.appliedPosition}</div>
                       </div>
                     </div>
                   </div>
