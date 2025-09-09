@@ -289,13 +289,13 @@ export default function ScreeningView() {
           key={candidate.id}
           className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
         >
-          <CardContent className="p-6">
+          <CardContent className="p-3">
             {/* Main Layout - Responsive Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
               {/* Left Section: Profile (Columns 1-4) */}
               <div className="lg:col-span-4 flex items-center gap-4">
-                <Avatar className="h-14 w-14 flex-shrink-0 ring-2 ring-primary/10">
-                  <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-base">
+                <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
+                  <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
                     {candidate.name
                       .split(" ")
                       .map((n) => n[0])
@@ -305,7 +305,7 @@ export default function ScreeningView() {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-1">
-                    <h3 className="font-semibold text-foreground text-lg leading-tight truncate">
+                    <h3 className="font-semibold text-foreground text-sm leading-tight truncate">
                       {candidate.name}
                     </h3>
                     {candidate.status !== "pending" ? (
@@ -333,7 +333,7 @@ export default function ScreeningView() {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-xs text-muted-foreground font-medium">
                     {candidate.position}
                   </p>
                 </div>
@@ -349,17 +349,6 @@ export default function ScreeningView() {
                     </div>
                     <div className="font-semibold text-foreground">
                       {candidate.totalExperience}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 bg-purple-500 rounded-full flex-shrink-0"></div>
-                  <div className="text-xs">
-                    <div className="text-muted-foreground">
-                      Relevant Experience
-                    </div>
-                    <div className="font-semibold text-foreground">
-                      {candidate.relevantExperience}
                     </div>
                   </div>
                 </div>
@@ -382,49 +371,29 @@ export default function ScreeningView() {
               {/* Actions Section (Columns 9-12) */}
               <div className="lg:col-span-4 flex flex-wrap items-center gap-2 justify-end">
                 {/* Status Action Buttons */}
-                <div className="flex items-center gap-1.5">
-                  <Button
-                    variant={candidate.status === "approved" ? "default" : "outline"}
-                    size="sm"
-                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
+                <div className="flex items-center gap-2">
+                  <Badge
+                    variant={getStatusVariant(candidate.status)}
+                    className={`text-xs font-medium px-2 py-1 cursor-pointer ${
                       candidate.status === "approved"
-                        ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-md"
-                        : "hover:bg-green-50 hover:border-green-300 hover:text-green-700"
+                        ? "bg-green-100 text-green-700 border-green-200"
+                        : candidate.status === "queue"
+                        ? "bg-orange-100 text-orange-700 border-orange-200"
+                        : candidate.status === "reject"
+                        ? "bg-red-100 text-red-700 border-red-200"
+                        : "bg-gray-100 text-gray-700 border-gray-200"
                     }`}
-                    onClick={() => handleStatusChange(candidate.id, "approved")}
+                    onClick={() => {
+                      const next = candidate.status === "pending" ? "queue" : candidate.status === "queue" ? "approved" : candidate.status === "approved" ? "reject" : "pending";
+                      handleStatusChange(candidate.id, next as any);
+                    }}
                   >
-                    <Check className="w-3 h-3" />
-                    Approve
-                  </Button>
-                  <Button
-                    variant={candidate.status === "queue" ? "secondary" : "outline"}
-                    size="sm"
-                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
-                      candidate.status === "queue"
-                        ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500 shadow-md"
-                        : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
-                    }`}
-                    onClick={() => handleStatusChange(candidate.id, "queue")}
-                  >
-                    <Timer className="w-3 h-3" />
-                    Queue
-                  </Button>
-                  <Button
-                    variant={candidate.status === "reject" ? "destructive" : "outline"}
-                    size="sm"
-                    className={`gap-1 text-xs font-medium h-8 px-3 transition-all duration-200 ${
-                      candidate.status === "reject"
-                        ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-md"
-                        : "hover:bg-red-50 hover:border-red-300 hover:text-red-700"
-                    }`}
-                    onClick={() => handleStatusChange(candidate.id, "reject")}
-                  >
-                    <X className="w-3 h-3" />
-                    Reject
-                  </Button>
+                    {getStatusIcon(candidate.status)}
+                    <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "queue" ? "Queued" : "Pending"}</span>
+                  </Badge>
                 </div>
 
-                <Separator orientation="vertical" className="h-6 mx-1" />
+                <Separator orientation="vertical" className="h-5 mx-1" />
 
                 {/* Primary Actions */}
                 <div className="flex items-center gap-1.5">
@@ -432,7 +401,7 @@ export default function ScreeningView() {
                     <Button
                       variant="default"
                       size="sm"
-                      className="gap-1 text-white font-medium h-8 px-3 rounded-r-none bg-emerald-500 hover:bg-emerald-600"
+                      className="gap-1 text-white font-medium h-7 px-2 rounded-r-none bg-emerald-500 hover:bg-emerald-600 text-xs"
                       onClick={() => handleViewResume(candidate)}
                     >
                       <Eye className="w-3 h-3" />
@@ -442,7 +411,7 @@ export default function ScreeningView() {
                   <Button
                     variant="default"
                     size="sm"
-                    className="gap-1 text-white font-medium h-8 px-3 bg-emerald-500 hover:bg-emerald-600"
+                    className="gap-1 text-white font-medium h-7 px-2 bg-emerald-500 hover:bg-emerald-600 text-xs"
                     onClick={() => handleEmailCandidate(candidate)}
                   >
                     <Send className="w-3 h-3" />
