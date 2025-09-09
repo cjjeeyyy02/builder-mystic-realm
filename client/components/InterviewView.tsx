@@ -1928,11 +1928,11 @@ Google India"
                   </CardContent>
                 </Card>
 
-                {/* ROUND 4 - Collapsed */}
+                {/* STEP 4 - Collapsed */}
                 <Card className="border-2 border-red-500 bg-red-600">
                   <CardContent className="p-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xs text-white">ROUND 4</h3>
+                      <h3 className="font-bold text-xs text-white">STEP 4</h3>
                       <Button
                         variant="ghost"
                         size="sm"
