@@ -421,15 +421,15 @@ export default function ScreeningView() {
                     <Badge
                       variant={getStatusVariant(candidate.status)}
                       className={`text-xs font-medium px-2 py-1 cursor-pointer ${
-                        candidate.status === "approved"
-                          ? "bg-green-100 text-green-700 border-green-200"
+                        candidate.status === "approved" || candidate.status === "pending"
+                          ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
                           : candidate.status === "reject"
                           ? "bg-red-100 text-red-700 border-red-200"
                           : "bg-gray-100 text-gray-700 border-gray-200"
                       }`}
                     >
-                      {getStatusIcon(candidate.status)}
-                      <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}</span>
+                      {getStatusIcon(candidate.status === 'pending' ? 'approved' : candidate.status)}
+                      <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "pending" ? "Pending" : ""}</span>
                     </Badge>
                   )}
                 </div>
