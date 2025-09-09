@@ -38,7 +38,7 @@ const tabs = [
 
 export default function FilterTabs() {
   const { isDarkMode } = useDarkMode();
-  const [activeTab, setActiveTab] = useState("hiring");
+  const [activeTab, setActiveTab] = useState("screening");
   const [selectedStage, setSelectedStage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showPlugAndHireModal, setShowPlugAndHireModal] = useState(false);
