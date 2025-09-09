@@ -444,7 +444,7 @@ export default function InterviewView() {
     sendRound: "Applicant, Group of Applicants, Job Role"
   });
 
-  // Round Type Enable/Disable States
+  // Step Type Enable/Disable States
   const [roundTypeEnabled, setRoundTypeEnabled] = useState({
     technical: true,
     "non-technical": true,
@@ -1659,7 +1659,7 @@ Google India"
 
               </div>
 
-              {/* Round Type Tabs */}
+              {/* Step Type Tabs */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1">
                   <Button
@@ -1782,7 +1782,7 @@ Google India"
                           </div>
 
                           <div>
-                            <label className="block text-xs font-medium mb-1">Round Type</label>
+                            <label className="block text-xs font-medium mb-1">Step Type</label>
                             <Select value={currentRoundForm.roundType} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundType: value}))}>
                               <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
@@ -2872,7 +2872,7 @@ Google India"
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
-                  Round Type <span className="text-red-500">*</span>
+                  Step Type <span className="text-red-500">*</span>
                 </label>
                 <Select
                   value={roundForm.roundType}
