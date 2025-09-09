@@ -36,6 +36,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 interface ScreeningCandidate {
   id: string;
@@ -248,38 +254,38 @@ export default function ScreeningView() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2">
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-green-600">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <Card className="p-2">
+          <div className="text-xl font-bold text-green-600">
             {candidates.filter(c => c.status === "approved").length}
           </div>
-          <div className="text-sm text-muted-foreground">Approved</div>
+          <div className="text-xs text-muted-foreground">Approved</div>
         </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-red-600">
+        <Card className="p-2">
+          <div className="text-xl font-bold text-red-600">
             {candidates.filter(c => c.status === "reject").length}
           </div>
-          <div className="text-sm text-muted-foreground">Rejected</div>
+          <div className="text-xs text-muted-foreground">Rejected</div>
         </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-yellow-600">
+        <Card className="p-2">
+          <div className="text-xl font-bold text-yellow-600">
             {candidates.filter(c => c.status === "queue").length}
           </div>
-          <div className="text-sm text-muted-foreground">Queued</div>
+          <div className="text-xs text-muted-foreground">Queued</div>
         </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-gray-600">
+        <Card className="p-2">
+          <div className="text-xl font-bold text-gray-600">
             {candidates.filter(c => c.status === "pending").length}
           </div>
-          <div className="text-sm text-muted-foreground">Pending Review</div>
+          <div className="text-xs text-muted-foreground">Pending Review</div>
         </Card>
-        <Card className="p-4">
-          <div className="text-2xl font-bold text-blue-600">
+        <Card className="p-2">
+          <div className="text-xl font-bold text-blue-600">
             {candidates.length}
           </div>
-          <div className="text-sm text-muted-foreground">Total Candidates</div>
+          <div className="text-xs text-muted-foreground">Total Candidates</div>
         </Card>
       </div>
 
@@ -309,24 +315,40 @@ export default function ScreeningView() {
                       {candidate.name}
                     </h3>
                     {candidate.status !== "pending" ? (
-                      <Badge
-                        variant={getStatusVariant(candidate.status)}
-                        className={`gap-1 text-xs font-medium flex-shrink-0 ${
-                          candidate.status === "approved"
-                            ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
-                            : candidate.status === "queue"
-                            ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
-                            : candidate.status === "reject"
-                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
-                            : ""
-                        }`}
-                      >
-                        {getStatusIcon(candidate.status)}
-                        {candidate.status === "approved" ? "Approved" :
-                         candidate.status === "reject" ? "Rejected" :
-                         candidate.status === "queue" ? "Queued" :
-                         candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}
-                      </Badge>
+                      candidate.status === "queue" ? (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1">
+                              {getStatusIcon(candidate.status)}
+                              <span>Status</span>
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-40">
+                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
+                              <Check className="w-3 h-3" />
+                              Approve
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
+                              <X className="w-3 h-3" />
+                              Reject
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      ) : (
+                        <Badge
+                          variant={getStatusVariant(candidate.status)}
+                          className={`gap-1 text-xs font-medium flex-shrink-0 ${
+                            candidate.status === "approved"
+                              ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
+                              : candidate.status === "reject"
+                              ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
+                              : ""
+                          }`}
+                        >
+                          {getStatusIcon(candidate.status)}
+                          {candidate.status === "approved" ? "Approved" : "Rejected"}
+                        </Badge>
+                      )
                     ) : (
                       <span className="text-xs text-gray-500 italic">
                         Pending Review
