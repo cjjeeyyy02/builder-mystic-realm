@@ -617,7 +617,7 @@ export default function FilterTabs() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 variant="ghost"
-                className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-3 text-sm font-semibold tracking-tight transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+                className={`relative inline-flex items-center justify-center px-4 py-3 text-sm font-semibold transition-colors ${
                   activeTab === tab.id
                     ? isDarkMode
                       ? "bg-emerald-700 text-white shadow-lg border border-emerald-600 hover:bg-emerald-600"
