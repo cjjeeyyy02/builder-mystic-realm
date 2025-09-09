@@ -1903,7 +1903,7 @@ Google India"
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 2 ? 0 : 2)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-gray-700 hover:bg-gray-100"
                       >
                         ▼
                       </Button>
@@ -1920,7 +1920,7 @@ Google India"
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 3 ? 0 : 3)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-gray-700 hover:bg-gray-100"
                       >
                         ▼
                       </Button>
@@ -1937,7 +1937,7 @@ Google India"
                         variant="ghost"
                         size="sm"
                         onClick={() => setExpandedRound(expandedRound === 4 ? 0 : 4)}
-                        className="h-5 w-5 p-0 text-white hover:bg-red-700"
+                        className="h-5 w-5 p-0 text-gray-700 hover:bg-gray-100"
                       >
                         ▼
                       </Button>
