@@ -1832,9 +1832,9 @@ Google India"
                           </div>
                         </div>
 
-                        {/* Round Details */}
+                        {/* Step Details */}
                         <div>
-                          <label className="block text-xs font-medium mb-1">Round Details</label>
+                          <label className="block text-xs font-medium mb-1">Step Details</label>
                           <Textarea
                             value={currentRoundForm.roundDetails}
                             onChange={(e) => setCurrentRoundForm(prev => ({...prev, roundDetails: e.target.value}))}
