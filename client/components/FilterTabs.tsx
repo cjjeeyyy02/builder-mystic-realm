@@ -668,7 +668,7 @@ export default function FilterTabs() {
             </SelectContent>
           </Select>
 
-          {activeTab === "hiring" && (
+          {false && (
             <Dialog open={showPlugAndHireModal} onOpenChange={setShowPlugAndHireModal}>
               <DialogTrigger asChild>
                 <Button onClick={handlePlugAndHire} className="bg-green-500 hover:bg-green-600 text-white">
@@ -1041,7 +1041,7 @@ export default function FilterTabs() {
                                 <div className="p-3 bg-blue-50 rounded">
                                   <h5 className="font-medium text-blue-800 text-sm">Compliance Features</h5>
                                   <ul className="text-xs text-blue-600 mt-2 space-y-1">
-                                    <li>✓ Right to be forgotten (data deletion)</li>
+                                    <li>�� Right to be forgotten (data deletion)</li>
                                     <li>✓ Data portability (export candidate data)</li>
                                     <li>✓ Consent management & tracking</li>
                                     <li>✓ Automated data anonymization</li>
