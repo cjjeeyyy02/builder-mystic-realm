@@ -8,9 +8,6 @@ export default function Index() {
         {/* Page Title */}
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Onboarding</h1>
 
-        {/* Stats Cards */}
-        <StatsCards />
-
         {/* Filter Tabs with Conditional Content */}
         <FilterTabs />
       </div>
