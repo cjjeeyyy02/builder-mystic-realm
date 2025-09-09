@@ -394,25 +394,40 @@ export default function ScreeningView() {
               <div className="lg:col-span-4 flex flex-wrap items-center gap-2 justify-end">
                 {/* Status Action Buttons */}
                 <div className="flex items-center gap-2">
-                  <Badge
-                    variant={getStatusVariant(candidate.status)}
-                    className={`text-xs font-medium px-2 py-1 cursor-pointer ${
-                      candidate.status === "approved"
-                        ? "bg-green-100 text-green-700 border-green-200"
-                        : candidate.status === "queue"
-                        ? "bg-orange-100 text-orange-700 border-orange-200"
-                        : candidate.status === "reject"
-                        ? "bg-red-100 text-red-700 border-red-200"
-                        : "bg-gray-100 text-gray-700 border-gray-200"
-                    }`}
-                    onClick={() => {
-                      const next = candidate.status === "pending" ? "queue" : candidate.status === "queue" ? "approved" : candidate.status === "approved" ? "reject" : "pending";
-                      handleStatusChange(candidate.id, next as any);
-                    }}
-                  >
-                    {getStatusIcon(candidate.status)}
-                    <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "queue" ? "Queued" : "Pending"}</span>
-                  </Badge>
+                  {candidate.status === "queue" ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1">
+                          {getStatusIcon(candidate.status)}
+                          <span>Status</span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-40">
+                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
+                          <Check className="w-3 h-3" />
+                          Approve
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
+                          <X className="w-3 h-3" />
+                          Reject
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <Badge
+                      variant={getStatusVariant(candidate.status)}
+                      className={`text-xs font-medium px-2 py-1 cursor-pointer ${
+                        candidate.status === "approved"
+                          ? "bg-green-100 text-green-700 border-green-200"
+                          : candidate.status === "reject"
+                          ? "bg-red-100 text-red-700 border-red-200"
+                          : "bg-gray-100 text-gray-700 border-gray-200"
+                      }`}
+                    >
+                      {getStatusIcon(candidate.status)}
+                      <span className="ml-1">{candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}</span>
+                    </Badge>
+                  )}
                 </div>
 
                 <Separator orientation="vertical" className="h-5 mx-1" />
