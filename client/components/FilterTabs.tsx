@@ -611,7 +611,7 @@ export default function FilterTabs() {
             ? 'bg-emerald-900/50 border-emerald-700'
             : 'bg-emerald-50/80 border-emerald-200'
         }`}>
-          <div className="grid w-full grid-cols-5 gap-1">
+          <div className="flex w-full gap-6 border-b border-gray-200 items-end">
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
