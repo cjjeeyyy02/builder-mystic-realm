@@ -282,48 +282,21 @@ export default function ScreeningView() {
                     <h3 className="font-semibold text-foreground text-sm leading-tight truncate">
                       {candidate.name}
                     </h3>
-                    {candidate.status !== "pending" ? (
-                      candidate.status === "queue" ? (
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="sm" className="h-7 text-xs px-2 gap-1">
-                              {getStatusIcon(candidate.status)}
-                              <span>Status</span>
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-40">
-                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
-                              <Check className="w-3 h-3" />
-                              Approve
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
-                              <X className="w-3 h-3" />
-                              Reject
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      ) : (
-                        <Badge
-                          variant={getStatusVariant(candidate.status)}
-                          className={`gap-1 text-xs font-medium flex-shrink-0 ${
-                            candidate.status === "approved"
-                              ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
-                              : candidate.status === "reject"
-                              ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
-                              : ""
-                          }`}
-                        >
-                          {getStatusIcon(candidate.status)}
-                          {candidate.status === "approved" ? "Approved" : "Rejected"}
-                        </Badge>
-                      )
-                    ) : (
+                    {visibleStatusFor === candidate.id && (
                       <Badge
-                        variant={getStatusVariant('approved')}
-                        className={`gap-1 text-xs font-medium flex-shrink-0 bg-green-100 text-green-700 border-green-200 hover:bg-green-200`}
+                        variant={getStatusVariant(candidate.status === 'pending' ? 'approved' : candidate.status)}
+                        className={`gap-1 text-xs font-medium flex-shrink-0 ${
+                          candidate.status === "approved" || candidate.status === "pending"
+                            ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
+                            : candidate.status === "reject"
+                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
+                            : candidate.status === "queue"
+                            ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
+                            : ""
+                        }`}
                       >
-                        {getStatusIcon('approved')}
-                        Pending
+                        {getStatusIcon(candidate.status === 'pending' ? 'approved' : candidate.status)}
+                        {candidate.status === "approved" || candidate.status === "pending" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "queue" ? "Queued" : ""}
                       </Badge>
                     )}
                   </div>
