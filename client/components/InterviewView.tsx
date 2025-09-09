@@ -1873,10 +1873,10 @@ Google India"
 
                         {/* Action Buttons */}
                         <div className="flex gap-1 mt-2">
-                          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-6 px-2 text-xs">
+                          <Button className="bg-gray-900 hover:bg-gray-800 text-white h-7 px-3 text-xs">
                             EDIT THIS TEMPLATE
                           </Button>
-                          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-6 px-2 text-xs">
+                          <Button className="bg-gray-900 hover:bg-gray-800 text-white h-7 px-3 text-xs">
                             SAVE STEP
                           </Button>
                           <Button
