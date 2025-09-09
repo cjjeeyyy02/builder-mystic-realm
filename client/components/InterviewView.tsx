@@ -1654,7 +1654,7 @@ Google India"
                   }}
                   className="h-7 px-3 text-xs bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
                 >
-                  ADD NEW ROUNDS
+                  ADD NEW STEPS
                 </Button>
 
               </div>
