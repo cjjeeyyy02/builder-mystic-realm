@@ -1915,7 +1915,7 @@ Google India"
                 <Card className="border-2 border-gray-300 bg-white">
                   <CardContent className="p-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xs text-white">STEP 3</h3>
+                      <h3 className="font-bold text-xs text-gray-900">STEP 3</h3>
                       <Button
                         variant="ghost"
                         size="sm"
