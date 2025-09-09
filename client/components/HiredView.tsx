@@ -235,28 +235,28 @@ export default function HiredView() {
       </div>
 
       {/* Hired Employees List */}
-      <div className="space-y-4">
+      <div className="space-y-1">
         {filteredEmployees.map((employee) => (
           <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-3">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+            <CardContent className="p-2">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-center">
                 {/* Employee Info */}
                 <div className="lg:col-span-5">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
-                      <User className="w-5 h-5 text-emerald-600" />
+                    <div className="w-9 h-9 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
+                      <User className="w-4 h-4 text-emerald-600" />
                     </div>
                     <div className="space-y-1 flex-1">
                       <div>
                         <div className="text-xs text-muted-foreground font-medium">Candidate:</div>
-                        <div className="font-semibold text-foreground text-base">{employee.candidateName}</div>
+                        <div className="font-semibold text-foreground text-sm">{employee.candidateName}</div>
                         {employee.employeeId && (
                           <div className="text-xs text-muted-foreground">ID: {employee.employeeId}</div>
                         )}
                       </div>
                       <div>
                         <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
-                        <div className="font-medium text-foreground text-sm">{employee.appliedPosition}</div>
+                        <div className="font-medium text-foreground text-xs">{employee.appliedPosition}</div>
                       </div>
                     </div>
                   </div>
@@ -268,7 +268,7 @@ export default function HiredView() {
                     <div className="text-xs text-muted-foreground font-medium mb-1">Department:</div>
                     <Badge
                       variant="secondary"
-                      className={`font-medium px-3 py-1 ${getDepartmentColor(employee.department)}`}
+                      className={`font-medium px-2 py-0.5 ${getDepartmentColor(employee.department)}`}
                     >
                       <Building className="w-3 h-3 mr-1" />
                       {employee.department}
@@ -287,7 +287,7 @@ export default function HiredView() {
                 <div className="lg:col-span-4 flex justify-end">
                   <Badge
                     variant="outline"
-                    className="bg-emerald-100 text-emerald-700 border-emerald-200 font-medium px-4 py-2"
+                    className="bg-gray-100 text-gray-800 border-gray-200 font-medium px-2 py-0.5 text-xs"
                   >
                     HIRED
                   </Badge>
