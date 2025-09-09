@@ -263,20 +263,20 @@ export default function HiredView() {
                 </div>
 
                 {/* Department & Date */}
-                <div className="lg:col-span-3 space-y-3">
+                <div className="lg:col-span-3 space-y-2">
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Department:</div>
+                    <div className="text-xs text-muted-foreground font-medium mb-1">Department:</div>
                     <Badge
                       variant="secondary"
-                      className={`font-medium ${getDepartmentColor(employee.department)}`}
+                      className={`font-medium px-3 py-1 ${getDepartmentColor(employee.department)}`}
                     >
                       <Building className="w-3 h-3 mr-1" />
                       {employee.department}
                     </Badge>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground font-medium mb-1">Date of Joining (DOJ):</div>
-                    <div className="flex items-center gap-2 text-foreground font-medium">
+                    <div className="text-xs text-muted-foreground font-medium mb-1">Date of Joining (DOJ):</div>
+                    <div className="flex items-center gap-2 text-foreground font-medium text-sm">
                       <Calendar className="w-4 h-4 text-muted-foreground" />
                       {employee.dateOfJoining}
                     </div>
