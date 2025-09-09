@@ -1036,7 +1036,7 @@ Google India`
                 className="relative border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-6 py-3"
               >
                 <Settings className="w-4 h-4 mr-2" />
-                Rounds Room
+                Rounds Review
               </TabsTrigger>
               <TabsTrigger
                 value="decision-room"
