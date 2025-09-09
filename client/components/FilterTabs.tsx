@@ -624,13 +624,6 @@ export default function FilterTabs() {
                 }`}
               >
                 <span className="relative z-10">{tab.label}</span>
-                {activeTab === tab.id && (
-                  <div className={`absolute inset-0 rounded-md ${
-                    isDarkMode
-                      ? 'bg-gradient-to-r from-emerald-700 to-emerald-600'
-                      : 'bg-gradient-to-r from-white to-emerald-50'
-                  } shadow-sm`} />
-                )}
               </Button>
             ))}
           </div>
