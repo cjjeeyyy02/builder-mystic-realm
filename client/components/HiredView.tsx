@@ -238,8 +238,8 @@ export default function HiredView() {
       <div className="space-y-4">
         {filteredEmployees.map((employee) => (
           <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <CardContent className="p-3">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
                 {/* Employee Info */}
                 <div className="lg:col-span-5">
                   <div className="flex items-start gap-4">
