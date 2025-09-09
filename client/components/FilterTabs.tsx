@@ -606,21 +606,21 @@ export default function FilterTabs() {
     <div className="space-y-6">
       {/* Button Tabs */}
       <div className="w-full">
-        <div className={`relative rounded-lg p-1.5 shadow-sm border transition-all duration-300 ${
+        <div className={`relative rounded-lg p-1 shadow-sm border transition-all duration-300 ${
           isDarkMode
-            ? 'bg-emerald-900/50 border-emerald-700'
-            : 'bg-emerald-50/80 border-emerald-200'
+            ? 'bg-emerald-900/40 border-emerald-700'
+            : 'bg-emerald-50/70 border-emerald-200'
         }`}>
-          <div className="flex w-full gap-6 border-b border-gray-200 items-end">
+          <div className="flex w-full gap-4 border-b border-gray-200 items-center">
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 variant="ghost"
-                className={`relative inline-flex items-center justify-center px-4 py-3 text-sm font-semibold transition-colors ${
+                className={`relative inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-md transition-colors focus:outline-none ${
                   activeTab === tab.id
-                    ? 'text-black border-b-2 border-black pb-3'
-                    : 'text-gray-600 hover:text-black'
+                    ? 'text-black bg-white shadow-sm ring-1 ring-gray-100'
+                    : 'text-gray-600 hover:text-black hover:bg-white/60'
                 }`}
               >
                 <span className="relative z-10">{tab.label}</span>
@@ -632,20 +632,20 @@ export default function FilterTabs() {
 
       {/* Search and Filter Controls - Only show for hiring and screening */}
       {(activeTab === "screening") && (
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
-          <div className="relative flex-1 max-w-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
+          <div className="relative flex-1 max-w-xs">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Search candidates..."
-              className="pl-10"
+              className="pl-10 h-8 text-sm"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
           <Select value={selectedStage} onValueChange={setSelectedStage}>
-            <SelectTrigger className="w-full sm:w-[200px]">
+            <SelectTrigger className="w-full sm:w-[180px] h-8 text-sm">
               <SelectValue placeholder="Application Stage" />
             </SelectTrigger>
             <SelectContent>
