@@ -177,6 +177,7 @@ export default function ScreeningView() {
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
+  const [visibleStatusFor, setVisibleStatusFor] = useState<string | null>(null);
 
   const handleStatusChange = (
     candidateId: string,
