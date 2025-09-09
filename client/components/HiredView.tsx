@@ -206,18 +206,18 @@ export default function HiredView() {
       </div>
 
       {/* Search and Filter */}
-      <div className="flex gap-4">
-        <div className="flex-1 max-w-md relative">
+      <div className="flex gap-2 items-center">
+        <div className="flex-1 max-w-sm relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search candidates..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pl-10 h-8 rounded-full text-sm"
           />
         </div>
         <Select value={selectedDepartment || "all"} onValueChange={setSelectedDepartment}>
-          <SelectTrigger className="w-64">
+          <SelectTrigger className="w-44 h-8 rounded-full text-sm">
             <SelectValue placeholder="All departments" />
           </SelectTrigger>
           <SelectContent>
