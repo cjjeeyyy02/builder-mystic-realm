@@ -1768,7 +1768,7 @@ Google India"
                         {/* Form Grid */}
                         <div className="grid grid-cols-5 gap-1 text-xs">
                           <div>
-                            <label className="block text-xs font-medium mb-1">Round Name</label>
+                            <label className="block text-xs font-medium mb-1">Step Name</label>
                             <Select value={currentRoundForm.roundName} onValueChange={(value) => setCurrentRoundForm(prev => ({...prev, roundName: value}))}>
                               <SelectTrigger className="h-5 text-xs">
                                 <SelectValue />
@@ -2859,7 +2859,7 @@ Google India"
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
-                  Round Name <span className="text-red-500">*</span>
+                  Step Name <span className="text-red-500">*</span>
                 </label>
                 <Input
                   value={roundForm.roundName}
