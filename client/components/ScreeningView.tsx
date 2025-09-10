@@ -391,21 +391,16 @@ export default function ScreeningView() {
                     <h3 className="font-semibold text-foreground text-sm leading-tight truncate">
                       {candidate.name}
                     </h3>
-                    {visibleStatusFor === candidate.id && (
+                    {(candidate.status === "approved" || candidate.status === "reject") && (
                       <Badge
-                        variant={getStatusVariant(candidate.status === 'pending' ? 'approved' : candidate.status)}
-                        className={`gap-1 text-xs font-medium flex-shrink-0 ${
-                          candidate.status === "approved" || candidate.status === "pending"
-                            ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
-                            : candidate.status === "reject"
-                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-200"
-                            : candidate.status === "queue"
-                            ? "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200"
-                            : ""
+                        variant={getStatusVariant(candidate.status)}
+                        className={`ml-1 px-2 py-0.5 rounded-full text-xs font-medium flex-shrink-0 ${
+                          candidate.status === "approved"
+                            ? "bg-green-100 text-green-700 border-green-200"
+                            : "bg-red-100 text-red-700 border-red-200"
                         }`}
                       >
-                        {getStatusIcon(candidate.status === 'pending' ? 'approved' : candidate.status)}
-                        {candidate.status === "approved" || candidate.status === "pending" ? "Approved" : candidate.status === "reject" ? "Rejected" : candidate.status === "queue" ? "Queued" : ""}
+                        {candidate.status === "approved" ? "Approved" : "Rejected"}
                       </Badge>
                     )}
                   </div>
