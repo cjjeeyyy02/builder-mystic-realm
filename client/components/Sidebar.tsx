@@ -203,6 +203,32 @@ export default function Sidebar({
                 );
               }
 
+              // Special rendering for Onboarding to support submenu
+              if (item.label === "Onboarding") {
+                const [expandedOnboarding, setExpandedOnboarding] = React.useState(false);
+
+                return (
+                  <div key={item.path}>
+                    <div className={`w-full flex items-center justify-between h-11 px-3 rounded-lg transition-all duration-200 ${isActive ? 'bg-gray-900 text-white shadow font-semibold' : 'text-gray-800 hover:bg-gray-50'}`}>
+                      <Link to={item.path} onClick={() => { setExpandedOnboarding(prev => !prev); onClose(); }} className="flex items-center gap-3 w-full">
+                        <Icon className="w-5 h-5 text-current" />
+                        <span className="font-medium">{item.label}</span>
+                      </Link>
+
+                      <button onClick={(e) => { e.preventDefault(); setExpandedOnboarding(prev => !prev); }} className="p-1">
+                        <ChevronDown className={`w-4 h-4 text-gray-500 transform transition-transform ${expandedOnboarding ? 'rotate-180' : ''}`} />
+                      </button>
+                    </div>
+
+                    <div className={`overflow-hidden transition-all duration-300 ${expandedOnboarding ? 'max-h-40 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                      <div className="pl-10">
+                        <Link to="/job-posting" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Job Posting</Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Button
                   key={item.path}
