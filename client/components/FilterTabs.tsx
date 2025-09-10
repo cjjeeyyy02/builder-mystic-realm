@@ -621,7 +621,7 @@ export default function FilterTabs() {
                 aria-current={activeTab === tab.id ? 'page' : undefined}
                 className={`flex-1 min-w-[88px] text-center inline-flex items-center justify-center px-4 py-3 text-sm font-medium tracking-wide rounded-none transition-colors focus:outline-none border-b-2 ${
                   activeTab === tab.id
-                    ? 'border-black text-black font-semibold'
+                    ? 'border-transparent text-black font-semibold bg-transparent'
                     : 'border-transparent text-gray-500 hover:text-black hover:border-gray-200'
                 }`}
               >
