@@ -206,8 +206,6 @@ export default function Sidebar({
 
               // Special rendering for Onboarding to support submenu
               if (item.label === "Onboarding") {
-                const [expandedOnboarding, setExpandedOnboarding] = React.useState(false);
-
                 return (
                   <div key={item.path}>
                     <div className={`w-full flex items-center justify-between h-11 px-3 rounded-lg transition-all duration-200 ${isActive ? 'bg-gray-900 text-white shadow font-semibold' : 'text-gray-800 hover:bg-gray-50'}`}>
