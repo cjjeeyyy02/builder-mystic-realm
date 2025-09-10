@@ -58,6 +58,19 @@ export default function ActivationView() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
+  const [employees, setEmployees] = useState<Employee[]>(initialEmployees);
+
+  // Checklist mapping per candidate: { [jobId]: [{ id, title, completed, files: File[] }] }
+  const [checklistMap, setChecklistMap] = useState<Record<string, { id: string; title: string; completed: boolean; files: any[] }[]>>(() => {
+    const map: Record<string, any[]> = {};
+    initialEmployees.forEach((e) => {
+      map[e.jobId] = checklistItems.map((it, idx) => ({ id: String(idx + 1), title: it.title, completed: it.completed, files: [] }));
+    });
+    return map;
+  });
+
+  const [selectedEmployeeForChecklist, setSelectedEmployeeForChecklist] = useState<Employee | null>(null);
+  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
 
   const renderProgressBar = (progress: number) => {
     const getProgressColor = () => {
