@@ -148,23 +148,6 @@ export default function ActivationView() {
           ? 'bg-gray-800 border-gray-700'
           : 'bg-white border-gray-200'
       }`}>
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-400'
-            }`} />
-            <Input
-              placeholder="Search candidates"
-              value={searchCandidates}
-              onChange={(e) => setSearchCandidates(e.target.value)}
-              className={`w-64 h-9 text-sm pl-10 ${
-                isDarkMode
-                  ? 'bg-transparent border-transparent text-white placeholder-gray-400'
-                  : 'bg-transparent border-transparent text-gray-900 placeholder-gray-500'
-              }`}
-            />
-          </div>
-        </div>
 
         <div className="flex items-center gap-2">
 
