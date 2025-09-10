@@ -343,8 +343,8 @@ export default function ScreeningView() {
                     <td className="py-3 px-4">{candidate.email}</td>
                     <td className="py-3 px-4">
                       <div className="inline-flex items-center gap-2">
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${candidate.status === 'approved' ? 'bg-green-100 text-green-700' : candidate.status === 'reject' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                          {candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : candidate.status === 'queue' ? 'Queued' : 'Pending'}
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${candidate.status === 'approved' ? 'bg-green-100 text-green-700' : candidate.status === 'reject' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+                          {candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : 'Pending'}
                         </span>
                       </div>
                     </td>
