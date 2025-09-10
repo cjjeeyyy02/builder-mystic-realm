@@ -636,7 +636,7 @@ export default function FilterTabs() {
       {(activeTab === "screening") && (
         <div className="flex flex-col gap-2 mb-4">
           {/* Metrics cards */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <Card className="p-2">
               <div className="text-xl font-bold text-green-600">
                 {screeningCandidates.filter(c => c.status === "approved").length}
@@ -1071,7 +1071,7 @@ export default function FilterTabs() {
                                   <ul className="text-xs text-green-600 mt-2 space-y-1">
                                     <li>✓ End-to-end encryption in transit</li>
                                     <li>✓ Encrypted storage at rest</li>
-                                    <li>✓ Access controls & role-based permissions</li>
+                                    <li>��� Access controls & role-based permissions</li>
                                     <li>✓ Regular security audits</li>
                                   </ul>
                                 </div>
