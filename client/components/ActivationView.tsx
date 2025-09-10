@@ -72,6 +72,48 @@ export default function ActivationView() {
   const [selectedEmployeeForChecklist, setSelectedEmployeeForChecklist] = useState<Employee | null>(null);
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
 
+  const openChecklistModal = (emp: Employee) => {
+    setSelectedEmployeeForChecklist(emp);
+    setIsChecklistOpen(true);
+  };
+
+  const closeChecklistModal = () => {
+    setSelectedEmployeeForChecklist(null);
+    setIsChecklistOpen(false);
+  };
+
+  const handleChecklistFileUpload = (jobId: string, itemId: string, file: File | null) => {
+    if (!file) return;
+    setChecklistMap((prev) => {
+      const copy = { ...prev };
+      const items = copy[jobId] ? [...copy[jobId]] : [];
+      const idx = items.findIndex(i => i.id === itemId);
+      if (idx === -1) return prev;
+      const fileEntry = { name: file.name, url: URL.createObjectURL(file) };
+      items[idx] = { ...items[idx], completed: true, files: [...items[idx].files, fileEntry] };
+      copy[jobId] = items;
+
+      // Update employee activation progress based on completed items
+      setEmployees((emps) => emps.map(e => {
+        if (e.jobId !== jobId) return e;
+        const total = items.length;
+        const completedCount = items.filter(it => it.completed).length;
+        return { ...e, activationProgress: Math.round((completedCount / (total || 1)) * 100) };
+      }));
+
+      return copy;
+    });
+  };
+
+  const sendGmailTemplate = async (action: "approve" | "reject", emp: Employee) => {
+    // Placeholder for Gmail API integration — replace with real API call when connected
+    console.log(`Would send Gmail template for ${action} to ${emp.name} (job ${emp.jobId})`);
+    // Update employee status locally
+    setEmployees((prev) => prev.map((e) => e.jobId === emp.jobId ? { ...e, activationProgress: action === 'approve' ? 100 : e.activationProgress } : e));
+    // Provide a basic user feedback
+    alert(`${action === 'approve' ? 'Approval' : 'Rejection'} email triggered for ${emp.name}. (Simulated)`);
+  };
+
   const renderProgressBar = (progress: number) => {
     const getProgressColor = () => {
       if (progress < 50) return "bg-red-500";
