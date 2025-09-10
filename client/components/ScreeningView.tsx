@@ -138,28 +138,6 @@ const screeningCandidates: ScreeningCandidate[] = [
     rating: 4.8,
   },
   {
-    id: "3",
-    name: "Aisha Patel",
-    position: "Frontend Engineer",
-    email: "aisha.patel@example.com",
-    phone: "123-555-001",
-    totalExperience: "4 years",
-    relevantExperience: "4 years",
-    status: "approved",
-    resumeUrl: "/documents/aisha-patel-resume.pdf",
-    summary: "Frontend Engineer specializing in React and modern JavaScript with strong accessibility and performance focus.",
-    education: "B.S. in Computer Science, University of Texas",
-    workHistory: [
-      { company: "UI Labs", position: "Frontend Engineer", duration: "2021 - Present", description: "Built responsive component libraries and improved app performance." }
-    ],
-    skills: ["React", "TypeScript", "Tailwind", "Accessibility"],
-    certifications: ["Certified React Developer"],
-    location: "Austin, TX",
-    salaryExpectation: "$95,000 - $110,000",
-    availability: "2 weeks",
-    rating: 4.4,
-  },
-  {
     id: "4",
     name: "Carlos Mendez",
     position: "Data Scientist",
