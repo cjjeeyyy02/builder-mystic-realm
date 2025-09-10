@@ -96,10 +96,10 @@ export default function ActivationView() {
               placeholder="Search candidates"
               value={searchCandidates}
               onChange={(e) => setSearchCandidates(e.target.value)}
-              className={`w-64 h-9 text-sm rounded-md pl-10 transition-shadow duration-200 ${
+              className={`w-64 h-9 text-sm pl-10 ${
                 isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
-                  : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500'
+                  ? 'bg-transparent border-transparent text-white placeholder-gray-400'
+                  : 'bg-transparent border-transparent text-gray-900 placeholder-gray-500'
               }`}
             />
           </div>
