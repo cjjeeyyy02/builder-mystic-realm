@@ -256,6 +256,47 @@ export default function ActivationView() {
               </TableBody>
             </Table>
           </div>
+
+          {/* Checklist Modal */}
+          <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>Checklist - {selectedEmployeeForChecklist?.name}</DialogTitle>
+              </DialogHeader>
+
+              <div className="space-y-4">
+                {selectedEmployeeForChecklist && (checklistMap[selectedEmployeeForChecklist.jobId] || []).map((item) => (
+                  <div key={item.id} className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">{item.title}</div>
+                      <div className="text-xs text-muted-foreground">{item.completed ? 'Uploaded' : 'Required'}</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="file"
+                        onChange={(e) => handleChecklistFileUpload(selectedEmployeeForChecklist.jobId, item.id, e.target.files?.[0] ?? null)}
+                        className="text-sm"
+                      />
+                      {item.files && item.files.length > 0 && (
+                        <a href={item.files[0].url} target="_blank" rel="noreferrer" className="text-sm text-[var(--hr-primary)]">View</a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <DialogFooter>
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex gap-2">
+                    <Button variant="outline" onClick={() => { if (selectedEmployeeForChecklist) sendGmailTemplate('reject', selectedEmployeeForChecklist); }}>Reject</Button>
+                    <Button onClick={() => { if (selectedEmployeeForChecklist) sendGmailTemplate('approve', selectedEmployeeForChecklist); }}>Approve</Button>
+                  </div>
+                  <Button variant="ghost" onClick={closeChecklistModal}>Close</Button>
+                </div>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
         </div>
       ) : (
         <div className="space-y-3">
