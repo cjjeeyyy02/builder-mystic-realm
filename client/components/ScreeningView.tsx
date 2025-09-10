@@ -308,6 +308,70 @@ export default function ScreeningView() {
       </div>
 
       {/* Screening Candidates */}
+
+      {/* Table View */}
+      {viewMode === "table" && (
+        <div className="overflow-auto rounded-lg border border-gray-100 bg-white shadow-sm mb-4">
+          <table className="w-full text-sm table-auto border-collapse">
+            <thead>
+              <tr className="text-left text-xs text-muted-foreground border-b">
+                <th className="py-2 px-4">Candidate</th>
+                <th className="py-2 px-4">Position</th>
+                <th className="py-2 px-4">Experience</th>
+                <th className="py-2 px-4">Contact</th>
+                <th className="py-2 px-4">Status</th>
+                <th className="py-2 px-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {candidates
+                .filter(c => {
+                  const q = searchQuery.toLowerCase();
+                  return (
+                    !q ||
+                    c.name.toLowerCase().includes(q) ||
+                    c.position.toLowerCase().includes(q) ||
+                    c.email.toLowerCase().includes(q)
+                  );
+                })
+                .map((candidate) => (
+                  <tr key={candidate.id} className="border-b last:border-b-0 hover:bg-gray-50 transition">
+                    <td className="py-3 px-4">
+                      <div className="font-medium">{candidate.name}</div>
+                      <div className="text-xs text-muted-foreground">{candidate.location}</div>
+                    </td>
+                    <td className="py-3 px-4">{candidate.position}</td>
+                    <td className="py-3 px-4">{candidate.totalExperience}</td>
+                    <td className="py-3 px-4">{candidate.email}</td>
+                    <td className="py-3 px-4">
+                      <div className="inline-flex items-center gap-2">
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${candidate.status === 'approved' ? 'bg-green-100 text-green-700' : candidate.status === 'reject' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                          {candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : candidate.status === 'queue' ? 'Queued' : 'Pending'}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-2">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button size="sm" variant="outline">Actions</Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-48">
+                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2"><Check className="w-3 h-3"/> Approve</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'queue')} className="flex items-center gap-2 text-yellow-600"><Timer className="w-3 h-3"/> Queue</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2"><Eye className="w-3 h-3"/> View Resume</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2"><Send className="w-3 h-3"/> Email</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       {candidates.map((candidate) => (
         <Card
           key={candidate.id}
