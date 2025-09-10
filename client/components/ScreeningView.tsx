@@ -372,7 +372,7 @@ export default function ScreeningView() {
           </table>
         </div>
       )}
-      {candidates.map((candidate) => (
+      {viewMode === 'grid' && candidates.map((candidate) => (
         <Card
           key={candidate.id}
           className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
