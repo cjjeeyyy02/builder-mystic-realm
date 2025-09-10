@@ -356,8 +356,7 @@ export default function ScreeningView() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2"><Check className="w-3 h-3"/> Approve</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'queue')} className="flex items-center gap-2 text-yellow-600"><Timer className="w-3 h-3"/> Queue</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
+                                                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2"><Eye className="w-3 h-3"/> View Resume</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2"><Send className="w-3 h-3"/> Email</DropdownMenuItem>
                           </DropdownMenuContent>
