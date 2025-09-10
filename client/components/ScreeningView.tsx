@@ -245,6 +245,17 @@ export default function ScreeningView() {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
 
+  // UI states
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Email side sheet
+  const [showEmailSheet, setShowEmailSheet] = useState(false);
+  const [emailCandidate, setEmailCandidate] = useState<ScreeningCandidate | null>(null);
+
+  // Resume zoom
+  const [resumeZoom, setResumeZoom] = useState<number>(1);
+
   const handleStatusChange = (
     candidateId: string,
     newStatus: "approved" | "reject" | "queue",
