@@ -4,9 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Eye, Download, Trash2, Plus, Search, Mail } from "lucide-react";
+import { Eye, Download, Trash2, Plus, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "@/components/DarkModeProvider";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 interface ChecklistItem {
   id: string;
