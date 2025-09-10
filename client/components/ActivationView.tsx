@@ -235,10 +235,11 @@ export default function ActivationView() {
                     <TableCell className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <Button
-                          className="h-6 w-6 p-0 bg-emerald-500 hover:bg-emerald-600 text-white"
-                          title="Send Email"
+                          className="h-6 text-xs px-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                          title="View & Upload Docs"
+                          onClick={() => openChecklistModal(employee)}
                         >
-                          <Mail className="w-3 h-3" />
+                          View & Upload Docs
                         </Button>
 
                         <Button
