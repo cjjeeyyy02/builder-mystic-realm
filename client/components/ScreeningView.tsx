@@ -459,6 +459,11 @@ export default function ScreeningView() {
                       Approve
                     </DropdownMenuItem>
 
+                    <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'queue')} className="flex items-center gap-2 text-yellow-600">
+                      <Timer className="w-3 h-3" />
+                      Queue
+                    </DropdownMenuItem>
+
                     <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
                       <X className="w-3 h-3" />
                       Reject
