@@ -444,15 +444,29 @@ input, textarea, select{border-radius:8px}
 .onboarding-corporate h3,
 .onboarding-corporate h4 {
   font-family: "Poppins", "Roboto", system-ui, -apple-system, sans-serif;
-  font-weight: 700; /* bold for titles */
   color: hsl(var(--foreground));
 }
+
+/* Heading hierarchy */
+.onboarding-corporate h1 { font-size: 24px; font-weight: 700; line-height: 1.25; }
+.onboarding-corporate h2 { font-size: 18px; font-weight: 600; line-height: 1.3; }
+.onboarding-corporate h3 { font-size: 16px; font-weight: 600; line-height: 1.35; }
+.onboarding-corporate h4 { font-size: 14px; font-weight: 600; line-height: 1.4; }
 .onboarding-corporate p,
 .onboarding-corporate span,
 .onboarding-corporate a,
 .onboarding-corporate li {
   font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
   color: hsl(var(--foreground));
+}
+
+/* Labels */
+.onboarding-corporate label,
+.onboarding-corporate .label {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 /* Buttons and badges for onboarding */
@@ -558,15 +572,29 @@ input, textarea, select{border-radius:8px}
 .dashboard-corporate h3,
 .dashboard-corporate h4 {
   font-family: "Poppins", "Roboto", system-ui, -apple-system, sans-serif;
-  font-weight: 700;
   color: hsl(var(--foreground));
 }
+
+/* Heading hierarchy */
+.dashboard-corporate h1 { font-size: 24px; font-weight: 700; line-height: 1.25; }
+.dashboard-corporate h2 { font-size: 18px; font-weight: 600; line-height: 1.3; }
+.dashboard-corporate h3 { font-size: 16px; font-weight: 600; line-height: 1.35; }
+.dashboard-corporate h4 { font-size: 14px; font-weight: 600; line-height: 1.4; }
 .dashboard-corporate p,
 .dashboard-corporate span,
 .dashboard-corporate a,
 .dashboard-corporate li {
   font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
   color: hsl(var(--foreground));
+}
+
+/* Labels */
+.dashboard-corporate label,
+.dashboard-corporate .label {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .dashboard-corporate .btn-corp,
