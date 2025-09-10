@@ -445,54 +445,37 @@ export default function ScreeningView() {
                 </div>
               </div>
 
-              {/* Actions Section (Columns 9-12) */}
-              <div className="lg:col-span-4 flex flex-wrap items-center gap-2 justify-end">
-                {/* Status Action Button (neutral) */}
-                <div className="flex items-center gap-2">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 text-xs px-3 gap-1" onClick={() => setVisibleStatusFor(prev => prev === candidate.id ? null : candidate.id)}>
-                        <span>Status</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-40">
-                      <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
-                        <Check className="w-3 h-3" />
-                        Approve
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
-                        <X className="w-3 h-3" />
-                        Reject
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
+              {/* Actions Section (Columns 9-12) - single Status dropdown */}
+              <div className="lg:col-span-4 flex items-center justify-end">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="h-7 text-xs px-3">
+                      Status
+                    </Button>
+                  </DropdownMenuTrigger>
 
-                <Separator orientation="vertical" className="h-5 mx-1" />
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
+                      <Check className="w-3 h-3" />
+                      Approve
+                    </DropdownMenuItem>
 
-                {/* Primary Actions */}
-                <div className="flex items-center gap-1.5">
-                  <div className="flex items-center">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="gap-1 text-black font-medium h-7 px-3 border border-gray-200 bg-white hover:bg-gray-50 text-xs"
-                      onClick={() => handleViewResume(candidate)}
-                    >
+                    <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
+                      <X className="w-3 h-3" />
+                      Reject
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2">
                       <Eye className="w-3 h-3" />
                       View Resume
-                    </Button>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-1 text-black font-medium h-7 px-3 border border-gray-200 bg-white hover:bg-gray-50 text-xs"
-                    onClick={() => handleEmailCandidate(candidate)}
-                  >
-                    <Send className="w-3 h-3" />
-                    Email
-                  </Button>
-                </div>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2">
+                      <Send className="w-3 h-3" />
+                      Email
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </CardContent>
