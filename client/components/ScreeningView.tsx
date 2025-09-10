@@ -753,19 +753,6 @@ export default function ScreeningView() {
                           Approve for Next Round
                         </Button>
                         <Button
-                          variant={selectedCandidate.status === "queue" ? "secondary" : "outline"}
-                          size="sm"
-                          className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
-                            selectedCandidate.status === "queue"
-                              ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500 shadow-md"
-                              : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
-                          }`}
-                          onClick={() => handleStatusChange(selectedCandidate.id, "queue")}
-                        >
-                          <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Put in Queue
-                        </Button>
-                        <Button
                           variant={selectedCandidate.status === "reject" ? "destructive" : "outline"}
                           size="sm"
                           className={`w-full justify-start text-xs sm:text-sm transition-all duration-200 ${
