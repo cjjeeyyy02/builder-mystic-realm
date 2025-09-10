@@ -651,13 +651,6 @@ export default function FilterTabs() {
               <div className="text-xs text-muted-foreground">Rejected</div>
             </Card>
 
-            <Card className="p-2">
-              <div className="text-xl font-bold text-yellow-600">
-                {screeningCandidates.filter(c => c.status === "queue").length}
-              </div>
-              <div className="text-xs text-muted-foreground">Queued</div>
-            </Card>
-
               <Card className="p-2">
               <div className="text-xl font-bold text-blue-600">
                 {screeningCandidates.length}
