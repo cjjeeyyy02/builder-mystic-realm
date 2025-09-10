@@ -182,28 +182,6 @@ const screeningCandidates: ScreeningCandidate[] = [
     rating: 4.0,
   },
   {
-    id: "6",
-    name: "Liam O'Connor",
-    position: "DevOps Engineer",
-    email: "liam.oconnor@example.com",
-    phone: "123-555-004",
-    totalExperience: "5 years",
-    relevantExperience: "5 years",
-    status: "reject",
-    resumeUrl: "/documents/liam-oconnor-resume.pdf",
-    summary: "DevOps Engineer with experience in cloud infrastructure, CI/CD, and monitoring.",
-    education: "B.Eng. in Software Engineering, University College Dublin",
-    workHistory: [
-      { company: "CloudOps Ltd", position: "DevOps Engineer", duration: "2019 - Present", description: "Managed Kubernetes clusters and CI/CD pipelines." }
-    ],
-    skills: ["Kubernetes", "Terraform", "AWS"],
-    certifications: ["CKA"],
-    location: "Dublin, Ireland",
-    salaryExpectation: "€80,000 - €95,000",
-    availability: "Immediate",
-    rating: 3.8,
-  },
-  {
     id: "7",
     name: "Sofia Rossi",
     position: "Product Designer",
