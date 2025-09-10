@@ -808,6 +808,29 @@ export default function ScreeningView() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Email Side Sheet */}
+      <Sheet open={showEmailSheet} onOpenChange={setShowEmailSheet}>
+        <SheetContent side="right" className="w-full max-w-md">
+          <SheetHeader>
+            <h3 className="text-lg font-semibold">Email {emailCandidate?.name}</h3>
+          </SheetHeader>
+
+          <div className="p-4">
+            <Label>To</Label>
+            <Input value={emailCandidate?.email ?? ''} readOnly />
+            <Label className="mt-3">Subject</Label>
+            <Input placeholder={`Regarding ${emailCandidate?.position}`} />
+            <Label className="mt-3">Message</Label>
+            <Textarea className="min-h-[160px]" />
+            <div className="flex items-center justify-end gap-2 mt-3">
+              <Button variant="outline" onClick={() => setShowEmailSheet(false)}>Cancel</Button>
+              <Button onClick={() => { setShowEmailSheet(false); setEmailCandidate(null); }}>Send</Button>
+            </div>
+          </div>
+
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
