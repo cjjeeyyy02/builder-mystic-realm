@@ -659,17 +659,6 @@ export default function FilterTabs() {
             </Card>
           </div>
 
-          {/* Search bar placed under metrics */}
-          <div className="relative max-w-xs">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search candidates..."
-              className="pl-10 h-8 text-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
 
           {false && (
             <Dialog open={showPlugAndHireModal} onOpenChange={setShowPlugAndHireModal}>
