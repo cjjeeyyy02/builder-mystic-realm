@@ -105,18 +105,6 @@ export default function ActivationView() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-            <SelectTrigger className={`w-28 h-9 text-sm border rounded-md transition-colors duration-200 ${
-              isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-200 text-gray-900'
-            }`}>
-              <SelectValue placeholder="Country" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="india" className="text-sm">India</SelectItem>
-              <SelectItem value="usa" className="text-sm">USA</SelectItem>
-              <SelectItem value="uk" className="text-sm">UK</SelectItem>
-            </SelectContent>
-          </Select>
 
         </div>
       </div>
