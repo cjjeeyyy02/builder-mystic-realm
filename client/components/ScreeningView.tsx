@@ -70,7 +70,7 @@ interface ScreeningCandidate {
   rating?: number;
 }
 
-const screeningCandidates: ScreeningCandidate[] = [
+export const screeningCandidates: ScreeningCandidate[] = [
   {
     id: "1",
     name: "Emily Rodriguez",
