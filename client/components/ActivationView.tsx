@@ -60,6 +60,16 @@ export default function ActivationView() {
   const [searchCandidates, setSearchCandidates] = useState("");
   const [employees, setEmployees] = useState<Employee[]>(initialEmployees);
 
+  const filteredEmployees = useMemo(() => {
+    const q = searchCandidates.trim().toLowerCase();
+    if (!q) return employees;
+    return employees.filter(e =>
+      e.name.toLowerCase().includes(q) ||
+      e.jobId.toLowerCase().includes(q) ||
+      e.appliedJobRole.toLowerCase().includes(q)
+    );
+  }, [employees, searchCandidates]);
+
   // Checklist mapping per candidate: { [jobId]: [{ id, title, completed, files: File[] }] }
   const [checklistMap, setChecklistMap] = useState<Record<string, { id: string; title: string; completed: boolean; files: any[] }[]>>(() => {
     const map: Record<string, any[]> = {};
@@ -156,6 +166,14 @@ export default function ActivationView() {
 
       {activeTab === "activation-room" ? (
         <div className="space-y-3">
+          {/* Search (Activation) */}
+          <div className="flex items-center">
+            <div className="relative w-full max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input placeholder="Search Candidates" value={searchCandidates} onChange={(e) => setSearchCandidates(e.target.value)} className="pl-10" />
+            </div>
+          </div>
+
           {/* Employee Activation Table */}
           <div className={`border rounded-lg overflow-hidden transition-colors duration-300 ${
             isDarkMode
@@ -191,7 +209,7 @@ export default function ActivationView() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {employees.map((employee) => (
+                {filteredEmployees.map((employee) => (
                   <TableRow key={employee.jobId} className={`border-b transition-colors duration-300 ${
                     isDarkMode
                       ? 'border-gray-700 hover:bg-gray-700/50'
