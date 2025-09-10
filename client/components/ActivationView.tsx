@@ -191,17 +191,6 @@ export default function ActivationView() {
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
                     <TableCell className="px-3 py-2">
-                      <Button
-                        className={`h-6 text-xs px-3 font-medium ${
-                          employee.finalDecision === "EMPLOYEE ACTIVATED"
-                            ? "bg-green-500 hover:bg-green-600 text-white"
-                            : "bg-yellow-500 hover:bg-yellow-600 text-black"
-                        }`}
-                      >
-                        {employee.finalDecision}
-                      </Button>
-                    </TableCell>
-                    <TableCell className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <Button
                           className="h-6 w-6 p-0 bg-emerald-500 hover:bg-emerald-600 text-white"
