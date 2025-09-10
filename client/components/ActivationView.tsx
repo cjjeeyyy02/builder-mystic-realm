@@ -51,7 +51,6 @@ export default function ActivationView() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState("");
 
   const renderProgressBar = (progress: number) => {
     const getProgressColor = () => {
