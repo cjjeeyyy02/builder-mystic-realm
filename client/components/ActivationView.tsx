@@ -90,110 +90,43 @@ export default function ActivationView() {
           ? 'bg-gray-800 border-gray-700'
           : 'bg-white border-gray-200'
       }`}>
-        <div className="flex items-center gap-1">
-          {/* Checklist Builder hidden by default - removed from header */}
-          <Button
-            variant={activeTab === "activation-room" ? "default" : "outline"}
-            onClick={() => setActiveTab("activation-room")}
-            className={`h-7 text-xs px-3 font-medium transition-colors duration-300 ${
-              activeTab === "activation-room"
-                ? isDarkMode
-                  ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                  : 'bg-gray-900 text-white hover:bg-gray-800'
-                : isDarkMode
-                  ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            ACTIVATION ROOM
-          </Button>
+        <div className="flex items-center gap-2">
+          <div className="relative">
+            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-400'
+            }`} />
+            <Input
+              placeholder="Search candidates"
+              value={searchCandidates}
+              onChange={(e) => setSearchCandidates(e.target.value)}
+              className={`w-64 h-9 text-sm rounded-md pl-10 transition-shadow duration-200 ${
+                isDarkMode
+                  ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
+                  : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500'
+              }`}
+            />
+          </div>
         </div>
 
-        {activeTab === "activation-room" ? (
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <Search className={`absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 transition-colors duration-300 ${
-                isDarkMode ? 'text-gray-500' : 'text-gray-400'
-              }`} />
-              <Input
-                placeholder="SEARCH CANDIDATES"
-                value={searchCandidates}
-                onChange={(e) => setSearchCandidates(e.target.value)}
-                className={`w-48 h-7 text-xs border pl-7 transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              />
-            </div>
+        <div className="flex items-center gap-2">
+          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+            <SelectTrigger className={`w-28 h-9 text-sm border rounded-md transition-colors duration-200 ${
+              isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-200 text-gray-900'
+            }`}>
+              <SelectValue placeholder="Country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="india" className="text-sm">India</SelectItem>
+              <SelectItem value="usa" className="text-sm">USA</SelectItem>
+              <SelectItem value="uk" className="text-sm">UK</SelectItem>
+            </SelectContent>
+          </Select>
 
-            <Select value={confirmFilter} onValueChange={setConfirmFilter}>
-              <SelectTrigger className={`w-20 h-7 text-xs border transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}>
-                <SelectValue placeholder="CONFIRM" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="confirmed" className="text-xs">Confirmed</SelectItem>
-                <SelectItem value="pending" className="text-xs">Pending</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={finalDecisionFilter} onValueChange={setFinalDecisionFilter}>
-              <SelectTrigger className={`w-32 h-7 text-xs border transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}>
-                <SelectValue placeholder="FINAL DECISION" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="activated" className="text-xs">Employee Activated</SelectItem>
-                <SelectItem value="pending" className="text-xs">Activate Employee</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <Search className={`absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 transition-colors duration-300 ${
-                isDarkMode ? 'text-gray-500' : 'text-gray-400'
-              }`} />
-              <Input
-                placeholder="SEARCH CANDIDATES"
-                value={searchCandidates}
-                onChange={(e) => setSearchCandidates(e.target.value)}
-                className={`w-48 h-7 text-xs border pl-7 transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              />
-            </div>
-
-            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className={`w-24 h-7 text-xs border transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}>
-                <SelectValue placeholder="COUNTRY" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="india" className="text-xs">India</SelectItem>
-                <SelectItem value="usa" className="text-xs">USA</SelectItem>
-                <SelectItem value="uk" className="text-xs">UK</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Button className="h-7 text-xs px-3 bg-emerald-500 text-white hover:bg-emerald-600">
-              <Plus className="w-3 h-3 mr-1" />
-              ADD NEW FIELDS
-            </Button>
-          </div>
-        )}
+          <Button className="h-9 text-sm px-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-md">
+            <Plus className="w-4 h-4 mr-2" />
+            Add Field
+          </Button>
+        </div>
       </div>
 
       {activeTab === "activation-room" ? (
