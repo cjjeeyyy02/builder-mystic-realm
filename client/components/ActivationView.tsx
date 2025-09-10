@@ -41,7 +41,7 @@ const checklistItems: ChecklistItem[] = [
   { id: "7", title: "Email ID & Account Setup", completed: true },
 ];
 
-const employeeData: Employee[] = [
+const initialEmployees: Employee[] = [
   { jobId: "001", name: "Jaya", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
   { jobId: "002", name: "Mark", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
   { jobId: "003", name: "John", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
