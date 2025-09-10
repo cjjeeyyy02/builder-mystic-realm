@@ -208,7 +208,7 @@ export default function ActivationView() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {employeeData.map((employee) => (
+                {employees.map((employee) => (
                   <TableRow key={employee.jobId} className={`border-b transition-colors duration-300 ${
                     isDarkMode
                       ? 'border-gray-700 hover:bg-gray-700/50'
