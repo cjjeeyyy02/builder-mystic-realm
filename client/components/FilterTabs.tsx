@@ -634,8 +634,47 @@ export default function FilterTabs() {
 
       {/* Search and Filter Controls - Only show for hiring and screening */}
       {(activeTab === "screening") && (
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
-          <div className="relative flex-1 max-w-xs">
+        <div className="flex flex-col gap-2 mb-4">
+          {/* Metrics cards */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+            <Card className="p-2">
+              <div className="text-xl font-bold text-green-600">
+                {screeningCandidates.filter(c => c.status === "approved").length}
+              </div>
+              <div className="text-xs text-muted-foreground">Approved</div>
+            </Card>
+
+            <Card className="p-2">
+              <div className="text-xl font-bold text-red-600">
+                {screeningCandidates.filter(c => c.status === "reject").length}
+              </div>
+              <div className="text-xs text-muted-foreground">Rejected</div>
+            </Card>
+
+            <Card className="p-2">
+              <div className="text-xl font-bold text-yellow-600">
+                {screeningCandidates.filter(c => c.status === "queue").length}
+              </div>
+              <div className="text-xs text-muted-foreground">Queued</div>
+            </Card>
+
+            <Card className="p-2">
+              <div className="text-xl font-bold text-gray-600">
+                {screeningCandidates.filter(c => c.status === "pending").length}
+              </div>
+              <div className="text-xs text-muted-foreground">Pending Review</div>
+            </Card>
+
+            <Card className="p-2">
+              <div className="text-xl font-bold text-blue-600">
+                {screeningCandidates.length}
+              </div>
+              <div className="text-xs text-muted-foreground">Total Candidates</div>
+            </Card>
+          </div>
+
+          {/* Search bar placed under metrics */}
+          <div className="relative max-w-xs">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               type="text"
@@ -645,19 +684,6 @@ export default function FilterTabs() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-
-          <Select value={selectedStage} onValueChange={setSelectedStage}>
-            <SelectTrigger className="w-full sm:w-[180px] h-8 text-sm">
-              <SelectValue placeholder="Application Stage" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Stages</SelectItem>
-              <SelectItem value="screening">Screening</SelectItem>
-              <SelectItem value="interview">Interview</SelectItem>
-              <SelectItem value="activation">Activation</SelectItem>
-              <SelectItem value="hired">Hired</SelectItem>
-            </SelectContent>
-          </Select>
 
           {false && (
             <Dialog open={showPlugAndHireModal} onOpenChange={setShowPlugAndHireModal}>
