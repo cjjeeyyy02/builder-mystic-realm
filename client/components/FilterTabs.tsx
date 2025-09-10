@@ -1479,6 +1479,46 @@ export default function FilterTabs() {
         </div>
       )}
 
+      {/* Metrics cards for Screening (moved below search/filter) */}
+      {activeTab === "screening" && (
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <Card className="p-2">
+            <div className="text-xl font-bold text-green-600">
+              {screeningCandidates.filter(c => c.status === "approved").length}
+            </div>
+            <div className="text-xs text-muted-foreground">Approved</div>
+          </Card>
+
+          <Card className="p-2">
+            <div className="text-xl font-bold text-red-600">
+              {screeningCandidates.filter(c => c.status === "reject").length}
+            </div>
+            <div className="text-xs text-muted-foreground">Rejected</div>
+          </Card>
+
+          <Card className="p-2">
+            <div className="text-xl font-bold text-yellow-600">
+              {screeningCandidates.filter(c => c.status === "queue").length}
+            </div>
+            <div className="text-xs text-muted-foreground">Queued</div>
+          </Card>
+
+          <Card className="p-2">
+            <div className="text-xl font-bold text-gray-600">
+              {screeningCandidates.filter(c => c.status === "pending").length}
+            </div>
+            <div className="text-xs text-muted-foreground">Pending Review</div>
+          </Card>
+
+          <Card className="p-2">
+            <div className="text-xl font-bold text-blue-600">
+              {screeningCandidates.length}
+            </div>
+            <div className="text-xs text-muted-foreground">Total Candidates</div>
+          </Card>
+        </div>
+      )}
+
       {/* Conditional Content Based on Active Tab */}
       <div>
         {activeTab === "screening" && <ScreeningView searchQuery={searchQuery} selectedStage={selectedStage} />}
