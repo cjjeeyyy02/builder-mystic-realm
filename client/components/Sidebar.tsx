@@ -59,6 +59,7 @@ export default function Sidebar({
   onToggleCollapse,
 }: SidebarProps) {
   const location = useLocation();
+  const [expandedOnboarding, setExpandedOnboarding] = useState(false);
 
   return (
     <TooltipProvider>
