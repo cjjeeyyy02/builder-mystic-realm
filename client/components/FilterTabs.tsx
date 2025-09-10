@@ -658,14 +658,7 @@ export default function FilterTabs() {
               <div className="text-xs text-muted-foreground">Queued</div>
             </Card>
 
-            <Card className="p-2">
-              <div className="text-xl font-bold text-gray-600">
-                {screeningCandidates.filter(c => c.status === "pending").length}
-              </div>
-              <div className="text-xs text-muted-foreground">Pending Review</div>
-            </Card>
-
-            <Card className="p-2">
+              <Card className="p-2">
               <div className="text-xl font-bold text-blue-600">
                 {screeningCandidates.length}
               </div>
@@ -1071,7 +1064,7 @@ export default function FilterTabs() {
                                   <ul className="text-xs text-green-600 mt-2 space-y-1">
                                     <li>✓ End-to-end encryption in transit</li>
                                     <li>✓ Encrypted storage at rest</li>
-                                    <li>��� Access controls & role-based permissions</li>
+                                    <li>✓ Access controls & role-based permissions</li>
                                     <li>✓ Regular security audits</li>
                                   </ul>
                                 </div>
