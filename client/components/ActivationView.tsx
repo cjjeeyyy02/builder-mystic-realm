@@ -17,7 +17,6 @@ interface ChecklistItem {
 interface Employee {
   jobId: string;
   name: string;
-  country: string;
   appliedJobRole: string;
   joiningDate: string;
   filesUploaded: string;
@@ -36,15 +35,15 @@ const checklistItems: ChecklistItem[] = [
 ];
 
 const employeeData: Employee[] = [
-  { jobId: "001", name: "Jaya", country: "India", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "002", name: "Mark", country: "USA", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "003", name: "John", country: "USA", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
-  { jobId: "004", name: "Sara", country: "Europe", appliedJobRole: "Copywriter", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "005", name: "Shruti", country: "India", appliedJobRole: "Sale Associate", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "006", name: "Robin", country: "Russia", appliedJobRole: "AI Engineer", joiningDate: "8/15/2025", filesUploaded: "1/5", activationProgress: 15, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "007", name: "Kayle", country: "Russia", appliedJobRole: "ML Engineer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
-  { jobId: "008", name: "Vali", country: "China", appliedJobRole: "Data Analyst", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "009", name: "Anne", country: "Canada", appliedJobRole: "Finance Analyst", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" }
+  { jobId: "001", name: "Jaya", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "002", name: "Mark", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "003", name: "John", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "004", name: "Sara", appliedJobRole: "Copywriter", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "005", name: "Shruti", appliedJobRole: "Sale Associate", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "006", name: "Robin", appliedJobRole: "AI Engineer", joiningDate: "8/15/2025", filesUploaded: "1/5", activationProgress: 15, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "007", name: "Kayle", appliedJobRole: "ML Engineer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "008", name: "Vali", appliedJobRole: "Data Analyst", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "009", name: "Anne", appliedJobRole: "Finance Analyst", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" }
 ];
 
 export default function ActivationView() {
@@ -120,10 +119,6 @@ export default function ActivationView() {
             </SelectContent>
           </Select>
 
-          <Button className="h-9 text-sm px-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-md">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Field
-          </Button>
         </div>
       </div>
 
@@ -146,9 +141,6 @@ export default function ActivationView() {
                   <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>NAME</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>COUNTRY</TableHead>
                   <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>APPLIED JOB ROLE</TableHead>
@@ -182,9 +174,6 @@ export default function ActivationView() {
                     <TableCell className={`text-xs font-medium px-3 py-2 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
-                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>{employee.country}</TableCell>
                     <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.appliedJobRole}</TableCell>
