@@ -185,9 +185,15 @@ export default function JobPosting() {
       <div className="w-full flex justify-center mb-4">
         <div className="w-full max-w-[1200px]">
           <div className="flex items-start justify-between mb-4">
-            <div className="relative w-1/2">
-              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="pl-10" />
+            <div className="flex items-center gap-3">
+              <button onClick={() => alert('Plug and Hire')} className="h-10 py-0 px-4 rounded-md text-sm font-bold bg-[#111827] text-white">
+                Plug and Hire
+              </button>
+
+              <div className="relative">
+                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="w-[280px] h-10 rounded-md pl-10" />
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
