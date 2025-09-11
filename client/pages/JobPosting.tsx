@@ -248,7 +248,6 @@ export default function JobPosting() {
                           <td className="py-3 pr-4">{job.status}</td>
                           <td className="py-3 pr-4">{job.datePosted}</td>
                           <td className="py-3 pr-4">{job.applicants ?? 0}</td>
-                          <td className="py-3 pr-4">{(job.integrations || []).join(", ") || "—"}</td>
                           <td className="py-3 pr-4">
                             <div className="flex items-center gap-2">
                               <Button size="sm" variant="outline" onClick={() => handleOpenUpdate(job)}><Edit className="w-3.5 h-3.5" /></Button>
