@@ -271,7 +271,7 @@ export default function ScreeningView() {
 
   const handleStatusChange = (
     candidateId: string,
-    newStatus: "approved" | "reject" | "interview",
+    newStatus: "approved" | "reject",
   ) => {
     setCandidates(prevCandidates =>
       prevCandidates.map(candidate =>
