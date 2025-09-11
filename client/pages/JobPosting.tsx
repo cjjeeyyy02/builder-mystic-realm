@@ -180,51 +180,35 @@ export default function JobPosting() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-semibold">Job Postings</h1>
-
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:flex items-center bg-white rounded-lg shadow-sm px-3 py-1">
-            <button className={`px-3 py-1 rounded-md ${activeTab === "active" ? "bg-[var(--hr-primary)] text-white" : "text-muted-foreground"}`} onClick={() => setActiveTab("active")}>
-              Active
-            </button>
-            <button className={`px-3 py-1 rounded-md ${activeTab === "archived" ? "bg-[var(--hr-primary)] text-white" : "text-muted-foreground"}`} onClick={() => setActiveTab("archived")}>
-              Archive
-            </button>
-          </div>
-
-          <Button size="sm" variant="outline" onClick={() => { setSearch(""); }}><RefreshCw className="w-4 h-4" /></Button>
-          <Button size="sm" variant="default" onClick={openCreate}><Plus className="w-4 h-4" />Create</Button>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        <div className="lg:col-span-2">
-          <Card className="p-4">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3 w-full">
-                <Button className="bg-black text-white rounded-md px-3 py-2" onClick={() => alert('Plug and Hire')}>Plug and Hire</Button>
-                <div className="relative flex-1">
-                  <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="pl-10" />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
-                <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><GridIcon className="w-4 h-4" /></Button>
-                <div className="ml-2">
-                  <Button className="bg-black text-white rounded-md px-3 py-2 flex items-center gap-2" onClick={openCreate}>
-                    Create new job
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
+      <div className="w-full flex justify-center mb-4">
+        <div className="w-full max-w-[1200px]">
+          <div className="flex items-start justify-between mb-4">
+            <div className="relative w-1/2">
+              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="pl-10" />
             </div>
 
+            <div className="flex items-center gap-4">
+              <button onClick={() => setActiveTab('active')} className={`h-10 px-4 rounded-md text-sm font-medium ${activeTab === 'active' ? 'bg-blue-600 text-white' : 'bg-blue-600 text-white'}`}>
+                Active
+              </button>
+              <button onClick={() => setActiveTab('archived')} className="h-10 px-4 rounded-md text-sm font-medium border border-gray-300 text-gray-700 bg-transparent">
+                Archive
+              </button>
+              <button onClick={openCreate} className="h-10 px-4 rounded-md text-sm font-bold bg-green-600 text-white flex items-center gap-2">
+                <Plus className="w-4 h-4" /> + Create
+              </button>
+            </div>
+          </div>
+
+          <Card className="w-full p-4">
             <div className="mt-4">
               {/* Table View */}
               {viewMode === "table" && (
                 <div className="overflow-auto">
-                  <table className="w-full text-sm table-auto border-collapse">
+                  <table className="w-full text-sm table-auto border-collapse mx-auto" style={{maxWidth: '1200px'}}>
                     <thead>
                       <tr className="text-left text-xs text-muted-foreground border-b">
                         <th className="py-2 pr-4">Job Title</th>
@@ -238,7 +222,7 @@ export default function JobPosting() {
                     </thead>
                     <tbody>
                       {paginatedJobs.map((job) => (
-                        <tr key={job.id} className="border-b last:border-b-0 hover:bg-gray-50 transition">
+                        <tr key={job.id} className="border-b last:border-b-0 hover:bg-gray-100 transition">
                           <td className="py-3 pr-4">
                             <div className="font-medium">{job.title}</div>
                             <div className="text-xs text-muted-foreground">{job.company} • {job.jobType}</div>
