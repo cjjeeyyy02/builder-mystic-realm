@@ -313,23 +313,6 @@ export default function JobPosting() {
 
         </div>
 
-        <div>
-          <Card className="p-4">
-            <h3 className="text-lg font-medium mb-3">Integrations (Plug & Hire)</h3>
-            <div className="text-sm text-muted-foreground mb-3">Auto-sync with external job platforms. Connect integrations to enable plug & hire flow.</div>
-            <div className="bg-gray-50 border border-gray-100 rounded-lg p-3 text-sm text-muted-foreground">Not connected — <a className="text-[var(--hr-primary)]">Connect</a></div>
-
-            <div className="mt-6">
-              <h4 className="text-sm font-medium mb-2">Audit Log</h4>
-              <div className="space-y-2 max-h-48 overflow-auto">
-                {auditLog.length === 0 && <div className="text-sm text-muted-foreground">No actions yet.</div>}
-                {auditLog.map((a, idx) => (
-                  <div key={idx} className="text-xs text-muted-foreground">{new Date(a.time).toLocaleString()} — {a.action} {a.details ? `: ${a.details}` : ""}</div>
-                ))}
-              </div>
-            </div>
-          </Card>
-        </div>
       </div>
 
       {/* Full form area (used when full-page create/edit is required) */}
