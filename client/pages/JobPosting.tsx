@@ -301,6 +301,16 @@ export default function JobPosting() {
             </div>
 
           </Card>
+
+          {/* Pagination */}
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <Button size="sm" variant="ghost" onClick={() => setCurrentPage(p => Math.max(1, p-1))}><ChevronLeft className="w-4 h-4" /></Button>
+            {Array.from({ length: Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage)) }).map((_, idx) => (
+              <Button key={idx} size="sm" variant={currentPage === idx+1 ? 'default' : 'ghost'} onClick={() => setCurrentPage(idx+1)}>{idx+1}</Button>
+            ))}
+            <Button size="sm" variant="ghost" onClick={() => setCurrentPage(p => Math.min(Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage)), p+1))}><ChevronRight className="w-4 h-4" /></Button>
+          </div>
+
         </div>
 
         <div>
