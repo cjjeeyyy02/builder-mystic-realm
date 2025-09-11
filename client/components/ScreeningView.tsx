@@ -59,7 +59,10 @@ interface ScreeningCandidate {
   phone: string;
   totalExperience: string;
   relevantExperience: string;
-  status: "approved" | "reject" | "pending";
+  // status now includes interview stage
+  status: "approved" | "reject" | "pending" | "interview";
+  // Optional rejection reason stored when candidate is rejected
+  rejectionReason?: string;
   // Enhanced resume data
   resumeUrl?: string;
   summary?: string;
