@@ -110,6 +110,11 @@ export default function JobPosting() {
     );
   }, [jobs, search, activeTab]);
 
+  const paginatedJobs = (() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredJobs.slice(start, start + itemsPerPage);
+  })();
+
   // Form template used when opening full form page (this component supports both listing and full form)
   const formFieldsCount = 12; // our full form has >10 fields
   const smallFormFieldsCount = 8; // for modal quick create
