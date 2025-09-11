@@ -221,9 +221,7 @@ function getStatusVariant(
   switch (status) {
     case "approved":
       return "default";
-    case "interview":
-      return "secondary";
-    case "reject":
+      case "reject":
       return "destructive";
     case "pending":
       return "outline";
