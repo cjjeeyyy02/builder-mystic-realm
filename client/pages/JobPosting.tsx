@@ -306,57 +306,90 @@ export default function JobPosting() {
       </div>
 
 
-      {/* Create Modal (quick form) */}
+      {/* Create Job Modal */}
       <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
-        <DialogContent className="max-w-xl">
+        <DialogContent className="w-[520px] rounded-[12px] p-6 shadow-lg">
           <DialogHeader>
-            <DialogTitle>Create Job (Quick)</DialogTitle>
-            <DialogDescription>Quick create for short forms.</DialogDescription>
+            <DialogTitle>Create Job</DialogTitle>
           </DialogHeader>
 
           <form onSubmit={(e) => {
             e.preventDefault();
             const f = new FormData(e.currentTarget as HTMLFormElement);
             const payload: Job = {
-              id: `J-${Math.floor(Math.random()*9000)+1000}`,
+              id: (f.get("jobId") as string) || `J-${Math.floor(Math.random()*9000)+1000}`,
               title: (f.get("title") as string) || "Untitled",
-              company: (f.get("company") as string) || "AI2AIM",
+              department: (f.get("department") as string) || "",
+              company: (f.get("company") as string) || "",
               location: (f.get("location") as string) || "",
+              locationType: (f.get("locationType") as string) || "",
               jobType: (f.get("jobType") as string) || "",
-              datePosted: new Date().toISOString().slice(0,10),
-              applicants: 0,
-              status: "Active",
+              salary: (f.get("salary") as string) || "",
+              status: (f.get("status") as Job["status"]) || "Active",
+              datePosted: (f.get("datePosted") as string) || new Date().toISOString().slice(0,10),
+              applicants: Number(f.get("applicants") as string) || 0,
               integrations: [],
+              description: (f.get("description") as string) || "",
             };
+            // Add to list and close modal
             handleSaveFullForm(payload);
           }}>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="space-y-4">
               <div>
                 <Label>Job Title</Label>
-                <Input name="title" />
+                <Input name="title" required />
               </div>
+
               <div>
-                <Label>Company</Label>
-                <Input name="company" defaultValue="AI2AIM" />
-              </div>
-              <div>
-                <Label>Location</Label>
-                <Input name="location" />
-              </div>
-              <div>
-                <Label>Job Type</Label>
-                <Select name="jobType">
+                <Label>Department</Label>
+                <Select name="department" defaultValue="Engineering">
                   <SelectTrigger className="h-10"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Full-time">Full-time</SelectItem>
-                    <SelectItem value="Part-time">Part-time</SelectItem>
+                    <SelectItem value="Engineering">Engineering</SelectItem>
+                    <SelectItem value="Design">Design</SelectItem>
+                    <SelectItem value="Product">Product</SelectItem>
+                    <SelectItem value="Sales">Sales</SelectItem>
+                    <SelectItem value="Marketing">Marketing</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2">
+              <div>
+                <Label>Location</Label>
+                <Input name="location" placeholder="City, Country or Remote" />
+              </div>
+
+              <div>
+                <Label>Status</Label>
+                <Select name="status" defaultValue="Active">
+                  <SelectTrigger className="h-10"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Closed">Closed</SelectItem>
+                    <SelectItem value="Draft">Draft</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label>Date Posted</Label>
+                  <Input type="date" name="datePosted" className="h-10" />
+                </div>
+                <div>
+                  <Label>Date End</Label>
+                  <Input type="date" name="dateEnd" className="h-10" />
+                </div>
+              </div>
+
+              <div>
+                <Label>Applicants Count</Label>
+                <Input type="number" name="applicants" defaultValue={0} className="h-10" />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-2">
                 <Button variant="outline" type="button" onClick={() => setShowCreateModal(false)}>Cancel</Button>
-                <Button type="submit">Create</Button>
+                <Button type="submit" className="bg-green-600 text-white">Save</Button>
               </div>
             </div>
           </form>
