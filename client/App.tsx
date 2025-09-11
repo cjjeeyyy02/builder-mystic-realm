@@ -63,6 +63,7 @@ const App = () => (
           <Route path="/candidate-documents-repository" element={<CandidateDocumentsRepository />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/job-posting" element={<JobPosting />} />
+          <Route path="/rounds-review" element={<RoundsReview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
