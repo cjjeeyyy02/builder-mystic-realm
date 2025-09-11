@@ -235,62 +235,56 @@ export default function HiredView() {
       </div>
 
       {/* Hired Employees List */}
-      <div className="space-y-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredEmployees.map((employee) => (
           <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-2">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-center">
-                {/* Employee Info */}
-                <div className="lg:col-span-5">
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
-                      <User className="w-4 h-4 text-emerald-600" />
-                    </div>
-                    <div className="space-y-1 flex-1">
-                      <div>
-                        <div className="text-xs text-muted-foreground font-medium">Candidate:</div>
-                        <div className="font-semibold text-foreground text-sm">{employee.candidateName}</div>
-                        {employee.employeeId && (
-                          <div className="text-xs text-muted-foreground">ID: {employee.employeeId}</div>
-                        )}
-                      </div>
-                      <div>
-                        <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
-                        <div className="font-medium text-foreground text-xs">{employee.appliedPosition}</div>
-                      </div>
-                    </div>
+            <CardContent className="p-4">
+              <div className="space-y-4">
+                {/* Header with Avatar and Status */}
+                <div className="flex items-start justify-between">
+                  <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
+                    <User className="w-5 h-5 text-emerald-600" />
                   </div>
-                </div>
-
-                {/* Department & Date */}
-                <div className="lg:col-span-3 space-y-2">
-                  <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-1">Department:</div>
-                    <Badge
-                      variant="secondary"
-                      className={`font-medium px-2 py-0.5 ${getDepartmentColor(employee.department)}`}
-                    >
-                      <Building className="w-3 h-3 mr-1" />
-                      {employee.department}
-                    </Badge>
-                  </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-1">Date of Joining (DOJ):</div>
-                    <div className="flex items-center gap-2 text-foreground font-medium text-sm">
-                      <Calendar className="w-4 h-4 text-muted-foreground" />
-                      {employee.dateOfJoining}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Status */}
-                <div className="lg:col-span-4 flex justify-end">
                   <Badge
                     variant="outline"
-                    className="bg-gray-100 text-gray-800 border-gray-200 font-medium px-2 py-0.5 text-xs"
+                    className="bg-green-100 text-green-800 border-green-200 font-medium px-2 py-1 text-xs"
                   >
                     HIRED
                   </Badge>
+                </div>
+
+                {/* Employee Info */}
+                <div className="space-y-2">
+                  <div>
+                    <div className="font-semibold text-foreground text-sm">{employee.candidateName}</div>
+                    {employee.employeeId && (
+                      <div className="text-xs text-muted-foreground">ID: {employee.employeeId}</div>
+                    )}
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
+                    <div className="font-medium text-foreground text-sm">{employee.appliedPosition}</div>
+                  </div>
+                </div>
+
+                {/* Department */}
+                <div>
+                  <Badge
+                    variant="secondary"
+                    className={`font-medium px-2 py-1 ${getDepartmentColor(employee.department)}`}
+                  >
+                    <Building className="w-3 h-3 mr-1" />
+                    {employee.department}
+                  </Badge>
+                </div>
+
+                {/* Date of Joining */}
+                <div>
+                  <div className="text-xs text-muted-foreground font-medium mb-1">Date of Joining:</div>
+                  <div className="flex items-center gap-2 text-foreground font-medium text-sm">
+                    <Calendar className="w-4 h-4 text-muted-foreground" />
+                    {employee.dateOfJoining}
+                  </div>
                 </div>
               </div>
             </CardContent>
