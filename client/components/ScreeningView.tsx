@@ -826,6 +826,52 @@ export default function ScreeningView() {
         </DialogContent>
       </Dialog>
 
+      {/* Approve Confirmation Modal */}
+      <Dialog open={showApproveModal} onOpenChange={setShowApproveModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Proceed to Interview?</DialogTitle>
+            <DialogDescription>This candidate will move to the Interview stage.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <div className="flex items-center justify-end gap-2">
+              <Button variant="outline" onClick={() => { setShowApproveModal(false); setModalCandidateId(null); }}>Cancel</Button>
+              <Button onClick={() => {
+                if (modalCandidateId) handleStatusChange(modalCandidateId, 'interview');
+                setShowApproveModal(false);
+                setModalCandidateId(null);
+              }}>Proceed</Button>
+            </div>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Reject Modal */}
+      <Dialog open={showRejectModal} onOpenChange={setShowRejectModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Reason for Rejection</DialogTitle>
+            <DialogDescription>Please provide a reason for rejecting this candidate.</DialogDescription>
+          </DialogHeader>
+          <div className="p-3">
+            <Label>Rejection Reason</Label>
+            <Textarea value={rejectionReason} onChange={(e) => setRejectionReason(e.target.value)} className="min-h-[120px]" />
+            <div className="flex items-center justify-end gap-2 mt-3">
+              <Button variant="outline" onClick={() => { setShowRejectModal(false); setModalCandidateId(null); setRejectionReason(''); }}>Cancel</Button>
+              <Button onClick={() => {
+                if (modalCandidateId) {
+                  setCandidates(prev => prev.map(c => c.id === modalCandidateId ? { ...c, status: 'reject', rejectionReason } : c));
+                  if (selectedCandidate && selectedCandidate.id === modalCandidateId) setSelectedCandidate(prev => prev ? { ...prev, status: 'reject', rejectionReason } : null);
+                }
+                setShowRejectModal(false);
+                setModalCandidateId(null);
+                setRejectionReason('');
+              }}>Submit</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Email Side Sheet */}
       <Sheet open={showEmailSheet} onOpenChange={setShowEmailSheet}>
         <SheetContent side="right" className="w-full max-w-md">
