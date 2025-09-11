@@ -237,6 +237,8 @@ function getStatusIcon(status: string) {
   switch (status) {
     case "approved":
       return <CheckCircle className="w-3 h-3" />;
+    case "interview":
+      return <Check className="w-3 h-3" />;
     case "reject":
       return <X className="w-3 h-3" />;
     case "pending":
