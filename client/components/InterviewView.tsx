@@ -1020,6 +1020,17 @@ Google India`
     }
   };
 
+  // Menu action handlers
+  const handleViewCandidateDetails = (candidateId: string, candidateName: string) => {
+    console.log(`Opening candidate details for ${candidateName} (ID: ${candidateId})`);
+    // TODO: Open candidate details modal/page with resume, notes, and history
+  };
+
+  const handleManageTimeline = (candidateId: string, candidateName: string) => {
+    console.log(`Managing timeline/steps for ${candidateName} (ID: ${candidateId})`);
+    // TODO: Open timeline management interface for the candidate
+  };
+
   return (
     <div className="space-y-6">
       {/* Navigation Tabs with Search */}
