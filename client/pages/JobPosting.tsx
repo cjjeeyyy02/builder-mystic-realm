@@ -249,10 +249,17 @@ export default function JobPosting() {
                           <td className="py-3 pr-4">{job.datePosted}</td>
                           <td className="py-3 pr-4">{job.applicants ?? 0}</td>
                           <td className="py-3 pr-4">
-                            <div className="flex items-center gap-2">
-                              <Button size="sm" variant="outline" onClick={() => handleOpenUpdate(job)}><Edit className="w-3.5 h-3.5" /></Button>
-                              <Button size="sm" variant="destructive" onClick={() => confirmArchive(job)}><Trash2 className="w-3.5 h-3.5" /></Button>
-                            </div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button size="sm" variant="ghost"><MoreHorizontal className="w-4 h-4" /></Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent>
+                                <DropdownMenuItem onClick={() => navigate(`/job-posting/${job.id}`)}>View Details</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => alert('Integration')}>Integration</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>Edit Job Details</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => confirmArchive(job)}>Archive Job Details</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </td>
                         </tr>
                       ))}
