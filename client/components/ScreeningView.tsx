@@ -366,7 +366,9 @@ export default function ScreeningView() {
                       <div className="flex items-center gap-2">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button size="sm" variant="outline">Actions</Button>
+                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                              <MoreVertical className="h-4 w-4" />
+                            </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end" className="w-56">
                             <DropdownMenuSub>
