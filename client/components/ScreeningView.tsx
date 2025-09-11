@@ -536,14 +536,13 @@ export default function ScreeningView() {
                           ? "bg-green-100 text-green-700 border-green-200"
                           : selectedCandidate.status === "reject"
                           ? "bg-red-100 text-red-700 border-red-200"
-                          : selectedCandidate.status === "interview" ? "bg-blue-100 text-blue-700 border-blue-200" : "bg-gray-100 text-gray-700 border-gray-200"
+                          : "bg-gray-100 text-gray-700 border-gray-200"
                       }`}
                     >
                       {getStatusIcon(selectedCandidate.status)}
                       <span className="ml-1">
                         {selectedCandidate.status === "approved" ? "Approved" :
                          selectedCandidate.status === "reject" ? "Rejected" :
-                         selectedCandidate.status === "interview" ? "Interview" :
                          "Pending"}
                       </span>
                     </Badge>
