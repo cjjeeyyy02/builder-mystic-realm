@@ -325,7 +325,7 @@ export default function ScreeningView() {
         <div className="overflow-auto rounded-lg border border-gray-100 bg-white shadow-sm mb-4">
           <table className="w-full text-sm table-auto border-collapse">
             <thead>
-              <tr className="text-left text-xs text-muted-foreground border-b">
+              <tr className="text-left text-xs font-bold uppercase border-b" style={{ backgroundColor: '#F9FAFB', fontFamily: 'Poppins, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 <th className="py-2 px-4">Candidate</th>
                 <th className="py-2 px-4">Position</th>
                 <th className="py-2 px-4">Experience</th>
