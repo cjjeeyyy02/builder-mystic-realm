@@ -824,17 +824,17 @@ export default function ScreeningView() {
       <Dialog open={showApproveModal} onOpenChange={setShowApproveModal}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Proceed to Interview?</DialogTitle>
-            <DialogDescription>This candidate will move to the Interview stage.</DialogDescription>
+            <DialogTitle>Approve Candidate?</DialogTitle>
+            <DialogDescription>This candidate will be marked as Approved.</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <div className="flex items-center justify-end gap-2">
               <Button variant="outline" onClick={() => { setShowApproveModal(false); setModalCandidateId(null); }}>Cancel</Button>
               <Button onClick={() => {
-                if (modalCandidateId) handleStatusChange(modalCandidateId, 'interview');
+                if (modalCandidateId) handleStatusChange(modalCandidateId, 'approved');
                 setShowApproveModal(false);
                 setModalCandidateId(null);
-              }}>Proceed</Button>
+              }}>Approve</Button>
             </div>
           </DialogFooter>
         </DialogContent>
