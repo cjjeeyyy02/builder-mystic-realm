@@ -520,6 +520,14 @@ export default function ScreeningView() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 sm:ml-auto">
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setResumeMode('view')} className={`px-2 py-1 rounded text-xs ${resumeMode === 'view' ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
+                        <Eye className="w-3 h-3 mr-1 inline" /> View
+                      </button>
+                      <button onClick={() => setResumeMode('download')} className={`px-2 py-1 rounded text-xs ${resumeMode === 'download' ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
+                        <Download className="w-3 h-3 mr-1 inline" /> Download
+                      </button>
+                    </div>
                     {selectedCandidate.rating && (
                       <div className="flex items-center gap-1">
                         <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
@@ -533,13 +541,14 @@ export default function ScreeningView() {
                           ? "bg-green-100 text-green-700 border-green-200"
                           : selectedCandidate.status === "reject"
                           ? "bg-red-100 text-red-700 border-red-200"
-                          : "bg-gray-100 text-gray-700 border-gray-200"
+                          : selectedCandidate.status === "interview" ? "bg-blue-100 text-blue-700 border-blue-200" : "bg-gray-100 text-gray-700 border-gray-200"
                       }`}
                     >
                       {getStatusIcon(selectedCandidate.status)}
                       <span className="ml-1">
                         {selectedCandidate.status === "approved" ? "Approved" :
                          selectedCandidate.status === "reject" ? "Rejected" :
+                         selectedCandidate.status === "interview" ? "Interview" :
                          "Pending"}
                       </span>
                     </Badge>
