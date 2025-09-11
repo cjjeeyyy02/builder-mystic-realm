@@ -200,15 +200,22 @@ export default function JobPosting() {
         <div className="lg:col-span-2">
           <Card className="p-4">
             <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2 w-full">
+              <div className="flex items-center gap-3 w-full">
+                <Button className="bg-black text-white rounded-md px-3 py-2" onClick={() => alert('Plug and Hire')}>Plug and Hire</Button>
                 <div className="relative flex-1">
                   <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job postings..." className="pl-10" />
+                  <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="pl-10" />
                 </div>
+              </div>
 
-                <div className="flex items-center gap-2">
-                  <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
-                  <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><GridIcon className="w-4 h-4" /></Button>
+              <div className="flex items-center gap-2">
+                <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
+                <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><GridIcon className="w-4 h-4" /></Button>
+                <div className="ml-2">
+                  <Button className="bg-black text-white rounded-md px-3 py-2 flex items-center gap-2" onClick={openCreate}>
+                    Create new job
+                    <ChevronDown className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             </div>
