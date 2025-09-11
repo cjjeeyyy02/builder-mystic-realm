@@ -467,8 +467,8 @@ export default function ScreeningView() {
                   <div className="pt-2 border-t">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="w-full h-7 text-xs px-3">
-                          Actions
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0 ml-auto">
+                          <MoreVertical className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
 
