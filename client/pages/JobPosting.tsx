@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { Plus, Edit, Archive, Search as SearchIcon, List, Grid as GridIcon, Trash2, RefreshCw, ChevronDown, MoreHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Edit, Archive, Search as SearchIcon, List, Grid as GridIcon, Trash2, RefreshCw, ChevronDown, MoreHorizontal, ChevronLeft, ChevronRight, X, Check, Mail } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,23 @@ type Job = {
   description?: string;
   archived?: boolean;
 };
+
+type Candidate = {
+  id: string;
+  name: string;
+  position?: string;
+  avatar?: string;
+  source: "Indeed" | "LinkedIn";
+  description?: string;
+  email?: string;
+  status?: "pending" | "accepted" | "rejected" | "archived";
+};
+
+const initialCandidates: Candidate[] = [
+  { id: "C-2001", name: "Alex Johnson", position: "Backend Engineer", source: "Indeed", description: "Experienced Node.js developer.", email: "alex.johnson@example.com", status: "pending" },
+  { id: "C-2002", name: "Maria Gomez", position: "Product Designer", source: "LinkedIn", description: "Designs delightful user experiences.", email: "maria.gomez@example.com", status: "pending" },
+  { id: "C-2003", name: "Liam Smith", position: "DevOps Engineer", source: "Indeed", description: "Infrastructure and CI/CD specialist.", email: "liam.smith@example.com", status: "pending" },
+];
 
 const initialJobs: Job[] = [
   {
@@ -94,6 +112,13 @@ export default function JobPosting() {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [jobToEdit, setJobToEdit] = useState<Job | null>(null);
   const [archiveConfirmFor, setArchiveConfirmFor] = useState<Job | null>(null);
+  // Plug & Hire modal state
+  const [showPlugHireModal, setShowPlugHireModal] = useState(false);
+  const [candidates, setCandidates] = useState<Candidate[]>(initialCandidates);
+  const [candidateSearch, setCandidateSearch] = useState("");
+  const [candidateTab, setCandidateTab] = useState<"Indeed" | "LinkedIn">("Indeed");
+  const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>([]);
+  const [expandedIds, setExpandedIds] = useState<string[]>([]);
 
   // Audit log
   const [auditLog, setAuditLog] = useState<Array<{ time: string; action: string; details?: string }>>([]);
@@ -191,7 +216,7 @@ export default function JobPosting() {
                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="w-[280px] h-10 rounded-md pl-10" />
               </div>
 
-              <button onClick={() => alert('Plug and Hire')} className="h-10 py-0 px-4 rounded-md text-sm font-bold bg-[#111827] text-white">
+              <button onClick={() => setShowPlugHireModal(true)} className="h-10 py-0 px-4 rounded-md text-sm font-bold bg-[#111827] text-white">
                 Plug and Hire
               </button>
             </div>
@@ -307,6 +332,93 @@ export default function JobPosting() {
 
 
       {/* Create Job Modal */}
+      <Dialog open={showPlugHireModal} onOpenChange={setShowPlugHireModal}>
+        <DialogContent className="max-w-3xl w-full rounded-[12px] p-6">
+          <DialogHeader>
+            <div className="flex items-start justify-between w-full">
+              <div>
+                <DialogTitle>Candidate Applications</DialogTitle>
+                <DialogDescription>Manage candidates from Indeed and LinkedIn. Review applications, accept or remove candidates.</DialogDescription>
+              </div>
+              <div>
+                <button onClick={() => setShowPlugHireModal(false)} className="p-2 rounded-md hover:bg-gray-100">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="relative flex-1">
+                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input value={candidateSearch} onChange={(e) => setCandidateSearch(e.target.value)} placeholder="Search candidates..." className="pl-10" />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button onClick={() => setCandidateTab('Indeed')} className={`h-10 px-4 rounded-md text-sm ${candidateTab === 'Indeed' ? 'bg-black text-white' : 'bg-gray-100'}`}>Indeed</button>
+                <button onClick={() => setCandidateTab('LinkedIn')} className={`h-10 px-4 rounded-md text-sm ${candidateTab === 'LinkedIn' ? 'bg-black text-white' : 'bg-gray-100'}`}>LinkedIn</button>
+              </div>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="flex items-center gap-2"><RefreshCw className="w-4 h-4" /> Actions <ChevronDown className="w-3 h-3" /></Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => { setCandidates(initialCandidates); }}>Sync Data</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => { setCandidates(prev => prev.map(c => ({ ...c, status: 'accepted' }))); setShowPlugHireModal(false); }}>Accept All</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => { setCandidates(prev => prev.map(c => selectedCandidateIds.includes(c.id) ? { ...c, status: 'archived' } : c)); setShowPlugHireModal(false); }}>Archive</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <div className="max-h-[360px] overflow-y-auto space-y-2">
+              {candidates.filter(c => c.source === candidateTab && c.name.toLowerCase().includes(candidateSearch.toLowerCase())).map(c => (
+                <div key={c.id} className="border rounded-md p-3 flex items-start gap-3">
+                  <div className="flex items-center">
+                    <input type="checkbox" checked={selectedCandidateIds.includes(c.id)} onChange={(e) => {
+                      if (e.target.checked) setSelectedCandidateIds(prev => [...prev, c.id]); else setSelectedCandidateIds(prev => prev.filter(id => id !== c.id));
+                    }} className="mr-3" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="w-10 h-10 bg-gray-200 flex items-center justify-center rounded-full text-sm font-medium">
+                          <AvatarFallback>{c.name.split(' ').map(n=>n[0]).slice(0,2).join('')}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">{c.name}</div>
+                          <div className="text-xs text-muted-foreground">{c.position}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-xs px-2 py-1 rounded-full bg-gray-100 text-muted-foreground">{c.status}</div>
+                        <div>
+                          <button onClick={() => setExpandedIds(prev => prev.includes(c.id) ? prev.filter(id => id !== c.id) : [...prev, c.id])} className="p-1 rounded-md hover:bg-gray-100"><ChevronDown className="w-4 h-4" /></button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {expandedIds.includes(c.id) && (
+                      <div className="mt-3 text-sm text-muted-foreground">
+                        <div>{c.description}</div>
+                        <div className="mt-1 text-xs text-muted-foreground">{c.email}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <DialogFooter>
+            <div className="flex items-center justify-end gap-3 w-full">
+              <Button variant="outline" className="border-red-600 text-red-600" onClick={() => { setCandidates(prev => prev.map(c => selectedCandidateIds.includes(c.id) ? { ...c, status: 'rejected' } : c)); setShowPlugHireModal(false); }}>Remove</Button>
+              <Button className="bg-black text-white" onClick={() => { setCandidates(prev => prev.map(c => selectedCandidateIds.includes(c.id) ? { ...c, status: 'accepted' } : c)); setShowPlugHireModal(false); }}>Accept</Button>
+            </div>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
         <DialogContent className="w-[520px] rounded-[12px] p-6 shadow-lg">
           <DialogHeader>
