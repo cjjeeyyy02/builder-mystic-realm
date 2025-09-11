@@ -372,11 +372,19 @@ export default function ScreeningView() {
                           <DropdownMenuTrigger asChild>
                             <Button size="sm" variant="outline">Actions</Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-48">
-                            <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2"><Check className="w-3 h-3"/> Approve</DropdownMenuItem>
-                                                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2"><Eye className="w-3 h-3"/> View Resume</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2"><Send className="w-3 h-3"/> Email</DropdownMenuItem>
+                          <DropdownMenuContent align="end" className="w-56">
+                            <DropdownMenuSub>
+                              <DropdownMenuSubTrigger className="flex items-center gap-2">Update Status</DropdownMenuSubTrigger>
+                              <DropdownMenuSubContent>
+                                <DropdownMenuItem onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }} className="flex items-center gap-2"><Check className="w-3 h-3"/> Approve</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
+                              </DropdownMenuSubContent>
+                            </DropdownMenuSub>
+
+                            <DropdownMenuItem onClick={() => { handleEmailCandidate(candidate); }} className="flex items-center gap-2"><Send className="w-3 h-3"/> Send Email</DropdownMenuItem>
+
+                            <DropdownMenuItem onClick={() => { setResumeMode('view'); handleViewResume(candidate); }} className="flex items-center gap-2"><Eye className="w-3 h-3"/> View / Download Resume</DropdownMenuItem>
+
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
