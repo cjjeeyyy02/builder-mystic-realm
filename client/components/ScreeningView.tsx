@@ -595,6 +595,14 @@ export default function ScreeningView() {
                           <span>{selectedCandidate.phone}</span>
                         </div>
                       </div>
+                      {/* If resumeMode is download show download button */}
+                      {resumeMode === 'download' && selectedCandidate.resumeUrl && (
+                        <div className="mt-3">
+                          <a href={selectedCandidate.resumeUrl} download className="inline-flex items-center gap-2 px-3 py-2 bg-gray-800 text-white rounded text-sm">
+                            <Download className="w-4 h-4" /> Download Resume
+                          </a>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
 
