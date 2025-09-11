@@ -36,6 +36,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Mail,
   Plus,
   Edit3,
@@ -60,7 +66,8 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
-  Share2
+  Share2,
+  MoreVertical
 } from "lucide-react";
 
 interface InterviewCandidate {
@@ -1039,39 +1046,6 @@ Google India`
                   className="w-40"
                   inputClassName="h-7 text-xs"
                 />
-
-                <Select value={country} onValueChange={setCountry}>
-                  <SelectTrigger className="w-32 h-7 text-xs">
-                    <SelectValue placeholder="COUNTRY" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Countries</SelectItem>
-                    <SelectItem value="india">India</SelectItem>
-                    <SelectItem value="usa">USA</SelectItem>
-                    <SelectItem value="europe">Europe</SelectItem>
-                    <SelectItem value="russia">Russia</SelectItem>
-                    <SelectItem value="china">China</SelectItem>
-                    <SelectItem value="canada">Canada</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                <Select value={jobRole} onValueChange={setJobRole}>
-                  <SelectTrigger className="w-32 h-7 text-xs">
-                    <SelectValue placeholder="JOB ROLE" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Roles</SelectItem>
-                    <SelectItem value="senior-developer">Senior Developer</SelectItem>
-                    <SelectItem value="graphic-designer">Graphic Designer</SelectItem>
-                    <SelectItem value="content-writer">Content Writer</SelectItem>
-                    <SelectItem value="copywriter">Copywriter</SelectItem>
-                    <SelectItem value="sale-associate">Sale Associate</SelectItem>
-                    <SelectItem value="ai-engineer">AI Engineer</SelectItem>
-                    <SelectItem value="ml-engineer">ML Engineer</SelectItem>
-                    <SelectItem value="data-analyst">Data Analyst</SelectItem>
-                    <SelectItem value="finance-analyst">Finance Analyst</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
 
               {/* Interview Table based on provided image */}
