@@ -266,6 +266,14 @@ export default function ScreeningView() {
   // Resume zoom
   const [resumeZoom, setResumeZoom] = useState<number>(1);
 
+  // Approve/Reject modals state
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [modalCandidateId, setModalCandidateId] = useState<string | null>(null);
+  const [rejectionReason, setRejectionReason] = useState("");
+  // Resume viewer mode: 'view' or 'download'
+  const [resumeMode, setResumeMode] = useState<"view" | "download">("view");
+
   const handleStatusChange = (
     candidateId: string,
     newStatus: "approved" | "reject",
