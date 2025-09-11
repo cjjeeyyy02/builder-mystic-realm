@@ -1324,9 +1324,23 @@ Google India`
                           </div>
                         </TableCell>
                         <TableCell className="py-3">
-                          <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-2 py-1 text-xs h-6">
-                            EMAIL
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => handleViewCandidateDetails('007', 'Kayle')}>
+                                <Eye className="mr-2 h-4 w-4" />
+                                View Candidate Details
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleManageTimeline('007', 'Kayle')}>
+                                <Calendar className="mr-2 h-4 w-4" />
+                                Manage Timeline (Steps)
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
 
