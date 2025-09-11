@@ -86,6 +86,8 @@ export default function JobPosting() {
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"active" | "archived">("active");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   // Dialog/modal state
   const [showCreateModal, setShowCreateModal] = useState(false);
