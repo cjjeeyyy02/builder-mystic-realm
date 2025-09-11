@@ -390,34 +390,29 @@ export default function ScreeningView() {
           </table>
         </div>
       )}
-      {viewMode === 'grid' && candidates.map((candidate) => (
-        <Card
-          key={candidate.id}
-          className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
-        >
-          <CardContent className="p-3">
-            {/* Main Layout - Responsive Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
-              {/* Left Section: Profile (Columns 1-4) */}
-              <div className="lg:col-span-4 flex items-center gap-4">
-                <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
-                  <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
-                    {candidate.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="font-semibold text-foreground text-sm leading-tight truncate">
-                      {candidate.name}
-                    </h3>
+      {viewMode === 'grid' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {candidates.map((candidate) => (
+            <Card
+              key={candidate.id}
+              className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
+            >
+              <CardContent className="p-4">
+                <div className="space-y-4">
+                  {/* Header with Avatar and Status */}
+                  <div className="flex items-start justify-between">
+                    <Avatar className="h-12 w-12 flex-shrink-0 ring-1 ring-primary/10">
+                      <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
+                        {candidate.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
                     {(candidate.status === "approved" || candidate.status === "reject") && (
                       <Badge
                         variant={getStatusVariant(candidate.status)}
-                        className={`ml-1 px-2 py-0.5 rounded-full text-xs font-medium flex-shrink-0 ${
+                        className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                           candidate.status === "approved"
                             ? "bg-green-100 text-green-700 border-green-200"
                             : "bg-red-100 text-red-700 border-red-200"
@@ -427,78 +422,82 @@ export default function ScreeningView() {
                       </Badge>
                     )}
                   </div>
-                  <p className="text-xs text-muted-foreground font-medium">
-                    {candidate.position}
-                  </p>
-                </div>
-              </div>
 
-              {/* Middle Section: Experience Metrics (Columns 5-6) */}
-              <div className="lg:col-span-2 space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0"></div>
-                  <div className="text-xs">
-                    <div className="text-muted-foreground">
-                      Total Experience
+                  {/* Candidate Info */}
+                  <div className="space-y-2">
+                    <div>
+                      <h3 className="font-semibold text-foreground text-sm leading-tight">
+                        {candidate.name}
+                      </h3>
+                      <div className="text-xs text-muted-foreground">ID: {candidate.id}</div>
                     </div>
-                    <div className="font-semibold text-foreground">
-                      {candidate.totalExperience}
+                    <div>
+                      <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
+                      <p className="text-sm font-medium text-foreground">
+                        {candidate.position}
+                      </p>
                     </div>
                   </div>
+
+                  {/* Experience */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0"></div>
+                    <div className="text-xs">
+                      <div className="text-muted-foreground">Total Experience</div>
+                      <div className="font-semibold text-foreground">{candidate.totalExperience}</div>
+                    </div>
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Mail className="w-3 h-3 flex-shrink-0 text-primary/70" />
+                      <span className="font-medium truncate">{candidate.email}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Phone className="w-3 h-3 flex-shrink-0 text-primary/70" />
+                      <span className="font-medium">{candidate.phone}</span>
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-2 border-t">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="w-full h-7 text-xs px-3">
+                          Actions
+                        </Button>
+                      </DropdownMenuTrigger>
+
+                      <DropdownMenuContent align="end" className="w-48">
+                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
+                          <Check className="w-3 h-3" />
+                          Approve
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
+                          <X className="w-3 h-3" />
+                          Reject
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2">
+                          <Eye className="w-3 h-3" />
+                          View Resume
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2">
+                          <Send className="w-3 h-3" />
+                          Email
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
-              </div>
-
-              {/* Contact Section (Columns 7-8) */}
-              <div className="lg:col-span-2 space-y-2">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Mail className="w-3.5 h-3.5 flex-shrink-0 text-primary/70" />
-                  <span className="font-medium truncate">
-                    {candidate.email}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Phone className="w-3.5 h-3.5 flex-shrink-0 text-primary/70" />
-                  <span className="font-medium">{candidate.phone}</span>
-                </div>
-              </div>
-
-              {/* Actions Section (Columns 9-12) - single Status dropdown */}
-              <div className="lg:col-span-4 flex items-center justify-end">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-7 text-xs px-3">
-                      Status
-                    </Button>
-                  </DropdownMenuTrigger>
-
-                  <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
-                      <Check className="w-3 h-3" />
-                      Approve
-                    </DropdownMenuItem>
-
-
-                    <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
-                      <X className="w-3 h-3" />
-                      Reject
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2">
-                      <Eye className="w-3 h-3" />
-                      View Resume
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2">
-                      <Send className="w-3 h-3" />
-                      Email
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
 
       {/* Resume Viewer Modal */}
       <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
