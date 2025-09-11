@@ -27,6 +27,7 @@ import Offboarding from "./pages/Offboarding";
 import ScheduleInterview from "./pages/ScheduleInterview";
 import CandidateDocumentsRepository from "./pages/CandidateDocumentsRepository";
 import JobPosting from "./pages/JobPosting";
+import RoundsReview from "./pages/RoundsReview";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
