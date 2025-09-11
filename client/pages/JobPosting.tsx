@@ -232,13 +232,12 @@ export default function JobPosting() {
                         <th className="py-2 pr-4">Location</th>
                         <th className="py-2 pr-4">Status</th>
                         <th className="py-2 pr-4">Date Posted</th>
-                        <th className="py-2 pr-4">Applicants</th>
-                        <th className="py-2 pr-4">Integrations</th>
-                        <th className="py-2 pr-4">Actions</th>
+                        <th className="py-2 pr-4">Applicants Count</th>
+                        <th className="py-2 pr-4">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredJobs.map((job) => (
+                      {paginatedJobs.map((job) => (
                         <tr key={job.id} className="border-b last:border-b-0 hover:bg-gray-50 transition">
                           <td className="py-3 pr-4">
                             <div className="font-medium">{job.title}</div>
