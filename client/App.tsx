@@ -28,6 +28,8 @@ import ScheduleInterview from "./pages/ScheduleInterview";
 import CandidateDocumentsRepository from "./pages/CandidateDocumentsRepository";
 import JobPosting from "./pages/JobPosting";
 import RoundsReview from "./pages/RoundsReview";
+import ReviewRoom from "./pages/ReviewRoom";
+import ChecklistBuilder from "./pages/ChecklistBuilder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -63,7 +65,9 @@ const App = () => (
           <Route path="/candidate-documents-repository" element={<CandidateDocumentsRepository />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/job-posting" element={<JobPosting />} />
+          <Route path="/review-room" element={<ReviewRoom />} />
           <Route path="/rounds-review" element={<RoundsReview />} />
+          <Route path="/checklist-builder" element={<ChecklistBuilder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
