@@ -3045,6 +3045,11 @@ Google India"
       {/* Timeline Management Modal */}
       <Dialog open={showTimelineModal} onOpenChange={setShowTimelineModal}>
         <DialogContent className="max-w-[80vw] w-full bg-white border border-gray-200 rounded-xl shadow-xl p-0 max-h-[90vh] overflow-hidden">
+          <DialogHeader className="sr-only">
+            <DialogTitle>
+              Interview Timeline Management for {selectedCandidateForTimeline?.name}
+            </DialogTitle>
+          </DialogHeader>
           {selectedCandidateForTimeline && (
             <div className="flex flex-col h-full">
               {/* Header - Fixed */}
