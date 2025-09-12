@@ -471,7 +471,10 @@ export default function ScreeningView() {
                       onApprove={(id) => handleStatusChange(id, 'approved')}
                       onReject={(id) => handleStatusChange(id, 'reject')}
                       onEmail={handleEmailCandidate}
-                      onViewResume={handleViewResume}
+                      onViewResume={(c) => {
+                        setResumeMode('view');
+                        handleViewResume(c);
+                      }}
                     />
                   </div>
                 </div>
