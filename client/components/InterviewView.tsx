@@ -3054,6 +3054,204 @@ Google India"
         </DialogContent>
       </Dialog>
 
+      {/* Candidate Details Modal */}
+      {showCandidateDetailsModal && selectedCandidateDetails && (
+        <>
+          {/* Modal Overlay */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowCandidateDetailsModal(false)}
+          >
+            {/* Modal Content */}
+            <div
+              className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                        <span className="text-white font-semibold text-lg">
+                          {selectedCandidateDetails.applicantName.split(" ").map(n => n[0]).join("")}
+                        </span>
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-gray-900">
+                          {selectedCandidateDetails.applicantName}
+                        </h2>
+                        <p className="text-gray-600">
+                          {selectedCandidateDetails.appliedPosition} • {selectedCandidateDetails.department}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Contact & Room Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-sm text-gray-500">Contact Information</p>
+                        <p className="text-sm font-medium text-gray-900">
+                          {selectedCandidateDetails.email || "email@example.com"}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {selectedCandidateDetails.phone || "+1 (555) 123-4567"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Review Room</p>
+                        <a
+                          href="#"
+                          className="text-sm font-medium text-blue-600 hover:text-blue-800 underline"
+                        >
+                          Zoom — Interview Room A
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setShowCandidateDetailsModal(false)}
+                    className="ml-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    <X className="h-5 w-5 text-gray-500" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="overflow-y-auto max-h-[calc(90vh-200px)] p-6">
+                {/* Current Status */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Current Status</h3>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium text-gray-900">{selectedCandidateDetails.currentRound}</p>
+                        <p className="text-sm text-gray-600">Current Round</p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        selectedCandidateDetails.status === 'completed'
+                          ? 'bg-green-100 text-green-800'
+                          : selectedCandidateDetails.status === 'in-progress'
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {selectedCandidateDetails.status === 'completed' ? 'Completed' :
+                         selectedCandidateDetails.status === 'in-progress' ? 'In Progress' : 'Pending'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interview Steps */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Interview Steps</h3>
+                  <div className="space-y-3">
+                    {/* Mock interview steps data */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium text-gray-900">Step 1 — Technical Assessment</h4>
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                          Completed
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Date: March 15, 2024 at 10:00 AM
+                      </p>
+                      <p className="text-sm text-gray-700">
+                        <strong>Remarks:</strong> Excellent problem-solving skills demonstrated. Strong understanding of algorithms and data structures.
+                      </p>
+                    </div>
+
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium text-gray-900">Step 2 — System Design</h4>
+                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                          In Progress
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Date: March 20, 2024 at 2:00 PM
+                      </p>
+                      <p className="text-sm text-gray-700">
+                        <strong>Remarks:</strong> Scheduled for system design discussion. Focus on scalability and architecture patterns.
+                      </p>
+                    </div>
+
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium text-gray-900">Step 3 — Final Interview</h4>
+                        <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium">
+                          Pending
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Date: TBD
+                      </p>
+                      <p className="text-sm text-gray-700">
+                        <strong>Remarks:</strong> Final round with leadership team. Focus on cultural fit and vision alignment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Progress Summary */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Progress Summary</h3>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-700">Overall Progress</span>
+                      <span className="text-sm font-semibold text-gray-900">67%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-600 h-2 rounded-full" style={{width: '67%'}}></div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-xs text-gray-500">Assigned Rounds</p>
+                        <p className="text-sm font-medium text-gray-900">
+                          {selectedCandidateDetails.assignedRounds?.length || 2} rounds
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500">Missing Rounds</p>
+                        <p className="text-sm font-medium text-gray-900">
+                          {selectedCandidateDetails.missingRounds?.length || 1} rounds
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Footer - Sticky */}
+              <div className="sticky bottom-0 bg-white border-t border-gray-200 p-6 flex justify-end space-x-3">
+                <button
+                  onClick={() => {
+                    // Handle reject logic
+                    setShowCandidateDetailsModal(false);
+                  }}
+                  className="px-6 py-2 border border-red-300 text-red-700 rounded-md hover:bg-red-50 transition-colors font-medium"
+                >
+                  Reject
+                </button>
+                <button
+                  onClick={() => {
+                    // Handle pass logic
+                    setShowCandidateDetailsModal(false);
+                  }}
+                  className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-medium"
+                >
+                  Pass
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* Timeline Management Side Sheet */}
       {showTimelineSheet && (
         <>
