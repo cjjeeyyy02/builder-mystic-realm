@@ -911,7 +911,7 @@ export default function ScreeningView() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Approve Candidate?</DialogTitle>
-            <DialogDescription>This candidate will be marked as Approved.</DialogDescription>
+            <DialogDescription>This candidate will proceed to Interview.</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <div className="flex items-center justify-end gap-2">
