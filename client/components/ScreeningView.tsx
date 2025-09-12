@@ -556,7 +556,7 @@ export default function ScreeningView() {
 
                   {/* Actions */}
                   <div className="pt-2 border-t flex justify-end">
-                    <ActionDropdown
+                    <ActionComponent
                       candidateId={candidate.id}
                       candidate={candidate}
                       onApprove={(id) => handleStatusChange(id, 'approved')}
