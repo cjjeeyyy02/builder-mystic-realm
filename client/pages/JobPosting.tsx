@@ -112,6 +112,8 @@ export default function JobPosting() {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [jobToEdit, setJobToEdit] = useState<Job | null>(null);
   const [archiveConfirmFor, setArchiveConfirmFor] = useState<Job | null>(null);
+  const [showJobDetailsModal, setShowJobDetailsModal] = useState(false);
+  const [jobToView, setJobToView] = useState<Job | null>(null);
   // Plug & Hire modal state
   const [showPlugHireModal, setShowPlugHireModal] = useState(false);
   const [candidates, setCandidates] = useState<Candidate[]>(initialCandidates);
