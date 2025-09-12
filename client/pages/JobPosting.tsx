@@ -203,6 +203,12 @@ export default function JobPosting() {
     setAuditLog((prev) => [{ time: new Date().toISOString(), action: "Restore Job", details: jobId }, ...prev]);
   };
 
+  const handleViewDetails = (job: Job) => {
+    setJobToView(job);
+    setShowJobDetailsModal(true);
+    setAuditLog((prev) => [{ time: new Date().toISOString(), action: "View Job Details", details: job.title }, ...prev]);
+  };
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
