@@ -218,17 +218,7 @@ export default function ScreeningView() {
           <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
             <table className="w-full min-w-[800px]">
               <tbody className="divide-y divide-gray-100">
-                {candidates
-                  .filter(c => {
-                    const q = searchQuery.toLowerCase();
-                    return (
-                      !q ||
-                      c.name.toLowerCase().includes(q) ||
-                      c.position.toLowerCase().includes(q) ||
-                      c.email.toLowerCase().includes(q)
-                    );
-                  })
-                  .map((candidate, index) => (
+                {filteredCandidates.map((candidate, index) => (
                     <tr
                       key={candidate.id}
                       className={`hover:bg-blue-50 transition-colors duration-150 ${
