@@ -315,15 +315,7 @@ export default function ScreeningView() {
           </div>
 
           {/* Empty State */}
-          {candidates.filter(c => {
-            const q = searchQuery.toLowerCase();
-            return (
-              !q ||
-              c.name.toLowerCase().includes(q) ||
-              c.position.toLowerCase().includes(q) ||
-              c.email.toLowerCase().includes(q)
-            );
-          }).length === 0 && (
+          {filteredCandidates.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 text-sm">No candidates found matching your search criteria.</p>
             </div>
