@@ -235,33 +235,33 @@ function CreateChecklistForm({
 // Checklist Editor Component
 function ChecklistEditor({ checklist }: { checklist: Checklist }) {
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-xl">
       <Card>
-        <CardContent className="p-6">
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+        <CardContent className="p-4">
+          <div className="mb-4">
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">
               {checklist.title}
             </h2>
-            <p className="text-gray-600">{checklist.description}</p>
-            <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+            <p className="text-gray-600 text-sm">{checklist.description}</p>
+            <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
               <span>{checklist.items.length} items</span>
               <span>{checklist.jobCount} jobs</span>
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="font-medium text-gray-900">Checklist Items</h3>
+          <div className="space-y-2">
+            <h3 className="font-medium text-gray-900 text-sm">Checklist Items</h3>
             {checklist.items.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+              <div key={item.id} className="flex items-center gap-2 p-2 border border-gray-200 rounded">
                 <CheckSquare className={`h-4 w-4 ${item.completed ? 'text-green-600' : 'text-gray-400'}`} />
-                <span className={item.completed ? 'line-through text-gray-500' : 'text-gray-900'}>
+                <span className={`text-sm ${item.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
                   {item.text}
                 </span>
               </div>
             ))}
-            
-            <Button variant="outline" className="w-full mt-4">
-              <Plus className="h-4 w-4 mr-2" />
+
+            <Button variant="outline" className="w-full mt-3" size="sm">
+              <Plus className="h-4 w-4 mr-1" />
               Add new item
             </Button>
           </div>
