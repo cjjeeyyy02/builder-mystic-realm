@@ -314,68 +314,109 @@ export default function ActivationView() {
             <h1 className="text-lg font-semibold">Onboarding Checklist</h1>
           </div>
 
-          {/* Checklist Items */}
-          <div className="space-y-3 p-4">
-            {checklistItems.map((item, index) => {
-              // Status logic: all items are completed in the initial data
-              const status = item.completed ? 'completed' : 'pending';
-              const borderColor = status === 'completed' ? 'border-l-green-500' :
-                                 status === 'in-progress' ? 'border-l-orange-500' : 'border-l-red-500';
+          {/* Checklist Items Table */}
+          <div className={`border rounded-b-lg overflow-hidden transition-colors duration-300 ${
+            isDarkMode
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-white border-gray-200'
+          }`}>
+            <Table>
+              <TableHeader>
+                <TableRow className={`transition-colors duration-300 ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
+                }`}>
+                  <TableHead className={`text-sm font-semibold px-4 py-3 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>STATUS</TableHead>
+                  <TableHead className={`text-sm font-semibold px-4 py-3 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>CHECKLIST ITEM</TableHead>
+                  <TableHead className={`text-sm font-semibold px-4 py-3 text-right transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>ACTIONS</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {checklistItems.map((item, index) => {
+                  // Status logic: all items are completed in the initial data
+                  const status = item.completed ? 'completed' : 'pending';
 
-              return (
-                <div
-                  key={item.id}
-                  className={`flex items-center justify-between p-4 rounded-lg border-l-4 shadow-sm transition-all duration-200 hover:shadow-md ${borderColor} ${
-                    isDarkMode
-                      ? 'bg-gray-800 border-r border-t border-b border-gray-700 text-white'
-                      : 'bg-white border-r border-t border-b border-gray-200 text-gray-900'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-2 h-2 rounded-full ${
-                      status === 'completed' ? 'bg-green-500' :
-                      status === 'in-progress' ? 'bg-orange-500' : 'bg-red-500'
-                    }`}></div>
-                    <span className="text-sm font-medium">{item.title}</span>
-                  </div>
+                  return (
+                    <TableRow key={item.id} className={`border-b transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'border-gray-700 hover:bg-gray-700/50'
+                        : 'border-gray-100 hover:bg-gray-50'
+                    }`}>
+                      <TableCell className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded-full ${
+                            status === 'completed' ? 'bg-green-500' :
+                            status === 'in-progress' ? 'bg-orange-500' : 'bg-red-500'
+                          }`}></div>
+                          <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                            status === 'completed'
+                              ? isDarkMode
+                                ? 'bg-green-900 text-green-300'
+                                : 'bg-green-100 text-green-800'
+                              : status === 'in-progress'
+                              ? isDarkMode
+                                ? 'bg-orange-900 text-orange-300'
+                                : 'bg-orange-100 text-orange-800'
+                              : isDarkMode
+                              ? 'bg-red-900 text-red-300'
+                              : 'bg-red-100 text-red-800'
+                          }`}>
+                            {status === 'completed' ? 'Completed' :
+                             status === 'in-progress' ? 'In Progress' : 'Pending'}
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell className={`px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-200' : 'text-gray-900'
+                      }`}>
+                        {item.title}
+                      </TableCell>
+                      <TableCell className="px-4 py-3">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            className={`p-1.5 rounded-md transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                            }`}
+                            title="View"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
 
-                  <div className="flex items-center gap-2">
-                    <button
-                      className={`p-1.5 rounded-md transition-colors duration-200 ${
-                        isDarkMode
-                          ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
-                          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                      }`}
-                      title="View"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </button>
+                          <button
+                            className={`p-1.5 rounded-md transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                            }`}
+                            title="Download"
+                          >
+                            <Download className="w-4 h-4" />
+                          </button>
 
-                    <button
-                      className={`p-1.5 rounded-md transition-colors duration-200 ${
-                        isDarkMode
-                          ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
-                          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                      }`}
-                      title="Download"
-                    >
-                      <Download className="w-4 h-4" />
-                    </button>
-
-                    <button
-                      className={`p-1.5 rounded-md transition-colors duration-200 ${
-                        isDarkMode
-                          ? 'text-gray-400 hover:text-red-400 hover:bg-gray-700'
-                          : 'text-gray-500 hover:text-red-600 hover:bg-gray-100'
-                      }`}
-                      title="Delete"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+                          <button
+                            className={`p-1.5 rounded-md transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-400 hover:text-red-400 hover:bg-gray-700'
+                                : 'text-gray-500 hover:text-red-600 hover:bg-gray-100'
+                            }`}
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
           </div>
 
           {/* Bottom Action Buttons */}
