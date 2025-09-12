@@ -257,7 +257,7 @@ export default function ScreeningView() {
   const [candidates, setCandidates] = useState<ScreeningCandidate[]>(screeningCandidates);
 
   // Flag to switch between dropdown implementations (for debugging)
-  const useSimpleMenu = false;
+  const useSimpleMenu = true;
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
