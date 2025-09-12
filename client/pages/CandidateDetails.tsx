@@ -6,92 +6,44 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-// Mock candidate data - in real app this would come from API
+// Mock candidate data - Emily Davis profile as specified
 const getCandidateById = (id: string) => {
-  const candidates = [
-    {
-      id: "1",
-      applicantName: "Sarah Mitchell",
-      appliedPosition: "Senior Software Engineer",
-      department: "Engineering",
-      currentRound: "Technical Assessment Round 1",
-      status: "in-progress",
-      email: "sarah.mitchell@email.com",
-      phone: "+1 (555) 123-4567",
-      roomId: "CA001",
-      reviewRoom: "Zoom — Interview Room A",
-      assignedInterviewers: ["Alice Johnson", "Bob Smith"],
-      interviewSteps: [
-        {
-          id: "step1",
-          title: "Technical Assessment",
-          interviewer: "Alice Johnson",
-          description: "Technical coding assessment - 90 minutes. Focus on React, JavaScript fundamentals, and problem-solving approach.",
-          date: "March 15, 2024",
-          time: "10:00 AM",
-          status: "Completed",
-          remarks: "Excellent problem-solving skills demonstrated. Strong understanding of algorithms and data structures. Candidate showed clean code practices and good communication during the session."
-        },
-        {
-          id: "step2",
-          title: "System Design",
-          interviewer: "Bob Smith",
-          description: "System design discussion - 60 minutes. Evaluate architectural thinking, scalability considerations, and communication skills.",
-          date: "March 20, 2024",
-          time: "2:00 PM",
-          status: "In Progress",
-          remarks: "Scheduled for system design discussion. Focus on scalability and architecture patterns."
-        },
-        {
-          id: "step3",
-          title: "Final Interview",
-          interviewer: "Leadership Team",
-          description: "Final round with leadership team - 45 minutes. Focus on cultural fit and vision alignment.",
-          date: "TBD",
-          time: "TBD",
-          status: "Pending",
-          remarks: "Final round with leadership team. Focus on cultural fit and vision alignment."
-        }
-      ]
-    },
-    {
-      id: "2",
-      applicantName: "James Rodriguez",
-      appliedPosition: "Product Manager",
-      department: "Product",
-      currentRound: "Non Technical Round 2",
-      status: "completed",
-      email: "james.rodriguez@email.com",
-      phone: "+1 (555) 234-5678",
-      roomId: "CA002",
-      reviewRoom: "Zoom — Interview Room B",
-      assignedInterviewers: ["Carol Wilson", "David Brown"],
-      interviewSteps: [
-        {
-          id: "step1",
-          title: "Product Strategy",
-          interviewer: "Carol Wilson",
-          description: "Product strategy and vision discussion - 60 minutes.",
-          date: "March 10, 2024",
-          time: "11:00 AM",
-          status: "Completed",
-          remarks: "Strong product vision and strategic thinking. Excellent understanding of user-centered design principles."
-        },
-        {
-          id: "step2",
-          title: "Stakeholder Management",
-          interviewer: "David Brown",
-          description: "Cross-functional collaboration assessment - 45 minutes.",
-          date: "March 12, 2024",
-          time: "3:00 PM", 
-          status: "Completed",
-          remarks: "Demonstrated excellent communication skills and ability to work with diverse teams."
-        }
-      ]
-    }
-  ];
-  
-  return candidates.find(c => c.id === id);
+  // Default Emily Davis data for the design specification
+  return {
+    id: "001",
+    applicantName: "Emily Davis",
+    appliedPosition: "Senior React Developer",
+    department: "Engineering",
+    currentRound: "System Design Interview",
+    status: "in-progress",
+    email: "emily.davis@example.com",
+    phone: "(555) 234-5678",
+    roomId: "ROOM-001",
+    reviewRoom: "https://zoom.us/j/123456789",
+    assignedInterviewers: ["David Wilson", "Lisa Chen"],
+    interviewSteps: [
+      {
+        id: "step1",
+        title: "Technical Interview",
+        interviewer: "David Wilson, Tech Lead",
+        description: "Assessment of technical skills and problem-solving abilities",
+        date: "2023-05-20",
+        time: "10:00 AM",
+        status: "Completed",
+        remarks: "Strong technical skills, especially in React and TypeScript. Solved all problems efficiently."
+      },
+      {
+        id: "step2",
+        title: "System Design Interview",
+        interviewer: "Lisa Chen, Senior Architect",
+        description: "Evaluation of system design and architecture knowledge",
+        date: "2023-05-22",
+        time: "2:00 PM",
+        status: "Scheduled",
+        remarks: ""
+      }
+    ]
+  };
 };
 
 export default function CandidateDetails() {
