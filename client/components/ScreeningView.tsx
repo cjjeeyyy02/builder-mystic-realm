@@ -456,7 +456,7 @@ export default function ScreeningView() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex items-center justify-end">
-                          <ActionDropdown
+                          <ActionComponent
                             candidateId={candidate.id}
                             candidate={candidate}
                             onApprove={handleApprove}
