@@ -210,7 +210,7 @@ const screeningCandidates: ScreeningCandidate[] = [
     skills: ["Figma", "Prototyping", "Design Systems"],
     certifications: [],
     location: "Milan, Italy",
-    salaryExpectation: "€60,000 - ��75,000",
+    salaryExpectation: "€60,000 - €75,000",
     availability: "2 weeks",
     rating: 4.5,
   },
@@ -424,28 +424,47 @@ export default function ScreeningView() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-48">
                               <DropdownMenuItem
-                                onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setModalCandidateId(candidate.id);
+                                  setShowApproveModal(true);
+                                }}
                                 className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
                               >
                                 <Check className="w-4 h-4" />
                                 Approve
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setModalCandidateId(candidate.id);
+                                  setShowRejectModal(true);
+                                }}
                                 className="flex items-center gap-2 hover:bg-red-50 hover:text-red-700 cursor-pointer"
                               >
                                 <X className="w-4 h-4" />
                                 Reject
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={() => { handleEmailCandidate(candidate); }}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleEmailCandidate(candidate);
+                                }}
                                 className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
                               >
                                 <Send className="w-4 h-4" />
                                 Send Email
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={() => { setResumeMode('view'); handleViewResume(candidate); }}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setResumeMode('view');
+                                  handleViewResume(candidate);
+                                }}
                                 className="flex items-center gap-2 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
                               >
                                 <Eye className="w-4 h-4" />
