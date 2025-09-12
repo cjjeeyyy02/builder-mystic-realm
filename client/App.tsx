@@ -30,6 +30,7 @@ import JobPosting from "./pages/JobPosting";
 import HiringPipeline from "./pages/HiringPipeline";
 import ChecklistBuilder from "./pages/ChecklistBuilder";
 import RoomBuilder from "./pages/RoomBuilder";
+import CandidateDetails from "./pages/CandidateDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
