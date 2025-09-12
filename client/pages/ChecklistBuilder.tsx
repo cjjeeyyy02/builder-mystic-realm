@@ -20,6 +20,7 @@ interface ChecklistItem {
   id: string;
   text: string;
   completed: boolean;
+  required: boolean;
 }
 
 interface Checklist {
@@ -28,6 +29,7 @@ interface Checklist {
   description: string;
   items: ChecklistItem[];
   jobCount: number;
+  linkedJobs: string[];
 }
 
 export default function ChecklistBuilder() {
