@@ -277,7 +277,7 @@ export default function JobPosting() {
                                 <Button size="sm" variant="ghost"><MoreHorizontal className="w-4 h-4" /></Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent>
-                                <DropdownMenuItem onClick={() => navigate(`/job-posting/${job.id}`)}>View Details</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleViewDetails(job)}>View Details</DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => alert('Integration')}>Integration</DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>Edit Job Details</DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => confirmArchive(job)}>Archive Job Details</DropdownMenuItem>
