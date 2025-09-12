@@ -243,13 +243,17 @@ export default function ActivationView() {
                           View & Upload Docs
                         </Button>
 
-                        <Button
-                          className="h-6 text-xs px-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                        <button
+                          className={`flex items-center justify-center w-6 h-6 rounded-sm transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'text-gray-400 hover:text-gray-200'
+                              : 'text-gray-500 hover:text-gray-700'
+                          }`}
                           title="Action"
                           onClick={() => setActiveTab('checklist-builder')}
                         >
-                          Action
-                        </Button>
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
                       </div>
                     </TableCell>
                   </TableRow>
