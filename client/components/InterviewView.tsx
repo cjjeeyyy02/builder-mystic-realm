@@ -1029,6 +1029,7 @@ Google India`
 
   // Timeline Management Modal States
   const [showTimelineModal, setShowTimelineModal] = useState(false);
+  const [expandedSteps, setExpandedSteps] = useState<string[]>([]);
   const [selectedCandidateForTimeline, setSelectedCandidateForTimeline] = useState<{
     id: string;
     name: string;
@@ -1042,6 +1043,13 @@ Google India`
       time: string;
       interviewer: string;
       status: "Pending" | "Completed" | "In Progress";
+      schedule?: string;
+      notes?: string;
+      history?: Array<{
+        date: string;
+        action: string;
+        details: string;
+      }>;
     }>;
   } | null>(null);
 
