@@ -1028,31 +1028,6 @@ Google India`
     // TODO: Open candidate details modal/page with resume, notes, and history
   };
 
-  // Timeline Management Modal States
-  const [showTimelineModal, setShowTimelineModal] = useState(false);
-  const [expandedSteps, setExpandedSteps] = useState<string[]>([]);
-  const [selectedCandidateForTimeline, setSelectedCandidateForTimeline] = useState<{
-    id: string;
-    name: string;
-    position: string;
-    reviewRoom: string;
-    interviewers: string[];
-    steps: Array<{
-      id: string;
-      title: string;
-      date: string;
-      time: string;
-      interviewer: string;
-      status: "Pending" | "Completed" | "In Progress";
-      schedule?: string;
-      notes?: string;
-      history?: Array<{
-        date: string;
-        action: string;
-        details: string;
-      }>;
-    }>;
-  } | null>(null);
 
   const handleManageTimeline = (candidateId: string, candidateName: string) => {
     // Mock data for the candidate timeline with expanded information
