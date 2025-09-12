@@ -241,41 +241,34 @@ export default function CandidateDetails() {
           </CardContent>
         </Card>
 
-        {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+        {/* Action Buttons (Bottom of Screen) */}
+        <div className="flex items-center justify-center gap-6 pt-6 border-t border-gray-200">
           <Button
             onClick={() => handleDecision('reject')}
             disabled={isProcessing}
-            variant="outline"
-            className="px-8 py-2 border-red-300 text-red-700 hover:bg-red-50 hover:border-red-400"
+            className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm"
           >
             {isProcessing ? (
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-red-300 border-t-red-600 rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 Processing...
               </div>
             ) : (
-              <>
-                <X className="h-4 w-4 mr-2" />
-                Reject
-              </>
+              "Reject"
             )}
           </Button>
           <Button
             onClick={() => handleDecision('pass')}
             disabled={isProcessing}
-            className="px-8 py-2 bg-green-600 hover:bg-green-700 text-white"
+            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow-sm"
           >
             {isProcessing ? (
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-green-300 border-t-white rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 Processing...
               </div>
             ) : (
-              <>
-                <Check className="h-4 w-4 mr-2" />
-                Pass
-              </>
+              "Pass"
             )}
           </Button>
         </div>
