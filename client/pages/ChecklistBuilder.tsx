@@ -1,29 +1,15 @@
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
 import { 
   Plus, 
-  CheckCircle, 
-  FileText, 
-  Settings,
-  Trash2,
-  Edit,
+  CheckSquare,
   Save,
-  MoreVertical,
-  Calendar,
-  Users
+  X
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 interface ChecklistItem {
   id: string;
@@ -36,52 +22,33 @@ interface Checklist {
   title: string;
   description: string;
   items: ChecklistItem[];
-  jobRole?: string;
-  department?: string;
-  createdAt: string;
+  jobCount: number;
 }
 
 export default function ChecklistBuilder() {
   const [checklists, setChecklists] = useState<Checklist[]>([
     {
       id: "1",
-      title: "Onboarding Checklist",
-      description: "Essential tasks for new employee onboarding",
-      jobRole: "All Roles",
-      department: "HR",
-      createdAt: "2024-01-15",
+      title: "Developer Onboarding Checklist",
+      description: "Essential tasks for new developer onboarding",
+      jobCount: 3,
       items: [
-        { id: "1", text: "Send welcome email with company handbook", completed: true },
-        { id: "2", text: "Set up workspace and equipment", completed: false },
-        { id: "3", text: "Schedule IT setup and account creation", completed: false },
-        { id: "4", text: "Arrange buddy/mentor assignment", completed: false },
+        { id: "1", text: "Set up development environment", completed: true },
+        { id: "2", text: "Complete security training", completed: false },
+        { id: "3", text: "Review coding standards", completed: false },
+        { id: "4", text: "Meet with team lead", completed: false },
       ]
     },
     {
       id: "2", 
-      title: "Interview Process Checklist",
-      description: "Steps to ensure thorough candidate evaluation",
-      jobRole: "Engineering",
-      department: "Engineering",
-      createdAt: "2024-01-10",
+      title: "Designer Onboarding Checklist",
+      description: "Essential tasks for new designer onboarding",
+      jobCount: 3,
       items: [
-        { id: "1", text: "Review candidate resume and application", completed: true },
-        { id: "2", text: "Conduct initial phone screening", completed: false },
-        { id: "3", text: "Schedule technical assessment", completed: false },
-        { id: "4", text: "Coordinate final interview panel", completed: false },
-      ]
-    },
-    {
-      id: "3",
-      title: "Manager Offboarding",
-      description: "Checklist for manager role transitions",
-      jobRole: "Manager",
-      department: "Management",
-      createdAt: "2024-01-08", 
-      items: [
-        { id: "1", text: "Transfer team responsibilities", completed: false },
-        { id: "2", text: "Complete handover documentation", completed: false },
-        { id: "3", text: "Return company assets", completed: false },
+        { id: "1", text: "Access design tools", completed: true },
+        { id: "2", text: "Review brand guidelines", completed: false },
+        { id: "3", text: "Meet with design team", completed: false },
+        { id: "4", text: "Complete first design task", completed: false },
       ]
     }
   ]);
@@ -91,8 +58,7 @@ export default function ChecklistBuilder() {
   const [newChecklist, setNewChecklist] = useState({
     title: "",
     description: "",
-    jobRole: "",
-    department: ""
+    jobCount: 1
   });
 
   const handleCreateChecklist = () => {
@@ -101,9 +67,7 @@ export default function ChecklistBuilder() {
         id: Date.now().toString(),
         title: newChecklist.title,
         description: newChecklist.description,
-        jobRole: newChecklist.jobRole,
-        department: newChecklist.department,
-        createdAt: new Date().toISOString().split('T')[0],
+        jobCount: newChecklist.jobCount,
         items: []
       };
       
@@ -112,8 +76,7 @@ export default function ChecklistBuilder() {
       setNewChecklist({
         title: "",
         description: "",
-        jobRole: "",
-        department: ""
+        jobCount: 1
       });
       setShowCreateForm(false);
     }
@@ -124,194 +87,78 @@ export default function ChecklistBuilder() {
     setShowCreateForm(false);
   };
 
-  const handleDeleteChecklist = (checklistId: string) => {
-    setChecklists(checklists.filter(c => c.id !== checklistId));
-    if (selectedChecklist?.id === checklistId) {
-      setSelectedChecklist(null);
-    }
-  };
-
-  const addItemToChecklist = (checklistId: string, itemText: string) => {
-    if (itemText.trim()) {
-      setChecklists(checklists.map(checklist => 
-        checklist.id === checklistId 
-          ? {
-              ...checklist,
-              items: [...checklist.items, {
-                id: Date.now().toString(),
-                text: itemText,
-                completed: false
-              }]
-            }
-          : checklist
-      ));
-      
-      // Update selected checklist if it's the one being modified
-      if (selectedChecklist?.id === checklistId) {
-        setSelectedChecklist(prev => prev ? {
-          ...prev,
-          items: [...prev.items, {
-            id: Date.now().toString(),
-            text: itemText,
-            completed: false
-          }]
-        } : null);
-      }
-    }
-  };
-
-  const toggleItem = (checklistId: string, itemId: string) => {
-    const updatedChecklists = checklists.map(checklist =>
-      checklist.id === checklistId
-        ? {
-            ...checklist,
-            items: checklist.items.map(item =>
-              item.id === itemId ? { ...item, completed: !item.completed } : item
-            )
-          }
-        : checklist
-    );
-    
-    setChecklists(updatedChecklists);
-    
-    // Update selected checklist if it's the one being modified
-    if (selectedChecklist?.id === checklistId) {
-      setSelectedChecklist(updatedChecklists.find(c => c.id === checklistId) || null);
-    }
-  };
-
-  const getCompletionStats = (checklist: Checklist) => {
-    const completed = checklist.items.filter(item => item.completed).length;
-    const total = checklist.items.length;
-    return { completed, total };
-  };
-
   return (
     <Layout>
-      <div className="flex h-screen bg-gray-50">
-        {/* Left Panel - Checklists */}
-        <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
-          <div className="p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Checklists</h2>
-            <p className="text-sm text-gray-600">Manage your workflow checklists</p>
-          </div>
-          
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {checklists.map((checklist) => {
-              const stats = getCompletionStats(checklist);
-              const isSelected = selectedChecklist?.id === checklist.id;
-              
-              return (
-                <Card 
-                  key={checklist.id}
-                  className={`cursor-pointer transition-all hover:shadow-md ${
-                    isSelected ? 'ring-2 ring-blue-500 bg-blue-50' : ''
-                  }`}
-                  onClick={() => handleSelectChecklist(checklist)}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-medium text-sm text-gray-900 line-clamp-1">
-                        {checklist.title}
-                      </h3>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                            <MoreVertical className="h-3 w-3" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Edit className="mr-2 h-3 w-3" />
-                            Edit
-                          </DropdownMenuItem>
-                          <DropdownMenuItem 
-                            onClick={() => handleDeleteChecklist(checklist.id)}
-                            className="text-red-600"
-                          >
-                            <Trash2 className="mr-2 h-3 w-3" />
-                            Delete
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
-                    
-                    <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                      {checklist.description}
-                    </p>
-                    
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-gray-500">Progress</span>
-                        <span className="font-medium">{stats.completed}/{stats.total}</span>
-                      </div>
-                      
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-green-500 h-2 rounded-full transition-all duration-300"
-                          style={{ 
-                            width: stats.total > 0 ? `${(stats.completed / stats.total) * 100}%` : '0%' 
-                          }}
-                        />
-                      </div>
-                      
-                      <div className="flex items-center gap-2">
-                        {checklist.jobRole && (
-                          <Badge variant="outline" className="text-xs">
-                            {checklist.jobRole}
-                          </Badge>
-                        )}
-                        {checklist.department && (
-                          <Badge variant="secondary" className="text-xs">
-                            {checklist.department}
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+      <div className="min-h-screen bg-gray-50">
+        {/* Breadcrumb */}
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center text-sm text-gray-600">
+            <span>Home</span>
+            <span className="mx-2">›</span>
+            <span>Checklist Builder</span>
           </div>
         </div>
 
-        {/* Right Panel - Content */}
-        <div className="flex-1 flex flex-col">
-          {/* Header */}
-          <div className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-semibold text-gray-900">Checklist Builder</h1>
-              <p className="text-sm text-gray-600">
-                {selectedChecklist ? `Editing: ${selectedChecklist.title}` : 'Select a checklist to edit or create a new one'}
-              </p>
+        {/* Main Content */}
+        <div className="flex h-screen">
+          {/* Left Panel - Checklists */}
+          <div className="w-80 bg-white border-r border-gray-200">
+            <div className="p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-6">Checklists</h2>
+              
+              <div className="space-y-4">
+                {checklists.map((checklist) => (
+                  <div 
+                    key={checklist.id}
+                    className={`p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                      selectedChecklist?.id === checklist.id ? 'bg-blue-50 border-blue-200' : ''
+                    }`}
+                    onClick={() => handleSelectChecklist(checklist)}
+                  >
+                    <h3 className="font-medium text-gray-900 mb-1">
+                      {checklist.title}
+                    </h3>
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <span>{checklist.items.length} items</span>
+                      <span>{checklist.jobCount} jobs</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <Button 
-              onClick={() => setShowCreateForm(true)}
-              className="flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Create Checklist
-            </Button>
           </div>
 
-          {/* Content Area */}
-          <div className="flex-1 p-6 overflow-y-auto">
-            {showCreateForm ? (
-              <CreateChecklistForm 
-                newChecklist={newChecklist}
-                setNewChecklist={setNewChecklist}
-                onSave={handleCreateChecklist}
-                onCancel={() => setShowCreateForm(false)}
-              />
-            ) : selectedChecklist ? (
-              <ChecklistEditor 
-                checklist={selectedChecklist}
-                onAddItem={addItemToChecklist}
-                onToggleItem={toggleItem}
-              />
-            ) : (
-              <EmptyState onCreateClick={() => setShowCreateForm(true)} />
-            )}
+          {/* Right Panel - Content */}
+          <div className="flex-1 flex flex-col">
+            {/* Header */}
+            <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-semibold text-gray-900">Checklist Builder</h1>
+              </div>
+              <Button 
+                onClick={() => setShowCreateForm(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Create Checklist
+              </Button>
+            </div>
+
+            {/* Content Area */}
+            <div className="flex-1 flex items-center justify-center p-6">
+              {showCreateForm ? (
+                <CreateChecklistForm 
+                  newChecklist={newChecklist}
+                  setNewChecklist={setNewChecklist}
+                  onSave={handleCreateChecklist}
+                  onCancel={() => setShowCreateForm(false)}
+                />
+              ) : selectedChecklist ? (
+                <ChecklistEditor checklist={selectedChecklist} />
+              ) : (
+                <EmptyState onCreateClick={() => setShowCreateForm(true)} />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -332,61 +179,61 @@ function CreateChecklistForm({
   onCancel: () => void;
 }) {
   return (
-    <Card className="max-w-2xl">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Plus className="h-5 w-5" />
-          Create New Checklist
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div>
-          <label className="text-sm font-medium">Checklist Title</label>
-          <Input
-            placeholder="Enter checklist title"
-            value={newChecklist.title}
-            onChange={(e) => setNewChecklist({...newChecklist, title: e.target.value})}
-          />
+    <Card className="w-full max-w-md">
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold">Create New Checklist</h3>
+          <Button variant="ghost" size="sm" onClick={onCancel}>
+            <X className="h-4 w-4" />
+          </Button>
         </div>
         
-        <div>
-          <label className="text-sm font-medium">Description</label>
-          <Textarea
-            placeholder="Describe the purpose of this checklist"
-            value={newChecklist.description}
-            onChange={(e) => setNewChecklist({...newChecklist, description: e.target.value})}
-            rows={3}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium">Job Role</label>
+            <label className="text-sm font-medium text-gray-700 mb-1 block">
+              Checklist Title
+            </label>
             <Input
-              placeholder="e.g., Software Engineer"
-              value={newChecklist.jobRole}
-              onChange={(e) => setNewChecklist({...newChecklist, jobRole: e.target.value})}
+              placeholder="Enter checklist title"
+              value={newChecklist.title}
+              onChange={(e) => setNewChecklist({...newChecklist, title: e.target.value})}
             />
           </div>
           
           <div>
-            <label className="text-sm font-medium">Department</label>
-            <Input
-              placeholder="e.g., Engineering"
-              value={newChecklist.department}
-              onChange={(e) => setNewChecklist({...newChecklist, department: e.target.value})}
+            <label className="text-sm font-medium text-gray-700 mb-1 block">
+              Description
+            </label>
+            <Textarea
+              placeholder="Describe the purpose of this checklist"
+              value={newChecklist.description}
+              onChange={(e) => setNewChecklist({...newChecklist, description: e.target.value})}
+              rows={3}
             />
           </div>
-        </div>
 
-        <div className="flex gap-2 pt-4">
-          <Button onClick={onSave}>
-            <Save className="h-4 w-4 mr-2" />
-            Create Checklist
-          </Button>
-          <Button variant="outline" onClick={onCancel}>
-            Cancel
-          </Button>
+          <div>
+            <label className="text-sm font-medium text-gray-700 mb-1 block">
+              Job Count
+            </label>
+            <Input
+              type="number"
+              min="1"
+              placeholder="Number of jobs"
+              value={newChecklist.jobCount}
+              onChange={(e) => setNewChecklist({...newChecklist, jobCount: parseInt(e.target.value) || 1})}
+            />
+          </div>
+
+          <div className="flex gap-2 pt-4">
+            <Button onClick={onSave} className="flex-1">
+              <Save className="h-4 w-4 mr-2" />
+              Create
+            </Button>
+            <Button variant="outline" onClick={onCancel} className="flex-1">
+              Cancel
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -394,130 +241,38 @@ function CreateChecklistForm({
 }
 
 // Checklist Editor Component
-function ChecklistEditor({ 
-  checklist, 
-  onAddItem, 
-  onToggleItem 
-}: {
-  checklist: Checklist;
-  onAddItem: (checklistId: string, itemText: string) => void;
-  onToggleItem: (checklistId: string, itemId: string) => void;
-}) {
-  const [newItemText, setNewItemText] = useState("");
-  const [isAddingItem, setIsAddingItem] = useState(false);
-
-  const handleAddItem = () => {
-    if (newItemText.trim()) {
-      onAddItem(checklist.id, newItemText);
-      setNewItemText("");
-      setIsAddingItem(false);
-    }
-  };
-
-  const stats = {
-    completed: checklist.items.filter(item => item.completed).length,
-    total: checklist.items.length
-  };
-
+function ChecklistEditor({ checklist }: { checklist: Checklist }) {
   return (
-    <div className="max-w-4xl space-y-6">
-      {/* Checklist Header */}
+    <div className="w-full max-w-2xl">
       <Card>
-        <CardHeader>
-          <div className="flex items-start justify-between">
-            <div>
-              <CardTitle className="text-xl">{checklist.title}</CardTitle>
-              <p className="text-muted-foreground mt-1">{checklist.description}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              {checklist.jobRole && (
-                <Badge variant="outline">{checklist.jobRole}</Badge>
-              )}
-              {checklist.department && (
-                <Badge variant="secondary">{checklist.department}</Badge>
-              )}
+        <CardContent className="p-6">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              {checklist.title}
+            </h2>
+            <p className="text-gray-600">{checklist.description}</p>
+            <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+              <span>{checklist.items.length} items</span>
+              <span>{checklist.jobCount} jobs</span>
             </div>
           </div>
-          
-          {/* Progress Bar */}
-          <div className="space-y-2 mt-4">
-            <div className="flex justify-between text-sm">
-              <span>Progress</span>
-              <span>{stats.completed}/{stats.total}</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className="bg-green-500 h-2 rounded-full transition-all duration-300"
-                style={{ 
-                  width: stats.total > 0 ? `${(stats.completed / stats.total) * 100}%` : '0%' 
-                }}
-              />
-            </div>
-          </div>
-        </CardHeader>
-      </Card>
 
-      {/* Checklist Items */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Checklist Items</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {checklist.items.map((item) => (
-            <div key={item.id} className="flex items-center space-x-3 p-3 border rounded-lg">
-              <Checkbox
-                checked={item.completed}
-                onCheckedChange={() => onToggleItem(checklist.id, item.id)}
-              />
-              <span 
-                className={`flex-1 ${
-                  item.completed ? 'line-through text-muted-foreground' : ''
-                }`}
-              >
-                {item.text}
-              </span>
-              {item.completed && (
-                <CheckCircle className="h-4 w-4 text-green-500" />
-              )}
-            </div>
-          ))}
-
-          {/* Add New Item */}
-          {isAddingItem ? (
-            <div className="space-y-2 p-3 border-2 border-dashed border-gray-300 rounded-lg">
-              <Input
-                placeholder="Enter new checklist item"
-                value={newItemText}
-                onChange={(e) => setNewItemText(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleAddItem()}
-                autoFocus
-              />
-              <div className="flex gap-2">
-                <Button size="sm" onClick={handleAddItem}>
-                  Add Item
-                </Button>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  onClick={() => {
-                    setIsAddingItem(false);
-                    setNewItemText("");
-                  }}
-                >
-                  Cancel
-                </Button>
+          <div className="space-y-3">
+            <h3 className="font-medium text-gray-900">Checklist Items</h3>
+            {checklist.items.map((item) => (
+              <div key={item.id} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                <CheckSquare className={`h-4 w-4 ${item.completed ? 'text-green-600' : 'text-gray-400'}`} />
+                <span className={item.completed ? 'line-through text-gray-500' : 'text-gray-900'}>
+                  {item.text}
+                </span>
               </div>
-            </div>
-          ) : (
-            <Button
-              variant="ghost"
-              onClick={() => setIsAddingItem(true)}
-              className="w-full justify-start text-muted-foreground border-2 border-dashed"
-            >
+            ))}
+            
+            <Button variant="outline" className="w-full mt-4">
               <Plus className="h-4 w-4 mr-2" />
               Add new item
             </Button>
-          )}
+          </div>
         </CardContent>
       </Card>
     </div>
@@ -527,20 +282,16 @@ function ChecklistEditor({
 // Empty State Component
 function EmptyState({ onCreateClick }: { onCreateClick: () => void }) {
   return (
-    <div className="flex-1 flex items-center justify-center">
-      <div className="text-center space-y-6 max-w-md">
-        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-          <FileText className="h-8 w-8 text-gray-400" />
+    <div className="text-center">
+      <div className="mb-6">
+        <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <CheckSquare className="h-8 w-8 text-gray-400" />
         </div>
-        
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Checklist Selected</h3>
-          <p className="text-gray-600">
-            Select a checklist from the left panel to edit it, or create a new one to get started.
-          </p>
-        </div>
-        
-        <Button onClick={onCreateClick} size="lg" className="w-full">
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">No Checklist Selected</h3>
+        <p className="text-gray-600 mb-6">
+          Select a checklist from the list or create a new one
+        </p>
+        <Button onClick={onCreateClick} className="bg-blue-600 hover:bg-blue-700 text-white">
           <Plus className="h-4 w-4 mr-2" />
           Create Checklist
         </Button>
