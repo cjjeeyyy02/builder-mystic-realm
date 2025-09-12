@@ -464,36 +464,15 @@ export default function ScreeningView() {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-2 border-t">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0 ml-auto">
-                          <MoreVertical className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-
-                      <DropdownMenuContent align="end" className="w-48">
-                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'approved')} className="flex items-center gap-2">
-                          <Check className="w-3 h-3" />
-                          Approve
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem onClick={() => handleStatusChange(candidate.id, 'reject')} className="flex items-center gap-2 text-red-600">
-                          <X className="w-3 h-3" />
-                          Reject
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem onClick={() => handleViewResume(candidate)} className="flex items-center gap-2">
-                          <Eye className="w-3 h-3" />
-                          View Resume
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem onClick={() => handleEmailCandidate(candidate)} className="flex items-center gap-2">
-                          <Send className="w-3 h-3" />
-                          Email
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                  <div className="pt-2 border-t flex justify-end">
+                    <ActionDropdown
+                      candidateId={candidate.id}
+                      candidate={candidate}
+                      onApprove={(id) => handleStatusChange(id, 'approved')}
+                      onReject={(id) => handleStatusChange(id, 'reject')}
+                      onEmail={handleEmailCandidate}
+                      onViewResume={handleViewResume}
+                    />
                   </div>
                 </div>
               </CardContent>
