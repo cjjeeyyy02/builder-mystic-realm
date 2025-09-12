@@ -24,7 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import ScreeningView from "./ScreeningView";
-import { screeningCandidates } from "./ScreeningView";
+import { screeningCandidates } from "@/data/screeningCandidates";
 import InterviewView from "./InterviewView";
 import ActivationView from "./ActivationView";
 import HiredView from "./HiredView";
