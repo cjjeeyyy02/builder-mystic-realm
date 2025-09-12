@@ -54,6 +54,91 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 
 import { screeningCandidates, type ScreeningCandidate } from "@/data/screeningCandidates";
 
+// Separate ActionDropdown component to prevent state conflicts
+const ActionDropdown = React.memo(({
+  candidateId,
+  candidate,
+  onApprove,
+  onReject,
+  onEmail,
+  onViewResume
+}: {
+  candidateId: string;
+  candidate: ScreeningCandidate;
+  onApprove: (id: string) => void;
+  onReject: (id: string) => void;
+  onEmail: (candidate: ScreeningCandidate) => void;
+  onViewResume: (candidate: ScreeningCandidate) => void;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleApproveClick = useCallback(() => {
+    setIsOpen(false);
+    onApprove(candidateId);
+  }, [candidateId, onApprove]);
+
+  const handleRejectClick = useCallback(() => {
+    setIsOpen(false);
+    onReject(candidateId);
+  }, [candidateId, onReject]);
+
+  const handleEmailClick = useCallback(() => {
+    setIsOpen(false);
+    onEmail(candidate);
+  }, [candidate, onEmail]);
+
+  const handleViewClick = useCallback(() => {
+    setIsOpen(false);
+    onViewResume(candidate);
+  }, [candidate, onViewResume]);
+
+  return (
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenuTrigger asChild>
+        <button
+          className="text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100 transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          <MoreVertical className="h-4 w-4" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuItem
+          onClick={handleApproveClick}
+          className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
+        >
+          <Check className="w-4 h-4" />
+          Approve
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleRejectClick}
+          className="flex items-center gap-2 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+        >
+          <X className="w-4 h-4" />
+          Reject
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleEmailClick}
+          className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
+        >
+          <Send className="w-4 h-4" />
+          Send Email
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleViewClick}
+          className="flex items-center gap-2 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
+        >
+          <Eye className="w-4 h-4" />
+          View Details
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+});
+
 function getStatusVariant(
   status: string,
 ): "default" | "secondary" | "destructive" | "outline" {
