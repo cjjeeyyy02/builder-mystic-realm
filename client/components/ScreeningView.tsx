@@ -108,7 +108,19 @@ export default function ScreeningView() {
   // Resume viewer mode: 'view' or 'download'
   const [resumeMode, setResumeMode] = useState<"view" | "download">("view");
 
-  const handleStatusChange = (
+  // Memoize filtered candidates to prevent unnecessary re-renders
+  const filteredCandidates = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return candidates;
+
+    return candidates.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.position.toLowerCase().includes(q) ||
+      c.email.toLowerCase().includes(q)
+    );
+  }, [candidates, searchQuery]);
+
+  const handleStatusChange = useCallback((
     candidateId: string,
     newStatus: "approved" | "reject",
   ) => {
@@ -124,17 +136,27 @@ export default function ScreeningView() {
     if (selectedCandidate && selectedCandidate.id === candidateId) {
       setSelectedCandidate(prev => prev ? { ...prev, status: newStatus } : null);
     }
-  };
+  }, [selectedCandidate]);
 
-  const handleViewResume = (candidate: ScreeningCandidate) => {
+  const handleViewResume = useCallback((candidate: ScreeningCandidate) => {
     setSelectedCandidate(candidate);
     setShowResumeModal(true);
-  };
+  }, []);
 
-  const handleEmailCandidate = (candidate: ScreeningCandidate) => {
+  const handleEmailCandidate = useCallback((candidate: ScreeningCandidate) => {
     setEmailCandidate(candidate);
     setShowEmailSheet(true);
-  };
+  }, []);
+
+  const handleApprove = useCallback((candidateId: string) => {
+    setModalCandidateId(candidateId);
+    setShowApproveModal(true);
+  }, []);
+
+  const handleReject = useCallback((candidateId: string) => {
+    setModalCandidateId(candidateId);
+    setShowRejectModal(true);
+  }, []);
 
   return (
     <div className="space-y-2">
