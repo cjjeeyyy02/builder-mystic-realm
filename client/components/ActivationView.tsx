@@ -347,6 +347,11 @@ export default function ActivationView() {
                         ? 'border-gray-700 hover:bg-gray-700/50'
                         : 'border-gray-100 hover:bg-gray-50'
                     }`}>
+                      <TableCell className={`px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                        isDarkMode ? 'text-gray-200' : 'text-gray-900'
+                      }`}>
+                        {item.title}
+                      </TableCell>
                       <TableCell className="px-4 py-3">
                         <div className="flex items-center gap-2">
                           <div className={`w-3 h-3 rounded-full ${
@@ -370,11 +375,6 @@ export default function ActivationView() {
                              status === 'in-progress' ? 'In Progress' : 'Pending'}
                           </span>
                         </div>
-                      </TableCell>
-                      <TableCell className={`px-4 py-3 text-sm font-medium transition-colors duration-300 ${
-                        isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                      }`}>
-                        {item.title}
                       </TableCell>
                       <TableCell className="px-4 py-3">
                         <div className="flex items-center justify-end gap-2">
