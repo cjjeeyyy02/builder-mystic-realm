@@ -120,7 +120,7 @@ export default function ScreeningView() {
 
   // Memoize filtered candidates to prevent unnecessary re-renders
   const filteredCandidates = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
+    const q = debouncedSearchQuery.toLowerCase().trim();
     if (!q) return candidates;
 
     return candidates.filter(c =>
@@ -128,7 +128,7 @@ export default function ScreeningView() {
       c.position.toLowerCase().includes(q) ||
       c.email.toLowerCase().includes(q)
     );
-  }, [candidates, searchQuery]);
+  }, [candidates, debouncedSearchQuery]);
 
   const handleStatusChange = useCallback((
     candidateId: string,
