@@ -143,56 +143,45 @@ export default function CandidateDetails() {
           </div>
         </div>
 
-        {/* Contact Info & Review Room */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Contact Information */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                  <div>
-                    <p className="text-sm text-gray-500">Email</p>
-                    <p className="font-medium text-gray-900">{candidate.email}</p>
+        {/* Contact Information & Review Room - Single Card */}
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-6">
+              {/* Contact Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Contact Information</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-4 w-4 text-gray-400" />
+                    <span className="text-sm font-medium">Email:</span>
+                    <span className="text-sm text-gray-700">{candidate.email}</span>
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-gray-400" />
-                  <div>
-                    <p className="text-sm text-gray-500">Phone</p>
-                    <p className="font-medium text-gray-900">{candidate.phone}</p>
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 text-gray-400" />
+                    <span className="text-sm font-medium">Phone:</span>
+                    <span className="text-sm text-gray-700">{candidate.phone}</span>
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
 
-          {/* Review Room */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Review Room</h3>
-              <div className="space-y-3">
+              {/* Review Room */}
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Review Room</h3>
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">Meeting Room</p>
-                  <a 
-                    href="#" 
-                    className="text-blue-600 hover:text-blue-800 font-medium underline"
-                    onClick={(e) => e.preventDefault()}
+                  <span className="text-sm font-medium">Zoom link:</span>
+                  <a
+                    href={candidate.reviewRoom}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline ml-2"
                   >
                     {candidate.reviewRoom}
                   </a>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500 mb-1">Assigned Interviewers</p>
-                  <p className="font-medium text-gray-900">
-                    {candidate.assignedInterviewers.join(', ')}
-                  </p>
-                </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Interview Steps */}
         <div>
