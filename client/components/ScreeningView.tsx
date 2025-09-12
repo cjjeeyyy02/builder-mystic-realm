@@ -139,6 +139,8 @@ const ActionDropdown = React.memo(({
   );
 });
 
+ActionDropdown.displayName = 'ActionDropdown';
+
 function getStatusVariant(
   status: string,
 ): "default" | "secondary" | "destructive" | "outline" {
