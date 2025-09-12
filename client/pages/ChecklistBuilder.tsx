@@ -90,21 +90,12 @@ export default function ChecklistBuilder() {
   return (
     <Layout>
       <div className="min-h-screen bg-gray-50">
-        {/* Breadcrumb */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <span>Home</span>
-            <span className="mx-2">›</span>
-            <span>Checklist Builder</span>
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="flex h-screen">
           {/* Left Panel - Checklists */}
-          <div className="w-80 bg-white border-r border-gray-200">
-            <div className="p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Checklists</h2>
+          <div className="w-64 bg-white border-r border-gray-200">
+            <div className="p-4">
+              <h2 className="text-base font-semibold text-gray-900 mb-4">Checklists</h2>
               
               <div className="space-y-4">
                 {checklists.map((checklist) => (
