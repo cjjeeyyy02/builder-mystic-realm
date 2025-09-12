@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import {
-  Plus,
+import { 
+  Plus, 
   CheckSquare,
   Save,
   X,
@@ -48,7 +48,7 @@ export default function ChecklistBuilder() {
       ]
     },
     {
-      id: "2",
+      id: "2", 
       title: "Designer Onboarding Checklist",
       description: "Essential tasks for new designer onboarding",
       jobCount: 3,
@@ -97,57 +97,102 @@ export default function ChecklistBuilder() {
     setShowCreateForm(false);
   };
 
+  const handleDeleteChecklist = (checklistId: string) => {
+    setChecklists(checklists.filter(c => c.id !== checklistId));
+    if (selectedChecklist?.id === checklistId) {
+      setSelectedChecklist(null);
+    }
+  };
+
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
-        {/* Main Content */}
-        <div className="flex h-screen">
+      <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
+        {/* Main Container */}
+        <div className="flex-1 flex min-h-0">
           {/* Left Panel - Checklists */}
-          <div className="w-64 bg-white border-r border-gray-200">
-            <div className="p-4">
-              <h2 className="text-base font-semibold text-gray-900 mb-4">Checklists</h2>
-              
-              <div className="space-y-2">
+          <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+            {/* Left Panel Header */}
+            <div className="px-6 py-4 border-b border-gray-100">
+              <h2 className="text-lg font-semibold text-gray-900">Checklists</h2>
+              <p className="text-sm text-gray-500 mt-1">Manage your workflow templates</p>
+            </div>
+            
+            {/* Checklist Items */}
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <div className="space-y-3">
                 {checklists.map((checklist) => (
-                  <div
+                  <Card 
                     key={checklist.id}
-                    className={`p-3 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors ${
-                      selectedChecklist?.id === checklist.id ? 'bg-blue-50 border-blue-200' : ''
+                    className={`cursor-pointer transition-all duration-200 hover:shadow-md border ${
+                      selectedChecklist?.id === checklist.id 
+                        ? 'border-blue-500 bg-blue-50 shadow-md' 
+                        : 'border-gray-200 hover:border-gray-300'
                     }`}
                     onClick={() => handleSelectChecklist(checklist)}
                   >
-                    <h3 className="font-medium text-gray-900 mb-1 text-sm">
-                      {checklist.title}
-                    </h3>
-                    <div className="flex items-center justify-between text-xs text-gray-600">
-                      <span>{checklist.items.length} items</span>
-                      <span>{checklist.jobCount} jobs</span>
-                    </div>
-                  </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-medium text-gray-900 text-sm leading-tight">
+                          {checklist.title}
+                        </h3>
+                      </div>
+                      
+                      <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                        {checklist.description}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                          <span className="flex items-center gap-1">
+                            <CheckSquare className="h-3 w-3" />
+                            {checklist.items.length} items
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Link className="h-3 w-3" />
+                            {checklist.jobCount} jobs
+                          </span>
+                        </div>
+                        
+                        {/* Progress indicator */}
+                        <div className="w-12 h-1 bg-gray-200 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-green-500 transition-all duration-300"
+                            style={{ 
+                              width: `${checklist.items.length > 0 ? 
+                                (checklist.items.filter(i => i.completed).length / checklist.items.length) * 100 : 0
+                              }%` 
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
           </div>
 
           {/* Right Panel - Content */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col min-w-0">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+            <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
               <div>
-                <h1 className="text-lg font-semibold text-gray-900">Checklist Builder</h1>
+                <h1 className="text-xl font-semibold text-gray-900">Checklist Builder</h1>
+                <p className="text-sm text-gray-500 mt-1">
+                  {selectedChecklist ? `Editing: ${selectedChecklist.title}` : 'Create and manage your checklists'}
+                </p>
               </div>
-              <Button
+              <Button 
                 onClick={() => setShowCreateForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white text-sm"
-                size="sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
               >
-                <Plus className="h-4 w-4 mr-1" />
+                <Plus className="h-4 w-4 mr-2" />
                 Create Checklist
               </Button>
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 flex items-center justify-center p-4">
+            <div className="flex-1 overflow-y-auto p-6">
               {showCreateForm ? (
                 <CreateChecklistForm 
                   newChecklist={newChecklist}
@@ -181,64 +226,69 @@ function CreateChecklistForm({
   onCancel: () => void;
 }) {
   return (
-    <Card className="w-full max-w-sm">
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-base font-semibold">Create New Checklist</h3>
-          <Button variant="ghost" size="sm" onClick={onCancel}>
-            <X className="h-4 w-4" />
-          </Button>
-        </div>
-
-        <div className="space-y-3">
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">
-              Checklist Title
-            </label>
-            <Input
-              placeholder="Enter checklist title"
-              value={newChecklist.title}
-              onChange={(e) => setNewChecklist({...newChecklist, title: e.target.value})}
-            />
+    <div className="max-w-2xl mx-auto">
+      <Card className="shadow-sm border-gray-200">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-gray-900">Create New Checklist</h3>
+            <Button variant="ghost" size="sm" onClick={onCancel} className="text-gray-400 hover:text-gray-600">
+              <X className="h-4 w-4" />
+            </Button>
           </div>
           
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">
-              Description
-            </label>
-            <Textarea
-              placeholder="Describe the purpose of this checklist"
-              value={newChecklist.description}
-              onChange={(e) => setNewChecklist({...newChecklist, description: e.target.value})}
-              rows={3}
-            />
+          <div className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Checklist Title
+              </label>
+              <Input
+                placeholder="Enter checklist title"
+                value={newChecklist.title}
+                onChange={(e) => setNewChecklist({...newChecklist, title: e.target.value})}
+                className="w-full"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Description
+              </label>
+              <Textarea
+                placeholder="Describe the purpose of this checklist"
+                value={newChecklist.description}
+                onChange={(e) => setNewChecklist({...newChecklist, description: e.target.value})}
+                rows={3}
+                className="w-full resize-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Job Count
+              </label>
+              <Input
+                type="number"
+                min="1"
+                placeholder="Number of jobs"
+                value={newChecklist.jobCount}
+                onChange={(e) => setNewChecklist({...newChecklist, jobCount: parseInt(e.target.value) || 1})}
+                className="w-full"
+              />
+            </div>
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">
-              Job Count
-            </label>
-            <Input
-              type="number"
-              min="1"
-              placeholder="Number of jobs"
-              value={newChecklist.jobCount}
-              onChange={(e) => setNewChecklist({...newChecklist, jobCount: parseInt(e.target.value) || 1})}
-            />
-          </div>
-
-          <div className="flex gap-2 pt-4">
-            <Button onClick={onSave} className="flex-1">
+          <div className="flex gap-3 pt-6 border-t border-gray-100 mt-6">
+            <Button onClick={onSave} className="flex-1 bg-blue-600 hover:bg-blue-700">
               <Save className="h-4 w-4 mr-2" />
-              Create
+              Create Checklist
             </Button>
             <Button variant="outline" onClick={onCancel} className="flex-1">
               Cancel
             </Button>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
@@ -250,7 +300,6 @@ function ChecklistEditor({ checklist }: { checklist: Checklist }) {
 
   const handleAddItem = () => {
     if (newItemText.trim()) {
-      // In a real app, this would update the checklist
       console.log("Adding new item:", newItemText);
       setNewItemText("");
     }
@@ -265,63 +314,79 @@ function ChecklistEditor({ checklist }: { checklist: Checklist }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="bg-white">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          {isEditingName ? (
-            <div className="flex items-center gap-2">
-              <Input
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-                className="text-xl font-semibold"
-                onBlur={() => setIsEditingName(false)}
-                onKeyPress={(e) => e.key === 'Enter' && setIsEditingName(false)}
-                autoFocus
-              />
-            </div>
-          ) : (
-            <h1 className="text-xl font-semibold text-gray-900">{checklist.title}</h1>
-          )}
-          <Button
-            variant="ghost"
-            className="text-blue-600 hover:text-blue-700"
-            onClick={() => setIsEditingName(true)}
-          >
-            Edit Name
-          </Button>
-        </div>
+    <div className="max-w-4xl mx-auto space-y-6">
+      {/* Header Card */}
+      <Card className="shadow-sm border-gray-200">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            {isEditingName ? (
+              <div className="flex items-center gap-3 flex-1">
+                <Input
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                  className="text-xl font-semibold border-none p-0 focus:ring-0"
+                  onBlur={() => setIsEditingName(false)}
+                  onKeyPress={(e) => e.key === 'Enter' && setIsEditingName(false)}
+                  autoFocus
+                />
+              </div>
+            ) : (
+              <h1 className="text-2xl font-semibold text-gray-900">{checklist.title}</h1>
+            )}
+            <Button 
+              variant="ghost" 
+              className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+              onClick={() => setIsEditingName(true)}
+            >
+              <Edit className="h-4 w-4 mr-2" />
+              Edit Name
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* Checklist Items */}
-        <div className="mb-8">
-          <h2 className="text-gray-600 text-sm font-medium mb-4">Checklist Items</h2>
+      {/* Checklist Items Card */}
+      <Card className="shadow-sm border-gray-200">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-medium text-gray-900">Checklist Items</h2>
+            <Badge variant="secondary" className="text-xs">
+              {checklist.items.length} items
+            </Badge>
+          </div>
+          
           <div className="space-y-3">
             {checklist.items.map((item) => (
-              <div
+              <Card
                 key={item.id}
-                className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
+                className="border border-gray-200 hover:border-gray-300 transition-colors"
               >
-                <GripVertical className="h-4 w-4 text-gray-400 cursor-grab" />
-                <span className="flex-1 text-gray-900">{item.text}</span>
-                {item.required && (
-                  <Badge variant="destructive" className="text-xs">
-                    Required
-                  </Badge>
-                )}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleDeleteItem(item.id)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <GripVertical className="h-4 w-4 text-gray-400 cursor-grab" />
+                    <CheckSquare className="h-4 w-4 text-gray-400" />
+                    <span className="flex-1 text-gray-900 font-medium">{item.text}</span>
+                    {item.required && (
+                      <Badge variant="destructive" className="text-xs">
+                        Required
+                      </Badge>
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDeleteItem(item.id)}
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
           {/* Add New Item */}
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-3 mt-4 pt-4 border-t border-gray-100">
             <Input
               placeholder="Add new item..."
               value={newItemText}
@@ -333,39 +398,53 @@ function ChecklistEditor({ checklist }: { checklist: Checklist }) {
               onClick={handleAddItem}
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
+              <Plus className="h-4 w-4 mr-2" />
               Add
             </Button>
           </div>
-        </div>
+        </CardContent>
+      </Card>
 
-        {/* Linked Job Postings */}
-        <div>
-          <h2 className="text-gray-600 text-sm font-medium mb-4">Linked Job Postings</h2>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {checklist.linkedJobs.map((job, index) => (
-              <Badge
-                key={index}
-                variant="secondary"
-                className="flex items-center gap-1 px-3 py-1"
-              >
-                {job}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleRemoveJob(job)}
-                  className="h-4 w-4 p-0 hover:bg-transparent"
-                >
-                  <X className="h-3 w-3" />
-                </Button>
-              </Badge>
-            ))}
+      {/* Linked Job Postings Card */}
+      <Card className="shadow-sm border-gray-200">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-medium text-gray-900">Linked Job Postings</h2>
+            <Badge variant="secondary" className="text-xs">
+              {checklist.linkedJobs.length} jobs
+            </Badge>
           </div>
-          <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
-            <Link className="h-4 w-4 mr-2" />
-            Link to Job
-          </Button>
-        </div>
-      </div>
+          
+          <div className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              {checklist.linkedJobs.map((job, index) => (
+                <Badge
+                  key={index}
+                  variant="outline"
+                  className="flex items-center gap-2 px-3 py-1 border-blue-200 text-blue-700 bg-blue-50"
+                >
+                  {job}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleRemoveJob(job)}
+                    className="h-4 w-4 p-0 hover:bg-transparent text-blue-500 hover:text-blue-700"
+                  >
+                    <X className="h-3 w-3" />
+                  </Button>
+                </Badge>
+              ))}
+            </div>
+            
+            <div className="pt-2 border-t border-gray-100">
+              <Button variant="outline" className="text-blue-600 border-blue-200 hover:bg-blue-50">
+                <Link className="h-4 w-4 mr-2" />
+                Link to Job
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -373,17 +452,17 @@ function ChecklistEditor({ checklist }: { checklist: Checklist }) {
 // Empty State Component
 function EmptyState({ onCreateClick }: { onCreateClick: () => void }) {
   return (
-    <div className="text-center">
-      <div className="mb-4">
-        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-          <CheckSquare className="h-6 w-6 text-gray-400" />
+    <div className="flex items-center justify-center h-full">
+      <div className="text-center max-w-md">
+        <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <CheckSquare className="h-8 w-8 text-gray-400" />
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">No Checklist Selected</h3>
-        <p className="text-gray-600 mb-4 text-sm">
-          Select a checklist from the list or create a new one
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">No Checklist Selected</h3>
+        <p className="text-gray-600 mb-6">
+          Select a checklist from the left panel to edit it, or create a new one to get started.
         </p>
-        <Button onClick={onCreateClick} className="bg-blue-600 hover:bg-blue-700 text-white text-sm" size="sm">
-          <Plus className="h-4 w-4 mr-1" />
+        <Button onClick={onCreateClick} className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Plus className="h-4 w-4 mr-2" />
           Create Checklist
         </Button>
       </div>
