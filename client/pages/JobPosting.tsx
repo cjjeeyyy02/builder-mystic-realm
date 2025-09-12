@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Plus, Edit, Archive, Search as SearchIcon, List, Grid as GridIcon, Trash2, RefreshCw, ChevronDown, MoreHorizontal, ChevronLeft, ChevronRight, X, Check, Mail } from "lucide-react";
+import Layout from "@/components/Layout";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
