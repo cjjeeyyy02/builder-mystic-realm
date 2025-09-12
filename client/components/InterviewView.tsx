@@ -3043,6 +3043,202 @@ Google India"
         </DialogContent>
       </Dialog>
 
+      {/* Timeline Management Side Sheet */}
+      {showTimelineSheet && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
+            onClick={() => setShowTimelineSheet(false)}
+          />
+
+          {/* Side Sheet */}
+          <div className={`fixed right-0 top-0 h-full w-[45%] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+            showTimelineSheet ? 'translate-x-0' : 'translate-x-full'
+          }`}>
+            {selectedCandidateForTimeline && (
+              <div className="flex flex-col h-full">
+                {/* Fixed Header */}
+                <div className="flex-shrink-0 p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md uppercase tracking-wide">
+                          CA001
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setShowTimelineSheet(false)}
+                          className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600 hover:bg-white rounded-full ml-auto"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+
+                      <h1 className="text-xl font-bold text-gray-900 mb-1">
+                        {selectedCandidateForTimeline.name}
+                      </h1>
+                      <p className="text-lg text-gray-700 font-medium mb-3">
+                        {selectedCandidateForTimeline.position}
+                      </p>
+
+                      <div className="space-y-2">
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Review Room:</span>{' '}
+                          <span className="text-blue-600">{selectedCandidateForTimeline.reviewRoom}</span>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Assigned Interviewers:</span>{' '}
+                          <span className="font-medium text-gray-900">
+                            {selectedCandidateForTimeline.interviewers.join(', ')}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Sticky Action Buttons */}
+                  <div className="flex items-center gap-3 mt-4 pt-4 border-t border-blue-200">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2">
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Details
+                    </Button>
+                    <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Send Invitation
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+                      <h2 className="text-lg font-semibold text-gray-900">Interview Timeline</h2>
+                    </div>
+
+                    {selectedCandidateForTimeline.steps.map((step, index) => (
+                      <div key={step.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        {/* Step Header - Clickable */}
+                        <div
+                          className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors"
+                          onClick={() => toggleStepExpansion(step.id)}
+                        >
+                          <div className="flex items-center gap-3 flex-1">
+                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                              <span className="text-blue-700 font-semibold text-sm">{index + 1}</span>
+                            </div>
+                            <div className="space-y-1">
+                              <h3 className="text-base font-medium text-gray-900">
+                                {step.title}
+                              </h3>
+                              <p className="text-sm text-gray-600">
+                                {step.date} at {step.time} • {step.interviewer}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge
+                              variant="outline"
+                              className={`text-xs px-2 py-1 ${
+                                step.status === 'Pending' ? 'bg-orange-50 text-orange-700 border-orange-200' :
+                                step.status === 'Completed' ? 'bg-green-50 text-green-700 border-green-200' :
+                                'bg-blue-50 text-blue-700 border-blue-200'
+                              }`}
+                            >
+                              {step.status}
+                            </Badge>
+                            <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${
+                              expandedSteps.includes(step.id) ? 'rotate-180' : ''
+                            }`} />
+                          </div>
+                        </div>
+
+                        {/* Expanded Content */}
+                        {expandedSteps.includes(step.id) && (
+                          <div className="p-4 bg-white border-t border-gray-200">
+                            <div className="space-y-4">
+                              {/* Schedule Details */}
+                              <div>
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                  <Calendar className="w-4 h-4" />
+                                  Schedule Details
+                                </h4>
+                                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md border-l-4 border-blue-200">
+                                  {step.schedule}
+                                </p>
+                              </div>
+
+                              {/* Interview Notes */}
+                              <div>
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                  <FileText className="w-4 h-4" />
+                                  Interview Notes
+                                </h4>
+                                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md border-l-4 border-green-200">
+                                  {step.notes}
+                                </p>
+                              </div>
+
+                              {/* Activity History */}
+                              <div>
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                  <Clock className="w-4 h-4" />
+                                  Activity History
+                                </h4>
+                                <div className="space-y-2">
+                                  {step.history?.map((entry, idx) => (
+                                    <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-md">
+                                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                                      <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <span className="text-xs font-medium text-gray-700">{entry.action}</span>
+                                          <span className="text-xs text-gray-500">{entry.date}</span>
+                                        </div>
+                                        <p className="text-xs text-gray-600">{entry.details}</p>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Step Actions */}
+                              <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Edit3 className="w-3 h-3 mr-1" />
+                                  Edit Step
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Calendar className="w-3 h-3 mr-1" />
+                                  Reschedule
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Mail className="w-3 h-3 mr-1" />
+                                  Send Reminder
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <p className="text-sm text-gray-500 text-center">
+                      Timeline management panel • Click steps to expand details
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+
     </div>
   );
 }
