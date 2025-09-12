@@ -122,21 +122,22 @@ export default function ChecklistBuilder() {
           {/* Right Panel - Content */}
           <div className="flex-1 flex flex-col">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-semibold text-gray-900">Checklist Builder</h1>
+                <h1 className="text-lg font-semibold text-gray-900">Checklist Builder</h1>
               </div>
-              <Button 
+              <Button
                 onClick={() => setShowCreateForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white text-sm"
+                size="sm"
               >
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="h-4 w-4 mr-1" />
                 Create Checklist
               </Button>
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 flex items-center justify-center p-6">
+            <div className="flex-1 flex items-center justify-center p-4">
               {showCreateForm ? (
                 <CreateChecklistForm 
                   newChecklist={newChecklist}
