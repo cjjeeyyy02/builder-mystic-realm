@@ -218,7 +218,17 @@ export default function ScreeningView() {
           <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
             <table className="w-full min-w-[800px]">
               <tbody className="divide-y divide-gray-100">
-                {filteredCandidates.map((candidate, index) => (
+                {filteredCandidates.map((candidate, index) => {
+                  const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
+                  const statusBadgeClass = candidate.status === 'approved'
+                    ? 'bg-green-100 text-green-800 border border-green-200'
+                    : candidate.status === 'reject'
+                    ? 'bg-red-100 text-red-800 border border-red-200'
+                    : 'bg-gray-100 text-gray-800 border border-gray-200';
+                  const statusText = candidate.status === 'approved' ? 'Approved' :
+                                   candidate.status === 'reject' ? 'Rejected' : 'Pending';
+
+                  return (
                     <tr
                       key={candidate.id}
                       className={`hover:bg-blue-50 transition-colors duration-150 ${
@@ -230,7 +240,7 @@ export default function ScreeningView() {
                           <div className="flex-shrink-0">
                             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                               <span className="text-sm font-medium text-white">
-                                {candidate.name.split(" ").map(n => n[0]).join("")}
+                                {candidateInitials}
                               </span>
                             </div>
                           </div>
@@ -254,14 +264,8 @@ export default function ScreeningView() {
                         <div className="text-sm text-gray-900">{candidate.email}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          candidate.status === 'approved'
-                            ? 'bg-green-100 text-green-800 border border-green-200'
-                            : candidate.status === 'reject'
-                            ? 'bg-red-100 text-red-800 border border-red-200'
-                            : 'bg-gray-100 text-gray-800 border border-gray-200'
-                        }`}>
-                          {candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : 'Pending'}
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
+                          {statusText}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right">
@@ -309,7 +313,8 @@ export default function ScreeningView() {
                         </div>
                       </td>
                     </tr>
-                  ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
