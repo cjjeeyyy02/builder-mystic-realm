@@ -415,36 +415,44 @@ export default function ScreeningView() {
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end space-x-2">
-                          {/* Quick Actions */}
-                          <button
-                            onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }}
-                            className="text-green-600 hover:text-green-800 p-1 rounded-md hover:bg-green-50 transition-colors"
-                            title="Approve"
-                          >
-                            <Check className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }}
-                            className="text-red-600 hover:text-red-800 p-1 rounded-md hover:bg-red-50 transition-colors"
-                            title="Reject"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => { handleEmailCandidate(candidate); }}
-                            className="text-blue-600 hover:text-blue-800 p-1 rounded-md hover:bg-blue-50 transition-colors"
-                            title="Send Email"
-                          >
-                            <Send className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => { setResumeMode('view'); handleViewResume(candidate); }}
-                            className="text-gray-600 hover:text-gray-800 p-1 rounded-md hover:bg-gray-50 transition-colors"
-                            title="View Resume"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </button>
+                        <div className="flex items-center justify-end">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <button className="text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100 transition-colors">
+                                <MoreVertical className="h-4 w-4" />
+                              </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                              <DropdownMenuItem
+                                onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }}
+                                className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
+                              >
+                                <Check className="w-4 h-4" />
+                                Approve
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }}
+                                className="flex items-center gap-2 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+                              >
+                                <X className="w-4 h-4" />
+                                Reject
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => { handleEmailCandidate(candidate); }}
+                                className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
+                              >
+                                <Send className="w-4 h-4" />
+                                Send Email
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => { setResumeMode('view'); handleViewResume(candidate); }}
+                                className="flex items-center gap-2 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
+                              >
+                                <Eye className="w-4 h-4" />
+                                View Details
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </div>
                       </td>
                     </tr>
