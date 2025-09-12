@@ -171,16 +171,16 @@ function CreateChecklistForm({
   onCancel: () => void;
 }) {
   return (
-    <Card className="w-full max-w-md">
-      <CardContent className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Create New Checklist</h3>
+    <Card className="w-full max-w-sm">
+      <CardContent className="p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-base font-semibold">Create New Checklist</h3>
           <Button variant="ghost" size="sm" onClick={onCancel}>
             <X className="h-4 w-4" />
           </Button>
         </div>
-        
-        <div className="space-y-4">
+
+        <div className="space-y-3">
           <div>
             <label className="text-sm font-medium text-gray-700 mb-1 block">
               Checklist Title
