@@ -243,39 +243,128 @@ function CreateChecklistForm({
 
 // Checklist Editor Component
 function ChecklistEditor({ checklist }: { checklist: Checklist }) {
-  return (
-    <div className="w-full max-w-xl">
-      <Card>
-        <CardContent className="p-4">
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">
-              {checklist.title}
-            </h2>
-            <p className="text-gray-600 text-sm">{checklist.description}</p>
-            <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-              <span>{checklist.items.length} items</span>
-              <span>{checklist.jobCount} jobs</span>
-            </div>
-          </div>
+  const [newItemText, setNewItemText] = useState("");
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(checklist.title);
 
-          <div className="space-y-2">
-            <h3 className="font-medium text-gray-900 text-sm">Checklist Items</h3>
+  const handleAddItem = () => {
+    if (newItemText.trim()) {
+      // In a real app, this would update the checklist
+      console.log("Adding new item:", newItemText);
+      setNewItemText("");
+    }
+  };
+
+  const handleDeleteItem = (itemId: string) => {
+    console.log("Deleting item:", itemId);
+  };
+
+  const handleRemoveJob = (jobName: string) => {
+    console.log("Removing job:", jobName);
+  };
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="bg-white">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          {isEditingName ? (
+            <div className="flex items-center gap-2">
+              <Input
+                value={editedTitle}
+                onChange={(e) => setEditedTitle(e.target.value)}
+                className="text-xl font-semibold"
+                onBlur={() => setIsEditingName(false)}
+                onKeyPress={(e) => e.key === 'Enter' && setIsEditingName(false)}
+                autoFocus
+              />
+            </div>
+          ) : (
+            <h1 className="text-xl font-semibold text-gray-900">{checklist.title}</h1>
+          )}
+          <Button
+            variant="ghost"
+            className="text-blue-600 hover:text-blue-700"
+            onClick={() => setIsEditingName(true)}
+          >
+            Edit Name
+          </Button>
+        </div>
+
+        {/* Checklist Items */}
+        <div className="mb-8">
+          <h2 className="text-gray-600 text-sm font-medium mb-4">Checklist Items</h2>
+          <div className="space-y-3">
             {checklist.items.map((item) => (
-              <div key={item.id} className="flex items-center gap-2 p-2 border border-gray-200 rounded">
-                <CheckSquare className={`h-4 w-4 ${item.completed ? 'text-green-600' : 'text-gray-400'}`} />
-                <span className={`text-sm ${item.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
-                  {item.text}
-                </span>
+              <div
+                key={item.id}
+                className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
+              >
+                <GripVertical className="h-4 w-4 text-gray-400 cursor-grab" />
+                <span className="flex-1 text-gray-900">{item.text}</span>
+                {item.required && (
+                  <Badge variant="destructive" className="text-xs">
+                    Required
+                  </Badge>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleDeleteItem(item.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
             ))}
+          </div>
 
-            <Button variant="outline" className="w-full mt-3" size="sm">
-              <Plus className="h-4 w-4 mr-1" />
-              Add new item
+          {/* Add New Item */}
+          <div className="flex gap-2 mt-4">
+            <Input
+              placeholder="Add new item..."
+              value={newItemText}
+              onChange={(e) => setNewItemText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleAddItem()}
+              className="flex-1"
+            />
+            <Button
+              onClick={handleAddItem}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Add
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        {/* Linked Job Postings */}
+        <div>
+          <h2 className="text-gray-600 text-sm font-medium mb-4">Linked Job Postings</h2>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {checklist.linkedJobs.map((job, index) => (
+              <Badge
+                key={index}
+                variant="secondary"
+                className="flex items-center gap-1 px-3 py-1"
+              >
+                {job}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleRemoveJob(job)}
+                  className="h-4 w-4 p-0 hover:bg-transparent"
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </Badge>
+            ))}
+          </div>
+          <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+            <Link className="h-4 w-4 mr-2" />
+            Link to Job
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
