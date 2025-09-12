@@ -67,7 +67,8 @@ import {
   ArrowRight,
   Check,
   Share2,
-  MoreVertical
+  MoreVertical,
+  X
 } from "lucide-react";
 
 interface InterviewCandidate {
