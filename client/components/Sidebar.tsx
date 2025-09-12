@@ -44,7 +44,7 @@ interface SidebarProps {
 
 const navItems: NavItem[] = [
   { label: "Dashboard", path: "/dashboard", icon: Home },
-  { label: "Onboarding", path: "/", icon: Users },
+  { label: "Onboarding", path: "/hiring-pipeline", icon: Users },
   { label: "Records", path: "/records", icon: FileText },
   { label: "Performance", path: "/performance", icon: BarChart3 },
   { label: "Media Resources", path: "/media-resources", icon: Folder },
