@@ -39,23 +39,25 @@ export default function ChecklistBuilder() {
       title: "Developer Onboarding Checklist",
       description: "Essential tasks for new developer onboarding",
       jobCount: 3,
+      linkedJobs: ["Senior React Developer", "Frontend Engineer", "Backend Developer"],
       items: [
-        { id: "1", text: "Set up development environment", completed: true },
-        { id: "2", text: "Complete security training", completed: false },
-        { id: "3", text: "Review coding standards", completed: false },
-        { id: "4", text: "Meet with team lead", completed: false },
+        { id: "1", text: "Government ID", completed: false, required: true },
+        { id: "2", text: "Diploma", completed: false, required: true },
+        { id: "3", text: "Employment History", completed: false, required: true },
+        { id: "4", text: "Medical Certificate", completed: false, required: true },
       ]
     },
     {
-      id: "2", 
+      id: "2",
       title: "Designer Onboarding Checklist",
       description: "Essential tasks for new designer onboarding",
       jobCount: 3,
+      linkedJobs: ["UI Designer", "UX Designer"],
       items: [
-        { id: "1", text: "Access design tools", completed: true },
-        { id: "2", text: "Review brand guidelines", completed: false },
-        { id: "3", text: "Meet with design team", completed: false },
-        { id: "4", text: "Complete first design task", completed: false },
+        { id: "1", text: "Portfolio Review", completed: false, required: true },
+        { id: "2", text: "Design Tools Setup", completed: false, required: false },
+        { id: "3", text: "Brand Guidelines", completed: false, required: true },
+        { id: "4", text: "First Design Task", completed: false, required: false },
       ]
     }
   ]);
