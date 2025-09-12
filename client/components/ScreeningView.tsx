@@ -341,6 +341,9 @@ export default function ScreeningView() {
     setShowRejectModal(true);
   }, []);
 
+  // Action component switcher
+  const ActionComponent = useSimpleMenu ? SimpleActionMenu : ActionDropdown;
+
   return (
     <div className="space-y-2">
 
