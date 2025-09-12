@@ -77,6 +77,7 @@ export default function ChecklistBuilder() {
         title: newChecklist.title,
         description: newChecklist.description,
         jobCount: newChecklist.jobCount,
+        linkedJobs: [],
         items: []
       };
       
