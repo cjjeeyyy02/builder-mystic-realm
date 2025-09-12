@@ -211,13 +211,16 @@ export default function JobPosting() {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-semibold">Job Postings</h1>
-      </div>
+    <Layout>
+      <div className="job-posting space-y-5">
+        {/* Page Title */}
+        <h1 className="text-3xl font-semibold text-foreground">Job Postings</h1>
+        <p className="text-muted-foreground">
+          Manage your job postings, track applications, and streamline your hiring process. Create, edit, and monitor all your job listings in one place.
+        </p>
 
-      <div className="w-full flex justify-center mb-4">
-        <div className="w-full max-w-[1200px]">
+        {/* Job Posting Content */}
+        <div className="w-full">
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -334,8 +337,6 @@ export default function JobPosting() {
             ))}
             <Button size="sm" variant="ghost" onClick={() => setCurrentPage(p => Math.min(Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage)), p+1))}><ChevronRight className="w-4 h-4" /></Button>
           </div>
-
-        </div>
 
       </div>
 
@@ -667,6 +668,7 @@ export default function JobPosting() {
         </DialogContent>
       </Dialog>
 
-    </div>
+      </div>
+    </Layout>
   );
 }
