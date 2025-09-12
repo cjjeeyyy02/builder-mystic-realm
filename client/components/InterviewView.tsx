@@ -850,9 +850,8 @@ Google India`
   // Decision Confirmation Modal States
   const [showDecisionModal, setShowDecisionModal] = useState(false);
 
-  // Candidate Details Modal States
-  const [showCandidateDetailsModal, setShowCandidateDetailsModal] = useState(false);
-  const [selectedCandidateDetails, setSelectedCandidateDetails] = useState<InterviewCandidate | null>(null);
+  // Navigation
+  const navigate = useNavigate();
   const [selectedDecision, setSelectedDecision] = useState<{
     candidateId: string;
     candidateName: string;
