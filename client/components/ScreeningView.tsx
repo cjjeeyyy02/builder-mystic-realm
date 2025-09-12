@@ -323,74 +323,150 @@ export default function ScreeningView() {
 
       {/* Table View */}
       {viewMode === "table" && (
-        <div className="overflow-auto rounded-lg border border-gray-100 bg-white shadow-sm mb-4">
-          <table className="w-full text-sm table-auto border-collapse">
-            <thead>
-              <tr className="text-left text-xs font-bold uppercase border-b" style={{ backgroundColor: '#F9FAFB', fontFamily: 'Poppins, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                <th className="py-2 px-4">Candidate</th>
-                <th className="py-2 px-4">Position</th>
-                <th className="py-2 px-4">Experience</th>
-                <th className="py-2 px-4">Contact</th>
-                <th className="py-2 px-4">Status</th>
-                <th className="py-2 px-4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {candidates
-                .filter(c => {
-                  const q = searchQuery.toLowerCase();
-                  return (
-                    !q ||
-                    c.name.toLowerCase().includes(q) ||
-                    c.position.toLowerCase().includes(q) ||
-                    c.email.toLowerCase().includes(q)
-                  );
-                })
-                .map((candidate) => (
-                  <tr key={candidate.id} className="border-b last:border-b-0 hover:bg-gray-50 transition">
-                    <td className="py-3 px-4">
-                      <div className="font-medium">{candidate.name}</div>
-                      <div className="text-xs text-muted-foreground">{candidate.location}</div>
-                    </td>
-                    <td className="py-3 px-4">{candidate.position}</td>
-                    <td className="py-3 px-4">{candidate.totalExperience}</td>
-                    <td className="py-3 px-4">{candidate.email}</td>
-                    <td className="py-3 px-4">
-                      <div className="inline-flex items-center gap-2">
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${candidate.status === 'approved' ? 'bg-green-100 text-green-700' : candidate.status === 'reject' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          {/* Sticky Header */}
+          <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[800px]">
+                <thead>
+                  <tr>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Candidate
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Position
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Experience
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Contact
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Status
+                    </th>
+                    <th className="text-right px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+          {/* Scrollable Body */}
+          <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
+            <table className="w-full min-w-[800px]">
+              <tbody className="divide-y divide-gray-100">
+                {candidates
+                  .filter(c => {
+                    const q = searchQuery.toLowerCase();
+                    return (
+                      !q ||
+                      c.name.toLowerCase().includes(q) ||
+                      c.position.toLowerCase().includes(q) ||
+                      c.email.toLowerCase().includes(q)
+                    );
+                  })
+                  .map((candidate, index) => (
+                    <tr
+                      key={candidate.id}
+                      className={`hover:bg-blue-50 transition-colors duration-150 ${
+                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'
+                      }`}
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex-shrink-0">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                              <span className="text-sm font-medium text-white">
+                                {candidate.name.split(" ").map(n => n[0]).join("")}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-medium text-gray-900 truncate">
+                              {candidate.name}
+                            </p>
+                            <p className="text-sm text-gray-500 truncate">
+                              {candidate.location}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">{candidate.position}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">{candidate.totalExperience}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">{candidate.email}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          candidate.status === 'approved'
+                            ? 'bg-green-100 text-green-800 border border-green-200'
+                            : candidate.status === 'reject'
+                            ? 'bg-red-100 text-red-800 border border-red-200'
+                            : 'bg-gray-100 text-gray-800 border border-gray-200'
+                        }`}>
                           {candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : 'Pending'}
                         </span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center gap-2">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
-                              <MoreVertical className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-56">
-                            <DropdownMenuSub>
-                              <DropdownMenuSubTrigger className="flex items-center gap-2">Update Status</DropdownMenuSubTrigger>
-                              <DropdownMenuSubContent>
-                                <DropdownMenuItem onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }} className="flex items-center gap-2"><Check className="w-3 h-3"/> Approve</DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }} className="flex items-center gap-2 text-red-600"><X className="w-3 h-3"/> Reject</DropdownMenuItem>
-                              </DropdownMenuSubContent>
-                            </DropdownMenuSub>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          {/* Quick Actions */}
+                          <button
+                            onClick={() => { setModalCandidateId(candidate.id); setShowApproveModal(true); }}
+                            className="text-green-600 hover:text-green-800 p-1 rounded-md hover:bg-green-50 transition-colors"
+                            title="Approve"
+                          >
+                            <Check className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => { setModalCandidateId(candidate.id); setShowRejectModal(true); }}
+                            className="text-red-600 hover:text-red-800 p-1 rounded-md hover:bg-red-50 transition-colors"
+                            title="Reject"
+                          >
+                            <X className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => { handleEmailCandidate(candidate); }}
+                            className="text-blue-600 hover:text-blue-800 p-1 rounded-md hover:bg-blue-50 transition-colors"
+                            title="Send Email"
+                          >
+                            <Send className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => { setResumeMode('view'); handleViewResume(candidate); }}
+                            className="text-gray-600 hover:text-gray-800 p-1 rounded-md hover:bg-gray-50 transition-colors"
+                            title="View Resume"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
 
-                            <DropdownMenuItem onClick={() => { handleEmailCandidate(candidate); }} className="flex items-center gap-2"><Send className="w-3 h-3"/> Send Email</DropdownMenuItem>
-
-                            <DropdownMenuItem onClick={() => { setResumeMode('view'); handleViewResume(candidate); }} className="flex items-center gap-2"><Eye className="w-3 h-3"/> View / Download Resume</DropdownMenuItem>
-
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          {/* Empty State */}
+          {candidates.filter(c => {
+            const q = searchQuery.toLowerCase();
+            return (
+              !q ||
+              c.name.toLowerCase().includes(q) ||
+              c.position.toLowerCase().includes(q) ||
+              c.email.toLowerCase().includes(q)
+            );
+          }).length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-sm">No candidates found matching your search criteria.</p>
+            </div>
+          )}
         </div>
       )}
       {viewMode === 'grid' && (
