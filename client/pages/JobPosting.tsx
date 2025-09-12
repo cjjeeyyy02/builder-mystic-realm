@@ -573,6 +573,99 @@ export default function JobPosting() {
         </DialogContent>
       </Dialog>
 
+      {/* Job Details Modal */}
+      <Dialog open={showJobDetailsModal} onOpenChange={setShowJobDetailsModal}>
+        <DialogContent className="max-w-2xl w-full rounded-[12px] p-6">
+          <DialogHeader>
+            <div className="flex items-start justify-between w-full">
+              <div>
+                <DialogTitle className="text-xl font-semibold">{jobToView?.title}</DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground mt-1">
+                  {jobToView?.company} • {jobToView?.department}
+                </DialogDescription>
+              </div>
+              <button onClick={() => setShowJobDetailsModal(false)} className="p-2 rounded-md hover:bg-gray-100">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Job Information */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Location</Label>
+                <p className="text-sm text-gray-900 mt-1">{jobToView?.location}</p>
+              </div>
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Job Type</Label>
+                <p className="text-sm text-gray-900 mt-1">{jobToView?.jobType}</p>
+              </div>
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Salary Range</Label>
+                <p className="text-sm text-gray-900 mt-1">{jobToView?.salary}</p>
+              </div>
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Status</Label>
+                <div className="mt-1">
+                  <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${
+                    jobToView?.status === 'Active' ? 'bg-green-100 text-green-800' :
+                    jobToView?.status === 'Closed' ? 'bg-red-100 text-red-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {jobToView?.status}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Date Posted</Label>
+                <p className="text-sm text-gray-900 mt-1">{jobToView?.datePosted}</p>
+              </div>
+              <div>
+                <Label className="text-sm font-medium text-gray-700">Applicants</Label>
+                <p className="text-sm text-gray-900 mt-1">{jobToView?.applicants ?? 0}</p>
+              </div>
+            </div>
+
+            {/* Job Description */}
+            <div>
+              <Label className="text-sm font-medium text-gray-700">Description</Label>
+              <p className="text-sm text-gray-900 mt-2 leading-relaxed">
+                {jobToView?.description || "No description available."}
+              </p>
+            </div>
+
+            {/* Integrations */}
+            <div>
+              <Label className="text-sm font-medium text-gray-700">Integrations</Label>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {jobToView?.integrations && jobToView.integrations.length > 0 ? (
+                  jobToView.integrations.map((integration, index) => (
+                    <span key={index} className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      {integration}
+                    </span>
+                  ))
+                ) : (
+                  <span className="text-sm text-gray-500">No integrations configured</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="flex items-center justify-end gap-3 pt-4">
+            <Button variant="outline" onClick={() => setShowJobDetailsModal(false)}>
+              Close
+            </Button>
+            <Button onClick={() => {
+              setShowJobDetailsModal(false);
+              if (jobToView) handleOpenUpdate(jobToView);
+            }}>
+              Edit Job
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
     </div>
   );
 }
