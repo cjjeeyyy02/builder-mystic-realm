@@ -255,6 +255,9 @@ function getStatusIcon(status: string) {
 export default function ScreeningView() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState<ScreeningCandidate[]>(screeningCandidates);
+
+  // Flag to switch between dropdown implementations (for debugging)
+  const useSimpleMenu = false;
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
