@@ -1028,9 +1028,9 @@ Google India`
 
   // Menu action handlers
   const handleViewCandidateDetails = (candidateId: string, candidateName: string) => {
-    handleCandidateDetails(candidateId);
+    // Navigate to candidate details page
+    navigate(`/candidate-details/${candidateId}`);
   };
-
 
   // Timeline Management Side Sheet States
   const [showTimelineSheet, setShowTimelineSheet] = useState(false);
