@@ -141,6 +141,89 @@ const ActionDropdown = React.memo(({
 
 ActionDropdown.displayName = 'ActionDropdown';
 
+// Simple fallback action menu without dropdown (in case of issues)
+const SimpleActionMenu = React.memo(({
+  candidateId,
+  candidate,
+  onApprove,
+  onReject,
+  onEmail,
+  onViewResume
+}: {
+  candidateId: string;
+  candidate: ScreeningCandidate;
+  onApprove: (id: string) => void;
+  onReject: (id: string) => void;
+  onEmail: (candidate: ScreeningCandidate) => void;
+  onViewResume: (candidate: ScreeningCandidate) => void;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="relative">
+      <button
+        className="text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100 transition-colors"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <MoreVertical className="h-4 w-4" />
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+          />
+          <div className="absolute right-0 top-full z-20 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onApprove(candidateId);
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-green-50 hover:text-green-700 text-left"
+            >
+              <Check className="w-4 h-4" />
+              Approve
+            </button>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onReject(candidateId);
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-red-50 hover:text-red-700 text-left"
+            >
+              <X className="w-4 h-4" />
+              Reject
+            </button>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onEmail(candidate);
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 text-left"
+            >
+              <Send className="w-4 h-4" />
+              Send Email
+            </button>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onViewResume(candidate);
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-700 text-left"
+            >
+              <Eye className="w-4 h-4" />
+              View Details
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+});
+
+SimpleActionMenu.displayName = 'SimpleActionMenu';
+
 function getStatusVariant(
   status: string,
 ): "default" | "secondary" | "destructive" | "outline" {
