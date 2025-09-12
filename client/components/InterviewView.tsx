@@ -3010,6 +3010,87 @@ Google India"
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Timeline Management Modal */}
+      <Dialog open={showTimelineModal} onOpenChange={setShowTimelineModal}>
+        <DialogContent className="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-lg p-0">
+          {selectedCandidateForTimeline && (
+            <div className="p-6 space-y-4">
+              {/* Header with close button */}
+              <div className="flex items-start justify-between">
+                <div className="space-y-1">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    CA001
+                  </h2>
+                  <h1 className="text-lg font-semibold text-gray-900">
+                    {selectedCandidateForTimeline.name} — {selectedCandidateForTimeline.position}
+                  </h1>
+                  <p className="text-sm text-gray-600">
+                    Review Room: <span className="text-blue-600">{selectedCandidateForTimeline.reviewRoom}</span>
+                  </p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowTimelineModal(false)}
+                  className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+
+              {/* Assigned Interviewers */}
+              <div className="space-y-2">
+                <div className="text-right">
+                  <p className="text-xs text-gray-500">Assigned Interviewers</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {selectedCandidateForTimeline.interviewers.join(', ')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  View Details
+                </Button>
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  Send Invitation
+                </Button>
+              </div>
+
+              {/* Interview Steps */}
+              <div className="space-y-3 pt-2">
+                {selectedCandidateForTimeline.steps.map((step, index) => (
+                  <div key={step.id} className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium text-gray-900">
+                        Step {index + 1} — {step.title}
+                      </h3>
+                      <p className="text-xs text-gray-600">
+                        {step.date} {step.time} — {step.interviewer}
+                      </p>
+                    </div>
+                    <Badge
+                      variant="outline"
+                      className="text-xs px-2 py-1 bg-orange-50 text-orange-700 border-orange-200"
+                    >
+                      {step.status}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+
+              {/* Footer Note */}
+              <div className="pt-2 border-t border-gray-100">
+                <p className="text-xs text-gray-500">
+                  Steps pending — decisions logged per step.
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
