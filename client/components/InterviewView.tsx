@@ -1111,13 +1111,6 @@ Google India`
     );
   };
 
-  const handleCandidateDetails = (candidateId: string) => {
-    const candidate = getCandidateById(candidateId);
-    if (candidate) {
-      setSelectedCandidateDetails(candidate);
-      setShowCandidateDetailsModal(true);
-    }
-  };
 
   return (
     <div className="space-y-6">
