@@ -1026,9 +1026,54 @@ Google India`
     // TODO: Open candidate details modal/page with resume, notes, and history
   };
 
+  // Timeline Management Modal States
+  const [showTimelineModal, setShowTimelineModal] = useState(false);
+  const [selectedCandidateForTimeline, setSelectedCandidateForTimeline] = useState<{
+    id: string;
+    name: string;
+    position: string;
+    reviewRoom: string;
+    interviewers: string[];
+    steps: Array<{
+      id: string;
+      title: string;
+      date: string;
+      time: string;
+      interviewer: string;
+      status: "Pending" | "Completed" | "In Progress";
+    }>;
+  } | null>(null);
+
   const handleManageTimeline = (candidateId: string, candidateName: string) => {
-    console.log(`Managing timeline/steps for ${candidateName} (ID: ${candidateId})`);
-    // TODO: Open timeline management interface for the candidate
+    // Mock data for the candidate timeline based on the image
+    const candidateData = {
+      id: candidateId,
+      name: "Taylor Green",
+      position: "Senior Frontend Engineer",
+      reviewRoom: "Zoom — Interview Room A",
+      interviewers: ["Alice", "Bob"],
+      steps: [
+        {
+          id: "step1",
+          title: "Technical",
+          date: "2023-08-20",
+          time: "10:00",
+          interviewer: "Alice",
+          status: "Pending" as const
+        },
+        {
+          id: "step2",
+          title: "System Design",
+          date: "2023-08-21",
+          time: "14:00",
+          interviewer: "Bob",
+          status: "Pending" as const
+        }
+      ]
+    };
+
+    setSelectedCandidateForTimeline(candidateData);
+    setShowTimelineModal(true);
   };
 
   return (
