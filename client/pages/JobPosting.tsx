@@ -231,9 +231,6 @@ export default function JobPosting() {
             </div>
 
             <div className="flex items-center gap-4">
-              <button onClick={() => setActiveTab('active')} className={`h-10 px-4 rounded-md text-sm font-medium ${activeTab === 'active' ? 'bg-blue-600 text-white' : 'bg-blue-600 text-white'}`}>
-                Active
-              </button>
               <button onClick={() => setActiveTab('archived')} className="h-10 px-4 rounded-md text-sm font-medium border border-gray-300 text-gray-700 bg-transparent">
                 Archive
               </button>
