@@ -68,7 +68,8 @@ import {
   Check,
   Share2,
   MoreVertical,
-  X
+  X,
+  ChevronDown
 } from "lucide-react";
 
 interface InterviewCandidate {
