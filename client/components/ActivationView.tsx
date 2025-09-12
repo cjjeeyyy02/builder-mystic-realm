@@ -379,28 +379,42 @@ export default function ActivationView() {
           </div>
 
           {/* Bottom Action Buttons */}
-          <div className="flex items-center justify-between pt-4">
-            <div className="flex items-center gap-4">
-              <Button className={`text-xs font-medium px-6 py-2 transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
-                  : 'bg-yellow-500 hover:bg-yellow-600 text-black'
-              }`}>
-                SAVE CHECKLIST
+          <div className={`flex items-center justify-between p-4 border-t rounded-b-lg transition-colors duration-300 ${
+            isDarkMode
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-gray-50 border-gray-200'
+          }`}>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                className={`text-sm font-medium px-4 py-2 rounded-lg border transition-all duration-200 ${
+                  isDarkMode
+                    ? 'border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
+                }`}
+              >
+                Save Checklist
               </Button>
-              <Button className={`text-xs font-medium px-6 py-2 transition-colors duration-300 ${
-                isDarkMode
-                  ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
-                  : 'bg-yellow-500 hover:bg-yellow-600 text-black'
-              }`}>
-                EDIT CHECKLIST
+              <Button
+                variant="outline"
+                className={`text-sm font-medium px-4 py-2 rounded-lg border transition-all duration-200 ${
+                  isDarkMode
+                    ? 'border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
+                }`}
+              >
+                Edit Checklist
               </Button>
             </div>
             <Button
               onClick={() => navigate("/candidate-documents-repository")}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium px-6 py-2"
+              className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200 ${
+                isDarkMode
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+              }`}
             >
-              CANDIDATE DOCUMENTS REPOSITORY
+              Documents Repository
             </Button>
           </div>
         </div>
