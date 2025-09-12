@@ -183,63 +183,63 @@ export default function CandidateDetails() {
           </CardContent>
         </Card>
 
-        {/* Interview Steps */}
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Interview Steps</h3>
-          <div className="space-y-4">
-            {candidate.interviewSteps.map((step, index) => (
-              <Card key={step.id} className="border border-gray-200">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <span className="text-blue-700 font-semibold text-sm">{index + 1}</span>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">{step.title}</h4>
-                        <p className="text-sm text-gray-600">Interviewer: {step.interviewer}</p>
-                      </div>
-                    </div>
-                    <Badge className={getStatusColor(step.status)}>
+        {/* Interview Steps Section */}
+        <Card>
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Interview Steps</h3>
+            <div className="space-y-4">
+              {candidate.interviewSteps.map((step, index) => (
+                <div key={step.id} className="border border-gray-200 rounded-lg p-4 relative">
+                  {/* Status Badge (top-right corner) */}
+                  <div className="absolute top-4 right-4">
+                    <Badge
+                      className={
+                        step.status === 'Completed'
+                          ? 'bg-green-100 text-green-800 border-green-200'
+                          : 'bg-gray-100 text-gray-800 border-gray-200'
+                      }
+                    >
                       {step.status}
                     </Badge>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Calendar className="h-4 w-4" />
-                          <span>{step.date}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Clock className="h-4 w-4" />
-                          <span>{step.time}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-start gap-2">
-                        <FileText className="h-4 w-4 text-gray-400 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-700 mb-1">Description</p>
-                          <p className="text-sm text-gray-600">{step.description}</p>
-                        </div>
-                      </div>
+                  {/* Step Header */}
+                  <div className="mb-3 pr-20">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                      {index + 1}. {step.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 font-medium">
+                      Interviewer: {step.interviewer}
+                    </p>
+                  </div>
+
+                  {/* Description */}
+                  <div className="mb-3">
+                    <p className="text-sm text-gray-700">
+                      Description: "{step.description}"
+                    </p>
+                  </div>
+
+                  {/* Date & Time */}
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Calendar className="h-4 w-4" />
+                      <span>{step.date} at {step.time}</span>
                     </div>
                   </div>
 
+                  {/* Remarks (only if available) */}
                   {step.remarks && (
-                    <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Remarks</p>
-                      <p className="text-sm text-gray-600">{step.remarks}</p>
+                    <div className="mt-4 p-3 bg-gray-50 rounded-md">
+                      <p className="text-sm font-medium text-gray-700 mb-1">Remarks:</p>
+                      <p className="text-sm text-gray-600">"{step.remarks}"</p>
                     </div>
                   )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Action Buttons */}
         <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
