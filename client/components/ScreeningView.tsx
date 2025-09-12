@@ -90,7 +90,7 @@ export default function ScreeningView() {
   const [screeningNotes, setScreeningNotes] = useState("");
 
   // UI states
-  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+  const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Email side sheet
