@@ -274,44 +274,28 @@ export default function ScreeningView() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-48">
                               <DropdownMenuItem
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setModalCandidateId(candidate.id);
-                                  setShowApproveModal(true);
-                                }}
+                                onClick={() => handleApprove(candidate.id)}
                                 className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
                               >
                                 <Check className="w-4 h-4" />
                                 Approve
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setModalCandidateId(candidate.id);
-                                  setShowRejectModal(true);
-                                }}
+                                onClick={() => handleReject(candidate.id)}
                                 className="flex items-center gap-2 hover:bg-red-50 hover:text-red-700 cursor-pointer"
                               >
                                 <X className="w-4 h-4" />
                                 Reject
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  handleEmailCandidate(candidate);
-                                }}
+                                onClick={() => handleEmailCandidate(candidate)}
                                 className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
                               >
                                 <Send className="w-4 h-4" />
                                 Send Email
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
+                                onClick={() => {
                                   setResumeMode('view');
                                   handleViewResume(candidate);
                                 }}
