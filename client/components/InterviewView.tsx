@@ -1030,56 +1030,8 @@ Google India`
 
 
   const handleManageTimeline = (candidateId: string, candidateName: string) => {
-    // Mock data for the candidate timeline with expanded information
-    const candidateData = {
-      id: candidateId,
-      name: "Taylor Green",
-      position: "Senior Frontend Engineer",
-      reviewRoom: "Zoom — Interview Room A",
-      interviewers: ["Alice", "Bob"],
-      steps: [
-        {
-          id: "step1",
-          title: "Technical",
-          date: "2023-08-20",
-          time: "10:00",
-          interviewer: "Alice",
-          status: "Pending" as const,
-          schedule: "Technical coding assessment - 90 minutes",
-          notes: "Focus on React, JavaScript fundamentals, and problem-solving approach. Candidate should demonstrate clean code practices.",
-          history: [
-            { date: "2023-08-19", action: "Scheduled", details: "Interview scheduled with Alice for technical assessment" },
-            { date: "2023-08-18", action: "Assigned", details: "Technical round assigned to candidate" }
-          ]
-        },
-        {
-          id: "step2",
-          title: "System Design",
-          date: "2023-08-21",
-          time: "14:00",
-          interviewer: "Bob",
-          status: "Pending" as const,
-          schedule: "System design discussion - 60 minutes",
-          notes: "Evaluate architectural thinking, scalability considerations, and communication skills. Present a real-world scenario.",
-          history: [
-            { date: "2023-08-19", action: "Scheduled", details: "System design round scheduled with Bob" },
-            { date: "2023-08-18", action: "Assigned", details: "System design round assigned to candidate" }
-          ]
-        }
-      ]
-    };
-
-    setSelectedCandidateForTimeline(candidateData);
-    setExpandedSteps([]);
-    setShowTimelineModal(true);
-  };
-
-  const toggleStepExpansion = (stepId: string) => {
-    setExpandedSteps(prev =>
-      prev.includes(stepId)
-        ? prev.filter(id => id !== stepId)
-        : [...prev, stepId]
-    );
+    console.log(`Managing timeline/steps for ${candidateName} (ID: ${candidateId})`);
+    // TODO: Implement timeline management functionality
   };
 
   return (
