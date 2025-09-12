@@ -215,9 +215,6 @@ export default function JobPosting() {
       <div className="job-posting space-y-5">
         {/* Page Title */}
         <h1 className="text-3xl font-semibold text-foreground">Job Postings</h1>
-        <p className="text-muted-foreground">
-          Manage your job postings, track applications, and streamline your hiring process. Create, edit, and monitor all your job listings in one place.
-        </p>
 
         {/* Job Posting Content */}
         <div className="w-full">
