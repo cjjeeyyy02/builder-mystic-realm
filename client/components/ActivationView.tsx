@@ -327,10 +327,10 @@ export default function ActivationView() {
                 }`}>
                   <TableHead className={`text-sm font-semibold px-4 py-3 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>STATUS</TableHead>
+                  }`}>CHECKLIST ITEM</TableHead>
                   <TableHead className={`text-sm font-semibold px-4 py-3 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>CHECKLIST ITEM</TableHead>
+                  }`}>STATUS</TableHead>
                   <TableHead className={`text-sm font-semibold px-4 py-3 text-right transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>ACTIONS</TableHead>
