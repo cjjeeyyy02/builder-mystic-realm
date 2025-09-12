@@ -4,11 +4,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Plus, 
+import { Badge } from "@/components/ui/badge";
+import {
+  Plus,
   CheckSquare,
   Save,
-  X
+  X,
+  GripVertical,
+  Trash2,
+  Link,
+  Edit
 } from "lucide-react";
 
 interface ChecklistItem {
