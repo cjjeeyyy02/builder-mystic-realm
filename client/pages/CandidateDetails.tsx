@@ -118,38 +118,26 @@ export default function CandidateDetails() {
 
         {/* Candidate Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-4">
-              {/* Avatar */}
-              <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                <span className="text-white font-semibold text-xl">
-                  {candidate.applicantName.split(" ").map(n => n[0]).join("")}
-                </span>
+              {/* Profile Picture (Initial Icon) */}
+              <div className="h-16 w-16 rounded-full bg-gray-400 flex items-center justify-center">
+                <span className="text-white font-semibold text-xl">E</span>
               </div>
-              
+
               {/* Basic Info */}
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-2xl font-bold text-gray-900">{candidate.applicantName}</h1>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                    {candidate.roomId}
-                  </Badge>
-                </div>
-                <p className="text-lg text-gray-700 font-medium mb-2">
+                <h1 className="text-2xl font-bold text-gray-900 mb-1">{candidate.applicantName}</h1>
+                <p className="text-lg text-gray-700 font-medium">
                   {candidate.appliedPosition}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Department: {candidate.department}
                 </p>
               </div>
             </div>
 
-            {/* Current Status */}
-            <div className="text-right">
-              <p className="text-sm text-gray-500 mb-1">Current Status</p>
-              <Badge className={getStatusColor(candidate.status)}>
-                {candidate.status === 'in-progress' ? 'In Progress' : 
-                 candidate.status === 'completed' ? 'Completed' : 'Pending'}
+            {/* Room ID (top-right) */}
+            <div>
+              <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 font-medium">
+                {candidate.roomId}
               </Badge>
             </div>
           </div>
