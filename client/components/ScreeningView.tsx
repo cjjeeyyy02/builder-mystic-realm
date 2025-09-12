@@ -81,7 +81,7 @@ interface ScreeningCandidate {
   rating?: number;
 }
 
-export const screeningCandidates: ScreeningCandidate[] = [
+const screeningCandidates: ScreeningCandidate[] = [
   {
     id: "1",
     name: "Emily Rodriguez",
@@ -210,7 +210,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     skills: ["Figma", "Prototyping", "Design Systems"],
     certifications: [],
     location: "Milan, Italy",
-    salaryExpectation: "€60,000 - €75,000",
+    salaryExpectation: "€60,000 - ��75,000",
     availability: "2 weeks",
     rating: 4.5,
   },
