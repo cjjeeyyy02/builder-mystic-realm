@@ -97,19 +97,19 @@ export default function ChecklistBuilder() {
             <div className="p-4">
               <h2 className="text-base font-semibold text-gray-900 mb-4">Checklists</h2>
               
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {checklists.map((checklist) => (
-                  <div 
+                  <div
                     key={checklist.id}
-                    className={`p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                    className={`p-3 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors ${
                       selectedChecklist?.id === checklist.id ? 'bg-blue-50 border-blue-200' : ''
                     }`}
                     onClick={() => handleSelectChecklist(checklist)}
                   >
-                    <h3 className="font-medium text-gray-900 mb-1">
+                    <h3 className="font-medium text-gray-900 mb-1 text-sm">
                       {checklist.title}
                     </h3>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
+                    <div className="flex items-center justify-between text-xs text-gray-600">
                       <span>{checklist.items.length} items</span>
                       <span>{checklist.jobCount} jobs</span>
                     </div>
