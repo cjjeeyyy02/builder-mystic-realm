@@ -3171,39 +3171,6 @@ Google India"
                                 </p>
                               </div>
 
-                              {/* Interview Notes */}
-                              <div>
-                                <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                  <FileText className="w-4 h-4" />
-                                  Interview Notes
-                                </h4>
-                                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md border-l-4 border-green-200">
-                                  {step.notes}
-                                </p>
-                              </div>
-
-                              {/* Activity History */}
-                              <div>
-                                <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                  <Clock className="w-4 h-4" />
-                                  Activity History
-                                </h4>
-                                <div className="space-y-2">
-                                  {step.history?.map((entry, idx) => (
-                                    <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-md">
-                                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                                      <div className="flex-1">
-                                        <div className="flex items-center gap-2 mb-1">
-                                          <span className="text-xs font-medium text-gray-700">{entry.action}</span>
-                                          <span className="text-xs text-gray-500">{entry.date}</span>
-                                        </div>
-                                        <p className="text-xs text-gray-600">{entry.details}</p>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-
                               {/* Step Actions */}
                               <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
                                 <Button variant="outline" size="sm" className="text-xs">
