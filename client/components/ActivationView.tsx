@@ -306,65 +306,76 @@ export default function ActivationView() {
       ) : (
         <div className="space-y-3">
           {/* Onboarding Checklist Header */}
-          <div className={`text-center py-3 transition-colors duration-300 ${
+          <div className={`text-center py-4 rounded-t-lg transition-colors duration-300 ${
             isDarkMode
-              ? 'bg-gray-900 text-white'
-              : 'bg-black text-white'
-          }`}>
-            <h1 className="text-sm font-bold tracking-wide">ONBOARDING CHECKLIST</h1>
+              ? 'bg-gray-800 text-white border-gray-700'
+              : 'bg-gray-50 text-gray-900 border-gray-200'
+          } border-b`}>
+            <h1 className="text-lg font-semibold">Onboarding Checklist</h1>
           </div>
 
           {/* Checklist Items */}
-          <div className="space-y-1">
-            {checklistItems.map((item, index) => (
-              <div
-                key={item.id}
-                className={`text-white flex items-center justify-between px-4 py-2 border-b transition-colors duration-300 ${
-                  isDarkMode
-                    ? 'bg-red-700 border-red-800'
-                    : 'bg-red-600 border-red-700'
-                }`}
-              >
-                <span className="text-xs font-medium">{item.title}</span>
+          <div className="space-y-3 p-4">
+            {checklistItems.map((item, index) => {
+              // Status logic: all items are completed in the initial data
+              const status = item.completed ? 'completed' : 'pending';
+              const borderColor = status === 'completed' ? 'border-l-green-500' :
+                                 status === 'in-progress' ? 'border-l-orange-500' : 'border-l-red-500';
 
-                <div className="flex items-center gap-1">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
-                      isDarkMode ? 'hover:bg-red-800' : 'hover:bg-red-700'
-                    }`}
-                    title="View"
-                  >
-                    <Eye className="w-3 h-3" />
-                  </Button>
+              return (
+                <div
+                  key={item.id}
+                  className={`flex items-center justify-between p-4 rounded-lg border-l-4 shadow-sm transition-all duration-200 hover:shadow-md ${borderColor} ${
+                    isDarkMode
+                      ? 'bg-gray-800 border-r border-t border-b border-gray-700 text-white'
+                      : 'bg-white border-r border-t border-b border-gray-200 text-gray-900'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-2 h-2 rounded-full ${
+                      status === 'completed' ? 'bg-green-500' :
+                      status === 'in-progress' ? 'bg-orange-500' : 'bg-red-500'
+                    }`}></div>
+                    <span className="text-sm font-medium">{item.title}</span>
+                  </div>
 
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
-                      isDarkMode
-                        ? 'bg-green-600 hover:bg-green-700'
-                        : 'bg-green-500 hover:bg-green-600'
-                    }`}
-                    title="Download"
-                  >
-                    <Download className="w-3 h-3" />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      className={`p-1.5 rounded-md transition-colors duration-200 ${
+                        isDarkMode
+                          ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                      }`}
+                      title="View"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
 
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`h-6 w-6 p-0 text-white transition-colors duration-300 ${
-                      isDarkMode ? 'hover:bg-red-900' : 'hover:bg-red-800'
-                    }`}
-                    title="Delete"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                  </Button>
+                    <button
+                      className={`p-1.5 rounded-md transition-colors duration-200 ${
+                        isDarkMode
+                          ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                      }`}
+                      title="Download"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
+
+                    <button
+                      className={`p-1.5 rounded-md transition-colors duration-200 ${
+                        isDarkMode
+                          ? 'text-gray-400 hover:text-red-400 hover:bg-gray-700'
+                          : 'text-gray-500 hover:text-red-600 hover:bg-gray-100'
+                      }`}
+                      title="Delete"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Bottom Action Buttons */}
