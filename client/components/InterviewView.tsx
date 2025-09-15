@@ -432,6 +432,7 @@ export default function InterviewView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
+  const [viewMode, setViewMode] = useState<"table" | "card">("table");
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
