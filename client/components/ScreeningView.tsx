@@ -407,32 +407,42 @@ export default function ScreeningView() {
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[1200px]">
+            <div className="w-full">
+              <table className="w-full table-fixed">
+                <colgroup>
+                  <col className="w-[18%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[18%]" />
+                  <col className="w-[12%]" />
+                  <col className="w-[8%]" />
+                  <col className="w-[8%]" />
+                </colgroup>
                 <thead>
                   <tr>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
                       CANDIDATE
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
                       APPLIED POSITION
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
-                      TOTAL EXPERIENCE
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      TOTAL EXP
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
-                      RELEVANT EXPERIENCE
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      REL EXP
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
                       EMAIL
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
-                      PHONE NUMBER
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      PHONE
                     </th>
-                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
                       STATUS
                     </th>
-                    <th className="text-center px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-center px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
                       ACTION
                     </th>
                   </tr>
@@ -442,8 +452,18 @@ export default function ScreeningView() {
           </div>
 
           {/* Scrollable Body */}
-          <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
-            <table className="w-full min-w-[1200px]">
+          <div className="w-full max-h-[600px] overflow-y-auto">
+            <table className="w-full table-fixed">
+                <colgroup>
+                  <col className="w-[18%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[18%]" />
+                  <col className="w-[12%]" />
+                  <col className="w-[8%]" />
+                  <col className="w-[8%]" />
+                </colgroup>
               <tbody className="divide-y divide-gray-100">
                 {filteredCandidates.map((candidate, index) => {
                   const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
@@ -461,47 +481,48 @@ export default function ScreeningView() {
                       className={`hover:bg-blue-50 transition-colors duration-150 ${
                         index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'
                       }`}
+                      style={{height: '48px'}}
                     >
-                      <td className="px-4 py-4">
-                        <div className="flex items-center space-x-3">
+                      <td className="px-2 py-1">
+                        <div className="flex items-center space-x-2">
                           <div className="flex-shrink-0">
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                              <span className="text-sm font-medium text-white">
+                            <div className="h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                              <span className="text-xs font-medium text-white">
                                 {candidateInitials}
                               </span>
                             </div>
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="text-sm font-medium text-gray-900 truncate">
+                            <p className="text-xs font-medium text-gray-900 truncate" title={candidate.name}>
                               {candidate.name}
                             </p>
-                            <p className="text-sm text-gray-500 truncate">
+                            <p className="text-xs text-gray-500 truncate" title={candidate.location}>
                               {candidate.location}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">{candidate.position}</div>
+                      <td className="px-2 py-1">
+                        <div className="text-xs text-gray-900 truncate" title={candidate.position}>{candidate.position}</div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">{candidate.totalExperience}</div>
+                      <td className="px-2 py-1">
+                        <div className="text-xs text-gray-900">{candidate.totalExperience}</div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">{candidate.relevantExperience}</div>
+                      <td className="px-2 py-1">
+                        <div className="text-xs text-gray-900">{candidate.relevantExperience}</div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
+                      <td className="px-2 py-1">
+                        <div className="text-xs text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">{candidate.phone}</div>
+                      <td className="px-2 py-1">
+                        <div className="text-xs text-gray-900">{candidate.phone}</div>
                       </td>
-                      <td className="px-4 py-4">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
+                      <td className="px-2 py-1">
+                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
                           {statusText}
                         </span>
                       </td>
-                      <td className="px-4 py-4 text-center">
+                      <td className="px-2 py-1 text-center">
                         <div className="flex items-center justify-center">
                           <ActionComponent
                             candidateId={candidate.id}
