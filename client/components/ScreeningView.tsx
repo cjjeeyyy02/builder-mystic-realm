@@ -378,16 +378,20 @@ export default function ScreeningView() {
             />
           </div>
 
-          <select
-            className="h-8 px-3 rounded-md border border-gray-200 bg-white text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <Select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as "all" | "approved" | "reject" | "pending")}
+            onValueChange={(value) => setStatusFilter(value as "all" | "approved" | "reject" | "pending")}
           >
-            <option value="all">All</option>
-            <option value="approved">Approved</option>
-            <option value="reject">Rejected</option>
-            <option value="pending">Pending</option>
-          </select>
+            <SelectTrigger className="w-[120px] h-8">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="approved">Approved</SelectItem>
+              <SelectItem value="reject">Rejected</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="flex items-center gap-2">
