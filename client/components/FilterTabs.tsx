@@ -625,7 +625,7 @@ export default function FilterTabs() {
                   }
                   ${index === 0 ? 'rounded-l-lg' : ''}
                   ${index === tabs.length - 1 ? 'rounded-r-lg' : ''}
-                  ${index > 0 ? 'border-l border-gray-200/60' : ''}
+                  ${index > 0 ? 'border-l border-gray-300' : ''}
                 `}
               >
                 <span className="relative z-10 whitespace-nowrap">{tab.label}</span>
@@ -652,27 +652,35 @@ export default function FilterTabs() {
       {/* Search and Filter Controls - Only show for hiring and screening */}
       {(activeTab === "screening") && (
         <div className="flex flex-col gap-2 mb-4">
-          {/* Metrics cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          {/* Sequential Metrics cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <Card className="p-2">
+              <div className="text-xl font-bold text-blue-600">
+                {screeningCandidates.length}
+              </div>
+              <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
+              <div className="text-xs text-gray-400">Under Screening</div>
+            </Card>
+
             <Card className="p-2">
               <div className="text-xl font-bold text-green-600">
                 {screeningCandidates.filter(c => c.status === "approved").length}
               </div>
-              <div className="text-xs text-muted-foreground">Approved</div>
+              <div className="text-xs text-muted-foreground font-medium">Approved</div>
             </Card>
 
             <Card className="p-2">
               <div className="text-xl font-bold text-red-600">
                 {screeningCandidates.filter(c => c.status === "reject").length}
               </div>
-              <div className="text-xs text-muted-foreground">Rejected</div>
+              <div className="text-xs text-muted-foreground font-medium">Rejected</div>
             </Card>
 
-              <Card className="p-2">
-              <div className="text-xl font-bold text-blue-600">
-                {screeningCandidates.length}
+            <Card className="p-2">
+              <div className="text-xl font-bold text-yellow-600">
+                {screeningCandidates.filter(c => c.status === "pending").length}
               </div>
-              <div className="text-xs text-muted-foreground">Total Candidates</div>
+              <div className="text-xs text-muted-foreground font-medium">Pending</div>
             </Card>
           </div>
 
