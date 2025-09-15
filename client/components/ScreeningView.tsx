@@ -266,6 +266,7 @@ export default function ScreeningView() {
   const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "approved" | "reject" | "pending">("all");
 
   // Debounce search query to improve performance
   useEffect(() => {
@@ -293,15 +294,25 @@ export default function ScreeningView() {
 
   // Memoize filtered candidates to prevent unnecessary re-renders
   const filteredCandidates = useMemo(() => {
-    const q = debouncedSearchQuery.toLowerCase().trim();
-    if (!q) return candidates;
+    let filtered = candidates;
 
-    return candidates.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.position.toLowerCase().includes(q) ||
-      c.email.toLowerCase().includes(q)
-    );
-  }, [candidates, debouncedSearchQuery]);
+    // Apply status filter
+    if (statusFilter !== "all") {
+      filtered = filtered.filter(c => c.status === statusFilter);
+    }
+
+    // Apply search filter
+    const q = debouncedSearchQuery.toLowerCase().trim();
+    if (q) {
+      filtered = filtered.filter(c =>
+        c.name.toLowerCase().includes(q) ||
+        c.position.toLowerCase().includes(q) ||
+        c.email.toLowerCase().includes(q)
+      );
+    }
+
+    return filtered;
+  }, [candidates, debouncedSearchQuery, statusFilter]);
 
   const handleStatusChange = useCallback((
     candidateId: string,
@@ -347,16 +358,29 @@ export default function ScreeningView() {
   return (
     <div className="space-y-2">
 
-      {/* Controls: search + view toggle */}
+      {/* Controls: search + status filter + view toggle */}
       <div className="flex items-center justify-between gap-3">
-        <div className="relative flex-none w-64">
-          <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          <input
-            className="pl-10 h-8 w-full rounded-md border border-gray-200 bg-white text-sm shadow-sm"
-            placeholder="Search candidates..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className="flex items-center gap-3">
+          <div className="relative flex-none w-64">
+            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <input
+              className="pl-10 h-8 w-full rounded-md border border-gray-200 bg-white text-sm shadow-sm"
+              placeholder="Search candidates..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          <select
+            className="h-8 px-3 rounded-md border border-gray-200 bg-white text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value as "all" | "approved" | "reject" | "pending")}
+          >
+            <option value="all">All</option>
+            <option value="approved">Approved</option>
+            <option value="reject">Rejected</option>
+            <option value="pending">Pending</option>
+          </select>
         </div>
 
         <div className="flex items-center gap-2">
@@ -373,26 +397,32 @@ export default function ScreeningView() {
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[800px]">
+              <table className="w-full min-w-[1200px]">
                 <thead>
                   <tr>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Candidate
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      CANDIDATE
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Position
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      APPLIED POSITION
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Experience
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      TOTAL EXPERIENCE
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Contact
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      RELEVANT EXPERIENCE
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Status
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      EMAIL
                     </th>
-                    <th className="text-right px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
-                      Actions
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      PHONE NUMBER
+                    </th>
+                    <th className="text-left px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      STATUS
+                    </th>
+                    <th className="text-center px-4 py-4 text-xs font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                      ACTION
                     </th>
                   </tr>
                 </thead>
@@ -402,7 +432,7 @@ export default function ScreeningView() {
 
           {/* Scrollable Body */}
           <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
-            <table className="w-full min-w-[800px]">
+            <table className="w-full min-w-[1200px]">
               <tbody className="divide-y divide-gray-100">
                 {filteredCandidates.map((candidate, index) => {
                   const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
@@ -421,7 +451,7 @@ export default function ScreeningView() {
                         index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'
                       }`}
                     >
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="flex items-center space-x-3">
                           <div className="flex-shrink-0">
                             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
@@ -440,22 +470,28 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="text-sm text-gray-900">{candidate.position}</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="text-sm text-gray-900">{candidate.totalExperience}</div>
                       </td>
-                      <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">{candidate.email}</div>
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900">{candidate.relevantExperience}</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900">{candidate.phone}</div>
+                      </td>
+                      <td className="px-4 py-4">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
                           {statusText}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end">
+                      <td className="px-4 py-4 text-center">
+                        <div className="flex items-center justify-center">
                           <ActionComponent
                             candidateId={candidate.id}
                             candidate={candidate}
