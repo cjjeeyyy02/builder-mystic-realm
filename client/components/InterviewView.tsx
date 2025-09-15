@@ -70,7 +70,9 @@ import {
   Share2,
   MoreVertical,
   X,
-  ChevronDown
+  ChevronDown,
+  Grid,
+  List
 } from "lucide-react";
 
 interface InterviewCandidate {
