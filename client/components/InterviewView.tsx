@@ -1131,8 +1131,8 @@ Google India`
         <div className="w-full overflow-y-auto">
           {activeMainTab === "interview-status" && (
             <div className="space-y-4">
-              {/* Search Filters */}
-              <div className="flex items-center gap-2 mb-4">
+              {/* Search Filters and View Toggle */}
+              <div className="flex items-center justify-between gap-2 mb-4">
                 <SearchWithDropdown
                   placeholder="SEARCH CANDIDATES"
                   value={searchCandidates}
@@ -1141,6 +1141,23 @@ Google India`
                   className="w-40"
                   inputClassName="h-7 text-xs"
                 />
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    variant={viewMode === "table" ? "default" : "outline"}
+                    onClick={() => setViewMode("table")}
+                  >
+                    <List className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={viewMode === "card" ? "default" : "outline"}
+                    onClick={() => setViewMode("card")}
+                  >
+                    <Grid className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
 
               {/* Interview Table based on provided image */}
