@@ -219,7 +219,7 @@ export default function ActivationView() {
                   }`}>ACTIVATION PROGRESS</TableHead>
                   <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>UPDATE</TableHead>
+                  }`}>ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
