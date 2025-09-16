@@ -20,18 +20,29 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 
 type Job = {
   id: string;
+  // Required fields
   title: string;
+  company: string;
+  location: string;
+  workplaceType: "on-site" | "remote" | "hybrid";
+  description: string;
+  employmentType: "full-time" | "part-time" | "contract" | "temporary" | "internship";
+
+  // Optional fields
   department?: string;
-  company?: string;
-  location?: string;
-  locationType?: string;
-  jobType?: string;
+  seniorityLevel?: "entry-level" | "junior" | "mid-level" | "senior" | "manager" | "director" | "executive";
+  qualifications?: string;
   salary?: string;
-  status?: "Active" | "Closed" | "Archived";
+  applicationMethods?: string;
+  closingDate?: string;
+  perksAndBenefits?: string;
+  screeningQuestions?: string[];
+
+  // System fields
+  status?: "Active" | "Closed" | "Archived" | "Draft";
   datePosted?: string;
   applicants?: number;
   integrations?: string[];
-  description?: string;
   archived?: boolean;
 };
 
@@ -463,88 +474,274 @@ export default function JobPosting() {
         </DialogContent>
       </Dialog>
       <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
-        <DialogContent className="w-[520px] rounded-[12px] p-6 shadow-lg">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[12px] p-6 shadow-lg">
           <DialogHeader>
-            <DialogTitle>Create Job</DialogTitle>
+            <DialogTitle className="text-xl font-semibold">Create New Job Posting</DialogTitle>
+            <DialogDescription>Fill in the details for your new job posting. Fields marked with * are required.</DialogDescription>
           </DialogHeader>
 
           <form onSubmit={(e) => {
             e.preventDefault();
             const f = new FormData(e.currentTarget as HTMLFormElement);
+
+            // Get screening questions as an array
+            const screeningQuestions = [];
+            for (let i = 1; i <= 5; i++) {
+              const question = f.get(`screeningQuestion${i}`) as string;
+              if (question && question.trim()) {
+                screeningQuestions.push(question.trim());
+              }
+            }
+
             const payload: Job = {
-              id: (f.get("jobId") as string) || `J-${Math.floor(Math.random()*9000)+1000}`,
-              title: (f.get("title") as string) || "Untitled",
-              department: (f.get("department") as string) || "",
+              id: `J-${Math.floor(Math.random()*9000)+1000}`,
+              // Required fields
+              title: (f.get("title") as string) || "",
               company: (f.get("company") as string) || "",
               location: (f.get("location") as string) || "",
-              locationType: (f.get("locationType") as string) || "",
-              jobType: (f.get("jobType") as string) || "",
-              salary: (f.get("salary") as string) || "",
-              status: (f.get("status") as Job["status"]) || "Active",
-              datePosted: (f.get("datePosted") as string) || new Date().toISOString().slice(0,10),
-              applicants: Number(f.get("applicants") as string) || 0,
-              integrations: [],
+              workplaceType: (f.get("workplaceType") as Job["workplaceType"]) || "on-site",
               description: (f.get("description") as string) || "",
+              employmentType: (f.get("employmentType") as Job["employmentType"]) || "full-time",
+
+              // Optional fields
+              department: (f.get("department") as string) || undefined,
+              seniorityLevel: (f.get("seniorityLevel") as Job["seniorityLevel"]) || undefined,
+              qualifications: (f.get("qualifications") as string) || undefined,
+              salary: (f.get("salary") as string) || undefined,
+              applicationMethods: (f.get("applicationMethods") as string) || undefined,
+              closingDate: (f.get("closingDate") as string) || undefined,
+              perksAndBenefits: (f.get("perksAndBenefits") as string) || undefined,
+              screeningQuestions: screeningQuestions.length > 0 ? screeningQuestions : undefined,
+
+              // System fields
+              status: (f.get("status") as Job["status"]) || "Draft",
+              datePosted: new Date().toISOString().slice(0,10),
+              applicants: 0,
+              integrations: [],
+              archived: false
             };
-            // Add to list and close modal
+
             handleSaveFullForm(payload);
           }}>
-            <div className="space-y-4">
-              <div>
-                <Label>Job Title</Label>
-                <Input name="title" required />
-              </div>
+            <div className="space-y-6">
+              {/* Required Fields Section */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Required Information</h3>
 
-              <div>
-                <Label>Department</Label>
-                <Select name="department" defaultValue="Engineering">
-                  <SelectTrigger className="h-10"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Engineering">Engineering</SelectItem>
-                    <SelectItem value="Design">Design</SelectItem>
-                    <SelectItem value="Product">Product</SelectItem>
-                    <SelectItem value="Sales">Sales</SelectItem>
-                    <SelectItem value="Marketing">Marketing</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="title">Job Title *</Label>
+                    <Input
+                      id="title"
+                      name="title"
+                      placeholder="e.g. Senior Software Engineer"
+                      required
+                      className="mt-1"
+                    />
+                  </div>
 
-              <div>
-                <Label>Location</Label>
-                <Input name="location" placeholder="City, Country or Remote" />
-              </div>
-
-              <div>
-                <Label>Status</Label>
-                <Select name="status" defaultValue="Active">
-                  <SelectTrigger className="h-10"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Active">Active</SelectItem>
-                    <SelectItem value="Closed">Closed</SelectItem>
-                    <SelectItem value="Draft">Draft</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label>Date Posted</Label>
-                  <Input type="date" name="datePosted" className="h-10" />
+                  <div>
+                    <Label htmlFor="company">Company / Employer *</Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      placeholder="e.g. AI2AIM Technologies"
+                      required
+                      className="mt-1"
+                    />
+                  </div>
                 </div>
+
                 <div>
-                  <Label>Date End</Label>
-                  <Input type="date" name="dateEnd" className="h-10" />
+                  <Label htmlFor="location">Location (City, Province, Country) *</Label>
+                  <Input
+                    id="location"
+                    name="location"
+                    placeholder="e.g. San Francisco, CA, United States"
+                    required
+                    className="mt-1"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="workplaceType">Workplace Type *</Label>
+                    <Select name="workplaceType" required>
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Select workplace type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="on-site">On-site</SelectItem>
+                        <SelectItem value="remote">Remote</SelectItem>
+                        <SelectItem value="hybrid">Hybrid</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="employmentType">Employment Type *</Label>
+                    <Select name="employmentType" required>
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Select employment type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="full-time">Full-time</SelectItem>
+                        <SelectItem value="part-time">Part-time</SelectItem>
+                        <SelectItem value="contract">Contract</SelectItem>
+                        <SelectItem value="temporary">Temporary</SelectItem>
+                        <SelectItem value="internship">Internship</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="description">Job Description *</Label>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    placeholder="Provide a detailed description of the role, responsibilities, and requirements..."
+                    required
+                    rows={4}
+                    className="mt-1"
+                  />
                 </div>
               </div>
 
-              <div>
-                <Label>Applicants Count</Label>
-                <Input type="number" name="applicants" defaultValue={0} className="h-10" />
+              {/* Optional Fields Section */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Additional Details (Optional)</h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="department">Department</Label>
+                    <Select name="department">
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Select department" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Engineering">Engineering</SelectItem>
+                        <SelectItem value="Design">Design</SelectItem>
+                        <SelectItem value="Product">Product</SelectItem>
+                        <SelectItem value="Sales">Sales</SelectItem>
+                        <SelectItem value="Marketing">Marketing</SelectItem>
+                        <SelectItem value="Operations">Operations</SelectItem>
+                        <SelectItem value="Finance">Finance</SelectItem>
+                        <SelectItem value="HR">Human Resources</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="seniorityLevel">Seniority Level</Label>
+                    <Select name="seniorityLevel">
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Select seniority level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="entry-level">Entry Level</SelectItem>
+                        <SelectItem value="junior">Junior</SelectItem>
+                        <SelectItem value="mid-level">Mid Level</SelectItem>
+                        <SelectItem value="senior">Senior</SelectItem>
+                        <SelectItem value="manager">Manager</SelectItem>
+                        <SelectItem value="director">Director</SelectItem>
+                        <SelectItem value="executive">Executive</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="qualifications">Required / Preferred Qualifications</Label>
+                  <Textarea
+                    id="qualifications"
+                    name="qualifications"
+                    placeholder="Education requirements, years of experience, skills, certifications..."
+                    rows={3}
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="salary">Salary or Compensation Range</Label>
+                  <Input
+                    id="salary"
+                    name="salary"
+                    placeholder="e.g. $80,000 - $120,000 annually"
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="applicationMethods">Application Methods / How to Apply</Label>
+                  <Input
+                    id="applicationMethods"
+                    name="applicationMethods"
+                    placeholder="e.g. Apply via LinkedIn, send resume to careers@company.com"
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="closingDate">Application Deadline</Label>
+                  <Input
+                    id="closingDate"
+                    name="closingDate"
+                    type="date"
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="perksAndBenefits">Job Perks, Benefits, Company Culture</Label>
+                  <Textarea
+                    id="perksAndBenefits"
+                    name="perksAndBenefits"
+                    placeholder="Health insurance, flexible hours, remote work options, company culture details..."
+                    rows={3}
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label>Screening Questions (to filter candidates)</Label>
+                  <div className="space-y-2 mt-1">
+                    <Input
+                      name="screeningQuestion1"
+                      placeholder="Question 1 (optional)"
+                    />
+                    <Input
+                      name="screeningQuestion2"
+                      placeholder="Question 2 (optional)"
+                    />
+                    <Input
+                      name="screeningQuestion3"
+                      placeholder="Question 3 (optional)"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="status">Publication Status</Label>
+                  <Select name="status" defaultValue="Draft">
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Draft">Save as Draft</SelectItem>
+                      <SelectItem value="Active">Publish Immediately</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-2">
-                <Button variant="outline" type="button" onClick={() => setShowCreateModal(false)}>Cancel</Button>
-                <Button type="submit" className="bg-green-600 text-white">Save</Button>
+              <div className="flex items-center justify-end gap-3 pt-4 border-t">
+                <Button variant="outline" type="button" onClick={() => setShowCreateModal(false)}>
+                  Cancel
+                </Button>
+                <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white">
+                  Create Job Posting
+                </Button>
               </div>
             </div>
           </form>
