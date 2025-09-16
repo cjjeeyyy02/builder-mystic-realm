@@ -429,25 +429,25 @@ export default function ScreeningView() {
                 </colgroup>
                 <thead>
                   <tr className="border-b border-gray-200/60">
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       CANDIDATE
                     </th>
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       APPLIED POSITION
                     </th>
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       TOTAL EXPERIENCE
                     </th>
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       EMAIL
                     </th>
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       PHONE
                     </th>
-                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       STATUS
                     </th>
-                    <th className="text-center px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                    <th className="text-center px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       ACTION
                     </th>
                   </tr>
