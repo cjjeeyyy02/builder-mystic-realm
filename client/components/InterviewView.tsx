@@ -1204,9 +1204,11 @@ Google India`
       ]
     };
 
-    setSelectedCandidateForTimeline(candidateData);
-    setExpandedSteps([]);
-    setShowTimelineSheet(true);
+    startTransition(() => {
+      setSelectedCandidateForTimeline(candidateData);
+      setExpandedSteps([]);
+      setShowTimelineSheet(true);
+    });
   };
 
   const toggleStepExpansion = (stepId: string) => {
