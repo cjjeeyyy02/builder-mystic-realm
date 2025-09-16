@@ -240,27 +240,44 @@ export default function ActivationView() {
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
                     <TableCell className="px-3 py-2">
-                      <div className="flex items-center gap-2">
-                        <Button
-                          className="h-6 text-xs px-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                          title="View & Upload Docs"
-                          onClick={() => openChecklistModal(employee)}
-                        >
-                          View & Upload Docs
-                        </Button>
-
-                        <button
-                          className={`flex items-center justify-center w-6 h-6 rounded-sm transition-colors duration-200 ${
-                            isDarkMode
-                              ? 'text-gray-400 hover:text-gray-200'
-                              : 'text-gray-500 hover:text-gray-700'
-                          }`}
-                          title="Action"
-                          onClick={() => setActiveTab('checklist-builder')}
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            className={`h-8 w-8 p-0 transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                            }`}
+                          >
+                            <MoreVertical className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className={isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
+                          <DropdownMenuItem
+                            onClick={() => openChecklistModal(employee)}
+                            className={`cursor-pointer transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
+                                : 'text-gray-700 hover:bg-gray-100 focus:bg-gray-100'
+                            }`}
+                          >
+                            <CheckSquare className="mr-2 h-4 w-4" />
+                            View Checklist
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => console.log(`Send reminder for ${employee.name}`)}
+                            className={`cursor-pointer transition-colors duration-200 ${
+                              isDarkMode
+                                ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
+                                : 'text-gray-700 hover:bg-gray-100 focus:bg-gray-100'
+                            }`}
+                          >
+                            <Mail className="mr-2 h-4 w-4" />
+                            Send reminder
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </TableCell>
                   </TableRow>
                 ))}
