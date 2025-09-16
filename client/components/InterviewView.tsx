@@ -3346,18 +3346,30 @@ Google India"
                               </div>
 
                               {/* Step Actions */}
-                              <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
-                                <Button variant="outline" size="sm" className="text-xs">
-                                  <Edit3 className="w-3 h-3 mr-1" />
-                                  Edit Step
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
-                                  <Calendar className="w-3 h-3 mr-1" />
-                                  Reschedule
-                                </Button>
+                              <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
                                 <Button variant="outline" size="sm" className="text-xs">
                                   <Mail className="w-3 h-3 mr-1" />
                                   Send Reminder
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Calendar className="w-3 h-3 mr-1" />
+                                  Schedule Interview
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Edit3 className="w-3 h-3 mr-1" />
+                                  Reschedule Interview
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <MessageSquare className="w-3 h-3 mr-1" />
+                                  Submit Remark
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <Settings className="w-3 h-3 mr-1" />
+                                  Update Status
+                                </Button>
+                                <Button variant="outline" size="sm" className="text-xs">
+                                  <FileText className="w-3 h-3 mr-1" />
+                                  Submit Score
                                 </Button>
                               </div>
                             </div>
