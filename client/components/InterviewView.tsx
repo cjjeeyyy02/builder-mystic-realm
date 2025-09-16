@@ -3389,6 +3389,164 @@ Google India"
         </>
       )}
 
-    </div>
-  );
+      {/* Candidate Details Modal */}
+      <Dialog open={showCandidateDetailsModal} onOpenChange={setShowCandidateDetailsModal}>
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold">Candidate Details</DialogTitle>
+          </DialogHeader>
+
+          {selectedCandidateDetails && (
+            <div className="space-y-3 text-xs">
+              {/* Candidate Header */}
+              <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-3">
+                    {/* Profile Picture (Initial Icon) */}
+                    <div className="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center">
+                      <span className="text-white font-semibold text-sm">
+                        {selectedCandidateDetails.applicantName.charAt(0)}
+                      </span>
+                    </div>
+
+                    {/* Basic Info */}
+                    <div>
+                      <h1 className="text-sm font-bold text-gray-900 mb-0.5">
+                        {selectedCandidateDetails.applicantName}
+                      </h1>
+                      <p className="text-xs text-gray-700 font-medium">
+                        {selectedCandidateDetails.appliedPosition}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Room ID (top-right) */}
+                  <div>
+                    <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 font-medium text-xs px-2 py-0.5">
+                      {selectedCandidateDetails.roomId}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Information & Review Room - Single Card */}
+              <Card>
+                <CardContent className="p-3">
+                  <div className="space-y-3">
+                    {/* Contact Information */}
+                    <div>
+                      <h3 className="text-xs font-semibold text-gray-900 mb-2">Contact Information</h3>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-3 w-3 text-gray-400" />
+                          <span className="text-xs font-medium">Email:</span>
+                          <span className="text-xs text-gray-700">{selectedCandidateDetails.email}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Phone className="h-3 w-3 text-gray-400" />
+                          <span className="text-xs font-medium">Phone:</span>
+                          <span className="text-xs text-gray-700">{selectedCandidateDetails.phone}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Review Room */}
+                    <div className="border-t border-gray-200 pt-3">
+                      <h3 className="text-xs font-semibold text-gray-900 mb-2">Review Room</h3>
+                      <div>
+                        <span className="text-xs font-medium">Zoom link:</span>
+                        <a
+                          href={selectedCandidateDetails.reviewRoom}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 underline ml-1 text-xs"
+                        >
+                          {selectedCandidateDetails.reviewRoom}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Interview Steps Section */}
+              <Card>
+                <CardContent className="p-3">
+                  <h3 className="text-xs font-semibold text-gray-900 mb-2">Interview Steps</h3>
+                  <div className="space-y-2">
+                    {selectedCandidateDetails.interviewSteps.map((step, index) => (
+                      <div key={step.id} className="border border-gray-200 rounded-lg p-2 relative">
+                        {/* Status Badge (top-right corner) */}
+                        <div className="absolute top-2 right-2">
+                          <Badge
+                            className={
+                              step.status === 'Completed'
+                                ? 'bg-green-100 text-green-800 border-green-200 text-xs px-1.5 py-0.5'
+                                : 'bg-gray-100 text-gray-800 border-gray-200 text-xs px-1.5 py-0.5'
+                            }
+                          >
+                            {step.status}
+                          </Badge>
+                        </div>
+
+                        {/* Step Header */}
+                        <div className="mb-2 pr-16">
+                          <h4 className="text-xs font-semibold text-gray-900 mb-0.5">
+                            {index + 1}. {step.title}
+                          </h4>
+                          <p className="text-xs text-gray-600 font-medium">
+                            Interviewer: {step.interviewer}
+                          </p>
+                        </div>
+
+                        {/* Description */}
+                        <div className="mb-2">
+                          <p className="text-xs text-gray-700">
+                            Description: "{step.description}"
+                          </p>
+                        </div>
+
+                        {/* Date & Time */}
+                        <div className="mb-2">
+                          <div className="flex items-center gap-1 text-xs text-gray-600">
+                            <Calendar className="h-3 w-3" />
+                            <span>{step.date} at {step.time}</span>
+                          </div>
+                        </div>
+
+                        {/* Remarks (only if available) */}
+                        {step.remarks && (
+                          <div className="mt-2 p-2 bg-gray-50 rounded-md">
+                            <p className="text-xs font-medium text-gray-700 mb-0.5">Remarks:</p>
+                            <p className="text-xs text-gray-600">"{step.remarks}"</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Action Buttons */}
+              <div className="flex items-center justify-center gap-4 pt-3 border-t border-gray-200">
+                <Button
+                  onClick={() => console.log('Reject decision')}
+                  className="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm text-xs"
+                >
+                  Reject
+                </Button>
+                <Button
+                  onClick={() => console.log('Pass decision')}
+                  className="px-4 py-1.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow-sm text-xs"
+                >
+                  Pass
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+   </div>
+ );
 }
