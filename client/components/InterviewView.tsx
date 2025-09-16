@@ -1206,11 +1206,13 @@ Google India`
       ]
     };
 
-    startTransition(() => {
-      setSelectedCandidateForTimeline(candidateData);
-      setExpandedSteps([]);
-      setShowTimelineSheet(true);
-    });
+    setTimeout(() => {
+      startTransition(() => {
+        setSelectedCandidateForTimeline(candidateData);
+        setExpandedSteps([]);
+        setShowTimelineSheet(true);
+      });
+    }, 0);
   };
 
   const toggleStepExpansion = (stepId: string) => {
