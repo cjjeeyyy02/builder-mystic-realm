@@ -1259,6 +1259,14 @@ Google India`
                   >
                     <Calendar className="w-4 h-4" />
                   </Button>
+                  <Button
+                    size="sm"
+                    variant={viewMode === "card" ? "default" : "outline"}
+                    onClick={() => setViewMode("card")}
+                    title="Card View"
+                  >
+                    <Grid className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
 
