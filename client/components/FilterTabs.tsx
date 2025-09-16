@@ -605,7 +605,7 @@ export default function FilterTabs() {
 
   return (
     <div className="space-y-6">
-      {/* Rectangular Block Stage Headers */}
+      {/* Compact Rectangular Block Stage Headers */}
       <div className="w-full">
         <div className="bg-white border border-gray-200">
           <div className="flex w-full">
@@ -615,7 +615,7 @@ export default function FilterTabs() {
                 onClick={() => setActiveTab(tab.id)}
                 aria-current={activeTab === tab.id ? 'page' : undefined}
                 className={`
-                  flex-1 px-6 py-4 text-base font-medium
+                  flex-1 px-4 py-2 text-sm font-medium
                   font-['Poppins',sans-serif] tracking-normal
                   transition-colors duration-200
                   border-r border-gray-200 last:border-r-0
