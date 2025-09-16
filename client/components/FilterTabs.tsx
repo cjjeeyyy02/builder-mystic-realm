@@ -604,7 +604,7 @@ export default function FilterTabs() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Compact Rectangular Block Stage Headers */}
       <div className="w-full">
         <div className="bg-white border border-gray-200">
