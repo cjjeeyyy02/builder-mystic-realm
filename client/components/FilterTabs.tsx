@@ -605,10 +605,10 @@ export default function FilterTabs() {
 
   return (
     <div className="space-y-6">
-      {/* Modern Pipeline Stage Headers */}
+      {/* Flat Rectangle Stage Headers */}
       <div className="w-full">
-        <div className="relative bg-white border border-gray-100 rounded-2xl shadow-lg shadow-gray-100/50">
-          <div className="flex w-full items-stretch relative p-2 gap-1">
+        <div className="bg-white border border-gray-200">
+          <div className="flex w-full items-stretch">
             {tabs.map((tab, index) => (
               <Button
                 key={tab.id}
@@ -616,26 +616,17 @@ export default function FilterTabs() {
                 variant="ghost"
                 aria-current={activeTab === tab.id ? 'page' : undefined}
                 className={`
-                  relative flex-1 min-w-0 px-8 py-4 text-sm font-bold tracking-wide
-                  rounded-xl transition-all duration-300 ease-in-out
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                  flex-1 min-w-0 px-6 py-4 text-base font-medium tracking-normal
+                  transition-colors duration-200 ease-in-out
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset
+                  border-r border-gray-200 last:border-r-0
                   ${activeTab === tab.id
-                    ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-500/25 transform scale-[1.02]'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 bg-gray-50/30'
+                    ? 'text-white bg-blue-600 font-bold'
+                    : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
                   }
                 `}
               >
-                <span className="relative z-10 whitespace-nowrap font-bold">{tab.label}</span>
-
-                {/* Active state subtle inner glow */}
-                {activeTab === tab.id && (
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/10 to-transparent"></div>
-                )}
-
-                {/* Hover effect for inactive tabs */}
-                {activeTab !== tab.id && (
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-gray-100/0 via-gray-100/50 to-gray-100/0 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                )}
+                <span className="whitespace-nowrap">{tab.label}</span>
               </Button>
             ))}
           </div>
