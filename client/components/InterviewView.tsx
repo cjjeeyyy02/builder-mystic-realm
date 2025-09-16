@@ -1334,11 +1334,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('001', 'Jaya'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('001', 'Jaya')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('001', 'Jaya'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1370,11 +1370,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('002', 'Mark'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('002', 'Mark')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('002', 'Mark'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1406,11 +1406,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('003', 'John'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('003', 'John')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('003', 'John'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1442,11 +1442,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('004', 'Sara'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('004', 'Sara')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('004', 'Sara'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1478,11 +1478,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('005', 'Shruti'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('005', 'Shruti')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('005', 'Shruti'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1514,11 +1514,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('006', 'Robin'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('006', 'Robin')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('006', 'Robin'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('006', 'Robin')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1550,11 +1550,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('007', 'Kayle'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('007', 'Kayle')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('007', 'Kayle'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('007', 'Kayle')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1586,11 +1586,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('008', 'Vali'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('008', 'Vali')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('008', 'Vali'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('008', 'Vali')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1622,11 +1622,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails('009', 'Anne'); }}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('009', 'Anne')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Candidate Details
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline('009', 'Anne'); }}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('009', 'Anne')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Timeline (Steps)
                               </DropdownMenuItem>
@@ -1706,11 +1706,11 @@ Google India`
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleViewCandidateDetails(c.id, c.applicantName); }}>
+                                <DropdownMenuItem onSelect={() => handleViewCandidateDetails(c.id, c.applicantName)}>
                                   <Eye className="mr-2 h-4 w-4" />
                                   View Details
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleManageTimeline(c.id, c.applicantName); }}>
+                                <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
                                   <Calendar className="mr-2 h-4 w-4" />
                                   Manage Timeline
                                 </DropdownMenuItem>
