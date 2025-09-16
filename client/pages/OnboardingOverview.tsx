@@ -221,8 +221,25 @@ export default function OnboardingOverview() {
     );
   };
 
-  const handleViewCandidate = (candidateId: string) => {
-    navigate(`/candidate-details/${candidateId}`);
+  const handleViewCandidate = (candidate: PipelineCandidate) => {
+    try {
+      const profile = {
+        id: candidate.id,
+        applicantName: candidate.name,
+        appliedPosition: candidate.position,
+        department: "",
+        currentRound: "",
+        status: candidate.status,
+        email: candidate.email,
+        phone: candidate.phone,
+        roomId: `ROOM-${candidate.id.padStart(3, '0')}`,
+        reviewRoom: undefined as string | undefined,
+        assignedInterviewers: [] as string[],
+        interviewSteps: [] as any[],
+      };
+      window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify(profile));
+    } catch {}
+    navigate(`/candidate-details/${candidate.id}`);
   };
 
   return (
@@ -428,7 +445,7 @@ export default function OnboardingOverview() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => handleViewCandidate(candidate.id)}
+                            onClick={() => handleViewCandidate(candidate)}
                             className="h-8 w-8 p-0"
                           >
                             <Eye className="h-4 w-4" />
