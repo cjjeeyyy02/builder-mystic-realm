@@ -65,29 +65,22 @@ import { screeningCandidates, type ScreeningCandidate } from "@/data/screeningCa
 const ActionDropdown = React.memo(({
   candidateId,
   candidate,
-  onApprove,
-  onReject,
+  onUpdateStatus,
   onEmail,
   onViewResume
 }: {
   candidateId: string;
   candidate: ScreeningCandidate;
-  onApprove: (id: string) => void;
-  onReject: (id: string) => void;
+  onUpdateStatus: (candidate: ScreeningCandidate) => void;
   onEmail: (candidate: ScreeningCandidate) => void;
   onViewResume: (candidate: ScreeningCandidate) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleApproveClick = useCallback(() => {
+  const handleUpdateStatusClick = useCallback(() => {
     setIsOpen(false);
-    onApprove(candidateId);
-  }, [candidateId, onApprove]);
-
-  const handleRejectClick = useCallback(() => {
-    setIsOpen(false);
-    onReject(candidateId);
-  }, [candidateId, onReject]);
+    onUpdateStatus(candidate);
+  }, [candidate, onUpdateStatus]);
 
   const handleEmailClick = useCallback(() => {
     setIsOpen(false);
@@ -112,24 +105,17 @@ const ActionDropdown = React.memo(({
           <MoreVertical className="h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem
-          onClick={handleApproveClick}
-          className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
+          onClick={handleUpdateStatusClick}
+          className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
         >
-          <Check className="w-4 h-4" />
-          Approve
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={handleRejectClick}
-          className="flex items-center gap-2 hover:bg-red-50 hover:text-red-700 cursor-pointer"
-        >
-          <X className="w-4 h-4" />
-          Reject
+          <Clock className="w-4 h-4" />
+          Update Screening Status
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleEmailClick}
-          className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
+          className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
         >
           <Send className="w-4 h-4" />
           Send Email
@@ -152,15 +138,13 @@ ActionDropdown.displayName = 'ActionDropdown';
 const SimpleActionMenu = React.memo(({
   candidateId,
   candidate,
-  onApprove,
-  onReject,
+  onUpdateStatus,
   onEmail,
   onViewResume
 }: {
   candidateId: string;
   candidate: ScreeningCandidate;
-  onApprove: (id: string) => void;
-  onReject: (id: string) => void;
+  onUpdateStatus: (candidate: ScreeningCandidate) => void;
   onEmail: (candidate: ScreeningCandidate) => void;
   onViewResume: (candidate: ScreeningCandidate) => void;
 }) => {
@@ -181,33 +165,23 @@ const SimpleActionMenu = React.memo(({
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 top-full z-20 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+          <div className="absolute right-0 top-full z-20 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg">
             <button
               onClick={() => {
                 setIsOpen(false);
-                onApprove(candidateId);
+                onUpdateStatus(candidate);
               }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-green-50 hover:text-green-700 text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 text-left"
             >
-              <Check className="w-4 h-4" />
-              Approve
-            </button>
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                onReject(candidateId);
-              }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-red-50 hover:text-red-700 text-left"
-            >
-              <X className="w-4 h-4" />
-              Reject
+              <Clock className="w-4 h-4" />
+              Update Screening Status
             </button>
             <button
               onClick={() => {
                 setIsOpen(false);
                 onEmail(candidate);
               }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-green-50 hover:text-green-700 text-left"
             >
               <Send className="w-4 h-4" />
               Send Email
@@ -268,6 +242,11 @@ export default function ScreeningView() {
   const [selectedCandidate, setSelectedCandidate] = useState<ScreeningCandidate | null>(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [screeningNotes, setScreeningNotes] = useState("");
+
+  // Update Screening Status Modal
+  const [showUpdateStatusModal, setShowUpdateStatusModal] = useState(false);
+  const [statusCandidate, setStatusCandidate] = useState<ScreeningCandidate | null>(null);
+  const [statusNotes, setStatusNotes] = useState("");
 
   // UI states
   const [viewMode, setViewMode] = useState<"grid" | "table">("table");
@@ -358,6 +337,36 @@ export default function ScreeningView() {
     setModalCandidateId(candidateId);
     setShowRejectModal(true);
   }, []);
+
+  const handleUpdateStatus = useCallback((candidate: ScreeningCandidate) => {
+    setStatusCandidate(candidate);
+    setStatusNotes("");
+    setShowUpdateStatusModal(true);
+  }, []);
+
+  const handleStatusReject = useCallback(() => {
+    if (statusCandidate) {
+      setCandidates(prev => prev.map(c => c.id === statusCandidate.id ? { ...c, status: 'reject', rejectionReason: statusNotes } : c));
+      if (selectedCandidate && selectedCandidate.id === statusCandidate.id) {
+        setSelectedCandidate(prev => prev ? { ...prev, status: 'reject', rejectionReason: statusNotes } : null);
+      }
+    }
+    setShowUpdateStatusModal(false);
+    setStatusCandidate(null);
+    setStatusNotes("");
+  }, [statusCandidate, statusNotes, selectedCandidate]);
+
+  const handleStatusProceed = useCallback(() => {
+    if (statusCandidate) {
+      setCandidates(prev => prev.map(c => c.id === statusCandidate.id ? { ...c, status: 'approved' } : c));
+      if (selectedCandidate && selectedCandidate.id === statusCandidate.id) {
+        setSelectedCandidate(prev => prev ? { ...prev, status: 'approved' } : null);
+      }
+    }
+    setShowUpdateStatusModal(false);
+    setStatusCandidate(null);
+    setStatusNotes("");
+  }, [statusCandidate, selectedCandidate]);
 
   // Action component switcher
   const ActionComponent = useSimpleMenu ? SimpleActionMenu : ActionDropdown;
@@ -527,8 +536,7 @@ export default function ScreeningView() {
                           <ActionComponent
                             candidateId={candidate.id}
                             candidate={candidate}
-                            onApprove={handleApprove}
-                            onReject={handleReject}
+                            onUpdateStatus={handleUpdateStatus}
                             onEmail={handleEmailCandidate}
                             onViewResume={(c) => {
                               setResumeMode('view');
@@ -627,8 +635,7 @@ export default function ScreeningView() {
                     <ActionComponent
                       candidateId={candidate.id}
                       candidate={candidate}
-                      onApprove={(id) => handleStatusChange(id, 'approved')}
-                      onReject={(id) => handleStatusChange(id, 'reject')}
+                      onUpdateStatus={handleUpdateStatus}
                       onEmail={handleEmailCandidate}
                       onViewResume={(c) => {
                         setResumeMode('view');
