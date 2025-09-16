@@ -327,10 +327,31 @@ export default function JobPosting() {
                           <div className="px-2 py-1 rounded-full bg-gray-100 text-muted-foreground">{job.applicants}</div>
                           <div className="text-xs">{(job.integrations || []).join(", ") || "No integrations"}</div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Button size="sm" variant="outline" onClick={() => handleOpenUpdate(job)}><Edit className="w-4 h-4" /></Button>
-                          <Button size="sm" variant="destructive" onClick={() => confirmArchive(job)}><Archive className="w-4 h-4" /></Button>
-                        </div>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                              <MoreVertical className="w-4 h-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => handleViewDetails(job)}>
+                              <Eye className="w-4 h-4 mr-2" />
+                              View Details
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleViewApplication(job)}>
+                              <FileText className="w-4 h-4 mr-2" />
+                              View Application
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
+                              <Edit className="w-4 h-4 mr-2" />
+                              Edit Job
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => confirmArchive(job)}>
+                              <Archive className="w-4 h-4 mr-2" />
+                              Archive
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </div>
                     </Card>
                   ))}
