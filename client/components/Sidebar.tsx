@@ -209,7 +209,7 @@ export default function Sidebar({
                 return (
                   <div key={item.path}>
                     <div className={`w-full flex items-center justify-between h-11 px-3 rounded-lg transition-all duration-200 ${isActive ? 'bg-gray-900 text-white shadow font-semibold' : 'text-gray-800 hover:bg-gray-50'}`}>
-                      <Link to={item.path} onClick={() => { setExpandedOnboarding(prev => !prev); onClose(); }} className="flex items-center gap-3 w-full">
+                      <Link to="/onboarding-overview" onClick={() => { setExpandedOnboarding(prev => !prev); onClose(); }} className="flex items-center gap-3 w-full">
                         <Icon className="w-5 h-5 text-current" />
                         <span className="font-medium">{item.label}</span>
                       </Link>
@@ -219,8 +219,9 @@ export default function Sidebar({
                       </button>
                     </div>
 
-                    <div className={`overflow-hidden transition-all duration-300 ${expandedOnboarding ? 'max-h-48 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                    <div className={`overflow-hidden transition-all duration-300 ${expandedOnboarding ? 'max-h-64 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
                       <div className="pl-10">
+                        <Link to="/onboarding-overview" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2 font-medium">Overview Dashboard</Link>
                         <Link to="/job-posting" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Job Posting</Link>
                         <Link to="/hiring-pipeline" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Hiring Pipeline</Link>
                         <Link to="/checklist-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Checklist Builder</Link>
