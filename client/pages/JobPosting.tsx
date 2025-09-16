@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Plus, Edit, Archive, Search as SearchIcon, List, Grid as GridIcon, Trash2, RefreshCw, ChevronDown, MoreHorizontal, ChevronLeft, ChevronRight, X, Check, Mail } from "lucide-react";
+import { Plus, Edit, Archive, Search as SearchIcon, List, Grid as GridIcon, Trash2, RefreshCw, ChevronDown, MoreVertical, ChevronLeft, ChevronRight, X, Check, Mail, Eye, FileText } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -224,10 +224,6 @@ export default function JobPosting() {
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search job posting" className="w-[280px] h-10 rounded-md pl-10" />
               </div>
-
-              <button onClick={() => setShowPlugHireModal(true)} className="h-10 py-0 px-4 rounded-md text-sm font-bold bg-[#111827] text-white">
-                Plug and Hire
-              </button>
             </div>
 
             <div className="flex items-center gap-4">
@@ -272,13 +268,27 @@ export default function JobPosting() {
                           <td className="py-3 pr-4">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
-                                <Button size="sm" variant="ghost"><MoreHorizontal className="w-4 h-4" /></Button>
+                                <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                                  <MoreVertical className="w-4 h-4" />
+                                </Button>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent>
-                                <DropdownMenuItem onClick={() => handleViewDetails(job)}>View Details</DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => alert('Integration')}>Integration</DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>Edit Job Details</DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => confirmArchive(job)}>Archive Job Details</DropdownMenuItem>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleViewDetails(job)}>
+                                  <Eye className="w-4 h-4 mr-2" />
+                                  View Details
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleViewApplication(job)}>
+                                  <FileText className="w-4 h-4 mr-2" />
+                                  View Application
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
+                                  <Edit className="w-4 h-4 mr-2" />
+                                  Edit Job
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => confirmArchive(job)}>
+                                  <Archive className="w-4 h-4 mr-2" />
+                                  Archive
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </td>
