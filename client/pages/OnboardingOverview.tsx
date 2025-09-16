@@ -32,6 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Extended candidate interface with pipeline stages
 interface PipelineCandidate {
@@ -153,6 +154,8 @@ export default function OnboardingOverview() {
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
 
   // Filter candidates based on search and filters
   const filteredCandidates = useMemo(() => {
@@ -222,24 +225,8 @@ export default function OnboardingOverview() {
   };
 
   const handleViewCandidate = (candidate: PipelineCandidate) => {
-    try {
-      const profile = {
-        id: candidate.id,
-        applicantName: candidate.name,
-        appliedPosition: candidate.position,
-        department: "",
-        currentRound: "",
-        status: candidate.status,
-        email: candidate.email,
-        phone: candidate.phone,
-        roomId: `ROOM-${candidate.id.padStart(3, '0')}`,
-        reviewRoom: undefined as string | undefined,
-        assignedInterviewers: [] as string[],
-        interviewSteps: [] as any[],
-      };
-      window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify(profile));
-    } catch {}
-    navigate(`/candidate-details/${candidate.id}`);
+    setProfileCandidate(candidate);
+    setShowProfileModal(true);
   };
 
   return (
@@ -466,6 +453,59 @@ export default function OnboardingOverview() {
           </CardContent>
         </Card>
       </div>
+
+      <Dialog open={showProfileModal} onOpenChange={setShowProfileModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold">Candidate Profile</DialogTitle>
+            <DialogDescription>Quick view of the selected candidate.</DialogDescription>
+          </DialogHeader>
+          {profileCandidate && (
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarFallback className="bg-blue-600 text-white text-sm font-medium">
+                    {profileCandidate.name.split(" ").map(n => n[0]).join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-semibold text-foreground">{profileCandidate.name}</div>
+                  <div className="text-muted-foreground text-xs">{profileCandidate.position}</div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Badge className={`text-xs capitalize ${getStageColor(profileCandidate.stage)}`}>{profileCandidate.stage}</Badge>
+                <Badge className={`text-xs capitalize ${getStatusColor(profileCandidate.status)}`}>{profileCandidate.status.replace('-', ' ')}</Badge>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <div className="text-xs text-muted-foreground">Email</div>
+                  <div className="font-medium break-all">{profileCandidate.email}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Phone</div>
+                  <div className="font-medium">{profileCandidate.phone}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Location</div>
+                  <div className="font-medium">{profileCandidate.location}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Applied Date</div>
+                  <div className="font-medium">{new Date(profileCandidate.appliedDate).toLocaleDateString()}</div>
+                </div>
+              </div>
+              <div>
+                <div className="text-xs text-muted-foreground mb-1">Progress</div>
+                <ProgressBar progress={profileCandidate.progress} />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowProfileModal(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 }
