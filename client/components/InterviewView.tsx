@@ -414,6 +414,16 @@ function getDepartmentColor(department: string): string {
 }
 
 export default function InterviewView() {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowTimelineSheet(false);
+        setShowCandidateDetailsModal(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
   // Main Panel States
   const [activeMainTab, setActiveMainTab] = useState("interview-status");
 
