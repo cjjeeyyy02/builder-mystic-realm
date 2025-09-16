@@ -3434,15 +3434,7 @@ Google India"
                                 </Button>
                                 <Button variant="outline" size="sm" className="text-xs">
                                   <MessageSquare className="w-3 h-3 mr-1" />
-                                  Submit Remark
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
-                                  <Settings className="w-3 h-3 mr-1" />
-                                  Update Status
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
-                                  <FileText className="w-3 h-3 mr-1" />
-                                  Submit Score
+                                  Submit Remark & Score
                                 </Button>
                               </div>
                             </div>
