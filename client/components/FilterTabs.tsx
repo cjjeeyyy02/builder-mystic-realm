@@ -607,8 +607,8 @@ export default function FilterTabs() {
     <div className="space-y-6">
       {/* Modern Pipeline Stage Headers */}
       <div className="w-full">
-        <div className="relative bg-white border border-gray-100 rounded-lg shadow-sm">
-          <div className="flex w-full items-stretch relative">
+        <div className="relative bg-white border border-gray-100 rounded-2xl shadow-lg shadow-gray-100/50">
+          <div className="flex w-full items-stretch relative p-2 gap-1">
             {tabs.map((tab, index) => (
               <Button
                 key={tab.id}
@@ -616,33 +616,26 @@ export default function FilterTabs() {
                 variant="ghost"
                 aria-current={activeTab === tab.id ? 'page' : undefined}
                 className={`
-                  relative flex-1 min-w-0 px-6 py-4 text-sm font-bold tracking-wide
-                  rounded-none transition-all duration-200 ease-in-out
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset
+                  relative flex-1 min-w-0 px-8 py-4 text-sm font-bold tracking-wide
+                  rounded-xl transition-all duration-300 ease-in-out
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
                   ${activeTab === tab.id
-                    ? 'text-blue-700 bg-blue-50/80 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/60'
+                    ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-500/25 transform scale-[1.02]'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 bg-gray-50/30'
                   }
-                  ${index === 0 ? 'rounded-l-lg' : ''}
-                  ${index === tabs.length - 1 ? 'rounded-r-lg' : ''}
-                  ${index > 0 ? 'border-l border-gray-300' : ''}
                 `}
               >
-                <span className="relative z-10 whitespace-nowrap">{tab.label}</span>
+                <span className="relative z-10 whitespace-nowrap font-bold">{tab.label}</span>
 
-                {/* Active state underline/highlight bar */}
+                {/* Active state subtle inner glow */}
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/10 to-transparent"></div>
                 )}
 
-                {/* Subtle glow effect on hover */}
-                <div className={`
-                  absolute inset-0 rounded-lg transition-opacity duration-200
-                  ${activeTab === tab.id
-                    ? 'opacity-100 bg-gradient-to-b from-blue-50 to-transparent'
-                    : 'opacity-0 hover:opacity-100 bg-gradient-to-b from-gray-50 to-transparent'
-                  }
-                `}></div>
+                {/* Hover effect for inactive tabs */}
+                {activeTab !== tab.id && (
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-gray-100/0 via-gray-100/50 to-gray-100/0 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                )}
               </Button>
             ))}
           </div>
