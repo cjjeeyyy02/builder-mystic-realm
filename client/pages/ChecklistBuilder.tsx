@@ -41,6 +41,9 @@ interface Checklist {
   jobConnected: string;
   items: ChecklistItem[];
   linkedJobs: string[];
+  isGeneric?: boolean;
+  label?: string;
+  triggerStage?: "screening" | "interview" | "activation" | "hired";
 }
 
 export default function ChecklistBuilder() {
@@ -69,6 +72,24 @@ export default function ChecklistBuilder() {
         { id: "2", name: "Design Tools Setup", description: "Confirm access to design software", type: "Checkbox", completed: false, required: false },
         { id: "3", name: "Brand Guidelines", description: "Review and acknowledge brand standards", type: "Checkbox", completed: false, required: true },
         { id: "4", name: "First Design Task", description: "Complete assigned starter project", type: "Free Text", completed: false, required: false },
+      ]
+    },
+    {
+      id: "hired-generic",
+      title: "Hired Checklist",
+      description: "Essential post-hiring tasks for all employees",
+      jobConnected: "",
+      linkedJobs: [],
+      isGeneric: true,
+      label: "Generic for all employees",
+      triggerStage: "hired",
+      items: [
+        { id: "h1", name: "HR Documentation", description: "Complete all mandatory HR forms and documentation", type: "File Upload", completed: false, required: true },
+        { id: "h2", name: "System Access Setup", description: "Set up email, SSO, and required tools access", type: "Checkbox", completed: false, required: true },
+        { id: "h3", name: "Equipment Allocation", description: "Allocate and record company equipment (laptop, peripherals)", type: "Checkbox", completed: false, required: true },
+        { id: "h4", name: "Welcome Orientation", description: "Attend company orientation session", type: "Checkbox", completed: false, required: false },
+        { id: "h5", name: "Team Introduction", description: "Meet the team and key stakeholders", type: "Checkbox", completed: false, required: false },
+        { id: "h6", name: "Policy Briefing", description: "Review company policies and acknowledge receipt", type: "Checkbox", completed: false, required: true }
       ]
     }
   ]);
@@ -172,7 +193,7 @@ export default function ChecklistBuilder() {
                           </span>
                           <span className="flex items-center gap-1">
                             <Link className="h-3 w-3" />
-                            {checklist.jobConnected || 'No job'}
+                            {checklist.isGeneric ? (checklist.label || 'Generic for all employees') : (checklist.jobConnected || 'No job')}
                           </span>
                         </div>
                         

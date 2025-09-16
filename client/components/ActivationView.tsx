@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { dispatchStageChange } from "@/lib/autoChecklist";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -125,11 +126,15 @@ export default function ActivationView() {
   };
 
   const sendGmailTemplate = async (action: "approve" | "reject", emp: Employee) => {
-    // Placeholder for Gmail API integration — replace with real API call when connected
     console.log(`Would send Gmail template for ${action} to ${emp.name} (job ${emp.jobId})`);
-    // Update employee status locally
     setEmployees((prev) => prev.map((e) => e.jobId === emp.jobId ? { ...e, activationProgress: action === 'approve' ? 100 : e.activationProgress } : e));
-    // Provide a basic user feedback
+    if (action === 'approve') {
+      try {
+        dispatchStageChange(emp.jobId, 'hired', { candidateName: emp.name });
+      } catch (err) {
+        console.error('Failed to dispatch stage change event', err);
+      }
+    }
     alert(`${action === 'approve' ? 'Approval' : 'Rejection'} email triggered for ${emp.name}. (Simulated)`);
   };
 
