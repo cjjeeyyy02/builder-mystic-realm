@@ -1624,49 +1624,104 @@ Google India`
                   </CardContent>
                 </Card>
 ) : (
-                /* Calendar View */
-                <div className="bg-white border rounded-lg">
-                  {/* Calendar Header */}
-                  <div className="flex items-center justify-between p-3 border-b">
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}>
-                        <ArrowLeft className="w-4 h-4" />
-                      </Button>
-                      <div className="text-sm font-semibold">
-                        {calendarDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })}
-                      </div>
-                      <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}>
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    <Button variant="ghost" size="sm" onClick={() => setCalendarDate(new Date())}>Today</Button>
-                  </div>
-
-                  {/* Weekday Headers */}
-                  <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-2 border-b">
-                    {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
-                      <div key={d}>{d}</div>
-                    ))}
-                  </div>
-
-                  {/* Calendar Grid */}
-                  <div className="grid grid-cols-7 gap-px bg-gray-200">
-                    {calendarDays.map((day) => (
-                      <div key={day.toISOString()} className={`min-h-[110px] bg-white p-2 ${day.getMonth() !== calendarDate.getMonth() ? 'bg-gray-50 text-gray-400' : ''}`}>
-                        <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
-                        <div className="space-y-1">
-                          {(eventsByDate[formatDate(day)] || []).map((evt, idx) => (
-                            <div key={idx} className="border border-blue-200 bg-blue-50 text-blue-800 rounded px-1 py-0.5">
-                              <div className="text-[10px] font-semibold truncate">{evt.candidateName}</div>
-                              <div className="text-[10px] truncate">{evt.appliedPosition}</div>
-                              <div className="text-[10px] text-blue-700 truncate">{evt.roundName}</div>
-                            </div>
-                          ))}
+                viewMode === "calendar" ? (
+                  /* Calendar View */
+                  <div className="bg-white border rounded-lg">
+                    {/* Calendar Header */}
+                    <div className="flex items-center justify-between p-3 border-b">
+                      <div className="flex items-center gap-2">
+                        <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}>
+                          <ArrowLeft className="w-4 h-4" />
+                        </Button>
+                        <div className="text-sm font-semibold">
+                          {calendarDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })}
                         </div>
+                        <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}>
+                          <ArrowRight className="w-4 h-4" />
+                        </Button>
                       </div>
+                      <Button variant="ghost" size="sm" onClick={() => setCalendarDate(new Date())}>Today</Button>
+                    </div>
+
+                    {/* Weekday Headers */}
+                    <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-2 border-b">
+                      {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
+                        <div key={d}>{d}</div>
+                      ))}
+                    </div>
+
+                    {/* Calendar Grid */}
+                    <div className="grid grid-cols-7 gap-px bg-gray-200">
+                      {calendarDays.map((day) => (
+                        <div key={day.toISOString()} className={`min-h-[110px] bg-white p-2 ${day.getMonth() !== calendarDate.getMonth() ? 'bg-gray-50 text-gray-400' : ''}`}>
+                          <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
+                          <div className="space-y-1">
+                            {(eventsByDate[formatDate(day)] || []).map((evt, idx) => (
+                              <div key={idx} className="border border-blue-200 bg-blue-50 text-blue-800 rounded px-1 py-0.5">
+                                <div className="text-[10px] font-semibold truncate">{evt.candidateName}</div>
+                                <div className="text-[10px] truncate">{evt.appliedPosition}</div>
+                                <div className="text-[10px] text-blue-700 truncate">{evt.roundName}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* Card View */
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {interviewCandidates.map((c) => (
+                      <Card key={c.id} className="p-4 border border-gray-200">
+                        <CardContent className="p-0 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                                <span className="text-sm font-medium text-white">{c.applicantName.charAt(0)}</span>
+                              </div>
+                              <div>
+                                <p className="font-semibold text-sm">{c.applicantName}</p>
+                                <p className="text-xs text-gray-500">ID: {c.id}</p>
+                              </div>
+                            </div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleViewCandidateDetails(c.id, c.applicantName)}>
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Details
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleManageTimeline(c.id, c.applicantName)}>
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Timeline
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
+
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-gray-500">Applied Role:</span>
+                              <span className="text-xs font-medium truncate ml-2">{c.appliedPosition}</span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-gray-500">Current Round:</span>
+                              <span className="text-xs font-medium text-blue-600 truncate ml-2">{c.currentRound}</span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-gray-500">Status:</span>
+                              <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getStatusColor(c.status)}`}>{c.status}</span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
-                </div>
+                )
               )}
             </div>
           )}
