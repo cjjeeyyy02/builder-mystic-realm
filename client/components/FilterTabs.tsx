@@ -605,29 +605,29 @@ export default function FilterTabs() {
 
   return (
     <div className="space-y-6">
-      {/* Flat Rectangle Stage Headers */}
+      {/* Rectangular Block Stage Headers */}
       <div className="w-full">
         <div className="bg-white border border-gray-200">
-          <div className="flex w-full items-stretch">
+          <div className="flex w-full">
             {tabs.map((tab, index) => (
-              <Button
+              <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                variant="ghost"
                 aria-current={activeTab === tab.id ? 'page' : undefined}
                 className={`
-                  flex-1 min-w-0 px-6 py-4 text-base font-medium tracking-normal
-                  transition-colors duration-200 ease-in-out
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset
+                  flex-1 px-6 py-4 text-base font-medium
+                  font-['Poppins',sans-serif] tracking-normal
+                  transition-colors duration-200
                   border-r border-gray-200 last:border-r-0
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset
                   ${activeTab === tab.id
-                    ? 'text-white bg-blue-600 font-bold'
+                    ? 'text-white bg-blue-600'
                     : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
                   }
                 `}
               >
                 <span className="whitespace-nowrap">{tab.label}</span>
-              </Button>
+              </button>
             ))}
           </div>
         </div>
