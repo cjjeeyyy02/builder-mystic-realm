@@ -1623,98 +1623,49 @@ Google India`
                     </Table>
                   </CardContent>
                 </Card>
-              ) : (
-                /* Card View - 3x3 Grid */
-                <div className="grid grid-cols-3 gap-4">
-                  {[
-                    {id: '001', name: 'Jaya', country: 'India', role: 'Senior Developer', currentRound: 'Managerial - 4/5', nextRound: 'Human Resources - 5/5', progress: 90},
-                    {id: '002', name: 'Mark', country: 'USA', role: 'Graphic Designer', currentRound: 'Managerial - 4/5', nextRound: 'Human Resources - 5/5', progress: 90},
-                    {id: '003', name: 'John', country: 'USA', role: 'Content writer', currentRound: 'Human Resources - 5/5', nextRound: 'NO ROUNDS', progress: 100},
-                    {id: '004', name: 'Sara', country: 'Europe', role: 'Copywriter', currentRound: 'Editing Test - 4/5', nextRound: 'Human Resources - 5/5', progress: 90},
-                    {id: '005', name: 'Shruti', country: 'India', role: 'Sale Associate', currentRound: 'Culture Test - 3/5', nextRound: 'Case Study Debate - 4/5', progress: 70},
-                    {id: '006', name: 'Robin', country: 'Russia', role: 'AI Engineer', currentRound: 'Project Design - 3/5', nextRound: 'Behavioral - 4/5', progress: 60},
-                    {id: '007', name: 'Kayle', country: 'Russia', role: 'ML Engineer', currentRound: 'Human Resources - 5/5', nextRound: 'NO ROUNDS', progress: 100},
-                    {id: '008', name: 'Vali', country: 'China', role: 'Data Analyst', currentRound: 'Data Analysis - 4/5', nextRound: 'Human Resources - 5/5', progress: 90},
-                    {id: '009', name: 'Anne', country: 'Canada', role: 'Finance Analyst', currentRound: 'Business Analysis - 2/5', nextRound: 'Case Study Debate - 3/5', progress: 40}
-                  ].map((candidate) => (
-                    <Card key={candidate.id} className="p-4 hover:shadow-lg transition-all duration-200 border border-gray-200">
-                      <CardContent className="p-0 space-y-3">
-                        {/* Header with Job ID and Name */}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                              <span className="text-sm font-medium text-white">
-                                {candidate.name.charAt(0)}
-                              </span>
+) : (
+                /* Calendar View */
+                <div className="bg-white border rounded-lg">
+                  {/* Calendar Header */}
+                  <div className="flex items-center justify-between p-3 border-b">
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}>
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                      <div className="text-sm font-semibold">
+                        {calendarDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })}
+                      </div>
+                      <Button variant="outline" size="sm" onClick={() => setCalendarDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}>
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={() => setCalendarDate(new Date())}>Today</Button>
+                  </div>
+
+                  {/* Weekday Headers */}
+                  <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-2 border-b">
+                    {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
+                      <div key={d}>{d}</div>
+                    ))}
+                  </div>
+
+                  {/* Calendar Grid */}
+                  <div className="grid grid-cols-7 gap-px bg-gray-200">
+                    {calendarDays.map((day) => (
+                      <div key={day.toISOString()} className={`min-h-[110px] bg-white p-2 ${day.getMonth() !== calendarDate.getMonth() ? 'bg-gray-50 text-gray-400' : ''}`}>
+                        <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
+                        <div className="space-y-1">
+                          {(eventsByDate[formatDate(day)] || []).map((evt, idx) => (
+                            <div key={idx} className="border border-blue-200 bg-blue-50 text-blue-800 rounded px-1 py-0.5">
+                              <div className="text-[10px] font-semibold truncate">{evt.candidateName}</div>
+                              <div className="text-[10px] truncate">{evt.appliedPosition}</div>
+                              <div className="text-[10px] text-blue-700 truncate">{evt.roundName}</div>
                             </div>
-                            <div>
-                              <p className="font-semibold text-sm">{candidate.name}</p>
-                              <p className="text-xs text-gray-500">ID: {candidate.id}</p>
-                            </div>
-                          </div>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onClick={() => handleViewCandidateDetails(candidate.id, candidate.name)}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Details
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => handleManageTimeline(candidate.id, candidate.name)}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          ))}
                         </div>
-
-                        {/* Country and Role */}
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">Country:</span>
-                            <span className="text-xs font-medium">{candidate.country}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">Role:</span>
-                            <span className="text-xs font-medium truncate ml-2">{candidate.role}</span>
-                          </div>
-                        </div>
-
-                        {/* Current and Next Round */}
-                        <div className="space-y-2">
-                          <div>
-                            <span className="text-xs text-gray-500">Current Round:</span>
-                            <p className="text-xs font-medium text-blue-600">{candidate.currentRound}</p>
-                          </div>
-                          <div>
-                            <span className="text-xs text-gray-500">Next Round:</span>
-                            <p className="text-xs font-medium text-purple-600">{candidate.nextRound}</p>
-                          </div>
-                        </div>
-
-                        {/* Progress Bar */}
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">Progress:</span>
-                            <span className="text-xs font-semibold">{candidate.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className={`h-2 rounded-full transition-all duration-300 ${
-                                candidate.progress >= 90 ? 'bg-gradient-to-r from-green-400 to-green-500' :
-                                candidate.progress >= 70 ? 'bg-gradient-to-r from-yellow-400 to-orange-500' :
-                                'bg-gradient-to-r from-red-400 to-red-500'
-                              }`}
-                              style={{width: `${candidate.progress}%`}}
-                            ></div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
