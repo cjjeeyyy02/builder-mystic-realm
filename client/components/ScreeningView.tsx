@@ -1016,6 +1016,57 @@ export default function ScreeningView() {
         </DialogContent>
       </Dialog>
 
+      {/* Update Screening Status Modal */}
+      <Dialog open={showUpdateStatusModal} onOpenChange={setShowUpdateStatusModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Update Screening Status</DialogTitle>
+            <DialogDescription>
+              {statusCandidate && `Update the screening status for ${statusCandidate.name}`}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="statusNotes">Screening Notes</Label>
+              <Textarea
+                id="statusNotes"
+                placeholder="Add notes about the candidate's screening..."
+                value={statusNotes}
+                onChange={(e) => setStatusNotes(e.target.value)}
+                className="min-h-[100px] mt-1"
+              />
+            </div>
+          </div>
+          <DialogFooter className="gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowUpdateStatusModal(false);
+                setStatusCandidate(null);
+                setStatusNotes("");
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleStatusReject}
+              className="bg-red-600 hover:bg-red-700"
+            >
+              <X className="w-4 h-4 mr-2" />
+              Reject
+            </Button>
+            <Button
+              onClick={handleStatusProceed}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              <Check className="w-4 h-4 mr-2" />
+              Proceed
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Email Side Sheet */}
       <Sheet open={showEmailSheet} onOpenChange={setShowEmailSheet}>
         <SheetContent side="right" className="w-full max-w-md">
