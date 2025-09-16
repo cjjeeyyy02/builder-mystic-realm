@@ -1342,7 +1342,7 @@ Google India`
                           INTERVIEW PROGRESS
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          UPDATE
+                          ACTION
                         </TableHead>
                       </TableRow>
                     </TableHeader>
