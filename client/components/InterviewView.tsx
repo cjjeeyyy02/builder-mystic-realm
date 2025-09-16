@@ -1029,10 +1029,73 @@ Google India`
     }
   };
 
+  // Candidate Details Modal States
+  const [showCandidateDetailsModal, setShowCandidateDetailsModal] = useState(false);
+  const [selectedCandidateDetails, setSelectedCandidateDetails] = useState<{
+    id: string;
+    applicantName: string;
+    appliedPosition: string;
+    department: string;
+    currentRound: string;
+    status: string;
+    email: string;
+    phone: string;
+    roomId: string;
+    reviewRoom: string;
+    assignedInterviewers: string[];
+    interviewSteps: Array<{
+      id: string;
+      title: string;
+      interviewer: string;
+      description: string;
+      date: string;
+      time: string;
+      status: string;
+      remarks: string;
+    }>;
+  } | null>(null);
+
   // Menu action handlers
   const handleViewCandidateDetails = (candidateId: string, candidateName: string) => {
-    // Navigate to candidate details page
-    navigate(`/candidate-details/${candidateId}`);
+    // Mock candidate data based on ID
+    const candidateDetails = {
+      id: candidateId,
+      applicantName: candidateName,
+      appliedPosition: "Senior React Developer",
+      department: "Engineering",
+      currentRound: "System Design Interview",
+      status: "in-progress",
+      email: `${candidateName.toLowerCase().replace(' ', '.')}@example.com`,
+      phone: "(555) 234-5678",
+      roomId: `ROOM-${candidateId.padStart(3, '0')}`,
+      reviewRoom: "https://zoom.us/j/123456789",
+      assignedInterviewers: ["David Wilson", "Lisa Chen"],
+      interviewSteps: [
+        {
+          id: "step1",
+          title: "Technical Interview",
+          interviewer: "David Wilson, Tech Lead",
+          description: "Assessment of technical skills and problem-solving abilities",
+          date: "2023-05-20",
+          time: "10:00 AM",
+          status: "Completed",
+          remarks: "Strong technical skills, especially in React and TypeScript. Solved all problems efficiently."
+        },
+        {
+          id: "step2",
+          title: "System Design Interview",
+          interviewer: "Lisa Chen, Senior Architect",
+          description: "Evaluation of system design and architecture knowledge",
+          date: "2023-05-22",
+          time: "2:00 PM",
+          status: "Scheduled",
+          remarks: ""
+        }
+      ]
+    };
+
+    setSelectedCandidateDetails(candidateDetails);
+    setShowCandidateDetailsModal(true);
   };
 
   // Timeline Management Side Sheet States
