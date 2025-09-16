@@ -66,6 +66,7 @@ const App = () => (
           <Route path="/schedule-interview" element={<ScheduleInterview />} />
           <Route path="/candidate-documents-repository" element={<CandidateDocumentsRepository />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/onboarding-overview" element={<OnboardingOverview />} />
           <Route path="/job-posting" element={<JobPosting />} />
           <Route path="/hiring-pipeline" element={<HiringPipeline />} />
           <Route path="/checklist-builder" element={<ChecklistBuilder />} />
