@@ -2346,7 +2346,7 @@ Google India"
                         <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS DECISION</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">FINAL DECISION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">UPDATE</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">ACTION</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
