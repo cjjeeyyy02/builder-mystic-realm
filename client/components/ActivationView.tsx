@@ -255,7 +255,7 @@ export default function ActivationView() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className={isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
                           <DropdownMenuItem
-                            onSelect={(e) => { e.preventDefault(); openChecklistModal(employee); }}
+                            onSelect={() => openChecklistModal(employee)}
                             className={`cursor-pointer transition-colors duration-200 ${
                               isDarkMode
                                 ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
@@ -266,7 +266,7 @@ export default function ActivationView() {
                             View Checklist
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onSelect={(e) => { e.preventDefault(); console.log(`Send reminder for ${employee.name}`); }}
+                            onSelect={() => console.log(`Send reminder for ${employee.name}`)}
                             className={`cursor-pointer transition-colors duration-200 ${
                               isDarkMode
                                 ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
