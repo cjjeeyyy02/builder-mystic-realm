@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SearchWithDropdown } from "@/components/ui/search-with-dropdown";
@@ -459,19 +459,22 @@ export default function InterviewView() {
     }
     return days;
   };
-  const calendarDays = getCalendarDays(calendarDate);
+  const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
   // Build events map by date from rounds and interviewCandidates
-  const eventsByDate: Record<string, { candidateName: string; appliedPosition: string; roundName: string; }[]> = {};
-  const candidateById = Object.fromEntries(interviewCandidates.map(c => [c.id, c]));
-  rounds.forEach(r => {
-    (r.candidates || []).forEach(cid => {
-      const c = candidateById[cid];
-      if (!c) return;
-      const key = r.scheduledDate;
-      if (!eventsByDate[key]) eventsByDate[key] = [];
-      eventsByDate[key].push({ candidateName: c.applicantName, appliedPosition: c.appliedPosition, roundName: r.roundName });
+  const eventsByDate = useMemo(() => {
+    const map: Record<string, { candidateName: string; appliedPosition: string; roundName: string; }[]> = {};
+    const candidateById = Object.fromEntries(interviewCandidates.map(c => [c.id, c]));
+    rounds.forEach(r => {
+      (r.candidates || []).forEach(cid => {
+        const c = candidateById[cid];
+        if (!c) return;
+        const key = r.scheduledDate;
+        if (!map[key]) map[key] = [];
+        map[key].push({ candidateName: c.applicantName, appliedPosition: c.appliedPosition, roundName: r.roundName });
+      });
     });
-  });
+    return map;
+  }, [rounds]);
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
