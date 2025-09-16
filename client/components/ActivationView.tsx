@@ -90,7 +90,10 @@ export default function ActivationView() {
 
   const openChecklistModal = (emp: Employee) => {
     setSelectedEmployeeForChecklist(emp);
-    setIsChecklistOpen(true);
+    // Defer opening so the dropdown can close first (prevents focus/overlay freeze)
+    setTimeout(() => {
+      setIsChecklistOpen(true);
+    }, 0);
   };
 
   const closeChecklistModal = () => {
