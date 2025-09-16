@@ -3450,22 +3450,6 @@ Google India"
                         </div>
                       </div>
                     </div>
-
-                    {/* Review Room */}
-                    <div className="border-t border-gray-200 pt-3">
-                      <h3 className="text-xs font-semibold text-gray-900 mb-2">Review Room</h3>
-                      <div>
-                        <span className="text-xs font-medium">Zoom link:</span>
-                        <a
-                          href={selectedCandidateDetails.reviewRoom}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 underline ml-1 text-xs"
-                        >
-                          {selectedCandidateDetails.reviewRoom}
-                        </a>
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
