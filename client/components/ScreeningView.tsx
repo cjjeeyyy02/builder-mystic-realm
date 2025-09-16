@@ -485,19 +485,19 @@ export default function ScreeningView() {
                       className={`hover:bg-blue-50/60 transition-colors duration-200 ${
                         index % 2 === 0 ? 'bg-white' : 'bg-gray-50/20'
                       }`}
-                      style={{height: '52px'}}
+                      style={{height: '44px'}}
                     >
-                      <td className="px-3 py-2">
-                        <div className="flex items-center space-x-3">
+                      <td className="px-2 py-1.5">
+                        <div className="flex items-center space-x-2">
                           <div className="flex-shrink-0">
-                            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                            <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
                               <span className="text-xs font-medium text-white">
                                 {candidateInitials}
                               </span>
                             </div>
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="text-sm font-medium text-gray-900 truncate" title={candidate.name}>
+                            <p className="text-xs font-medium text-gray-900 truncate" title={candidate.name}>
                               {candidate.name}
                             </p>
                             <p className="text-xs text-gray-500 truncate" title={candidate.location}>
@@ -506,24 +506,24 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-3 py-2">
-                        <div className="text-sm text-gray-900 truncate" title={candidate.position}>{candidate.position}</div>
+                      <td className="px-2 py-1.5">
+                        <div className="text-xs text-gray-900 truncate" title={candidate.position}>{candidate.position}</div>
                       </td>
-                      <td className="px-3 py-2">
-                        <div className="text-sm font-medium text-gray-900">{candidate.totalExperience}</div>
+                      <td className="px-2 py-1.5">
+                        <div className="text-xs font-medium text-gray-900">{candidate.totalExperience}</div>
                       </td>
-                      <td className="px-3 py-2">
-                        <div className="text-sm text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
+                      <td className="px-2 py-1.5">
+                        <div className="text-xs text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
                       </td>
-                      <td className="px-3 py-2">
-                        <div className="text-sm text-gray-900">{candidate.phone}</div>
+                      <td className="px-2 py-1.5">
+                        <div className="text-xs text-gray-900">{candidate.phone}</div>
                       </td>
-                      <td className="px-3 py-2">
-                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${statusBadgeClass}`}>
+                      <td className="px-2 py-1.5">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
                           {statusText}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-center">
+                      <td className="px-2 py-1.5 text-center">
                         <div className="flex items-center justify-center">
                           <ActionComponent
                             candidateId={candidate.id}
