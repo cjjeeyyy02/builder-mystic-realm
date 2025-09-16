@@ -1134,8 +1134,10 @@ Google India`
       ]
     };
 
-    setSelectedCandidateDetails(candidateDetails);
-    setShowCandidateDetailsModal(true);
+    startTransition(() => {
+      setSelectedCandidateDetails(candidateDetails);
+      setShowCandidateDetailsModal(true);
+    });
   };
 
   // Timeline Management Side Sheet States
