@@ -72,7 +72,8 @@ import {
   X,
   ChevronDown,
   Grid,
-  List
+  List,
+  Phone
 } from "lucide-react";
 
 interface InterviewCandidate {
