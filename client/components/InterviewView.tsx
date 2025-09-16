@@ -1247,15 +1247,17 @@ Google India`
                     size="sm"
                     variant={viewMode === "table" ? "default" : "outline"}
                     onClick={() => setViewMode("table")}
+                    title="List View"
                   >
                     <List className="w-4 h-4" />
                   </Button>
                   <Button
                     size="sm"
-                    variant={viewMode === "card" ? "default" : "outline"}
-                    onClick={() => setViewMode("card")}
+                    variant={viewMode === "calendar" ? "default" : "outline"}
+                    onClick={() => setViewMode("calendar")}
+                    title="Calendar View"
                   >
-                    <Grid className="w-4 h-4" />
+                    <Calendar className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
