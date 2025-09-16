@@ -419,39 +419,35 @@ export default function ScreeningView() {
             <div className="w-full">
               <table className="w-full table-fixed">
                 <colgroup>
-                  <col className="w-[18%]" />
-                  <col className="w-[16%]" />
-                  <col className="w-[10%]" />
-                  <col className="w-[10%]" />
+                  <col className="w-[20%]" />
                   <col className="w-[18%]" />
                   <col className="w-[12%]" />
+                  <col className="w-[20%]" />
+                  <col className="w-[14%]" />
                   <col className="w-[8%]" />
                   <col className="w-[8%]" />
                 </colgroup>
                 <thead>
-                  <tr>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                  <tr className="border-b border-gray-200/60">
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       CANDIDATE
                     </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       APPLIED POSITION
                     </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
-                      TOTAL EXP
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
+                      TOTAL EXPERIENCE
                     </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
-                      REL EXP
-                    </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       EMAIL
                     </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       PHONE
                     </th>
-                    <th className="text-left px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-left px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       STATUS
                     </th>
-                    <th className="text-center px-2 py-2 text-sm font-bold text-gray-900 bg-gray-50 uppercase tracking-wide">
+                    <th className="text-center px-3 py-3 text-sm font-bold text-gray-900 bg-white uppercase tracking-wide">
                       ACTION
                     </th>
                   </tr>
