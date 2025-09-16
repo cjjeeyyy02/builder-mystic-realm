@@ -3282,17 +3282,7 @@ Google India"
                     </div>
                   </div>
 
-                  {/* Sticky Action Buttons */}
-                  <div className="flex items-center gap-3 mt-4 pt-4 border-t border-blue-200">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2">
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Details
-                    </Button>
-                    <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2">
-                      <Mail className="w-4 h-4 mr-2" />
-                      Send Invitation
-                    </Button>
-                  </div>
+                  {/* Removed View Details and Send Invitation buttons per requirements */}
                 </div>
 
                 {/* Scrollable Content */}
