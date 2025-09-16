@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, startTransition } from "react";
+import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SearchWithDropdown } from "@/components/ui/search-with-dropdown";
@@ -1170,6 +1171,8 @@ Google India`
       status: "Pending" | "Completed" | "In Progress";
       schedule?: string;
       notes?: string;
+      remarks?: string;
+      score?: number;
       history?: Array<{
         date: string;
         action: string;
@@ -1177,6 +1180,25 @@ Google India`
       }>;
     }>;
   } | null>(null);
+
+  // Timeline action modals state
+  const [selectedStepId, setSelectedStepId] = useState<string | null>(null);
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false);
+  const [showRemarkScoreModal, setShowRemarkScoreModal] = useState(false);
+
+  // Forms
+  const [reminderMessage, setReminderMessage] = useState("");
+  const [scheduleForm, setScheduleForm] = useState({ date: "", time: "", interviewer: "" });
+  const [remarkForm, setRemarkForm] = useState<{ remarks: string; score: string }>({ remarks: "", score: "" });
+
+  const { toast } = useToast();
+
+  const currentStep = () => {
+    if (!selectedCandidateForTimeline || !selectedStepId) return null;
+    return selectedCandidateForTimeline.steps.find(s => s.id === selectedStepId) || null;
+  };
 
   const handleManageTimeline = (candidateId: string, candidateName: string) => {
     // Mock data for the candidate timeline with expanded information
@@ -3420,19 +3442,36 @@ Google India"
 
                               {/* Step Actions */}
                               <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
-                                <Button variant="outline" size="sm" className="text-xs">
+                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                  setSelectedStepId(step.id);
+                                  setReminderMessage("");
+                                  setShowReminderModal(true);
+                                }}>
                                   <Mail className="w-3 h-3 mr-1" />
                                   Send Reminder
                                 </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
+                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                  setSelectedStepId(step.id);
+                                  const first = selectedCandidateForTimeline?.interviewers?.[0] || "";
+                                  setScheduleForm({ date: "", time: "", interviewer: first });
+                                  setShowScheduleModal(true);
+                                }}>
                                   <Calendar className="w-3 h-3 mr-1" />
                                   Schedule Interview
                                 </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
+                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                  setSelectedStepId(step.id);
+                                  setScheduleForm({ date: step.date || "", time: step.time || "", interviewer: step.interviewer || "" });
+                                  setShowRescheduleModal(true);
+                                }}>
                                   <Edit3 className="w-3 h-3 mr-1" />
                                   Reschedule Interview
                                 </Button>
-                                <Button variant="outline" size="sm" className="text-xs">
+                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                  setSelectedStepId(step.id);
+                                  setRemarkForm({ remarks: step.remarks || "", score: step.score != null ? String(step.score) : "" });
+                                  setShowRemarkScoreModal(true);
+                                }}>
                                   <MessageSquare className="w-3 h-3 mr-1" />
                                   Submit Remark & Score
                                 </Button>
@@ -3456,6 +3495,181 @@ Google India"
           </div>
         </>
       )}
+
+      {/* Action Modals for Timeline Steps */}
+      <Dialog open={showReminderModal} onOpenChange={setShowReminderModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Mail className="w-4 h-4" /> Send Reminder</DialogTitle>
+            <DialogDescription>Send a reminder to the candidate or panel member.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 text-xs">
+            <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
+              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
+              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              {currentStep() && (
+                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+              )}
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Message</label>
+              <Textarea rows={4} value={reminderMessage} onChange={(e) => setReminderMessage(e.target.value)} placeholder="Type your reminder message" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowReminderModal(false)}>Cancel</Button>
+            <Button onClick={() => { setShowReminderModal(false); toast({ title: "Reminder sent successfully" }); }}>Send</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showScheduleModal} onOpenChange={setShowScheduleModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Calendar className="w-4 h-4" /> Schedule Interview</DialogTitle>
+            <DialogDescription>Set the interview schedule for this step.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 text-xs">
+            <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
+              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
+              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              {currentStep() && (
+                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+              )}
+            </div>
+            <div className="grid grid-cols-1 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
+                <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
+                <Input type="time" value={scheduleForm.time} onChange={(e) => setScheduleForm({ ...scheduleForm, time: e.target.value })} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
+                <Select value={scheduleForm.interviewer} onValueChange={(v) => setScheduleForm({ ...scheduleForm, interviewer: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select interviewer" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(selectedCandidateForTimeline?.interviewers || []).map((iv) => (
+                      <SelectItem key={iv} value={iv}>{iv}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowScheduleModal(false)}>Cancel</Button>
+            <Button onClick={() => {
+              if (!selectedCandidateForTimeline || !selectedStepId) return setShowScheduleModal(false);
+              setSelectedCandidateForTimeline(prev => {
+                if (!prev) return prev;
+                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, date: scheduleForm.date, time: scheduleForm.time, interviewer: scheduleForm.interviewer } : s);
+                return { ...prev, steps };
+              });
+              setShowScheduleModal(false);
+              toast({ title: "Interview scheduled successfully" });
+            }}>Save</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showRescheduleModal} onOpenChange={setShowRescheduleModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Edit3 className="w-4 h-4" /> Reschedule Interview</DialogTitle>
+            <DialogDescription>Update the existing interview schedule for this step.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 text-xs">
+            <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
+              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
+              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              {currentStep() && (
+                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+              )}
+            </div>
+            <div className="grid grid-cols-1 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
+                <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
+                <Input type="time" value={scheduleForm.time} onChange={(e) => setScheduleForm({ ...scheduleForm, time: e.target.value })} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
+                <Select value={scheduleForm.interviewer} onValueChange={(v) => setScheduleForm({ ...scheduleForm, interviewer: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select interviewer" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(selectedCandidateForTimeline?.interviewers || []).map((iv) => (
+                      <SelectItem key={iv} value={iv}>{iv}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowRescheduleModal(false)}>Cancel</Button>
+            <Button onClick={() => {
+              if (!selectedCandidateForTimeline || !selectedStepId) return setShowRescheduleModal(false);
+              setSelectedCandidateForTimeline(prev => {
+                if (!prev) return prev;
+                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, date: scheduleForm.date, time: scheduleForm.time, interviewer: scheduleForm.interviewer } : s);
+                return { ...prev, steps };
+              });
+              setShowRescheduleModal(false);
+              toast({ title: "Interview rescheduled successfully" });
+            }}>Update</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showRemarkScoreModal} onOpenChange={setShowRemarkScoreModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><FileText className="w-4 h-4" /> Submit Remark & Score</DialogTitle>
+            <DialogDescription>Add remarks and a score for this step.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 text-xs">
+            <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
+              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
+              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              {currentStep() && (
+                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+              )}
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Remarks</label>
+              <Textarea rows={4} value={remarkForm.remarks} onChange={(e) => setRemarkForm({ ...remarkForm, remarks: e.target.value })} placeholder="Write your remarks" />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Score</label>
+              <Input type="number" min="0" max="100" value={remarkForm.score} onChange={(e) => setRemarkForm({ ...remarkForm, score: e.target.value })} placeholder="e.g., 85" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowRemarkScoreModal(false)}>Cancel</Button>
+            <Button onClick={() => {
+              if (!selectedCandidateForTimeline || !selectedStepId) return setShowRemarkScoreModal(false);
+              const scoreNum = remarkForm.score ? Number(remarkForm.score) : undefined;
+              setSelectedCandidateForTimeline(prev => {
+                if (!prev) return prev;
+                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, remarks: remarkForm.remarks, score: scoreNum } : s);
+                return { ...prev, steps };
+              });
+              setShowRemarkScoreModal(false);
+              toast({ title: "Remark & score submitted successfully" });
+            }}>Submit</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Candidate Details Modal */}
       <Dialog open={showCandidateDetailsModal} onOpenChange={setShowCandidateDetailsModal}>
