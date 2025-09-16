@@ -1496,7 +1496,7 @@ export default function FilterTabs() {
         {activeTab === "screening" && <ScreeningView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "interview" && <InterviewView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "activation" && <ActivationView searchQuery={searchQuery} selectedStage={selectedStage} />}
-        {activeTab === "hired" && <HiredView searchQuery={searchQuery} selectedStage={selectedStage} />}
+        {activeTab === "hired" && null}
       </div>
     </div>
   );
