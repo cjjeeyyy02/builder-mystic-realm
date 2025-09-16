@@ -210,6 +210,14 @@ export default function JobPosting() {
     setAuditLog((prev) => [{ time: new Date().toISOString(), action: "View Job Details", details: job.title }, ...prev]);
   };
 
+  const handleViewApplication = (job: Job) => {
+    // Navigate to applications view for this job
+    console.log("Viewing applications for job:", job.title);
+    setAuditLog((prev) => [{ time: new Date().toISOString(), action: "View Applications", details: job.title }, ...prev]);
+    // This would typically navigate to a dedicated applications page
+    alert(`Viewing applications for: ${job.title}`);
+  };
+
   return (
     <Layout>
       <div className="job-posting space-y-5">
