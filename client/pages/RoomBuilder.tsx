@@ -11,12 +11,35 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import {
   Calendar,
   Users,
   Edit,
   Video,
-  MapPin
+  MapPin,
+  Plus,
+  Upload,
+  X
 } from "lucide-react";
 
 interface Room {
@@ -43,6 +66,20 @@ interface Interview {
 
 export default function RoomBuilder() {
   const [activeTab, setActiveTab] = useState<"virtual" | "physical">("virtual");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [formData, setFormData] = useState({
+    roomTitle: "",
+    description: "",
+    stepNumber: "",
+    interviewType: "",
+    duration: "",
+    mode: "",
+    panelMembers: [""],
+    candidateInstructions: "",
+    evaluationCriteria: [""],
+    scoringRubric: "",
+    attachments: null as File | null
+  });
 
   const rooms: Room[] = [
     {
@@ -103,6 +140,85 @@ export default function RoomBuilder() {
     }
   };
 
+  const addPanelMember = () => {
+    setFormData(prev => ({
+      ...prev,
+      panelMembers: [...prev.panelMembers, ""]
+    }));
+  };
+
+  const removePanelMember = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      panelMembers: prev.panelMembers.filter((_, i) => i !== index)
+    }));
+  };
+
+  const updatePanelMember = (index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      panelMembers: prev.panelMembers.map((member, i) => i === index ? value : member)
+    }));
+  };
+
+  const addEvaluationCriteria = () => {
+    setFormData(prev => ({
+      ...prev,
+      evaluationCriteria: [...prev.evaluationCriteria, ""]
+    }));
+  };
+
+  const removeEvaluationCriteria = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      evaluationCriteria: prev.evaluationCriteria.filter((_, i) => i !== index)
+    }));
+  };
+
+  const updateEvaluationCriteria = (index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      evaluationCriteria: prev.evaluationCriteria.map((criteria, i) => i === index ? value : criteria)
+    }));
+  };
+
+  const handleSave = () => {
+    console.log("Saving room:", formData);
+    setShowCreateModal(false);
+    // Reset form
+    setFormData({
+      roomTitle: "",
+      description: "",
+      stepNumber: "",
+      interviewType: "",
+      duration: "",
+      mode: "",
+      panelMembers: [""],
+      candidateInstructions: "",
+      evaluationCriteria: [""],
+      scoringRubric: "",
+      attachments: null
+    });
+  };
+
+  const handleCancel = () => {
+    setShowCreateModal(false);
+    // Reset form
+    setFormData({
+      roomTitle: "",
+      description: "",
+      stepNumber: "",
+      interviewType: "",
+      duration: "",
+      mode: "",
+      panelMembers: [""],
+      candidateInstructions: "",
+      evaluationCriteria: [""],
+      scoringRubric: "",
+      attachments: null
+    });
+  };
+
   return (
     <Layout>
       <div className="p-6 space-y-6">
@@ -132,6 +248,242 @@ export default function RoomBuilder() {
             <MapPin className="h-4 w-4" />
             Physical Rooms
           </Button>
+        </div>
+
+        {/* Create Room Button */}
+        <div className="flex justify-end">
+          <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
+            <DialogTrigger asChild>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Plus className="h-4 w-4 mr-2" />
+                Create Room
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Create New Room</DialogTitle>
+                <DialogDescription>
+                  Set up a new interview room with detailed configurations.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-6">
+                {/* Basic Info Section */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold border-b pb-2">Basic Info</h3>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="roomTitle">Room Title</Label>
+                    <Input
+                      id="roomTitle"
+                      placeholder="Enter room name"
+                      value={formData.roomTitle}
+                      onChange={(e) => setFormData(prev => ({ ...prev, roomTitle: e.target.value }))}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="description">Description</Label>
+                    <Textarea
+                      id="description"
+                      placeholder="Brief overview of the interview round"
+                      value={formData.description}
+                      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                      rows={3}
+                    />
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Step Details Section */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold border-b pb-2">Step Details</h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="stepNumber">Step Number</Label>
+                      <Input
+                        id="stepNumber"
+                        type="number"
+                        placeholder="1"
+                        value={formData.stepNumber}
+                        onChange={(e) => setFormData(prev => ({ ...prev, stepNumber: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="interviewType">Interview Type</Label>
+                      <Select value={formData.interviewType} onValueChange={(value) => setFormData(prev => ({ ...prev, interviewType: value }))}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select interview type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="hr">HR</SelectItem>
+                          <SelectItem value="technical">Technical</SelectItem>
+                          <SelectItem value="managerial">Managerial</SelectItem>
+                          <SelectItem value="case-study">Case Study</SelectItem>
+                          <SelectItem value="group-discussion">Group Discussion</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="duration">Duration</Label>
+                      <Select value={formData.duration} onValueChange={(value) => setFormData(prev => ({ ...prev, duration: value }))}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select duration" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="30min">30 minutes</SelectItem>
+                          <SelectItem value="45min">45 minutes</SelectItem>
+                          <SelectItem value="1hour">1 hour</SelectItem>
+                          <SelectItem value="1.5hour">1.5 hours</SelectItem>
+                          <SelectItem value="2hour">2 hours</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="mode">Mode</Label>
+                      <Select value={formData.mode} onValueChange={(value) => setFormData(prev => ({ ...prev, mode: value }))}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select mode" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="zoom">Online: Zoom</SelectItem>
+                          <SelectItem value="meet">Online: Google Meet</SelectItem>
+                          <SelectItem value="teams">Online: Microsoft Teams</SelectItem>
+                          <SelectItem value="office">On-site: Office location</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Panel Members */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label>Panel Members</Label>
+                      <Button type="button" variant="outline" size="sm" onClick={addPanelMember}>
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add Member
+                      </Button>
+                    </div>
+                    <div className="space-y-2">
+                      {formData.panelMembers.map((member, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            placeholder="Name, Role, Contact (optional)"
+                            value={member}
+                            onChange={(e) => updatePanelMember(index, e.target.value)}
+                          />
+                          {formData.panelMembers.length > 1 && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => removePanelMember(index)}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="candidateInstructions">Candidate Instructions</Label>
+                    <Textarea
+                      id="candidateInstructions"
+                      placeholder="Notes and requirements for candidates"
+                      value={formData.candidateInstructions}
+                      onChange={(e) => setFormData(prev => ({ ...prev, candidateInstructions: e.target.value }))}
+                      rows={3}
+                    />
+                  </div>
+
+                  {/* Evaluation Criteria */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label>Evaluation Criteria</Label>
+                      <Button type="button" variant="outline" size="sm" onClick={addEvaluationCriteria}>
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add Criteria
+                      </Button>
+                    </div>
+                    <div className="space-y-2">
+                      {formData.evaluationCriteria.map((criteria, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            placeholder="Skills or attributes being tested"
+                            value={criteria}
+                            onChange={(e) => updateEvaluationCriteria(index, e.target.value)}
+                          />
+                          {formData.evaluationCriteria.length > 1 && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => removeEvaluationCriteria(index)}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="scoringRubric">Scoring Rubric (Optional)</Label>
+                    <Textarea
+                      id="scoringRubric"
+                      placeholder="Structured scoring categories and criteria"
+                      value={formData.scoringRubric}
+                      onChange={(e) => setFormData(prev => ({ ...prev, scoringRubric: e.target.value }))}
+                      rows={4}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="attachments">Attachments</Label>
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                      <Upload className="h-8 w-8 mx-auto text-gray-400 mb-2" />
+                      <p className="text-sm text-gray-600 mb-2">Upload documents, case studies, or test files</p>
+                      <input
+                        type="file"
+                        id="attachments"
+                        className="hidden"
+                        onChange={(e) => setFormData(prev => ({ ...prev, attachments: e.target.files?.[0] || null }))}
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => document.getElementById('attachments')?.click()}
+                      >
+                        Choose File
+                      </Button>
+                      {formData.attachments && (
+                        <p className="text-sm text-green-600 mt-2">
+                          Selected: {formData.attachments.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter className="gap-2">
+                <Button variant="outline" onClick={handleCancel}>
+                  Cancel
+                </Button>
+                <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700">
+                  Save Room
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Rooms Table */}
