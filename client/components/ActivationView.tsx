@@ -3,11 +3,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { dispatchStageChange } from "@/lib/autoChecklist";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail, Edit, Upload, Maximize2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "@/components/DarkModeProvider";
+import { useToast } from "@/hooks/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -77,17 +80,28 @@ export default function ActivationView() {
     );
   }, [employees, searchCandidates]);
 
-  // Checklist mapping per candidate: { [jobId]: [{ id, title, completed, files: File[] }] }
-  const [checklistMap, setChecklistMap] = useState<Record<string, { id: string; title: string; completed: boolean; files: any[] }[]>>(() => {
+  // Checklist mapping per candidate: { [jobId]: [{ id, title, completed, files: {name,url}[], dateSubmitted?: string, textSubmission?: string }] }
+  const [checklistMap, setChecklistMap] = useState<Record<string, { id: string; title: string; completed: boolean; files: { name: string; url: string }[]; dateSubmitted?: string; textSubmission?: string }[]>>(() => {
     const map: Record<string, any[]> = {};
     initialEmployees.forEach((e) => {
-      map[e.jobId] = checklistItems.map((it, idx) => ({ id: String(idx + 1), title: it.title, completed: it.completed, files: [] }));
+      map[e.jobId] = checklistItems.map((it, idx) => ({ id: String(idx + 1), title: it.title, completed: it.completed, files: [], dateSubmitted: undefined, textSubmission: "" }));
     });
     return map;
   });
 
   const [selectedEmployeeForChecklist, setSelectedEmployeeForChecklist] = useState<Employee | null>(null);
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
+
+  // Send Link modal state
+  const [showSendLink, setShowSendLink] = useState(false);
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  const [emailAttachment, setEmailAttachment] = useState<File | null>(null);
+
+  // Update Status modal state
+  const [statusModalItemId, setStatusModalItemId] = useState<string | null>(null);
+
+  const { toast } = useToast();
 
   const openChecklistModal = (emp: Employee) => {
     setSelectedEmployeeForChecklist(emp);
@@ -110,7 +124,7 @@ export default function ActivationView() {
       const idx = items.findIndex(i => i.id === itemId);
       if (idx === -1) return prev;
       const fileEntry = { name: file.name, url: URL.createObjectURL(file) };
-      items[idx] = { ...items[idx], completed: true, files: [...items[idx].files, fileEntry] };
+      items[idx] = { ...items[idx], completed: true, files: [...items[idx].files, fileEntry], dateSubmitted: new Date().toISOString() };
       copy[jobId] = items;
 
       // Update employee activation progress based on completed items
@@ -121,6 +135,26 @@ export default function ActivationView() {
         return { ...e, activationProgress: Math.round((completedCount / (total || 1)) * 100) };
       }));
 
+      return copy;
+    });
+  };
+
+  const handleUpdateItemStatus = (jobId: string, itemId: string, status: 'pass' | 'reject') => {
+    setChecklistMap((prev) => {
+      const copy = { ...prev };
+      const items = copy[jobId] ? [...copy[jobId]] : [];
+      const idx = items.findIndex(i => i.id === itemId);
+      if (idx === -1) return prev;
+      const isPass = status === 'pass';
+      items[idx] = { ...items[idx], completed: isPass, dateSubmitted: isPass ? new Date().toISOString() : items[idx].dateSubmitted };
+      copy[jobId] = items;
+
+      setEmployees((emps) => emps.map(e => {
+        if (e.jobId !== jobId) return e;
+        const total = items.length;
+        const completedCount = items.filter(it => it.completed).length;
+        return { ...e, activationProgress: Math.round((completedCount / (total || 1)) * 100) };
+      }));
       return copy;
     });
   };
@@ -295,40 +329,160 @@ export default function ActivationView() {
 
           {/* Checklist Modal */}
           <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Checklist - {selectedEmployeeForChecklist?.name}</DialogTitle>
+            <DialogContent className="max-w-3xl">
+              <DialogHeader className="flex flex-row items-center justify-between">
+                <DialogTitle className="text-lg font-semibold">View Checklist – {selectedEmployeeForChecklist?.name}</DialogTitle>
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => setShowSendLink(true)}>
+                  <Mail className="w-4 h-4 mr-2" />
+                  Send Link to Candidate
+                </Button>
               </DialogHeader>
 
-              <div className="space-y-4">
-                {selectedEmployeeForChecklist && (checklistMap[selectedEmployeeForChecklist.jobId] || []).map((item) => (
-                  <div key={item.id} className="flex items-center justify-between">
-                    <div>
-                      <div className="font-medium">{item.title}</div>
-                      <div className="text-xs text-muted-foreground">{item.completed ? 'Uploaded' : 'Required'}</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="file"
-                        onChange={(e) => handleChecklistFileUpload(selectedEmployeeForChecklist.jobId, item.id, e.target.files?.[0] ?? null)}
-                        className="text-sm"
-                      />
-                      {item.files && item.files.length > 0 && (
-                        <a href={item.files[0].url} target="_blank" rel="noreferrer" className="text-sm text-[var(--hr-primary)]">View</a>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {selectedEmployeeForChecklist && (
+                <div className="space-y-4">
+                  <Accordion type="single" collapsible className="w-full">
+                    {(checklistMap[selectedEmployeeForChecklist.jobId] || []).map((item) => (
+                      <AccordionItem key={item.id} value={item.id}>
+                        <AccordionTrigger className="text-sm font-medium">
+                          <div className="flex items-center gap-2">
+                            <CheckSquare className={`w-4 h-4 ${item.completed ? 'text-green-600' : 'text-gray-400'}`} />
+                            <span>{item.title}</span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="space-y-3 p-3 rounded-md border bg-background">
+                            <div className="flex flex-wrap gap-2">
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                const newTitle = prompt('Edit item name', item.title) || item.title;
+                                setChecklistMap(prev => {
+                                  const copy = { ...prev };
+                                  const arr = copy[selectedEmployeeForChecklist.jobId].map(it => it.id === item.id ? { ...it, title: newTitle } : it);
+                                  copy[selectedEmployeeForChecklist.jobId] = arr;
+                                  return copy;
+                                });
+                              }}>
+                                <Edit className="w-3 h-3 mr-1" /> Edit
+                              </Button>
+                              <label className="inline-flex items-center">
+                                <input type="file" className="hidden" onChange={(e) => handleChecklistFileUpload(selectedEmployeeForChecklist.jobId, item.id, e.target.files?.[0] ?? null)} />
+                                <span className="inline-flex items-center px-2 py-1 border rounded text-xs cursor-pointer"><Upload className="w-3 h-3 mr-1" /> Upload</span>
+                              </label>
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => setStatusModalItemId(item.id)}>
+                                Update Status
+                              </Button>
+                              <div className="ml-auto text-xs text-muted-foreground">
+                                Date Submitted: {item.dateSubmitted ? new Date(item.dateSubmitted).toLocaleString() : '-'}
+                              </div>
+                            </div>
 
-              <DialogFooter>
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex gap-2">
-                    <Button variant="outline" onClick={() => { if (selectedEmployeeForChecklist) sendGmailTemplate('reject', selectedEmployeeForChecklist); }}>Reject</Button>
-                    <Button onClick={() => { if (selectedEmployeeForChecklist) sendGmailTemplate('approve', selectedEmployeeForChecklist); }}>Approve</Button>
+                            {item.textSubmission ? (
+                              <div className="text-sm whitespace-pre-wrap border rounded p-2">{item.textSubmission}</div>
+                            ) : (
+                              <div className="space-y-1">
+                                <label className="block text-xs font-medium">Text Response</label>
+                                <Textarea rows={3} placeholder="Enter response..." onBlur={(e) => {
+                                  const val = e.target.value;
+                                  if (!val) return;
+                                  setChecklistMap(prev => {
+                                    const copy = { ...prev };
+                                    const arr = copy[selectedEmployeeForChecklist.jobId].map(it => it.id === item.id ? { ...it, textSubmission: val, completed: true, dateSubmitted: new Date().toISOString() } : it);
+                                    copy[selectedEmployeeForChecklist.jobId] = arr;
+                                    return copy;
+                                  });
+                                }} />
+                              </div>
+                            )}
+
+                            {item.files && item.files.length > 0 && (
+                              <div className="space-y-2">
+                                {item.files.map((f, idx) => (
+                                  <div key={idx} className="border rounded p-2">
+                                    <div className="flex items-center justify-between text-sm">
+                                      <div className="truncate max-w-[70%]">{f.name}</div>
+                                      <div className="flex items-center gap-2">
+                                        <Button variant="outline" size="sm" className="text-xs" onClick={() => window.open(f.url, '_blank')}><Maximize2 className="w-3 h-3 mr-1" /> Full Screen</Button>
+                                        <Button variant="outline" size="sm" className="text-xs" onClick={() => window.open(f.url, '_blank')}><Eye className="w-3 h-3 mr-1" /> View</Button>
+                                        <a href={f.url} download className="inline-flex items-center px-2 py-1 border rounded text-xs"><Download className="w-3 h-3 mr-1" /> Download</a>
+                                      </div>
+                                    </div>
+                                    <div className="mt-2">
+                                      <iframe src={f.url} className="w-full h-48 border rounded" />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+
+                  {(() => {
+                    const items = checklistMap[selectedEmployeeForChecklist.jobId] || [];
+                    const allDone = items.length > 0 && items.every(it => it.completed);
+                    if (!allDone) return null;
+                    return (
+                      <div className="flex items-center justify-between pt-2 border-t">
+                        <Button variant="destructive" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject</Button>
+                        <Button className="bg-green-600 hover:bg-green-700" onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Proceed to Hired</Button>
+                      </div>
+                    );
+                  })()}
+
+                  <div className="flex justify-end">
+                    <Button variant="ghost" onClick={closeChecklistModal}>Close</Button>
                   </div>
-                  <Button variant="ghost" onClick={closeChecklistModal}>Close</Button>
                 </div>
+              )}
+            </DialogContent>
+          </Dialog>
+
+          {/* Send Link Modal */}
+          <Dialog open={showSendLink} onOpenChange={setShowSendLink}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-sm font-semibold">Send Link to Candidate</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-3 text-xs">
+                <div>
+                  <label className="block mb-1 font-medium">Email Subject</label>
+                  <Input value={emailSubject} onChange={(e) => setEmailSubject(e.target.value)} placeholder="Subject" />
+                </div>
+                <div>
+                  <label className="block mb-1 font-medium">Email Message</label>
+                  <Textarea rows={4} value={emailMessage} onChange={(e) => setEmailMessage(e.target.value)} placeholder="Write your message..." />
+                </div>
+                <div>
+                  <label className="block mb-1 font-medium">Upload Attachment</label>
+                  <Input type="file" onChange={(e) => setEmailAttachment(e.target.files?.[0] || null)} />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setShowSendLink(false)}>Cancel</Button>
+                <Button onClick={() => { setShowSendLink(false); toast({ title: 'Link sent successfully' }); }}>Send</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Update Status Modal */}
+          <Dialog open={!!statusModalItemId} onOpenChange={(open) => !open && setStatusModalItemId(null)}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-sm font-semibold">Update Status</DialogTitle>
+              </DialogHeader>
+              <div className="text-xs text-muted-foreground">Mark this checklist item as Pass or Reject.</div>
+              <DialogFooter>
+                <Button variant="destructive" onClick={() => {
+                  if (!selectedEmployeeForChecklist || !statusModalItemId) return;
+                  handleUpdateItemStatus(selectedEmployeeForChecklist.jobId, statusModalItemId, 'reject');
+                  setStatusModalItemId(null);
+                }}>Reject</Button>
+                <Button onClick={() => {
+                  if (!selectedEmployeeForChecklist || !statusModalItemId) return;
+                  handleUpdateItemStatus(selectedEmployeeForChecklist.jobId, statusModalItemId, 'pass');
+                  setStatusModalItemId(null);
+                }}>Pass</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
