@@ -6,44 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-// Mock candidate data - Emily Davis profile as specified
+// Load candidate profile saved by overview/action
 const getCandidateById = (id: string) => {
-  // Default Emily Davis data for the design specification
-  return {
-    id: "001",
-    applicantName: "Emily Davis",
-    appliedPosition: "Senior React Developer",
-    department: "Engineering",
-    currentRound: "System Design Interview",
-    status: "in-progress",
-    email: "emily.davis@example.com",
-    phone: "(555) 234-5678",
-    roomId: "ROOM-001",
-    reviewRoom: "https://zoom.us/j/123456789",
-    assignedInterviewers: ["David Wilson", "Lisa Chen"],
-    interviewSteps: [
-      {
-        id: "step1",
-        title: "Technical Interview",
-        interviewer: "David Wilson, Tech Lead",
-        description: "Assessment of technical skills and problem-solving abilities",
-        date: "2023-05-20",
-        time: "10:00 AM",
-        status: "Completed",
-        remarks: "Strong technical skills, especially in React and TypeScript. Solved all problems efficiently."
-      },
-      {
-        id: "step2",
-        title: "System Design Interview",
-        interviewer: "Lisa Chen, Senior Architect",
-        description: "Evaluation of system design and architecture knowledge",
-        date: "2023-05-22",
-        time: "2:00 PM",
-        status: "Scheduled",
-        remarks: ""
-      }
-    ]
-  };
+  try {
+    const raw = window.localStorage.getItem(`candidate-profile:${id}`);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
 };
 
 export default function CandidateDetails() {
@@ -165,20 +136,22 @@ export default function CandidateDetails() {
               </div>
 
               {/* Review Room */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Review Room</h3>
-                <div>
-                  <span className="text-sm font-medium">Zoom link:</span>
-                  <a
-                    href={candidate.reviewRoom}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline ml-2"
-                  >
-                    {candidate.reviewRoom}
-                  </a>
+              {candidate.reviewRoom && (
+                <div className="border-t border-gray-200 pt-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Review Room</h3>
+                  <div>
+                    <span className="text-sm font-medium">Zoom link:</span>
+                    <a
+                      href={candidate.reviewRoom}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline ml-2"
+                    >
+                      {candidate.reviewRoom}
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -188,8 +161,8 @@ export default function CandidateDetails() {
           <CardContent className="p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Interview Steps</h3>
             <div className="space-y-4">
-              {candidate.interviewSteps.map((step, index) => (
-                <div key={step.id} className="border border-gray-200 rounded-lg p-4 relative">
+              {(candidate.interviewSteps || []).map((step: any, index: number) => (
+                <div key={step.id || index} className="border border-gray-200 rounded-lg p-4 relative">
                   {/* Status Badge (top-right corner) */}
                   <div className="absolute top-4 right-4">
                     <Badge
