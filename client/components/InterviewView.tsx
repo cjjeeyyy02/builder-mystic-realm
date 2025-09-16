@@ -435,7 +435,7 @@ export default function InterviewView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
-  const [viewMode, setViewMode] = useState<"table" | "calendar">("table");
+  const [viewMode, setViewMode] = useState<"table" | "calendar" | "card">("table");
   // Calendar view state and helpers
   const [calendarDate, setCalendarDate] = useState(new Date());
   const formatDate = (d: Date) => {
