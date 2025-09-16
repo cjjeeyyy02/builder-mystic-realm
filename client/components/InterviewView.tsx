@@ -435,7 +435,43 @@ export default function InterviewView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
-  const [viewMode, setViewMode] = useState<"table" | "card">("table");
+  const [viewMode, setViewMode] = useState<"table" | "calendar">("table");
+  // Calendar view state and helpers
+  const [calendarDate, setCalendarDate] = useState(new Date());
+  const formatDate = (d: Date) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+  const getCalendarDays = (date: Date) => {
+    const start = new Date(date.getFullYear(), date.getMonth(), 1);
+    const end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const startDay = new Date(start);
+    startDay.setDate(start.getDate() - start.getDay()); // back to Sunday
+    const endDay = new Date(end);
+    endDay.setDate(end.getDate() + (6 - end.getDay())); // forward to Saturday
+    const days: Date[] = [];
+    const cur = new Date(startDay);
+    while (cur <= endDay) {
+      days.push(new Date(cur));
+      cur.setDate(cur.getDate() + 1);
+    }
+    return days;
+  };
+  const calendarDays = getCalendarDays(calendarDate);
+  // Build events map by date from rounds and interviewCandidates
+  const eventsByDate: Record<string, { candidateName: string; appliedPosition: string; roundName: string; }[]> = {};
+  const candidateById = Object.fromEntries(interviewCandidates.map(c => [c.id, c]));
+  rounds.forEach(r => {
+    (r.candidates || []).forEach(cid => {
+      const c = candidateById[cid];
+      if (!c) return;
+      const key = r.scheduledDate;
+      if (!eventsByDate[key]) eventsByDate[key] = [];
+      eventsByDate[key].push({ candidateName: c.applicantName, appliedPosition: c.appliedPosition, roundName: r.roundName });
+    });
+  });
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
