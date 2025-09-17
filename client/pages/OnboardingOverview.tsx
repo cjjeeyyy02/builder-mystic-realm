@@ -355,7 +355,7 @@ export default function OnboardingOverview() {
                       APPLIED POSITION
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                      STAGE
+                      STATUS
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       PROGRESS
