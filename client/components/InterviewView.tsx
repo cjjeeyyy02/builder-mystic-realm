@@ -1288,8 +1288,8 @@ Google India`
                   value={searchCandidates}
                   onChange={setSearchCandidates}
                   options={candidateOptions}
-                  className="w-40"
-                  inputClassName="h-7 text-xs"
+                  className="flex-none w-64"
+                  inputClassName="pl-10 h-8 text-sm rounded-md shadow-sm"
                 />
 
                 <div className="flex items-center gap-2">
@@ -1741,12 +1741,12 @@ Google India`
                           </SelectContent>
                         </Select>
                         <div className="relative">
-                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                           <Input
                             value={calendarSearch}
                             onChange={(e) => setCalendarSearch(e.target.value)}
                             placeholder="Search candidate/role"
-                            className="pl-7 h-7 w-48"
+                            className="pl-10 h-8 w-64 rounded-md text-sm shadow-sm"
                           />
                         </div>
                       </div>
