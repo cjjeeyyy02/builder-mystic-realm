@@ -409,11 +409,6 @@ export default function OnboardingOverview() {
                           </Badge>
                         </TableCell>
                         
-                        <TableCell className="px-3 py-2">
-                          <Badge className={`text-xs capitalize ${getStatusColor(candidate.status)}`}>
-                            {candidate.status.replace('-', ' ')}
-                          </Badge>
-                        </TableCell>
                         
                         <TableCell className="px-3 py-2">
                           <ProgressBar progress={candidate.progress} />
