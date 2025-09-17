@@ -471,7 +471,7 @@ export default function InterviewView() {
     return days;
   };
   const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
-  const [calendarView, setCalendarView] = useState<'day' | 'week' | 'month' | 'agenda'>('month');
+  const [calendarView, setCalendarView] = useState<'day' | 'week' | 'month'>('month');
   const [calendarSearch, setCalendarSearch] = useState('');
   // Build events map by date from rounds and interviewCandidates
   const eventsByDate = useMemo(() => {
@@ -1684,16 +1684,16 @@ Google India`
 ) : (
                 viewMode === "calendar" ? (
                   /* Calendar View */
-                  <div className="bg-white border rounded-none">
+                  <div className="bg-white border rounded-none text-[12px] max-h-[520px] overflow-auto">
                     {/* Top Filter Bar */}
-                    <div className="flex items-center justify-between p-3 border-b">
+                    <div className="flex items-center justify-between p-2 border-b">
                       <div className="flex items-center gap-2">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setCalendarDate(prev => {
                             const d = new Date(prev);
-                            if (calendarView === 'month' || calendarView === 'agenda') return new Date(d.getFullYear(), d.getMonth() - 1, 1);
+                            if (calendarView === 'month') return new Date(d.getFullYear(), d.getMonth() - 1, 1);
                             if (calendarView === 'week') { d.setDate(d.getDate() - 7); return d; }
                             d.setDate(d.getDate() - 1); return d;
                           })}
@@ -1701,7 +1701,7 @@ Google India`
                           <ArrowLeft className="w-4 h-4" />
                         </Button>
                         <div className="text-sm font-semibold">
-                          {calendarView === 'month' || calendarView === 'agenda' ? (
+                          {calendarView === 'month' ? (
                             calendarDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })
                           ) : calendarView === 'week' ? (
                             (() => {
@@ -1720,7 +1720,7 @@ Google India`
                           size="sm"
                           onClick={() => setCalendarDate(prev => {
                             const d = new Date(prev);
-                            if (calendarView === 'month' || calendarView === 'agenda') return new Date(d.getFullYear(), d.getMonth() + 1, 1);
+                            if (calendarView === 'month') return new Date(d.getFullYear(), d.getMonth() + 1, 1);
                             if (calendarView === 'week') { d.setDate(d.getDate() + 7); return d; }
                             d.setDate(d.getDate() + 1); return d;
                           })}
@@ -1731,14 +1731,13 @@ Google India`
                       </div>
                       <div className="flex items-center gap-2">
                         <Select value={calendarView} onValueChange={(v) => setCalendarView(v as any)}>
-                          <SelectTrigger className="h-8 w-[130px]">
+                          <SelectTrigger className="h-7 w-[110px]">
                             <SelectValue placeholder="View" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="day">Day</SelectItem>
                             <SelectItem value="week">Week</SelectItem>
                             <SelectItem value="month">Month</SelectItem>
-                            <SelectItem value="agenda">Agenda</SelectItem>
                           </SelectContent>
                         </Select>
                         <div className="relative">
@@ -1747,7 +1746,7 @@ Google India`
                             value={calendarSearch}
                             onChange={(e) => setCalendarSearch(e.target.value)}
                             placeholder="Search candidate/role"
-                            className="pl-7 h-8 w-[220px]"
+                            className="pl-7 h-7 w-48"
                           />
                         </div>
                       </div>
@@ -1755,7 +1754,7 @@ Google India`
 
                     {/* Headers (Month/Week) */}
                     {(calendarView === 'month' || calendarView === 'week') && (
-                      <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-2 border-b">
+                      <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-1 border-b">
                         {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
                           <div key={d}>{d}</div>
                         ))}
@@ -1773,7 +1772,7 @@ Google India`
                             return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
                           });
                           return (
-                            <div key={day.toISOString()} className={`min-h-[120px] bg-white p-2 ${isOtherMonth ? 'bg-gray-50 text-gray-400' : ''}`}>
+                            <div key={day.toISOString()} className={`min-h-[90px] bg-white p-1 ${isOtherMonth ? 'bg-gray-50 text-gray-400' : ''}`}>
                               <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
                               <div className="space-y-1">
                                 {events.map((evt, idx) => {
@@ -1807,7 +1806,7 @@ Google India`
                               return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
                             });
                             return (
-                              <div key={day.toISOString()} className="min-h-[140px] bg-white p-2">
+                              <div key={day.toISOString()} className="min-h-[110px] bg-white p-1">
                                 <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
                                 <div className="space-y-1">
                                   {events.map((evt, idx) => {
@@ -1830,7 +1829,7 @@ Google India`
                     })()}
 
                     {calendarView === 'day' && (
-                      <div className="p-3 border-t">
+                      <div className="p-2 border-t">
                         <div className="text-xs font-medium text-gray-600 mb-2">{calendarDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
                         <div className="space-y-1">
                           {(eventsByDate[formatDate(calendarDate)] || []).filter(evt => {
@@ -1852,7 +1851,7 @@ Google India`
                       </div>
                     )}
 
-                    {calendarView === 'agenda' && (() => {
+                    {false && (() => {
                       const dates = Object.keys(eventsByDate).sort();
                       const q = calendarSearch.trim().toLowerCase();
                       return (
