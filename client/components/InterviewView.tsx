@@ -1315,7 +1315,7 @@ Google India`
 
               {/* Interview Content - Table or Card View */}
               {viewMode === "table" ? (
-                <Card className="border-0 shadow-sm overflow-hidden">
+                <Card className="border-0 shadow-sm overflow-hidden rounded-none">
                   <CardContent className="p-0">
                     <Table>
                     <TableHeader>
@@ -2333,7 +2333,7 @@ Google India"
               </div>
 
               {/* Decision Table */}
-              <Card className="border-0 shadow-sm overflow-hidden">
+              <Card className="border-0 shadow-sm overflow-hidden rounded-none">
                 <CardContent className="p-0">
                   <Table>
                     <TableHeader>
