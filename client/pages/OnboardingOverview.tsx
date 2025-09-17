@@ -351,7 +351,7 @@ export default function OnboardingOverview() {
                 />
               </div>
 
-              <div className="flex gap-2 sm:gap-3 ml-auto">
+              <div className="flex gap-2 sm:gap-3">
                 <Select value={stageFilter} onValueChange={setStageFilter}>
                   <SelectTrigger className="w-full sm:w-[180px]">
                     <SelectValue placeholder="Filter by stage" />
@@ -376,11 +376,11 @@ export default function OnboardingOverview() {
                     <SelectItem value="rejected">Rejected</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button variant="outline" className="h-9 sm:self-auto sm:ml-2 md:ml-3" onClick={exportToCSV}>
-                  <Download className="w-4 h-4 mr-2" />
-                  Export
-                </Button>
               </div>
+              <Button variant="outline" className="h-9 sm:self-auto ml-auto" onClick={exportToCSV}>
+                <Download className="w-4 h-4 mr-2" />
+                Export
+              </Button>
             </div>
 
             {/* Candidates Table */}
@@ -396,9 +396,6 @@ export default function OnboardingOverview() {
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       STATUS
-                    </TableHead>
-                    <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                      PROGRESS
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       APPLIED DATE
@@ -449,10 +446,6 @@ export default function OnboardingOverview() {
                           </Badge>
                         </TableCell>
                         
-                        
-                        <TableCell className="px-3 py-2">
-                          <ProgressBar progress={candidate.progress} />
-                        </TableCell>
                         
                         <TableCell className="px-3 py-2">
                           <div className="text-xs text-gray-900">
