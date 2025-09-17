@@ -358,9 +358,6 @@ export default function OnboardingOverview() {
                       STAGE
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                      STATUS
-                    </TableHead>
-                    <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       PROGRESS
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
