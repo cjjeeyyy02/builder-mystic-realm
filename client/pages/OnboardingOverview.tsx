@@ -351,11 +351,6 @@ export default function OnboardingOverview() {
                 />
               </div>
 
-              <Button variant="outline" className="h-9 sm:self-auto sm:ml-3 md:ml-4" onClick={exportToCSV}>
-                <Download className="w-4 h-4 mr-2" />
-                Export
-              </Button>
-
               <div className="flex gap-2 sm:gap-3 ml-auto">
                 <Select value={stageFilter} onValueChange={setStageFilter}>
                   <SelectTrigger className="w-full sm:w-[180px]">
@@ -381,6 +376,10 @@ export default function OnboardingOverview() {
                     <SelectItem value="rejected">Rejected</SelectItem>
                   </SelectContent>
                 </Select>
+                <Button variant="outline" className="h-9 sm:self-auto sm:ml-2 md:ml-3" onClick={exportToCSV}>
+                  <Download className="w-4 h-4 mr-2" />
+                  Export
+                </Button>
               </div>
             </div>
 
