@@ -442,7 +442,7 @@ export default function ScreeningView() {
                       EMAIL
                     </th>
                     <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
-                      PHONE
+                      PHONE NUMBER
                     </th>
                     <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
                       STATUS
