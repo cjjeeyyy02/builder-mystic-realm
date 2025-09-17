@@ -413,7 +413,7 @@ export default function ScreeningView() {
 
       {/* Table View */}
       {viewMode === "table" && (
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white border border-gray-200 shadow-sm overflow-hidden">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
             <div className="w-full">
@@ -519,7 +519,7 @@ export default function ScreeningView() {
                         <div className="text-xs text-gray-900">{candidate.phone}</div>
                       </td>
                       <td className="px-2 py-1.5">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass}`}>
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium ${statusBadgeClass}`}>
                           {statusText}
                         </span>
                       </td>
