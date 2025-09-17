@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail, Edit, Upload, Maximize2 } from "lucide-react";
+import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail, Edit, Upload, Maximize2, List, Grid } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "@/components/DarkModeProvider";
 import { useToast } from "@/hooks/use-toast";
@@ -69,6 +69,7 @@ export default function ActivationView() {
   const [activeTab, setActiveTab] = useState("activation-room");
   const [searchCandidates, setSearchCandidates] = useState("");
   const [employees, setEmployees] = useState<Employee[]>(initialEmployees);
+  const [viewMode, setViewMode] = useState<"table" | "card">("table");
 
   const filteredEmployees = useMemo(() => {
     const q = searchCandidates.trim().toLowerCase();
@@ -215,14 +216,23 @@ export default function ActivationView() {
       {activeTab === "activation-room" ? (
         <div className="space-y-3">
           {/* Search (Activation) */}
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <div className="relative w-full max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input placeholder="Search Candidates" value={searchCandidates} onChange={(e) => setSearchCandidates(e.target.value)} className="pl-10" />
             </div>
+            <div className="flex items-center gap-2 ml-3">
+              <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}>
+                <List className="w-4 h-4" />
+              </Button>
+              <Button size="sm" variant={viewMode === "card" ? "default" : "outline"} onClick={() => setViewMode("card")}>
+                <Grid className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Employee Activation Table */}
+          {viewMode === 'table' && (
           <div className={`border overflow-hidden transition-colors duration-300 ${
             isDarkMode
               ? 'bg-gray-800 border-gray-700'
@@ -326,6 +336,88 @@ export default function ActivationView() {
               </TableBody>
             </Table>
           </div>
+          )}
+
+          {viewMode === 'card' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredEmployees.map((employee) => (
+                <div key={employee.jobId} className={`border rounded-none p-3 transition-colors duration-300 ${
+                  isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+                }`}>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-[11px] text-muted-foreground">JOB ID</div>
+                      <div className={`text-sm font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>{employee.jobId}</div>
+                    </div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className={`h-8 w-8 p-0 transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                          }`}
+                        >
+                          <MoreVertical className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className={isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
+                        <DropdownMenuItem
+                          onSelect={() => openChecklistModal(employee)}
+                          className={`cursor-pointer transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
+                              : 'text-gray-700 hover:bg-gray-100 focus:bg-gray-100'
+                          }`}
+                        >
+                          <CheckSquare className="mr-2 h-4 w-4" />
+                          View Checklist
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onSelect={() => console.log(`Send reminder for ${employee.name}`)}
+                          className={`cursor-pointer transition-colors duration-200 ${
+                            isDarkMode
+                              ? 'text-gray-300 hover:bg-gray-700 focus:bg-gray-700'
+                              : 'text-gray-700 hover:bg-gray-100 focus:bg-gray-100'
+                          }`}
+                        >
+                          <Mail className="mr-2 h-4 w-4" />
+                          Send reminder
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  <div className="mt-2">
+                    <div className={`text-sm font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>{employee.name}</div>
+                    <div className="text-xs text-gray-500">{employee.appliedJobRole}</div>
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <div className="text-muted-foreground">Joining Date</div>
+                      <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{employee.joiningDate}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground">Files Uploaded</div>
+                      <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{employee.filesUploaded}</div>
+                    </div>
+                  </div>
+
+                  <div className="mt-3">
+                    <div className={isDarkMode ? 'bg-gray-700 h-2 w-full' : 'bg-gray-200 h-2 w-full'}>
+                      <div
+                        className={`${employee.activationProgress < 50 ? 'bg-red-500' : employee.activationProgress < 100 ? 'bg-orange-500' : 'bg-green-500'} h-2`}
+                        style={{ width: `${employee.activationProgress}%` }}
+                      />
+                    </div>
+                    <div className={`mt-1 text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{employee.activationProgress}%</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Checklist Modal */}
           <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
