@@ -27,7 +27,7 @@ import ScreeningView from "./ScreeningView";
 import { screeningCandidates } from "@/data/screeningCandidates";
 import InterviewView from "./InterviewView";
 import ActivationView from "./ActivationView";
-import HiredView from "./HiredView";
+import OnboardingTimeline from "./OnboardingTimeline";
 import CandidateList from "./CandidateList";
 
 const tabs = [
@@ -1496,7 +1496,7 @@ export default function FilterTabs() {
         {activeTab === "screening" && <ScreeningView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "interview" && <InterviewView searchQuery={searchQuery} selectedStage={selectedStage} />}
         {activeTab === "activation" && <ActivationView searchQuery={searchQuery} selectedStage={selectedStage} />}
-        {activeTab === "hired" && null}
+        {activeTab === "hired" && <OnboardingTimeline />}
       </div>
     </div>
   );
