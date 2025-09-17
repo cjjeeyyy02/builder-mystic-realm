@@ -15,7 +15,8 @@ import {
   Clock,
   Eye,
   ChevronRight,
-  BarChart3
+  BarChart3,
+  Download
 } from "lucide-react";
 import {
   Select,
@@ -154,6 +155,40 @@ export default function OnboardingOverview() {
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+
+  const exportToCSV = () => {
+    const headers = [
+      'Name','Position','Email','Phone','Stage','Status','Progress','Applied Date','Location'
+    ];
+    const escape = (val: any) => {
+      const s = String(val ?? '')
+        .replace(/"/g, '""')
+        .replace(/\n/g, ' ');
+      return `"${s}"`;
+    };
+    const rows = filteredCandidates.map(c => [
+      c.name,
+      c.position,
+      c.email,
+      c.phone,
+      c.stage,
+      c.status,
+      `${c.progress}%`,
+      new Date(c.appliedDate).toLocaleDateString(),
+      c.location
+    ].map(escape).join(','));
+    const csv = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'candidates_overview.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
 
@@ -306,7 +341,7 @@ export default function OnboardingOverview() {
           </CardHeader>
           <CardContent>
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <div className="relative flex-1">
+              <div className="relative w-full sm:w-64 md:w-72">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   placeholder="Search candidates..."
@@ -315,7 +350,12 @@ export default function OnboardingOverview() {
                   className="pl-10"
                 />
               </div>
-              
+
+              <Button variant="outline" className="h-9 sm:self-auto" onClick={exportToCSV}>
+                <Download className="w-4 h-4 mr-2" />
+                Export
+              </Button>
+
               <Select value={stageFilter} onValueChange={setStageFilter}>
                 <SelectTrigger className="w-full sm:w-[180px]">
                   <SelectValue placeholder="Filter by stage" />
