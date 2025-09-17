@@ -223,7 +223,7 @@ export default function ActivationView() {
           </div>
 
           {/* Employee Activation Table */}
-          <div className={`border rounded-lg overflow-hidden transition-colors duration-300 ${
+          <div className={`border overflow-hidden transition-colors duration-300 ${
             isDarkMode
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
@@ -491,7 +491,7 @@ export default function ActivationView() {
       ) : (
         <div className="space-y-3">
           {/* Onboarding Checklist Header */}
-          <div className={`text-center py-4 rounded-t-lg transition-colors duration-300 ${
+          <div className={`text-center py-4  transition-colors duration-300 ${
             isDarkMode
               ? 'bg-gray-800 text-white border-gray-700'
               : 'bg-gray-50 text-gray-900 border-gray-200'
@@ -500,7 +500,7 @@ export default function ActivationView() {
           </div>
 
           {/* Checklist Items Table */}
-          <div className={`border rounded-b-lg overflow-hidden transition-colors duration-300 ${
+          <div className={`border  overflow-hidden transition-colors duration-300 ${
             isDarkMode
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
@@ -605,7 +605,7 @@ export default function ActivationView() {
           </div>
 
           {/* Bottom Action Buttons */}
-          <div className={`flex items-center justify-between p-4 border-t rounded-b-lg transition-colors duration-300 ${
+          <div className={`flex items-center justify-between p-4 border-t  transition-colors duration-300 ${
             isDarkMode
               ? 'bg-gray-800 border-gray-700'
               : 'bg-gray-50 border-gray-200'
