@@ -823,19 +823,23 @@ export default function ScreeningView() {
                   <Card>
                     <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
-                      <Textarea
-                        placeholder="Add your screening notes here..."
-                        value={screeningNotes}
-                        onChange={(e) => setScreeningNotes(e.target.value)}
-                        className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm"
-                      />
-                      {screeningNotes.trim() && (
-                        <div className="mt-2">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-md h-8 px-3 text-sm" onClick={() => { console.log('Submitted screening notes:', screeningNotes); }}>
+                      <div className="relative">
+                        <Textarea
+                          placeholder="Add your screening notes here..."
+                          value={screeningNotes}
+                          onChange={(e) => setScreeningNotes(e.target.value)}
+                          className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm pr-24"
+                        />
+                        {screeningNotes.trim() && (
+                          <Button
+                            size="sm"
+                            className="absolute bottom-2 right-2 h-7 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                            onClick={() => { console.log('Submitted screening notes:', screeningNotes); }}
+                          >
                             Submit
                           </Button>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
 
