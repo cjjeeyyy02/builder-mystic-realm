@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail, Edit, Upload, Maximize2, List, Grid } from "lucide-react";
+import { Eye, Download, Trash2, Plus, Search, ChevronRight, MoreVertical, CheckSquare, Mail, Edit, Upload, Maximize2, List, Grid, XCircle } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "@/components/DarkModeProvider";
 import { useToast } from "@/hooks/use-toast";
@@ -462,7 +463,11 @@ export default function ActivationView() {
                       <AccordionItem key={item.id} value={item.id}>
                         <AccordionTrigger className="text-sm font-medium">
                           <div className="flex items-center gap-2">
-                            <CheckSquare className={`w-4 h-4 ${item.completed ? 'text-green-600' : 'text-gray-400'}`} />
+                            {item.completed && item.files && item.files.length > 0 ? (
+                              <Checkbox checked readOnly className="h-4 w-4 pointer-events-none" />
+                            ) : (
+                              <XCircle className="w-4 h-4 text-red-500" />
+                            )}
                             <span>{item.title}</span>
                           </div>
                         </AccordionTrigger>
@@ -484,8 +489,14 @@ export default function ActivationView() {
                                 <input type="file" className="hidden" onChange={(e) => handleChecklistFileUpload(selectedEmployeeForChecklist.jobId, item.id, e.target.files?.[0] ?? null)} />
                                 <span className="inline-flex items-center px-2 py-1 border rounded text-xs cursor-pointer"><Upload className="w-3 h-3 mr-1" /> Upload</span>
                               </label>
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                const f = item.files && item.files[0];
+                                if (f?.url) window.open(f.url, '_blank'); else toast({ title: 'No file uploaded yet' });
+                              }}>
+                                <Eye className="w-3 h-3 mr-1" /> View Item
+                              </Button>
                               <Button variant="outline" size="sm" className="text-xs" onClick={() => setStatusModalItemId(item.id)}>
-                                Update Status
+                                Update
                               </Button>
                               <div className="ml-auto text-xs text-muted-foreground">
                                 Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}
@@ -538,11 +549,10 @@ export default function ActivationView() {
                   {(() => {
                     const items = checklistMap[selectedEmployeeForChecklist.jobId] || [];
                     const allDone = items.length > 0 && items.every(it => it.completed);
-                    if (!allDone) return null;
                     return (
                       <div className="flex items-center justify-between pt-2 border-t">
-                        <Button variant="destructive" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject</Button>
-                        <Button className="bg-green-600 hover:bg-green-700" onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Proceed to Hired</Button>
+                        <Button variant="destructive" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject Activation</Button>
+                        <Button className={`bg-green-600 hover:bg-green-700 ${allDone ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allDone} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Approve Activation → Proceed to Hired</Button>
                       </div>
                     );
                   })()}
@@ -586,7 +596,7 @@ export default function ActivationView() {
           <Dialog open={!!statusModalItemId} onOpenChange={(open) => !open && setStatusModalItemId(null)}>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle className="text-sm font-semibold">Update Status</DialogTitle>
+                <DialogTitle className="text-sm font-semibold">Update</DialogTitle>
               </DialogHeader>
               <div className="text-xs text-muted-foreground">Mark this checklist item as Pass or Reject.</div>
               <DialogFooter>
