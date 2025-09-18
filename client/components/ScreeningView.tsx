@@ -24,6 +24,7 @@ import {
   List,
   Grid,
   MoreVertical,
+  DollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -215,6 +216,14 @@ function getStatusIcon(status: string) {
       return <Clock className="w-3 h-3" />;
   }
 }
+
+const formatPhone = (raw: string) => {
+  const digits = String(raw || '').replace(/\D/g, '');
+  const area = digits.slice(0,3).padEnd(3, ' ');
+  const mid = digits.slice(3,6).padEnd(3, ' ');
+  const last = digits.slice(6,9).padEnd(3, ' ');
+  return `+1 (${area}) ${mid} - ${last}`.trim();
+};
 
 export default function ScreeningView() {
   const navigate = useNavigate();
@@ -509,7 +518,7 @@ export default function ScreeningView() {
                         <div className="text-xs text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
                       </td>
                       <td className="px-2 py-1.5">
-                        <div className="text-xs text-gray-900">{candidate.phone}</div>
+                        <div className="text-xs text-gray-900">{formatPhone(candidate.phone)}</div>
                       </td>
                       <td className="px-2 py-1.5">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium ${statusBadgeClass}`}>
@@ -546,17 +555,17 @@ export default function ScreeningView() {
         </div>
       )}
       {viewMode === 'grid' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredCandidates.map((candidate) => (
             <Card
               key={candidate.id}
               className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
             >
-              <CardContent className="p-4">
+              <CardContent className="p-3">
                 <div className="space-y-4">
                   {/* Header with Avatar and Status */}
                   <div className="flex items-start justify-between">
-                    <Avatar className="h-12 w-12 flex-shrink-0 ring-1 ring-primary/10">
+                    <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
                       <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
                         {candidate.name
                           .split(" ")
@@ -584,8 +593,7 @@ export default function ScreeningView() {
                       <h3 className="font-semibold text-foreground text-sm leading-tight">
                         {candidate.name}
                       </h3>
-                      <div className="text-xs text-muted-foreground">ID: {candidate.id}</div>
-                    </div>
+                                          </div>
                     <div>
                       <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
                       <p className="text-sm font-medium text-foreground">
@@ -611,7 +619,7 @@ export default function ScreeningView() {
                     </div>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Phone className="w-3 h-3 flex-shrink-0 text-primary/70" />
-                      <span className="font-medium">{candidate.phone}</span>
+                      <span className="font-medium">{formatPhone(candidate.phone)}</span>
                     </div>
                   </div>
 
@@ -637,7 +645,7 @@ export default function ScreeningView() {
 
       {/* Resume Viewer Modal */}
       <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
-        <DialogContent className="w-[95vw] max-w-7xl h-[95vh] overflow-hidden p-0 text-xs sm:text-sm">
+        <DialogContent className="w-[90vw] max-w-5xl h-[85vh] overflow-hidden p-0 text-xs sm:text-sm">
           {selectedCandidate && (
             <>
               <DialogHeader className="p-3 sm:p-4 border-b">
@@ -656,7 +664,7 @@ export default function ScreeningView() {
                 {/* Main Panel - Resume Content */}
                 <div className="flex-1 overflow-y-auto space-y-2 sm:space-y-3 px-3 sm:px-4 xl:pr-3">
                   {/* Quick Info Bar */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-md border border-gray-200">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2 p-2 sm:p-2 bg-gray-50 rounded-md border border-gray-200">
                     <div className="text-center">
                       <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.totalExperience}</div>
@@ -668,9 +676,9 @@ export default function ScreeningView() {
                       <div className="text-xs text-gray-600">Location</div>
                     </div>
                     <div className="text-center">
-                      <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.availability}</div>
-                      <div className="text-xs text-gray-600">Availability</div>
+                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.salaryExpectation}</div>
+                      <div className="text-xs text-gray-600">Salary Expectation</div>
                     </div>
                   </div>
 
@@ -679,7 +687,7 @@ export default function ScreeningView() {
                     <CardContent className="p-2 sm:p-3">
                       <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
                         <User className="w-4 h-4" />
-                        Contact Information
+                        Candidate Details
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                         <div className="flex items-center gap-2">
@@ -716,10 +724,13 @@ export default function ScreeningView() {
                   {selectedCandidate.workHistory && selectedCandidate.workHistory.length > 0 && (
                     <Card>
                       <CardContent className="p-2 sm:p-3">
-                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
-                          <Briefcase className="w-4 h-4" />
-                          Work Experience
-                        </h3>
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold flex items-center gap-2 text-sm">
+                            <Briefcase className="w-4 h-4" />
+                            Work Experience
+                          </h3>
+                          <span className="text-xs text-gray-600">{selectedCandidate.totalExperience}</span>
+                        </div>
                         <div className="space-y-2 sm:space-y-3">
                           {selectedCandidate.workHistory.map((job, index) => (
                             <div key={index} className="border-l-2 border-blue-200 pl-2 sm:pl-3 pb-2 sm:pb-3">
@@ -794,8 +805,7 @@ export default function ScreeningView() {
 
                 {/* Screening Tools Panel */}
                 <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3 sm:space-y-4">
-                  <h3 className="font-semibold text-sm">Screening Assessment</h3>
-
+                  
                   {/* Quick Actions */}
                   <Card>
                     <CardContent className="p-2 sm:p-3">
@@ -805,49 +815,14 @@ export default function ScreeningView() {
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Schedule Interview
                         </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2" onClick={() => selectedCandidate?.resumeUrl && window.open(selectedCandidate.resumeUrl, '_blank')}>
+                          <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                          Download Resume
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
 
-                  {/* Candidate Details */}
-                  <Card>
-                    <CardContent className="p-2 sm:p-3">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Candidate Details</h4>
-                      <div className="space-y-3 text-xs sm:text-sm">
-                        <div>
-                          <label className="text-gray-600 text-xs">Salary Expectation</label>
-                          <p className="font-medium">{selectedCandidate.salaryExpectation}</p>
-                        </div>
-                        <div>
-                          <label className="text-gray-600 text-xs">Total Experience</label>
-                          <p className="font-medium">{selectedCandidate.totalExperience}</p>
-                        </div>
-                        <div>
-                          <label className="text-gray-600 text-xs">Relevant Experience</label>
-                          <p className="font-medium">{selectedCandidate.relevantExperience}</p>
-                        </div>
-                        <div>
-                          <label className="text-gray-600 text-xs">Current Status</label>
-                          <div className="mt-1">
-                            <Badge
-                              variant={getStatusVariant(selectedCandidate.status)}
-                              className={`text-xs ${
-                                selectedCandidate.status === "approved"
-                                  ? "bg-green-100 text-green-700 border-green-200"
-                                  : selectedCandidate.status === "reject"
-                                  ? "bg-red-100 text-red-700 border-red-200"
-                                  : "bg-gray-100 text-gray-700 border-gray-200"
-                              }`}
-                            >
-                              {selectedCandidate.status === "approved" ? "Approved" :
-                               selectedCandidate.status === "reject" ? "Rejected" :
-                               "Pending"}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
 
                   {/* Screening Notes */}
                   <Card>
