@@ -645,42 +645,9 @@ export default function ScreeningView() {
                   <div className="flex items-center gap-3">
                     <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                     <div>
-                      <h2 className="text-sm sm:text-base font-semibold">{selectedCandidate.name} - Resume</h2>
+                      <h2 className="text-sm sm:text-base font-semibold">{selectedCandidate.name}</h2>
                       <p className="text-xs sm:text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 sm:ml-auto">
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => setResumeMode('view')} className={`px-2 py-1 rounded text-xs ${resumeMode === 'view' ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
-                        <Eye className="w-3 h-3 mr-1 inline" /> View
-                      </button>
-                      <button onClick={() => setResumeMode('download')} className={`px-2 py-1 rounded text-xs ${resumeMode === 'download' ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
-                        <Download className="w-3 h-3 mr-1 inline" /> Download
-                      </button>
-                    </div>
-                    {selectedCandidate.rating && (
-                      <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
-                        <span className="text-xs sm:text-sm font-medium">{selectedCandidate.rating}/5</span>
-                      </div>
-                    )}
-                    <Badge
-                      variant={getStatusVariant(selectedCandidate.status)}
-                      className={`text-xs sm:text-sm ${
-                        selectedCandidate.status === "approved"
-                          ? "bg-green-100 text-green-700 border-green-200"
-                          : selectedCandidate.status === "reject"
-                          ? "bg-red-100 text-red-700 border-red-200"
-                          : "bg-gray-100 text-gray-700 border-gray-200"
-                      }`}
-                    >
-                      {getStatusIcon(selectedCandidate.status)}
-                      <span className="ml-1">
-                        {selectedCandidate.status === "approved" ? "Approved" :
-                         selectedCandidate.status === "reject" ? "Rejected" :
-                         "Pending"}
-                      </span>
-                    </Badge>
                   </div>
                 </DialogTitle>
               </DialogHeader>
@@ -932,15 +899,6 @@ export default function ScreeningView() {
                 </div>
               </div>
 
-              <DialogFooter className="flex flex-col sm:flex-row gap-2 p-3 sm:p-4 border-t">
-                <Button variant="outline" onClick={() => setShowResumeModal(false)} className="text-xs sm:text-sm">
-                  Close
-                </Button>
-                <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm h-8 px-3">
-                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                  Approve Candidate
-                </Button>
-              </DialogFooter>
             </>
           )}
         </DialogContent>
