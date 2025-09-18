@@ -40,8 +40,6 @@ import {
   Plus,
   Upload,
   X,
-  CheckSquare,
-  Trash2
 } from "lucide-react";
 
 interface Room {
@@ -81,19 +79,6 @@ export default function RoomBuilder() {
     evaluationCriteria: [""],
     scoringRubric: "",
     attachments: null as File | null
-  });
-
-  // Checklist Builder State
-  const [checklistData, setChecklistData] = useState({
-    title: "",
-    description: "",
-    jobConnected: "",
-    items: [{
-      id: 1,
-      name: "",
-      description: "",
-      type: ""
-    }]
   });
 
   const rooms: Room[] = [
@@ -233,76 +218,6 @@ export default function RoomBuilder() {
       attachments: null
     });
   };
-
-  // Checklist Builder Functions
-  const addChecklistItem = () => {
-    const newId = Math.max(...checklistData.items.map(item => item.id)) + 1;
-    setChecklistData(prev => ({
-      ...prev,
-      items: [...prev.items, {
-        id: newId,
-        name: "",
-        description: "",
-        type: ""
-      }]
-    }));
-  };
-
-  const removeChecklistItem = (id: number) => {
-    setChecklistData(prev => ({
-      ...prev,
-      items: prev.items.filter(item => item.id !== id)
-    }));
-  };
-
-  const updateChecklistItem = (id: number, field: string, value: string) => {
-    setChecklistData(prev => ({
-      ...prev,
-      items: prev.items.map(item =>
-        item.id === id ? { ...item, [field]: value } : item
-      )
-    }));
-  };
-
-  const saveChecklist = () => {
-    console.log("Saving checklist:", checklistData);
-    // Reset checklist form
-    setChecklistData({
-      title: "",
-      description: "",
-      jobConnected: "",
-      items: [{
-        id: 1,
-        name: "",
-        description: "",
-        type: ""
-      }]
-    });
-  };
-
-  const cancelChecklist = () => {
-    // Reset checklist form
-    setChecklistData({
-      title: "",
-      description: "",
-      jobConnected: "",
-      items: [{
-        id: 1,
-        name: "",
-        description: "",
-        type: ""
-      }]
-    });
-  };
-
-  // Mock job data for dropdown
-  const availableJobs = [
-    { id: "1", title: "Senior React Developer" },
-    { id: "2", title: "UX Designer" },
-    { id: "3", title: "Data Scientist" },
-    { id: "4", title: "Product Manager" },
-    { id: "5", title: "Backend Engineer" }
-  ];
 
   return (
     <Layout>
@@ -675,154 +590,6 @@ export default function RoomBuilder() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Checklist Builder Section */}
-        <Card>
-          <CardHeader className="pb-6">
-            <div className="flex items-center gap-2">
-              <CheckSquare className="h-6 w-6 text-blue-600" />
-              <CardTitle className="text-xl font-semibold text-gray-900">Checklist Builder</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Checklist Details */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold border-b pb-2">Checklist Details</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="checklistTitle">Title</Label>
-                  <Input
-                    id="checklistTitle"
-                    placeholder="Enter checklist title"
-                    value={checklistData.title}
-                    onChange={(e) => setChecklistData(prev => ({ ...prev, title: e.target.value }))}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="jobConnected">Job Connected</Label>
-                  <Select
-                    value={checklistData.jobConnected}
-                    onValueChange={(value) => setChecklistData(prev => ({ ...prev, jobConnected: value }))}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a job to connect" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {availableJobs.map((job) => (
-                        <SelectItem key={job.id} value={job.id}>
-                          {job.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="checklistDescription">Description</Label>
-                <Textarea
-                  id="checklistDescription"
-                  placeholder="Enter checklist description"
-                  value={checklistData.description}
-                  onChange={(e) => setChecklistData(prev => ({ ...prev, description: e.target.value }))}
-                  rows={3}
-                />
-              </div>
-            </div>
-
-            <Separator />
-
-            {/* Checklist Items */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold">Checklist Items</h3>
-                <Button type="button" variant="outline" onClick={addChecklistItem}>
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Item
-                </Button>
-              </div>
-
-              <div className="space-y-4">
-                {checklistData.items.map((item) => (
-                  <Card key={item.id} className="p-4 border border-gray-200">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-medium text-gray-900">Item #{item.id}</h4>
-                        {checklistData.items.length > 1 && (
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => removeChecklistItem(item.id)}
-                            className="text-red-600 hover:text-red-700"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        )}
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor={`itemName-${item.id}`}>Name</Label>
-                          <Input
-                            id={`itemName-${item.id}`}
-                            placeholder="Enter item name"
-                            value={item.name}
-                            onChange={(e) => updateChecklistItem(item.id, 'name', e.target.value)}
-                          />
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor={`itemType-${item.id}`}>Type</Label>
-                          <Select
-                            value={item.type}
-                            onValueChange={(value) => updateChecklistItem(item.id, 'type', value)}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select item type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="free-text">Free Text</SelectItem>
-                              <SelectItem value="file-upload">File Upload</SelectItem>
-                              <SelectItem value="checkbox">Checkbox</SelectItem>
-                              <SelectItem value="date">Date</SelectItem>
-                              <SelectItem value="number">Number</SelectItem>
-                              <SelectItem value="dropdown">Dropdown</SelectItem>
-                              <SelectItem value="multi-choice">Multiple Choice</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor={`itemDescription-${item.id}`}>Description</Label>
-                        <Textarea
-                          id={`itemDescription-${item.id}`}
-                          placeholder="Enter item details"
-                          value={item.description}
-                          onChange={(e) => updateChecklistItem(item.id, 'description', e.target.value)}
-                          rows={2}
-                        />
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex justify-end gap-3 pt-4 border-t">
-              <Button variant="outline" onClick={cancelChecklist}>
-                Cancel
-              </Button>
-              <Button onClick={saveChecklist} className="bg-blue-600 hover:bg-blue-700">
-                Save Checklist
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </Layout>
   );
