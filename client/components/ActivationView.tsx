@@ -25,6 +25,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+function formatDateMDY(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
+  }
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return `${m[2]}-${m[3]}-${m[1]}`;
+  const m2 = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (m2) return dateStr;
+  return dateStr;
+}
+
 interface ChecklistItem {
   id: string;
   title: string;
@@ -230,7 +245,7 @@ export default function ActivationView() {
               </Button>
               <Button variant="outline" size="sm" onClick={() => {
                 const headers = ['Job ID','Name','Role','Joining Date','Files Uploaded','Activation Progress'];
-                const rows = filteredEmployees.map(e => [e.jobId, e.name, e.appliedJobRole, e.joiningDate, e.filesUploaded, `${e.activationProgress}%`]);
+                const rows = filteredEmployees.map(e => [e.jobId, e.name, e.appliedJobRole, formatDateMDY(e.joiningDate), e.filesUploaded, `${e.activationProgress}%`]);
                 const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
                 const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
@@ -294,7 +309,7 @@ export default function ActivationView() {
                     }`}>{employee.appliedJobRole}</TableCell>
                     <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>{employee.joiningDate}</TableCell>
+                    }`}>{formatDateMDY(employee.joiningDate)}</TableCell>
                     <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.filesUploaded}</TableCell>
@@ -407,7 +422,7 @@ export default function ActivationView() {
                   <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <div className="text-muted-foreground">Joining Date</div>
-                      <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{employee.joiningDate}</div>
+                      <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{formatDateMDY(employee.joiningDate)}</div>
                     </div>
                     <div>
                       <div className="text-muted-foreground">Files Uploaded</div>
@@ -473,7 +488,7 @@ export default function ActivationView() {
                                 Update Status
                               </Button>
                               <div className="ml-auto text-xs text-muted-foreground">
-                                Date Submitted: {item.dateSubmitted ? new Date(item.dateSubmitted).toLocaleString() : '-'}
+                                Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}
                               </div>
                             </div>
 
