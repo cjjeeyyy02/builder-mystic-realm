@@ -13,7 +13,7 @@ import {
   UserCheck, 
   UserX, 
   Clock,
-  Eye,
+  MoreVertical,
   ChevronRight,
   BarChart3,
   Download
@@ -34,6 +34,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 // Extended candidate interface with pipeline stages
 interface PipelineCandidate {
@@ -278,6 +279,22 @@ export default function OnboardingOverview() {
     setShowProfileModal(true);
   };
 
+  const handleViewCandidateDetail = (candidate: PipelineCandidate) => {
+    const payload = {
+      applicantName: candidate.name,
+      appliedPosition: candidate.position,
+      email: candidate.email,
+      phone: candidate.phone,
+      roomId: `ROOM-${candidate.id.toString().padStart(3, '0')}`,
+      reviewRoom: undefined,
+      interviewSteps: [] as any[],
+    };
+    try {
+      window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify(payload));
+    } catch {}
+    navigate(`/candidate-details/${candidate.id}`);
+  };
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -291,7 +308,7 @@ export default function OnboardingOverview() {
           </div>
           <Button onClick={() => navigate("/hiring-pipeline")} className="bg-blue-600 hover:bg-blue-700">
             <BarChart3 className="w-4 h-4 mr-2" />
-            View Detailed Pipeline
+            View Recruitment Pipeline
           </Button>
         </div>
 
@@ -456,14 +473,18 @@ export default function OnboardingOverview() {
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 text-center">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleViewCandidate(candidate)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => handleViewCandidateDetail(candidate)}>
+                                View Candidate Detail
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                     );
