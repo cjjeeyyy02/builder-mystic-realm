@@ -3867,7 +3867,16 @@ Google India"
                   </div>
 
                   {/* Footer */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => {
+                      if (!selectedCandidateForTimeline) return;
+                      setSelectedCandidateForTimeline(prev => {
+                        if (!prev) return prev;
+                        const nextIndex = prev.steps.length + 1;
+                        const newStep = { id: `step-${Date.now()}`, title: `Step ${nextIndex}: New Interview`, date: "", time: "", interviewer: "", status: "Pending" as const, schedule: "", notes: "" };
+                        return { ...prev, steps: [...prev.steps, newStep] };
+                      });
+                    }}>Add Interview Step</Button>
                   </div>
                 </div>
               </div>
