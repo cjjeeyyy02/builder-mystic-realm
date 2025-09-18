@@ -3753,7 +3753,7 @@ Google India"
                 </div>
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-4">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 mb-6">
                       <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
