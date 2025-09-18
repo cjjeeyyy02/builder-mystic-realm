@@ -3591,7 +3591,7 @@ Google India"
                                 {step.title}
                               </h3>
                               <p className="text-sm text-gray-600">
-                                {step.date} at {step.time} • {step.interviewer}
+                                {formatDDMMYYYY(step.date)} at {step.time} • {step.interviewer}
                               </p>
                             </div>
                           </div>
