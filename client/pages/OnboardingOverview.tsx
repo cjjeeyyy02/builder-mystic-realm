@@ -51,6 +51,21 @@ interface PipelineCandidate {
 }
 
 // Mock data with candidates across all pipeline stages
+function formatDateMDY(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
+  }
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return `${m[2]}-${m[3]}-${m[1]}`;
+  const m2 = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (m2) return dateStr;
+  return dateStr;
+}
+
 const allCandidates: PipelineCandidate[] = [
   {
     id: "1",
@@ -173,7 +188,7 @@ export default function OnboardingOverview() {
       c.stage,
       c.status,
       `${c.progress}%`,
-      (() => { const d = new Date(c.appliedDate); const mm = String(d.getMonth()+1).padStart(2,'0'); const dd = String(d.getDate()).padStart(2,'0'); const yy = d.getFullYear(); return `${mm}-${dd}-${yy}`; })(),
+      formatDateMDY(c.appliedDate),
       c.location
     ].map(escape).join(','));
     const csv = [headers.join(','), ...rows].join('\n');
@@ -436,7 +451,7 @@ export default function OnboardingOverview() {
                         
                         <TableCell className="px-3 py-2">
                           <div className="text-xs text-gray-900">
-                            {(() => { const d = new Date(candidate.appliedDate); const mm = String(d.getMonth()+1).padStart(2,'0'); const dd = String(d.getDate()).padStart(2,'0'); const yy = d.getFullYear(); return `${mm}-${dd}-${yy}`; })()}
+                            {formatDateMDY(candidate.appliedDate)}
                           </div>
                         </TableCell>
                         
@@ -504,7 +519,7 @@ export default function OnboardingOverview() {
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground">Applied Date</div>
-                  <div className="font-medium">{new Date(profileCandidate.appliedDate).toLocaleDateString()}</div>
+                  <div className="font-medium">{formatDateMDY(profileCandidate.appliedDate)}</div>
                 </div>
               </div>
               <div>
