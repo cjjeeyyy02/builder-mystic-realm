@@ -421,7 +421,7 @@ export default function OnboardingOverview() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-medium text-gray-700 mb-1">Job ID</label>
-                          <Input value={newCandidate.jobId} onChange={(e) => setNewCandidate({ ...newCandidate, jobId: e.target.value })} placeholder="e.g., 001" />
+                          <Input value={newCandidate.jobId} onChange={(e) => setNewCandidate({ ...newCandidate, jobId: e.target.value })} placeholder="" />
                         </div>
                         <div>
                           <label className="block text-xs font-medium text-gray-700 mb-1">Applied Position</label>
