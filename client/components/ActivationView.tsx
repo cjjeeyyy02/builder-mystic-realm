@@ -596,20 +596,20 @@ export default function ActivationView() {
           <Dialog open={!!statusModalItemId} onOpenChange={(open) => !open && setStatusModalItemId(null)}>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle className="text-sm font-semibold">Update</DialogTitle>
+                <DialogTitle className="text-sm font-semibold">Update Status</DialogTitle>
               </DialogHeader>
-              <div className="text-xs text-muted-foreground">Mark this checklist item as Pass or Reject.</div>
+              <div className="text-xs text-muted-foreground">Mark this checklist item as Reject or Accept.</div>
               <DialogFooter>
-                <Button variant="destructive" onClick={() => {
+                <Button variant="destructive" className="text-white rounded-lg" onClick={() => {
                   if (!selectedEmployeeForChecklist || !statusModalItemId) return;
                   handleUpdateItemStatus(selectedEmployeeForChecklist.jobId, statusModalItemId, 'reject');
                   setStatusModalItemId(null);
                 }}>Reject</Button>
-                <Button onClick={() => {
+                <Button variant="ghost" className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg" onClick={() => {
                   if (!selectedEmployeeForChecklist || !statusModalItemId) return;
                   handleUpdateItemStatus(selectedEmployeeForChecklist.jobId, statusModalItemId, 'pass');
                   setStatusModalItemId(null);
-                }}>Pass</Button>
+                }}>Accept</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
