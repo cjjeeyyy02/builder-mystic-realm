@@ -3734,18 +3734,7 @@ Google India"
                         {selectedCandidateForTimeline.position}
                       </p>
 
-                      <div className="space-y-2">
-                        <p className="text-sm text-gray-600">
-                          <span className="font-medium">Review Room:</span>{' '}
-                          <span className="text-blue-600">{selectedCandidateForTimeline.reviewRoom}</span>
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          <span className="font-medium">Assigned Interviewers:</span>{' '}
-                          <span className="font-medium text-gray-900">
-                            {selectedCandidateForTimeline.interviewers.join(', ')}
-                          </span>
-                        </p>
-                      </div>
+                      <div className="hidden"></div>
                     </div>
                   </div>
 
