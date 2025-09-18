@@ -450,10 +450,6 @@ export default function ActivationView() {
             <DialogContent className="max-w-3xl">
               <DialogHeader className="flex flex-row items-center justify-between">
                 <DialogTitle className="text-lg font-semibold">Update Checklist -<br />{selectedEmployeeForChecklist?.name}</DialogTitle>
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3 text-xs" onClick={() => setShowSendLink(true)}>
-                  <Mail className="w-4 h-4 mr-1" />
-                  Send Link
-                </Button>
               </DialogHeader>
 
               {selectedEmployeeForChecklist && (
@@ -550,9 +546,14 @@ export default function ActivationView() {
                     const items = checklistMap[selectedEmployeeForChecklist.jobId] || [];
                     const allAccepted = items.length > 0 && items.every(it => it.completed && Array.isArray(it.files) && it.files.length > 0);
                     return (
-                      <div className="flex items-center justify-end gap-2 pt-2 border-t">
-                        <Button variant="destructive" size="sm" className="h-8 px-3 text-xs" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject Activation</Button>
-                        <Button size="sm" className={`bg-green-600 hover:bg-green-700 h-8 px-3 text-xs ${allAccepted ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allAccepted} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Activation approved' }); }}>Approve Activation</Button>
+                      <div className="flex items-center justify-between pt-2 border-t">
+                        <div>
+                          <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3 text-xs" onClick={() => setShowSendLink(true)}>Send Link</Button>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button variant="destructive" size="sm" className="h-8 px-3 text-xs" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject Activation</Button>
+                          <Button size="sm" className={`bg-green-600 hover:bg-green-700 h-8 px-3 text-xs ${allAccepted ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allAccepted} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Activation approved' }); }}>Approve Activation</Button>
+                        </div>
                       </div>
                     );
                   })()}
