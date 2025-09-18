@@ -154,7 +154,6 @@ export default function OnboardingOverview() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
-  const [statusFilter, setStatusFilter] = useState("all");
 
   const exportToCSV = () => {
     const headers = [
@@ -174,7 +173,7 @@ export default function OnboardingOverview() {
       c.stage,
       c.status,
       `${c.progress}%`,
-      new Date(c.appliedDate).toLocaleDateString(),
+      (() => { const d = new Date(c.appliedDate); const mm = String(d.getMonth()+1).padStart(2,'0'); const dd = String(d.getDate()).padStart(2,'0'); const yy = d.getFullYear(); return `${mm}-${dd}-${yy}`; })(),
       c.location
     ].map(escape).join(','));
     const csv = [headers.join(','), ...rows].join('\n');
@@ -200,11 +199,11 @@ export default function OnboardingOverview() {
                            candidate.email.toLowerCase().includes(searchTerm.toLowerCase());
       
       const matchesStage = stageFilter === "all" || candidate.stage === stageFilter;
-      const matchesStatus = statusFilter === "all" || candidate.status === statusFilter;
+      const matchesStatus = true;
       
       return matchesSearch && matchesStage && matchesStatus;
     });
-  }, [searchTerm, stageFilter, statusFilter]);
+  }, [searchTerm, stageFilter]);
 
   // Calculate summary statistics
   const summaryStats = useMemo(() => {
@@ -293,7 +292,7 @@ export default function OnboardingOverview() {
             </CardContent>
           </Card>
           
-          <Card>
+          <Card onClick={() => navigate('/hiring-pipeline#screening')} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Screening</CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
@@ -303,7 +302,7 @@ export default function OnboardingOverview() {
             </CardContent>
           </Card>
           
-          <Card>
+          <Card onClick={() => navigate('/hiring-pipeline#interview')} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Interview</CardTitle>
               <Users className="h-4 w-4 text-blue-600" />
@@ -313,7 +312,7 @@ export default function OnboardingOverview() {
             </CardContent>
           </Card>
           
-          <Card>
+          <Card onClick={() => navigate('/hiring-pipeline#activation')} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Activation</CardTitle>
               <UserCheck className="h-4 w-4 text-purple-600" />
@@ -323,7 +322,7 @@ export default function OnboardingOverview() {
             </CardContent>
           </Card>
           
-          <Card>
+          <Card onClick={() => navigate('/hiring-pipeline#hired')} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Hired</CardTitle>
               <UserCheck className="h-4 w-4 text-green-600" />
@@ -353,27 +352,15 @@ export default function OnboardingOverview() {
 
               <div className="flex gap-2 sm:gap-3">
                 <Select value={stageFilter} onValueChange={setStageFilter}>
-                  <SelectTrigger className="w-full sm:w-[180px]">
-                    <SelectValue placeholder="Filter by stage" />
+                  <SelectTrigger className="w-full sm:w-[200px]">
+                    <SelectValue placeholder="Status Filter" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Stages</SelectItem>
+                    <SelectItem value="all">All</SelectItem>
                     <SelectItem value="screening">Screening</SelectItem>
                     <SelectItem value="interview">Interview</SelectItem>
                     <SelectItem value="activation">Activation</SelectItem>
                     <SelectItem value="hired">Hired</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-full sm:w-[180px]">
-                    <SelectValue placeholder="Filter by status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
-                    <SelectItem value="rejected">Rejected</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -449,7 +436,7 @@ export default function OnboardingOverview() {
                         
                         <TableCell className="px-3 py-2">
                           <div className="text-xs text-gray-900">
-                            {new Date(candidate.appliedDate).toLocaleDateString()}
+                            {(() => { const d = new Date(candidate.appliedDate); const mm = String(d.getMonth()+1).padStart(2,'0'); const dd = String(d.getDate()).padStart(2,'0'); const yy = d.getFullYear(); return `${mm}-${dd}-${yy}`; })()}
                           </div>
                         </TableCell>
                         
