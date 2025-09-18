@@ -415,7 +415,7 @@ function getDepartmentColor(department: string): string {
   }
 }
 
-function formatDDMMYYYY(dateStr: string): string {
+function formatMDYSlash(dateStr: string): string {
   const d = new Date(dateStr);
   if (!isNaN(d.getTime())) {
     const mm = String(d.getMonth() + 1).padStart(2, '0');
@@ -3608,7 +3608,7 @@ Google India"
                                 {step.title}
                               </h3>
                               <p className="text-sm text-gray-600">
-                                {formatDDMMYYYY(step.date)} at {step.time} • {step.interviewer}
+                                {formatMDYSlash(step.date)} at {step.time} • {step.interviewer}
                               </p>
                             </div>
                           </div>
@@ -3982,7 +3982,7 @@ Google India"
                         <div className="mb-2">
                           <div className="flex items-center gap-1 text-xs text-gray-600">
                             <Calendar className="h-3 w-3" />
-                            <span>{formatDDMMYYYY(step.date)} at {step.time}</span>
+                            <span>{formatMDYSlash(step.date)} at {step.time}</span>
                           </div>
                         </div>
 
