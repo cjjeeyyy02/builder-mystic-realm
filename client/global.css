@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -127,7 +126,6 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family:
-      "Roboto",
       "Poppins",
       system-ui,
       -apple-system,
@@ -144,7 +142,6 @@
   h6 {
     font-family:
       "Poppins",
-      "Roboto",
       system-ui,
       -apple-system,
       sans-serif;
