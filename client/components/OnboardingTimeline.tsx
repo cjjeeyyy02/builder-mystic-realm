@@ -41,7 +41,7 @@ export default function OnboardingTimeline() {
   const [sections, setSections] = useState<TimelineSection[]>([
     {
       id: "pre",
-      title: "Before Day 1 (Pre-Onboarding)",
+      title: "Pre-Onboarding Stage",
       description: "Offer accepted → HR triggers onboarding tasks → Candidate fills forms → IT & Manager notified",
       items: [
         { id: "pre-1", title: "Send offer letter & confirm start date", completed: false, files: [] },
@@ -56,7 +56,7 @@ export default function OnboardingTimeline() {
     },
     {
       id: "day1",
-      title: "Day 1 (Orientation)",
+      title: "Orientation Stage",
       items: [
         { id: "day1-1", title: "Welcome session with HR (policies, benefits, payroll, leave system)", completed: false, files: [] },
         { id: "day1-2", title: "Office tour & facilities overview", completed: false, files: [] },
@@ -68,7 +68,7 @@ export default function OnboardingTimeline() {
     },
     {
       id: "week1",
-      title: "Week 1 (Integration)",
+      title: "Integration Stage",
       items: [
         { id: "w1-1", title: "Complete HR paperwork & benefits enrollment", completed: false, files: [] },
         { id: "w1-2", title: "Team introduction & role overview", completed: false, files: [] },
@@ -91,8 +91,10 @@ export default function OnboardingTimeline() {
   const totals = useMemo(() => {
     const total = sections.reduce((acc, s) => acc + s.items.length, 0);
     const complete = sections.reduce((acc, s) => acc + s.items.filter(i => i.completed).length, 0);
+    const failed = sections.reduce((acc, s) => acc + s.items.filter(i => !i.completed && !!i.dateSubmitted).length, 0);
+    const inProcess = Math.max(total - complete - failed, 0);
     const pct = total ? Math.round((complete / total) * 100) : 0;
-    return { total, complete, pct };
+    return { total, complete, failed, inProcess, pct };
   }, [sections]);
 
   const markItem = (sectionId: string, itemId: string, completed: boolean) => {
@@ -132,18 +134,63 @@ export default function OnboardingTimeline() {
 
   return (
     <div className="space-y-4">
+      {/* Metrics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <Card className="rounded-none">
+          <CardContent className="p-4">
+            <div className="text-xs text-muted-foreground">Total Candidates</div>
+            <div className="text-2xl font-bold">1</div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-none">
+          <CardContent className="p-4">
+            <div className="text-xs text-muted-foreground">Passed</div>
+            <div className="text-2xl font-bold text-green-600">{totals.complete}</div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-none">
+          <CardContent className="p-4">
+            <div className="text-xs text-muted-foreground">Failed</div>
+            <div className="text-2xl font-bold text-red-600">{totals.failed}</div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-none">
+          <CardContent className="p-4">
+            <div className="text-xs text-muted-foreground">In Process</div>
+            <div className="text-2xl font-bold text-amber-600">{totals.inProcess}</div>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Header */}
       <Card className="border-0 shadow-sm">
         <CardContent className="p-4 flex items-center justify-between gap-3">
           <div>
             <div className="text-lg font-semibold">Onboarding Timeline – {candidate.name}</div>
-            <div className="text-xs text-muted-foreground">From Pre-Onboarding to Week 1 Integration</div>
+            <div className="text-xs text-muted-foreground">From Pre-Onboarding to Integration</div>
           </div>
           <div className="flex items-center gap-3">
             <ProgressBar value={totals.pct} />
             <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => setSendModalOpen(true)}>
               <Mail className="w-4 h-4 mr-2" /> Send Checklist Link
             </Button>
+            <Button variant="ghost" className="text-red-600 hover:text-red-700" onClick={() => {
+              const headers = ['Section','Item','Status','Date Submitted'];
+              const rows: string[] = [];
+              sections.forEach(s => s.items.forEach(i => {
+                const status = i.completed ? 'Passed' : (i.dateSubmitted ? 'Failed' : 'In Process');
+                rows.push([
+                  s.title,
+                  i.title,
+                  status,
+                  i.dateSubmitted ? new Date(i.dateSubmitted).toLocaleString() : ''
+                ].map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','));
+              }));
+              const csv = [headers.join(','), ...rows].join('\n');
+              const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a'); a.href = url; a.download = 'onboarding_timeline_export.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+            }}>Export</Button>
           </div>
         </CardContent>
       </Card>
