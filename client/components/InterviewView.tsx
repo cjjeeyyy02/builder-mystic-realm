@@ -3614,7 +3614,7 @@ Google India"
                         </div>
 
                         {/* Expanded Content */}
-                        {expandedSteps.includes(step.id) && (
+                        {true && (
                           <div className="p-4 bg-white border-t border-gray-200">
                             <div className="space-y-4">
                               {/* Schedule Details */}
