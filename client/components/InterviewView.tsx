@@ -490,7 +490,7 @@ export default function InterviewView() {
     return days;
   };
   const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
-  const [calendarView, setCalendarView] = useState<'day' | 'week' | 'month'>('month');
+  const [calendarView, setCalendarView] = useState<'week' | 'month'>('month');
   const [calendarSearch, setCalendarSearch] = useState('');
   // Build events map by date from rounds and interviewCandidates
   const eventsByDate = useMemo(() => {
