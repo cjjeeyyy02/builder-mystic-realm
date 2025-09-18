@@ -3585,10 +3585,7 @@ Google India"
                     {selectedCandidateForTimeline.steps.map((step, index) => (
                       <div key={step.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                         {/* Step Header - Clickable */}
-                        <div
-                          className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors"
-                          onClick={() => toggleStepExpansion(step.id)}
-                        >
+                        <div className="flex items-center justify-between p-4 bg-gray-50">
                           <div className="flex items-center gap-3 flex-1">
                             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                               <span className="text-blue-700 font-semibold text-sm">{index + 1}</span>
