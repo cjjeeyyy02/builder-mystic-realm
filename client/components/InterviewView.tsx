@@ -513,12 +513,12 @@ export default function InterviewView() {
     return map;
   }, [rounds]);
 
-  const interviewTotals = useMemo(() => {
+  const interviewMetrics = useMemo(() => {
     const total = interviewCandidates.length;
-    const passed = interviewCandidates.filter(c => c.status === "completed").length;
-    const failed = 0;
-    const inProcess = Math.max(total - passed - failed, 0);
-    return { total, passed, failed, inProcess };
+    const approved = interviewCandidates.filter(c => c.status === "completed").length;
+    const rejected = 0;
+    const pending = Math.max(total - approved - rejected, 0);
+    return { total, approved, rejected, pending };
   }, []);
 
   // New Rounds Room Interface States
@@ -1357,30 +1357,26 @@ Google India`
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <Card className="rounded-none">
-                  <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground">Total Candidates</div>
-                    <div className="text-2xl font-bold">{interviewTotals.total}</div>
-                  </CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <Card className="p-2">
+                  <div className="text-xl font-bold text-blue-600">{interviewMetrics.total}</div>
+                  <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
+                  <div className="text-xs text-gray-400">Under Interview</div>
                 </Card>
-                <Card className="rounded-none">
-                  <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground">Passed</div>
-                    <div className="text-2xl font-bold text-green-600">{interviewTotals.passed}</div>
-                  </CardContent>
+
+                <Card className="p-2">
+                  <div className="text-xl font-bold text-green-600">{interviewMetrics.approved}</div>
+                  <div className="text-xs text-muted-foreground font-medium">Approved</div>
                 </Card>
-                <Card className="rounded-none">
-                  <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground">Failed</div>
-                    <div className="text-2xl font-bold text-red-600">{interviewTotals.failed}</div>
-                  </CardContent>
+
+                <Card className="p-2">
+                  <div className="text-xl font-bold text-red-600">{interviewMetrics.rejected}</div>
+                  <div className="text-xs text-muted-foreground font-medium">Rejected</div>
                 </Card>
-                <Card className="rounded-none">
-                  <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground">In Process</div>
-                    <div className="text-2xl font-bold text-amber-600">{interviewTotals.inProcess}</div>
-                  </CardContent>
+
+                <Card className="p-2">
+                  <div className="text-xl font-bold text-yellow-600">{interviewMetrics.pending}</div>
+                  <div className="text-xs text-muted-foreground font-medium">Pending</div>
                 </Card>
               </div>
 
