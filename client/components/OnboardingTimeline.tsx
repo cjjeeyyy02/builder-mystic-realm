@@ -32,6 +32,21 @@ interface TimelineSection {
   description?: string;
 }
 
+function formatDateMDY(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
+  }
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return `${m[2]}-${m[3]}-${m[1]}`;
+  const m2 = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (m2) return dateStr;
+  return dateStr;
+}
+
 export default function OnboardingTimeline() {
   const { toast } = useToast();
   // Mock hired candidate
@@ -183,7 +198,7 @@ export default function OnboardingTimeline() {
                   s.title,
                   i.title,
                   status,
-                  i.dateSubmitted ? new Date(i.dateSubmitted).toLocaleString() : ''
+                  i.dateSubmitted ? formatDateMDY(i.dateSubmitted) : ''
                 ].map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','));
               }));
               const csv = [headers.join(','), ...rows].join('\n');
@@ -232,7 +247,7 @@ export default function OnboardingTimeline() {
                         <Button variant="outline" size="sm" className="text-xs" onClick={() => setStatusModal({ open: true, sectionId: section.id, itemId: item.id })}>
                           Update Status
                         </Button>
-                        <div className="text-xs text-muted-foreground ml-2">Date Submitted: {item.dateSubmitted ? new Date(item.dateSubmitted).toLocaleString() : '-'}</div>
+                        <div className="text-xs text-muted-foreground ml-2">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
                       </div>
                     </div>
 
