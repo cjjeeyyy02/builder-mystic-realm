@@ -4067,12 +4067,6 @@ Google India"
                     </div>
                   </div>
 
-                  {/* Room ID (top-right) */}
-                  <div>
-                    <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 font-medium text-xs px-2 py-0.5">
-                      {selectedCandidateDetails.roomId}
-                    </Badge>
-                  </div>
                 </div>
               </div>
 
