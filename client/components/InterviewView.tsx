@@ -1347,7 +1347,7 @@ Google India`
                           COUNTRY
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
-                          APPLIED JOB ROLE
+                          APPLIED POSITION
                         </TableHead>
                         <TableHead className="font-medium text-foreground py-2 text-xs">
                           CURRENT ROUND
@@ -1389,11 +1389,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('001', 'Jaya')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1425,11 +1425,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('002', 'Mark')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1461,11 +1461,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('003', 'John')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1497,11 +1497,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('004', 'Sara')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1533,11 +1533,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('005', 'Shruti')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1569,11 +1569,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('006', 'Robin')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('006', 'Robin')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1605,11 +1605,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('007', 'Kayle')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('007', 'Kayle')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1641,11 +1641,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('008', 'Vali')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('008', 'Vali')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1677,11 +1677,11 @@ Google India`
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem onSelect={() => handleViewCandidateDetails('009', 'Anne')}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                Update Interview Results
+                                View Interview Timeline
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('009', 'Anne')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Timeline (Steps)
+                                Manage Interview Timeline
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1922,7 +1922,7 @@ Google India`
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
                                   <Calendar className="mr-2 h-4 w-4" />
-                                  Manage Timeline
+                                  Manage Interview Timeline
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -2516,7 +2516,7 @@ Google India"
                         <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">COUNTRY</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">APPLIED JOB ROLE</TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">APPLIED POSITION</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS DECISION</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">FINAL DECISION</TableHead>
