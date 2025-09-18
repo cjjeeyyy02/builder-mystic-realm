@@ -1480,7 +1480,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1516,7 +1516,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1552,7 +1552,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1588,7 +1588,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1624,7 +1624,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1660,7 +1660,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('006', 'Robin')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1696,7 +1696,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('007', 'Kayle')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1732,7 +1732,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('008', 'Vali')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1768,7 +1768,7 @@ Google India`
                               </DropdownMenuItem>
                               <DropdownMenuItem onSelect={() => handleManageTimeline('009', 'Anne')}>
                                 <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Timeline
+                                Manage Interview Steps
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -2059,7 +2059,7 @@ Google India`
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
                                   <Calendar className="mr-2 h-4 w-4" />
-                                  Manage Interview Timeline
+                                  Manage Interview Steps
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
