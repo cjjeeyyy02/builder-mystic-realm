@@ -3610,10 +3610,7 @@ Google India"
                             >
                               {step.status}
                             </Badge>
-                            <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${
-                              expandedSteps.includes(step.id) ? 'rotate-180' : ''
-                            }`} />
-                          </div>
+                                                      </div>
                         </div>
 
                         {/* Expanded Content */}
