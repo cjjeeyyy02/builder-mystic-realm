@@ -2043,7 +2043,7 @@ Google India`
                               </div>
                               <div>
                                 <p className="font-semibold text-sm">{c.applicantName}</p>
-                                <p className="text-xs text-gray-500">ID: {c.id}</p>
+                                <p className="text-xs text-gray-500">Job ID: {c.id}</p>
                               </div>
                             </div>
                             <DropdownMenu>
@@ -2076,7 +2076,7 @@ Google India`
                             </div>
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-gray-500">Status:</span>
-                              <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getStatusColor(c.status)}`}>{c.status}</span>
+                              <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getStatusColor(c.status)}`}>{c.status === 'completed' ? 'Approved' : c.status === 'pending' ? 'In process' : c.status === 'in-progress' ? 'In process' : c.status === 'rejected' ? 'Reject' : c.status}</span>
                             </div>
                           </div>
                         </CardContent>
