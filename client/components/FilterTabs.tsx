@@ -621,28 +621,32 @@ export default function FilterTabs() {
     <div className="space-y-3">
       {/* Compact Rectangular Block Stage Headers */}
       <div className="w-full">
-        <div className="bg-white border border-gray-200">
-          <div className="flex w-full">
-            {tabs.map((tab, index) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                aria-current={activeTab === tab.id ? 'page' : undefined}
-                className={`
-                  flex-1 px-4 py-2 text-sm font-medium
-                  font-['Poppins',sans-serif] tracking-normal
-                  transition-colors duration-200
-                  border-r border-gray-200 last:border-r-0
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset
-                  ${activeTab === tab.id
-                    ? 'text-white bg-blue-600'
-                    : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
-                  }
-                `}
-              >
-                <span className="whitespace-nowrap">{tab.label}</span>
-              </button>
-            ))}
+        <div className="bg-white">
+          <div className="flex items-end justify-start gap-4 border-b border-gray-200">
+            {tabs.map((tab) => {
+              const count =
+                tab.id === "screening" ? screeningCandidates.length :
+                tab.id === "interview" ? interviewTabCandidates.length :
+                tab.id === "activation" ? 0 :
+                0;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`relative pb-2 px-4 text-sm font-semibold transition-colors rounded-t
+                    ${isActive ? 'text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}
+                >
+                  <span className="mr-2 whitespace-nowrap">{tab.label}</span>
+                  <span className={`inline-flex items-center justify-center h-6 px-2 rounded-full border text-xs
+                    ${isActive ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 text-gray-700 border-gray-300'}`}>
+                    {count}
+                  </span>
+                  {isActive && <span className="absolute left-0 -bottom-[1px] h-0.5 w-full bg-blue-600" />}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
