@@ -427,6 +427,23 @@ function formatDDMMYYYY(dateStr: string): string {
   return m ? `${m[2]}-${m[3]}-${m[1]}` : dateStr;
 }
 
+function formatMDYSlash(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${mm}/${dd}/${yyyy}`;
+  }
+  const iso = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return `${iso[2]}/${iso[3]}/${iso[1]}`;
+  const dash = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (dash) return `${dash[1]}/${dash[2]}/${dash[3]}`;
+  const slash = dateStr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (slash) return dateStr;
+  return dateStr;
+}
+
 export default function InterviewView() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -3728,7 +3745,7 @@ Google India"
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
                 <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
+                <div className="text-[11px] text-gray-500 mt-1">Selected (mm/dd/yyyy): {scheduleForm.date ? formatMDYSlash(scheduleForm.date) : '-'}</div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
@@ -3783,7 +3800,7 @@ Google India"
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
                 <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
+                <div className="text-[11px] text-gray-500 mt-1">Selected (mm/dd/yyyy): {scheduleForm.date ? formatMDYSlash(scheduleForm.date) : '-'}</div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
