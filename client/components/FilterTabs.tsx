@@ -25,7 +25,7 @@ import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import ScreeningView from "./ScreeningView";
 import { screeningCandidates } from "@/data/screeningCandidates";
-import InterviewView from "./InterviewView";
+import InterviewView, { interviewCandidates as interviewTabCandidates } from "./InterviewView";
 import ActivationView from "./ActivationView";
 import OnboardingTimeline from "./OnboardingTimeline";
 import CandidateList from "./CandidateList";
@@ -1503,6 +1503,31 @@ export default function FilterTabs() {
       )}
 
       {/* Metrics cards for Screening (moved below search/filter) */}
+
+      {/* Interview Metrics under header */}
+      {activeTab === "interview" && (
+        <div className="flex flex-col gap-2 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <Card className="p-2">
+              <div className="text-xl font-bold text-blue-600">{interviewTabCandidates.length}</div>
+              <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
+              <div className="text-xs text-gray-400">Under Interview</div>
+            </Card>
+            <Card className="p-2">
+              <div className="text-xl font-bold text-green-600">{interviewTabCandidates.filter(c => c.status === "completed").length}</div>
+              <div className="text-xs text-muted-foreground font-medium">Approved</div>
+            </Card>
+            <Card className="p-2">
+              <div className="text-xl font-bold text-red-600">0</div>
+              <div className="text-xs text-muted-foreground font-medium">Rejected</div>
+            </Card>
+            <Card className="p-2">
+              <div className="text-xl font-bold text-yellow-600">{interviewTabCandidates.filter(c => c.status === "pending").length}</div>
+              <div className="text-xs text-muted-foreground font-medium">Pending</div>
+            </Card>
+          </div>
+        </div>
+      )}
 
       {/* Conditional Content Based on Active Tab */}
       <div>
