@@ -4,7 +4,7 @@ import {
   Mail,
   Phone,
   ExternalLink,
-  Send,
+
   CheckCircle,
   Clock,
   X,
