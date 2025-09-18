@@ -150,19 +150,39 @@ export default function OnboardingTimeline() {
   return (
     <div className="space-y-4">
 
+      {/* Metrics cards row */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white border border-gray-200 rounded-none p-2">
+          <div className="text-2xl font-bold text-blue-600">{1}</div>
+          <div className="text-xs text-gray-700 font-medium">Total Hired this Month</div>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-none p-2">
+          <div className="text-xl font-bold">{sections.find(s => s.id === 'pre')?.items.length ?? 0}</div>
+          <div className="text-xs text-gray-700 font-medium">Pre-Onboarding Stage</div>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-none p-2">
+          <div className="text-xl font-bold">{sections.find(s => s.id === 'day1')?.items.length ?? 0}</div>
+          <div className="text-xs text-gray-700 font-medium">Orientation Stage</div>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-none p-2">
+          <div className="text-xl font-bold">{sections.find(s => s.id === 'week1')?.items.length ?? 0}</div>
+          <div className="text-xs text-gray-700 font-medium">Integration Stage</div>
+        </div>
+      </div>
+
       {/* Header */}
       <Card className="border-0 shadow-sm">
         <CardContent className="p-4 flex items-center justify-between gap-3">
           <div>
             <div className="text-lg font-semibold">Onboarding Timeline – {candidate.name}</div>
-            <div className="text-xs text-muted-foreground">From Pre-Onboarding to Integration</div>
+            <div className="text-xs text-red-600">From Pre-Onboarding to Integration</div>
           </div>
           <div className="flex items-center gap-3">
             <ProgressBar value={totals.pct} />
             <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => setSendModalOpen(true)}>
               <Mail className="w-4 h-4 mr-2" /> Send Checklist Link
             </Button>
-            <Button variant="ghost" className="text-red-600 hover:text-red-700" onClick={() => {
+            <Button className="bg-[#E53935] hover:bg-[#d32f2f] text-white font-bold" onClick={() => {
               const headers = ['Section','Item','Status','Date Submitted'];
               const rows: string[] = [];
               sections.forEach(s => s.items.forEach(i => {
