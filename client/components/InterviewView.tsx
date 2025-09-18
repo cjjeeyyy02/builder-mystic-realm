@@ -1918,36 +1918,69 @@ Google India`
                     )}
 
                     {calendarView === 'week' && (() => {
-                      const start = new Date(calendarDate);
-                      start.setDate(start.getDate() - start.getDay());
-                      const days = Array.from({ length: 7 }, (_, i) => new Date(start.getFullYear(), start.getMonth(), start.getDate() + i));
+                      const weekStart = getStartOfWorkWeek(calendarDate);
+                      const days = Array.from({ length: 5 }, (_, i) => new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + i));
                       return (
-                        <div className="grid grid-cols-7 gap-px bg-gray-200">
-                          {days.map((day) => {
-                            const events = (eventsByDate[formatDate(day)] || []).filter(evt => {
-                              const q = calendarSearch.trim().toLowerCase();
-                              if (!q) return true;
-                              return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
-                            });
-                            return (
-                              <div key={day.toISOString()} className="min-h-[110px] bg-white p-1">
-                                <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
-                                <div className="space-y-1">
-                                  {events.map((evt, idx) => {
-                                    const c = evt.status?.toLowerCase();
-                                    const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
-                                    return (
-                                      <div key={idx} className={`border ${color} rounded-none px-1 py-0.5`}>
-                                        <div className="text-[10px] font-semibold truncate">{evt.candidateName}</div>
-                                        <div className="text-[10px] truncate">{evt.appliedPosition}</div>
-                                        <div className="text-[10px] opacity-80 truncate">{evt.roundName}</div>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
+                        <div className="border-t">
+                          <div className="grid grid-cols-6 text-xs font-medium text-gray-600 border-b">
+                            <div className="p-2"></div>
+                            {days.map((d, idx) => (
+                              <div key={idx} className="p-2 text-center">{d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+                            ))}
+                          </div>
+                          <div
+                            className="grid grid-cols-6 relative"
+                            onMouseLeave={() => { if (isSelecting) { commitSelectionToDraft(weekStart); resetSelection(); } }}
+                            onMouseUp={() => { if (isSelecting) { commitSelectionToDraft(weekStart); resetSelection(); } }}
+                          >
+                            <div className="border-r bg-gray-50">
+                              {timeSlots.map((t, idx) => (
+                                <div key={idx} className={`h-8 text-[10px] text-right pr-2 ${t.includes(':00') ? 'font-medium text-gray-600' : 'text-gray-400'}`}>{t}</div>
+                              ))}
+                            </div>
+                            {days.map((d, dayIdx) => (
+                              <div key={dayIdx} className="border-r last:border-r-0 relative">
+                                {isSelecting && selDayIdx === dayIdx && selStartIdx != null && (
+                                  (() => {
+                                    const from = Math.min(selStartIdx!, selEndIdx ?? selStartIdx!);
+                                    const to = Math.max(selStartIdx!, selEndIdx ?? selStartIdx!);
+                                    const top = from * 32;
+                                    const height = (to - from + 1) * 32;
+                                    return <div className="absolute left-1 right-1 bg-purple-200/60 rounded-md" style={{ top, height }} />
+                                  })()
+                                )}
+                                {timeSlots.map((t, slotIdx) => (
+                                  <div
+                                    key={slotIdx}
+                                    className="h-8 border-b hover:bg-purple-50 cursor-crosshair"
+                                    onMouseDown={() => { setIsSelecting(true); setSelDayIdx(dayIdx); setSelStartIdx(slotIdx); setSelEndIdx(slotIdx); }}
+                                    onMouseEnter={() => { if (isSelecting && selDayIdx === dayIdx) setSelEndIdx(slotIdx); }}
+                                    onClick={() => { if (!isSelecting) { setSelDayIdx(dayIdx); setSelStartIdx(slotIdx); setSelEndIdx(slotIdx); commitSelectionToDraft(weekStart); resetSelection(); } }}
+                                  />
+                                ))}
+                                {calendarEvents.filter(ev => {
+                                  const evStart = new Date(ev.start);
+                                  return evStart.getFullYear() === d.getFullYear() && evStart.getMonth() === d.getMonth() && evStart.getDate() === d.getDate();
+                                }).map(ev => {
+                                  const evStart = new Date(ev.start);
+                                  const evEnd = new Date(ev.end);
+                                  const startIdx = ((evStart.getHours() - WORK_HOURS_START) * 60 + evStart.getMinutes()) / SLOT_MINUTES;
+                                  const endIdx = Math.max(startIdx + 1, ((evEnd.getHours() - WORK_HOURS_START) * 60 + evEnd.getMinutes()) / SLOT_MINUTES);
+                                  const top = Math.max(0, startIdx * 32);
+                                  const height = Math.max(32, (endIdx - startIdx) * 32);
+                                  return (
+                                    <div key={ev.id} className="absolute left-1 right-1 bg-purple-100 border border-purple-200 rounded-md px-2 py-1 shadow-sm overflow-hidden"
+                                      style={{ top, height }}
+                                      onClick={() => openEventPanel(ev)}
+                                    >
+                                      <div className="text-[11px] font-semibold text-purple-800 truncate">{ev.title || '(No title)'}</div>
+                                      <div className="text-[10px] text-purple-700 truncate">{ev.organizer}</div>
+                                    </div>
+                                  );
+                                })}
                               </div>
-                            );
-                          })}
+                            ))}
+                          </div>
                         </div>
                       );
                     })()}
