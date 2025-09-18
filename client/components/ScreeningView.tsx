@@ -654,7 +654,7 @@ export default function ScreeningView() {
 
       {/* Resume Viewer Modal */}
       <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
-        <DialogContent className="w-[95vw] max-w-7xl h-[95vh] overflow-hidden p-0">
+        <DialogContent className="w-[95vw] max-w-7xl h-[95vh] overflow-hidden p-0 text-xs sm:text-sm">
           {selectedCandidate && (
             <>
               <DialogHeader className="p-4 sm:p-6 border-b">
@@ -662,7 +662,7 @@ export default function ScreeningView() {
                   <div className="flex items-center gap-3">
                     <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                     <div>
-                      <h2 className="text-lg sm:text-xl font-bold">{selectedCandidate.name} - Resume</h2>
+                      <h2 className="text-base sm:text-lg font-bold">{selectedCandidate.name} - Resume</h2>
                       <p className="text-xs sm:text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
                     </div>
                   </div>
