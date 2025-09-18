@@ -492,6 +492,83 @@ export default function InterviewView() {
   const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
   const [calendarView, setCalendarView] = useState<'week' | 'month'>('month');
   const [calendarSearch, setCalendarSearch] = useState('');
+
+  // Calendar events and editor state
+  type CalendarEvent = {
+    id: string;
+    title: string;
+    organizer: string;
+    attendees: string[];
+    start: string; // ISO
+    end: string;   // ISO
+    allDay?: boolean;
+    location?: string;
+    description?: string;
+  };
+  const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
+  const [showEventPanel, setShowEventPanel] = useState(false);
+  const [eventDraft, setEventDraft] = useState<CalendarEvent | null>(null);
+  const openEventPanel = (draft: CalendarEvent) => { setEventDraft(draft); setShowEventPanel(true); };
+  const closeEventPanel = () => { setShowEventPanel(false); setEventDraft(null); };
+
+  const getStartOfWorkWeek = (d: Date) => {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diffToMonday = (day + 6) % 7;
+    date.setDate(date.getDate() - diffToMonday);
+    date.setHours(0,0,0,0);
+    return date;
+  };
+
+  const WORK_HOURS_START = 8;
+  const WORK_HOURS_END = 18;
+  const SLOT_MINUTES = 30;
+
+  const timeSlots: string[] = useMemo(() => {
+    const slots: string[] = [];
+    for (let h = WORK_HOURS_START; h < WORK_HOURS_END; h++) {
+      for (let m = 0; m < 60; m += SLOT_MINUTES) {
+        const hour12 = ((h + 11) % 12) + 1;
+        const ampm = h < 12 ? 'AM' : 'PM';
+        const mm = String(m).padStart(2, '0');
+        slots.push(`${hour12}:${mm} ${ampm}`);
+      }
+    }
+    return slots;
+  }, []);
+
+  const [isSelecting, setIsSelecting] = useState(false);
+  const [selDayIdx, setSelDayIdx] = useState<number | null>(null);
+  const [selStartIdx, setSelStartIdx] = useState<number | null>(null);
+  const [selEndIdx, setSelEndIdx] = useState<number | null>(null);
+  const resetSelection = () => { setIsSelecting(false); setSelDayIdx(null); setSelStartIdx(null); setSelEndIdx(null); };
+  const commitSelectionToDraft = (weekStart: Date) => {
+    if (selDayIdx == null || selStartIdx == null) return;
+    const endIdx = selEndIdx != null ? selEndIdx : selStartIdx;
+    const start = new Date(weekStart);
+    start.setDate(weekStart.getDate() + selDayIdx);
+    const startHour = WORK_HOURS_START + Math.floor(selStartIdx * SLOT_MINUTES / 60);
+    const startMinute = (selStartIdx * SLOT_MINUTES) % 60;
+    start.setHours(startHour, startMinute, 0, 0);
+
+    const end = new Date(weekStart);
+    end.setDate(weekStart.getDate() + selDayIdx);
+    const endHour = WORK_HOURS_START + Math.floor((endIdx + 1) * SLOT_MINUTES / 60);
+    const endMinute = ((endIdx + 1) * SLOT_MINUTES) % 60;
+    end.setHours(endHour, endMinute, 0, 0);
+
+    openEventPanel({
+      id: `draft-${Date.now()}`,
+      title: '',
+      organizer: '',
+      attendees: [],
+      start: start.toISOString(),
+      end: end.toISOString(),
+      allDay: false,
+      location: '',
+      description: ''
+    });
+  };
   // Build events map by date from rounds and interviewCandidates
   const eventsByDate = useMemo(() => {
     const map: Record<string, { candidateName: string; appliedPosition: string; roundName: string; status: string; }[]> = {};
