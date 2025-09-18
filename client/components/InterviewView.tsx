@@ -3738,7 +3738,7 @@ Google India"
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md uppercase tracking-wide">
-                          CA001
+                          
                         </span>
                         <Button
                           variant="ghost"
