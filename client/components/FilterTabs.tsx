@@ -1524,7 +1524,7 @@ export default function FilterTabs() {
             </Card>
             <Card className="p-2">
               <div className="text-xl font-bold text-yellow-600">{interviewTabCandidates.filter(c => c.status === "pending").length}</div>
-              <div className="text-xs text-muted-foreground font-medium">Pending</div>
+              <div className="text-xs text-muted-foreground font-medium">In process</div>
             </Card>
           </div>
         </div>
