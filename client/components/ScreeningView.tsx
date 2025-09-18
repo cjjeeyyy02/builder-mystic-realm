@@ -657,12 +657,12 @@ export default function ScreeningView() {
         <DialogContent className="w-[95vw] max-w-7xl h-[95vh] overflow-hidden p-0 text-xs sm:text-sm">
           {selectedCandidate && (
             <>
-              <DialogHeader className="p-4 sm:p-6 border-b">
+              <DialogHeader className="p-3 sm:p-4 border-b">
                 <DialogTitle className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+                    <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                     <div>
-                      <h2 className="text-base sm:text-lg font-bold">{selectedCandidate.name} - Resume</h2>
+                      <h2 className="text-sm sm:text-base font-semibold">{selectedCandidate.name} - Resume</h2>
                       <p className="text-xs sm:text-sm text-gray-600 font-normal">{selectedCandidate.position}</p>
                     </div>
                   </div>
@@ -702,23 +702,23 @@ export default function ScreeningView() {
                 </DialogTitle>
               </DialogHeader>
 
-              <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 h-[calc(95vh-180px)] overflow-hidden">
+              <div className="flex flex-col xl:flex-row gap-3 xl:gap-4 h-[calc(95vh-180px)] overflow-hidden">
                 {/* Main Panel - Resume Content */}
-                <div className="flex-1 overflow-y-auto space-y-4 sm:space-y-6 px-4 sm:px-6 xl:pr-4">
+                <div className="flex-1 overflow-y-auto space-y-2 sm:space-y-3 px-3 sm:px-4 xl:pr-3">
                   {/* Quick Info Bar */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-md border border-gray-200">
                     <div className="text-center">
-                      <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mx-auto mb-1" />
+                      <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.totalExperience}</div>
                       <div className="text-xs text-gray-600">Total Experience</div>
                     </div>
                     <div className="text-center">
-                      <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 mx-auto mb-1" />
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.location}</div>
                       <div className="text-xs text-gray-600">Location</div>
                     </div>
                     <div className="text-center">
-                      <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 mx-auto mb-1" />
+                      <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.availability}</div>
                       <div className="text-xs text-gray-600">Availability</div>
                     </div>
@@ -726,8 +726,8 @@ export default function ScreeningView() {
 
                   {/* Contact Information */}
                   <Card>
-                    <CardContent className="p-3 sm:p-4">
-                      <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                    <CardContent className="p-2 sm:p-3">
+                      <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
                         <User className="w-4 h-4" />
                         Contact Information
                       </h3>
@@ -755,8 +755,8 @@ export default function ScreeningView() {
                   {/* Professional Summary */}
                   {selectedCandidate.summary && (
                     <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Professional Summary</h3>
+                      <CardContent className="p-2 sm:p-3">
+                        <h3 className="font-semibold mb-2 text-sm">Professional Summary</h3>
                         <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{selectedCandidate.summary}</p>
                       </CardContent>
                     </Card>
@@ -765,14 +765,14 @@ export default function ScreeningView() {
                   {/* Work Experience */}
                   {selectedCandidate.workHistory && selectedCandidate.workHistory.length > 0 && (
                     <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                      <CardContent className="p-2 sm:p-3">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
                           <Briefcase className="w-4 h-4" />
                           Work Experience
                         </h3>
-                        <div className="space-y-3 sm:space-y-4">
+                        <div className="space-y-2 sm:space-y-3">
                           {selectedCandidate.workHistory.map((job, index) => (
-                            <div key={index} className="border-l-2 border-blue-200 pl-3 sm:pl-4 pb-3 sm:pb-4">
+                            <div key={index} className="border-l-2 border-blue-200 pl-2 sm:pl-3 pb-2 sm:pb-3">
                               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
                                 <div className="flex-1">
                                   <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
@@ -796,8 +796,8 @@ export default function ScreeningView() {
                   {/* Education */}
                   {selectedCandidate.education && (
                     <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                      <CardContent className="p-2 sm:p-3">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
                           <GraduationCap className="w-4 h-4" />
                           Education
                         </h3>
@@ -809,8 +809,8 @@ export default function ScreeningView() {
                   {/* Skills */}
                   {selectedCandidate.skills && selectedCandidate.skills.length > 0 && (
                     <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 text-sm sm:text-base">Skills & Technologies</h3>
+                      <CardContent className="p-2 sm:p-3">
+                        <h3 className="font-semibold mb-2 text-sm">Skills & Technologies</h3>
                         <div className="flex flex-wrap gap-1 sm:gap-2">
                           {selectedCandidate.skills.map((skill, index) => (
                             <Badge key={index} variant="secondary" className="text-xs">
@@ -825,8 +825,8 @@ export default function ScreeningView() {
                   {/* Certifications */}
                   {selectedCandidate.certifications && selectedCandidate.certifications.length > 0 && (
                     <Card>
-                      <CardContent className="p-3 sm:p-4">
-                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                      <CardContent className="p-2 sm:p-3">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
                           <Award className="w-4 h-4" />
                           Certifications
                         </h3>
@@ -844,23 +844,23 @@ export default function ScreeningView() {
 
                 {/* Screening Tools Panel */}
                 <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3 sm:space-y-4">
-                  <h3 className="font-semibold text-base sm:text-lg">Screening Assessment</h3>
+                  <h3 className="font-semibold text-sm">Screening Assessment</h3>
 
                   {/* Quick Actions */}
                   <Card>
-                    <CardContent className="p-3 sm:p-4">
+                    <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
                       <div className="space-y-2">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full justify-start text-xs sm:text-sm"
+                          className="w-full justify-start text-xs sm:text-sm h-7 px-2"
                           onClick={() => selectedCandidate && handleEmailCandidate(selectedCandidate)}
                         >
                           <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Send Email
                         </Button>
-                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2">
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Schedule Interview
                         </Button>
@@ -870,7 +870,7 @@ export default function ScreeningView() {
 
                   {/* Candidate Details */}
                   <Card>
-                    <CardContent className="p-3 sm:p-4">
+                    <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Candidate Details</h4>
                       <div className="space-y-3 text-xs sm:text-sm">
                         <div>
@@ -910,7 +910,7 @@ export default function ScreeningView() {
 
                   {/* Screening Notes */}
                   <Card>
-                    <CardContent className="p-3 sm:p-4">
+                    <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
                       <Textarea
                         placeholder="Add your screening notes here..."
@@ -923,7 +923,7 @@ export default function ScreeningView() {
 
                   {/* Status Actions */}
                   <Card>
-                    <CardContent className="p-3 sm:p-4">
+                    <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
                       <div className="space-y-2">
                         <Button
@@ -958,11 +958,11 @@ export default function ScreeningView() {
                 </div>
               </div>
 
-              <DialogFooter className="flex flex-col sm:flex-row gap-2 p-4 sm:p-6 border-t">
+              <DialogFooter className="flex flex-col sm:flex-row gap-2 p-3 sm:p-4 border-t">
                 <Button variant="outline" onClick={() => setShowResumeModal(false)} className="text-xs sm:text-sm">
                   Close
                 </Button>
-                <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm">
+                <Button className="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm h-8 px-3">
                   <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Approve Candidate
                 </Button>
