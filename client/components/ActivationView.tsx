@@ -225,17 +225,19 @@ export default function ActivationView() {
               <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}>
                 <List className="w-4 h-4" />
               </Button>
-              <Button size="sm" variant={viewMode === "card" ? "default" : "outline"} onClick={() => setViewMode("card")}>
-                <Grid className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" className="text-red-600 hover:text-red-700" onClick={() => {
+              <Button variant="outline" size="sm" onClick={() => {
                 const headers = ['Job ID','Name','Role','Joining Date','Files Uploaded','Activation Progress'];
                 const rows = filteredEmployees.map(e => [e.jobId, e.name, e.appliedJobRole, e.joiningDate, e.filesUploaded, `${e.activationProgress}%`]);
                 const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
                 const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a'); a.href = url; a.download = 'activation_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-              }}>Export</Button>
+              }}>
+                <Download className="w-4 h-4 mr-1" /> Export
+              </Button>
+              <Button size="sm" variant={viewMode === "card" ? "default" : "outline"} onClick={() => setViewMode("card")}>
+                <Grid className="w-4 h-4" />
+              </Button>
             </div>
           </div>
 
