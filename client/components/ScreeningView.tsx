@@ -405,6 +405,7 @@ export default function ScreeningView() {
 
         <div className="flex items-center gap-2">
           <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
+          <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><Grid className="w-4 h-4" /></Button>
           <Button size="sm" variant="outline" onClick={() => {
             const headers = ['Name','Position','Total Experience','Email','Phone','Status'];
             const rows = filteredCandidates.map(c => [c.name, c.position, c.totalExperience, c.email, c.phone, c.status]);
@@ -415,7 +416,6 @@ export default function ScreeningView() {
           }}>
             <Download className="w-4 h-4 mr-1" /> Export
           </Button>
-          <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><Grid className="w-4 h-4" /></Button>
         </div>
       </div>
 
