@@ -3823,7 +3823,7 @@ Google India"
       <Dialog open={showRemarkScoreModal} onOpenChange={setShowRemarkScoreModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><FileText className="w-4 h-4" /> Submit Remark & Score</DialogTitle>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><FileText className="w-4 h-4" /> Submit Interview Results</DialogTitle>
             <DialogDescription>Add remarks and a score for this step.</DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
