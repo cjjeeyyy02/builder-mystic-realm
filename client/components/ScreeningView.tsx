@@ -118,7 +118,7 @@ const ActionDropdown = React.memo(({
           className="flex items-center gap-2 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
         >
           <Eye className="w-4 h-4" />
-          View Details
+          View Candidate Details
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -177,7 +177,7 @@ const SimpleActionMenu = React.memo(({
               className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-700 text-left"
             >
               <Eye className="w-4 h-4" />
-              View Details
+              View Candidate Details
             </button>
           </div>
         </>
