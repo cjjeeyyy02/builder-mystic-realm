@@ -149,33 +149,6 @@ export default function OnboardingTimeline() {
 
   return (
     <div className="space-y-4">
-      {/* Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <Card className="rounded-none">
-          <CardContent className="p-4">
-            <div className="text-xs text-muted-foreground">Total Candidates</div>
-            <div className="text-2xl font-bold">1</div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-none">
-          <CardContent className="p-4">
-            <div className="text-xs text-muted-foreground">Passed</div>
-            <div className="text-2xl font-bold text-green-600">{totals.complete}</div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-none">
-          <CardContent className="p-4">
-            <div className="text-xs text-muted-foreground">Failed</div>
-            <div className="text-2xl font-bold text-red-600">{totals.failed}</div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-none">
-          <CardContent className="p-4">
-            <div className="text-xs text-muted-foreground">In Process</div>
-            <div className="text-2xl font-bold text-amber-600">{totals.inProcess}</div>
-          </CardContent>
-        </Card>
-      </div>
 
       {/* Header */}
       <Card className="border-0 shadow-sm">

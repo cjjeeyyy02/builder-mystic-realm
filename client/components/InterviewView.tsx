@@ -513,6 +513,14 @@ export default function InterviewView() {
     return map;
   }, [rounds]);
 
+  const interviewTotals = useMemo(() => {
+    const total = interviewCandidates.length;
+    const passed = interviewCandidates.filter(c => c.status === "completed").length;
+    const failed = 0;
+    const inProcess = Math.max(total - passed - failed, 0);
+    return { total, passed, failed, inProcess };
+  }, []);
+
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
   const [jobRole, setJobRole] = useState("");
@@ -1347,6 +1355,33 @@ Google India`
                     <Grid className="w-4 h-4" />
                   </Button>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <Card className="rounded-none">
+                  <CardContent className="p-4">
+                    <div className="text-xs text-muted-foreground">Total Candidates</div>
+                    <div className="text-2xl font-bold">{interviewTotals.total}</div>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-none">
+                  <CardContent className="p-4">
+                    <div className="text-xs text-muted-foreground">Passed</div>
+                    <div className="text-2xl font-bold text-green-600">{interviewTotals.passed}</div>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-none">
+                  <CardContent className="p-4">
+                    <div className="text-xs text-muted-foreground">Failed</div>
+                    <div className="text-2xl font-bold text-red-600">{interviewTotals.failed}</div>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-none">
+                  <CardContent className="p-4">
+                    <div className="text-xs text-muted-foreground">In Process</div>
+                    <div className="text-2xl font-bold text-amber-600">{interviewTotals.inProcess}</div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Interview Content - Table or Card View */}
