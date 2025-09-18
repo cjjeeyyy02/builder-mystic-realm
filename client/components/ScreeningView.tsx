@@ -96,15 +96,17 @@ const ActionDropdown = React.memo(({
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button
-          className="text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100 transition-colors"
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-6 w-6 p-0 text-gray-500 hover:text-gray-700"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
           }}
         >
           <MoreVertical className="h-4 w-4" />
-        </button>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem
@@ -146,12 +148,14 @@ const SimpleActionMenu = React.memo(({
 
   return (
     <div className="relative">
-      <button
-        className="text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100 transition-colors"
+      <Button
+        variant="ghost"
+        size="sm"
+        className="h-6 w-6 p-0 text-gray-500 hover:text-gray-700"
         onClick={() => setIsOpen(!isOpen)}
       >
         <MoreVertical className="h-4 w-4" />
-      </button>
+      </Button>
 
       {isOpen && (
         <>
@@ -430,26 +434,26 @@ export default function ScreeningView() {
                   <col className="w-[8%]" />
                 </colgroup>
                 <thead>
-                  <tr className="border-b border-gray-200/60">
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                  <tr className="text-left text-[13px] text-gray-600 border-b">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       CANDIDATE
                     </th>
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       APPLIED POSITION
                     </th>
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       TOTAL EXPERIENCE
                     </th>
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       EMAIL
                     </th>
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       PHONE NUMBER
                     </th>
-                    <th className="text-left px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       STATUS
                     </th>
-                    <th className="text-center px-2 py-2 text-xs font-bold text-gray-900 bg-white uppercase tracking-wider">
+                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
                       ACTION
                     </th>
                   </tr>
@@ -470,7 +474,7 @@ export default function ScreeningView() {
                   <col className="w-[8%]" />
                   <col className="w-[8%]" />
                 </colgroup>
-              <tbody className="divide-y divide-gray-200/40">
+              <tbody>
                 {filteredCandidates.map((candidate, index) => {
                   const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
                   const statusBadgeClass = candidate.status === 'approved'
@@ -484,12 +488,9 @@ export default function ScreeningView() {
                   return (
                     <tr
                       key={candidate.id}
-                      className={`hover:bg-blue-50/60 transition-colors duration-200 ${
-                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50/20'
-                      }`}
-                      style={{height: '44px'}}
+                      className="border-b last:border-b-0 hover:bg-gray-50"
                     >
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <div className="flex items-center space-x-2">
                           <div className="flex-shrink-0">
                             <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
@@ -508,24 +509,24 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <div className="text-xs text-gray-900 truncate" title={candidate.position}>{candidate.position}</div>
                       </td>
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <div className="text-xs font-medium text-gray-900">{candidate.totalExperience}</div>
                       </td>
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <div className="text-xs text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
                       </td>
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <div className="text-xs text-gray-900">{formatPhone(candidate.phone)}</div>
                       </td>
-                      <td className="px-2 py-1.5">
+                      <td className="px-3 py-3">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium ${statusBadgeClass}`}>
                           {statusText}
                         </span>
                       </td>
-                      <td className="px-2 py-1.5 text-center">
+                      <td className="px-3 py-3">
                         <div className="flex items-center justify-center">
                           <ActionComponent
                             candidateId={candidate.id}
