@@ -114,13 +114,6 @@ const ActionDropdown = React.memo(({
           Update Status
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={handleEmailClick}
-          className="flex items-center gap-2 hover:bg-green-50 hover:text-green-700 cursor-pointer"
-        >
-          <Send className="w-4 h-4" />
-          Send Email
-        </DropdownMenuItem>
-        <DropdownMenuItem
           onClick={handleViewClick}
           className="flex items-center gap-2 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
         >
@@ -175,16 +168,6 @@ const SimpleActionMenu = React.memo(({
             >
               <Clock className="w-4 h-4" />
               Update Status
-            </button>
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                onEmail(candidate);
-              }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-green-50 hover:text-green-700 text-left"
-            >
-              <Send className="w-4 h-4" />
-              Send Email
             </button>
             <button
               onClick={() => {
@@ -851,15 +834,6 @@ export default function ScreeningView() {
                     <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
                       <div className="space-y-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="w-full justify-start text-xs sm:text-sm h-7 px-2"
-                          onClick={() => selectedCandidate && handleEmailCandidate(selectedCandidate)}
-                        >
-                          <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Send Email
-                        </Button>
                         <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2">
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Schedule Interview
