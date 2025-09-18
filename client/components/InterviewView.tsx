@@ -1985,7 +1985,7 @@ Google India`
                       );
                     })()}
 
-                    {calendarView === 'day' && (
+                    {false && calendarView === 'day' && (
                       <div className="p-2 border-t">
                         <div className="text-xs font-medium text-gray-600 mb-2">{calendarDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
                         <div className="space-y-1">
