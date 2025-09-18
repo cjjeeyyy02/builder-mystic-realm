@@ -450,8 +450,9 @@ export default function ActivationView() {
             <DialogContent className="max-w-3xl">
               <DialogHeader className="flex flex-row items-center justify-between">
                 <DialogTitle className="text-lg font-semibold">Update Checklist -<br />{selectedEmployeeForChecklist?.name}</DialogTitle>
-                <Button size="icon" variant="ghost" className="h-8 w-8" aria-label="Send Link to Candidate" onClick={() => setShowSendLink(true)}>
-                  <Mail className="w-4 h-4" />
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white h-8 px-3 text-xs" onClick={() => setShowSendLink(true)}>
+                  <Mail className="w-4 h-4 mr-1" />
+                  Send Link
                 </Button>
               </DialogHeader>
 
