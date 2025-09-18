@@ -277,8 +277,9 @@ export default function JobPosting() {
               <button onClick={() => setActiveTab('archived')} className="h-10 px-4 rounded-md text-sm font-medium border border-gray-300 text-gray-700 bg-transparent">
                 Archive
               </button>
-              <button onClick={openCreate} aria-label="Create job posting" className="h-10 w-10 rounded-md bg-green-600 text-white flex items-center justify-center">
+              <button onClick={openCreate} className="h-10 px-4 rounded-md text-sm font-bold bg-green-600 text-white flex items-center gap-2">
                 <Plus className="w-4 h-4" />
+                Create Job
               </button>
             </div>
           </div>
