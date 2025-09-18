@@ -415,6 +415,18 @@ function getDepartmentColor(department: string): string {
   }
 }
 
+function formatDDMMYYYY(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${dd}-${mm}-${yyyy}`;
+  }
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : dateStr;
+}
+
 export default function InterviewView() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -3850,7 +3862,7 @@ Google India"
       <Dialog open={showCandidateDetailsModal} onOpenChange={setShowCandidateDetailsModal}>
         <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">Candidate Details</DialogTitle>
+            <DialogTitle className="text-sm font-semibold">Interview Details</DialogTitle>
           </DialogHeader>
 
           {selectedCandidateDetails && (
@@ -3951,7 +3963,7 @@ Google India"
                         <div className="mb-2">
                           <div className="flex items-center gap-1 text-xs text-gray-600">
                             <Calendar className="h-3 w-3" />
-                            <span>{step.date} at {step.time}</span>
+                            <span>{formatDDMMYYYY(step.date)} at {step.time}</span>
                           </div>
                         </div>
 
@@ -3968,21 +3980,6 @@ Google India"
                 </CardContent>
               </Card>
 
-              {/* Action Buttons */}
-              <div className="flex items-center justify-center gap-4 pt-3 border-t border-gray-200">
-                <Button
-                  onClick={() => console.log('Reject decision')}
-                  className="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm text-xs"
-                >
-                  Reject
-                </Button>
-                <Button
-                  onClick={() => console.log('Pass decision')}
-                  className="px-4 py-1.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow-sm text-xs"
-                >
-                  Pass
-                </Button>
-              </div>
             </div>
           )}
         </DialogContent>
