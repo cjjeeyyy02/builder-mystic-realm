@@ -2098,6 +2098,67 @@ Google India`
             </div>
           )}
 
+          {/* Event Editor Side Panel */}
+          {showEventPanel && (
+            <>
+              <div className="fixed inset-0 bg-black/40 z-50" onClick={closeEventPanel} />
+              <div className="fixed right-0 top-0 h-full w-[380px] bg-white z-50 shadow-xl flex flex-col">
+                <div className="p-4 border-b flex items-center justify-between">
+                  <div className="text-sm font-semibold">Event Details</div>
+                  <Button variant="ghost" size="sm" onClick={closeEventPanel}>Close</Button>
+                </div>
+                <div className="p-4 space-y-3 text-sm overflow-auto">
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Title</label>
+                    <Input placeholder="Add a title" value={eventDraft?.title || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, title: e.target.value } : prev)} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Invite attendees</label>
+                    <Input placeholder="name1@example.com, name2@example.com" value={(eventDraft?.attendees || []).join(', ')} onChange={(e) => setEventDraft(prev => prev ? { ...prev, attendees: e.target.value.split(',').map(s => s.trim()).filter(Boolean) } : prev)} />
+                  </div>
+                  <div className="grid grid-cols-1 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium">Start</label>
+                      <Input type="datetime-local" value={eventDraft ? new Date(eventDraft.start).toISOString().slice(0,16) : ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, start: new Date(e.target.value).toISOString() } : prev)} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium">End</label>
+                      <Input type="datetime-local" value={eventDraft ? new Date(eventDraft.end).toISOString().slice(0,16) : ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, end: new Date(e.target.value).toISOString() } : prev)} />
+                    </div>
+                    <div className="flex items-center gap-2 pt-1">
+                      <Switch checked={!!eventDraft?.allDay} onCheckedChange={(v) => setEventDraft(prev => prev ? { ...prev, allDay: v } : prev)} />
+                      <span className="text-xs text-gray-700">All day</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Room/Location</label>
+                    <Input placeholder="Add location" value={eventDraft?.location || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, location: e.target.value } : prev)} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Organizer</label>
+                    <Input placeholder="Enter organizer name" value={eventDraft?.organizer || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, organizer: e.target.value } : prev)} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Description</label>
+                    <Textarea rows={4} placeholder="Add description" value={eventDraft?.description || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, description: e.target.value } : prev)} />
+                  </div>
+                </div>
+                <div className="p-4 border-t flex items-center justify-end gap-2">
+                  <Button variant="outline" onClick={closeEventPanel}>Discard</Button>
+                  <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => {
+                    if (!eventDraft) return;
+                    setCalendarEvents(prev => {
+                      const exists = prev.some(ev => ev.id === eventDraft.id);
+                      if (exists) return prev.map(ev => ev.id === eventDraft.id ? eventDraft : ev);
+                      return [...prev, eventDraft];
+                    });
+                    closeEventPanel();
+                  }}>Save</Button>
+                </div>
+              </div>
+            </>
+          )}
+
           {/* Email screen removed - no longer accessible */}
           {false && activeMainTab === "rounds-room" && showEmailScreen && (
             <div className="bg-white border rounded-lg h-full flex">
