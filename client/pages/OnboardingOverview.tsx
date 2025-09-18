@@ -401,7 +401,7 @@ export default function OnboardingOverview() {
               </div>
               <div className="flex items-center gap-2 sm:gap-3 ml-auto">
                 <input id="overview-upload-input" type="file" accept=".pdf,.doc,.docx" className="hidden" />
-                <Button variant="outline" className="h-9" onClick={() => document.getElementById('overview-upload-input')?.click()}>
+                <Button className="h-9 bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.getElementById('overview-upload-input')?.click()}>
                   Upload
                 </Button>
                 <Dialog open={showAddCandidate} onOpenChange={setShowAddCandidate}>
