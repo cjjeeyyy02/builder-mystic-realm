@@ -207,6 +207,9 @@ export default function OnboardingOverview() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
 
+  const [showAddCandidate, setShowAddCandidate] = useState(false);
+  const [newCandidate, setNewCandidate] = useState<{ name: string; position: string; file: File | null }>({ name: "", position: "", file: null });
+
   // Filter candidates based on search and filters
   const filteredCandidates = useMemo(() => {
     return allCandidates.filter(candidate => {
@@ -396,10 +399,46 @@ export default function OnboardingOverview() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button variant="outline" className="h-9 sm:self-auto ml-auto" onClick={exportToCSV}>
-                <Download className="w-4 h-4 mr-2" />
-                Export
-              </Button>
+              <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+                <input id="overview-upload-input" type="file" accept=".pdf,.doc,.docx" className="hidden" />
+                <Button variant="outline" className="h-9" onClick={() => document.getElementById('overview-upload-input')?.click()}>
+                  Upload
+                </Button>
+                <Dialog open={showAddCandidate} onOpenChange={setShowAddCandidate}>
+                  <DialogTrigger asChild>
+                    <Button className="h-9">+ Add Candidate</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="text-sm font-semibold">Add Candidate</DialogTitle>
+                      <DialogDescription>Add a new candidate to the overview list.</DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Name</label>
+                        <Input value={newCandidate.name} onChange={(e) => setNewCandidate({ ...newCandidate, name: e.target.value })} placeholder="Full name" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Applied Position</label>
+                        <Input value={newCandidate.position} onChange={(e) => setNewCandidate({ ...newCandidate, position: e.target.value })} placeholder="e.g., Software Engineer" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Upload Document</label>
+                        <Input type="file" accept=".pdf,.doc,.docx" onChange={(e) => setNewCandidate({ ...newCandidate, file: e.target.files?.[0] || null })} />
+                        <p className="text-[11px] text-gray-500 mt-1">Accepted formats: .pdf, .doc, .docx</p>
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button variant="outline" onClick={() => setShowAddCandidate(false)}>Cancel</Button>
+                      <Button onClick={() => { setShowAddCandidate(false); setNewCandidate({ name: "", position: "", file: null }); }}>Save</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+                <Button variant="outline" className="h-9" onClick={exportToCSV}>
+                  <Download className="w-4 h-4 mr-2" />
+                  Export
+                </Button>
+              </div>
             </div>
 
             {/* Candidates Table */}
