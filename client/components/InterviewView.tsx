@@ -1295,7 +1295,7 @@ Google India`
   // Forms
   const [reminderMessage, setReminderMessage] = useState("");
   const [scheduleForm, setScheduleForm] = useState({ date: "", time: "", interviewer: "" });
-  const [remarkForm, setRemarkForm] = useState<{ remarks: string; score: string }>({ remarks: "", score: "" });
+  const [remarkForm, setRemarkForm] = useState<{ result: string; score: string; remarks: string }>({ result: "", score: "", remarks: "" });
 
   const { toast } = useToast();
 
@@ -3835,7 +3835,7 @@ Google India"
                                 </Button>
                                 <Button variant="outline" size="sm" className="text-xs" onClick={() => {
                                   setSelectedStepId(step.id);
-                                  setRemarkForm({ remarks: step.remarks || "", score: step.score != null ? String(step.score) : "" });
+                                  setRemarkForm({ result: "", score: step.score != null ? String(step.score) : "", remarks: step.remarks || "" });
                                   setShowRemarkScoreModal(true);
                                 }}>
                                   <MessageSquare className="w-3 h-3 mr-1" />
@@ -4010,13 +4010,27 @@ Google India"
                 <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
               )}
             </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Remarks</label>
-              <Textarea rows={4} value={remarkForm.remarks} onChange={(e) => setRemarkForm({ ...remarkForm, remarks: e.target.value })} placeholder="Write your remarks" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Results</label>
+                <Select value={remarkForm.result} onValueChange={(v) => setRemarkForm({ ...remarkForm, result: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select result" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pass">Pass</SelectItem>
+                    <SelectItem value="fail">Fail</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Score</label>
+                <Input type="number" inputMode="numeric" pattern="[0-9]*" min="0" max="100" value={remarkForm.score} onChange={(e) => setRemarkForm({ ...remarkForm, score: e.target.value })} placeholder="e.g., 85" />
+              </div>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Score</label>
-              <Input type="number" min="0" max="100" value={remarkForm.score} onChange={(e) => setRemarkForm({ ...remarkForm, score: e.target.value })} placeholder="e.g., 85" />
+              <label className="block text-xs font-medium text-gray-700 mb-1">Remarks</label>
+              <Textarea rows={4} value={remarkForm.remarks} onChange={(e) => setRemarkForm({ ...remarkForm, remarks: e.target.value })} placeholder="Enter remarks here..." />
             </div>
           </div>
           <DialogFooter>
