@@ -225,6 +225,9 @@ export default function ActivationView() {
               <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}>
                 <List className="w-4 h-4" />
               </Button>
+              <Button size="sm" variant={viewMode === "card" ? "default" : "outline"} onClick={() => setViewMode("card")}>
+                <Grid className="w-4 h-4" />
+              </Button>
               <Button variant="outline" size="sm" onClick={() => {
                 const headers = ['Job ID','Name','Role','Joining Date','Files Uploaded','Activation Progress'];
                 const rows = filteredEmployees.map(e => [e.jobId, e.name, e.appliedJobRole, e.joiningDate, e.filesUploaded, `${e.activationProgress}%`]);
@@ -234,9 +237,6 @@ export default function ActivationView() {
                 const a = document.createElement('a'); a.href = url; a.download = 'activation_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
               }}>
                 <Download className="w-4 h-4 mr-1" /> Export
-              </Button>
-              <Button size="sm" variant={viewMode === "card" ? "default" : "outline"} onClick={() => setViewMode("card")}>
-                <Grid className="w-4 h-4" />
               </Button>
             </div>
           </div>
