@@ -1406,6 +1406,7 @@ Google India`
                   >
                     <Calendar className="w-4 h-4" />
                   </Button>
+                  {viewMode !== "card" && (
                   <Button variant="outline" size="sm" onClick={() => {
                     const headers = ['Name','Position','Status','Email','Phone','Current Round'];
                     const rows = interviewCandidates.map(c => [c.applicantName, c.appliedPosition, c.status, c.email, c.phone, c.currentRound]);
@@ -1416,6 +1417,7 @@ Google India`
                   }}>
                     <Download className="w-4 h-4 mr-1" /> Export
                   </Button>
+                  )}
                   <Button
                     size="sm"
                     variant={viewMode === "card" ? "default" : "outline"}
@@ -1424,6 +1426,18 @@ Google India`
                   >
                     <Grid className="w-4 h-4" />
                   </Button>
+                  {viewMode === "card" && (
+                  <Button variant="outline" size="sm" className="ml-2" onClick={() => {
+                    const headers = ['Name','Position','Status','Email','Phone','Current Round'];
+                    const rows = interviewCandidates.map(c => [c.applicantName, c.appliedPosition, c.status, c.email, c.phone, c.currentRound]);
+                    const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a'); a.href = url; a.download = 'interview_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                  }}>
+                    <Download className="w-4 h-4 mr-1" /> Export
+                  </Button>
+                  )}
                 </div>
               </div>
 
