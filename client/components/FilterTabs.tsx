@@ -40,6 +40,21 @@ const tabs = [
 export default function FilterTabs() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState("screening");
+
+  // Read initial tab from URL hash
+  if (typeof window !== 'undefined') {
+    const hash = window.location.hash.replace('#','');
+    if (hash && ["screening","interview","activation","hired"].includes(hash) && activeTab !== hash) {
+      // set state sync on initial render
+      setActiveTab(hash);
+    }
+    window.addEventListener('hashchange', () => {
+      const h = window.location.hash.replace('#','');
+      if (["screening","interview","activation","hired"].includes(h)) {
+        setActiveTab(h);
+      }
+    });
+  }
   const [selectedStage, setSelectedStage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showPlugAndHireModal, setShowPlugAndHireModal] = useState(false);
