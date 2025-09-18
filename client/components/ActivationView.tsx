@@ -269,25 +269,25 @@ export default function ActivationView() {
                 <TableRow className={`transition-colors duration-300 ${
                   isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
                 }`}>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>JOB ID</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>NAME</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>APPLIED POSITION</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>JOINING DATE</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>FILES UPLOADED</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>ACTIVATION PROGRESS</TableHead>
-                  <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
+                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>ACTION</TableHead>
                 </TableRow>
@@ -299,30 +299,30 @@ export default function ActivationView() {
                       ? 'border-gray-700 hover:bg-gray-700/50'
                       : 'border-gray-100 hover:bg-gray-50'
                   }`}>
-                    <TableCell className={`text-xs font-medium px-3 py-2 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.jobId}</TableCell>
-                    <TableCell className={`text-xs font-medium px-3 py-2 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
-                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.appliedJobRole}</TableCell>
-                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{formatDateMDY(employee.joiningDate)}</TableCell>
-                    <TableCell className={`text-xs px-3 py-2 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.filesUploaded}</TableCell>
-                    <TableCell className="px-3 py-2">
+                    <TableCell className="px-3 py-3">
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
-                    <TableCell className="px-3 py-2">
+                    <TableCell className="px-3 py-3">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant="ghost"
-                            className={`h-8 w-8 p-0 transition-colors duration-200 ${
+                            className={`h-6 w-6 p-0 transition-colors duration-200 ${
                               isDarkMode
                                 ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
                                 : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
@@ -379,7 +379,7 @@ export default function ActivationView() {
                       <DropdownMenuTrigger asChild>
                         <Button
                           variant="ghost"
-                          className={`h-8 w-8 p-0 transition-colors duration-200 ${
+                          className={`h-6 w-6 p-0 transition-colors duration-200 ${
                             isDarkMode
                               ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
                               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
