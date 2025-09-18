@@ -428,47 +428,47 @@ export default function RoomBuilder() {
         {/* Rooms Table */}
         <Card>
           <CardContent className="p-0">
-            <Table>
+            <Table className="text-xs">
               <TableHeader>
-                <TableRow className="bg-gray-50">
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">ROOM NAME</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">TYPE</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">LOCATION/LINK</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">CAPACITY</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">STATUS</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">LINKED JOBS</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-600 px-6 py-3">ACTIONS</TableHead>
+                <TableRow className="bg-gray-50 border-b border-gray-200">
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">ROOM NAME</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">TYPE</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">LOCATION/LINK</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">CAPACITY</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">STATUS</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">LINKED JOBS</TableHead>
+                  <TableHead className="h-10 text-xs font-semibold text-gray-700 px-3 py-2">ACTIONS</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredRooms.map((room) => (
-                  <TableRow key={room.id} className="hover:bg-gray-50">
-                    <TableCell className="font-medium text-gray-900 px-6 py-4">
+                  <TableRow key={room.id} className="hover:bg-gray-50 border-b border-gray-100">
+                    <TableCell className="text-sm font-medium text-gray-900 px-3 py-2">
                       {room.name}
                     </TableCell>
-                    <TableCell className="text-gray-600 px-6 py-4">
+                    <TableCell className="text-gray-600 px-3 py-2">
                       {room.type}
                     </TableCell>
-                    <TableCell className="px-6 py-4">
+                    <TableCell className="px-3 py-2">
                       <span className="text-blue-600 hover:text-blue-800 cursor-pointer">
                         {room.location}
                       </span>
                     </TableCell>
-                    <TableCell className="px-6 py-4">
+                    <TableCell className="px-3 py-2">
                       <div className="flex items-center gap-1 text-gray-600">
                         <Users className="h-3 w-3" />
                         <span>{room.capacity}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="px-6 py-4">
+                    <TableCell className="px-3 py-2">
                       <Badge className={`${getStatusColor(room.status)} border-0`}>
                         {room.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-gray-600 px-6 py-4">
+                    <TableCell className="text-gray-600 px-3 py-2">
                       {room.linkedJobs} jobs
                     </TableCell>
-                    <TableCell className="px-6 py-4">
+                    <TableCell className="px-3 py-2">
                       <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
                         <Edit className="h-4 w-4 mr-1" />
                         Edit
