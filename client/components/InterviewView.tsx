@@ -3831,7 +3831,7 @@ Google India"
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-sm font-semibold flex items-center gap-2"><FileText className="w-4 h-4" /> Submit Interview Results</DialogTitle>
-            <DialogDescription>Add remarks and a score for this step.</DialogDescription>
+            <DialogDescription>Confirm and Submit your Interview Assessment</DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
             <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
