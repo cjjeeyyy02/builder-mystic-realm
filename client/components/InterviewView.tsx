@@ -3820,6 +3820,36 @@ Google India"
 
                               {/* Step Actions */}
                               <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
+                                {!(step.date) && (
+                                  <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                    setSelectedStepId(step.id);
+                                    const first = selectedCandidateForTimeline?.interviewers?.[0] || "";
+                                    setScheduleForm({ date: "", time: "", interviewer: first });
+                                    setShowScheduleModal(true);
+                                  }}>
+                                    <Calendar className="w-3 h-3 mr-1" />
+                                    Schedule Interview
+                                  </Button>
+                                )}
+                                {step.date && (
+                                  <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                                    setSelectedStepId(step.id);
+                                    setScheduleForm({ date: step.date || "", time: step.time || "", interviewer: step.interviewer || "" });
+                                    setShowRescheduleModal(true);
+                                  }}>
+                                    <Edit3 className="w-3 h-3 mr-1" />
+                                    Reschedule Interview
+                                  </Button>
+                                )}
+                                <Button variant="outline" size="sm" className="text-xs" disabled={!step.date} onClick={() => {
+                                  if (!step.date) return;
+                                  setSelectedStepId(step.id);
+                                  setRemarkForm({ result: "", score: step.score != null ? String(step.score) : "", remarks: step.remarks || "" });
+                                  setShowRemarkScoreModal(true);
+                                }}>
+                                  <MessageSquare className="w-3 h-3 mr-1" />
+                                  Submit Interview Results
+                                </Button>
                                 <Button variant="outline" size="sm" className="text-xs" onClick={() => {
                                   setSelectedStepId(step.id);
                                   setReminderMessage("");
@@ -3827,31 +3857,6 @@ Google India"
                                 }}>
                                   <Mail className="w-3 h-3 mr-1" />
                                   Send Reminder
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                  setSelectedStepId(step.id);
-                                  const first = selectedCandidateForTimeline?.interviewers?.[0] || "";
-                                  setScheduleForm({ date: "", time: "", interviewer: first });
-                                  setShowScheduleModal(true);
-                                }}>
-                                  <Calendar className="w-3 h-3 mr-1" />
-                                  Schedule Interview
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                  setSelectedStepId(step.id);
-                                  setScheduleForm({ date: step.date || "", time: step.time || "", interviewer: step.interviewer || "" });
-                                  setShowRescheduleModal(true);
-                                }}>
-                                  <Edit3 className="w-3 h-3 mr-1" />
-                                  Reschedule Interview
-                                </Button>
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                  setSelectedStepId(step.id);
-                                  setRemarkForm({ result: "", score: step.score != null ? String(step.score) : "", remarks: step.remarks || "" });
-                                  setShowRemarkScoreModal(true);
-                                }}>
-                                  <MessageSquare className="w-3 h-3 mr-1" />
-                                  Submit Interview Results
                                 </Button>
                               </div>
                             </div>
