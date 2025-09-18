@@ -4126,7 +4126,7 @@ Google India"
                         <div className="flex items-center gap-2">
                           <Phone className="h-3 w-3 text-gray-400" />
                           <span className="text-xs font-medium">Phone:</span>
-                          <span className="text-xs text-gray-700">{selectedCandidateDetails.phone}</span>
+                          <span className="text-xs text-gray-700">{formatPhoneUS(selectedCandidateDetails.phone)}</span>
                         </div>
                       </div>
                     </div>
