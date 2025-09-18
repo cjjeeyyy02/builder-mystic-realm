@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Roboto", "Poppins", "system-ui", "-apple-system", "sans-serif"],
-        heading: ["Poppins", "Roboto", "system-ui", "-apple-system", "sans-serif"],
+        sans: ["Poppins", "system-ui", "-apple-system", "sans-serif"],
+        heading: ["Poppins", "system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
         primary: {
