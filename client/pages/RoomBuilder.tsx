@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -32,7 +32,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import {
-  Calendar,
   Users,
   Edit,
   Plus,
@@ -51,16 +50,6 @@ interface Room {
   platform?: string;
 }
 
-interface Interview {
-  id: string;
-  type: string;
-  candidateName: string;
-  position: string;
-  room: string;
-  platform: string;
-  date: string;
-  time: string;
-}
 
 export default function RoomBuilder() {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -101,28 +90,6 @@ export default function RoomBuilder() {
     }
   ];
 
-  const upcomingInterviews: Interview[] = [
-    {
-      id: "1",
-      type: "Technical Interview",
-      candidateName: "Emily Davis",
-      position: "Senior React Developer",
-      room: "Technical Interview Room",
-      platform: "Zoom",
-      date: "Today",
-      time: "10:00 AM"
-    },
-    {
-      id: "2",
-      type: "Design Review",
-      candidateName: "Alex Turner",
-      position: "UX Designer",
-      room: "Design Review Room",
-      platform: "Microsoft Teams",
-      date: "Tomorrow",
-      time: "1:00 PM"
-    }
-  ];
 
   const filteredRooms = rooms;
 
@@ -514,54 +481,6 @@ export default function RoomBuilder() {
           </CardContent>
         </Card>
 
-        {/* Bottom Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Room Usage */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-semibold text-gray-900">Room Usage</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center justify-center h-48 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
-                <div className="text-center">
-                  <div className="text-gray-400 mb-2">
-                    <Calendar className="h-8 w-8 mx-auto" />
-                  </div>
-                  <p className="text-gray-500 text-sm">Room Usage Chart</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Upcoming Interviews */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-semibold text-gray-900">Upcoming Interviews</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {upcomingInterviews.map((interview) => (
-                  <div key={interview.id} className="p-4 border border-gray-200 rounded-lg">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h4 className="font-medium text-gray-900 mb-1">
-                          {interview.type}: {interview.candidateName}
-                        </h4>
-                        <p className="text-sm text-gray-600 mb-2">{interview.position}</p>
-                        <div className="text-sm text-gray-500">
-                          <p>Room: <span className="text-blue-600">{interview.room} ({interview.platform})</span></p>
-                        </div>
-                      </div>
-                      <div className="text-right text-sm text-gray-500">
-                        <p>{interview.date}, {interview.time}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </Layout>
   );
