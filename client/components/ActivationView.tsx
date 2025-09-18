@@ -548,11 +548,11 @@ export default function ActivationView() {
 
                   {(() => {
                     const items = checklistMap[selectedEmployeeForChecklist.jobId] || [];
-                    const allDone = items.length > 0 && items.every(it => it.completed);
+                    const allAccepted = items.length > 0 && items.every(it => it.completed && Array.isArray(it.files) && it.files.length > 0);
                     return (
                       <div className="flex items-center justify-between pt-2 border-t">
                         <Button variant="destructive" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject Activation</Button>
-                        <Button className={`bg-green-600 hover:bg-green-700 ${allDone ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allDone} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Approve Activation → Proceed to Hired</Button>
+                        <Button className={`bg-green-600 hover:bg-green-700 ${allAccepted ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allAccepted} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Approve Activation → Proceed to Hired</Button>
                       </div>
                     );
                   })()}
