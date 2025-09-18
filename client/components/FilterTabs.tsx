@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, ChevronDown, Download, Globe, Linkedin, MapPin, CheckCircle, AlertCircle, Loader2, Users, FileText, Link, Upload, UserPlus, FileSpreadsheet } from "lucide-react";
 import { useDarkMode } from "@/components/DarkModeProvider";
 import { Button } from "@/components/ui/button";
@@ -42,19 +42,17 @@ export default function FilterTabs() {
   const [activeTab, setActiveTab] = useState("screening");
 
   // Read initial tab from URL hash
-  if (typeof window !== 'undefined') {
-    const hash = window.location.hash.replace('#','');
-    if (hash && ["screening","interview","activation","hired"].includes(hash) && activeTab !== hash) {
-      // set state sync on initial render
-      setActiveTab(hash);
-    }
-    window.addEventListener('hashchange', () => {
+  useEffect(() => {
+    const applyHash = () => {
       const h = window.location.hash.replace('#','');
       if (["screening","interview","activation","hired"].includes(h)) {
         setActiveTab(h);
       }
-    });
-  }
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
+  }, []);
   const [selectedStage, setSelectedStage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showPlugAndHireModal, setShowPlugAndHireModal] = useState(false);
@@ -985,7 +983,7 @@ export default function FilterTabs() {
                                         <div className="text-green-600 text-xs mt-1">
                                           • External "name" → EMS "personalInfo.fullName"<br/>
                                           • External "email" → EMS "personalInfo.email"<br/>
-                                          • External "phone" → EMS "personalInfo.phone"<br/>
+                                          �� External "phone" → EMS "personalInfo.phone"<br/>
                                           • External "position" → EMS "applicationInfo.appliedPosition"
                                         </div>
                                       </div>
