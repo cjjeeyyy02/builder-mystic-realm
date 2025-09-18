@@ -1406,19 +1406,7 @@ Google India`
                   >
                     <Calendar className="w-4 h-4" />
                   </Button>
-                  {viewMode !== "card" && (
-                  <Button variant="outline" size="sm" onClick={() => {
-                    const headers = ['Name','Position','Status','Email','Phone','Current Round'];
-                    const rows = interviewCandidates.map(c => [c.applicantName, c.appliedPosition, c.status, c.email, c.phone, c.currentRound]);
-                    const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
-                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a'); a.href = url; a.download = 'interview_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-                  }}>
-                    <Download className="w-4 h-4 mr-1" /> Export
-                  </Button>
-                  )}
-                  <Button
+                                    <Button
                     size="sm"
                     variant={viewMode === "card" ? "default" : "outline"}
                     onClick={() => setViewMode("card")}
@@ -2045,19 +2033,7 @@ Google India`
                 ) : (
                   /* Card View */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="hidden md:col-span-2 lg:col-span-3 md:flex justify-end">
-                      <Button variant="outline" size="sm" onClick={() => {
-                        const headers = ['Name','Position','Status','Email','Phone','Current Round'];
-                        const rows = interviewCandidates.map(c => [c.applicantName, c.appliedPosition, c.status, c.email, c.phone, c.currentRound]);
-                        const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
-                        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a'); a.href = url; a.download = 'interview_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-                      }}>
-                        <Download className="w-4 h-4 mr-1" /> Export
-                      </Button>
-                    </div>
-                    {interviewCandidates.map((c) => (
+                                        {interviewCandidates.map((c) => (
                       <Card key={c.id} className="p-4 border border-gray-200">
                         <CardContent className="p-0 space-y-3">
                           <div className="flex items-center justify-between">
