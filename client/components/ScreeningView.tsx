@@ -404,15 +404,17 @@ export default function ScreeningView() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button size="sm" variant="ghost" className="text-red-600 hover:text-red-700" onClick={() => {
+          <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
+          <Button size="sm" variant="outline" onClick={() => {
             const headers = ['Name','Position','Total Experience','Email','Phone','Status'];
             const rows = filteredCandidates.map(c => [c.name, c.position, c.totalExperience, c.email, c.phone, c.status]);
             const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = 'screening_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-          }}>Export</Button>
-          <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
+          }}>
+            <Download className="w-4 h-4 mr-1" /> Export
+          </Button>
           <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><Grid className="w-4 h-4" /></Button>
         </div>
       </div>
