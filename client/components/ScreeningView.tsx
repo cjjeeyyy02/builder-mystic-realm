@@ -664,7 +664,7 @@ export default function ScreeningView() {
                 {/* Main Panel - Resume Content */}
                 <div className="flex-1 overflow-y-auto space-y-2 sm:space-y-3 px-3 sm:px-4 xl:pr-3">
                   {/* Quick Info Bar */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2 p-2 sm:p-2 bg-gray-50 rounded-md border border-gray-200">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2 p-2 sm:p-2 bg-gray-50 rounded-md border border-gray-200">
                     <div className="text-center">
                       <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.totalExperience}</div>
@@ -674,11 +674,6 @@ export default function ScreeningView() {
                       <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mx-auto mb-1" />
                       <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.location}</div>
                       <div className="text-xs text-gray-600">Location</div>
-                    </div>
-                    <div className="text-center">
-                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{selectedCandidate.salaryExpectation}</div>
-                      <div className="text-xs text-gray-600">Salary Expectation</div>
                     </div>
                   </div>
 
@@ -696,7 +691,11 @@ export default function ScreeningView() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
-                          <span>{selectedCandidate.phone}</span>
+                          <span>{formatPhone(selectedCandidate.phone)}</span>
+                        </div>
+                        <div className="flex items-center gap-2 sm:col-span-2">
+                          <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
+                          <span>{selectedCandidate.salaryExpectation}</span>
                         </div>
                       </div>
                       {/* If resumeMode is download show download button */}
@@ -811,10 +810,6 @@ export default function ScreeningView() {
                     <CardContent className="p-2 sm:p-3">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
                       <div className="space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2">
-                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Schedule Interview
-                        </Button>
                         <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2" onClick={() => selectedCandidate?.resumeUrl && window.open(selectedCandidate.resumeUrl, '_blank')}>
                           <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Download Resume
@@ -834,6 +829,13 @@ export default function ScreeningView() {
                         onChange={(e) => setScreeningNotes(e.target.value)}
                         className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm"
                       />
+                      {screeningNotes.trim() && (
+                        <div className="mt-2">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-md h-8 px-3 text-sm" onClick={() => { console.log('Submitted screening notes:', screeningNotes); }}>
+                            Submit
+                          </Button>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
 
