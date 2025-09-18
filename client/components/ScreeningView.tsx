@@ -252,7 +252,7 @@ export default function ScreeningView() {
   const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "approved" | "reject" | "pending">("all");
+  const [statusFilter, setStatusFilter] = useState<string>("");
 
   // Debounce search query to improve performance
   useEffect(() => {
@@ -283,7 +283,7 @@ export default function ScreeningView() {
     let filtered = candidates;
 
     // Apply status filter
-    if (statusFilter !== "all") {
+    if (statusFilter && statusFilter !== "all") {
       filtered = filtered.filter(c => c.status === statusFilter);
     }
 
@@ -389,9 +389,9 @@ export default function ScreeningView() {
 
           <Select
             value={statusFilter}
-            onValueChange={(value) => setStatusFilter(value as "all" | "approved" | "reject" | "pending")}
+            onValueChange={(value) => setStatusFilter(value)}
           >
-            <SelectTrigger className="w-[120px] h-8">
+            <SelectTrigger className="w-[140px] h-8 text-muted-foreground">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -404,6 +404,14 @@ export default function ScreeningView() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Button size="sm" variant="ghost" className="text-red-600 hover:text-red-700" onClick={() => {
+            const headers = ['Name','Position','Total Experience','Email','Phone','Status'];
+            const rows = filteredCandidates.map(c => [c.name, c.position, c.totalExperience, c.email, c.phone, c.status]);
+            const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'screening_candidates.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+          }}>Export</Button>
           <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}><List className="w-4 h-4" /></Button>
           <Button size="sm" variant={viewMode === "grid" ? "default" : "outline"} onClick={() => setViewMode("grid")}><Grid className="w-4 h-4" /></Button>
         </div>
