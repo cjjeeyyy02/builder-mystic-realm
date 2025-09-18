@@ -3785,7 +3785,7 @@ Google India"
                                 {step.title}
                               </h3>
                               <p className="text-sm text-gray-600">
-                                {formatMDYSlash(step.date)} at {step.time} • {step.interviewer}
+                                {formatMDYDash(step.date)} at {step.time} • {step.interviewer}
                               </p>
                             </div>
                           </div>
