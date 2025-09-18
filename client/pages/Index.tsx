@@ -16,7 +16,7 @@ import {
 export default function Index() {
   const quickActions = [
     {
-      title: "Hiring Pipeline",
+      title: "Recruitment Pipeline",
       description: "Manage candidates through Screening, Interview, Activation, and Hiring stages",
       icon: Users,
       path: "/hiring-pipeline",

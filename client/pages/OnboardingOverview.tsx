@@ -286,7 +286,7 @@ export default function OnboardingOverview() {
           <div>
             <h1 className="text-3xl font-semibold text-foreground">Overview</h1>
             <p className="text-muted-foreground mt-1">
-              Track all candidates across the entire hiring pipeline
+              Track all candidates across the entire recruitment pipeline
             </p>
           </div>
           <Button onClick={() => navigate("/hiring-pipeline")} className="bg-blue-600 hover:bg-blue-700">
