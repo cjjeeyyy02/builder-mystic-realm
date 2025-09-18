@@ -651,36 +651,6 @@ export default function FilterTabs() {
       {(activeTab === "screening") && (
         <div className="flex flex-col gap-2 mb-4">
           {/* Sequential Metrics cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <Card className="p-2">
-              <div className="text-xl font-bold text-blue-600">
-                {screeningCandidates.length}
-              </div>
-              <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
-              <div className="text-xs text-gray-400">Under Screening</div>
-            </Card>
-
-            <Card className="p-2">
-              <div className="text-xl font-bold text-green-600">
-                {screeningCandidates.filter(c => c.status === "approved").length}
-              </div>
-              <div className="text-xs text-muted-foreground font-medium">Approved</div>
-            </Card>
-
-            <Card className="p-2">
-              <div className="text-xl font-bold text-red-600">
-                {screeningCandidates.filter(c => c.status === "reject").length}
-              </div>
-              <div className="text-xs text-muted-foreground font-medium">Rejected</div>
-            </Card>
-
-            <Card className="p-2">
-              <div className="text-xl font-bold text-yellow-600">
-                {screeningCandidates.filter(c => c.status === "pending").length}
-              </div>
-              <div className="text-xs text-muted-foreground font-medium">Pending</div>
-            </Card>
-          </div>
 
 
           {false && (
@@ -1506,29 +1476,6 @@ export default function FilterTabs() {
       {/* Metrics cards for Screening (moved below search/filter) */}
 
       {/* Interview Metrics under header */}
-      {activeTab === "interview" && (
-        <div className="flex flex-col gap-2 mb-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <Card className="p-2">
-              <div className="text-xl font-bold text-blue-600">{interviewTabCandidates.length}</div>
-              <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
-              <div className="text-xs text-gray-400">Under Interview</div>
-            </Card>
-            <Card className="p-2">
-              <div className="text-xl font-bold text-green-600">{interviewTabCandidates.filter(c => c.status === "completed").length}</div>
-              <div className="text-xs text-muted-foreground font-medium">Approved</div>
-            </Card>
-            <Card className="p-2">
-              <div className="text-xl font-bold text-red-600">0</div>
-              <div className="text-xs text-muted-foreground font-medium">Rejected</div>
-            </Card>
-            <Card className="p-2">
-              <div className="text-xl font-bold text-yellow-600">{interviewTabCandidates.filter(c => c.status === "pending").length}</div>
-              <div className="text-xs text-muted-foreground font-medium">In process</div>
-            </Card>
-          </div>
-        </div>
-      )}
 
       {/* Conditional Content Based on Active Tab */}
       <div>
