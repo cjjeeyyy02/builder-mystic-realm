@@ -449,7 +449,7 @@ export default function ActivationView() {
           <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
             <DialogContent className="max-w-3xl">
               <DialogHeader className="flex flex-row items-center justify-between">
-                <DialogTitle className="text-lg font-semibold">Update Checklist – {selectedEmployeeForChecklist?.name}</DialogTitle>
+                <DialogTitle className="text-lg font-semibold">Update Checklist ��� {selectedEmployeeForChecklist?.name}</DialogTitle>
                 <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => setShowSendLink(true)}>
                   <Mail className="w-4 h-4 mr-2" />
                   Send Link to Candidate
@@ -552,14 +552,11 @@ export default function ActivationView() {
                     return (
                       <div className="flex items-center justify-between pt-2 border-t">
                         <Button variant="destructive" onClick={() => { sendGmailTemplate('reject', selectedEmployeeForChecklist); toast({ title: 'Candidate rejected' }); }}>Reject Activation</Button>
-                        <Button className={`bg-green-600 hover:bg-green-700 ${allAccepted ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allAccepted} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Proceeded to Hired' }); }}>Approve Activation → Proceed to Hired</Button>
+                        <Button size="sm" className={`bg-green-600 hover:bg-green-700 h-8 px-3 text-xs ${allAccepted ? '' : 'opacity-50 cursor-not-allowed'}`} disabled={!allAccepted} onClick={() => { sendGmailTemplate('approve', selectedEmployeeForChecklist); toast({ title: 'Activation approved' }); }}>Approve Activation</Button>
                       </div>
                     );
                   })()}
 
-                  <div className="flex justify-end">
-                    <Button variant="ghost" onClick={closeChecklistModal}>Close</Button>
-                  </div>
                 </div>
               )}
             </DialogContent>
