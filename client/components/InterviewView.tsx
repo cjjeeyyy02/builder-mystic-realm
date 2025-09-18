@@ -3710,7 +3710,7 @@ Google India"
             {selectedCandidateForTimeline && (
               <div className="flex flex-col h-full">
                 {/* Fixed Header */}
-                <div className="flex-shrink-0 p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                <div className="flex-shrink-0 p-3 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
