@@ -599,7 +599,7 @@ export default function ActivationView() {
                 <DialogTitle className="text-sm font-semibold">Update Status</DialogTitle>
               </DialogHeader>
               <div className="text-xs text-muted-foreground">Mark this checklist item as Reject or Accept.</div>
-              <DialogFooter>
+              <DialogFooter className="flex-row justify-end gap-2">
                 <Button variant="destructive" className="text-white rounded-lg" onClick={() => {
                   if (!selectedEmployeeForChecklist || !statusModalItemId) return;
                   handleUpdateItemStatus(selectedEmployeeForChecklist.jobId, statusModalItemId, 'reject');
