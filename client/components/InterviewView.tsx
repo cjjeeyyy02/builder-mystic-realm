@@ -1442,46 +1442,46 @@ Google India`
 
               {/* Interview Content - Table or Card View */}
               {viewMode === "table" ? (
-                <Card className="border-0 shadow-sm overflow-hidden rounded-none">
+                <Card className="p-0 border border-gray-200 rounded-none">
                   <CardContent className="p-0">
                     <Table>
                     <TableHeader>
-                      <TableRow className="bg-muted/30 border-b">
-                        <TableHead className="text-center font-medium text-foreground py-2 text-xs">
+                      <TableRow className="border-b">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           JOB ID
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           NAME
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           CURRENT ROUND
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           NEXT ROUND
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           INTERVIEW PROGRESS
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-2 text-xs">
+                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           ACTION
                         </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">001</TableCell>
-                        <TableCell className="py-3 text-xs">Jaya</TableCell>
-                        <TableCell className="py-3 text-xs">India</TableCell>
-                        <TableCell className="py-3 text-xs">Senior Developer</TableCell>
-                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">001</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Jaya</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">India</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Senior Developer</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
@@ -1489,7 +1489,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1510,14 +1510,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">002</TableCell>
-                        <TableCell className="py-3 text-xs">Mark</TableCell>
-                        <TableCell className="py-3 text-xs">USA</TableCell>
-                        <TableCell className="py-3 text-xs">Graphic Designer</TableCell>
-                        <TableCell className="py-3 text-xs">Managerial - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">002</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Mark</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">USA</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Graphic Designer</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
@@ -1525,7 +1525,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1546,14 +1546,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">003</TableCell>
-                        <TableCell className="py-3 text-xs">John</TableCell>
-                        <TableCell className="py-3 text-xs">USA</TableCell>
-                        <TableCell className="py-3 text-xs">Content writer</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">003</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">John</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">USA</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Content writer</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">NO ROUNDS</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
@@ -1561,7 +1561,7 @@ Google India`
                             <span className="text-xs font-medium">100%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1582,14 +1582,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">004</TableCell>
-                        <TableCell className="py-3 text-xs">Sara</TableCell>
-                        <TableCell className="py-3 text-xs">Europe</TableCell>
-                        <TableCell className="py-3 text-xs">Copywriter</TableCell>
-                        <TableCell className="py-3 text-xs">Editing Test - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">004</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Sara</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Europe</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Copywriter</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Editing Test - 4/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
@@ -1597,7 +1597,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1618,14 +1618,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">005</TableCell>
-                        <TableCell className="py-3 text-xs">Shruti</TableCell>
-                        <TableCell className="py-3 text-xs">India</TableCell>
-                        <TableCell className="py-3 text-xs">Sale Associate</TableCell>
-                        <TableCell className="py-3 text-xs">Culture Test - 3/5</TableCell>
-                        <TableCell className="py-3 text-xs">Case Study Debate - 4/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">005</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Shruti</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">India</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Sale Associate</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Culture Test - 3/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Case Study Debate - 4/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '70%'}}></div>
@@ -1633,7 +1633,7 @@ Google India`
                             <span className="text-xs font-medium">70%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1654,14 +1654,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">006</TableCell>
-                        <TableCell className="py-3 text-xs">Robin</TableCell>
-                        <TableCell className="py-3 text-xs">Russia</TableCell>
-                        <TableCell className="py-3 text-xs">AI Engineer</TableCell>
-                        <TableCell className="py-3 text-xs">Project Design - 3/5</TableCell>
-                        <TableCell className="py-3 text-xs">Behavioral - 4/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">006</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Robin</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Russia</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">AI Engineer</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Project Design - 3/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Behavioral - 4/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style={{width: '60%'}}></div>
@@ -1669,7 +1669,7 @@ Google India`
                             <span className="text-xs font-medium">60%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1690,14 +1690,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">007</TableCell>
-                        <TableCell className="py-3 text-xs">Kayle</TableCell>
-                        <TableCell className="py-3 text-xs">Russia</TableCell>
-                        <TableCell className="py-3 text-xs">ML Engineer</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3 text-xs">NO ROUNDS</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">007</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Kayle</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Russia</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">ML Engineer</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">NO ROUNDS</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
@@ -1705,7 +1705,7 @@ Google India`
                             <span className="text-xs font-medium">100%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1726,14 +1726,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">008</TableCell>
-                        <TableCell className="py-3 text-xs">Vali</TableCell>
-                        <TableCell className="py-3 text-xs">China</TableCell>
-                        <TableCell className="py-3 text-xs">Data Analyst</TableCell>
-                        <TableCell className="py-3 text-xs">Data Analysis - 4/5</TableCell>
-                        <TableCell className="py-3 text-xs">Human Resources - 5/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">008</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Vali</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">China</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Data Analyst</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Data Analysis - 4/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
@@ -1741,7 +1741,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1762,14 +1762,14 @@ Google India`
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-3 text-xs">009</TableCell>
-                        <TableCell className="py-3 text-xs">Anne</TableCell>
-                        <TableCell className="py-3 text-xs">Canada</TableCell>
-                        <TableCell className="py-3 text-xs">Finance Analyst</TableCell>
-                        <TableCell className="py-3 text-xs">Business Analysis - 2/5</TableCell>
-                        <TableCell className="py-3 text-xs">Case Study Debate - 3/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">009</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Anne</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Canada</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Finance Analyst</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Business Analysis - 2/5</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Case Study Debate - 3/5</TableCell>
+                        <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '40%'}}></div>
@@ -1777,7 +1777,7 @@ Google India`
                             <span className="text-xs font-medium">40%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="py-3">
+                        <TableCell className="px-3 py-3">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -2728,11 +2728,11 @@ Google India"
               </div>
 
               {/* Decision Table */}
-              <Card className="border-0 shadow-sm overflow-hidden rounded-none">
+              <Card className="p-0 border border-gray-200 rounded-none">
                 <CardContent className="p-0">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-muted/30 border-b">
+                      <TableRow className="border-b">
                         <TableHead className="text-center font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
@@ -2745,8 +2745,8 @@ Google India"
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">001</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">001</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Jaya</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
@@ -2813,8 +2813,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">002</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">002</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Mark</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
@@ -2881,8 +2881,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">003</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">003</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">John</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
@@ -2949,8 +2949,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">004</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">004</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Sara</TableCell>
                         <TableCell className="py-2 text-xs">Europe</TableCell>
@@ -3002,8 +3002,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">005</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">005</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Shruti</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
@@ -3055,8 +3055,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">006</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">006</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Robin</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
@@ -3108,8 +3108,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">007</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">007</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Kayle</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
@@ -3161,8 +3161,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">008</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">008</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Vali</TableCell>
                         <TableCell className="py-2 text-xs">China</TableCell>
@@ -3214,8 +3214,8 @@ Google India"
                         </TableCell>
                       </TableRow>
 
-                      <TableRow className="hover:bg-muted/20 transition-colors border-b border-border/40">
-                        <TableCell className="text-center font-medium text-foreground py-2 text-xs">009</TableCell>
+                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">009</TableCell>
                         <TableCell className="py-2 text-xs">8/14/2025</TableCell>
                         <TableCell className="py-2 text-xs">Anne</TableCell>
                         <TableCell className="py-2 text-xs">Canada</TableCell>
