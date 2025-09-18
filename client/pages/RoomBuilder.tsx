@@ -35,8 +35,6 @@ import {
   Calendar,
   Users,
   Edit,
-  Video,
-  MapPin,
   Plus,
   Upload,
   X,
@@ -65,7 +63,6 @@ interface Interview {
 }
 
 export default function RoomBuilder() {
-  const [activeTab, setActiveTab] = useState<"virtual" | "physical">("virtual");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [formData, setFormData] = useState({
     roomTitle: "",
@@ -127,9 +124,7 @@ export default function RoomBuilder() {
     }
   ];
 
-  const filteredRooms = rooms.filter(room => 
-    activeTab === "virtual" ? room.type === "Virtual" : room.type === "Physical"
-  );
+  const filteredRooms = rooms;
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -222,32 +217,9 @@ export default function RoomBuilder() {
   return (
     <Layout>
       <div className="p-6 space-y-6">
-        {/* Header Tabs */}
-        <div className="flex items-center space-x-1">
-          <Button
-            variant={activeTab === "virtual" ? "default" : "ghost"}
-            onClick={() => setActiveTab("virtual")}
-            className={`flex items-center gap-2 ${
-              activeTab === "virtual" 
-                ? "bg-blue-600 text-white hover:bg-blue-700" 
-                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-            }`}
-          >
-            <Video className="h-4 w-4" />
-            Virtual Rooms
-          </Button>
-          <Button
-            variant={activeTab === "physical" ? "default" : "ghost"}
-            onClick={() => setActiveTab("physical")}
-            className={`flex items-center gap-2 ${
-              activeTab === "physical" 
-                ? "bg-blue-600 text-white hover:bg-blue-700" 
-                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-            }`}
-          >
-            <MapPin className="h-4 w-4" />
-            Physical Rooms
-          </Button>
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold text-gray-900">Room Builder</h1>
         </div>
 
         {/* Create Room Button */}
