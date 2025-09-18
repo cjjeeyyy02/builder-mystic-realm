@@ -1842,11 +1842,28 @@ Google India`
                             <SelectValue placeholder="View" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="day">Day</SelectItem>
                             <SelectItem value="week">Week</SelectItem>
                             <SelectItem value="month">Month</SelectItem>
                           </SelectContent>
                         </Select>
+                        <Button className="bg-blue-600 hover:bg-blue-700 h-7 text-xs" onClick={() => {
+                          const now = new Date();
+                          const start = new Date(now);
+                          start.setMinutes(0,0,0);
+                          const end = new Date(start);
+                          end.setHours(start.getHours() + 1);
+                          openEventPanel({
+                            id: `new-${Date.now()}`,
+                            title: '',
+                            organizer: '',
+                            attendees: [],
+                            start: start.toISOString(),
+                            end: end.toISOString(),
+                            allDay: false,
+                            location: '',
+                            description: ''
+                          });
+                        }}>New Event</Button>
                         <div className="relative">
                           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                           <Input
