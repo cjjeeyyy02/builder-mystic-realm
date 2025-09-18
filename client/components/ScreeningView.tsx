@@ -111,7 +111,7 @@ const ActionDropdown = React.memo(({
           className="flex items-center gap-2 hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
         >
           <Clock className="w-4 h-4" />
-          Update Screening Status
+          Update Status
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleEmailClick}
@@ -174,7 +174,7 @@ const SimpleActionMenu = React.memo(({
               className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 text-left"
             >
               <Clock className="w-4 h-4" />
-              Update Screening Status
+              Update Status
             </button>
             <button
               onClick={() => {
