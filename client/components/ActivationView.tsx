@@ -276,7 +276,7 @@ export default function ActivationView() {
                   }`}>NAME</TableHead>
                   <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>APPLIED JOB ROLE</TableHead>
+                  }`}>APPLIED POSITION</TableHead>
                   <TableHead className={`text-xs font-semibold px-3 py-2 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>JOINING DATE</TableHead>
