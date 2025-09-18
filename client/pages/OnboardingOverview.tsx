@@ -208,7 +208,7 @@ export default function OnboardingOverview() {
   const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
 
   const [showAddCandidate, setShowAddCandidate] = useState(false);
-  const [newCandidate, setNewCandidate] = useState<{ name: string; position: string; file: File | null }>({ name: "", position: "", file: null });
+  const [newCandidate, setNewCandidate] = useState<{ jobId: string; name: string; position: string; file: File | null }>({ jobId: "", name: "", position: "", file: null });
 
   // Filter candidates based on search and filters
   const filteredCandidates = useMemo(() => {
@@ -418,9 +418,15 @@ export default function OnboardingOverview() {
                         <label className="block text-xs font-medium text-gray-700 mb-1">Name</label>
                         <Input value={newCandidate.name} onChange={(e) => setNewCandidate({ ...newCandidate, name: e.target.value })} placeholder="Full name" />
                       </div>
-                      <div>
-                        <label className="block text-xs font-medium text-gray-700 mb-1">Applied Position</label>
-                        <Input value={newCandidate.position} onChange={(e) => setNewCandidate({ ...newCandidate, position: e.target.value })} placeholder="e.g., Software Engineer" />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-medium text-gray-700 mb-1">Job ID</label>
+                          <Input value={newCandidate.jobId} onChange={(e) => setNewCandidate({ ...newCandidate, jobId: e.target.value })} placeholder="e.g., 001" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-gray-700 mb-1">Applied Position</label>
+                          <Input value={newCandidate.position} onChange={(e) => setNewCandidate({ ...newCandidate, position: e.target.value })} placeholder="e.g., Software Engineer" />
+                        </div>
                       </div>
                       <div>
                         <label className="block text-xs font-medium text-gray-700 mb-1">Upload Document</label>
@@ -430,7 +436,7 @@ export default function OnboardingOverview() {
                     </div>
                     <DialogFooter>
                       <Button variant="outline" onClick={() => setShowAddCandidate(false)}>Cancel</Button>
-                      <Button onClick={() => { setShowAddCandidate(false); setNewCandidate({ name: "", position: "", file: null }); }}>Save</Button>
+                      <Button onClick={() => { setShowAddCandidate(false); setNewCandidate({ jobId: "", name: "", position: "", file: null }); }}>Save</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
