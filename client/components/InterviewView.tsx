@@ -433,6 +433,29 @@ function formatMDYSlash(dateStr: string): string {
   return dateStr;
 }
 
+function formatMDYDash(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
+  }
+  const iso = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return `${iso[2]}-${iso[3]}-${iso[1]}`;
+  const slash = dateStr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (slash) return `${slash[1]}-${slash[2]}-${slash[3]}`;
+  return dateStr;
+}
+
+function formatPhoneUS(raw?: string) {
+  const digits = String(raw || '').replace(/\D/g, '');
+  const area = digits.slice(0,3).padEnd(3, ' ');
+  const mid = digits.slice(3,6).padEnd(3, ' ');
+  const last = digits.slice(6,9).padEnd(3, ' ');
+  return `+1 (${area}) ${mid} - ${last}`.trim();
+}
+
 export default function InterviewView() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
