@@ -55,6 +55,7 @@ import {
   Users,
   Search,
   Upload,
+  Download,
   Trash2,
   MessageSquare,
   Settings,
