@@ -3757,7 +3757,7 @@ Google India"
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 mb-6">
                       <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
-                      <h2 className="text-lg font-semibold text-gray-900">Interview Timeline</h2>
+                      <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
                     </div>
 
                     {selectedCandidateForTimeline.steps.map((step, index) => (
