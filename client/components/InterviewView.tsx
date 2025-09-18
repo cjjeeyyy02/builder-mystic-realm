@@ -179,7 +179,7 @@ const jobRoleOptions = [
   { value: "finance-analyst", label: "Finance Analyst" },
 ];
 
-const interviewCandidates: InterviewCandidate[] = [
+export const interviewCandidates: InterviewCandidate[] = [
   {
     id: "1",
     applicantName: "Sarah Mitchell",
@@ -513,13 +513,6 @@ export default function InterviewView() {
     return map;
   }, [rounds]);
 
-  const interviewMetrics = useMemo(() => {
-    const total = interviewCandidates.length;
-    const approved = interviewCandidates.filter(c => c.status === "completed").length;
-    const rejected = 0;
-    const pending = Math.max(total - approved - rejected, 0);
-    return { total, approved, rejected, pending };
-  }, []);
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
@@ -1355,29 +1348,6 @@ Google India`
                     <Grid className="w-4 h-4" />
                   </Button>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-                <Card className="p-2">
-                  <div className="text-xl font-bold text-blue-600">{interviewMetrics.total}</div>
-                  <div className="text-xs text-muted-foreground font-medium">Total Candidates</div>
-                  <div className="text-xs text-gray-400">Under Interview</div>
-                </Card>
-
-                <Card className="p-2">
-                  <div className="text-xl font-bold text-green-600">{interviewMetrics.approved}</div>
-                  <div className="text-xs text-muted-foreground font-medium">Approved</div>
-                </Card>
-
-                <Card className="p-2">
-                  <div className="text-xl font-bold text-red-600">{interviewMetrics.rejected}</div>
-                  <div className="text-xs text-muted-foreground font-medium">Rejected</div>
-                </Card>
-
-                <Card className="p-2">
-                  <div className="text-xl font-bold text-yellow-600">{interviewMetrics.pending}</div>
-                  <div className="text-xs text-muted-foreground font-medium">Pending</div>
-                </Card>
               </div>
 
               {/* Interview Content - Table or Card View */}
