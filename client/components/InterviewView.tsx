@@ -3728,7 +3728,7 @@ Google India"
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
                 <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected: {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
+                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
@@ -3783,7 +3783,7 @@ Google India"
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
                 <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected: {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
+                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatDDMMYYYY(scheduleForm.date) : '-'}</div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
