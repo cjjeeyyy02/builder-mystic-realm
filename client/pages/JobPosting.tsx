@@ -122,6 +122,25 @@ const initialJobs: Job[] = [
 
 export default function JobPosting() {
   const [jobs, setJobs] = useState<Job[]>(initialJobs);
+
+  const formatDateMDY = (dateStr?: string) => {
+    if (!dateStr) return "";
+    // If already mm-dd-yyyy
+    const mdy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+    if (mdy) return dateStr;
+    // If yyyy-mm-dd or ISO
+    const ymd = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (ymd) return `${ymd[2]}-${ymd[3]}-${ymd[1]}`;
+    // Try Date parsing as fallback
+    const d = new Date(dateStr);
+    if (!isNaN(d.getTime())) {
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      return `${mm}-${dd}-${yyyy}`;
+    }
+    return dateStr;
+  };
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"active" | "archived">("active");
@@ -258,8 +277,8 @@ export default function JobPosting() {
               <button onClick={() => setActiveTab('archived')} className="h-10 px-4 rounded-md text-sm font-medium border border-gray-300 text-gray-700 bg-transparent">
                 Archive
               </button>
-              <button onClick={openCreate} className="h-10 px-4 rounded-md text-sm font-bold bg-green-600 text-white flex items-center gap-2">
-                <Plus className="w-4 h-4" /> + Create
+              <button onClick={openCreate} aria-label="Create job posting" className="h-10 w-10 rounded-md bg-green-600 text-white flex items-center justify-center">
+                <Plus className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -291,7 +310,7 @@ export default function JobPosting() {
                           <td className="py-3 pr-4">{job.department}</td>
                           <td className="py-3 pr-4">{job.location}</td>
                           <td className="py-3 pr-4">{job.status}</td>
-                          <td className="py-3 pr-4">{job.datePosted}</td>
+                          <td className="py-3 pr-4">{formatDateMDY(job.datePosted)}</td>
                           <td className="py-3 pr-4">{job.applicants ?? 0}</td>
                           <td className="py-3 pr-4">
                             <DropdownMenu>
@@ -337,7 +356,7 @@ export default function JobPosting() {
                           <div className="text-lg font-semibold">{job.title}</div>
                           <div className="text-sm text-muted-foreground">{job.department} • {job.company}</div>
                         </div>
-                        <div className="text-xs text-muted-foreground">{job.datePosted}</div>
+                        <div className="text-xs text-muted-foreground">{formatDateMDY(job.datePosted)}</div>
                       </div>
 
                       <div className="mt-3 text-sm text-muted-foreground">{job.location}</div>
@@ -860,7 +879,7 @@ export default function JobPosting() {
               </div>
               <div>
                 <Label className="text-sm font-medium text-gray-700">Date Posted</Label>
-                <p className="text-sm text-gray-900 mt-1">{jobToView?.datePosted}</p>
+                <p className="text-sm text-gray-900 mt-1">{jobToView ? formatDateMDY(jobToView.datePosted) : ""}</p>
               </div>
               <div>
                 <Label className="text-sm font-medium text-gray-700">Applicants</Label>
