@@ -1859,33 +1859,6 @@ Google India`
                             <SelectItem value="month">Month</SelectItem>
                           </SelectContent>
                         </Select>
-                        <Button className="bg-blue-600 hover:bg-blue-700 h-7 text-xs" onClick={() => {
-                          const now = new Date();
-                          const start = new Date(now);
-                          start.setMinutes(0,0,0);
-                          const end = new Date(start);
-                          end.setHours(start.getHours() + 1);
-                          openEventPanel({
-                            id: `new-${Date.now()}`,
-                            title: '',
-                            organizer: '',
-                            attendees: [],
-                            start: start.toISOString(),
-                            end: end.toISOString(),
-                            allDay: false,
-                            location: '',
-                            description: ''
-                          });
-                        }}>New Event</Button>
-                        <div className="relative">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                          <Input
-                            value={calendarSearch}
-                            onChange={(e) => setCalendarSearch(e.target.value)}
-                            placeholder="Search candidate/role"
-                            className="pl-10 h-8 w-64 rounded-md text-sm shadow-sm"
-                          />
-                        </div>
                       </div>
                     </div>
 
