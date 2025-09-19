@@ -201,7 +201,7 @@ export default function OnboardingTimeline() {
               )}
               <div className="space-y-2.5">
                 {section.items.map((item) => (
-                  <div key={item.id} className="border rounded-md p-3">
+                  <div key={item.id} className="border rounded-lg p-4 bg-white shadow-sm">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="text-sm font-medium">{item.title}</div>
