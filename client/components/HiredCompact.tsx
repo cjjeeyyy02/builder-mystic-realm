@@ -68,7 +68,10 @@ export default function HiredCompact() {
       {/* Controls */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Input placeholder="Search candidates…" value={search} onChange={(e)=>setSearch(e.target.value)} className="h-8 w-64 text-sm" />
+          <div className="relative flex-none w-64">
+            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <Input placeholder="Search candidates..." value={search} onChange={(e)=>setSearch(e.target.value)} className="pl-10 h-8 w-full rounded-md text-sm shadow-sm" />
+          </div>
           <Select value={stageFilter} onValueChange={setStageFilter}>
             <SelectTrigger className="h-8 w-48 text-sm">
               <SelectValue placeholder="Stage" />
