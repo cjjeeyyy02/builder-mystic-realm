@@ -71,8 +71,6 @@ export default function OnboardingTimeline() {
   ]);
 
 
-  // Update status per-item
-  const [statusModal, setStatusModal] = useState<{ open: boolean; sectionId?: string; itemId?: string }>({ open: false });
 
   const totals = useMemo(() => {
     const total = sections.reduce((acc, s) => acc + s.items.length, 0);
@@ -86,7 +84,7 @@ export default function OnboardingTimeline() {
   const markItem = (sectionId: string, itemId: string, completed: boolean) => {
     setSections(prev => prev.map(s => s.id === sectionId ? {
       ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, completed, dateSubmitted: completed ? new Date().toISOString() : i.dateSubmitted } : i)
+      items: s.items.map(i => i.id === itemId ? { ...i, completed, dateCompleted: completed ? new Date().toISOString() : undefined } : i)
     } : s));
   };
 
@@ -95,7 +93,7 @@ export default function OnboardingTimeline() {
     const entry = { name: file.name, url: URL.createObjectURL(file) };
     setSections(prev => prev.map(s => s.id === sectionId ? {
       ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, completed: true, files: [...i.files, entry], dateSubmitted: new Date().toISOString() } : i)
+      items: s.items.map(i => i.id === itemId ? { ...i, completed: true, files: [...i.files, entry], dateCompleted: new Date().toISOString() } : i)
     } : s));
   };
 
@@ -103,7 +101,7 @@ export default function OnboardingTimeline() {
     if (!text) return;
     setSections(prev => prev.map(s => s.id === sectionId ? {
       ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, textSubmission: text, completed: true, dateSubmitted: new Date().toISOString() } : i)
+      items: s.items.map(i => i.id === itemId ? { ...i, textSubmission: text, completed: true, dateCompleted: new Date().toISOString() } : i)
     } : s));
   };
 
@@ -120,7 +118,6 @@ export default function OnboardingTimeline() {
           <AccordionItem key={section.id} value={section.id}>
             <AccordionTrigger className="text-base font-medium">
               <div className="flex items-center gap-2">
-                <CheckSquare className={`w-4 h-4 ${section.items.every(i => i.completed) ? 'text-green-600' : 'text-gray-400'}`} />
                 {section.title}
                 <Badge variant="secondary" className="ml-2 text-xs">{section.items.filter(i => i.completed).length}/{section.items.length}</Badge>
               </div>
@@ -137,7 +134,7 @@ export default function OnboardingTimeline() {
                         <div className="text-sm font-medium">{item.title}</div>
                         <div className="text-sm text-muted-foreground">{item.completed ? 'Completed' : 'Pending'}</div>
                       </div>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <Button variant="outline" className="h-10" onClick={() => {
                           const newTitle = prompt('Edit item title', item.title) || item.title;
                           setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
@@ -148,10 +145,11 @@ export default function OnboardingTimeline() {
                           <input type="file" className="hidden" onChange={(e) => attachFile(section.id, item.id, e.target.files?.[0] || null)} />
                           <span className="inline-flex items-center h-10 px-3 border rounded-md text-sm cursor-pointer"><Upload className="w-4 h-4 mr-1" /> Upload</span>
                         </label>
-                        <Button variant="outline" className="h-10" onClick={() => setStatusModal({ open: true, sectionId: section.id, itemId: item.id })}>
-                          Update Status
-                        </Button>
-                        <div className="text-sm text-muted-foreground ml-2">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
+                        <div className="flex items-center gap-2 ml-2">
+                          <span className="text-sm">Completed</span>
+                          <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
+                        </div>
+                        <div className="text-sm text-muted-foreground ml-2">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
                       </div>
                     </div>
 
@@ -160,7 +158,7 @@ export default function OnboardingTimeline() {
                       <div className="text-sm whitespace-pre-wrap border rounded-md p-3 mt-2 bg-white">{item.textSubmission}</div>
                     ) : (
                       <div className="mt-2">
-                        <label className="block text-base font-medium mb-1">Text Response</label>
+                        <label className="block text-base font-medium mb-1">Enter Response</label>
                         <Textarea rows={3} placeholder="Enter response..." onBlur={(e) => saveText(section.id, item.id, e.target.value)} />
                       </div>
                     )}
@@ -202,25 +200,6 @@ export default function OnboardingTimeline() {
       )}
 
 
-      {/* Update Status Modal */}
-      <Dialog open={statusModal.open} onOpenChange={(open) => setStatusModal({ open })}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-base font-medium">Update Status</DialogTitle>
-          </DialogHeader>
-          <div className="text-sm text-muted-foreground">Set this item as Pass or Reject.</div>
-          <DialogFooter>
-            <Button variant="outline" className="h-10" onClick={() => {
-              if (statusModal.sectionId && statusModal.itemId) markItem(statusModal.sectionId, statusModal.itemId, false);
-              setStatusModal({ open: false });
-            }}>Reject</Button>
-            <Button className="h-10" onClick={() => {
-              if (statusModal.sectionId && statusModal.itemId) markItem(statusModal.sectionId, statusModal.itemId, true);
-              setStatusModal({ open: false });
-            }}>Pass</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
