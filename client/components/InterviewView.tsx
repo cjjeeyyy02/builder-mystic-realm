@@ -1460,14 +1460,9 @@ Google India`
 
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Navigation Tabs with Search */}
-      <div className="border-b border-border">
-        <div className="flex items-center justify-between">
-          {/* Tabs hidden as requested - only Interview Status visible */}
-        </div>
-
-      </div>
+      <div className="pb-1"></div>
 
       {/* Main Layout */}
       <div className="h-[calc(100vh-280px)]">
