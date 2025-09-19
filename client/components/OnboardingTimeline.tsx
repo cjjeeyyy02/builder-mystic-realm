@@ -54,21 +54,6 @@ export default function OnboardingTimeline() {
   // Sections with checklist items
   const [sections, setSections] = useState<TimelineSection[]>([
     {
-      id: "pre",
-      title: "Pre-Onboarding Stage",
-      description: "Offer accepted → HR triggers onboarding tasks → Candidate fills forms → IT & Manager notified",
-      items: [
-        { id: "pre-1", title: "Send offer letter & confirm start date", completed: false, files: [] },
-        { id: "pre-2", title: "Welcome email with onboarding instructions", completed: false, files: [] },
-        { id: "pre-3", title: "Collect required documents (IDs, forms, tax info, banking, emergency contacts)", completed: false, files: [] },
-        { id: "pre-4", title: "Background checks / employment verification (optional)", completed: false, files: [] },
-        { id: "pre-5", title: "Employment contract & NDAs for e-signature", completed: false, files: [] },
-        { id: "pre-6", title: "Order equipment & provision access (laptop, system accounts, software)", completed: false, files: [] },
-        { id: "pre-7", title: "Setup payroll & tax details", completed: false, files: [] },
-        { id: "pre-8", title: "Share first-day schedule & handbook", completed: false, files: [] },
-      ],
-    },
-    {
       id: "day1",
       title: "Orientation Stage",
       items: [
@@ -93,11 +78,6 @@ export default function OnboardingTimeline() {
     },
   ]);
 
-  // Send Checklist Link modal
-  const [sendModalOpen, setSendModalOpen] = useState(false);
-  const [emailSubject, setEmailSubject] = useState("");
-  const [emailMessage, setEmailMessage] = useState("");
-  const [emailAttachment, setEmailAttachment] = useState<File | null>(null);
 
   // Update status per-item
   const [statusModal, setStatusModal] = useState<{ open: boolean; sectionId?: string; itemId?: string }>({ open: false });
@@ -135,53 +115,12 @@ export default function OnboardingTimeline() {
     } : s));
   };
 
-  const ProgressBar = ({ value }: { value: number }) => (
-    <div className="flex items-center gap-2">
-      <div className="w-56 h-2 bg-gray-200 rounded-full overflow-hidden">
-        <div className="h-2 bg-blue-600" style={{ width: `${value}%` }} />
-      </div>
-      <span className="text-xs font-medium text-gray-700">{value}%</span>
-    </div>
-  );
 
   const allDone = totals.total > 0 && totals.total === totals.complete;
 
   return (
     <div className="onboarding-corporate space-y-6">
 
-
-      {/* Header */}
-      <Card className="border-0 shadow-sm">
-        <CardContent className="p-4 flex items-center justify-between gap-3">
-          <div>
-            <div className="text-xl font-bold">Onboarding Timeline – {candidate.name}</div>
-            <div className="text-sm text-muted-foreground">From Pre-Onboarding to Integration</div>
-          </div>
-          <div className="flex items-center gap-3">
-            <ProgressBar value={totals.pct} />
-            <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => setSendModalOpen(true)}>
-              <Mail className="w-4 h-4 mr-2" /> Send Checklist Link
-            </Button>
-            <Button className="bg-[#E53935] hover:bg-[#d32f2f] text-white font-bold" onClick={() => {
-              const headers = ['Section','Item','Status','Date Submitted'];
-              const rows: string[] = [];
-              sections.forEach(s => s.items.forEach(i => {
-                const status = i.completed ? 'Passed' : (i.dateSubmitted ? 'Failed' : 'In Process');
-                rows.push([
-                  s.title,
-                  i.title,
-                  status,
-                  i.dateSubmitted ? formatDateMDY(i.dateSubmitted) : ''
-                ].map(v => `"${String(v).replace(/\"/g,'""')}"`).join(','));
-              }));
-              const csv = [headers.join(','), ...rows].join('\n');
-              const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a'); a.href = url; a.download = 'onboarding_timeline_export.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-            }}>Export</Button>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Timeline Sections */}
       <Accordion type="multiple" className="space-y-6">
@@ -270,33 +209,6 @@ export default function OnboardingTimeline() {
         </div>
       )}
 
-      {/* Send Checklist Link Modal */}
-      <Dialog open={sendModalOpen} onOpenChange={setSendModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-base font-medium">Send Checklist Link</DialogTitle>
-            <DialogDescription>Compose a message and attach files. The link allows the candidate to submit required items.</DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3 text-sm">
-            <div>
-              <label className="block mb-1 font-medium text-base">Email Subject</label>
-              <Input value={emailSubject} onChange={(e) => setEmailSubject(e.target.value)} placeholder="Subject" />
-            </div>
-            <div>
-              <label className="block mb-1 font-medium text-base">Email Message</label>
-              <Textarea rows={4} value={emailMessage} onChange={(e) => setEmailMessage(e.target.value)} placeholder="Write your message..." />
-            </div>
-            <div>
-              <label className="block mb-1 font-medium text-base">Upload Attachment</label>
-              <Input type="file" onChange={(e) => setEmailAttachment(e.target.files?.[0] || null)} />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" className="h-10" onClick={() => setSendModalOpen(false)}>Cancel</Button>
-            <Button className="h-10" onClick={() => { setSendModalOpen(false); toast({ title: 'Checklist link sent' }); }}>Send</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       {/* Update Status Modal */}
       <Dialog open={statusModal.open} onOpenChange={(open) => setStatusModal({ open })}>
