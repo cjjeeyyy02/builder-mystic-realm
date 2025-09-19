@@ -120,17 +120,8 @@ export default function HiredCompact() {
                     </td>
                     <td className="py-3 px-3 text-[14px] text-gray-900">{c.position}</td>
                     <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
-                    <td className="py-3 px-3">
-                      <Select value={c.stage} onValueChange={(v)=>{ /* no-op demo */ }}>
-                        <SelectTrigger className="h-8 w-44 text-[14px] text-gray-800 rounded border border-gray-300 bg-white px-2 py-1 shadow-sm">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Pre-Onboarding">Pre-Onboarding</SelectItem>
-                          <SelectItem value="Orientation">Orientation</SelectItem>
-                          <SelectItem value="Integration">Integration</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <td className="py-3 px-3 text-[14px] text-gray-900">
+                      {c.stage}
                     </td>
                   </tr>
                 );
