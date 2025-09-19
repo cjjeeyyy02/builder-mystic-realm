@@ -476,7 +476,7 @@ export default function ScreeningView() {
                   <col className="w-[8%]" />
                 </colgroup>
               <tbody>
-                {filteredCandidates.map((candidate, index) => {
+                {filteredCandidates.slice(0, 5).map((candidate, index) => {
                   const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
                   const statusBadgeClass = candidate.status === 'approved'
                     ? 'bg-green-100 text-green-800 border border-green-200'
@@ -556,7 +556,7 @@ export default function ScreeningView() {
       )}
       {viewMode === 'grid' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {filteredCandidates.map((candidate) => (
+          {filteredCandidates.slice(0, 5).map((candidate) => (
             <Card
               key={candidate.id}
               className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
