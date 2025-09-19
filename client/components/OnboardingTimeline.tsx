@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
@@ -154,28 +152,16 @@ export default function OnboardingTimeline() {
                             </button>
                             <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
                           </div>
-                          <div className="text-[12px] text-gray-500 mt-1">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
+                          <div className="text-[12px] text-gray-500 mt-1">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
                         </td>
                         <td className="py-3 px-3">
                           <div className="flex items-center gap-2">
                             <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
-                            <span className="text-sm">Enter Response</span>
-                          </div>
-                          <div className="mt-2">
-                            <Input
-                              placeholder="Enter response..."
-                              defaultValue={item.textSubmission || ''}
-                              onBlur={(e) => saveText(section.id, item.id, e.target.value)}
-                              className="h-8 text-sm"
-                            />
+                            <span className="text-sm">Completed</span>
                           </div>
                         </td>
                         <td className="py-3 px-3">
-                          <div className="w-full flex justify-end">
-                            <Button variant="outline" size="sm" className="h-8 px-3" onClick={() => markItem(section.id, item.id, !item.completed)}>
-                              Update Status
-                            </Button>
-                          </div>
+                          <div className="w-full flex justify-end"></div>
                         </td>
                       </tr>
                     ))}
