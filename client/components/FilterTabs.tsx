@@ -618,37 +618,35 @@ export default function FilterTabs() {
   };
 
   return (
-    <div className="space-y-3">
-      {/* Compact Rectangular Block Stage Headers */}
+    <div className="space-y-4">
+      {/* Modern Tabs Header */}
       <div className="w-full">
-        <div className="bg-white">
-          <div className="flex items-end justify-start gap-4 border-b border-gray-200">
-            {tabs.map((tab) => {
-              const count =
-                tab.id === "screening" ? screeningCandidates.length :
-                tab.id === "interview" ? interviewTabCandidates.length :
-                tab.id === "activation" ? 0 :
-                0;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`relative pb-2 px-4 text-sm font-semibold transition-colors rounded-t
-                    ${isActive ? 'text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}
-                >
-                  <span className="mr-2 whitespace-nowrap">{tab.label}</span>
-                  <span className={`inline-flex items-center justify-center h-6 px-2 rounded-full border text-xs
-                    ${isActive ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 text-gray-700 border-gray-300'}`}>
-                    {count}
-                  </span>
-                  {isActive && <span className="absolute left-0 -bottom-[1px] h-0.5 w-full bg-blue-600" />}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <nav className="flex items-center gap-6 border-b border-gray-200 pb-1">
+          {tabs.map((tab) => {
+            const count =
+              tab.id === "screening" ? screeningCandidates.length :
+              tab.id === "interview" ? interviewTabCandidates.length :
+              tab.id === "activation" ? 0 :
+              0;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`relative pb-3 text-sm font-medium transition-colors
+                  ${isActive ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'}`}
+              >
+                <span className="mr-2 whitespace-nowrap">{tab.label}</span>
+                <span className={`inline-flex items-center justify-center h-5 w-5 rounded-full text-[11px] font-medium align-middle
+                  ${isActive ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
+                  {count}
+                </span>
+                {isActive && <span className="absolute left-0 -bottom-[1px] h-[2px] w-full bg-blue-600 rounded-full" />}
+              </button>
+            );
+          })}
+        </nav>
       </div>
 
       {/* Search and Filter Controls - Only show for hiring and screening */}
