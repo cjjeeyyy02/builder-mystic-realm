@@ -253,14 +253,14 @@ export default function ActivationView() {
           <Card className="p-0 border border-gray-200 rounded-none">
             <Table className="w-full text-sm">
               <TableHeader>
-                <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                  <TableHead className="py-2 px-3 font-semibold">JOB ID</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">NAME</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">APPLIED POSITION</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">JOINING DATE</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">FILES UPLOADED</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold">ACTION</TableHead>
+                <TableRow className="text-left text-[13px] text-gray-900 border-b">
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">JOB ID</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">NAME</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
