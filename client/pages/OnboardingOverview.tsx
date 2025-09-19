@@ -464,7 +464,7 @@ export default function OnboardingOverview() {
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       STATUS
                     </TableHead>
-                    <TableHead className="text-center text-xs font-bold text-gray-900 uppercase tracking-wider">
+                    <TableHead className="text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                       ACTION
                     </TableHead>
                   </TableRow>

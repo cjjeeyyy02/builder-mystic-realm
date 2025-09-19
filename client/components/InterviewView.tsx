@@ -2756,7 +2756,7 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b">
-                        <TableHead className="text-center font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
+                        <TableHead className="text-left font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">COUNTRY</TableHead>

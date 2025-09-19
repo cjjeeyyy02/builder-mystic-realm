@@ -578,7 +578,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
           <Table>
             <TableHeader>
               <TableRow className="bg-muted/30 border-b">
-                <TableHead className="w-16 text-center font-semibold text-foreground py-4">
+                <TableHead className="w-16 text-left font-semibold text-foreground py-4">
                   S. NO
                 </TableHead>
                 <TableHead className="font-semibold text-foreground py-4">
@@ -602,7 +602,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                 <TableHead className="font-semibold text-foreground py-4">
                   CONFIRMED DOJ
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4 text-center">
+                <TableHead className="font-semibold text-foreground py-4">
                   ACTIONS
                 </TableHead>
               </TableRow>
