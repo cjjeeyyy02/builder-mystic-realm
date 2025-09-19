@@ -406,7 +406,7 @@ export default function OnboardingOverview() {
                 </Button>
                 <Dialog open={showAddCandidate} onOpenChange={setShowAddCandidate}>
                   <DialogTrigger asChild>
-                    <Button className="h-10">+ Add Candidate</Button>
+                    <Button className="h-10 bg-blue-600 hover:bg-blue-700 text-white">+ Add Candidate</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
