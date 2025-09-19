@@ -250,37 +250,17 @@ export default function ActivationView() {
 
           {/* Employee Activation Table */}
           {viewMode === 'table' && (
-          <div className={`border overflow-hidden transition-colors duration-300 ${
-            isDarkMode
-              ? 'bg-gray-800 border-gray-700'
-              : 'bg-white border-gray-200'
-          }`}>
+          <Card className="p-0 border border-gray-200 rounded-none">
             <Table className="w-full text-sm">
               <TableHeader>
-                <TableRow className={`transition-colors duration-300 ${
-                  isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
-                }`}>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>JOB ID</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>NAME</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>APPLIED POSITION</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>JOINING DATE</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>FILES UPLOADED</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>ACTIVATION PROGRESS</TableHead>
-                  <TableHead className={`text-[13px] font-medium px-3 py-2 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>ACTION</TableHead>
+                <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                  <TableHead className="py-2 px-3">JOB ID</TableHead>
+                  <TableHead className="py-2 px-3">NAME</TableHead>
+                  <TableHead className="py-2 px-3">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -352,7 +332,7 @@ export default function ActivationView() {
                 ))}
               </TableBody>
             </Table>
-          </div>
+          </Card>
           )}
 
           {viewMode === 'card' && (
