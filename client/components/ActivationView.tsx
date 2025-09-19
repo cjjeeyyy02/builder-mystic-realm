@@ -254,13 +254,13 @@ export default function ActivationView() {
             <Table className="w-full text-sm">
               <TableHeader>
                 <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                  <TableHead className="py-2 px-3">JOB ID</TableHead>
-                  <TableHead className="py-2 px-3">NAME</TableHead>
-                  <TableHead className="py-2 px-3">APPLIED POSITION</TableHead>
-                  <TableHead className="py-2 px-3">JOINING DATE</TableHead>
-                  <TableHead className="py-2 px-3">FILES UPLOADED</TableHead>
-                  <TableHead className="py-2 px-3">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="py-2 px-3">ACTION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">JOB ID</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">NAME</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
