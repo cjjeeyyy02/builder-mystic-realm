@@ -138,10 +138,6 @@ export default function HiredCompact() {
                       <tr className="border-b">
                         <td colSpan={5} className="bg-gray-50">
                           <div className="p-3 border-t">
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="text-sm font-semibold text-gray-900">Onboarding Timeline</div>
-                              <Button variant="outline" size="sm" onClick={() => setExpandedId(null)}>Close</Button>
-                            </div>
                             <OnboardingTimeline />
                           </div>
                         </td>
