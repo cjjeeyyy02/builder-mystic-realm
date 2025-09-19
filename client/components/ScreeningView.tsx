@@ -522,9 +522,7 @@ export default function ScreeningView() {
                         <div className="text-xs text-gray-900">{formatPhone(candidate.phone)}</div>
                       </td>
                       <td className="px-3 py-3">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium ${statusBadgeClass}`}>
-                          {statusText}
-                        </span>
+                        <span className="text-xs text-gray-900">{statusText}</span>
                       </td>
                       <td className="px-3 py-3">
                         <div className="flex items-center justify-center">
@@ -574,18 +572,9 @@ export default function ScreeningView() {
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-                    {(candidate.status === "approved" || candidate.status === "reject") && (
-                      <Badge
-                        variant={getStatusVariant(candidate.status)}
-                        className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
-                          candidate.status === "approved"
-                            ? "bg-green-100 text-green-700 border-green-200"
-                            : "bg-red-100 text-red-700 border-red-200"
-                        }`}
-                      >
-                        {candidate.status === "approved" ? "Approved" : "Rejected"}
-                      </Badge>
-                    )}
+                    <span className="text-xs text-gray-700 flex-shrink-0">
+                      {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                    </span>
                   </div>
 
                   {/* Candidate Info */}
