@@ -618,10 +618,10 @@ export default function FilterTabs() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Modern Tabs Header */}
       <div className="w-full">
-        <nav className="flex items-center gap-8 border-b border-gray-200 pb-2">
+        <nav className="flex items-center gap-8 border-b border-gray-200 pb-1">
           {tabs.map((tab) => {
             const count =
               tab.id === "screening" ? screeningCandidates.length :
@@ -651,7 +651,7 @@ export default function FilterTabs() {
 
       {/* Search and Filter Controls - Only show for hiring and screening */}
       {(activeTab === "screening") && (
-        <div className="flex flex-col gap-2 mb-4">
+        <div className="flex flex-col gap-2 mb-2">
           {/* Sequential Metrics cards */}
 
 
