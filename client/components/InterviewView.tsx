@@ -1471,7 +1471,7 @@ Google India`
           {activeMainTab === "interview-status" && (
             <div className="space-y-4">
               {/* Search Filters and View Toggle */}
-              <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="flex items-center justify-between gap-2 mb-2">
                 <SearchWithDropdown
                   placeholder="SEARCH CANDIDATES"
                   value={searchCandidates}
