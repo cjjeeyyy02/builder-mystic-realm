@@ -105,7 +105,7 @@ export default function HiredCompact() {
               </tr>
             </thead>
             <tbody>
-              {candidates.map((c)=>{
+              {candidates.slice(0, 5).map((c)=>{
                 const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
                 return (
                   <Fragment key={c.id}>
