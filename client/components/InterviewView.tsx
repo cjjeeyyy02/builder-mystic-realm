@@ -3898,7 +3898,7 @@ Google India"
 
       {/* Add/Edit Interview Step */}
       <Dialog open={showStepEditor} onOpenChange={setShowStepEditor}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-sm font-semibold">{editingStepId ? 'Edit Interview Step' : 'Add Interview Step'}</DialogTitle>
             <DialogDescription>Define the interview step details.</DialogDescription>
