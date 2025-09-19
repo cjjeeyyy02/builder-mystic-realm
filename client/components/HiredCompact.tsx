@@ -91,68 +91,93 @@ export default function HiredCompact() {
         </div>
       </div>
 
-      {/* Candidate List (table style) */}
-      <Card className="p-0 border border-gray-200 rounded-none">
-        <div className="overflow-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-[13px] text-gray-600 border-b">
-                <th className="py-2 px-3">CANDIDATE</th>
-                <th className="py-2 px-3">APPLIED POSITION</th>
-                <th className="py-2 px-3">JOINING DATE</th>
-                <th className="py-2 px-3">STAGE</th>
-                <th className="py-2 px-3">ACTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              {candidates.slice(0, 5).map((c)=>{
-                const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
-                return (
-                  <Fragment key={c.id}>
-                    <tr className="border-b hover:bg-gray-50">
-                    <td className="py-3 px-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
-                        <div className="leading-tight">
-                          <div className="text-[14px] font-medium text-gray-900">{c.name}</div>
-                          <div className="text-[12px] text-gray-500">ID: {c.id}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 text-[14px] text-gray-900">{c.position}</td>
-                    <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
-                    <td className="py-3 px-3 text-[14px] text-gray-900">
-                      {c.stage}
-                    </td>
-                    <td className="py-3 px-3 text-center">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 w-6 p-0"
-                        onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
-                        aria-expanded={expandedId === c.id}
-                        aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
-                      >
-                        <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
-                      </Button>
-                    </td>
-                  </tr>
-                    {expandedId === c.id && (
-                      <tr className="border-b">
-                        <td colSpan={5} className="bg-gray-50">
-                          <div className="p-3 border-t">
-                            <OnboardingTimeline />
+      {view === 'list' && (
+        <Card className="p-0 border border-gray-200 rounded-none">
+          <div className="overflow-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-[13px] text-gray-600 border-b">
+                  <th className="py-2 px-3">CANDIDATE</th>
+                  <th className="py-2 px-3">APPLIED POSITION</th>
+                  <th className="py-2 px-3">JOINING DATE</th>
+                  <th className="py-2 px-3">STAGE</th>
+                  <th className="py-2 px-3">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {candidates.slice(0, 5).map((c)=>{
+                  const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+                  return (
+                    <Fragment key={c.id}>
+                      <tr className="border-b hover:bg-gray-50">
+                        <td className="py-3 px-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
+                            <div className="leading-tight">
+                              <div className="text-[14px] font-medium text-gray-900">{c.name}</div>
+                              <div className="text-[12px] text-gray-500">ID: {c.id}</div>
+                            </div>
                           </div>
                         </td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.position}</td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.stage}</td>
+                        <td className="py-3 px-3 text-center">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 p-0"
+                            onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                            aria-expanded={expandedId === c.id}
+                            aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                          >
+                            <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                          </Button>
+                        </td>
                       </tr>
-                    )}
-                  </Fragment>
-                );
-              })}
-            </tbody>
-          </table>
+                      {expandedId === c.id && (
+                        <tr className="border-b">
+                          <td colSpan={5} className="bg-gray-50">
+                            <div className="p-3 border-t">
+                              <OnboardingTimeline />
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      )}
+
+      {view === 'grid' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {candidates.slice(0, 5).map((c) => {
+            const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+            return (
+              <Card key={c.id} className="p-4 border border-gray-200">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
+                    <div>
+                      <div className="text-sm font-semibold text-gray-900">{c.name}</div>
+                      <div className="text-xs text-gray-500">ID: {c.id}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-600">
+                  <div className="mb-1"><span className="font-medium text-gray-900">Position:</span> {c.position}</div>
+                  <div className="mb-1"><span className="font-medium text-gray-900">Joining:</span> {formatMDY(c.joiningDate)}</div>
+                  <div><span className="font-medium text-gray-900">Stage:</span> {c.stage}</div>
+                </div>
+              </Card>
+            );
+          })}
         </div>
-      </Card>
+      )}
     </div>
   );
 }
