@@ -97,11 +97,11 @@ export default function HiredCompact() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-[13px] text-gray-600 border-b">
-                <th className="py-2 px-3">Candidate</th>
-                <th className="py-2 px-3">Applied Position</th>
-                <th className="py-2 px-3">Joining Date</th>
-                <th className="py-2 px-3">Stage</th>
-                <th className="py-2 px-3">Action</th>
+                <th className="py-2 px-3">CANDIDATE</th>
+                <th className="py-2 px-3">APPLIED POSITION</th>
+                <th className="py-2 px-3">JOINING DATE</th>
+                <th className="py-2 px-3">STAGE</th>
+                <th className="py-2 px-3">ACTION</th>
               </tr>
             </thead>
             <tbody>
