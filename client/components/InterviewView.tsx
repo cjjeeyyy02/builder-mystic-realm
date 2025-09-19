@@ -2104,8 +2104,8 @@ Google India`
                   /* Card View */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {interviewCandidates.map((c) => (
-                      <Card key={c.id} className="p-4 border border-gray-200">
-                        <CardContent className="p-0 space-y-3">
+                      <Card key={c.id} className="p-3 border border-gray-200 hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30">
+                        <CardContent className="p-0 sm:p-0 space-y-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
