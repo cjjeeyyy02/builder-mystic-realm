@@ -132,9 +132,8 @@ export default function OnboardingTimeline() {
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="text-sm font-medium">{item.title}</div>
-                        <div className="text-sm text-muted-foreground">{item.completed ? 'Completed' : 'Pending'}</div>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2">
+                                              </div>
+                      <div className="hidden">
                         <Button variant="outline" className="h-10" onClick={() => {
                           const newTitle = prompt('Edit item title', item.title) || item.title;
                           setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
@@ -154,15 +153,7 @@ export default function OnboardingTimeline() {
                     </div>
 
                     {/* Text submission */}
-                    {item.textSubmission ? (
-                      <div className="text-sm whitespace-pre-wrap border rounded-md p-3 mt-2 bg-white">{item.textSubmission}</div>
-                    ) : (
-                      <div className="mt-2">
-                        <label className="block text-base font-medium mb-1">Enter Response</label>
-                        <Textarea rows={3} placeholder="Enter response..." onBlur={(e) => saveText(section.id, item.id, e.target.value)} />
-                      </div>
-                    )}
-
+                    
                     {/* Files */}
                     {item.files.length > 0 && (
                       <div className="space-y-2 mt-2">
