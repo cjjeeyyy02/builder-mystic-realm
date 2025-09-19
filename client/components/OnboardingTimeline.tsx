@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
@@ -126,56 +127,60 @@ export default function OnboardingTimeline() {
               {section.description && (
                 <p className="text-sm text-muted-foreground mb-3">{section.description}</p>
               )}
-              <div className="space-y-2.5">
-                {section.items.map((item) => (
-                  <div key={item.id} className="border rounded-lg p-4 bg-white shadow-sm">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <div className="text-sm font-medium">{item.title}</div>
-                                              </div>
-                      <div className="hidden">
-                        <Button variant="outline" className="h-10" onClick={() => {
-                          const newTitle = prompt('Edit item title', item.title) || item.title;
-                          setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
-                        }}>
-                          <Edit className="w-4 h-4 mr-1" /> Edit
-                        </Button>
-                        <label className="inline-flex items-center">
-                          <input type="file" className="hidden" onChange={(e) => attachFile(section.id, item.id, e.target.files?.[0] || null)} />
-                          <span className="inline-flex items-center h-10 px-3 border rounded-md text-sm cursor-pointer"><Upload className="w-4 h-4 mr-1" /> Upload</span>
-                        </label>
-                        <div className="flex items-center gap-2 ml-2">
-                          <span className="text-sm">Completed</span>
-                          <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
-                        </div>
-                        <div className="text-sm text-muted-foreground ml-2">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
-                      </div>
-                    </div>
-
-                    {/* Text submission */}
-                    
-                    {/* Files */}
-                    {item.files.length > 0 && (
-                      <div className="space-y-2 mt-2">
-                        {item.files.map((f, idx) => (
-                          <div key={idx} className="border rounded-md p-3 bg-white">
-                            <div className="flex items-center justify-between text-sm">
-                              <div className="truncate max-w-[70%]">{f.name}</div>
-                              <div className="flex items-center gap-2">
-                                <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><Maximize2 className="w-4 h-4 mr-1" /> Full Screen</Button>
-                                <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><FileText className="w-4 h-4 mr-1" /> View</Button>
-                                <a href={f.url} download className="inline-flex items-center h-10 px-3 border rounded-md text-sm"><Download className="w-4 h-4 mr-1" /> Download</a>
-                              </div>
-                            </div>
-                            <div className="mt-2">
-                              <iframe src={f.url} className="w-full h-48 border rounded-md" />
-                            </div>
+              <div className="border border-gray-200 rounded-md overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-[13px] text-gray-600 border-b">
+                      <th className="py-2 px-3">TASK</th>
+                      <th className="py-2 px-3">RESPONSE</th>
+                      <th className="py-2 px-3 text-right">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.items.map((item) => (
+                      <tr key={item.id} className="border-b last:border-b-0 align-top">
+                        <td className="py-3 px-3">
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              className="text-gray-600 hover:text-gray-900"
+                              onClick={() => {
+                                const newTitle = prompt('Edit item title', item.title) || item.title;
+                                setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
+                              }}
+                              aria-label="Edit task title"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
                           </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                          <div className="text-[12px] text-gray-500 mt-1">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="flex items-center gap-2">
+                            <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
+                            <span className="text-sm">Enter Response</span>
+                          </div>
+                          <div className="mt-2">
+                            <Input
+                              placeholder="Enter response..."
+                              defaultValue={item.textSubmission || ''}
+                              onBlur={(e) => saveText(section.id, item.id, e.target.value)}
+                              className="h-8 text-sm"
+                            />
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="w-full flex justify-end">
+                            <Button variant="outline" size="sm" className="h-8 px-3" onClick={() => markItem(section.id, item.id, !item.completed)}>
+                              Update Status
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </AccordionContent>
           </AccordionItem>
