@@ -3,8 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { List, Grid, Download, ChevronDown, Eye, Pencil, Trash } from "lucide-react";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { List, Grid, Download, ChevronDown } from "lucide-react";
+import OnboardingTimeline from "@/components/OnboardingTimeline";
 
 interface HiredCandidate {
   id: string;
@@ -41,6 +41,7 @@ export default function HiredCompact() {
   const [search, setSearch] = useState("");
   const [stageFilter, setStageFilter] = useState<string>("all");
   const [view, setView] = useState<"list" | "grid">("list");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const metrics = {
     monthHired: 1,
@@ -110,7 +111,8 @@ export default function HiredCompact() {
               {candidates.map((c)=>{
                 const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
                 return (
-                  <tr key={c.id} className="border-b last:border-b-0 hover:bg-gray-50">
+                  <>
+                    <tr key={c.id} className="border-b hover:bg-gray-50">
                     <td className="py-3 px-3">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
@@ -126,16 +128,32 @@ export default function HiredCompact() {
                       {c.stage}
                     </td>
                     <td className="py-3 px-3 text-center">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                            <ChevronDown className="w-4 h-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" />
-                      </DropdownMenu>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0"
+                        onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                        aria-expanded={expandedId === c.id}
+                        aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                      >
+                        <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                      </Button>
                     </td>
                   </tr>
+                    {expandedId === c.id && (
+                      <tr className="border-b">
+                        <td colSpan={5} className="bg-gray-50">
+                          <div className="p-3 border-t">
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="text-sm font-semibold text-gray-900">Onboarding Timeline</div>
+                              <Button variant="outline" size="sm" onClick={() => setExpandedId(null)}>Close</Button>
+                            </div>
+                            <OnboardingTimeline />
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </>
                 );
               })}
             </tbody>
