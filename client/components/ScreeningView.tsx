@@ -388,7 +388,7 @@ export default function ScreeningView() {
             value={statusFilter}
             onValueChange={(value) => setStatusFilter(value)}
           >
-            <SelectTrigger className="w-[140px] h-8 text-muted-foreground">
+            <SelectTrigger className="h-8 w-48 text-sm">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -420,124 +420,59 @@ export default function ScreeningView() {
 
       {/* Table View */}
       {viewMode === "table" && (
-        <div className="p-0 border border-gray-200 rounded-none overflow-hidden">
-          {/* Sticky Header */}
-          <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
-            <div className="w-full">
-              <table className="w-full text-sm table-fixed">
-                <colgroup>
-                  <col className="w-[20%]" />
-                  <col className="w-[18%]" />
-                  <col className="w-[12%]" />
-                  <col className="w-[20%]" />
-                  <col className="w-[14%]" />
-                  <col className="w-[8%]" />
-                  <col className="w-[8%]" />
-                </colgroup>
-                <thead>
-                  <tr className="text-left text-[13px] text-gray-600 border-b">
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      CANDIDATE
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      APPLIED POSITION
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      TOTAL EXPERIENCE
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      EMAIL
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      PHONE NUMBER
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      STATUS
-                    </th>
-                    <th className="text-left px-3 py-2 text-[13px] font-medium text-gray-600 bg-white">
-                      ACTION
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-
-          {/* Scrollable Body */}
-          <div className="w-full max-h-[600px] overflow-y-auto">
+        <Card className="p-0 border border-gray-200 rounded-none">
+          <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
-                <colgroup>
-                  <col className="w-[20%]" />
-                  <col className="w-[18%]" />
-                  <col className="w-[12%]" />
-                  <col className="w-[20%]" />
-                  <col className="w-[14%]" />
-                  <col className="w-[8%]" />
-                  <col className="w-[8%]" />
-                </colgroup>
+              <colgroup>
+                <col className="w-[20%]" />
+                <col className="w-[18%]" />
+                <col className="w-[12%]" />
+                <col className="w-[20%]" />
+                <col className="w-[14%]" />
+                <col className="w-[8%]" />
+                <col className="w-[8%]" />
+              </colgroup>
+              <thead>
+                <tr className="text-left text-[13px] text-gray-600 border-b">
+                  <th className="py-2 px-3">CANDIDATE</th>
+                  <th className="py-2 px-3">APPLIED POSITION</th>
+                  <th className="py-2 px-3">TOTAL EXPERIENCE</th>
+                  <th className="py-2 px-3">EMAIL</th>
+                  <th className="py-2 px-3">PHONE NUMBER</th>
+                  <th className="py-2 px-3">STATUS</th>
+                  <th className="py-2 px-3">ACTION</th>
+                </tr>
+              </thead>
               <tbody>
-                {filteredCandidates.slice(0, 5).map((candidate, index) => {
+                {filteredCandidates.slice(0, 5).map((candidate) => {
                   const candidateInitials = candidate.name.split(" ").map(n => n[0]).join("");
-                  const statusBadgeClass = candidate.status === 'approved'
-                    ? 'bg-green-100 text-green-800 border border-green-200'
-                    : candidate.status === 'reject'
-                    ? 'bg-red-100 text-red-800 border border-red-200'
-                    : 'bg-gray-100 text-gray-800 border border-gray-200';
-                  const statusText = candidate.status === 'approved' ? 'Approved' :
-                                   candidate.status === 'reject' ? 'Rejected' : 'Pending';
-
+                  const statusText = candidate.status === 'approved' ? 'Approved' : candidate.status === 'reject' ? 'Rejected' : 'Pending';
                   return (
-                    <tr
-                      key={candidate.id}
-                      className="border-b last:border-b-0 hover:bg-gray-50"
-                    >
-                      <td className="px-3 py-3">
-                        <div className="flex items-center space-x-2">
-                          <div className="flex-shrink-0">
-                            <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                              <span className="text-xs font-medium text-white">
-                                {candidateInitials}
-                              </span>
-                            </div>
+                    <tr key={candidate.id} className="border-b hover:bg-gray-50">
+                      <td className="py-3 px-3">
+                        <div className="flex items-center gap-2">
+                          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                            <span className="text-xs font-medium text-white">{candidateInitials}</span>
                           </div>
-                          <div className="min-w-0 flex-1">
-                            <p className="text-xs font-medium text-gray-900 truncate" title={candidate.name}>
-                              {candidate.name}
-                            </p>
-                            <p className="text-xs text-gray-500 truncate" title={candidate.location}>
-                              {candidate.location}
-                            </p>
+                          <div className="leading-tight min-w-0">
+                            <div className="text-[14px] font-medium text-gray-900 truncate" title={candidate.name}>{candidate.name}</div>
+                            <div className="text-[12px] text-gray-500 truncate" title={candidate.location}>{candidate.location}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-3 py-3">
-                        <div className="text-xs text-gray-900 truncate" title={candidate.position}>{candidate.position}</div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="text-xs font-medium text-gray-900">{candidate.totalExperience}</div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="text-xs text-gray-900 truncate" title={candidate.email}>{candidate.email}</div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="text-xs text-gray-900">{formatPhone(candidate.phone)}</div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <span className="text-xs text-gray-900">{statusText}</span>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="flex items-center justify-center">
-                          <ActionComponent
-                            candidateId={candidate.id}
-                            candidate={candidate}
-                            onUpdateStatus={handleUpdateStatus}
-                            onEmail={handleEmailCandidate}
-                            onViewResume={(c) => {
-                              setResumeMode('view');
-                              handleViewResume(c);
-                            }}
-                          />
-                        </div>
+                      <td className="py-3 px-3 text-[14px] text-gray-900 truncate" title={candidate.position}>{candidate.position}</td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900">{candidate.totalExperience}</td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900 truncate" title={candidate.email}>{candidate.email}</td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900">{formatPhone(candidate.phone)}</td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900">{statusText}</td>
+                      <td className="py-3 px-3 text-center">
+                        <ActionComponent
+                          candidateId={candidate.id}
+                          candidate={candidate}
+                          onUpdateStatus={handleUpdateStatus}
+                          onEmail={handleEmailCandidate}
+                          onViewResume={(c) => { setResumeMode('view'); handleViewResume(c); }}
+                        />
                       </td>
                     </tr>
                   );
@@ -545,14 +480,7 @@ export default function ScreeningView() {
               </tbody>
             </table>
           </div>
-
-          {/* Empty State */}
-          {filteredCandidates.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-sm">No candidates found matching your search criteria.</p>
-            </div>
-          )}
-        </div>
+        </Card>
       )}
       {viewMode === 'grid' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
