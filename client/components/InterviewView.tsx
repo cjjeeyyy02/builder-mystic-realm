@@ -3903,39 +3903,46 @@ Google India"
             <DialogTitle className="text-sm font-semibold">{editingStepId ? 'Edit Interview Step' : 'Add Interview Step'}</DialogTitle>
             <DialogDescription>Define the interview step details.</DialogDescription>
           </DialogHeader>
-          <div className="space-y-3 text-xs">
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Step Name</label>
-              <Input value={stepForm.title} onChange={(e) => setStepForm({ ...stepForm, title: e.target.value })} placeholder="e.g., Technical Interview" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Type of Interview</label>
-                <Select value={stepForm.typeOfInterview} onValueChange={(v) => setStepForm({ ...stepForm, typeOfInterview: v })}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="technical">Technical</SelectItem>
-                    <SelectItem value="design">Design</SelectItem>
-                    <SelectItem value="hr">HR</SelectItem>
-                  </SelectContent>
-                </Select>
+          <div className="space-y-6 text-xs">
+            {/* Basic Info */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold border-b pb-2">Basic Info</h3>
+              <div className="space-y-2">
+                <label className="block text-xs font-medium text-gray-700">Step Name</label>
+                <Input value={stepForm.title} onChange={(e) => setStepForm({ ...stepForm, title: e.target.value })} placeholder="e.g., Technical Interview" />
               </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
-                <Input value={stepForm.interviewer} onChange={(e) => setStepForm({ ...stepForm, interviewer: e.target.value })} placeholder="e.g., Alice" />
+              <div className="space-y-2">
+                <label className="block text-xs font-medium text-gray-700">Notes</label>
+                <Textarea rows={3} value={stepForm.notes} onChange={(e) => setStepForm({ ...stepForm, notes: e.target.value })} placeholder="Additional information" />
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Duration</label>
-                <Input value={stepForm.duration} onChange={(e) => setStepForm({ ...stepForm, duration: e.target.value })} placeholder="e.g., 60 mins" />
+
+            {/* Step Details */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold border-b pb-2">Step Details</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <label className="block text-xs font-medium text-gray-700">Type of Interview</label>
+                  <Select value={stepForm.typeOfInterview} onValueChange={(v) => setStepForm({ ...stepForm, typeOfInterview: v })}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="technical">Technical</SelectItem>
+                      <SelectItem value="design">Design</SelectItem>
+                      <SelectItem value="hr">HR</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-xs font-medium text-gray-700">Interviewer</label>
+                  <Input value={stepForm.interviewer} onChange={(e) => setStepForm({ ...stepForm, interviewer: e.target.value })} placeholder="e.g., Alice" />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-xs font-medium text-gray-700">Duration</label>
+                  <Input value={stepForm.duration} onChange={(e) => setStepForm({ ...stepForm, duration: e.target.value })} placeholder="e.g., 60 mins" />
+                </div>
               </div>
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Notes</label>
-              <Textarea rows={3} value={stepForm.notes} onChange={(e) => setStepForm({ ...stepForm, notes: e.target.value })} placeholder="Additional information" />
             </div>
           </div>
           <DialogFooter>
