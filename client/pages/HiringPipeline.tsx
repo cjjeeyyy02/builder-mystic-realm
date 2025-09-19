@@ -6,7 +6,7 @@ export default function HiringPipeline() {
     <Layout>
       <div className="hiring-pipeline space-y-5">
         {/* Page Title */}
-        <h1 className="text-xl font-semibold text-foreground">Hiring Pipeline</h1>
+        <h1 className="text-xl font-semibold text-foreground">Recruitment Pipeline</h1>
 
         {/* Filter Tabs with Conditional Content */}
         <FilterTabs />
