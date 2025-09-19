@@ -132,17 +132,7 @@ export default function HiredCompact() {
                             <ChevronDown className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Eye className="w-4 h-4 mr-2" /> View
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Pencil className="w-4 h-4 mr-2" /> Edit
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Trash className="w-4 h-4 mr-2" /> Remove
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
+                        <DropdownMenuContent align="end" />
                       </DropdownMenu>
                     </td>
                   </tr>
