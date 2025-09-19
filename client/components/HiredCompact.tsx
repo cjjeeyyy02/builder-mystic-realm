@@ -3,7 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { List, Grid, Download } from "lucide-react";
+import { List, Grid, Download, MoreVertical, Eye, Pencil, Trash } from "lucide-react";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 interface HiredCandidate {
   id: string;
@@ -102,6 +103,7 @@ export default function HiredCompact() {
                 <th className="py-2 px-3">Applied Position</th>
                 <th className="py-2 px-3">Joining Date</th>
                 <th className="py-2 px-3">Stage</th>
+                <th className="py-2 px-3 text-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -122,6 +124,26 @@ export default function HiredCompact() {
                     <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
                     <td className="py-3 px-3 text-[14px] text-gray-900">
                       {c.stage}
+                    </td>
+                    <td className="py-3 px-3 text-center">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                            <MoreVertical className="w-4 h-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>
+                            <Eye className="w-4 h-4 mr-2" /> View
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Pencil className="w-4 h-4 mr-2" /> Edit
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Trash className="w-4 h-4 mr-2" /> Remove
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </td>
                   </tr>
                 );
