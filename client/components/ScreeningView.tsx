@@ -572,9 +572,13 @@ export default function ScreeningView() {
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-xs text-gray-700 flex-shrink-0">
-                      {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
-                    </span>
+                    <ActionComponent
+                      candidateId={candidate.id}
+                      candidate={candidate}
+                      onUpdateStatus={handleUpdateStatus}
+                      onEmail={handleEmailCandidate}
+                      onViewResume={(c) => { setResumeMode('view'); handleViewResume(c); }}
+                    />
                   </div>
 
                   {/* Candidate Info */}
@@ -583,7 +587,10 @@ export default function ScreeningView() {
                       <h3 className="font-semibold text-foreground text-sm leading-tight">
                         {candidate.name}
                       </h3>
-                                          </div>
+                      <div className="text-xs text-gray-700">
+                        {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                      </div>
+                    </div>
                     <div>
                       <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
                       <p className="text-sm font-medium text-foreground">
@@ -613,19 +620,6 @@ export default function ScreeningView() {
                     </div>
                   </div>
 
-                  {/* Actions */}
-                  <div className="pt-2 border-t flex justify-end">
-                    <ActionComponent
-                      candidateId={candidate.id}
-                      candidate={candidate}
-                      onUpdateStatus={handleUpdateStatus}
-                      onEmail={handleEmailCandidate}
-                      onViewResume={(c) => {
-                        setResumeMode('view');
-                        handleViewResume(c);
-                      }}
-                    />
-                  </div>
                 </div>
               </CardContent>
             </Card>
