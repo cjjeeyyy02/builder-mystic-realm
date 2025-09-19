@@ -6,17 +6,21 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { 
-  Search, 
-  Filter, 
-  Users, 
-  UserCheck, 
-  UserX, 
+import {
+  Search,
+  Filter,
+  Users,
+  UserCheck,
+  UserX,
   Clock,
   MoreVertical,
   ChevronRight,
   BarChart3,
-  Download
+  Download,
+  FileText,
+  MapPin,
+  Briefcase,
+  User
 } from "lucide-react";
 import {
   Select,
@@ -34,7 +38,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Dialog, DialogTrigger, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Textarea } from "@/components/ui/textarea";
 
 // Extended candidate interface with pipeline stages
 interface PipelineCandidate {
@@ -206,34 +210,42 @@ export default function OnboardingOverview() {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
+  const [candidates, setCandidates] = useState<PipelineCandidate[]>(allCandidates);
+  const [screeningNotes, setScreeningNotes] = useState("");
+
+  const handleStatusChange = (newStatus: PipelineCandidate['status']) => {
+    if (!profileCandidate) return;
+    setCandidates(prev => prev.map(c => c.id === profileCandidate.id ? { ...c, status: newStatus } : c));
+    setProfileCandidate(prev => (prev ? { ...prev, status: newStatus } : prev));
+  };
 
   const [showAddCandidate, setShowAddCandidate] = useState(false);
   const [newCandidate, setNewCandidate] = useState<{ jobId: string; name: string; position: string; file: File | null }>({ jobId: "", name: "", position: "", file: null });
 
   // Filter candidates based on search and filters
   const filteredCandidates = useMemo(() => {
-    return allCandidates.filter(candidate => {
+    return candidates.filter(candidate => {
       const matchesSearch = candidate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            candidate.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            candidate.email.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       const matchesStage = stageFilter === "all" || candidate.stage === stageFilter;
       const matchesStatus = true;
-      
+
       return matchesSearch && matchesStage && matchesStatus;
     });
-  }, [searchTerm, stageFilter]);
+  }, [candidates, searchTerm, stageFilter]);
 
   // Calculate summary statistics
   const summaryStats = useMemo(() => {
-    const total = allCandidates.length;
-    const screening = allCandidates.filter(c => c.stage === "screening").length;
-    const interview = allCandidates.filter(c => c.stage === "interview").length;
-    const activation = allCandidates.filter(c => c.stage === "activation").length;
-    const hired = allCandidates.filter(c => c.stage === "hired").length;
-    
+    const total = candidates.length;
+    const screening = candidates.filter(c => c.stage === "screening").length;
+    const interview = candidates.filter(c => c.stage === "interview").length;
+    const activation = candidates.filter(c => c.stage === "activation").length;
+    const hired = candidates.filter(c => c.stage === "hired").length;
+
     return { total, screening, interview, activation, hired };
-  }, []);
+  }, [candidates]);
 
   const getStageColor = (stage: string) => {
     switch (stage) {
@@ -517,18 +529,15 @@ export default function OnboardingOverview() {
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onClick={() => handleViewCandidateDetail(candidate)}>
-                                View Candidate Detail
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 w-8 p-0"
+                            onClick={() => { setProfileCandidate(candidate); setShowProfileModal(true); }}
+                            aria-label="Open candidate details"
+                          >
+                            <MoreVertical className="h-4 w-4" />
+                          </Button>
                         </TableCell>
                       </TableRow>
                     );
@@ -547,53 +556,204 @@ export default function OnboardingOverview() {
       </div>
 
       <Dialog open={showProfileModal} onOpenChange={setShowProfileModal}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">Candidate Profile</DialogTitle>
-            <DialogDescription>Quick view of the selected candidate.</DialogDescription>
-          </DialogHeader>
+        <DialogContent className="w-[90vw] max-w-5xl h-[85vh] overflow-hidden p-0 text-xs sm:text-sm">
           {profileCandidate && (
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-10 w-10">
-                  <AvatarFallback className="bg-blue-600 text-white text-sm font-medium">
-                    {profileCandidate.name.split(" ").map(n => n[0]).join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-semibold text-foreground">{profileCandidate.name}</div>
-                  <div className="text-muted-foreground text-xs">{profileCandidate.position}</div>
+            <>
+              <DialogHeader className="p-3 sm:p-4 border-b">
+                <DialogTitle className="flex items-center gap-3 text-sm sm:text-base font-semibold">
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                  <span>{profileCandidate.name}</span>
+                </DialogTitle>
+                <DialogDescription className="!mt-0">{profileCandidate.position}</DialogDescription>
+              </DialogHeader>
+
+              <div className="flex flex-col xl:flex-row gap-3 xl:gap-4 h-[calc(95vh-180px)] overflow-hidden">
+                {/* Main Panel */}
+                <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4 px-3 sm:px-4 xl:pr-3">
+                  {/* Quick Info */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 bg-gray-50 rounded-md border border-gray-200">
+                    <div className="text-center">
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{formatDateMDY(profileCandidate.appliedDate)}</div>
+                      <div className="text-xs text-gray-600">Applied Date</div>
+                    </div>
+                    <div className="text-center">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mx-auto mb-1" />
+                      <div className="font-semibold text-xs sm:text-sm">{profileCandidate.location}</div>
+                      <div className="text-xs text-gray-600">Location</div>
+                    </div>
+                  </div>
+
+                  {/* Candidate Details */}
+                  <Card>
+                    <CardContent className="p-3 sm:p-4">
+                      <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                        <User className="w-4 h-4" />
+                        Candidate Details
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div>
+                          <div className="text-xs text-muted-foreground">Email</div>
+                          <div className="font-medium break-all">{profileCandidate.email}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-muted-foreground">Phone</div>
+                          <div className="font-medium">{profileCandidate.phone}</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Professional Summary */}
+                  {profileCandidate && (profileCandidate as any).summary && (
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-2 text-sm">Professional Summary</h3>
+                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{(profileCandidate as any).summary}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Work Experience */}
+                  {profileCandidate && (profileCandidate as any).workHistory && (profileCandidate as any).workHistory.length > 0 && (
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold flex items-center gap-2 text-sm">
+                            <Briefcase className="w-4 h-4" />
+                            Work Experience
+                          </h3>
+                        </div>
+                        <div className="space-y-2">
+                          {(profileCandidate as any).workHistory.map((job: any, index: number) => (
+                            <div key={index} className="border-l-2 border-blue-200 pl-3 pb-2">
+                              <div className="flex items-start justify-between mb-1 gap-2">
+                                <div className="flex-1">
+                                  <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
+                                  <div className="text-xs text-gray-600">{job.company}</div>
+                                </div>
+                                {job.duration && (
+                                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">{job.duration}</span>
+                                )}
+                              </div>
+                              {job.description && (
+                                <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Education */}
+                  {profileCandidate && (profileCandidate as any).education && (
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">Education</h3>
+                        <p className="text-xs sm:text-sm text-gray-700">{(profileCandidate as any).education}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Skills */}
+                  {profileCandidate && (profileCandidate as any).skills && (profileCandidate as any).skills.length > 0 && (
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-2 text-sm">Skills & Technologies</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {(profileCandidate as any).skills.map((skill: string, index: number) => (
+                            <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{skill}</span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Certifications */}
+                  {profileCandidate && (profileCandidate as any).certifications && (profileCandidate as any).certifications.length > 0 && (
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                          Certifications
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {(profileCandidate as any).certifications.map((cert: string, index: number) => (
+                            <span key={index} className="text-xs border border-gray-300 text-gray-700 px-2 py-1 rounded">{cert}</span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
+
+                {/* Right Panel */}
+                <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3">
+                  {/* Quick Actions */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
+                      <div className="space-y-4">
+                        {profileCandidate.email && (
+                          <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => { window.location.href = `mailto:${profileCandidate.email}`; }}>
+                            Email Candidate
+                          </Button>
+                        )}
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => {
+                          const headers = ['Name','Position','Email','Phone','Stage','Status','Applied Date','Location'];
+                          const row = [profileCandidate.name, profileCandidate.position, profileCandidate.email, profileCandidate.phone, profileCandidate.stage, profileCandidate.status, formatDateMDY(profileCandidate.appliedDate), profileCandidate.location];
+                          const csv = `${headers.join(',')}` + "\n" + row.map(v => `"${String(v ?? '').replace(/"/g,'""')}"`).join(',');
+                          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement('a'); a.href = url; a.download = 'candidate_profile.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                        }}>
+                          <Download className="w-4 h-4 mr-2" />
+                          Export Details
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Screening Notes */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
+                      <div className="relative">
+                        <Textarea
+                          placeholder="Add your screening notes here..."
+                          value={screeningNotes}
+                          onChange={(e) => setScreeningNotes(e.target.value)}
+                          className="min-h-[100px] text-xs sm:text-sm pr-24"
+                        />
+                        {screeningNotes.trim() && (
+                          <Button
+                            size="sm"
+                            className="absolute bottom-2 right-2 h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                            onClick={() => { console.log('Submitted screening notes:', screeningNotes); }}
+                          >
+                            Submit
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Update Status */}
+                  <Card>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
+                      <div className="space-y-2">
+                        <Button variant={profileCandidate.status === 'in-progress' ? 'default' : 'outline'} size="sm" className="w-full justify-start text-xs sm:text-sm" onClick={() => handleStatusChange('in-progress')}>Mark In Progress</Button>
+                        <Button variant={profileCandidate.status === 'completed' ? 'default' : 'outline'} size="sm" className="w-full justify-start text-xs sm:text-sm" onClick={() => handleStatusChange('completed')}>Mark Completed</Button>
+                        <Button variant={profileCandidate.status === 'rejected' ? 'destructive' : 'outline'} size="sm" className="w-full justify-start text-xs sm:text-sm" onClick={() => handleStatusChange('rejected')}>Reject</Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <Badge className={`text-xs capitalize ${getStageColor(profileCandidate.stage)}`}>{profileCandidate.stage}</Badge>
-                <span className="text-xs capitalize text-gray-700">{profileCandidate.status.replace('-', ' ')}</span>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <div className="text-xs text-muted-foreground">Email</div>
-                  <div className="font-medium break-all">{profileCandidate.email}</div>
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground">Phone</div>
-                  <div className="font-medium">{profileCandidate.phone}</div>
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground">Location</div>
-                  <div className="font-medium">{profileCandidate.location}</div>
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground">Applied Date</div>
-                  <div className="font-medium">{formatDateMDY(profileCandidate.appliedDate)}</div>
-                </div>
-              </div>
-              <div>
-                <div className="text-xs text-muted-foreground mb-1">Progress</div>
-                <ProgressBar progress={profileCandidate.progress} />
-              </div>
-            </div>
+            </>
           )}
-          <DialogFooter>
+          <DialogFooter className="px-3 sm:px-4 py-3">
             <Button variant="outline" onClick={() => setShowProfileModal(false)}>Close</Button>
           </DialogFooter>
         </DialogContent>
