@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { List, Grid, Download, MoreVertical, Eye, Pencil, Trash } from "lucide-react";
+import { List, Grid, Download, ChevronDown, Eye, Pencil, Trash } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 interface HiredCandidate {
@@ -129,7 +129,7 @@ export default function HiredCompact() {
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                            <MoreVertical className="w-4 h-4" />
+                            <ChevronDown className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
