@@ -77,7 +77,7 @@ export default function OnboardingTimeline() {
   const totals = useMemo(() => {
     const total = sections.reduce((acc, s) => acc + s.items.length, 0);
     const complete = sections.reduce((acc, s) => acc + s.items.filter(i => i.completed).length, 0);
-    const failed = sections.reduce((acc, s) => acc + s.items.filter(i => !i.completed && !!i.dateSubmitted).length, 0);
+    const failed = sections.reduce((acc, s) => acc + s.items.filter(i => !i.completed && !!i.dateCompleted).length, 0);
     const inProcess = Math.max(total - complete - failed, 0);
     const pct = total ? Math.round((complete / total) * 100) : 0;
     return { total, complete, failed, inProcess, pct };
