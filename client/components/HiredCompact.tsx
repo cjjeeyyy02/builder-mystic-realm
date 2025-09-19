@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, Fragment } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -111,8 +111,8 @@ export default function HiredCompact() {
               {candidates.map((c)=>{
                 const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
                 return (
-                  <>
-                    <tr key={c.id} className="border-b hover:bg-gray-50">
+                  <Fragment key={c.id}>
+                    <tr className="border-b hover:bg-gray-50">
                     <td className="py-3 px-3">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
@@ -153,7 +153,7 @@ export default function HiredCompact() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
             </tbody>
