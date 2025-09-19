@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Download, Edit, FileText, Maximize2, Upload } from "lucide-react";
+import { Edit } from "lucide-react";
 
 interface TimelineItem {
   id: string;
@@ -39,10 +39,8 @@ function formatDateMDY(dateStr: string): string {
 
 export default function OnboardingTimeline() {
   const { toast } = useToast();
-  // Mock hired candidate
   const [candidate] = useState({ id: "emp-001", name: "Taylor Rodriguez" });
 
-  // Sections with checklist items
   const [sections, setSections] = useState<TimelineSection[]>([
     {
       id: "day1",
@@ -65,11 +63,10 @@ export default function OnboardingTimeline() {
         { id: "w1-3", title: "Role-specific training & tools onboarding", completed: false, files: [] },
         { id: "w1-4", title: "Shadowing/buddy/knowledge transfer sessions", completed: false, files: [] },
         { id: "w1-5", title: "First-week goals & check-in with manager", completed: false, files: [] },
+        { id: "w1-6", title: "Schedule 30/60/90-day goals discussion", completed: false, files: [] },
       ],
     },
   ]);
-
-
 
   const totals = useMemo(() => {
     const total = sections.reduce((acc, s) => acc + s.items.length, 0);
@@ -87,15 +84,6 @@ export default function OnboardingTimeline() {
     } : s));
   };
 
-  const attachFile = (sectionId: string, itemId: string, file: File | null) => {
-    if (!file) return;
-    const entry = { name: file.name, url: URL.createObjectURL(file) };
-    setSections(prev => prev.map(s => s.id === sectionId ? {
-      ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, completed: true, files: [...i.files, entry], dateCompleted: new Date().toISOString() } : i)
-    } : s));
-  };
-
   const saveText = (sectionId: string, itemId: string, text: string) => {
     if (!text) return;
     setSections(prev => prev.map(s => s.id === sectionId ? {
@@ -104,14 +92,10 @@ export default function OnboardingTimeline() {
     } : s));
   };
 
-
   const allDone = totals.total > 0 && totals.total === totals.complete;
 
   return (
     <div className="onboarding-corporate space-y-6">
-
-
-      {/* Timeline Sections */}
       <Accordion type="multiple" className="space-y-6">
         {sections.map((section) => (
           <AccordionItem key={section.id} value={section.id}>
@@ -127,18 +111,12 @@ export default function OnboardingTimeline() {
               )}
               <div className="border border-gray-200 rounded-md overflow-hidden">
                 <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-left text-[13px] text-gray-600 border-b">
-                      <th className="py-2 px-3">TASK</th>
-                      <th className="py-2 px-3">RESPONSE</th>
-                      <th className="py-2 px-3 text-right">ACTION</th>
-                    </tr>
-                  </thead>
                   <tbody>
-                    {section.items.map((item) => (
-                      <tr key={item.id} className="border-b last:border-b-0 align-top">
-                        <td className="py-3 px-3">
+                    {section.items.slice(0, 5).map((item) => (
+                      <tr key={item.id} className="border-b last:border-b-0">
+                        <td className="py-3 px-3 align-top w-[70%]">
                           <div className="flex items-center gap-2">
+                            <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
                             <button
                               type="button"
                               className="text-gray-600 hover:text-gray-900"
@@ -150,18 +128,14 @@ export default function OnboardingTimeline() {
                             >
                               <Edit className="w-4 h-4" />
                             </button>
-                            <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
                           </div>
                           <div className="text-[12px] text-gray-500 mt-1">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="flex items-center gap-2">
+                        <td className="py-3 px-3 align-top w-[30%]">
+                          <div className="w-full flex items-center justify-end gap-2">
                             <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
                             <span className="text-sm">Completed</span>
                           </div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="w-full flex justify-end"></div>
                         </td>
                       </tr>
                     ))}
@@ -173,15 +147,12 @@ export default function OnboardingTimeline() {
         ))}
       </Accordion>
 
-      {/* Footer actions */}
       {allDone && (
         <div className="flex items-center justify-between pt-2 border-t">
           <Button variant="outline" className="h-10" onClick={() => toast({ title: 'Candidate rejected' })}>Reject Candidate</Button>
           <Button className="h-10" onClick={() => toast({ title: 'Onboarding marked complete' })}>Mark Onboarding Complete</Button>
         </div>
       )}
-
-
     </div>
   );
 }
