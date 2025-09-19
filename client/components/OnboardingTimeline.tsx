@@ -267,7 +267,7 @@ export default function OnboardingTimeline() {
       {allDone && (
         <div className="flex items-center justify-between pt-2 border-t">
           <Button variant="outline" className="h-10" onClick={() => toast({ title: 'Candidate rejected' })}>Reject Candidate</Button>
-          <Button className="bg-green-600 hover:bg-green-700" onClick={() => toast({ title: 'Onboarding marked complete' })}>Mark Onboarding Complete</Button>
+          <Button className="h-10" onClick={() => toast({ title: 'Onboarding marked complete' })}>Mark Onboarding Complete</Button>
         </div>
       )}
 
