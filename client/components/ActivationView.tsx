@@ -356,9 +356,9 @@ export default function ActivationView() {
           )}
 
           {viewMode === 'card' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {filteredEmployees.map((employee) => (
-                <div key={employee.jobId} className={`border p-3 hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30 ${
+                <div key={employee.jobId} className={`border rounded-md p-3 hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30 ${
                   isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                 }`}>
                   <div className="flex items-start justify-between">
