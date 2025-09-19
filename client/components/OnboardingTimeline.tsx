@@ -205,32 +205,32 @@ export default function OnboardingTimeline() {
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="text-sm font-medium">{item.title}</div>
-                        <div className="text-xs text-muted-foreground">{item.completed ? 'Completed' : 'Pending'}</div>
+                        <div className="text-sm text-muted-foreground">{item.completed ? 'Completed' : 'Pending'}</div>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <Button variant="outline" size="sm" className="text-xs" onClick={() => {
+                        <Button variant="outline" className="h-10" onClick={() => {
                           const newTitle = prompt('Edit item title', item.title) || item.title;
                           setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
                         }}>
-                          <Edit className="w-3 h-3 mr-1" /> Edit
+                          <Edit className="w-4 h-4 mr-1" /> Edit
                         </Button>
                         <label className="inline-flex items-center">
                           <input type="file" className="hidden" onChange={(e) => attachFile(section.id, item.id, e.target.files?.[0] || null)} />
-                          <span className="inline-flex items-center px-2 py-1 border rounded text-xs cursor-pointer"><Upload className="w-3 h-3 mr-1" /> Upload</span>
+                          <span className="inline-flex items-center h-10 px-3 border rounded-md text-sm cursor-pointer"><Upload className="w-4 h-4 mr-1" /> Upload</span>
                         </label>
-                        <Button variant="outline" size="sm" className="text-xs" onClick={() => setStatusModal({ open: true, sectionId: section.id, itemId: item.id })}>
+                        <Button variant="outline" className="h-10" onClick={() => setStatusModal({ open: true, sectionId: section.id, itemId: item.id })}>
                           Update Status
                         </Button>
-                        <div className="text-xs text-muted-foreground ml-2">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
+                        <div className="text-sm text-muted-foreground ml-2">Date Submitted: {item.dateSubmitted ? formatDateMDY(item.dateSubmitted) : '-'}</div>
                       </div>
                     </div>
 
                     {/* Text submission */}
                     {item.textSubmission ? (
-                      <div className="text-sm whitespace-pre-wrap border rounded p-2 mt-2">{item.textSubmission}</div>
+                      <div className="text-sm whitespace-pre-wrap border rounded-md p-3 mt-2 bg-white">{item.textSubmission}</div>
                     ) : (
                       <div className="mt-2">
-                        <label className="block text-xs font-medium mb-1">Text Response</label>
+                        <label className="block text-base font-medium mb-1">Text Response</label>
                         <Textarea rows={3} placeholder="Enter response..." onBlur={(e) => saveText(section.id, item.id, e.target.value)} />
                       </div>
                     )}
@@ -239,17 +239,17 @@ export default function OnboardingTimeline() {
                     {item.files.length > 0 && (
                       <div className="space-y-2 mt-2">
                         {item.files.map((f, idx) => (
-                          <div key={idx} className="border rounded p-2">
+                          <div key={idx} className="border rounded-md p-3 bg-white">
                             <div className="flex items-center justify-between text-sm">
                               <div className="truncate max-w-[70%]">{f.name}</div>
                               <div className="flex items-center gap-2">
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => window.open(f.url, '_blank')}><Maximize2 className="w-3 h-3 mr-1" /> Full Screen</Button>
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => window.open(f.url, '_blank')}><FileText className="w-3 h-3 mr-1" /> View</Button>
-                                <a href={f.url} download className="inline-flex items-center px-2 py-1 border rounded text-xs"><Download className="w-3 h-3 mr-1" /> Download</a>
+                                <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><Maximize2 className="w-3 h-3 mr-1" /> Full Screen</Button>
+                                <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><FileText className="w-3 h-3 mr-1" /> View</Button>
+                                <a href={f.url} download className="inline-flex items-center h-10 px-3 border rounded-md text-sm"><Download className="w-3 h-3 mr-1" /> Download</a>
                               </div>
                             </div>
                             <div className="mt-2">
-                              <iframe src={f.url} className="w-full h-48 border rounded" />
+                              <iframe src={f.url} className="w-full h-48 border rounded-md" />
                             </div>
                           </div>
                         ))}
@@ -275,26 +275,26 @@ export default function OnboardingTimeline() {
       <Dialog open={sendModalOpen} onOpenChange={setSendModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">Send Checklist Link</DialogTitle>
+            <DialogTitle className="text-base font-medium">Send Checklist Link</DialogTitle>
             <DialogDescription>Compose a message and attach files. The link allows the candidate to submit required items.</DialogDescription>
           </DialogHeader>
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-sm">
             <div>
-              <label className="block mb-1 font-medium">Email Subject</label>
+              <label className="block mb-1 font-medium text-base">Email Subject</label>
               <Input value={emailSubject} onChange={(e) => setEmailSubject(e.target.value)} placeholder="Subject" />
             </div>
             <div>
-              <label className="block mb-1 font-medium">Email Message</label>
+              <label className="block mb-1 font-medium text-base">Email Message</label>
               <Textarea rows={4} value={emailMessage} onChange={(e) => setEmailMessage(e.target.value)} placeholder="Write your message..." />
             </div>
             <div>
-              <label className="block mb-1 font-medium">Upload Attachment</label>
+              <label className="block mb-1 font-medium text-base">Upload Attachment</label>
               <Input type="file" onChange={(e) => setEmailAttachment(e.target.files?.[0] || null)} />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setSendModalOpen(false)}>Cancel</Button>
-            <Button onClick={() => { setSendModalOpen(false); toast({ title: 'Checklist link sent' }); }}>Send</Button>
+            <Button variant="outline" className="h-10" onClick={() => setSendModalOpen(false)}>Cancel</Button>
+            <Button className="h-10" onClick={() => { setSendModalOpen(false); toast({ title: 'Checklist link sent' }); }}>Send</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -303,15 +303,15 @@ export default function OnboardingTimeline() {
       <Dialog open={statusModal.open} onOpenChange={(open) => setStatusModal({ open })}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">Update Status</DialogTitle>
+            <DialogTitle className="text-base font-medium">Update Status</DialogTitle>
           </DialogHeader>
-          <div className="text-xs text-muted-foreground">Set this item as Pass or Reject.</div>
+          <div className="text-sm text-muted-foreground">Set this item as Pass or Reject.</div>
           <DialogFooter>
-            <Button variant="destructive" onClick={() => {
+            <Button variant="outline" className="h-10" onClick={() => {
               if (statusModal.sectionId && statusModal.itemId) markItem(statusModal.sectionId, statusModal.itemId, false);
               setStatusModal({ open: false });
             }}>Reject</Button>
-            <Button onClick={() => {
+            <Button className="h-10" onClick={() => {
               if (statusModal.sectionId && statusModal.itemId) markItem(statusModal.sectionId, statusModal.itemId, true);
               setStatusModal({ open: false });
             }}>Pass</Button>
