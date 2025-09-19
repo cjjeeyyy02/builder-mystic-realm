@@ -420,11 +420,11 @@ export default function ScreeningView() {
 
       {/* Table View */}
       {viewMode === "table" && (
-        <div className="bg-white border border-gray-200 shadow-sm overflow-hidden">
+        <div className="p-0 border border-gray-200 rounded-none overflow-hidden">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-gray-50 border-b border-gray-200">
             <div className="w-full">
-              <table className="w-full table-fixed">
+              <table className="w-full text-sm table-fixed">
                 <colgroup>
                   <col className="w-[20%]" />
                   <col className="w-[18%]" />
@@ -465,7 +465,7 @@ export default function ScreeningView() {
 
           {/* Scrollable Body */}
           <div className="w-full max-h-[600px] overflow-y-auto">
-            <table className="w-full table-fixed">
+            <table className="w-full text-sm table-fixed">
                 <colgroup>
                   <col className="w-[20%]" />
                   <col className="w-[18%]" />
