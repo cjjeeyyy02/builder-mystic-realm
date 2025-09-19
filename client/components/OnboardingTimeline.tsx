@@ -148,15 +148,15 @@ export default function OnboardingTimeline() {
   const allDone = totals.total > 0 && totals.total === totals.complete;
 
   return (
-    <div className="space-y-4">
+    <div className="onboarding-corporate space-y-6">
 
 
       {/* Header */}
       <Card className="border-0 shadow-sm">
         <CardContent className="p-4 flex items-center justify-between gap-3">
           <div>
-            <div className="text-lg font-semibold">Onboarding Timeline – {candidate.name}</div>
-            <div className="text-xs text-red-600">From Pre-Onboarding to Integration</div>
+            <div className="text-xl font-bold">Onboarding Timeline – {candidate.name}</div>
+            <div className="text-sm text-muted-foreground">From Pre-Onboarding to Integration</div>
           </div>
           <div className="flex items-center gap-3">
             <ProgressBar value={totals.pct} />
@@ -185,10 +185,10 @@ export default function OnboardingTimeline() {
       </Card>
 
       {/* Timeline Sections */}
-      <Accordion type="multiple" className="space-y-2">
+      <Accordion type="multiple" className="space-y-6">
         {sections.map((section) => (
           <AccordionItem key={section.id} value={section.id}>
-            <AccordionTrigger className="text-sm font-semibold">
+            <AccordionTrigger className="text-base font-medium">
               <div className="flex items-center gap-2">
                 <CheckSquare className={`w-4 h-4 ${section.items.every(i => i.completed) ? 'text-green-600' : 'text-gray-400'}`} />
                 {section.title}
@@ -197,9 +197,9 @@ export default function OnboardingTimeline() {
             </AccordionTrigger>
             <AccordionContent>
               {section.description && (
-                <p className="text-xs text-muted-foreground mb-3">{section.description}</p>
+                <p className="text-sm text-muted-foreground mb-3">{section.description}</p>
               )}
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {section.items.map((item) => (
                   <div key={item.id} className="border rounded-md p-3">
                     <div className="flex items-start justify-between gap-2">
