@@ -218,15 +218,8 @@ export default function ActivationView() {
       isDarkMode ? 'text-white' : 'text-gray-900'
     }`}>
       {/* Header Tabs and Controls */}
-      <div className={`flex items-center justify-between border-b pb-2 transition-colors duration-300 ${
-        isDarkMode
-          ? 'bg-gray-800 border-gray-700'
-          : 'bg-white border-gray-200'
-      }`}>
-
-        <div className="flex items-center gap-2">
-
-        </div>
+      <div className="flex items-center justify-between pb-1">
+        <div className="flex items-center gap-2"></div>
       </div>
 
       {activeTab === "activation-room" ? (
