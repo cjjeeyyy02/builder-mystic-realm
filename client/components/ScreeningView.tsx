@@ -373,7 +373,7 @@ export default function ScreeningView() {
 
       {/* Controls: search + status filter + view toggle */}
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div className="relative flex-none w-64">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
