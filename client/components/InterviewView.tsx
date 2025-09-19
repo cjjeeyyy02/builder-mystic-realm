@@ -3745,23 +3745,9 @@ Google India"
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                        <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
-                        onClick={() => {
-                          setEditingStepId(null);
-                          setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
-                          setShowStepEditor(true);
-                        }}
-                      >
-                        + Add Interview Step
-                      </Button>
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+                      <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
                     </div>
 
                     {selectedCandidateForTimeline.steps.map((step, index) => (
