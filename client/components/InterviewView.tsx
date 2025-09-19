@@ -1558,7 +1558,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
@@ -1594,7 +1594,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
@@ -1630,7 +1630,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '100%'}}></div>
                             </div>
                             <span className="text-xs font-medium">100%</span>
                           </div>
@@ -1666,7 +1666,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
@@ -1702,7 +1702,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '70%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '70%'}}></div>
                             </div>
                             <span className="text-xs font-medium">70%</span>
                           </div>
@@ -1738,7 +1738,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style={{width: '60%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '60%'}}></div>
                             </div>
                             <span className="text-xs font-medium">60%</span>
                           </div>
@@ -1774,7 +1774,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '100%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '100%'}}></div>
                             </div>
                             <span className="text-xs font-medium">100%</span>
                           </div>
@@ -1810,7 +1810,7 @@ Google India`
                         <TableCell className="px-3 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
                             </div>
                             <span className="text-xs font-medium">90%</span>
                           </div>
