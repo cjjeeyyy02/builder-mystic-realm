@@ -323,7 +323,7 @@ export default function OnboardingOverview() {
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{summaryStats.total}</div>
+              <div className="text-2xl font-bold text-blue-600">{summaryStats.total}</div>
             </CardContent>
           </Card>
           
@@ -333,7 +333,7 @@ export default function OnboardingOverview() {
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-yellow-600">{summaryStats.screening}</div>
+              <div className="text-2xl font-bold text-blue-600">{summaryStats.screening}</div>
             </CardContent>
           </Card>
           
@@ -353,7 +353,7 @@ export default function OnboardingOverview() {
               <UserCheck className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-purple-600">{summaryStats.activation}</div>
+              <div className="text-2xl font-bold text-blue-600">{summaryStats.activation}</div>
             </CardContent>
           </Card>
           
@@ -363,7 +363,7 @@ export default function OnboardingOverview() {
               <UserCheck className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">{summaryStats.hired}</div>
+              <div className="text-2xl font-bold text-blue-600">{summaryStats.hired}</div>
             </CardContent>
           </Card>
         </div>
