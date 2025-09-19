@@ -1298,6 +1298,8 @@ Google India`
       status: "Pending" | "Completed" | "In Progress";
       schedule?: string;
       notes?: string;
+      typeOfInterview?: string;
+      duration?: string;
       remarks?: string;
       score?: number;
       history?: Array<{
@@ -1312,6 +1314,9 @@ Google India`
   const [selectedStepId, setSelectedStepId] = useState<string | null>(null);
   const [showReminderModal, setShowReminderModal] = useState(false);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showStepEditor, setShowStepEditor] = useState(false);
+  const [editingStepId, setEditingStepId] = useState<string | null>(null);
+  const [stepForm, setStepForm] = useState({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
   const [showRemarkScoreModal, setShowRemarkScoreModal] = useState(false);
 
@@ -3740,9 +3745,23 @@ Google India"
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 mb-6">
-                      <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
-                      <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
+                        <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
+                        onClick={() => {
+                          setEditingStepId(null);
+                          setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
+                          setShowStepEditor(true);
+                        }}
+                      >
+                        + Add Interview Step
+                      </Button>
                     </div>
 
                     {selectedCandidateForTimeline.steps.map((step, index) => (
@@ -3839,19 +3858,7 @@ Google India"
                     ))}
                   </div>
 
-                  {/* Footer */}
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => {
-                      if (!selectedCandidateForTimeline) return;
-                      setSelectedCandidateForTimeline(prev => {
-                        if (!prev) return prev;
-                        const nextIndex = prev.steps.length + 1;
-                        const newStep = { id: `step-${Date.now()}`, title: `Step ${nextIndex}: New Interview`, date: "", time: "", interviewer: "", status: "Pending" as const, schedule: "", notes: "" };
-                        return { ...prev, steps: [...prev.steps, newStep] };
-                      });
-                    }}>Add Interview Step</Button>
-                  </div>
-                </div>
+                                  </div>
               </div>
             )}
           </div>
@@ -3881,6 +3888,68 @@ Google India"
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowReminderModal(false)}>Cancel</Button>
             <Button onClick={() => { setShowReminderModal(false); toast({ title: "Reminder sent successfully" }); }}>Send</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add/Edit Interview Step */}
+      <Dialog open={showStepEditor} onOpenChange={setShowStepEditor}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-semibold">{editingStepId ? 'Edit Interview Step' : 'Add Interview Step'}</DialogTitle>
+            <DialogDescription>Define the interview step details.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 text-xs">
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Step Name</label>
+              <Input value={stepForm.title} onChange={(e) => setStepForm({ ...stepForm, title: e.target.value })} placeholder="e.g., Technical Interview" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Type of Interview</label>
+                <Select value={stepForm.typeOfInterview} onValueChange={(v) => setStepForm({ ...stepForm, typeOfInterview: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="technical">Technical</SelectItem>
+                    <SelectItem value="design">Design</SelectItem>
+                    <SelectItem value="hr">HR</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
+                <Input value={stepForm.interviewer} onChange={(e) => setStepForm({ ...stepForm, interviewer: e.target.value })} placeholder="e.g., Alice" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Duration</label>
+                <Input value={stepForm.duration} onChange={(e) => setStepForm({ ...stepForm, duration: e.target.value })} placeholder="e.g., 60 mins" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Notes</label>
+              <Textarea rows={3} value={stepForm.notes} onChange={(e) => setStepForm({ ...stepForm, notes: e.target.value })} placeholder="Additional information" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowStepEditor(false)}>Cancel</Button>
+            <Button onClick={() => {
+              if (!selectedCandidateForTimeline) return setShowStepEditor(false);
+              setSelectedCandidateForTimeline(prev => {
+                if (!prev) return prev;
+                if (editingStepId) {
+                  const steps = prev.steps.map(s => s.id === editingStepId ? { ...s, title: stepForm.title, interviewer: stepForm.interviewer, notes: stepForm.notes, typeOfInterview: stepForm.typeOfInterview, duration: stepForm.duration } : s);
+                  return { ...prev, steps };
+                }
+                const nextIndex = prev.steps.length + 1;
+                const newStep = { id: `step-${Date.now()}`, title: stepForm.title || `Step ${nextIndex}: New Interview`, date: "", time: "", interviewer: stepForm.interviewer, status: 'Pending' as const, schedule: '', notes: stepForm.notes, typeOfInterview: stepForm.typeOfInterview, duration: stepForm.duration };
+                return { ...prev, steps: [...prev.steps, newStep] };
+              });
+              setShowStepEditor(false);
+            }}>Save</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
