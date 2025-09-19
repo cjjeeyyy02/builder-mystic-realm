@@ -1028,6 +1028,41 @@ Google India`
     return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
   };
 
+  // Export a single candidate's interview card details as CSV
+  const exportCandidateCard = (cand: InterviewCandidate) => {
+    const headers = [
+      'ID',
+      'Name',
+      'Applied Position',
+      'Department',
+      'Current Round',
+      'Status',
+      'Email',
+      'Phone'
+    ];
+    const row = [
+      cand.id,
+      cand.applicantName,
+      cand.appliedPosition,
+      cand.department,
+      cand.currentRound,
+      cand.status,
+      cand.email || '',
+      cand.phone || ''
+    ];
+    const csv = [headers.join(','), row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const safeName = cand.applicantName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    a.download = `interview_${safeName || 'candidate'}_${cand.id}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   // Decision Confirmation Modal States
   const [showDecisionModal, setShowDecisionModal] = useState(false);
 
@@ -2047,23 +2082,33 @@ Google India`
                                 <p className="text-xs text-gray-500">Job ID: {c.id}</p>
                               </div>
                             </div>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                  <MoreVertical className="h-4 w-4" />
-                                </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem onSelect={() => handleViewCandidateDetails(c.id, c.applicantName)}>
-                                  <Eye className="mr-2 h-4 w-4" />
-                                  View Details
-                                </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
-                                  <Calendar className="mr-2 h-4 w-4" />
-                                  Manage Interview Steps
-                                </DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-6 px-2 text-xs"
+                                onClick={() => exportCandidateCard(c)}
+                              >
+                                <Download className="w-3 h-3 mr-1" /> Export
+                              </Button>
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                                    <MoreVertical className="h-4 w-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                  <DropdownMenuItem onSelect={() => handleViewCandidateDetails(c.id, c.applicantName)}>
+                                    <Eye className="mr-2 h-4 w-4" />
+                                    View Details
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
+                                    <Calendar className="mr-2 h-4 w-4" />
+                                    Manage Interview Steps
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </div>
                           </div>
 
                           <div className="space-y-2">
