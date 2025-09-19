@@ -618,10 +618,10 @@ export default function FilterTabs() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Modern Tabs Header */}
       <div className="w-full">
-        <nav className="flex items-center gap-6 border-b border-gray-200 pb-1">
+        <nav className="flex items-center gap-8 border-b border-gray-200 pb-2">
           {tabs.map((tab) => {
             const count =
               tab.id === "screening" ? screeningCandidates.length :
@@ -634,15 +634,16 @@ export default function FilterTabs() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative pb-3 text-sm font-medium transition-colors
-                  ${isActive ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'}`}
+                className={`group relative pb-4 text-base font-semibold tracking-tight transition-all duration-200
+                  ${isActive ? 'text-blue-700 drop-shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
               >
-                <span className="mr-2 whitespace-nowrap">{tab.label}</span>
-                <span className={`inline-flex items-center justify-center h-5 w-5 rounded-full text-[11px] font-medium align-middle
-                  ${isActive ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
+                <span className="mr-3 whitespace-nowrap">{tab.label}</span>
+                <span className={`inline-flex items-center justify-center h-6 w-6 rounded-full text-[11px] font-semibold align-middle shadow-sm transition-all duration-200
+                  ${isActive ? 'bg-blue-600 text-white shadow-md shadow-blue-300/40' : 'bg-gray-100 text-gray-700'}`}>
                   {count}
                 </span>
-                {isActive && <span className="absolute left-0 -bottom-[1px] h-[2px] w-full bg-blue-600 rounded-full" />}
+                <span className={`pointer-events-none absolute left-0 -bottom-[2px] h-[3px] rounded-full transition-all duration-300
+                  ${isActive ? 'w-full bg-blue-600 shadow-[0_1px_6px_rgba(37,99,235,0.4)]' : 'w-0 bg-blue-600 opacity-70 group-hover:w-full'}`} />
               </button>
             );
           })}
