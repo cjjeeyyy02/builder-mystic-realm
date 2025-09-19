@@ -164,15 +164,16 @@ export default function RoomBuilder() {
   return (
     <Layout>
       <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Left Sidebar */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <Card className="border-gray-200">
-              <CardContent className="p-4 space-y-3">
+              <CardContent className="p-5 space-y-4">
                 <div>
-                  <h2 className="text-sm font-semibold">Interview Rooms</h2>
+                  <h2 className="text-sm font-semibold text-gray-900">Interview Rooms</h2>
                   <p className="text-xs text-muted-foreground">Manage your interview room templates</p>
                 </div>
+                <Separator />
                 <div className="space-y-3">
                   {rooms.map((room) => {
                     const isSelected = room.id === selectedRoom?.id;
@@ -183,7 +184,7 @@ export default function RoomBuilder() {
                         onClick={() => setSelectedRoomId(room.id)}
                         className={`w-full text-left border rounded-md p-3 transition ${
                           isSelected
-                            ? "border-blue-500 ring-2 ring-blue-100"
+                            ? "border-blue-500 bg-blue-50"
                             : "border-gray-200 hover:border-gray-300"
                         } bg-white`}
                       >
@@ -212,17 +213,17 @@ export default function RoomBuilder() {
           </div>
 
           {/* Right Panel */}
-          <div className="md:col-span-8">
-            <div className="flex items-start justify-between mb-3">
+          <div className="md:col-span-9">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h1 className="text-xl font-semibold text-gray-900">Room Builder</h1>
                 <p className="text-xs text-muted-foreground">Editing: {selectedRoom?.name}</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">Edit Mode</Button>
+                <Button size="sm" variant="outline" className="h-8 px-3 text-xs">Edit Mode</Button>
                 <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
                   <DialogTrigger asChild>
-                    <Button className="h-8 px-3 text-xs bg-purple-600 hover:bg-purple-700 text-white">
+                    <Button size="sm" className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">
                       + Create Room
                     </Button>
                   </DialogTrigger>
@@ -380,9 +381,11 @@ export default function RoomBuilder() {
               </div>
             </div>
 
+            <Separator className="mb-3" />
+
             {/* Selected Room Details */}
             <Card className="border-gray-200">
-              <CardContent className="p-4 space-y-3">
+              <CardContent className="p-5 space-y-4">
                 <div>
                   <h2 className="text-base font-semibold text-gray-900">{selectedRoom?.name}</h2>
                   <p className="text-sm text-gray-600">{selectedRoom?.description}</p>
@@ -414,7 +417,7 @@ export default function RoomBuilder() {
                   ))}
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-gray-600">Progress</span>
                     <div className="flex-1"><Progress value={progressValue} className="h-1.5 bg-gray-100" /></div>
