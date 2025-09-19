@@ -3858,6 +3858,24 @@ Google India"
                     ))}
                   </div>
 
+                  {/* Footer */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="flex justify-end">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
+                        onClick={() => {
+                          setEditingStepId(null);
+                          setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
+                          setShowStepEditor(true);
+                        }}
+                      >
+                        + Add Interview Step
+                      </Button>
+                    </div>
+                  </div>
+
                                   </div>
               </div>
             )}
