@@ -1469,7 +1469,7 @@ Google India`
         {/* Main Content */}
         <div className="w-full overflow-y-auto">
           {activeMainTab === "interview-status" && (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Search Filters and View Toggle */}
               <div className="flex items-center justify-between gap-2 mb-2">
                 <SearchWithDropdown
