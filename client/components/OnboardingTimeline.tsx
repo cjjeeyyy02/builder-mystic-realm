@@ -245,7 +245,7 @@ export default function OnboardingTimeline() {
                               <div className="flex items-center gap-2">
                                 <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><Maximize2 className="w-4 h-4 mr-1" /> Full Screen</Button>
                                 <Button variant="outline" className="h-10" onClick={() => window.open(f.url, '_blank')}><FileText className="w-4 h-4 mr-1" /> View</Button>
-                                <a href={f.url} download className="inline-flex items-center h-10 px-3 border rounded-md text-sm"><Download className="w-3 h-3 mr-1" /> Download</a>
+                                <a href={f.url} download className="inline-flex items-center h-10 px-3 border rounded-md text-sm"><Download className="w-4 h-4 mr-1" /> Download</a>
                               </div>
                             </div>
                             <div className="mt-2">
