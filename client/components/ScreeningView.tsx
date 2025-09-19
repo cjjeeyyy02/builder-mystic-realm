@@ -368,7 +368,7 @@ export default function ScreeningView() {
   const ActionComponent = useSimpleMenu ? SimpleActionMenu : ActionDropdown;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
 
       {/* Controls: search + status filter + view toggle */}
       <div className="flex items-center justify-between gap-3">
