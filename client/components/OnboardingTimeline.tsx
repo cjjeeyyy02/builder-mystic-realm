@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -14,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { CheckSquare, Download, Edit, FileText, Mail, Maximize2, Upload } from "lucide-react";
+import { CheckSquare, Download, Edit, FileText, Maximize2, Upload } from "lucide-react";
 
 interface TimelineItem {
   id: string;
