@@ -1503,7 +1503,7 @@ Google India`
                   >
                     <Calendar className="w-4 h-4" />
                   </Button>
-                                    <Button
+                  <Button
                     size="sm"
                     variant={viewMode === "card" ? "default" : "outline"}
                     onClick={() => setViewMode("card")}
@@ -1511,7 +1511,12 @@ Google India`
                   >
                     <Grid className="w-4 h-4" />
                   </Button>
-                                  </div>
+                  {viewMode === 'card' && (
+                    <Button size="sm" variant="outline" className="ml-1" onClick={exportCardViewCSV} title="Export card view">
+                      <Download className="w-4 h-4 mr-1" /> Export
+                    </Button>
+                  )}
+                </div>
               </div>
 
               {/* Interview Content - Table or Card View */}
