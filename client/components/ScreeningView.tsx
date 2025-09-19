@@ -791,10 +791,10 @@ export default function ScreeningView() {
                   
                   {/* Quick Actions */}
                   <Card>
-                    <CardContent className="p-2 sm:p-3">
+                    <CardContent className="p-4">
                       <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
-                      <div className="space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-7 px-2" onClick={() => selectedCandidate?.resumeUrl && window.open(selectedCandidate.resumeUrl, '_blank')}>
+                      <div className="space-y-4">
+                        <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => selectedCandidate?.resumeUrl && window.open(selectedCandidate.resumeUrl, '_blank')}>
                           <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                           Download Resume
                         </Button>
