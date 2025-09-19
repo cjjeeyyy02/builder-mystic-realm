@@ -459,10 +459,10 @@ export default function OnboardingOverview() {
                       APPLIED POSITION
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                      STATUS
+                      APPLIED DATE
                     </TableHead>
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                      APPLIED DATE
+                      STATUS
                     </TableHead>
                     <TableHead className="text-center text-xs font-bold text-gray-900 uppercase tracking-wider">
                       ACTION
@@ -505,16 +505,15 @@ export default function OnboardingOverview() {
                         </TableCell>
                         
                         <TableCell className="px-3 py-2">
-                          <Badge className={`text-xs capitalize ${getStageColor(candidate.stage)}`}>
-                            {candidate.stage}
-                          </Badge>
-                        </TableCell>
-                        
-                        
-                        <TableCell className="px-3 py-2">
                           <div className="text-xs text-gray-900">
                             {formatDateMDY(candidate.appliedDate)}
                           </div>
+                        </TableCell>
+
+                        <TableCell className="px-3 py-2">
+                          <Badge className={`text-xs capitalize ${getStageColor(candidate.stage)}`}>
+                            {candidate.stage}
+                          </Badge>
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 text-center">
