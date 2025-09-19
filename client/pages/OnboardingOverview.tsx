@@ -511,9 +511,9 @@ export default function OnboardingOverview() {
                         </TableCell>
 
                         <TableCell className="px-3 py-2">
-                          <Badge className={`text-xs capitalize ${getStageColor(candidate.stage)}`}>
-                            {candidate.stage}
-                          </Badge>
+                          <div className="text-xs text-gray-900 capitalize">
+                            {candidate.status.replace('-', ' ')}
+                          </div>
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 text-center">
@@ -567,7 +567,7 @@ export default function OnboardingOverview() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Badge className={`text-xs capitalize ${getStageColor(profileCandidate.stage)}`}>{profileCandidate.stage}</Badge>
-                <Badge className={`text-xs capitalize ${getStatusColor(profileCandidate.status)}`}>{profileCandidate.status.replace('-', ' ')}</Badge>
+                <span className="text-xs capitalize text-gray-700">{profileCandidate.status.replace('-', ' ')}</span>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
