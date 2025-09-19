@@ -1518,7 +1518,7 @@ Google India`
               {viewMode === "table" ? (
                 <Card className="p-0 border border-gray-200 rounded-none">
                   <CardContent className="p-0">
-                    <Table>
+                    <Table className="w-full text-sm">
                     <TableHeader>
                       <TableRow className="border-b">
                         <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
