@@ -304,8 +304,8 @@ export default function OnboardingOverview() {
         {/* Page Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-semibold text-foreground">Overview</h1>
-            <p className="text-muted-foreground mt-1">
+            <h1 className="text-xl font-bold text-foreground">Overview</h1>
+            <p className="text-sm text-muted-foreground mt-1">
               Track all candidates across the entire recruitment pipeline
             </p>
           </div>
@@ -371,7 +371,7 @@ export default function OnboardingOverview() {
         {/* Filters and Search */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">All Candidates</CardTitle>
+            <CardTitle className="text-base font-medium">All Candidates</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -401,12 +401,12 @@ export default function OnboardingOverview() {
               </div>
               <div className="flex items-center gap-2 sm:gap-3 ml-auto">
                 <input id="overview-upload-input" type="file" accept=".pdf,.doc,.docx" className="hidden" />
-                <Button className="h-9 bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.getElementById('overview-upload-input')?.click()}>
+                <Button className="h-10 bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.getElementById('overview-upload-input')?.click()}>
                   Upload
                 </Button>
                 <Dialog open={showAddCandidate} onOpenChange={setShowAddCandidate}>
                   <DialogTrigger asChild>
-                    <Button className="h-9">+ Add Candidate</Button>
+                    <Button className="h-10">+ Add Candidate</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
@@ -440,7 +440,7 @@ export default function OnboardingOverview() {
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
-                <Button variant="outline" className="h-9" onClick={exportToCSV}>
+                <Button variant="outline" className="h-10" onClick={exportToCSV}>
                   <Download className="w-4 h-4 mr-2" />
                   Export
                 </Button>
