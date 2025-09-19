@@ -150,25 +150,6 @@ export default function OnboardingTimeline() {
   return (
     <div className="space-y-4">
 
-      {/* Metrics cards row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-        <div className="bg-white border border-gray-200 rounded-none p-2">
-          <div className="text-2xl font-bold text-blue-600">{1}</div>
-          <div className="text-xs text-gray-700 font-medium">Total Hired this Month</div>
-        </div>
-        <div className="bg-white border border-gray-200 rounded-none p-2">
-          <div className="text-xl font-bold">{sections.find(s => s.id === 'pre')?.items.length ?? 0}</div>
-          <div className="text-xs text-gray-700 font-medium">Pre-Onboarding Stage</div>
-        </div>
-        <div className="bg-white border border-gray-200 rounded-none p-2">
-          <div className="text-xl font-bold">{sections.find(s => s.id === 'day1')?.items.length ?? 0}</div>
-          <div className="text-xs text-gray-700 font-medium">Orientation Stage</div>
-        </div>
-        <div className="bg-white border border-gray-200 rounded-none p-2">
-          <div className="text-xl font-bold">{sections.find(s => s.id === 'week1')?.items.length ?? 0}</div>
-          <div className="text-xs text-gray-700 font-medium">Integration Stage</div>
-        </div>
-      </div>
 
       {/* Header */}
       <Card className="border-0 shadow-sm">

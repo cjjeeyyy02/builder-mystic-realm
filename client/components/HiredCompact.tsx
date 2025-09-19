@@ -43,12 +43,6 @@ export default function HiredCompact() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const metrics = {
-    monthHired: 1,
-    pre: 8,
-    orientation: 6,
-    integration: 5,
-  };
 
   const candidates = useMemo(() => {
     const q = search.toLowerCase().trim();
