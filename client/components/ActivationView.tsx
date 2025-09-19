@@ -191,9 +191,7 @@ export default function ActivationView() {
 
   const renderProgressBar = (progress: number) => {
     const getProgressColor = () => {
-      if (progress < 50) return "bg-red-500";
-      if (progress < 100) return "bg-orange-500";
-      return "bg-green-500";
+      return "bg-blue-600";
     };
 
     return (
@@ -207,7 +205,7 @@ export default function ActivationView() {
           ></div>
         </div>
         <span className={`text-xs font-medium transition-colors duration-300 ${
-          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+          isDarkMode ? 'text-blue-300' : 'text-blue-700'
         }`}>{progress}%</span>
       </div>
     );
@@ -427,11 +425,11 @@ export default function ActivationView() {
                   <div className="mt-3">
                     <div className={isDarkMode ? 'bg-gray-700 h-2 w-full' : 'bg-gray-200 h-2 w-full'}>
                       <div
-                        className={`${employee.activationProgress < 50 ? 'bg-red-500' : employee.activationProgress < 100 ? 'bg-orange-500' : 'bg-green-500'} h-2`}
+                        className={`bg-blue-600 h-2`}
                         style={{ width: `${employee.activationProgress}%` }}
                       />
                     </div>
-                    <div className={`mt-1 text-xs font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{employee.activationProgress}%</div>
+                    <div className={`mt-1 text-xs font-medium ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>{employee.activationProgress}%</div>
                   </div>
                 </div>
               ))}
