@@ -13,7 +13,7 @@ interface TimelineItem {
   completed: boolean;
   files: { name: string; url: string }[];
   textSubmission?: string;
-  dateSubmitted?: string;
+  dateCompleted?: string;
 }
 
 interface TimelineSection {
