@@ -255,7 +255,7 @@ export default function ActivationView() {
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
           }`}>
-            <Table>
+            <Table className="w-full text-sm">
               <TableHeader>
                 <TableRow className={`transition-colors duration-300 ${
                   isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
@@ -621,7 +621,7 @@ export default function ActivationView() {
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
           }`}>
-            <Table>
+            <Table className="w-full text-sm">
               <TableHeader>
                 <TableRow className={`transition-colors duration-300 ${
                   isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
