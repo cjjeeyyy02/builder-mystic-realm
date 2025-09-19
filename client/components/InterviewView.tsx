@@ -1063,6 +1063,40 @@ Google India`
     URL.revokeObjectURL(url);
   };
 
+  // Export all cards (card view) to CSV
+  const exportCardViewCSV = () => {
+    const headers = [
+      'ID',
+      'Name',
+      'Applied Position',
+      'Department',
+      'Current Round',
+      'Status',
+      'Email',
+      'Phone'
+    ];
+    const rows = interviewCandidates.map(c => [
+      c.id,
+      c.applicantName,
+      c.appliedPosition,
+      c.department,
+      c.currentRound,
+      c.status,
+      c.email || '',
+      c.phone || ''
+    ]);
+    const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'interview_card_view.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   // Decision Confirmation Modal States
   const [showDecisionModal, setShowDecisionModal] = useState(false);
 
