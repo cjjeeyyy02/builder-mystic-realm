@@ -1520,31 +1520,15 @@ Google India`
                   <CardContent className="p-0">
                     <Table className="w-full text-sm">
                     <TableHeader>
-                      <TableRow className="border-b">
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          JOB ID
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          NAME
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          COUNTRY
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          APPLIED POSITION
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          CURRENT ROUND
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          NEXT ROUND
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          INTERVIEW PROGRESS
-                        </TableHead>
-                        <TableHead className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          ACTION
-                        </TableHead>
+                      <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                        <TableHead className="py-2 px-3">JOB ID</TableHead>
+                        <TableHead className="py-2 px-3">NAME</TableHead>
+                        <TableHead className="py-2 px-3">COUNTRY</TableHead>
+                        <TableHead className="py-2 px-3">APPLIED POSITION</TableHead>
+                        <TableHead className="py-2 px-3">CURRENT ROUND</TableHead>
+                        <TableHead className="py-2 px-3">NEXT ROUND</TableHead>
+                        <TableHead className="py-2 px-3">INTERVIEW PROGRESS</TableHead>
+                        <TableHead className="py-2 px-3">ACTION</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
