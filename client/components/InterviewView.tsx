@@ -3758,7 +3758,7 @@ Google India"
                                 {step.title}
                               </h3>
                               <p className="text-sm text-gray-600">
-                                {formatMDYDash(step.date)} at {step.time} • {step.interviewer}
+                                {formatMDYDash(step.date)} at {step.time} • Interviewer: {step.interviewer}
                               </p>
                             </div>
                           </div>
