@@ -1534,8 +1534,8 @@ Google India`
                     <TableBody>
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">001</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Jaya</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">India</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Jaya Sharma</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">India</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Senior Developer</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
@@ -1570,8 +1570,8 @@ Google India`
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">002</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Mark</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">USA</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Mark Robinson</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">USA</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Graphic Designer</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
@@ -1606,8 +1606,8 @@ Google India`
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">003</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">John</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">USA</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">John Carter</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">USA</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Content writer</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">NO ROUNDS</TableCell>
@@ -1642,8 +1642,8 @@ Google India`
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">004</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Sara</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Europe</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Sara Ahmed</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">Europe</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Copywriter</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Editing Test - 4/5</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
@@ -1678,8 +1678,8 @@ Google India`
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">005</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Shruti</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">India</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Shruti Kapoor</TableCell>
+                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">India</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Sale Associate</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Culture Test - 3/5</TableCell>
                         <TableCell className="px-3 py-3 text-[14px] text-gray-900">Case Study Debate - 4/5</TableCell>
