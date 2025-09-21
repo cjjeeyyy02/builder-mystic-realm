@@ -1547,7 +1547,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="px-3 py-3">
+                        <TableCell className="px-3 py-3 align-middle text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1555,11 +1555,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('001', 'Jaya')}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('001', 'Jaya Sharma')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Interview Steps
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya')}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya Sharma')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Interview Steps
                               </DropdownMenuItem>
@@ -1583,7 +1583,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="px-3 py-3">
+                        <TableCell className="px-3 py-3 align-middle text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1591,11 +1591,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('002', 'Mark')}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('002', 'Mark Robinson')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Interview Steps
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark')}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark Robinson')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Interview Steps
                               </DropdownMenuItem>
@@ -1619,7 +1619,7 @@ Google India`
                             <span className="text-xs font-medium">100%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="px-3 py-3">
+                        <TableCell className="px-3 py-3 align-middle text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1627,11 +1627,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('003', 'John')}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('003', 'John Carter')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Interview Steps
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John')}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John Carter')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Interview Steps
                               </DropdownMenuItem>
@@ -1655,7 +1655,7 @@ Google India`
                             <span className="text-xs font-medium">90%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="px-3 py-3">
+                        <TableCell className="px-3 py-3 align-middle text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1663,11 +1663,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('004', 'Sara')}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('004', 'Sara Ahmed')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Interview Steps
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara')}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara Ahmed')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Interview Steps
                               </DropdownMenuItem>
@@ -1691,7 +1691,7 @@ Google India`
                             <span className="text-xs font-medium">70%</span>
                           </div>
                         </TableCell>
-                        <TableCell className="px-3 py-3">
+                        <TableCell className="px-3 py-3 align-middle text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -1699,11 +1699,11 @@ Google India`
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('005', 'Shruti')}>
+                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('005', 'Shruti Kapoor')}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 View Interview Steps
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti')}>
+                              <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti Kapoor')}>
                                 <Calendar className="mr-2 h-4 w-4" />
                                 Manage Interview Steps
                               </DropdownMenuItem>
