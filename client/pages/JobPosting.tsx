@@ -281,11 +281,9 @@ export default function JobPosting() {
   };
 
   const handleViewApplication = (job: Job) => {
-    // Navigate to applications view for this job
     console.log("Viewing applications for job:", job.title);
     setAuditLog((prev) => [{ time: new Date().toISOString(), action: "View Applications", details: job.title }, ...prev]);
-    // This would typically navigate to a dedicated applications page
-    alert(`Viewing applications for: ${job.title}`);
+    setShowPlugHireModal(true);
   };
 
   return (
@@ -353,15 +351,15 @@ export default function JobPosting() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => handleOpenManage(job)}>
+                                <DropdownMenuItem onSelect={() => handleOpenManage(job)}>
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => handleViewApplication(job)}>
+                                <DropdownMenuItem onSelect={() => handleViewApplication(job)}>
                                   <FileText className="w-4 h-4 mr-2" />
                                   View Applications ({job.applicants ?? 0})
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => confirmArchive(job)}>
+                                <DropdownMenuItem onSelect={() => confirmArchive(job)}>
                                   <Archive className="w-4 h-4 mr-2" />
                                   Archive Job Posting
                                 </DropdownMenuItem>
@@ -402,15 +400,15 @@ export default function JobPosting() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => handleOpenManage(job)}>
+                            <DropdownMenuItem onSelect={() => handleOpenManage(job)}>
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleViewApplication(job)}>
+                            <DropdownMenuItem onSelect={() => handleViewApplication(job)}>
                               <FileText className="w-4 h-4 mr-2" />
                               View Applications ({job.applicants ?? 0})
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => confirmArchive(job)}>
+                            <DropdownMenuItem onSelect={() => confirmArchive(job)}>
                               <Archive className="w-4 h-4 mr-2" />
                               Archive Job Posting
                             </DropdownMenuItem>
