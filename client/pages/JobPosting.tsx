@@ -291,14 +291,14 @@ export default function JobPosting() {
                   <table className="w-full text-sm table-auto border-collapse mx-auto" style={{maxWidth: '1200px'}}>
                     <thead>
                       <tr className="text-left text-xs text-muted-foreground border-b">
-                        <th className="py-2 pr-4 font-bold lowercase">job id</th>
-                        <th className="py-2 pr-4 font-bold lowercase">job title</th>
-                        <th className="py-2 pr-4 font-bold lowercase">department</th>
-                        <th className="py-2 pr-4 font-bold lowercase">location</th>
-                        <th className="py-2 pr-4 font-bold lowercase">status</th>
-                        <th className="py-2 pr-4 font-bold lowercase">date posted</th>
-                        <th className="py-2 pr-4 font-bold lowercase">applicants count</th>
-                        <th className="py-2 pr-4 font-bold lowercase">action</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">JOB ID</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">JOB TITLE</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">DEPARTMENT</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">LOCATION</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">STATUS</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">DATE POSTED</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">APPLICANTS COUNT</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">ACTION</th>
                       </tr>
                     </thead>
                     <tbody>
