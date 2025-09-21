@@ -100,7 +100,7 @@ export default function HiredCompact() {
                   <th className="py-2 px-3">APPLIED POSITION</th>
                   <th className="py-2 px-3">JOINING DATE</th>
                   <th className="py-2 px-3">STAGE</th>
-                  <th className="py-2 px-3">ACTION</th>
+                  <th className="py-2 px-3 text-center">ACTION</th>
                 </tr>
               </thead>
               <tbody>
