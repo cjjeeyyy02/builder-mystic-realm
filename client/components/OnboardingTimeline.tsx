@@ -111,6 +111,12 @@ export default function OnboardingTimeline() {
               )}
               <div className="border border-gray-200 rounded-md overflow-hidden">
                 <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-[13px] text-gray-600 border-b">
+                      <th className="py-2 px-3">TASK</th>
+                      <th className="py-2 px-3 text-center">COMPLETED</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {section.items.slice(0, 5).map((item) => (
                       <tr key={item.id} className="border-b last:border-b-0">
@@ -131,10 +137,9 @@ export default function OnboardingTimeline() {
                           </div>
                           <div className="text-[12px] text-gray-500 mt-1">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
                         </td>
-                        <td className="py-3 px-3 align-top w-[30%]">
-                          <div className="w-full flex items-center justify-end gap-2">
+                        <td className="py-3 px-3 align-middle w-[30%]">
+                          <div className="w-full flex items-center justify-center">
                             <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
-                            <span className="text-sm">Completed</span>
                           </div>
                         </td>
                       </tr>
