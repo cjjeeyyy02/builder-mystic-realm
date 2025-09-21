@@ -758,7 +758,7 @@ export default function OnboardingOverview() {
                           placeholder="Add your screening notes here..."
                           value={screeningNotes}
                           onChange={(e) => setScreeningNotes(e.target.value)}
-                          className="min-h[80px] sm:min-h-[100px] text-xs sm:text-sm pr-24"
+                          className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm pr-24"
                         />
                         {screeningNotes.trim() && (
                           <Button
