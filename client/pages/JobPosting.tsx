@@ -826,6 +826,83 @@ export default function JobPosting() {
         </DialogContent>
       </Dialog>
 
+      {/* Manage Job Posting Modal */}
+      <Dialog open={showManageModal} onOpenChange={setShowManageModal}>
+        <DialogContent className="max-w-2xl w-full rounded-[12px] p-6">
+          <DialogHeader>
+            <DialogTitle>Manage Job Posting</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm font-semibold mb-3">Manage Job Posting</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Job Title</Label>
+                    <Edit className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <Input className="mt-1" value={manageForm.title} onChange={(e)=>setManageForm(p=>({ ...p, title: e.target.value }))} />
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Department</Label>
+                    <Edit className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <Input className="mt-1" value={manageForm.department} onChange={(e)=>setManageForm(p=>({ ...p, department: e.target.value }))} />
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Location</Label>
+                    <Edit className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <Input className="mt-1" value={manageForm.location} onChange={(e)=>setManageForm(p=>({ ...p, location: e.target.value }))} />
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Status</Label>
+                    <Edit className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <Select value={manageForm.status} onValueChange={(v)=>setManageForm(p=>({ ...p, status: v as Job["status"] }))}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Draft">Draft</SelectItem>
+                      <SelectItem value="Active">Active</SelectItem>
+                      <SelectItem value="Closed">Closed</SelectItem>
+                      <SelectItem value="Archived">Archived</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Date Posted</Label>
+                    <Edit className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <Input className="mt-1" type="date" value={manageForm.datePosted} onChange={(e)=>setManageForm(p=>({ ...p, datePosted: e.target.value }))} />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold mb-3">View Applications</h3>
+              <Card>
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div className="text-sm text-muted-foreground">Applicants</div>
+                  <div className="text-lg font-semibold">{manageJob?.applicants ?? 0}</div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <DialogFooter className="flex items-center justify-end gap-2 pt-2">
+            <Button variant="outline" onClick={()=>setShowManageModal(false)}>Cancel</Button>
+            <Button onClick={handleSaveManage}>Save Changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Job Details Modal */}
       <Dialog open={showJobDetailsModal} onOpenChange={setShowJobDetailsModal}>
         <DialogContent className="max-w-2xl w-full rounded-[12px] p-6">
