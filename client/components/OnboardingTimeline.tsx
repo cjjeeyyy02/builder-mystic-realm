@@ -139,7 +139,7 @@ export default function OnboardingTimeline() {
                         </td>
                         <td className="py-3 px-3 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
-                            <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
+                            <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} className="rounded-full h-5 w-5 border-2" />
                           </div>
                         </td>
                       </tr>
