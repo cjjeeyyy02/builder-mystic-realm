@@ -1492,19 +1492,19 @@ Google India`
                   </Button>
                   <Button
                     size="sm"
-                    variant={viewMode === "calendar" ? "default" : "outline"}
-                    onClick={() => setViewMode("calendar")}
-                    title="Calendar View"
-                  >
-                    <Calendar className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
                     variant={viewMode === "card" ? "default" : "outline"}
                     onClick={() => setViewMode("card")}
                     title="Card View"
                   >
                     <Grid className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={viewMode === "calendar" ? "default" : "outline"}
+                    onClick={() => setViewMode("calendar")}
+                    title="Calendar View"
+                  >
+                    <Calendar className="w-4 h-4" />
                   </Button>
                   {viewMode === 'card' && (
                     <Button size="sm" variant="outline" className="ml-1" onClick={exportCardViewCSV} title="Export card view">
