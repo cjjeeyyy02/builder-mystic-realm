@@ -545,8 +545,9 @@ export default function OnboardingOverview() {
                         </TableCell>
 
                         <TableCell className="px-3 py-2">
-                          <div className="text-xs text-gray-900 capitalize">
-                            {candidate.status.replace('-', ' ')}
+                          <div className="text-xs text-gray-900 flex items-center gap-2">
+                            <span className="inline-block w-2 h-2 rounded-full bg-gray-400" />
+                            <span>{candidate.stage}</span>
                           </div>
                         </TableCell>
                         
