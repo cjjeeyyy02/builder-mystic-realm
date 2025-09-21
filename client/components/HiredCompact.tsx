@@ -168,12 +168,27 @@ export default function HiredCompact() {
                       <div className="text-xs text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
                     </div>
                   </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0"
+                    onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                    aria-expanded={expandedId === c.id}
+                    aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                  </Button>
                 </div>
                 <div className="text-xs text-gray-600">
                   <div className="mb-1"><span className="font-medium text-gray-900">Position:</span> {c.position}</div>
                   <div className="mb-1"><span className="font-medium text-gray-900">Joining:</span> {formatMDY(c.joiningDate)}</div>
                   <div><span className="font-medium text-gray-900">Stage:</span> {c.stage === 'Pre-Onboarding' ? 'Orientation' : c.stage}</div>
                 </div>
+                {expandedId === c.id && (
+                  <div className="mt-3 border-t pt-3">
+                    <OnboardingTimeline />
+                  </div>
+                )}
               </Card>
             );
           })}
