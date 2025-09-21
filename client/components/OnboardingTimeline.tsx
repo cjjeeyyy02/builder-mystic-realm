@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Checkbox } from "@/components/ui/checkbox";
+import CircleCheckbox from "@/components/ui/circle-checkbox";
 import { Edit } from "lucide-react";
 
 interface TimelineItem {
@@ -139,7 +139,7 @@ export default function OnboardingTimeline() {
                         </td>
                         <td className="py-3 px-3 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
-                            <Checkbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} className="h-5 w-5 border-2 rounded-sm" />
+                            <CircleCheckbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
                           </div>
                         </td>
                       </tr>
