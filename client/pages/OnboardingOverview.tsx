@@ -543,7 +543,7 @@ export default function OnboardingOverview() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end" className="w-56">
-                                <DropdownMenuItem onSelect={() => handleViewCandidateDetail(candidate)} className="flex items-center gap-2 cursor-pointer">
+                                <DropdownMenuItem onSelect={() => { try { window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify({ applicantName: candidate.name, appliedPosition: candidate.position, email: candidate.email, phone: candidate.phone, location: candidate.location, roomId: `ROOM-${candidate.id.toString().padStart(3,'0')}`, reviewRoom: undefined, interviewSteps: [] })); } catch {} navigate(`/candidate-details/${candidate.id}`); }} className="flex items-center gap-2 cursor-pointer">
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
