@@ -530,7 +530,26 @@ export default function OnboardingOverview() {
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 align-middle">
-                          <div className="flex items-center justify-center text-gray-400">—</div>
+                          <div className="flex items-center justify-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0"
+                                  aria-label="Open actions"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-56">
+                                <DropdownMenuItem onSelect={() => handleViewCandidateDetail(candidate)} className="flex items-center gap-2 cursor-pointer">
+                                  <FileText className="w-4 h-4" />
+                                  View Candidate Detail
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                         </TableCell>
                       </TableRow>
                     );
