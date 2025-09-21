@@ -1,10 +1,12 @@
 import { useState } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X, MapPin, Briefcase, DollarSign, Award, GraduationCap, Building } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 
 // Load candidate profile saved by overview/action
 const getCandidateById = (id: string) => {
@@ -74,7 +76,7 @@ export default function CandidateDetails() {
 
   return (
     <Layout>
-      <div className="candidate-details space-y-6 max-w-4xl">
+      <div className="candidate-details space-y-6 max-w-5xl">
         {/* Back Navigation */}
         <div className="flex items-center gap-4">
           <Button
@@ -114,136 +116,80 @@ export default function CandidateDetails() {
           </div>
         </div>
 
-        {/* Contact Information & Review Room - Single Card */}
-        <Card>
-          <CardContent className="p-6">
-            <div className="space-y-6">
-              {/* Contact Information */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Contact Information</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-gray-400" />
-                    <span className="text-sm font-medium">Email:</span>
-                    <span className="text-sm text-gray-700">{candidate.email}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-gray-400" />
-                    <span className="text-sm font-medium">Phone:</span>
-                    <span className="text-sm text-gray-700">{candidate.phone}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Review Room */}
-              {candidate.reviewRoom && (
-                <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Review Room</h3>
-                  <div>
-                    <span className="text-sm font-medium">Zoom link:</span>
-                    <a
-                      href={candidate.reviewRoom}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline ml-2"
-                    >
-                      {candidate.reviewRoom}
-                    </a>
-                  </div>
+        {/* Details Layout matching ScreeningView */}
+        <div className="flex flex-col xl:flex-row gap-3 xl:gap-4">
+          {/* Main Panel */}
+          <div className="flex-1 space-y-3">
+            {/* Quick Info Bar */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 bg-gray-50 rounded-md border border-gray-200">
+              {candidate.location && (
+                <div className="text-center">
+                  <MapPin className="w-4 h-4 text-green-600 mx-auto mb-1" />
+                  <div className="font-semibold text-xs sm:text-sm">{candidate.location}</div>
+                  <div className="text-xs text-gray-600">Location</div>
                 </div>
               )}
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Interview Steps Section */}
-        <Card>
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Interview Steps</h3>
-            <div className="space-y-4">
-              {(candidate.interviewSteps || []).map((step: any, index: number) => (
-                <div key={step.id || index} className="border border-gray-200 rounded-lg p-4 relative">
-                  {/* Status Badge (top-right corner) */}
-                  <div className="absolute top-4 right-4">
-                    <Badge
-                      className={
-                        step.status === 'Completed'
-                          ? 'bg-green-100 text-green-800 border-green-200'
-                          : 'bg-gray-100 text-gray-800 border-gray-200'
-                      }
-                    >
-                      {step.status}
-                    </Badge>
+            {/* Candidate Details */}
+            <Card>
+              <CardContent className="p-3 sm:p-4">
+                <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                  <Briefcase className="w-4 h-4" />
+                  Candidate Details
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-gray-500" />
+                    <span className="truncate">{candidate.email}</span>
                   </div>
-
-                  {/* Step Header */}
-                  <div className="mb-3 pr-20">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                      {index + 1}. {step.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 font-medium">
-                      Interviewer: {step.interviewer}
-                    </p>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-gray-500" />
+                    <span>{candidate.phone}</span>
                   </div>
-
-                  {/* Description */}
-                  <div className="mb-3">
-                    <p className="text-sm text-gray-700">
-                      Description: "{step.description}"
-                    </p>
-                  </div>
-
-                  {/* Date & Time */}
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar className="h-4 w-4" />
-                      <span>{step.date} at {step.time}</span>
-                    </div>
-                  </div>
-
-                  {/* Remarks (only if available) */}
-                  {step.remarks && (
-                    <div className="mt-4 p-3 bg-gray-50 rounded-md">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Remarks:</p>
-                      <p className="text-sm text-gray-600">"{step.remarks}"</p>
-                    </div>
-                  )}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
 
-        {/* Action Buttons (Bottom of Screen) */}
-        <div className="flex items-center justify-center gap-6 pt-6 border-t border-gray-200">
-          <Button
-            onClick={() => handleDecision('reject')}
-            disabled={isProcessing}
-            className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm"
-          >
-            {isProcessing ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Processing...
-              </div>
-            ) : (
-              "Reject"
+            {/* Review Room */}
+            {candidate.reviewRoom && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 text-sm">Review Room</h3>
+                  <div className="text-sm">
+                    <span className="font-medium">Zoom link:</span>
+                    <a href={candidate.reviewRoom} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline ml-2">
+                      {candidate.reviewRoom}
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
             )}
-          </Button>
-          <Button
-            onClick={() => handleDecision('pass')}
-            disabled={isProcessing}
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow-sm"
-          >
-            {isProcessing ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Processing...
-              </div>
-            ) : (
-              "Pass"
-            )}
-          </Button>
+          </div>
+
+          {/* Right Panel */}
+          <div className="w-full xl:w-80 xl:border-l xl:pl-6 space-y-3">
+            {/* Screening Notes */}
+            <Card>
+              <CardContent className="p-4">
+                <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
+                <div className="relative">
+                  <Textarea className="min-h-[100px] text-xs sm:text-sm" placeholder="Add your screening notes here..." />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Update Status */}
+            <Card>
+              <CardContent className="p-4">
+                <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" onClick={() => handleDecision('pass')}>Approve</Button>
+                  <Button variant="destructive" size="sm" onClick={() => handleDecision('reject')}>Reject</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </Layout>
