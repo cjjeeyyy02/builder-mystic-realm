@@ -319,54 +319,54 @@ export default function OnboardingOverview() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Candidates</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+              <CardTitle className="text-xs font-medium">Total Candidates</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{summaryStats.total}</div>
+              <div className="text-xl font-bold text-blue-600">{summaryStats.total}</div>
             </CardContent>
           </Card>
           
           <Card onClick={() => navigate('/hiring-pipeline#screening')} className="cursor-pointer hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Screening</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+              <CardTitle className="text-xs font-medium">Screening</CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{summaryStats.screening}</div>
+              <div className="text-xl font-bold text-blue-600">{summaryStats.screening}</div>
             </CardContent>
           </Card>
           
           <Card onClick={() => navigate('/hiring-pipeline#interview')} className="cursor-pointer hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Interview</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+              <CardTitle className="text-xs font-medium">Interview</CardTitle>
               <Users className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{summaryStats.interview}</div>
+              <div className="text-xl font-bold text-blue-600">{summaryStats.interview}</div>
             </CardContent>
           </Card>
           
           <Card onClick={() => navigate('/hiring-pipeline#activation')} className="cursor-pointer hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Activation</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+              <CardTitle className="text-xs font-medium">Activation</CardTitle>
               <UserCheck className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{summaryStats.activation}</div>
+              <div className="text-xl font-bold text-blue-600">{summaryStats.activation}</div>
             </CardContent>
           </Card>
           
           <Card onClick={() => navigate('/hiring-pipeline#hired')} className="cursor-pointer hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Hired</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+              <CardTitle className="text-xs font-medium">Hired</CardTitle>
               <UserCheck className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{summaryStats.hired}</div>
+              <div className="text-xl font-bold text-blue-600">{summaryStats.hired}</div>
             </CardContent>
           </Card>
         </div>
@@ -377,20 +377,20 @@ export default function OnboardingOverview() {
             <CardTitle className="text-base font-medium">All Candidates</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <div className="relative w-full sm:w-64 md:w-72">
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <div className="relative w-full sm:w-56 md:w-64">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   placeholder="Search candidates..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-8 text-sm"
                 />
               </div>
 
               <div className="flex gap-2 sm:gap-3">
                 <Select value={stageFilter} onValueChange={setStageFilter}>
-                  <SelectTrigger className="w-full sm:w-[200px]">
+                  <SelectTrigger className="w-full sm:w-[200px] h-8 text-xs">
                     <SelectValue placeholder="Status Filter" />
                   </SelectTrigger>
                   <SelectContent>
@@ -402,7 +402,7 @@ export default function OnboardingOverview() {
                   </SelectContent>
                 </Select>
                 <Select value={jobFilter} onValueChange={setJobFilter}>
-                  <SelectTrigger className="w-full sm:w-[200px]">
+                  <SelectTrigger className="w-full sm:w-[200px] h-8 text-xs">
                     <SelectValue placeholder="Job ID" />
                   </SelectTrigger>
                   <SelectContent>
@@ -413,14 +413,14 @@ export default function OnboardingOverview() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+              <div className="flex items-center gap-2 ml-auto">
                 <input id="overview-upload-input" type="file" accept=".pdf,.doc,.docx" className="hidden" />
-                <Button className="h-10 bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.getElementById('overview-upload-input')?.click()}>
+                <Button className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.getElementById('overview-upload-input')?.click()}>
                   Upload
                 </Button>
                 <Dialog open={showAddCandidate} onOpenChange={setShowAddCandidate}>
                   <DialogTrigger asChild>
-                    <Button className="h-10 bg-blue-600 hover:bg-blue-700 text-white">+ Add Candidate</Button>
+                    <Button className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">+ Add Candidate</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
@@ -454,7 +454,7 @@ export default function OnboardingOverview() {
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
-                <Button variant="outline" className="h-10" onClick={exportToCSV}>
+                <Button variant="outline" className="h-8 px-3 text-xs" onClick={exportToCSV}>
                   <Download className="w-4 h-4 mr-2" />
                   Export
                 </Button>
