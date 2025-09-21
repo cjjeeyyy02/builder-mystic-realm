@@ -1522,13 +1522,13 @@ Google India`
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-900 border-b">
                         <TableHead className="py-2 px-3 font-semibold text-gray-900">JOB ID</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">NAME</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">COUNTRY</TableHead>
+                        <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">NAME</TableHead>
+                        <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32 whitespace-nowrap">COUNTRY</TableHead>
                         <TableHead className="py-2 px-3 font-semibold text-gray-900">APPLIED POSITION</TableHead>
                         <TableHead className="py-2 px-3 font-semibold text-gray-900">CURRENT ROUND</TableHead>
                         <TableHead className="py-2 px-3 font-semibold text-gray-900">NEXT ROUND</TableHead>
                         <TableHead className="py-2 px-3 font-semibold text-gray-900">INTERVIEW PROGRESS</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTION</TableHead>
+                        <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">ACTION</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
