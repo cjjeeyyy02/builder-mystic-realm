@@ -445,11 +445,6 @@ export default function JobPosting() {
                 <DialogTitle>Candidate Applications</DialogTitle>
                 <DialogDescription>Manage candidates from Indeed and LinkedIn. Review applications, accept or remove candidates.</DialogDescription>
               </div>
-              <div>
-                <button onClick={() => setShowPlugHireModal(false)} className="p-2 rounded-md hover:bg-gray-100">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
             </div>
           </DialogHeader>
 
