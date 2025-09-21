@@ -321,21 +321,17 @@ export default function JobPosting() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => handleViewDetails(job)}>
-                                  <Eye className="w-4 h-4 mr-2" />
-                                  View Details
+                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
+                                  <Edit className="w-4 h-4 mr-2" />
+                                  Manage Job Posting
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleViewApplication(job)}>
                                   <FileText className="w-4 h-4 mr-2" />
-                                  View Application
-                                </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
-                                  <Edit className="w-4 h-4 mr-2" />
-                                  Edit Job
+                                  View Applications ({job.applicants ?? 0})
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => confirmArchive(job)}>
                                   <Archive className="w-4 h-4 mr-2" />
-                                  Archive
+                                  Archive Job Posting
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
