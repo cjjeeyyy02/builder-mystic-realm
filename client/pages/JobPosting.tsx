@@ -172,8 +172,7 @@ export default function JobPosting() {
     return list.filter(
       (j) =>
         j.title.toLowerCase().includes(q) ||
-        (j.company || "").toLowerCase().includes(q) ||
-        (j.department || "").toLowerCase().includes(q)
+        j.id.toLowerCase().includes(q)
     );
   }, [jobs, search, activeTab]);
 
@@ -292,6 +291,7 @@ export default function JobPosting() {
                   <table className="w-full text-sm table-auto border-collapse mx-auto" style={{maxWidth: '1200px'}}>
                     <thead>
                       <tr className="text-left text-xs text-muted-foreground border-b">
+                        <th className="py-2 pr-4">Job ID</th>
                         <th className="py-2 pr-4">Job Title</th>
                         <th className="py-2 pr-4">Department</th>
                         <th className="py-2 pr-4">Location</th>
@@ -304,9 +304,9 @@ export default function JobPosting() {
                     <tbody>
                       {paginatedJobs.map((job) => (
                         <tr key={job.id} className="border-b last:border-b-0 hover:bg-gray-100 transition">
+                          <td className="py-3 pr-4">{job.id}</td>
                           <td className="py-3 pr-4">
                             <div className="font-medium">{job.title}</div>
-                            <div className="text-xs text-muted-foreground">{job.company} • {job.jobType}</div>
                           </td>
                           <td className="py-3 pr-4">{job.department}</td>
                           <td className="py-3 pr-4">{job.location}</td>
@@ -355,7 +355,7 @@ export default function JobPosting() {
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="text-lg font-semibold">{job.title}</div>
-                          <div className="text-sm text-muted-foreground">{job.department} • {job.company}</div>
+                          <div className="text-sm text-muted-foreground">{job.department}</div>
                         </div>
                         <div className="text-xs text-muted-foreground">{formatDateMDY(job.datePosted)}</div>
                       </div>
