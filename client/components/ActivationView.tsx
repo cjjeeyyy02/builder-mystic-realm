@@ -255,7 +255,7 @@ export default function ActivationView() {
               <TableHeader>
                 <TableRow className="text-left text-[13px] text-gray-900 border-b">
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-24">JOB ID</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-48 whitespace-nowrap">NAME</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">NAME</TableHead>
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4">APPLIED POSITION</TableHead>
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4 whitespace-nowrap">JOINING DATE</TableHead>
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4">FILES UPLOADED</TableHead>
@@ -273,7 +273,7 @@ export default function ActivationView() {
                     <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-24 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.jobId}</TableCell>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-48 whitespace-nowrap ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-40 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
                     <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/4 truncate ${
