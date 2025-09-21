@@ -422,7 +422,7 @@ export default function ActivationView() {
           <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
             <DialogContent className="max-w-3xl">
               <DialogHeader className="flex flex-row items-center justify-between">
-                <DialogTitle className="text-lg font-semibold">Update Checklist -<br />{selectedEmployeeForChecklist?.name}</DialogTitle>
+                <DialogTitle className="text-lg font-semibold">Update Checklist</DialogTitle>
               </DialogHeader>
 
               {selectedEmployeeForChecklist && (
@@ -437,32 +437,39 @@ export default function ActivationView() {
                             ) : (
                               <XCircle className="w-4 h-4 text-red-500" />
                             )}
-                            <span>{item.title}</span>
+                            <span className="flex items-center gap-1">
+                              {item.title}
+                              <button
+                                type="button"
+                                className="text-gray-500 hover:text-gray-900"
+                                onClick={() => {
+                                  const newTitle = prompt('Edit item name', item.title) || item.title;
+                                  setChecklistMap(prev => {
+                                    const copy = { ...prev } as typeof prev;
+                                    const arr = copy[selectedEmployeeForChecklist!.jobId].map(it => it.id === item.id ? { ...it, title: newTitle } : it);
+                                    copy[selectedEmployeeForChecklist!.jobId] = arr;
+                                    return copy;
+                                  });
+                                }}
+                                aria-label="Edit item name"
+                              >
+                                <Edit className="w-3 h-3" />
+                              </button>
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent>
                           <div className="space-y-3 p-3 rounded-md border bg-background">
                             <div className="flex flex-wrap gap-2">
-                              <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                const newTitle = prompt('Edit item name', item.title) || item.title;
-                                setChecklistMap(prev => {
-                                  const copy = { ...prev };
-                                  const arr = copy[selectedEmployeeForChecklist.jobId].map(it => it.id === item.id ? { ...it, title: newTitle } : it);
-                                  copy[selectedEmployeeForChecklist.jobId] = arr;
-                                  return copy;
-                                });
-                              }}>
-                                <Edit className="w-3 h-3 mr-1" /> Edit
-                              </Button>
-                              <label className="inline-flex items-center">
+                                                            <label className="inline-flex items-center">
                                 <input type="file" className="hidden" onChange={(e) => handleChecklistFileUpload(selectedEmployeeForChecklist.jobId, item.id, e.target.files?.[0] ?? null)} />
-                                <span className="inline-flex items-center px-2 py-1 border rounded text-xs cursor-pointer"><Upload className="w-3 h-3 mr-1" /> Upload</span>
+                                <span className="inline-flex items-center px-2 py-1 border rounded text-xs cursor-pointer"><Upload className="w-3 h-3 mr-1" /> Upload file</span>
                               </label>
                               <Button variant="outline" size="sm" className="text-xs" onClick={() => {
                                 const f = item.files && item.files[0];
                                 if (f?.url) window.open(f.url, '_blank'); else toast({ title: 'No file uploaded yet' });
                               }}>
-                                <Eye className="w-3 h-3 mr-1" /> View Item
+                                <Eye className="w-3 h-3 mr-1" /> View File
                               </Button>
                               <Button variant="outline" size="sm" className="text-xs" onClick={() => setStatusModalItemId(item.id)}>
                                 Update
@@ -476,14 +483,13 @@ export default function ActivationView() {
                               <div className="text-sm whitespace-pre-wrap border rounded p-2">{item.textSubmission}</div>
                             ) : (
                               <div className="space-y-1">
-                                <label className="block text-xs font-medium">Text Response</label>
-                                <Textarea rows={3} placeholder="Enter response..." onBlur={(e) => {
+                                <Textarea rows={3} placeholder="Enter remarks." onBlur={(e) => {
                                   const val = e.target.value;
                                   if (!val) return;
                                   setChecklistMap(prev => {
-                                    const copy = { ...prev };
-                                    const arr = copy[selectedEmployeeForChecklist.jobId].map(it => it.id === item.id ? { ...it, textSubmission: val, completed: true, dateSubmitted: new Date().toISOString() } : it);
-                                    copy[selectedEmployeeForChecklist.jobId] = arr;
+                                    const copy = { ...prev } as typeof prev;
+                                    const arr = copy[selectedEmployeeForChecklist!.jobId].map(it => it.id === item.id ? { ...it, textSubmission: val, completed: true, dateSubmitted: new Date().toISOString() } : it);
+                                    copy[selectedEmployeeForChecklist!.jobId] = arr;
                                     return copy;
                                   });
                                 }} />
