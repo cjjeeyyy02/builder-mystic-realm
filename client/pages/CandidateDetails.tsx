@@ -1,4 +1,3 @@
-import { useState } from "react";
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X, MapPin, Briefcase, DollarSign, Award, GraduationCap, Building } from "lucide-react";
