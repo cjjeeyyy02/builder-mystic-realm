@@ -256,11 +256,11 @@ export default function ActivationView() {
                 <TableRow className="text-left text-[13px] text-gray-900 border-b">
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-24">JOB ID</TableHead>
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-48 whitespace-nowrap">NAME</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-[30%]">APPLIED POSITION</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-36 whitespace-nowrap">JOINING DATE</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32">FILES UPLOADED</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center w-16">ACTION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4 whitespace-nowrap">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/4">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -276,16 +276,16 @@ export default function ActivationView() {
                     <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-48 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-[30%] truncate ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/4 truncate ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.appliedJobRole}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-36 whitespace-nowrap ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/4 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{formatDateMDY(employee.joiningDate)}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-32 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/4 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.filesUploaded}</TableCell>
-                    <TableCell className="px-3 py-3 w-40 align-middle">
+                    <TableCell className="px-3 py-3 w-1/4 align-middle">
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
                     <TableCell className="px-3 py-3 align-middle text-center">
