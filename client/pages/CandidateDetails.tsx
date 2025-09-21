@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X, MapPin, Briefcase, DollarSign, Award, GraduationCap, Building } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X, MapPin, Briefcase, DollarSign, Award, GraduationCap, Building, Download } from "lucide-react";
 import Layout from "@/components/Layout";
 import { screeningCandidates, type ScreeningCandidate } from "@/data/screeningCandidates";
 import { Button } from "@/components/ui/button";
