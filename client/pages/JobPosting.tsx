@@ -162,6 +162,11 @@ export default function JobPosting() {
   const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>([]);
   const [expandedIds, setExpandedIds] = useState<string[]>([]);
 
+  // Manage modal state
+  const [showManageModal, setShowManageModal] = useState(false);
+  const [manageJob, setManageJob] = useState<Job | null>(null);
+  const [manageForm, setManageForm] = useState<{ title: string; department: string; location: string; status: Job["status"]; datePosted: string }>({ title: "", department: "", location: "", status: "Draft", datePosted: "" });
+
   // Audit log
   const [auditLog, setAuditLog] = useState<Array<{ time: string; action: string; details?: string }>>([]);
 
