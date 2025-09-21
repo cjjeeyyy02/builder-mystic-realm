@@ -550,7 +550,7 @@ export default function OnboardingOverview() {
                           </div>
                         </TableCell>
                         
-                        <TableCell className="px-3 py-2">
+                        <TableCell className="px-3 py-2 align-middle">
                           <div className="flex items-center justify-center">
                             <Button
                               variant="ghost"
