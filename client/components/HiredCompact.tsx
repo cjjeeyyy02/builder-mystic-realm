@@ -78,7 +78,6 @@ export default function HiredCompact() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Stages</SelectItem>
-              <SelectItem value="Pre-Onboarding">Pre-Onboarding</SelectItem>
               <SelectItem value="Orientation">Orientation</SelectItem>
               <SelectItem value="Integration">Integration</SelectItem>
             </SelectContent>
@@ -115,24 +114,26 @@ export default function HiredCompact() {
                             <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
                             <div className="leading-tight">
                               <div className="text-[14px] font-medium text-gray-900">{c.name}</div>
-                              <div className="text-[12px] text-gray-500">ID: {c.id}</div>
+                              <div className="text-[12px] text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
                             </div>
                           </div>
                         </td>
                         <td className="py-3 px-3 text-[14px] text-gray-900">{c.position}</td>
                         <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
-                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.stage}</td>
-                        <td className="py-3 px-3 text-center">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-6 w-6 p-0"
-                            onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
-                            aria-expanded={expandedId === c.id}
-                            aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
-                          >
-                            <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
-                          </Button>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.stage === 'Pre-Onboarding' ? 'Orientation' : c.stage}</td>
+                        <td className="py-3 px-3 text-center align-middle">
+                          <div className="flex items-center justify-center">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-6 w-6 p-0"
+                              onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                              aria-expanded={expandedId === c.id}
+                              aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                            >
+                              <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                            </Button>
+                          </div>
                         </td>
                       </tr>
                       {expandedId === c.id && (
@@ -164,14 +165,14 @@ export default function HiredCompact() {
                     <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{c.name}</div>
-                      <div className="text-xs text-gray-500">ID: {c.id}</div>
+                      <div className="text-xs text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
                     </div>
                   </div>
                 </div>
                 <div className="text-xs text-gray-600">
                   <div className="mb-1"><span className="font-medium text-gray-900">Position:</span> {c.position}</div>
                   <div className="mb-1"><span className="font-medium text-gray-900">Joining:</span> {formatMDY(c.joiningDate)}</div>
-                  <div><span className="font-medium text-gray-900">Stage:</span> {c.stage}</div>
+                  <div><span className="font-medium text-gray-900">Stage:</span> {c.stage === 'Pre-Onboarding' ? 'Orientation' : c.stage}</div>
                 </div>
               </Card>
             );
