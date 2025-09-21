@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo, startTransition } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { SearchWithDropdown } from "@/components/ui/search-with-dropdown";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -1472,14 +1471,15 @@ Google India`
             <div className="space-y-3">
               {/* Search Filters and View Toggle */}
               <div className="flex items-center justify-between gap-2">
-                <SearchWithDropdown
-                  placeholder="SEARCH CANDIDATES"
-                  value={searchCandidates}
-                  onChange={setSearchCandidates}
-                  options={candidateOptions}
-                  className="flex-none w-64"
-                  inputClassName="pl-10 h-8 text-sm rounded-md shadow-sm"
-                />
+                <div className="relative flex-none w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search Candidates..."
+                    value={searchCandidates}
+                    onChange={(e) => setSearchCandidates(e.target.value)}
+                    className="pl-10 h-8 text-sm rounded-md shadow-sm"
+                  />
+                </div>
 
                 <div className="flex items-center gap-2">
                   <Button
@@ -2593,14 +2593,15 @@ Google India"
             <div className="space-y-2">
               {/* Search and Filter Bar */}
               <div className="flex items-center gap-2 mb-2">
-                <SearchWithDropdown
-                  placeholder="SEARCH CANDIDATES"
-                  value={searchCandidates}
-                  onChange={setSearchCandidates}
-                  options={candidateOptions}
-                  className="w-48"
-                  inputClassName="h-6 text-xs"
-                />
+                <div className="relative w-48">
+                  <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-400" />
+                  <Input
+                    placeholder="Search Candidates..."
+                    value={searchCandidates}
+                    onChange={(e) => setSearchCandidates(e.target.value)}
+                    className="pl-7 h-6 text-xs"
+                  />
+                </div>
                 <Select>
                   <SelectTrigger className="w-24 h-6 text-xs">
                     <SelectValue placeholder="COUNTRY" />
