@@ -68,15 +68,15 @@ const checklistItems: ChecklistItem[] = [
 ];
 
 const initialEmployees: Employee[] = [
-  { jobId: "001", name: "Jaya", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "002", name: "Mark", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "003", name: "John", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
-  { jobId: "004", name: "Sara", appliedJobRole: "Copywriter", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "005", name: "Shruti", appliedJobRole: "Sale Associate", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "006", name: "Robin", appliedJobRole: "AI Engineer", joiningDate: "8/15/2025", filesUploaded: "1/5", activationProgress: 15, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "007", name: "Kayle", appliedJobRole: "ML Engineer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
-  { jobId: "008", name: "Vali", appliedJobRole: "Data Analyst", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
-  { jobId: "009", name: "Anne", appliedJobRole: "Finance Analyst", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" }
+  { jobId: "001", name: "Jaya Sharma", appliedJobRole: "Senior Developer", joiningDate: "8/15/2025", filesUploaded: "3/5", activationProgress: 75, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "002", name: "Mark Robinson", appliedJobRole: "Graphic Designer", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "003", name: "John Carter", appliedJobRole: "Content Writer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "004", name: "Sara Ahmed", appliedJobRole: "Copywriter", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "005", name: "Shruti Kapoor", appliedJobRole: "Sale Associate", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "006", name: "Robin Blake", appliedJobRole: "AI Engineer", joiningDate: "8/15/2025", filesUploaded: "1/5", activationProgress: 15, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "007", name: "Kayle Morgan", appliedJobRole: "ML Engineer", joiningDate: "8/15/2025", filesUploaded: "5/5", activationProgress: 100, finalDecision: "EMPLOYEE ACTIVATED" },
+  { jobId: "008", name: "Vali Petrov", appliedJobRole: "Data Analyst", joiningDate: "8/15/2025", filesUploaded: "4/5", activationProgress: 90, finalDecision: "ACTIVATE EMPLOYEE" },
+  { jobId: "009", name: "Anne Garcia", appliedJobRole: "Finance Analyst", joiningDate: "8/15/2025", filesUploaded: "2/5", activationProgress: 40, finalDecision: "ACTIVATE EMPLOYEE" }
 ];
 
 export default function ActivationView() {
@@ -254,13 +254,13 @@ export default function ActivationView() {
             <Table className="w-full text-sm">
               <TableHeader>
                 <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">JOB ID</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">NAME</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">APPLIED POSITION</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">JOINING DATE</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">FILES UPLOADED</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-24">JOB ID</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-48 whitespace-nowrap">NAME</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-[30%]">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-36 whitespace-nowrap">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center w-16">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -270,26 +270,27 @@ export default function ActivationView() {
                       ? 'border-gray-700 hover:bg-gray-700/50'
                       : 'border-gray-100 hover:bg-gray-50'
                   }`}>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-24 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.jobId}</TableCell>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-48 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-[30%] truncate ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.appliedJobRole}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-36 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{formatDateMDY(employee.joiningDate)}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-32 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.filesUploaded}</TableCell>
-                    <TableCell className="px-3 py-3">
+                    <TableCell className="px-3 py-3 w-40 align-middle">
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
-                    <TableCell className="px-3 py-3">
-                      <DropdownMenu>
+                    <TableCell className="px-3 py-3 align-middle text-center">
+                      <div className="flex items-center justify-center">
+                        <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant="ghost"
@@ -327,6 +328,7 @@ export default function ActivationView() {
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
