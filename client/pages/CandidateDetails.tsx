@@ -323,16 +323,6 @@ export default function CandidateDetails() {
               </CardContent>
             </Card>
 
-            {/* Update Status */}
-            <Card>
-              <CardContent className="p-4">
-                <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={() => handleDecision('pass')}>Approve</Button>
-                  <Button variant="destructive" size="sm" onClick={() => handleDecision('reject')}>Reject</Button>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
