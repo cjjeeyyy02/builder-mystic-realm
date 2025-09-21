@@ -45,6 +45,7 @@ interface PipelineCandidate {
   id: string;
   name: string;
   position: string;
+  jobId: string;
   email: string;
   phone: string;
   stage: "screening" | "interview" | "activation" | "hired";
@@ -76,6 +77,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "1",
     name: "Emily Rodriguez",
     position: "UX Designer",
+    jobId: "JOB-101",
     email: "emily.rodriguez@gmail.com",
     phone: "123-456-791",
     stage: "screening",
@@ -88,6 +90,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "2",
     name: "David Kim",
     position: "Backend Developer",
+    jobId: "JOB-102",
     email: "david.kim@gmail.com",
     phone: "123-456-792",
     stage: "interview",
@@ -100,6 +103,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "3",
     name: "Sarah Chen",
     position: "Frontend Developer",
+    jobId: "JOB-103",
     email: "sarah.chen@gmail.com",
     phone: "123-456-793",
     stage: "activation",
@@ -112,6 +116,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "4",
     name: "Michael Johnson",
     position: "Product Manager",
+    jobId: "JOB-104",
     email: "michael.johnson@gmail.com",
     phone: "123-456-794",
     stage: "hired",
@@ -124,6 +129,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "5",
     name: "Carlos Mendez",
     position: "Data Scientist",
+    jobId: "JOB-102",
     email: "carlos.mendez@gmail.com",
     phone: "123-456-795",
     stage: "interview",
@@ -136,6 +142,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "6",
     name: "Maya Singh",
     position: "QA Engineer",
+    jobId: "JOB-101",
     email: "maya.singh@gmail.com",
     phone: "123-456-796",
     stage: "screening",
@@ -148,6 +155,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "7",
     name: "Sofia Rossi",
     position: "Product Designer",
+    jobId: "JOB-103",
     email: "sofia.rossi@gmail.com",
     phone: "123-456-797",
     stage: "activation",
@@ -160,6 +168,7 @@ const allCandidates: PipelineCandidate[] = [
     id: "8",
     name: "Alex Thompson",
     position: "DevOps Engineer",
+    jobId: "JOB-104",
     email: "alex.thompson@gmail.com",
     phone: "123-456-798",
     stage: "hired",
@@ -174,6 +183,7 @@ export default function OnboardingOverview() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
+  const [jobFilter, setJobFilter] = useState("all");
 
   const exportToCSV = () => {
     const headers = [
@@ -225,16 +235,17 @@ export default function OnboardingOverview() {
   // Filter candidates based on search and filters
   const filteredCandidates = useMemo(() => {
     return candidates.filter(candidate => {
-      const matchesSearch = candidate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           candidate.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           candidate.email.toLowerCase().includes(searchTerm.toLowerCase());
+      const q = searchTerm.toLowerCase();
+      const matchesSearch = candidate.name.toLowerCase().includes(q) ||
+                           candidate.position.toLowerCase().includes(q) ||
+                           candidate.email.toLowerCase().includes(q);
 
       const matchesStage = stageFilter === "all" || candidate.stage === stageFilter;
-      const matchesStatus = true;
+      const matchesJob = jobFilter === "all" || candidate.jobId === jobFilter;
 
-      return matchesSearch && matchesStage && matchesStatus;
+      return matchesSearch && matchesStage && matchesJob;
     });
-  }, [candidates, searchTerm, stageFilter]);
+  }, [candidates, searchTerm, stageFilter, jobFilter]);
 
   // Calculate summary statistics
   const summaryStats = useMemo(() => {
@@ -410,6 +421,17 @@ export default function OnboardingOverview() {
                     <SelectItem value="hired">Hired</SelectItem>
                   </SelectContent>
                 </Select>
+                <Select value={jobFilter} onValueChange={setJobFilter}>
+                  <SelectTrigger className="w-full sm:w-[200px]">
+                    <SelectValue placeholder="Job ID" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Job IDs</SelectItem>
+                    {Array.from(new Set(candidates.map(c => c.jobId))).sort().map(id => (
+                      <SelectItem key={id} value={id}>{id}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 ml-auto">
                 <input id="overview-upload-input" type="file" accept=".pdf,.doc,.docx" className="hidden" />
@@ -476,7 +498,7 @@ export default function OnboardingOverview() {
                     <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                       STATUS
                     </TableHead>
-                    <TableHead className="text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                    <TableHead className="text-center text-xs font-bold text-gray-900 uppercase tracking-wider">
                       ACTION
                     </TableHead>
                   </TableRow>
@@ -528,16 +550,18 @@ export default function OnboardingOverview() {
                           </div>
                         </TableCell>
                         
-                        <TableCell className="px-3 py-2 text-center">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0"
-                            onClick={() => { setProfileCandidate(candidate); setShowProfileModal(true); }}
-                            aria-label="Open candidate details"
-                          >
-                            <MoreVertical className="h-4 w-4" />
-                          </Button>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex items-center justify-center">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0"
+                              onClick={() => { setProfileCandidate(candidate); setShowProfileModal(true); }}
+                              aria-label="Open candidate details"
+                            >
+                              <MoreVertical className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     );
