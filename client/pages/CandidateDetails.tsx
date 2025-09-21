@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Phone, Calendar, Clock, FileText, Check, X, MapPin, Briefcase, DollarSign, Award, GraduationCap, Building } from "lucide-react";
 import Layout from "@/components/Layout";
+import { screeningCandidates, type ScreeningCandidate } from "@/data/screeningCandidates";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,6 +25,25 @@ export default function CandidateDetails() {
   const [isProcessing, setIsProcessing] = useState(false);
   
   const candidate = getCandidateById(candidateId || "1");
+  const screeningMatch: ScreeningCandidate | undefined = useMemo(() => screeningCandidates.find(c => c.id === (candidateId || "")), [candidateId]);
+  const merged = useMemo(() => ({
+    applicantName: screeningMatch?.name ?? candidate?.applicantName,
+    appliedPosition: screeningMatch?.position ?? candidate?.appliedPosition,
+    email: screeningMatch?.email ?? candidate?.email,
+    phone: screeningMatch?.phone ?? candidate?.phone,
+    location: screeningMatch?.location ?? candidate?.location,
+    totalExperience: screeningMatch?.totalExperience,
+    salaryExpectation: screeningMatch?.salaryExpectation,
+    resumeUrl: screeningMatch?.resumeUrl,
+    summary: screeningMatch?.summary,
+    education: screeningMatch?.education,
+    workHistory: screeningMatch?.workHistory,
+    skills: screeningMatch?.skills,
+    certifications: screeningMatch?.certifications,
+    roomId: candidate?.roomId,
+    reviewRoom: candidate?.reviewRoom,
+    interviewSteps: candidate?.interviewSteps ?? [],
+  }), [candidate, screeningMatch]);
   
   if (!candidate) {
     return (
@@ -53,7 +73,7 @@ export default function CandidateDetails() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log(`${decision.toUpperCase()} decision for ${candidate.applicantName}`);
+    console.log(`${decision.toUpperCase()} decision for ${merged.applicantName}`);
     
     // Navigate back to hiring pipeline
     navigate('/hiring-pipeline');
@@ -93,15 +113,15 @@ export default function CandidateDetails() {
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-4">
               {/* Profile Picture (Initial Icon) */}
-              <div className="h-16 w-16 rounded-full bg-gray-400 flex items-center justify-center">
+              <div className="h-16 w-16 rounded-full bg-gray-400 flex items-center justify-center" aria-label="avatar">
                 <span className="text-white font-semibold text-xl">E</span>
               </div>
 
               {/* Basic Info */}
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">{candidate.applicantName}</h1>
+                <h1 className="text-2xl font-bold text-gray-900 mb-1">{merged.applicantName}</h1>
                 <p className="text-lg text-gray-700 font-medium">
-                  {candidate.appliedPosition}
+                  {merged.appliedPosition}
                 </p>
               </div>
             </div>
@@ -109,7 +129,7 @@ export default function CandidateDetails() {
             {/* Room ID (top-right) */}
             <div>
               <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 font-medium">
-                {candidate.roomId}
+                {merged.roomId}
               </Badge>
             </div>
           </div>
@@ -121,10 +141,17 @@ export default function CandidateDetails() {
           <div className="flex-1 space-y-3">
             {/* Quick Info Bar */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 bg-gray-50 rounded-md border border-gray-200">
-              {candidate.location && (
+              {merged.totalExperience && (
+                <div className="text-center">
+                  <Briefcase className="w-4 h-4 text-blue-600 mx-auto mb-1" />
+                  <div className="font-semibold text-xs sm:text-sm">{merged.totalExperience}</div>
+                  <div className="text-xs text-gray-600">Total Experience</div>
+                </div>
+              )}
+              {merged.location && (
                 <div className="text-center">
                   <MapPin className="w-4 h-4 text-green-600 mx-auto mb-1" />
-                  <div className="font-semibold text-xs sm:text-sm">{candidate.location}</div>
+                  <div className="font-semibold text-xs sm:text-sm">{merged.location}</div>
                   <div className="text-xs text-gray-600">Location</div>
                 </div>
               )}
@@ -140,15 +167,124 @@ export default function CandidateDetails() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-gray-500" />
-                    <span className="truncate">{candidate.email}</span>
+                    <span className="truncate">{merged.email}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-gray-500" />
-                    <span>{candidate.phone}</span>
+                    <span>{merged.phone}</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Salary */}
+            {merged.salaryExpectation && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                    <DollarSign className="w-4 h-4" />
+                    Salary Expectation
+                  </h3>
+                  <div className="text-sm text-gray-800">{merged.salaryExpectation}</div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Professional Summary */}
+            {merged.summary && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 text-sm">Professional Summary</h3>
+                  <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{merged.summary}</p>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Work Experience */}
+            {merged.workHistory && merged.workHistory.length > 0 && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-semibold flex items-center gap-2 text-sm">
+                      <Briefcase className="w-4 h-4" />
+                      Work Experience
+                    </h3>
+                    {merged.totalExperience && (
+                      <span className="text-xs text-gray-600">{merged.totalExperience}</span>
+                    )}
+                  </div>
+                  <div className="space-y-2 sm:space-y-3">
+                    {merged.workHistory.map((job, index) => (
+                      <div key={index} className="border-l-2 border-blue-200 pl-2 sm:pl-3 pb-2 sm:pb-3">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
+                          <div className="flex-1">
+                            <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
+                            <div className="flex items-center gap-2 text-xs text-gray-600">
+                              <Building className="w-3 h-3 flex-shrink-0" />
+                              <span className="truncate">{job.company}</span>
+                            </div>
+                          </div>
+                          {job.duration && (
+                            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">{job.duration}</span>
+                          )}
+                        </div>
+                        {job.description && (
+                          <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Education */}
+            {merged.education && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                    <GraduationCap className="w-4 h-4" />
+                    Education
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-700">{merged.education}</p>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Skills */}
+            {merged.skills && merged.skills.length > 0 && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 text-sm">Skills & Technologies</h3>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {merged.skills.map((skill, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Certifications */}
+            {merged.certifications && merged.certifications.length > 0 && (
+              <Card>
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                    <Award className="w-4 h-4" />
+                    Certifications
+                  </h3>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {merged.certifications.map((cert, index) => (
+                      <Badge key={index} variant="outline" className="text-xs">
+                        {cert}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Review Room */}
             {candidate.reviewRoom && (
@@ -168,6 +304,21 @@ export default function CandidateDetails() {
 
           {/* Right Panel */}
           <div className="w-full xl:w-80 xl:border-l xl:pl-6 space-y-3">
+            {/* Quick Actions */}
+            {merged.resumeUrl && (
+              <Card>
+                <CardContent className="p-4">
+                  <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
+                  <div className="space-y-2">
+                    <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => window.open(merged.resumeUrl!, '_blank')}>
+                      <Download className="w-4 h-4 mr-2" />
+                      Download Resume
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Screening Notes */}
             <Card>
               <CardContent className="p-4">
