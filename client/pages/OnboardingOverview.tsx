@@ -13,7 +13,6 @@ import {
   UserCheck,
   UserX,
   Clock,
-  MoreVertical,
   ChevronRight,
   BarChart3,
   Download,
@@ -299,21 +298,6 @@ export default function OnboardingOverview() {
   };
 
 
-  const handleViewCandidateDetail = (candidate: PipelineCandidate) => {
-    const payload = {
-      applicantName: candidate.name,
-      appliedPosition: candidate.position,
-      email: candidate.email,
-      phone: candidate.phone,
-      roomId: `ROOM-${candidate.id.toString().padStart(3, '0')}`,
-      reviewRoom: undefined,
-      interviewSteps: [] as any[],
-    };
-    try {
-      window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify(payload));
-    } catch {}
-    navigate(`/candidate-details/${candidate.id}`);
-  };
 
   return (
     <Layout>
@@ -545,17 +529,7 @@ export default function OnboardingOverview() {
                         </TableCell>
                         
                         <TableCell className="px-3 py-2 align-middle">
-                          <div className="flex items-center justify-center">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8 w-8 p-0"
-                              onClick={() => handleViewCandidateDetail(candidate)}
-                              aria-label="Open candidate details"
-                            >
-                              <MoreVertical className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <div className="flex items-center justify-center text-gray-400">—</div>
                         </TableCell>
                       </TableRow>
                     );
