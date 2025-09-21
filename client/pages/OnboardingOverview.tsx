@@ -224,16 +224,8 @@ export default function OnboardingOverview() {
     URL.revokeObjectURL(url);
   };
 
-  const [showProfileModal, setShowProfileModal] = useState(false);
-  const [profileCandidate, setProfileCandidate] = useState<PipelineCandidate | null>(null);
   const [candidates, setCandidates] = useState<PipelineCandidate[]>(allCandidates);
-  const [screeningNotes, setScreeningNotes] = useState("");
 
-  const handleStatusChange = (newStatus: PipelineCandidate['status']) => {
-    if (!profileCandidate) return;
-    setCandidates(prev => prev.map(c => c.id === profileCandidate.id ? { ...c, status: newStatus } : c));
-    setProfileCandidate(prev => (prev ? { ...prev, status: newStatus } : prev));
-  };
 
   const [showAddCandidate, setShowAddCandidate] = useState(false);
   const [newCandidate, setNewCandidate] = useState<{ jobId: string; name: string; position: string; file: File | null }>({ jobId: "", name: "", position: "", file: null });
@@ -306,10 +298,6 @@ export default function OnboardingOverview() {
     );
   };
 
-  const handleViewCandidate = (candidate: PipelineCandidate) => {
-    setProfileCandidate(candidate);
-    setShowProfileModal(true);
-  };
 
   const handleViewCandidateDetail = (candidate: PipelineCandidate) => {
     const payload = {
@@ -562,7 +550,7 @@ export default function OnboardingOverview() {
                               variant="ghost"
                               size="sm"
                               className="h-8 w-8 p-0"
-                              onClick={() => { setProfileCandidate(candidate); setShowProfileModal(true); }}
+                              onClick={() => handleViewCandidateDetail(candidate)}
                               aria-label="Open candidate details"
                             >
                               <MoreVertical className="h-4 w-4" />
@@ -585,213 +573,6 @@ export default function OnboardingOverview() {
         </Card>
       </div>
 
-      <Dialog open={showProfileModal} onOpenChange={setShowProfileModal}>
-        <DialogContent className="w-[90vw] max-w-5xl h-[85vh] overflow-hidden p-0 text-xs sm:text-sm">
-          {profileCandidate && (
-            <>
-              <DialogHeader className="p-3 sm:p-4 border-b">
-                <DialogTitle className="font-heading font-bold text-lg sm:text-xl text-foreground">
-                  {profileCandidate.name}
-                </DialogTitle>
-                <DialogDescription className="!mt-0 text-xs sm:text-sm">{profileCandidate.position}</DialogDescription>
-              </DialogHeader>
-
-              <div className="flex flex-col xl:flex-row gap-3 xl:gap-4 h-[calc(95vh-180px)] overflow-hidden">
-                {/* Main Panel - match ScreeningView */}
-                <div className="flex-1 overflow-y-auto space-y-2 sm:space-y-3 px-3 sm:px-4 xl:pr-3">
-                  {/* Quick Info Bar */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2 p-2 sm:p-2 bg-gray-50 rounded-md border border-gray-200">
-                    <div className="text-center">
-                      <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{(profileCandidate as any).totalExperience || '—'}</div>
-                      <div className="text-xs text-gray-600">Total Experience</div>
-                    </div>
-                    <div className="text-center">
-                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">{profileCandidate.location}</div>
-                      <div className="text-xs text-gray-600">Location</div>
-                    </div>
-                  </div>
-
-                  {/* Candidate Details */}
-                  <Card>
-                    <CardContent className="p-2 sm:p-3">
-                      <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
-                        <User className="w-4 h-4" />
-                        Candidate Details
-                      </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
-                        <div className="flex items-center gap-2">
-                          <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
-                          <span className="truncate">{profileCandidate.email}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
-                          <span>{profileCandidate.phone}</span>
-                        </div>
-                        <div className="flex items-center gap-2 sm:col-span-2">
-                          <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
-                          <span>{(profileCandidate as any).salaryExpectation || (profileCandidate as any).salary || '—'}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Professional Summary */}
-                  {profileCandidate && (profileCandidate as any).summary && (
-                    <Card>
-                      <CardContent className="p-2 sm:p-3">
-                        <h3 className="font-semibold mb-2 text-sm">Professional Summary</h3>
-                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{(profileCandidate as any).summary}</p>
-                      </CardContent>
-                    </Card>
-                  )}
-
-                  {/* Work Experience */}
-                  {profileCandidate && (profileCandidate as any).workHistory && (profileCandidate as any).workHistory.length > 0 && (
-                    <Card>
-                      <CardContent className="p-2 sm:p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold flex items-center gap-2 text-sm">
-                            <Briefcase className="w-4 h-4" />
-                            Work Experience
-                          </h3>
-                          <span className="text-xs text-gray-600">{(profileCandidate as any).totalExperience || ''}</span>
-                        </div>
-                        <div className="space-y-2 sm:space-y-3">
-                          {(profileCandidate as any).workHistory.map((job: any, index: number) => (
-                            <div key={index} className="border-l-2 border-blue-200 pl-2 sm:pl-3 pb-2 sm:pb-3">
-                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-2">
-                                <div className="flex-1">
-                                  <h4 className="font-medium text-xs sm:text-sm">{job.position}</h4>
-                                  <div className="flex items-center gap-2 text-xs text-gray-600">
-                                    <Building className="w-3 h-3 flex-shrink-0" />
-                                    <span className="truncate">{job.company}</span>
-                                  </div>
-                                </div>
-                                {job.duration && (
-                                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded self-start">{job.duration}</span>
-                                )}
-                              </div>
-                              {job.description && (
-                                <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
-
-                  {/* Education */}
-                  {profileCandidate && (profileCandidate as any).education && (
-                    <Card>
-                      <CardContent className="p-2 sm:p-3">
-                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
-                          <GraduationCap className="w-4 h-4" />
-                          Education
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-700">{(profileCandidate as any).education}</p>
-                      </CardContent>
-                    </Card>
-                  )}
-
-                  {/* Skills */}
-                  {profileCandidate && (profileCandidate as any).skills && (profileCandidate as any).skills.length > 0 && (
-                    <Card>
-                      <CardContent className="p-2 sm:p-3">
-                        <h3 className="font-semibold mb-2 text-sm">Skills & Technologies</h3>
-                        <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {(profileCandidate as any).skills.map((skill: string, index: number) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
-
-                  {/* Certifications */}
-                  {profileCandidate && (profileCandidate as any).certifications && (profileCandidate as any).certifications.length > 0 && (
-                    <Card>
-                      <CardContent className="p-2 sm:p-3">
-                        <h3 className="font-semibold mb-2 flex items-center gap-2 text-sm">
-                          <Award className="w-4 h-4" />
-                          Certifications
-                        </h3>
-                        <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {(profileCandidate as any).certifications.map((cert: string, index: number) => (
-                            <Badge key={index} variant="outline" className="text-xs">
-                              {cert}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
-                </div>
-
-                {/* Right Panel - match ScreeningView */}
-                <div className="w-full xl:w-80 xl:border-l xl:pl-6 px-4 sm:px-6 xl:px-0 space-y-3 sm:space-y-4">
-                  {/* Quick Actions */}
-                  <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Quick Actions</h4>
-                      <div className="space-y-4">
-                        {(profileCandidate as any).resumeUrl && (
-                          <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => { const url = (profileCandidate as any).resumeUrl; if (url) window.open(url, '_blank'); }}>
-                            <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                            Download Resume
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Screening Notes */}
-                  <Card>
-                    <CardContent className="p-2 sm:p-3">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Screening Notes</h4>
-                      <div className="relative">
-                        <Textarea
-                          placeholder="Add your screening notes here..."
-                          value={screeningNotes}
-                          onChange={(e) => setScreeningNotes(e.target.value)}
-                          className="min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm pr-24"
-                        />
-                        {screeningNotes.trim() && (
-                          <Button
-                            size="sm"
-                            className="absolute bottom-2 right-2 h-7 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-md"
-                            onClick={() => { console.log('Submitted screening notes:', screeningNotes); }}
-                          >
-                            Submit
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Update Status */}
-                  <Card>
-                    <CardContent className="p-4">
-                      <h4 className="font-medium mb-3 text-sm sm:text-base">Update Status</h4>
-                      <div className="space-y-2">
-                        <Button variant={profileCandidate.status === 'in-progress' ? 'default' : 'outline'} size="sm" className="w-full justify-start text-xs sm:text-sm" onClick={() => handleStatusChange('in-progress')}>Approve</Button>
-                        <Button variant={profileCandidate.status === 'rejected' ? 'destructive' : 'outline'} size="sm" className="w-full justify-start text-xs sm:text-sm" onClick={() => handleStatusChange('rejected')}>Reject</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </>
-          )}
-          <DialogFooter className="px-3 sm:px-4 py-3">
-            <Button variant="outline" onClick={() => setShowProfileModal(false)}>Close</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </Layout>
   );
 }
