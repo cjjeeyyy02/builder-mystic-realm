@@ -255,12 +255,12 @@ export default function ActivationView() {
               <TableHeader>
                 <TableRow className="text-left text-[13px] text-gray-900 border-b">
                   <TableHead className="py-2 px-3 font-semibold text-gray-900 w-24">JOB ID</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/6 whitespace-nowrap">NAME</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/6">APPLIED POSITION</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/6 whitespace-nowrap">JOINING DATE</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/6">FILES UPLOADED</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 w-1/6">ACTIVATION PROGRESS</TableHead>
-                  <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center w-1/6">ACTION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 whitespace-nowrap">NAME</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">APPLIED POSITION</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 whitespace-nowrap">JOINING DATE</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">FILES UPLOADED</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900">ACTIVATION PROGRESS</TableHead>
+                  <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">ACTION</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -273,22 +273,22 @@ export default function ActivationView() {
                     <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-24 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.jobId}</TableCell>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-1/6 whitespace-nowrap ${
+                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/6 truncate ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.appliedJobRole}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/6 whitespace-nowrap ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{formatDateMDY(employee.joiningDate)}</TableCell>
-                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-1/6 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 align-middle ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
                     }`}>{employee.filesUploaded}</TableCell>
-                    <TableCell className="px-3 py-3 w-1/6 align-middle">
+                    <TableCell className="px-3 py-3 align-middle">
                       {renderProgressBar(employee.activationProgress)}
                     </TableCell>
-                    <TableCell className="px-3 py-3 w-1/6 align-middle text-center">
+                    <TableCell className="px-3 py-3 align-middle text-center">
                       <div className="flex items-center justify-center">
                         <DropdownMenu>
                         <DropdownMenuTrigger asChild>
