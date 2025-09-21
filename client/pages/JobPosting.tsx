@@ -870,28 +870,28 @@ export default function JobPosting() {
                 <div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm">Job Title</Label>
-                    <Edit className="w-4 h-4 text-muted-foreground" />
+                    
                   </div>
                   <Input className="mt-1" value={manageForm.title} onChange={(e)=>setManageForm(p=>({ ...p, title: e.target.value }))} />
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm">Department</Label>
-                    <Edit className="w-4 h-4 text-muted-foreground" />
+                    
                   </div>
                   <Input className="mt-1" value={manageForm.department} onChange={(e)=>setManageForm(p=>({ ...p, department: e.target.value }))} />
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm">Location</Label>
-                    <Edit className="w-4 h-4 text-muted-foreground" />
+                    
                   </div>
                   <Input className="mt-1" value={manageForm.location} onChange={(e)=>setManageForm(p=>({ ...p, location: e.target.value }))} />
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm">Status</Label>
-                    <Edit className="w-4 h-4 text-muted-foreground" />
+                    
                   </div>
                   <Select value={manageForm.status} onValueChange={(v)=>setManageForm(p=>({ ...p, status: v as Job["status"] }))}>
                     <SelectTrigger className="mt-1">
@@ -908,7 +908,7 @@ export default function JobPosting() {
                 <div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm">Date Posted</Label>
-                    <Edit className="w-4 h-4 text-muted-foreground" />
+                    
                   </div>
                   <Input className="mt-1" type="date" value={manageForm.datePosted} onChange={(e)=>setManageForm(p=>({ ...p, datePosted: e.target.value }))} />
                 </div>
