@@ -512,7 +512,7 @@ export default function InterviewView() {
     return days;
   };
   const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
-  const [calendarView, setCalendarView] = useState<'week' | 'month'>('month');
+  const [calendarView, setCalendarView] = useState<'day' | 'week' | 'month'>('month');
   const [calendarSearch, setCalendarSearch] = useState('');
 
   // Calendar events and editor state
@@ -1773,6 +1773,7 @@ Google India`
                             <SelectValue placeholder="View" />
                           </SelectTrigger>
                           <SelectContent>
+                            <SelectItem value="day">Day</SelectItem>
                             <SelectItem value="week">Week</SelectItem>
                             <SelectItem value="month">Month</SelectItem>
                           </SelectContent>
@@ -1889,7 +1890,7 @@ Google India`
                       );
                     })()}
 
-                    {false && calendarView === 'day' && (
+                    {calendarView === 'day' && (
                       <div className="p-2 border-t">
                         <div className="text-xs font-medium text-gray-600 mb-2">{calendarDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
                         <div className="space-y-1">
