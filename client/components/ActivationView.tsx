@@ -313,7 +313,7 @@ export default function ActivationView() {
                             }`}
                           >
                             <CheckSquare className="mr-2 h-4 w-4" />
-                            View Checklist
+                            Update Checklist
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onSelect={() => console.log(`Send reminder for ${employee.name}`)}
@@ -371,7 +371,7 @@ export default function ActivationView() {
                           }`}
                         >
                           <CheckSquare className="mr-2 h-4 w-4" />
-                          View Checklist
+                            Update Checklist
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onSelect={() => console.log(`Send reminder for ${employee.name}`)}
