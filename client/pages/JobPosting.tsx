@@ -242,6 +242,33 @@ export default function JobPosting() {
     setAuditLog((prev) => [{ time: new Date().toISOString(), action: "Restore Job", details: jobId }, ...prev]);
   };
 
+  const handleOpenManage = (job: Job) => {
+    setManageJob(job);
+    setManageForm({
+      title: job.title,
+      department: job.department || "",
+      location: job.location,
+      status: job.status || "Draft",
+      datePosted: job.datePosted || ""
+    });
+    setShowManageModal(true);
+  };
+
+  const handleSaveManage = () => {
+    if (!manageJob) return;
+    const updated: Job = {
+      ...manageJob,
+      title: manageForm.title,
+      department: manageForm.department,
+      location: manageForm.location,
+      status: manageForm.status,
+      datePosted: manageForm.datePosted
+    };
+    setJobs(prev => prev.map(j => j.id === updated.id ? updated : j));
+    setShowManageModal(false);
+    setManageJob(null);
+  };
+
   const handleViewDetails = (job: Job) => {
     setJobToView(job);
     setShowJobDetailsModal(true);
