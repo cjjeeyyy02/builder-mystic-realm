@@ -21,6 +21,8 @@ import {
   MapPin,
   Briefcase,
   User,
+  Mail,
+  Phone,
   DollarSign,
   Award,
   GraduationCap,
