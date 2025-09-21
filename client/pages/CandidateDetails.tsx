@@ -126,12 +126,6 @@ export default function CandidateDetails() {
               </div>
             </div>
 
-            {/* Room ID (top-right) */}
-            <div>
-              <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 font-medium">
-                {merged.roomId}
-              </Badge>
-            </div>
           </div>
         </div>
 
