@@ -321,7 +321,7 @@ export default function JobPosting() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
+                                <DropdownMenuItem onClick={() => handleOpenManage(job)}>
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
@@ -370,10 +370,10 @@ export default function JobPosting() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => handleOpenUpdate(job)}>
-                              <Edit className="w-4 h-4 mr-2" />
-                              Manage Job Posting
-                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleOpenManage(job)}>
+                                  <Edit className="w-4 h-4 mr-2" />
+                                  Manage Job Posting
+                                </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleViewApplication(job)}>
                               <FileText className="w-4 h-4 mr-2" />
                               View Applications ({job.applicants ?? 0})
