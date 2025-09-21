@@ -270,10 +270,10 @@ export default function ActivationView() {
                       ? 'border-gray-700 hover:bg-gray-700/50'
                       : 'border-gray-100 hover:bg-gray-50'
                   }`}>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 w-24 ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 w-24 ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.jobId}</TableCell>
-                    <TableCell className={`text-[14px] font-medium px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
+                    <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
                       isDarkMode ? 'text-gray-200' : 'text-gray-900'
                     }`}>{employee.name}</TableCell>
                     <TableCell className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle ${
