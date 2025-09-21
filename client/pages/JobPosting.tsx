@@ -351,15 +351,15 @@ export default function JobPosting() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem onSelect={() => handleOpenManage(job)}>
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => handleOpenManage(job), 0); }}>
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => handleViewApplication(job)}>
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => handleViewApplication(job), 0); }}>
                                   <FileText className="w-4 h-4 mr-2" />
                                   View Applications ({job.applicants ?? 0})
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => confirmArchive(job)}>
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => confirmArchive(job), 0); }}>
                                   <Archive className="w-4 h-4 mr-2" />
                                   Archive Job Posting
                                 </DropdownMenuItem>
@@ -400,15 +400,15 @@ export default function JobPosting() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem onSelect={() => handleOpenManage(job)}>
+                            <DropdownMenuItem onSelect={() => { setTimeout(() => handleOpenManage(job), 0); }}>
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
-                            <DropdownMenuItem onSelect={() => handleViewApplication(job)}>
+                            <DropdownMenuItem onSelect={() => { setTimeout(() => handleViewApplication(job), 0); }}>
                               <FileText className="w-4 h-4 mr-2" />
                               View Applications ({job.applicants ?? 0})
                             </DropdownMenuItem>
-                            <DropdownMenuItem onSelect={() => confirmArchive(job)}>
+                            <DropdownMenuItem onSelect={() => { setTimeout(() => confirmArchive(job), 0); }}>
                               <Archive className="w-4 h-4 mr-2" />
                               Archive Job Posting
                             </DropdownMenuItem>
