@@ -1,5 +1,6 @@
 import { useMemo, useState, Fragment } from "react";
 import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -111,7 +112,11 @@ export default function HiredCompact() {
                       <tr className="border-b hover:bg-gray-50">
                         <td className="py-3 px-3">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
+                            <Avatar className="h-8 w-8 flex-shrink-0 ring-1 ring-primary/10">
+                              <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-xs">
+                                {initials}
+                              </AvatarFallback>
+                            </Avatar>
                             <div className="leading-tight">
                               <div className="text-[14px] font-medium text-gray-900">{c.name}</div>
                               <div className="text-[12px] text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
@@ -162,7 +167,11 @@ export default function HiredCompact() {
               <Card key={c.id} className="p-4 border border-gray-200">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-semibold">{initials}</div>
+                    <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
+                      <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
+                        {initials}
+                      </AvatarFallback>
+                    </Avatar>
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{c.name}</div>
                       <div className="text-xs text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
