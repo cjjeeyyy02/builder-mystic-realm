@@ -1993,7 +1993,12 @@ Google India`
                             </div>
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-gray-500">Interview Progress:</span>
-                              <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getStatusColor(c.status)}`}>{c.status === 'completed' ? 'Approved' : c.status === 'pending' ? 'In process' : c.status === 'in-progress' ? 'In process' : c.status === 'rejected' ? 'Reject' : c.status}</span>
+                              <div className="flex items-center gap-2 ml-2 w-24">
+                                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${Math.round(getRoundProgress(c).completion)}%` }} />
+                                </div>
+                                <span className="text-xs font-medium">{Math.round(getRoundProgress(c).completion)}%</span>
+                              </div>
                             </div>
                           </div>
                         </CardContent>
