@@ -1893,26 +1893,70 @@ Google India`
                     {calendarView === 'day' && (
                       <div className="p-2 border-t">
                         <div className="text-xs font-medium text-gray-600 mb-2">{calendarDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                        <div className="space-y-1">
-                          {(eventsByDate[formatDate(calendarDate)] || []).filter(evt => {
+                        {(() => {
+                          const dayEvents = (eventsByDate[formatDate(calendarDate)] || []).filter(evt => {
                             const q = calendarSearch.trim().toLowerCase();
                             if (!q) return true;
                             return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
-                          }).map((evt, idx) => {
-                            const c = evt.status?.toLowerCase();
-                            const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
-                            return (
-                              <div key={idx} className={`border ${color} rounded-none px-2 py-1`}>
-                                <div className="flex items-center justify-between">
-                                  <div className="text-xs font-semibold">{evt.candidateName}</div>
-                                  {evt.time && (<div className="text-[11px] text-gray-600 ml-2">{evt.time}</div>)}
-                                </div>
-                                <div className="text-[11px]">{evt.appliedPosition}</div>
-                                <div className="text-[11px] opacity-80">{evt.roundName}</div>
+                          });
+                          const parseToIndex = (timeStr?: string) => {
+                            if (!timeStr) return 0;
+                            try {
+                              let h = 0, m = 0;
+                              const t = timeStr.trim();
+                              const ampm = /(am|pm)$/i.test(t) ? t.slice(-2).toUpperCase() : '';
+                              const nums = t.replace(/[^0-9:]/g, '').split(':');
+                              h = parseInt(nums[0] || '0', 10);
+                              m = parseInt(nums[1] || '0', 10);
+                              if (ampm) {
+                                if (ampm === 'PM' && h !== 12) h += 12;
+                                if (ampm === 'AM' && h === 12) h = 0;
+                              }
+                              const start = WORK_HOURS_START * 60;
+                              const total = h * 60 + m;
+                              return Math.max(0, Math.min(Math.floor((total - start) / SLOT_MINUTES), timeSlots.length - 1));
+                            } catch { return 0; }
+                          };
+                          const totalSlots = timeSlots.length;
+                          return (
+                            <div className="grid grid-cols-[64px,1fr] gap-2">
+                              {/* Time labels */}
+                              <div className="divide-y">
+                                {timeSlots.map((t, i) => (
+                                  <div key={i} className="h-8 pr-1 text-right text-[10px] text-gray-500">{i % 2 === 0 ? t : ''}</div>
+                                ))}
                               </div>
-                            );
-                          })}
-                        </div>
+                              {/* Timeline with events */}
+                              <div className="relative">
+                                {/* slot lines */}
+                                <div>
+                                  {Array.from({ length: totalSlots }).map((_, i) => (
+                                    <div key={i} className="h-8 border-b last:border-b-0" />
+                                  ))}
+                                </div>
+                                {/* events positioned by time */}
+                                {dayEvents.map((evt, idx) => {
+                                  const c = evt.status?.toLowerCase();
+                                  const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
+                                  const startIdx = parseToIndex(evt.time);
+                                  const topPx = startIdx * 32; // 8*4 tailwind h-8 approximated to 32px
+                                  const heightPx = 32; // default 30min slot
+                                  return (
+                                    <div key={idx} className={`absolute left-2 right-2 border ${color} rounded-md px-2 py-1 shadow-sm`}
+                                      style={{ top: `${topPx}px`, height: `${heightPx}px` }}>
+                                      <div className="flex items-center justify-between">
+                                        <div className="text-xs font-semibold truncate">{evt.candidateName}</div>
+                                        {evt.time && (<div className="text-[11px] text-gray-600 ml-2 whitespace-nowrap">{evt.time}</div>)}
+                                      </div>
+                                      <div className="text-[11px] truncate">{evt.appliedPosition}</div>
+                                      <div className="text-[11px] opacity-80 truncate">{evt.roundName}</div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })()}
                       </div>
                     )}
 
