@@ -594,7 +594,7 @@ export default function InterviewView() {
   };
   // Build events map by date from rounds and interviewCandidates
   const eventsByDate = useMemo(() => {
-    const map: Record<string, { candidateName: string; appliedPosition: string; roundName: string; status: string; }[]> = {};
+    const map: Record<string, { candidateName: string; appliedPosition: string; roundName: string; status: string; time?: string; }[]> = {};
     const candidateById = Object.fromEntries(interviewCandidates.map(c => [c.id, c]));
     rounds.forEach(r => {
       (r.candidates || []).forEach(cid => {
