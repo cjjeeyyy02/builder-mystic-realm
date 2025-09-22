@@ -1903,7 +1903,10 @@ Google India`
                             const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
                             return (
                               <div key={idx} className={`border ${color} rounded-none px-2 py-1`}>
-                                <div className="text-xs font-semibold">{evt.candidateName}</div>
+                                <div className="flex items-center justify-between">
+                                  <div className="text-xs font-semibold">{evt.candidateName}</div>
+                                  {evt.time && (<div className="text-[11px] text-gray-600 ml-2">{evt.time}</div>)}
+                                </div>
                                 <div className="text-[11px]">{evt.appliedPosition}</div>
                                 <div className="text-[11px] opacity-80">{evt.roundName}</div>
                               </div>
@@ -1931,10 +1934,13 @@ Google India`
                                     const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
                                     return (
                                       <div key={idx} className={`border ${color} rounded-none px-2 py-1`}>
-                                        <div className="text-xs font-semibold">{evt.candidateName}</div>
-                                        <div className="text-[11px]">{evt.appliedPosition}</div>
-                                        <div className="text-[11px] opacity-80">{evt.roundName}</div>
-                                      </div>
+                                <div className="flex items-center justify-between">
+                                  <div className="text-xs font-semibold">{evt.candidateName}</div>
+                                  {evt.time && (<div className="text-[11px] text-gray-600 ml-2">{evt.time}</div>)}
+                                </div>
+                                <div className="text-[11px]">{evt.appliedPosition}</div>
+                                <div className="text-[11px] opacity-80">{evt.roundName}</div>
+                              </div>
                                     );
                                   })}
                                 </div>
