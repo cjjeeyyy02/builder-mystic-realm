@@ -1962,14 +1962,6 @@ Google India`
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="h-6 px-2 text-xs"
-                                onClick={() => exportCandidateCard(c)}
-                              >
-                                <Download className="w-3 h-3 mr-1" /> Export
-                              </Button>
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                   <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
@@ -2000,7 +1992,7 @@ Google India`
                               <span className="text-xs font-medium text-blue-600 truncate ml-2">{c.currentRound}</span>
                             </div>
                             <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-500">Status:</span>
+                              <span className="text-xs text-gray-500">Interview Progress:</span>
                               <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getStatusColor(c.status)}`}>{c.status === 'completed' ? 'Approved' : c.status === 'pending' ? 'In process' : c.status === 'in-progress' ? 'In process' : c.status === 'rejected' ? 'Reject' : c.status}</span>
                             </div>
                           </div>
@@ -2128,7 +2120,7 @@ Google India`
                     <span className="text-xs text-gray-600">1-50 of 1,263</span>
                     <div className="flex items-center gap-1">
                       <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
-                        ◀
+                        ���
                       </Button>
                       <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
                         ▶
