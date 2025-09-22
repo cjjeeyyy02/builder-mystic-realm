@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -1953,13 +1954,15 @@ Google India`
                         <CardContent className="p-0 sm:p-0 space-y-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                                <span className="text-sm font-medium text-white">{c.applicantName.charAt(0)}</span>
-                              </div>
-                              <div>
-                                <p className="font-semibold text-sm">{c.applicantName}</p>
-                                <p className="text-xs text-gray-500">Job ID: {c.id}</p>
-                              </div>
+                              <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
+                              <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
+                                {c.applicantName.split(' ').map(n=>n[0]).join('')}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <p className="font-semibold text-sm">{c.applicantName}</p>
+                              <p className="text-xs text-gray-500">Job ID: {c.id}</p>
+                            </div>
                             </div>
                             <div className="flex items-center gap-2">
                               <DropdownMenu>
