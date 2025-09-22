@@ -226,7 +226,7 @@ export default function ActivationView() {
           <div className="flex items-center justify-between gap-2">
             <div className="relative flex-none w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Search Candidates" value={searchCandidates} onChange={(e) => setSearchCandidates(e.target.value)} className="pl-10 h-8 w-full rounded-md text-sm shadow-sm" />
+              <Input placeholder="Search candidates..." value={searchCandidates} onChange={(e) => setSearchCandidates(e.target.value)} className="pl-10 h-8 w-full rounded-md text-sm shadow-sm" />
             </div>
             <div className="flex items-center gap-2">
               <Button size="sm" variant={viewMode === "table" ? "default" : "outline"} onClick={() => setViewMode("table")}>
