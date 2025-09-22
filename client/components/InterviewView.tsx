@@ -606,7 +606,8 @@ export default function InterviewView() {
           candidateName: c.applicantName,
           appliedPosition: c.appliedPosition,
           roundName: r.roundName,
-          status: c.status
+          status: c.status,
+          time: r.scheduledTime
         });
       });
     });
