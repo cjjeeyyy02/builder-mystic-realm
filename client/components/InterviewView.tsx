@@ -1744,23 +1744,23 @@ Google India`,
                   <CardContent className="p-0">
                     <Table className="w-full text-sm">
                       <TableHeader>
-                        <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">
+                        <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                          <TableHead className="py-2 px-3 w-40 whitespace-nowrap">
                             CANDIDATE
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32 whitespace-nowrap">
+                          <TableHead className="py-2 px-3 w-32 whitespace-nowrap">
                             COUNTRY
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                          <TableHead className="py-2 px-3">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                          <TableHead className="py-2 px-3">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                          <TableHead className="py-2 px-3">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                          <TableHead className="py-2 px-3">
                             INTERVIEW PROGRESS
                           </TableHead>
                           <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">
@@ -3586,29 +3586,29 @@ Google India"
                 <CardContent className="p-0">
                   <Table>
                     <TableHeader>
-                      <TableRow className="border-b">
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                      <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                        <TableHead className="py-2 px-3">
                           DATE
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           CANDIDATE
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                        <TableHead className="py-2 px-3">
                           ACTION
                         </TableHead>
                       </TableRow>
