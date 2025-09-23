@@ -499,9 +499,6 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900 w-24">
-                      JOB ID
-                    </TableHead>
                     <TableHead className="py-2 px-3 font-semibold text-gray-900 whitespace-nowrap">
                       NAME
                     </TableHead>
@@ -533,18 +530,14 @@ export default function ActivationView() {
                       }`}
                     >
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 w-24 ${
-                          isDarkMode ? "text-gray-200" : "text-gray-900"
-                        }`}
-                      >
-                        {employee.jobId}
-                      </TableCell>
-                      <TableCell
                         className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
                           isDarkMode ? "text-gray-200" : "text-gray-900"
                         }`}
                       >
-                        {employee.name}
+                        <div className="flex flex-col">
+                          <span>{employee.name}</span>
+                          <span className="text-xs text-muted-foreground">Job ID: {employee.jobId}</span>
+                        </div>
                       </TableCell>
                       <TableCell
                         className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle ${
