@@ -499,11 +499,12 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[20%]" />
+                <col className="w-[16%]" />
+                <col className="w-[16%]" />
+                <col className="w-[10%]" />
                 <col className="w-[18%]" />
-                <col className="w-[12%]" />
-                <col className="w-[20%]" />
                 <col className="w-[14%]" />
+                <col className="w-[10%]" />
                 <col className="w-[8%]" />
                 <col className="w-[8%]" />
               </colgroup>
@@ -514,6 +515,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3">TOTAL EXPERIENCE</th>
                   <th className="py-2 px-3">EMAIL</th>
                   <th className="py-2 px-3">PHONE NUMBER</th>
+                  <th className="py-2 px-3">DATE ADDED</th>
                   <th className="py-2 px-3">STATUS</th>
                   <th className="py-2 px-3">ACTION</th>
                 </tr>
@@ -575,6 +577,9 @@ export default function ScreeningView() {
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
                         {formatPhone(candidate.phone)}
+                      </td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                        {candidate.dateAdded}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
                         <Badge
@@ -669,6 +674,10 @@ export default function ScreeningView() {
                       <p className="text-sm font-medium text-foreground">
                         {candidate.position}
                       </p>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Calendar className="w-3 h-3 flex-shrink-0 text-primary/70" />
+                      <span className="font-medium">Date Added: {candidate.dateAdded}</span>
                     </div>
                   </div>
 
