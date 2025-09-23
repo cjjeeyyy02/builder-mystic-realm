@@ -5268,7 +5268,7 @@ Google India"
 
                   {/* Footer */}
                   <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-end gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -5282,7 +5282,7 @@ Google India"
                       </Button>
                       <Button
                         size="sm"
-                        className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                        className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                         onClick={() => {
                           setShowTimelineSheet(false);
                           toast({ title: "Proceeded to Activation" });
