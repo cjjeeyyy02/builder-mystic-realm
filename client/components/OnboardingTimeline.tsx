@@ -123,17 +123,27 @@ export default function OnboardingTimeline() {
                         <td className="py-3 px-3 align-top w-[70%]">
                           <div className="flex items-center gap-2">
                             <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
-                            <button
-                              type="button"
+                            <span
+                              role="button"
+                              tabIndex={0}
                               className="text-gray-600 hover:text-gray-900"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 const newTitle = prompt('Edit item title', item.title) || item.title;
                                 setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  (e as any).stopPropagation();
+                                  const newTitle = prompt('Edit item title', item.title) || item.title;
+                                  setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
+                                }
                               }}
                               aria-label="Edit task title"
                             >
                               <Edit className="w-4 h-4" />
-                            </button>
+                            </span>
                           </div>
                           <div className="text-[12px] text-gray-500 mt-1">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
                         </td>
