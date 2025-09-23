@@ -1,6 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import CircleCheckbox from "@/components/ui/circle-checkbox";
@@ -25,8 +30,8 @@ interface TimelineSection {
 function formatDateMDY(dateStr: string): string {
   const d = new Date(dateStr);
   if (!isNaN(d.getTime())) {
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
     const yyyy = d.getFullYear();
     return `${mm}-${dd}-${yyyy}`;
   }
@@ -46,50 +51,150 @@ export default function OnboardingTimeline() {
       id: "day1",
       title: "Orientation Stage",
       items: [
-        { id: "day1-1", title: "Welcome session with HR (policies, benefits, payroll, leave system)", completed: false, files: [] },
-        { id: "day1-2", title: "Office tour & facilities overview", completed: false, files: [] },
-        { id: "day1-3", title: "Provide onboarding kit (swag, ID badge, access cards)", completed: false, files: [] },
-        { id: "day1-4", title: "Workstation & account setup", completed: false, files: [] },
-        { id: "day1-5", title: "Assign compliance training (health & safety, data privacy, security awareness)", completed: false, files: [] },
-        { id: "day1-6", title: "Meet manager & immediate team", completed: false, files: [] },
+        {
+          id: "day1-1",
+          title:
+            "Welcome session with HR (policies, benefits, payroll, leave system)",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "day1-2",
+          title: "Office tour & facilities overview",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "day1-3",
+          title: "Provide onboarding kit (swag, ID badge, access cards)",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "day1-4",
+          title: "Workstation & account setup",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "day1-5",
+          title:
+            "Assign compliance training (health & safety, data privacy, security awareness)",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "day1-6",
+          title: "Meet manager & immediate team",
+          completed: false,
+          files: [],
+        },
       ],
     },
     {
       id: "week1",
       title: "Integration Stage",
       items: [
-        { id: "w1-1", title: "Complete HR paperwork & benefits enrollment", completed: false, files: [] },
-        { id: "w1-2", title: "Team introduction & role overview", completed: false, files: [] },
-        { id: "w1-3", title: "Role-specific training & tools onboarding", completed: false, files: [] },
-        { id: "w1-4", title: "Shadowing/buddy/knowledge transfer sessions", completed: false, files: [] },
-        { id: "w1-5", title: "First-week goals & check-in with manager", completed: false, files: [] },
-        { id: "w1-6", title: "Schedule 30/60/90-day goals discussion", completed: false, files: [] },
+        {
+          id: "w1-1",
+          title: "Complete HR paperwork & benefits enrollment",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "w1-2",
+          title: "Team introduction & role overview",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "w1-3",
+          title: "Role-specific training & tools onboarding",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "w1-4",
+          title: "Shadowing/buddy/knowledge transfer sessions",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "w1-5",
+          title: "First-week goals & check-in with manager",
+          completed: false,
+          files: [],
+        },
+        {
+          id: "w1-6",
+          title: "Schedule 30/60/90-day goals discussion",
+          completed: false,
+          files: [],
+        },
       ],
     },
   ]);
 
   const totals = useMemo(() => {
     const total = sections.reduce((acc, s) => acc + s.items.length, 0);
-    const complete = sections.reduce((acc, s) => acc + s.items.filter(i => i.completed).length, 0);
-    const failed = sections.reduce((acc, s) => acc + s.items.filter(i => !i.completed && !!i.dateCompleted).length, 0);
+    const complete = sections.reduce(
+      (acc, s) => acc + s.items.filter((i) => i.completed).length,
+      0,
+    );
+    const failed = sections.reduce(
+      (acc, s) =>
+        acc + s.items.filter((i) => !i.completed && !!i.dateCompleted).length,
+      0,
+    );
     const inProcess = Math.max(total - complete - failed, 0);
     const pct = total ? Math.round((complete / total) * 100) : 0;
     return { total, complete, failed, inProcess, pct };
   }, [sections]);
 
   const markItem = (sectionId: string, itemId: string, completed: boolean) => {
-    setSections(prev => prev.map(s => s.id === sectionId ? {
-      ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, completed, dateCompleted: completed ? new Date().toISOString() : undefined } : i)
-    } : s));
+    setSections((prev) =>
+      prev.map((s) =>
+        s.id === sectionId
+          ? {
+              ...s,
+              items: s.items.map((i) =>
+                i.id === itemId
+                  ? {
+                      ...i,
+                      completed,
+                      dateCompleted: completed
+                        ? new Date().toISOString()
+                        : undefined,
+                    }
+                  : i,
+              ),
+            }
+          : s,
+      ),
+    );
   };
 
   const saveText = (sectionId: string, itemId: string, text: string) => {
     if (!text) return;
-    setSections(prev => prev.map(s => s.id === sectionId ? {
-      ...s,
-      items: s.items.map(i => i.id === itemId ? { ...i, textSubmission: text, completed: true, dateCompleted: new Date().toISOString() } : i)
-    } : s));
+    setSections((prev) =>
+      prev.map((s) =>
+        s.id === sectionId
+          ? {
+              ...s,
+              items: s.items.map((i) =>
+                i.id === itemId
+                  ? {
+                      ...i,
+                      textSubmission: text,
+                      completed: true,
+                      dateCompleted: new Date().toISOString(),
+                    }
+                  : i,
+              ),
+            }
+          : s,
+      ),
+    );
   };
 
   const allDone = totals.total > 0 && totals.total === totals.complete;
@@ -102,12 +207,17 @@ export default function OnboardingTimeline() {
             <AccordionTrigger className="text-base font-medium">
               <div className="flex items-center gap-2">
                 {section.title}
-                <Badge variant="secondary" className="ml-2 text-xs">{section.items.filter(i => i.completed).length}/{section.items.length}</Badge>
+                <Badge variant="secondary" className="ml-2 text-xs">
+                  {section.items.filter((i) => i.completed).length}/
+                  {section.items.length}
+                </Badge>
               </div>
             </AccordionTrigger>
             <AccordionContent>
               {section.description && (
-                <p className="text-sm text-muted-foreground mb-3">{section.description}</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {section.description}
+                </p>
               )}
               <div className="border border-gray-200 rounded-md overflow-hidden">
                 <table className="w-full text-sm">
@@ -122,22 +232,54 @@ export default function OnboardingTimeline() {
                       <tr key={item.id} className="border-b last:border-b-0">
                         <td className="py-3 px-3 align-top w-[70%]">
                           <div className="flex items-center gap-2">
-                            <span className="text-[14px] font-medium text-gray-900">{item.title}</span>
+                            <span className="text-[14px] font-medium text-gray-900">
+                              {item.title}
+                            </span>
                             <span
                               role="button"
                               tabIndex={0}
                               className="text-gray-600 hover:text-gray-900"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                const newTitle = prompt('Edit item title', item.title) || item.title;
-                                setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
+                                const newTitle =
+                                  prompt("Edit item title", item.title) ||
+                                  item.title;
+                                setSections((prev) =>
+                                  prev.map((s) =>
+                                    s.id === section.id
+                                      ? {
+                                          ...s,
+                                          items: s.items.map((it) =>
+                                            it.id === item.id
+                                              ? { ...it, title: newTitle }
+                                              : it,
+                                          ),
+                                        }
+                                      : s,
+                                  ),
+                                );
                               }}
                               onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
+                                if (e.key === "Enter" || e.key === " ") {
                                   e.preventDefault();
                                   (e as any).stopPropagation();
-                                  const newTitle = prompt('Edit item title', item.title) || item.title;
-                                  setSections(prev => prev.map(s => s.id === section.id ? { ...s, items: s.items.map(it => it.id === item.id ? { ...it, title: newTitle } : it) } : s));
+                                  const newTitle =
+                                    prompt("Edit item title", item.title) ||
+                                    item.title;
+                                  setSections((prev) =>
+                                    prev.map((s) =>
+                                      s.id === section.id
+                                        ? {
+                                            ...s,
+                                            items: s.items.map((it) =>
+                                              it.id === item.id
+                                                ? { ...it, title: newTitle }
+                                                : it,
+                                            ),
+                                          }
+                                        : s,
+                                    ),
+                                  );
                                 }
                               }}
                               aria-label="Edit task title"
@@ -145,11 +287,21 @@ export default function OnboardingTimeline() {
                               <Edit className="w-4 h-4" />
                             </span>
                           </div>
-                          <div className="text-[12px] text-gray-500 mt-1">Date Completed: {item.dateCompleted ? formatDateMDY(item.dateCompleted) : '-'}</div>
+                          <div className="text-[12px] text-gray-500 mt-1">
+                            Date Completed:{" "}
+                            {item.dateCompleted
+                              ? formatDateMDY(item.dateCompleted)
+                              : "-"}
+                          </div>
                         </td>
                         <td className="py-3 px-3 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
-                            <CircleCheckbox checked={item.completed} onCheckedChange={(v) => markItem(section.id, item.id, Boolean(v))} />
+                            <CircleCheckbox
+                              checked={item.completed}
+                              onCheckedChange={(v) =>
+                                markItem(section.id, item.id, Boolean(v))
+                              }
+                            />
                           </div>
                         </td>
                       </tr>
@@ -164,8 +316,19 @@ export default function OnboardingTimeline() {
 
       {allDone && (
         <div className="flex items-center justify-between pt-2 border-t">
-          <Button variant="outline" className="h-10" onClick={() => toast({ title: 'Candidate rejected' })}>Reject Candidate</Button>
-          <Button className="h-10" onClick={() => toast({ title: 'Onboarding marked complete' })}>Mark Onboarding Complete</Button>
+          <Button
+            variant="outline"
+            className="h-10"
+            onClick={() => toast({ title: "Candidate rejected" })}
+          >
+            Reject Candidate
+          </Button>
+          <Button
+            className="h-10"
+            onClick={() => toast({ title: "Onboarding marked complete" })}
+          >
+            Mark Onboarding Complete
+          </Button>
         </div>
       )}
     </div>

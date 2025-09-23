@@ -788,14 +788,24 @@ export default function ActivationView() {
                                   });
                                 }}
                                 onKeyDown={(e) => {
-                                  if (e.key === 'Enter' || e.key === ' ') {
+                                  if (e.key === "Enter" || e.key === " ") {
                                     e.preventDefault();
                                     (e as any).stopPropagation();
-                                    const newTitle = prompt('Edit item name', item.title) || item.title;
+                                    const newTitle =
+                                      prompt("Edit item name", item.title) ||
+                                      item.title;
                                     setChecklistMap((prev) => {
                                       const copy = { ...prev } as typeof prev;
-                                      const arr = copy[selectedEmployeeForChecklist!.jobId].map((it) => it.id === item.id ? { ...it, title: newTitle } : it);
-                                      copy[selectedEmployeeForChecklist!.jobId] = arr;
+                                      const arr = copy[
+                                        selectedEmployeeForChecklist!.jobId
+                                      ].map((it) =>
+                                        it.id === item.id
+                                          ? { ...it, title: newTitle }
+                                          : it,
+                                      );
+                                      copy[
+                                        selectedEmployeeForChecklist!.jobId
+                                      ] = arr;
                                       return copy;
                                     });
                                   }
