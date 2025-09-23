@@ -499,13 +499,13 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                    <TableHead className="py-2 px-3 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
                     <TableHead className="py-2 px-3">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
                     <TableHead className="py-2 px-3">
