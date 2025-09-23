@@ -5198,6 +5198,8 @@ Google India"
                                         date: "",
                                         time: "",
                                         interviewer: first,
+                                        interviewerNames: first ? [first] : [],
+                                        interviewerInput: "",
                                       });
                                       setShowScheduleModal(true);
                                     }}
