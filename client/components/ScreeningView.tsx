@@ -570,7 +570,7 @@ export default function ScreeningView() {
                         {candidate.totalExperience}
                       </td>
                       <td
-                        className="py-3 px-3 text-[14px] text-gray-900 truncate"
+                        className="py-3 pl-6 pr-3 text-[14px] text-gray-900 truncate"
                         title={candidate.email}
                       >
                         {candidate.email}
