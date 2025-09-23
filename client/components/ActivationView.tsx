@@ -737,7 +737,7 @@ export default function ActivationView() {
                     </div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
                     <div>
                       <div className="text-muted-foreground">Joining Date</div>
                       <div
