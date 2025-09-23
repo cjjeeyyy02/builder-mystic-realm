@@ -498,23 +498,23 @@ export default function ActivationView() {
             <Card className="p-0 border border-gray-200 rounded-none">
               <Table className="w-full text-sm">
                 <TableHeader>
-                  <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900 whitespace-nowrap">
+                  <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                    <TableHead className="py-2 px-3 whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                    <TableHead className="py-2 px-3">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                    <TableHead className="py-2 px-3">
                       FILES UPLOADED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                    <TableHead className="py-2 px-3">
                       ACTIVATION PROGRESS
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">
+                    <TableHead className="py-2 px-3 text-center">
                       ACTION
                     </TableHead>
                   </TableRow>
