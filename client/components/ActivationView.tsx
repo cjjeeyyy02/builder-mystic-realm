@@ -1102,11 +1102,11 @@ export default function ActivationView() {
               </DialogHeader>
               <div className="space-y-3 text-xs">
                 <div>
-                  <div className="text-[11px] text-muted-foreground">Candidate Name</div>
+                  <div className="text-xs text-muted-foreground">Candidate Name</div>
                   <div className="text-sm font-medium">{selectedEmployeeForReminder?.name || "-"}</div>
                 </div>
                 <div>
-                  <div className="text-[11px] text-muted-foreground">Applied Position</div>
+                  <div className="text-xs text-muted-foreground">Applied Position</div>
                   <div className="text-sm text-muted-foreground">{selectedEmployeeForReminder?.appliedJobRole || "-"}</div>
                 </div>
                 <div>
