@@ -3,7 +3,13 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { List, Grid, Download, ChevronDown } from "lucide-react";
 import OnboardingTimeline from "@/components/OnboardingTimeline";
 
@@ -31,11 +37,41 @@ function formatMDY(dateStr: string) {
 }
 
 const sample: HiredCandidate[] = [
-  { id: "1", name: "Emily Rodriguez", position: "Marketing Specialist", joiningDate: "2025-08-11", stage: "Pre-Onboarding" },
-  { id: "2", name: "David Kim", position: "Software Engineer", joiningDate: "2025-08-05", stage: "Orientation" },
-  { id: "3", name: "Carlos Mendez", position: "Sales Associate", joiningDate: "2025-08-02", stage: "Integration" },
-  { id: "4", name: "Maya Singh", position: "Product Designer", joiningDate: "2025-07-29", stage: "Orientation" },
-  { id: "5", name: "Sofia Rossi", position: "Data Analyst", joiningDate: "2025-07-20", stage: "Pre-Onboarding" },
+  {
+    id: "1",
+    name: "Emily Rodriguez",
+    position: "Marketing Specialist",
+    joiningDate: "2025-08-11",
+    stage: "Pre-Onboarding",
+  },
+  {
+    id: "2",
+    name: "David Kim",
+    position: "Software Engineer",
+    joiningDate: "2025-08-05",
+    stage: "Orientation",
+  },
+  {
+    id: "3",
+    name: "Carlos Mendez",
+    position: "Sales Associate",
+    joiningDate: "2025-08-02",
+    stage: "Integration",
+  },
+  {
+    id: "4",
+    name: "Maya Singh",
+    position: "Product Designer",
+    joiningDate: "2025-07-29",
+    stage: "Orientation",
+  },
+  {
+    id: "5",
+    name: "Sofia Rossi",
+    position: "Data Analyst",
+    joiningDate: "2025-07-20",
+    stage: "Pre-Onboarding",
+  },
 ];
 
 export default function HiredCompact() {
@@ -44,34 +80,68 @@ export default function HiredCompact() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-
   const candidates = useMemo(() => {
     const q = search.toLowerCase().trim();
     return sample.filter((c) => {
       const okStage = stageFilter === "all" || c.stage === stageFilter;
-      const okQ = !q || c.name.toLowerCase().includes(q) || c.position.toLowerCase().includes(q);
+      const okQ =
+        !q ||
+        c.name.toLowerCase().includes(q) ||
+        c.position.toLowerCase().includes(q);
       return okStage && okQ;
     });
   }, [search, stageFilter]);
 
   const exportCSV = () => {
-    const headers = ["Candidate","Applied Position","Joining Date","Stage"];
-    const rows = candidates.map(c => [c.name, c.position, formatMDY(c.joiningDate), c.stage]);
-    const csv = [headers.join(","), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(","))].join("\n");
+    const headers = ["Candidate", "Applied Position", "Joining Date", "Stage"];
+    const rows = candidates.map((c) => [
+      c.name,
+      c.position,
+      formatMDY(c.joiningDate),
+      c.stage,
+    ]);
+    const csv = [
+      headers.join(","),
+      ...rows.map((r) =>
+        r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","),
+      ),
+    ].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a"); a.href = url; a.download = "hired_candidates.csv"; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "hired_candidates.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
     <div className="space-y-3">
-
       {/* Controls */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <div className="relative flex-none w-64">
-            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            <Input placeholder="Search candidates..." value={search} onChange={(e)=>setSearch(e.target.value)} className="pl-10 h-8 w-full rounded-md text-sm shadow-sm" />
+            <svg
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M21 21l-4.35-4.35"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <Input
+              placeholder="Search candidates..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-10 h-8 w-full rounded-md text-sm shadow-sm"
+            />
           </div>
           <Select value={stageFilter} onValueChange={setStageFilter}>
             <SelectTrigger className="h-8 w-48 text-sm">
@@ -85,13 +155,34 @@ export default function HiredCompact() {
           </Select>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" variant={view === 'list' ? 'default' : 'outline'} onClick={()=>setView('list')} title="List View"><List className="w-4 h-4" /></Button>
-          <Button size="sm" variant={view === 'grid' ? 'default' : 'outline'} onClick={()=>setView('grid')} title="Grid View"><Grid className="w-4 h-4" /></Button>
-          <Button size="sm" variant="outline" className="text-gray-800" onClick={exportCSV}><Download className="w-4 h-4 mr-1" /> Export</Button>
+          <Button
+            size="sm"
+            variant={view === "list" ? "default" : "outline"}
+            onClick={() => setView("list")}
+            title="List View"
+          >
+            <List className="w-4 h-4" />
+          </Button>
+          <Button
+            size="sm"
+            variant={view === "grid" ? "default" : "outline"}
+            onClick={() => setView("grid")}
+            title="Grid View"
+          >
+            <Grid className="w-4 h-4" />
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-gray-800"
+            onClick={exportCSV}
+          >
+            <Download className="w-4 h-4 mr-1" /> Export
+          </Button>
         </div>
       </div>
 
-      {view === 'list' && (
+      {view === "list" && (
         <Card className="p-0 border border-gray-200 rounded-none">
           <div className="overflow-auto">
             <table className="w-full text-sm">
@@ -105,36 +196,63 @@ export default function HiredCompact() {
                 </tr>
               </thead>
               <tbody>
-                {candidates.slice(0, 5).map((c)=>{
-                  const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+                {candidates.slice(0, 5).map((c) => {
+                  const initials = c.name
+                    .split(" ")
+                    .map((s) => s[0])
+                    .slice(0, 2)
+                    .join("")
+                    .toUpperCase();
                   return (
                     <Fragment key={c.id}>
                       <tr className="border-b hover:bg-gray-50">
                         <td className="py-3 px-3">
                           <div className="flex items-center gap-2">
                             <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                              <span className="text-xs font-medium text-white">{initials}</span>
+                              <span className="text-xs font-medium text-white">
+                                {initials}
+                              </span>
                             </div>
                             <div className="leading-tight">
-                              <div className="text-[14px] font-medium text-gray-900">{c.name}</div>
-                              <div className="text-[12px] text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
+                              <div className="text-[14px] font-medium text-gray-900">
+                                {c.name}
+                              </div>
+                              <div className="text-[12px] text-gray-500">
+                                Job ID: {String(c.id).padStart(3, "0")}
+                              </div>
                             </div>
                           </div>
                         </td>
-                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.position}</td>
-                        <td className="py-3 px-3 text-[14px] text-gray-900">{formatMDY(c.joiningDate)}</td>
-                        <td className="py-3 px-3 text-[14px] text-gray-900">{c.stage === 'Pre-Onboarding' ? 'Orientation' : c.stage}</td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">
+                          {c.position}
+                        </td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">
+                          {formatMDY(c.joiningDate)}
+                        </td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">
+                          {c.stage === "Pre-Onboarding"
+                            ? "Orientation"
+                            : c.stage}
+                        </td>
                         <td className="py-3 px-3 text-center align-middle">
                           <div className="flex items-center justify-center">
                             <Button
                               variant="ghost"
                               size="sm"
                               className="h-6 w-6 p-0"
-                              onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                              onClick={() =>
+                                setExpandedId(expandedId === c.id ? null : c.id)
+                              }
                               aria-expanded={expandedId === c.id}
-                              aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                              aria-label={
+                                expandedId === c.id
+                                  ? "Collapse details"
+                                  : "Expand details"
+                              }
                             >
-                              <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform ${expandedId === c.id ? "rotate-180" : ""}`}
+                              />
                             </Button>
                           </div>
                         </td>
@@ -157,37 +275,65 @@ export default function HiredCompact() {
         </Card>
       )}
 
-      {view === 'grid' && (
+      {view === "grid" && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {candidates.slice(0, 5).map((c) => {
-            const initials = c.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+            const initials = c.name
+              .split(" ")
+              .map((s) => s[0])
+              .slice(0, 2)
+              .join("")
+              .toUpperCase();
             return (
               <Card key={c.id} className="p-4 border border-gray-200">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                      <span className="text-sm font-medium text-white">{initials}</span>
+                      <span className="text-sm font-medium text-white">
+                        {initials}
+                      </span>
                     </div>
                     <div>
-                      <div className="text-sm font-semibold text-gray-900">{c.name}</div>
-                      <div className="text-xs text-gray-500">Job ID: {String(c.id).padStart(3,'0')}</div>
+                      <div className="text-sm font-semibold text-gray-900">
+                        {c.name}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        Job ID: {String(c.id).padStart(3, "0")}
+                      </div>
                     </div>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-6 w-6 p-0"
-                    onClick={() => setExpandedId(expandedId === c.id ? null : c.id)}
+                    onClick={() =>
+                      setExpandedId(expandedId === c.id ? null : c.id)
+                    }
                     aria-expanded={expandedId === c.id}
-                    aria-label={expandedId === c.id ? 'Collapse details' : 'Expand details'}
+                    aria-label={
+                      expandedId === c.id
+                        ? "Collapse details"
+                        : "Expand details"
+                    }
                   >
-                    <ChevronDown className={`w-4 h-4 transition-transform ${expandedId === c.id ? 'rotate-180' : ''}`} />
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${expandedId === c.id ? "rotate-180" : ""}`}
+                    />
                   </Button>
                 </div>
                 <div className="text-xs text-gray-600">
-                  <div className="mb-1"><span className="font-medium text-gray-900">Position:</span> {c.position}</div>
-                  <div className="mb-1"><span className="font-medium text-gray-900">Joining:</span> {formatMDY(c.joiningDate)}</div>
-                  <div><span className="font-medium text-gray-900">Stage:</span> {c.stage === 'Pre-Onboarding' ? 'Orientation' : c.stage}</div>
+                  <div className="mb-1">
+                    <span className="font-medium text-gray-900">Position:</span>{" "}
+                    {c.position}
+                  </div>
+                  <div className="mb-1">
+                    <span className="font-medium text-gray-900">Joining:</span>{" "}
+                    {formatMDY(c.joiningDate)}
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-900">Stage:</span>{" "}
+                    {c.stage === "Pre-Onboarding" ? "Orientation" : c.stage}
+                  </div>
                 </div>
                 {expandedId === c.id && (
                   <div className="mt-3 border-t pt-3">

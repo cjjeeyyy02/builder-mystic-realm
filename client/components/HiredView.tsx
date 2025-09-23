@@ -287,7 +287,13 @@ export default function HiredView() {
                 {/* Header with Avatar and Status */}
                 <div className="flex items-start justify-between">
                   <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                    <span className="text-base font-medium text-white">{employee.candidateName.split(" ").map(n=>n[0]).slice(0,2).join("")}</span>
+                    <span className="text-base font-medium text-white">
+                      {employee.candidateName
+                        .split(" ")
+                        .map((n) => n[0])
+                        .slice(0, 2)
+                        .join("")}
+                    </span>
                   </div>
                   <Badge
                     variant="outline"
@@ -674,10 +680,18 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                   <TableCell className="py-4">
                     <div className="flex items-center gap-2">
                       <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                        <span className="text-xs font-medium text-white">{candidate.name.split(" ").map(n=>n[0]).slice(0,2).join("")}</span>
+                        <span className="text-xs font-medium text-white">
+                          {candidate.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .slice(0, 2)
+                            .join("")}
+                        </span>
                       </div>
                       <div className="leading-tight min-w-0">
-                        <div className="text-[14px] font-medium text-gray-900">{candidate.name}</div>
+                        <div className="text-[14px] font-medium text-gray-900">
+                          {candidate.name}
+                        </div>
                       </div>
                     </div>
                   </TableCell>
