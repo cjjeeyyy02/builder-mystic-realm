@@ -49,6 +49,7 @@ import {
   Clock,
   FileText,
   Users,
+  User,
   Search,
   Upload,
   Download,
@@ -1771,11 +1772,14 @@ Google India`,
                       <TableBody>
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            <div className="flex flex-col">
-                              <span>Jaya Sharma</span>
-                              <span className="text-xs text-muted-foreground">
-                                Job ID: 001
-                              </span>
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <User className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>Jaya Sharma</span>
+                                <span className="text-xs text-muted-foreground">Job ID: 001</span>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1839,11 +1843,14 @@ Google India`,
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            <div className="flex flex-col">
-                              <span>Mark Robinson</span>
-                              <span className="text-xs text-muted-foreground">
-                                Job ID: 002
-                              </span>
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <User className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>Mark Robinson</span>
+                                <span className="text-xs text-muted-foreground">Job ID: 002</span>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1907,11 +1914,14 @@ Google India`,
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            <div className="flex flex-col">
-                              <span>John Carter</span>
-                              <span className="text-xs text-muted-foreground">
-                                Job ID: 003
-                              </span>
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <User className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>John Carter</span>
+                                <span className="text-xs text-muted-foreground">Job ID: 003</span>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1975,11 +1985,14 @@ Google India`,
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            <div className="flex flex-col">
-                              <span>Sara Ahmed</span>
-                              <span className="text-xs text-muted-foreground">
-                                Job ID: 004
-                              </span>
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <User className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>Sara Ahmed</span>
+                                <span className="text-xs text-muted-foreground">Job ID: 004</span>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -2043,11 +2056,14 @@ Google India`,
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            <div className="flex flex-col">
-                              <span>Shruti Kapoor</span>
-                              <span className="text-xs text-muted-foreground">
-                                Job ID: 005
-                              </span>
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                                <User className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>Shruti Kapoor</span>
+                                <span className="text-xs text-muted-foreground">Job ID: 005</span>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -3629,11 +3645,14 @@ Google India"
                           8/14/2025
                         </TableCell>
                         <TableCell className="py-2 text-xs">
-                          <div className="flex flex-col">
-                            <span>Jaya</span>
-                            <span className="text-[10px] text-muted-foreground">
-                              Job ID: 001
-                            </span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                              <User className="w-4 h-4 text-primary" />
+                            </div>
+                            <div className="flex flex-col">
+                              <span>Jaya</span>
+                              <span className="text-[10px] text-muted-foreground">Job ID: 001</span>
+                            </div>
                           </div>
                         </TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
@@ -3766,11 +3785,14 @@ Google India"
                           8/14/2025
                         </TableCell>
                         <TableCell className="py-2 text-xs">
-                          <div className="flex flex-col">
-                            <span>Mark</span>
-                            <span className="text-[10px] text-muted-foreground">
-                              Job ID: 002
-                            </span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                              <User className="w-4 h-4 text-primary" />
+                            </div>
+                            <div className="flex flex-col">
+                              <span>Mark</span>
+                              <span className="text-[10px] text-muted-foreground">Job ID: 002</span>
+                            </div>
                           </div>
                         </TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
