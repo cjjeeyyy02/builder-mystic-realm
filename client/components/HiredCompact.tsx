@@ -51,6 +51,7 @@ const sample: HiredCandidate[] = [
     name: "David Kim",
     position: "Software Engineer",
     joiningDate: "2025-08-05",
+    dateAdded: "2025-08-01",
     stage: "Orientation",
   },
   {
