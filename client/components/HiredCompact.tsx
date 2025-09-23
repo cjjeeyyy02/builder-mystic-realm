@@ -238,6 +238,9 @@ export default function HiredCompact() {
                           {formatMDY(c.joiningDate)}
                         </td>
                         <td className="py-3 px-3 text-[14px] text-gray-900">
+                          {formatMDY(c.dateAdded)}
+                        </td>
+                        <td className="py-3 px-3 text-[14px] text-gray-900">
                           {c.stage === "Pre-Onboarding"
                             ? "Orientation"
                             : c.stage}
