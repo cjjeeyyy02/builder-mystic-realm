@@ -263,6 +263,12 @@ export default function ActivationView() {
     }, 0);
   };
 
+  const openReminderModal = (emp: Employee) => {
+    setSelectedEmployeeForReminder(emp);
+    setReminderMessage("");
+    setTimeout(() => setShowReminderModal(true), 0);
+  };
+
   const closeChecklistModal = () => {
     setSelectedEmployeeForChecklist(null);
     setIsChecklistOpen(false);
@@ -599,11 +605,7 @@ export default function ActivationView() {
                                 Update Checklist
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onSelect={() => {
-                                  setSelectedEmployeeForReminder(employee);
-                                  setReminderMessage("");
-                                  setShowReminderModal(true);
-                                }}
+                                onSelect={() => openReminderModal(employee)}
                                 className={`cursor-pointer transition-colors duration-200 ${
                                   isDarkMode
                                     ? "text-gray-300 hover:bg-gray-700 focus:bg-gray-700"
@@ -679,11 +681,7 @@ export default function ActivationView() {
                           Update Checklist
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onSelect={() => {
-                            setSelectedEmployeeForReminder(employee);
-                            setReminderMessage("");
-                            setShowReminderModal(true);
-                          }}
+                          onSelect={() => openReminderModal(employee)}
                           className={`cursor-pointer transition-colors duration-200 ${
                             isDarkMode
                               ? "text-gray-300 hover:bg-gray-700 focus:bg-gray-700"
