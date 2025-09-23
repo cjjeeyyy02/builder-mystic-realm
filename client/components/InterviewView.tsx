@@ -1748,7 +1748,7 @@ Google India`,
                           <TableHead className="py-2 px-3 font-semibold w-40 whitespace-nowrap">
                             CANDIDATE
                           </TableHead>
-                          <TableHead className="py-2 px-3 w-32 whitespace-nowrap">
+                          <TableHead className="py-2 px-3 font-semibold w-32 whitespace-nowrap">
                             COUNTRY
                           </TableHead>
                           <TableHead className="py-2 px-3">
