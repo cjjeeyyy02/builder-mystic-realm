@@ -566,7 +566,7 @@ export default function ScreeningView() {
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                      <td className="py-3 pl-3 pr-6 text-[14px] text-gray-900">
                         {candidate.totalExperience}
                       </td>
                       <td
