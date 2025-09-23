@@ -327,7 +327,7 @@ export default function JobPosting() {
                         <th className="py-2 pr-4 font-bold uppercase text-gray-900">LOCATION</th>
                         <th className="py-2 pr-4 font-bold uppercase text-gray-900">STATUS</th>
                         <th className="py-2 pr-4 font-bold uppercase text-gray-900">DATE POSTED</th>
-                        <th className="py-2 pr-4 font-bold uppercase text-gray-900">APPLICANTS COUNT</th>
+                        <th className="py-2 pr-4 font-bold uppercase text-gray-900 text-center">APPLICANTS COUNT</th>
                         <th className="py-2 pr-4 font-bold uppercase text-gray-900">ACTION</th>
                       </tr>
                     </thead>
@@ -342,7 +342,7 @@ export default function JobPosting() {
                           <td className="py-3 pr-4">{job.location}</td>
                           <td className="py-3 pr-4">{job.status}</td>
                           <td className="py-3 pr-4">{formatDateMDY(job.datePosted)}</td>
-                          <td className="py-3 pr-4">{job.applicants ?? 0}</td>
+                          <td className="py-3 pr-4 text-center">{job.applicants ?? 0}</td>
                           <td className="py-3 pr-4">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
