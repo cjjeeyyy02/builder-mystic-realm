@@ -1583,6 +1583,8 @@ Google India`,
     date: "",
     time: "",
     interviewer: "",
+    interviewerNames: [] as string[],
+    interviewerInput: "",
   });
   const [remarkForm, setRemarkForm] = useState<{
     result: string;
