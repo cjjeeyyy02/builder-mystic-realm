@@ -7,6 +7,7 @@ interface ScreeningCandidate {
   totalExperience: string;
   relevantExperience: string;
   status: "approved" | "reject" | "pending";
+  dateAdded: string;
   // Optional rejection reason stored when candidate is rejected
   rejectionReason?: string;
   // Enhanced resume data
@@ -37,6 +38,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     totalExperience: "5 years",
     relevantExperience: "5 years",
     status: "pending",
+    dateAdded: "08/10/2025",
     resumeUrl: "/documents/emily-rodriguez-resume.pdf",
     summary: "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
     education: "Master's in Human-Computer Interaction, Stanford University",
@@ -70,6 +72,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     totalExperience: "7 years",
     relevantExperience: "6 years",
     status: "pending",
+    dateAdded: "08/10/2025",
     resumeUrl: "/documents/david-kim-resume.pdf",
     summary: "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
     education: "Bachelor's in Computer Science, UC Berkeley",
@@ -103,6 +106,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     totalExperience: "6 years",
     relevantExperience: "5 years",
     status: "pending",
+    dateAdded: "08/10/2025",
     resumeUrl: "/documents/carlos-mendez-resume.pdf",
     summary: "Data Scientist experienced with production ML systems and data engineering.",
     education: "M.S. in Data Science, NYU",
@@ -125,6 +129,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     totalExperience: "3 years",
     relevantExperience: "3 years",
     status: "pending",
+    dateAdded: "08/10/2025",
     resumeUrl: "/documents/maya-singh-resume.pdf",
     summary: "QA Engineer with experience in automation, integration testing, and CI/CD.",
     education: "B.S. in Information Systems, Georgia Tech",
@@ -147,6 +152,7 @@ export const screeningCandidates: ScreeningCandidate[] = [
     totalExperience: "6 years",
     relevantExperience: "6 years",
     status: "pending",
+    dateAdded: "08/10/2025",
     resumeUrl: "/documents/sofia-rossi-resume.pdf",
     summary: "Product Designer with cross-functional experience in UX and visual design.",
     education: "B.A. in Design, Politecnico di Milano",
