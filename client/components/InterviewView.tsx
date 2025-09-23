@@ -1751,16 +1751,16 @@ Google India`,
                           <TableHead className="py-2 px-3 font-semibold w-32 whitespace-nowrap">
                             COUNTRY
                           </TableHead>
-                          <TableHead className="py-2 px-3">
+                          <TableHead className="py-2 px-3 font-semibold">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3">
+                          <TableHead className="py-2 px-3 font-semibold">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3">
+                          <TableHead className="py-2 px-3 font-semibold">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3">
+                          <TableHead className="py-2 px-3 font-semibold">
                             INTERVIEW PROGRESS
                           </TableHead>
                           <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">
@@ -3587,28 +3587,28 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           DATE
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           CANDIDATE
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3">
+                        <TableHead className="py-2 px-3 font-semibold">
                           ACTION
                         </TableHead>
                       </TableRow>
