@@ -519,6 +519,9 @@ export default function ActivationView() {
                     <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
+                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
+                      DATE ADDED
+                    </TableHead>
                     <TableHead className="py-2 px-3 font-semibold">
                       FILES UPLOADED
                     </TableHead>
