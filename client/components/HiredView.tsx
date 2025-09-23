@@ -577,32 +577,32 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
         <CardContent className="p-0">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/30 border-b">
-                <TableHead className="w-16 text-left font-semibold text-foreground py-4">
+              <TableRow className="text-left text-[13px] text-gray-600 border-b">
+                <TableHead className="w-16 text-left py-2 px-3">
                   S. NO
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   NAME
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   ROLE
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   DEPT
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   EXPECTED DOJ
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   EMPLOYMENT
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   LOCATION
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   CONFIRMED DOJ
                 </TableHead>
-                <TableHead className="font-semibold text-foreground py-4">
+                <TableHead className="py-2 px-3">
                   ACTIONS
                 </TableHead>
               </TableRow>
