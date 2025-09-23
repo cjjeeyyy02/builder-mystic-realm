@@ -46,6 +46,7 @@ interface HiredEmployee {
   appliedPosition: string;
   department: string;
   dateOfJoining: string;
+  dateAdded: string;
   email?: string;
   phone?: string;
   employeeId?: string;
@@ -58,6 +59,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Business Development Manager",
     department: "Marketing",
     dateOfJoining: "08/10/2025",
+    dateAdded: "08/05/2025",
     email: "taylor.rodriguez@company.com",
     phone: "+1 (555) 123-4567",
     employeeId: "EMP001",
@@ -68,6 +70,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Operations Associate",
     department: "Operations",
     dateOfJoining: "08/07/2025",
+    dateAdded: "08/03/2025",
     email: "sofia.martinez@company.com",
     phone: "+1 (555) 234-5678",
     employeeId: "EMP002",
@@ -78,6 +81,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Content Writer",
     department: "Content",
     dateOfJoining: "08/05/2025",
+    dateAdded: "08/01/2025",
     email: "liam.johnson@company.com",
     phone: "+1 (555) 345-6789",
     employeeId: "EMP003",
@@ -88,6 +92,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "UI/UX Designer",
     department: "Design",
     dateOfJoining: "08/04/2025",
+    dateAdded: "07/31/2025",
     email: "watson.davis@company.com",
     phone: "+1 (555) 456-7890",
     employeeId: "EMP004",
@@ -98,6 +103,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "ML Engineer",
     department: "Engineering",
     dateOfJoining: "08/03/2025",
+    dateAdded: "07/30/2025",
     email: "olivia.chen@company.com",
     phone: "+1 (555) 567-8901",
     employeeId: "EMP005",
@@ -108,6 +114,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Product Manager",
     department: "Product",
     dateOfJoining: "08/02/2025",
+    dateAdded: "07/29/2025",
     email: "marcus.thompson@company.com",
     phone: "+1 (555) 678-9012",
     employeeId: "EMP006",
@@ -118,6 +125,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Finance Analyst",
     department: "Finance",
     dateOfJoining: "08/01/2025",
+    dateAdded: "07/28/2025",
     email: "erik.anderson@company.com",
     phone: "+1 (555) 789-0123",
     employeeId: "EMP007",
@@ -128,6 +136,7 @@ const hiredEmployees: HiredEmployee[] = [
     appliedPosition: "Data Scientist",
     department: "Analytics",
     dateOfJoining: "07/30/2025",
+    dateAdded: "07/25/2025",
     email: "priya.patel@company.com",
     phone: "+1 (555) 890-1234",
     employeeId: "EMP008",
@@ -337,13 +346,24 @@ export default function HiredView() {
                 </div>
 
                 {/* Date of Joining */}
-                <div>
-                  <div className="text-xs text-muted-foreground font-medium mb-1">
-                    Date of Joining:
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <div className="text-xs text-muted-foreground font-medium mb-1">
+                      Date of Joining:
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground font-medium text-sm">
+                      <Calendar className="w-4 h-4 text-muted-foreground" />
+                      {employee.dateOfJoining}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-foreground font-medium text-sm">
-                    <Calendar className="w-4 h-4 text-muted-foreground" />
-                    {employee.dateOfJoining}
+                  <div>
+                    <div className="text-xs text-muted-foreground font-medium mb-1">
+                      Date Added:
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground font-medium text-sm">
+                      <Calendar className="w-4 h-4 text-muted-foreground" />
+                      {employee.dateAdded}
+                    </div>
                   </div>
                 </div>
               </div>
