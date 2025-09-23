@@ -52,6 +52,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -241,6 +242,11 @@ export default function ActivationView() {
   const [emailSubject, setEmailSubject] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [emailAttachment, setEmailAttachment] = useState<File | null>(null);
+
+  // Reminder modal state
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [selectedEmployeeForReminder, setSelectedEmployeeForReminder] = useState<Employee | null>(null);
+  const [reminderMessage, setReminderMessage] = useState("");
 
   // Update Status modal state
   const [statusModalItemId, setStatusModalItemId] = useState<string | null>(
@@ -593,11 +599,11 @@ export default function ActivationView() {
                                 Update Checklist
                               </DropdownMenuItem>
                               <DropdownMenuItem
-                                onSelect={() =>
-                                  console.log(
-                                    `Send reminder for ${employee.name}`,
-                                  )
-                                }
+                                onSelect={() => {
+                                  setSelectedEmployeeForReminder(employee);
+                                  setReminderMessage("");
+                                  setShowReminderModal(true);
+                                }}
                                 className={`cursor-pointer transition-colors duration-200 ${
                                   isDarkMode
                                     ? "text-gray-300 hover:bg-gray-700 focus:bg-gray-700"
@@ -673,9 +679,11 @@ export default function ActivationView() {
                           Update Checklist
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onSelect={() =>
-                            console.log(`Send reminder for ${employee.name}`)
-                          }
+                          onSelect={() => {
+                            setSelectedEmployeeForReminder(employee);
+                            setReminderMessage("");
+                            setShowReminderModal(true);
+                          }}
                           className={`cursor-pointer transition-colors duration-200 ${
                             isDarkMode
                               ? "text-gray-300 hover:bg-gray-700 focus:bg-gray-700"
@@ -1071,6 +1079,67 @@ export default function ActivationView() {
                   onClick={() => {
                     setShowSendLink(false);
                     toast({ title: "Link sent successfully" });
+                  }}
+                >
+                  Send
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Send Reminder Modal */}
+          <Dialog open={showReminderModal} onOpenChange={(open) => {
+            setShowReminderModal(open);
+            if (!open) {
+              setSelectedEmployeeForReminder(null);
+              setReminderMessage("");
+            }
+          }}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-sm font-semibold">Send Reminder</DialogTitle>
+                <DialogDescription>Send a reminder to the candidate to complete their activation process</DialogDescription>
+              </DialogHeader>
+              <div className="space-y-3 text-xs">
+                <div>
+                  <div className="text-[11px] text-muted-foreground">Candidate Name</div>
+                  <div className="text-sm font-medium">{selectedEmployeeForReminder?.name || "-"}</div>
+                </div>
+                <div>
+                  <div className="text-[11px] text-muted-foreground">Applied Position</div>
+                  <div className="text-sm text-muted-foreground">{selectedEmployeeForReminder?.appliedJobRole || "-"}</div>
+                </div>
+                <div>
+                  <label className="block mb-1 font-medium">
+                    Message <span className="text-red-600">*</span>
+                  </label>
+                  <Textarea
+                    rows={4}
+                    value={reminderMessage}
+                    onChange={(e) => setReminderMessage(e.target.value)}
+                    placeholder="Type your reminder message"
+                  />
+                </div>
+              </div>
+              <DialogFooter className="flex-row justify-end gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowReminderModal(false);
+                    setSelectedEmployeeForReminder(null);
+                    setReminderMessage("");
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  disabled={!reminderMessage.trim()}
+                  onClick={() => {
+                    const name = selectedEmployeeForReminder?.name;
+                    setShowReminderModal(false);
+                    setSelectedEmployeeForReminder(null);
+                    toast({ title: "Reminder sent", description: name ? `Reminder sent to ${name}` : undefined });
+                    setReminderMessage("");
                   }}
                 >
                   Send
