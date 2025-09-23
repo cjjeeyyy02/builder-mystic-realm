@@ -5219,6 +5219,11 @@ Google India"
                                         date: step.date || "",
                                         time: step.time || "",
                                         interviewer: step.interviewer || "",
+                                        interviewerNames: (step.interviewer || "")
+                                          .split(",")
+                                          .map((s) => s.trim())
+                                          .filter(Boolean),
+                                        interviewerInput: "",
                                       });
                                       setShowRescheduleModal(true);
                                     }}
