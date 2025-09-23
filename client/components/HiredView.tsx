@@ -3,8 +3,26 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, User, Building, Search, Mail, Phone, FileText, CheckCircle, XCircle, MapPin, Clock } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Calendar,
+  User,
+  Building,
+  Search,
+  Mail,
+  Phone,
+  FileText,
+  CheckCircle,
+  XCircle,
+  MapPin,
+  Clock,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +31,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface HiredEmployee {
   id: string;
@@ -35,7 +60,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/10/2025",
     email: "taylor.rodriguez@company.com",
     phone: "+1 (555) 123-4567",
-    employeeId: "EMP001"
+    employeeId: "EMP001",
   },
   {
     id: "2",
@@ -45,7 +70,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/07/2025",
     email: "sofia.martinez@company.com",
     phone: "+1 (555) 234-5678",
-    employeeId: "EMP002"
+    employeeId: "EMP002",
   },
   {
     id: "3",
@@ -55,7 +80,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/05/2025",
     email: "liam.johnson@company.com",
     phone: "+1 (555) 345-6789",
-    employeeId: "EMP003"
+    employeeId: "EMP003",
   },
   {
     id: "4",
@@ -65,7 +90,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/04/2025",
     email: "watson.davis@company.com",
     phone: "+1 (555) 456-7890",
-    employeeId: "EMP004"
+    employeeId: "EMP004",
   },
   {
     id: "5",
@@ -75,7 +100,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/03/2025",
     email: "olivia.chen@company.com",
     phone: "+1 (555) 567-8901",
-    employeeId: "EMP005"
+    employeeId: "EMP005",
   },
   {
     id: "6",
@@ -85,7 +110,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/02/2025",
     email: "marcus.thompson@company.com",
     phone: "+1 (555) 678-9012",
-    employeeId: "EMP006"
+    employeeId: "EMP006",
   },
   {
     id: "7",
@@ -95,7 +120,7 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "08/01/2025",
     email: "erik.anderson@company.com",
     phone: "+1 (555) 789-0123",
-    employeeId: "EMP007"
+    employeeId: "EMP007",
   },
   {
     id: "8",
@@ -105,8 +130,8 @@ const hiredEmployees: HiredEmployee[] = [
     dateOfJoining: "07/30/2025",
     email: "priya.patel@company.com",
     phone: "+1 (555) 890-1234",
-    employeeId: "EMP008"
-  }
+    employeeId: "EMP008",
+  },
 ];
 
 function getDepartmentColor(department: string): string {
@@ -137,10 +162,14 @@ export default function HiredView() {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showDecisionRoom, setShowDecisionRoom] = useState(false);
 
-  const filteredEmployees = hiredEmployees.filter(employee => {
-    const matchesSearch = employee.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.appliedPosition.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = selectedDepartment === "all" || !selectedDepartment || employee.department === selectedDepartment;
+  const filteredEmployees = hiredEmployees.filter((employee) => {
+    const matchesSearch =
+      employee.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.appliedPosition.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDepartment =
+      selectedDepartment === "all" ||
+      !selectedDepartment ||
+      employee.department === selectedDepartment;
     return matchesSearch && matchesDepartment;
   });
 
@@ -160,28 +189,35 @@ export default function HiredView() {
         </Card>
         <Card className="p-2">
           <div className="text-xl font-bold text-blue-600">
-            {new Set(hiredEmployees.map(e => e.department)).size}
+            {new Set(hiredEmployees.map((e) => e.department)).size}
           </div>
           <div className="text-xs text-muted-foreground">Departments</div>
         </Card>
         <Card className="p-2">
           <div className="text-xl font-bold text-purple-600">
-            {hiredEmployees.filter(e => {
-              const joinDate = new Date(e.dateOfJoining);
-              const thisMonth = new Date();
-              return joinDate.getMonth() === thisMonth.getMonth() && joinDate.getFullYear() === thisMonth.getFullYear();
-            }).length}
+            {
+              hiredEmployees.filter((e) => {
+                const joinDate = new Date(e.dateOfJoining);
+                const thisMonth = new Date();
+                return (
+                  joinDate.getMonth() === thisMonth.getMonth() &&
+                  joinDate.getFullYear() === thisMonth.getFullYear()
+                );
+              }).length
+            }
           </div>
           <div className="text-xs text-muted-foreground">This Month</div>
         </Card>
         <Card className="p-2">
           <div className="text-xl font-bold text-orange-600">
-            {hiredEmployees.filter(e => {
-              const joinDate = new Date(e.dateOfJoining);
-              const oneWeekAgo = new Date();
-              oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-              return joinDate >= oneWeekAgo;
-            }).length}
+            {
+              hiredEmployees.filter((e) => {
+                const joinDate = new Date(e.dateOfJoining);
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                return joinDate >= oneWeekAgo;
+              }).length
+            }
           </div>
           <div className="text-xs text-muted-foreground">Last 7 Days</div>
         </Card>
@@ -190,7 +226,9 @@ export default function HiredView() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-semibold text-foreground">Hired Employees</h2>
+          <h2 className="text-2xl font-semibold text-foreground">
+            Hired Employees
+          </h2>
           <Button
             variant="outline"
             onClick={() => setShowDecisionRoom(true)}
@@ -216,7 +254,10 @@ export default function HiredView() {
             className="pl-10 h-8 rounded-full text-sm"
           />
         </div>
-        <Select value={selectedDepartment || "all"} onValueChange={setSelectedDepartment}>
+        <Select
+          value={selectedDepartment || "all"}
+          onValueChange={setSelectedDepartment}
+        >
           <SelectTrigger className="w-44 h-8 rounded-full text-sm">
             <SelectValue placeholder="All departments" />
           </SelectTrigger>
@@ -237,7 +278,10 @@ export default function HiredView() {
       {/* Hired Employees List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredEmployees.map((employee) => (
-          <Card key={employee.id} className="border-0 shadow-sm hover:shadow-md transition-all duration-200">
+          <Card
+            key={employee.id}
+            className="border-0 shadow-sm hover:shadow-md transition-all duration-200"
+          >
             <CardContent className="p-4">
               <div className="space-y-4">
                 {/* Header with Avatar and Status */}
@@ -256,14 +300,22 @@ export default function HiredView() {
                 {/* Employee Info */}
                 <div className="space-y-2">
                   <div>
-                    <div className="font-semibold text-foreground text-sm">{employee.candidateName}</div>
+                    <div className="font-semibold text-foreground text-sm">
+                      {employee.candidateName}
+                    </div>
                     {employee.employeeId && (
-                      <div className="text-xs text-muted-foreground">ID: {employee.employeeId}</div>
+                      <div className="text-xs text-muted-foreground">
+                        ID: {employee.employeeId}
+                      </div>
                     )}
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground font-medium">Applied Position:</div>
-                    <div className="font-medium text-foreground text-sm">{employee.appliedPosition}</div>
+                    <div className="text-xs text-muted-foreground font-medium">
+                      Applied Position:
+                    </div>
+                    <div className="font-medium text-foreground text-sm">
+                      {employee.appliedPosition}
+                    </div>
                   </div>
                 </div>
 
@@ -280,7 +332,9 @@ export default function HiredView() {
 
                 {/* Date of Joining */}
                 <div>
-                  <div className="text-xs text-muted-foreground font-medium mb-1">Date of Joining:</div>
+                  <div className="text-xs text-muted-foreground font-medium mb-1">
+                    Date of Joining:
+                  </div>
                   <div className="flex items-center gap-2 text-foreground font-medium text-sm">
                     <Calendar className="w-4 h-4 text-muted-foreground" />
                     {employee.dateOfJoining}
@@ -297,7 +351,9 @@ export default function HiredView() {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-12 text-center">
             <User className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">No hired employees found</h3>
+            <h3 className="text-lg font-medium text-foreground mb-2">
+              No hired employees found
+            </h3>
             <p className="text-muted-foreground">
               {searchTerm || selectedDepartment
                 ? "Try adjusting your search or filter criteria"
@@ -306,7 +362,6 @@ export default function HiredView() {
           </CardContent>
         </Card>
       )}
-
     </div>
   );
 }
@@ -333,12 +388,10 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
   const [statusFilter, setStatusFilter] = useState("all");
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [confirmAction, setConfirmAction] = useState<{
-    type: 'approve' | 'decline';
+    type: "approve" | "decline";
     candidate: DecisionCandidate;
   } | null>(null);
-  const [candidates, setCandidates] = useState<DecisionCandidate[]>(
-
-  [
+  const [candidates, setCandidates] = useState<DecisionCandidate[]>([
     // Initial candidate data
     {
       id: "1",
@@ -349,7 +402,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Full-time",
       location: "Hyderabad, India",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "2",
@@ -360,7 +413,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Part-time",
       location: "Delhi, India",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "3",
@@ -371,7 +424,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Freelance",
       location: "Vancouver, Canada",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "4",
@@ -382,7 +435,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Contract",
       location: "Finland, Europe",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "5",
@@ -393,7 +446,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Internship",
       location: "Finland, Europe",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "6",
@@ -404,7 +457,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Full-time",
       location: "Iceland, Europe",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "7",
@@ -415,7 +468,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Part-time",
       location: "Pune, India",
-      status: "pending"
+      status: "pending",
     },
     {
       id: "8",
@@ -426,40 +479,46 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       expectedDOJ: "07-01-2025",
       employment: "Full-time",
       location: "Hyderabad, India",
-      status: "pending"
-    }
+      status: "pending",
+    },
   ]);
 
-  const filteredCandidates = candidates.filter(candidate => {
-    const matchesSearch = candidate.name.toLowerCase().includes(searchCandidates.toLowerCase()) ||
-                         candidate.role.toLowerCase().includes(searchCandidates.toLowerCase());
-    const matchesStatus = statusFilter === "all" || candidate.status === statusFilter;
+  const filteredCandidates = candidates.filter((candidate) => {
+    const matchesSearch =
+      candidate.name.toLowerCase().includes(searchCandidates.toLowerCase()) ||
+      candidate.role.toLowerCase().includes(searchCandidates.toLowerCase());
+    const matchesStatus =
+      statusFilter === "all" || candidate.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
   const handleApproveClick = (candidate: DecisionCandidate) => {
-    setConfirmAction({ type: 'approve', candidate });
+    setConfirmAction({ type: "approve", candidate });
     setShowConfirmDialog(true);
   };
 
   const handleDeclineClick = (candidate: DecisionCandidate) => {
-    setConfirmAction({ type: 'decline', candidate });
+    setConfirmAction({ type: "decline", candidate });
     setShowConfirmDialog(true);
   };
 
   const handleConfirmAction = () => {
     if (!confirmAction) return;
 
-    setCandidates(prevCandidates =>
-      prevCandidates.map(candidate =>
+    setCandidates((prevCandidates) =>
+      prevCandidates.map((candidate) =>
         candidate.id === confirmAction.candidate.id
           ? {
               ...candidate,
-              status: confirmAction.type === 'approve' ? 'approved' : 'declined',
-              confirmedDOJ: confirmAction.type === 'approve' ? candidate.expectedDOJ : undefined
+              status:
+                confirmAction.type === "approve" ? "approved" : "declined",
+              confirmedDOJ:
+                confirmAction.type === "approve"
+                  ? candidate.expectedDOJ
+                  : undefined,
             }
-          : candidate
-      )
+          : candidate,
+      ),
     );
 
     setShowConfirmDialog(false);
@@ -511,25 +570,25 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-4">
           <div className="text-2xl font-bold text-orange-600">
-            {candidates.filter(c => c.status === "pending").length}
+            {candidates.filter((c) => c.status === "pending").length}
           </div>
           <div className="text-sm text-muted-foreground">Pending Decisions</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-green-600">
-            {candidates.filter(c => c.status === "approved").length}
+            {candidates.filter((c) => c.status === "approved").length}
           </div>
           <div className="text-sm text-muted-foreground">Approved</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-red-600">
-            {candidates.filter(c => c.status === "declined").length}
+            {candidates.filter((c) => c.status === "declined").length}
           </div>
           <div className="text-sm text-muted-foreground">Declined</div>
         </Card>
         <Card className="p-4">
           <div className="text-2xl font-bold text-purple-600">
-            {new Set(candidates.map(c => c.location)).size}
+            {new Set(candidates.map((c) => c.location)).size}
           </div>
           <div className="text-sm text-muted-foreground">Locations</div>
         </Card>
@@ -541,7 +600,9 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
           <Button variant="outline" onClick={onBack}>
             ← Back
           </Button>
-          <h2 className="text-2xl font-semibold text-foreground">Decision Room</h2>
+          <h2 className="text-2xl font-semibold text-foreground">
+            Decision Room
+          </h2>
         </div>
         <div className="text-sm text-muted-foreground">
           {filteredCandidates.length} candidates pending decision
@@ -581,15 +642,9 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                 <TableHead className="w-16 text-left py-2 px-3">
                   S. NO
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
-                  NAME
-                </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
-                  ROLE
-                </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
-                  DEPT
-                </TableHead>
+                <TableHead className="py-2 px-3 font-semibold">NAME</TableHead>
+                <TableHead className="py-2 px-3 font-semibold">ROLE</TableHead>
+                <TableHead className="py-2 px-3 font-semibold">DEPT</TableHead>
                 <TableHead className="py-2 px-3 font-semibold">
                   EXPECTED DOJ
                 </TableHead>
@@ -666,12 +721,14 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                         {candidate.confirmedDOJ}
                       </div>
                     ) : (
-                      <span className="text-muted-foreground text-sm">Pending</span>
+                      <span className="text-muted-foreground text-sm">
+                        Pending
+                      </span>
                     )}
                   </TableCell>
                   <TableCell className="py-4">
                     <div className="flex items-center gap-2 justify-center">
-                      {candidate.status === 'pending' ? (
+                      {candidate.status === "pending" ? (
                         <>
                           <Button
                             size="sm"
@@ -694,12 +751,14 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                         <Badge
                           variant="outline"
                           className={`${
-                            candidate.status === 'approved'
-                              ? 'bg-green-100 text-green-700 border-green-200'
-                              : 'bg-red-100 text-red-700 border-red-200'
+                            candidate.status === "approved"
+                              ? "bg-green-100 text-green-700 border-green-200"
+                              : "bg-red-100 text-red-700 border-red-200"
                           }`}
                         >
-                          {candidate.status === 'approved' ? 'APPROVED' : 'DECLINED'}
+                          {candidate.status === "approved"
+                            ? "APPROVED"
+                            : "DECLINED"}
                         </Badge>
                       )}
                       <Button
@@ -723,15 +782,19 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              {confirmAction?.type === 'approve' ? (
+              {confirmAction?.type === "approve" ? (
                 <CheckCircle className="w-5 h-5 text-green-600" />
               ) : (
                 <XCircle className="w-5 h-5 text-red-600" />
               )}
-              {confirmAction?.type === 'approve' ? 'Approve Candidate' : 'Decline Candidate'}
+              {confirmAction?.type === "approve"
+                ? "Approve Candidate"
+                : "Decline Candidate"}
             </DialogTitle>
             <DialogDescription>
-              Are you sure you want to {confirmAction?.type} <strong>{confirmAction?.candidate.name}</strong> for the position of <strong>{confirmAction?.candidate.role}</strong>?
+              Are you sure you want to {confirmAction?.type}{" "}
+              <strong>{confirmAction?.candidate.name}</strong> for the position
+              of <strong>{confirmAction?.candidate.role}</strong>?
             </DialogDescription>
           </DialogHeader>
 
@@ -740,39 +803,45 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
               <div className="bg-gray-50 rounded-lg p-4 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Candidate:</span>
-                  <span className="font-medium">{confirmAction.candidate.name}</span>
+                  <span className="font-medium">
+                    {confirmAction.candidate.name}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Role:</span>
-                  <span className="font-medium">{confirmAction.candidate.role}</span>
+                  <span className="font-medium">
+                    {confirmAction.candidate.role}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Department:</span>
-                  <span className="font-medium">{confirmAction.candidate.department}</span>
+                  <span className="font-medium">
+                    {confirmAction.candidate.department}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Expected DOJ:</span>
-                  <span className="font-medium">{confirmAction.candidate.expectedDOJ}</span>
+                  <span className="font-medium">
+                    {confirmAction.candidate.expectedDOJ}
+                  </span>
                 </div>
               </div>
             </div>
           )}
 
           <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={handleCancelAction}
-            >
+            <Button variant="outline" onClick={handleCancelAction}>
               Cancel
             </Button>
             <Button
-              className={confirmAction?.type === 'approve'
-                ? 'bg-green-600 hover:bg-green-700 text-white'
-                : 'bg-red-600 hover:bg-red-700 text-white'
+              className={
+                confirmAction?.type === "approve"
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-red-600 hover:bg-red-700 text-white"
               }
               onClick={handleConfirmAction}
             >
-              {confirmAction?.type === 'approve' ? (
+              {confirmAction?.type === "approve" ? (
                 <>
                   <CheckCircle className="w-4 h-4 mr-2" />
                   Yes, Approve
@@ -787,7 +856,6 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
     </div>
   );
 }

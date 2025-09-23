@@ -1773,7 +1773,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
                             <div className="flex flex-col">
                               <span>Jaya Sharma</span>
-                              <span className="text-xs text-muted-foreground">Job ID: 001</span>
+                              <span className="text-xs text-muted-foreground">
+                                Job ID: 001
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1836,10 +1838,12 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
                             <div className="flex flex-col">
                               <span>Mark Robinson</span>
-                              <span className="text-xs text-muted-foreground">Job ID: 002</span>
+                              <span className="text-xs text-muted-foreground">
+                                Job ID: 002
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1902,10 +1906,12 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
                             <div className="flex flex-col">
                               <span>John Carter</span>
-                              <span className="text-xs text-muted-foreground">Job ID: 003</span>
+                              <span className="text-xs text-muted-foreground">
+                                Job ID: 003
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -1968,10 +1974,12 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
                             <div className="flex flex-col">
                               <span>Sara Ahmed</span>
-                              <span className="text-xs text-muted-foreground">Job ID: 004</span>
+                              <span className="text-xs text-muted-foreground">
+                                Job ID: 004
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -2034,10 +2042,12 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
                             <div className="flex flex-col">
                               <span>Shruti Kapoor</span>
-                              <span className="text-xs text-muted-foreground">Job ID: 005</span>
+                              <span className="text-xs text-muted-foreground">
+                                Job ID: 005
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
@@ -3621,7 +3631,9 @@ Google India"
                         <TableCell className="py-2 text-xs">
                           <div className="flex flex-col">
                             <span>Jaya</span>
-                            <span className="text-[10px] text-muted-foreground">Job ID: 001</span>
+                            <span className="text-[10px] text-muted-foreground">
+                              Job ID: 001
+                            </span>
                           </div>
                         </TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
@@ -3756,7 +3768,9 @@ Google India"
                         <TableCell className="py-2 text-xs">
                           <div className="flex flex-col">
                             <span>Mark</span>
-                            <span className="text-[10px] text-muted-foreground">Job ID: 002</span>
+                            <span className="text-[10px] text-muted-foreground">
+                              Job ID: 002
+                            </span>
                           </div>
                         </TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
@@ -5217,7 +5231,9 @@ Google India"
                                         date: step.date || "",
                                         time: step.time || "",
                                         interviewer: step.interviewer || "",
-                                        interviewerNames: (step.interviewer || "")
+                                        interviewerNames: (
+                                          step.interviewer || ""
+                                        )
                                           .split(",")
                                           .map((s) => s.trim())
                                           .filter(Boolean),
@@ -5681,14 +5697,22 @@ Google India"
                 </label>
                 <div className="min-h-[38px] w-full rounded-md border border-input bg-background px-2 py-1 flex flex-wrap gap-1">
                   {scheduleForm.interviewerNames.map((name, idx) => (
-                    <span key={`${name}-${idx}`} className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 border px-2 py-0.5 text-xs">
+                    <span
+                      key={`${name}-${idx}`}
+                      className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 border px-2 py-0.5 text-xs"
+                    >
                       {name}
                       <button
                         type="button"
                         className="ml-1 text-gray-500 hover:text-gray-700"
                         onClick={() => {
-                          const next = scheduleForm.interviewerNames.filter((_, i) => i !== idx);
-                          setScheduleForm({ ...scheduleForm, interviewerNames: next });
+                          const next = scheduleForm.interviewerNames.filter(
+                            (_, i) => i !== idx,
+                          );
+                          setScheduleForm({
+                            ...scheduleForm,
+                            interviewerNames: next,
+                          });
                         }}
                         aria-label={`Remove ${name}`}
                       >
@@ -5698,36 +5722,67 @@ Google India"
                   ))}
                   <input
                     className="flex-1 min-w-[120px] bg-transparent outline-none text-xs py-1"
-                    placeholder={scheduleForm.interviewerNames.length ? "Add another" : "Type a name and press Enter"}
+                    placeholder={
+                      scheduleForm.interviewerNames.length
+                        ? "Add another"
+                        : "Type a name and press Enter"
+                    }
                     value={scheduleForm.interviewerInput}
-                    onChange={(e) => setScheduleForm({ ...scheduleForm, interviewerInput: e.target.value })}
+                    onChange={(e) =>
+                      setScheduleForm({
+                        ...scheduleForm,
+                        interviewerInput: e.target.value,
+                      })
+                    }
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === ",") {
                         e.preventDefault();
                         const raw = scheduleForm.interviewerInput.trim();
                         if (!raw) return;
-                        const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+                        const parts = raw
+                          .split(",")
+                          .map((s) => s.trim())
+                          .filter(Boolean);
                         const set = new Set(scheduleForm.interviewerNames);
                         parts.forEach((p) => set.add(p));
-                        setScheduleForm({ ...scheduleForm, interviewerNames: Array.from(set), interviewerInput: "" });
-                      } else if (e.key === "Backspace" && !scheduleForm.interviewerInput && scheduleForm.interviewerNames.length) {
+                        setScheduleForm({
+                          ...scheduleForm,
+                          interviewerNames: Array.from(set),
+                          interviewerInput: "",
+                        });
+                      } else if (
+                        e.key === "Backspace" &&
+                        !scheduleForm.interviewerInput &&
+                        scheduleForm.interviewerNames.length
+                      ) {
                         const next = scheduleForm.interviewerNames.slice(0, -1);
-                        setScheduleForm({ ...scheduleForm, interviewerNames: next });
+                        setScheduleForm({
+                          ...scheduleForm,
+                          interviewerNames: next,
+                        });
                       }
                     }}
                     onBlur={() => {
                       const raw = scheduleForm.interviewerInput.trim();
                       if (!raw) return;
-                      const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+                      const parts = raw
+                        .split(",")
+                        .map((s) => s.trim())
+                        .filter(Boolean);
                       const set = new Set(scheduleForm.interviewerNames);
                       parts.forEach((p) => set.add(p));
-                      setScheduleForm({ ...scheduleForm, interviewerNames: Array.from(set), interviewerInput: "" });
+                      setScheduleForm({
+                        ...scheduleForm,
+                        interviewerNames: Array.from(set),
+                        interviewerInput: "",
+                      });
                     }}
                   />
                 </div>
                 {selectedCandidateForTimeline?.interviewers?.length ? (
                   <div className="mt-1 text-[11px] text-muted-foreground">
-                    Suggestions: {selectedCandidateForTimeline.interviewers.join(", ")}
+                    Suggestions:{" "}
+                    {selectedCandidateForTimeline.interviewers.join(", ")}
                   </div>
                 ) : null}
               </div>
@@ -5752,9 +5807,11 @@ Google India"
                           ...s,
                           date: scheduleForm.date,
                           time: scheduleForm.time,
-                          interviewer: (scheduleForm.interviewerNames && scheduleForm.interviewerNames.length > 0)
-                            ? scheduleForm.interviewerNames.join(", ")
-                            : scheduleForm.interviewer,
+                          interviewer:
+                            scheduleForm.interviewerNames &&
+                            scheduleForm.interviewerNames.length > 0
+                              ? scheduleForm.interviewerNames.join(", ")
+                              : scheduleForm.interviewer,
                         }
                       : s,
                   );

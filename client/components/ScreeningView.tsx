@@ -577,9 +577,17 @@ export default function ScreeningView() {
                         {formatPhone(candidate.phone)}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
-                        <Badge variant={getStatusVariant(candidate.status)} className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}>
-                          {candidate.status !== "pending" && getStatusIcon(candidate.status)}
-                          {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                        <Badge
+                          variant={getStatusVariant(candidate.status)}
+                          className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
+                        >
+                          {candidate.status !== "pending" &&
+                            getStatusIcon(candidate.status)}
+                          {candidate.status === "approved"
+                            ? "Approved"
+                            : candidate.status === "reject"
+                              ? "Rejected"
+                              : "Pending"}
                         </Badge>
                       </td>
                       <td className="py-3 px-3 text-center">
@@ -640,9 +648,17 @@ export default function ScreeningView() {
                         {candidate.name}
                       </h3>
                       <div className="text-xs">
-                        <Badge variant={getStatusVariant(candidate.status)} className={`gap-1 px-2 py-0.5 text-[10px] ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}>
-                          {candidate.status !== "pending" && getStatusIcon(candidate.status)}
-                          {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                        <Badge
+                          variant={getStatusVariant(candidate.status)}
+                          className={`gap-1 px-2 py-0.5 text-[10px] ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
+                        >
+                          {candidate.status !== "pending" &&
+                            getStatusIcon(candidate.status)}
+                          {candidate.status === "approved"
+                            ? "Approved"
+                            : candidate.status === "reject"
+                              ? "Rejected"
+                              : "Pending"}
                         </Badge>
                       </div>
                     </div>

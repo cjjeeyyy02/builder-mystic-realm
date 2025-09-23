@@ -74,7 +74,8 @@ export default function RoomBuilder() {
           duration: "1 hour",
           locationType: "Online",
           platform: "Zoom",
-          instructions: "Join the Zoom room 5 minutes early. Prepare to share your screen for coding tasks.",
+          instructions:
+            "Join the Zoom room 5 minutes early. Prepare to share your screen for coding tasks.",
         },
         {
           id: "s2",
@@ -82,7 +83,8 @@ export default function RoomBuilder() {
           duration: "30 minutes",
           locationType: "Online",
           platform: "Meet",
-          instructions: "Discuss code structure, tradeoffs, and testing approach.",
+          instructions:
+            "Discuss code structure, tradeoffs, and testing approach.",
         },
       ],
     },
@@ -98,23 +100,27 @@ export default function RoomBuilder() {
           duration: "45 minutes",
           locationType: "Online",
           platform: "Teams",
-          instructions: "Present 2–3 case studies focusing on problem, process, and outcomes.",
+          instructions:
+            "Present 2–3 case studies focusing on problem, process, and outcomes.",
         },
         {
           id: "s2",
           title: "Step 2: Whiteboard Exercise",
           duration: "30 minutes",
           locationType: "On-site",
-          instructions: "Collaborative ideation on a sample product flow. Bring a notepad.",
+          instructions:
+            "Collaborative ideation on a sample product flow. Bring a notepad.",
         },
       ],
     },
   ];
 
-  const [selectedRoomId, setSelectedRoomId] = useState<string>(rooms[0]?.id || "");
+  const [selectedRoomId, setSelectedRoomId] = useState<string>(
+    rooms[0]?.id || "",
+  );
   const selectedRoom = useMemo(
     () => rooms.find((r) => r.id === selectedRoomId) || rooms[0],
-    [rooms, selectedRoomId]
+    [rooms, selectedRoomId],
   );
 
   // Derived progress by steps completion (for demo, use proportion of steps present)
@@ -170,14 +176,20 @@ export default function RoomBuilder() {
             <Card className="border-gray-200">
               <CardContent className="p-5 space-y-4">
                 <div>
-                  <h2 className="text-sm font-semibold text-gray-900">Interview Rooms</h2>
-                  <p className="text-xs text-muted-foreground">Manage your interview room templates</p>
+                  <h2 className="text-sm font-semibold text-gray-900">
+                    Interview Rooms
+                  </h2>
+                  <p className="text-xs text-muted-foreground">
+                    Manage your interview room templates
+                  </p>
                 </div>
                 <Separator />
                 <div className="space-y-3">
                   {rooms.map((room) => {
                     const isSelected = room.id === selectedRoom?.id;
-                    const progress = Math.round((1 / Math.max(room.steps.length, 1)) * 100); // subtle demo progress
+                    const progress = Math.round(
+                      (1 / Math.max(room.steps.length, 1)) * 100,
+                    ); // subtle demo progress
                     return (
                       <button
                         key={room.id}
@@ -190,17 +202,29 @@ export default function RoomBuilder() {
                       >
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <div className="text-sm font-semibold text-gray-900">{room.name}</div>
-                            <div className="text-xs text-gray-600">{room.description}</div>
+                            <div className="text-sm font-semibold text-gray-900">
+                              {room.name}
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              {room.description}
+                            </div>
                           </div>
                           <ExternalLink className="h-4 w-4 text-gray-400" />
                         </div>
                         <div className="mt-2">
-                          <Progress value={progress} className="h-1.5 bg-gray-100" />
+                          <Progress
+                            value={progress}
+                            className="h-1.5 bg-gray-100"
+                          />
                         </div>
                         <div className="mt-2 flex items-center justify-between">
-                          <div className="text-xs text-gray-600">{room.steps.length} steps</div>
-                          <Badge variant="outline" className="border-blue-200 text-blue-700 bg-blue-50 text-[10px] px-2 py-0.5">
+                          <div className="text-xs text-gray-600">
+                            {room.steps.length} steps
+                          </div>
+                          <Badge
+                            variant="outline"
+                            className="border-blue-200 text-blue-700 bg-blue-50 text-[10px] px-2 py-0.5"
+                          >
                             {room.type}
                           </Badge>
                         </div>
@@ -216,33 +240,69 @@ export default function RoomBuilder() {
           <div className="md:col-span-9">
             <div className="flex items-center justify-between mb-2">
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">Room Builder</h1>
-                <p className="text-xs text-muted-foreground">Room: {selectedRoom?.name}</p>
+                <h1 className="text-xl font-semibold text-gray-900">
+                  Room Builder
+                </h1>
+                <p className="text-xs text-muted-foreground">
+                  Room: {selectedRoom?.name}
+                </p>
               </div>
               <div className="flex items-center gap-2">
-                                <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
+                <Dialog
+                  open={showCreateModal}
+                  onOpenChange={setShowCreateModal}
+                >
                   <DialogTrigger asChild>
-                    <Button size="sm" className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button
+                      size="sm"
+                      className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                    >
                       + Create Room
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle>Create New Room</DialogTitle>
-                      <DialogDescription>Set up a new interview room with detailed configurations.</DialogDescription>
+                      <DialogDescription>
+                        Set up a new interview room with detailed
+                        configurations.
+                      </DialogDescription>
                     </DialogHeader>
 
                     <div className="space-y-6">
                       {/* Basic Info */}
                       <div className="space-y-3">
-                        <h3 className="text-sm font-semibold border-b pb-2">Basic Info</h3>
+                        <h3 className="text-sm font-semibold border-b pb-2">
+                          Basic Info
+                        </h3>
                         <div className="space-y-2">
                           <Label htmlFor="roomTitle">Room Title</Label>
-                          <Input id="roomTitle" placeholder="Enter room name" value={formData.roomTitle} onChange={(e) => setFormData((p) => ({ ...p, roomTitle: e.target.value }))} />
+                          <Input
+                            id="roomTitle"
+                            placeholder="Enter room name"
+                            value={formData.roomTitle}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                roomTitle: e.target.value,
+                              }))
+                            }
+                          />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="description">Description</Label>
-                          <Textarea id="description" placeholder="Brief overview of the interview round" value={formData.description} onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))} rows={3} />
+                          <Textarea
+                            id="description"
+                            placeholder="Brief overview of the interview round"
+                            value={formData.description}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                description: e.target.value,
+                              }))
+                            }
+                            rows={3}
+                          />
                         </div>
                       </div>
 
@@ -250,53 +310,108 @@ export default function RoomBuilder() {
 
                       {/* Step Details */}
                       <div className="space-y-3">
-                        <h3 className="text-sm font-semibold border-b pb-2">Step Details</h3>
+                        <h3 className="text-sm font-semibold border-b pb-2">
+                          Step Details
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           <div className="space-y-2">
                             <Label htmlFor="stepNumber">Step Number</Label>
-                            <Input id="stepNumber" type="number" placeholder="1" value={formData.stepNumber} onChange={(e) => setFormData((p) => ({ ...p, stepNumber: e.target.value }))} />
+                            <Input
+                              id="stepNumber"
+                              type="number"
+                              placeholder="1"
+                              value={formData.stepNumber}
+                              onChange={(e) =>
+                                setFormData((p) => ({
+                                  ...p,
+                                  stepNumber: e.target.value,
+                                }))
+                              }
+                            />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="interviewType">Interview Type</Label>
-                            <Select value={formData.interviewType} onValueChange={(value) => setFormData((p) => ({ ...p, interviewType: value }))}>
+                            <Label htmlFor="interviewType">
+                              Interview Type
+                            </Label>
+                            <Select
+                              value={formData.interviewType}
+                              onValueChange={(value) =>
+                                setFormData((p) => ({
+                                  ...p,
+                                  interviewType: value,
+                                }))
+                              }
+                            >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select interview type" />
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="hr">HR</SelectItem>
-                                <SelectItem value="technical">Technical</SelectItem>
-                                <SelectItem value="managerial">Managerial</SelectItem>
-                                <SelectItem value="case-study">Case Study</SelectItem>
-                                <SelectItem value="group-discussion">Group Discussion</SelectItem>
+                                <SelectItem value="technical">
+                                  Technical
+                                </SelectItem>
+                                <SelectItem value="managerial">
+                                  Managerial
+                                </SelectItem>
+                                <SelectItem value="case-study">
+                                  Case Study
+                                </SelectItem>
+                                <SelectItem value="group-discussion">
+                                  Group Discussion
+                                </SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
                           <div className="space-y-2">
                             <Label htmlFor="duration">Duration</Label>
-                            <Select value={formData.duration} onValueChange={(value) => setFormData((p) => ({ ...p, duration: value }))}>
+                            <Select
+                              value={formData.duration}
+                              onValueChange={(value) =>
+                                setFormData((p) => ({ ...p, duration: value }))
+                              }
+                            >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select duration" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="30min">30 minutes</SelectItem>
-                                <SelectItem value="45min">45 minutes</SelectItem>
+                                <SelectItem value="30min">
+                                  30 minutes
+                                </SelectItem>
+                                <SelectItem value="45min">
+                                  45 minutes
+                                </SelectItem>
                                 <SelectItem value="1hour">1 hour</SelectItem>
-                                <SelectItem value="1.5hour">1.5 hours</SelectItem>
+                                <SelectItem value="1.5hour">
+                                  1.5 hours
+                                </SelectItem>
                                 <SelectItem value="2hour">2 hours</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
                           <div className="space-y-2">
                             <Label htmlFor="mode">Mode</Label>
-                            <Select value={formData.mode} onValueChange={(value) => setFormData((p) => ({ ...p, mode: value }))}>
+                            <Select
+                              value={formData.mode}
+                              onValueChange={(value) =>
+                                setFormData((p) => ({ ...p, mode: value }))
+                              }
+                            >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select mode" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="zoom">Online: Zoom</SelectItem>
-                                <SelectItem value="meet">Online: Google Meet</SelectItem>
-                                <SelectItem value="teams">Online: Microsoft Teams</SelectItem>
-                                <SelectItem value="office">On-site: Office location</SelectItem>
+                                <SelectItem value="zoom">
+                                  Online: Zoom
+                                </SelectItem>
+                                <SelectItem value="meet">
+                                  Online: Google Meet
+                                </SelectItem>
+                                <SelectItem value="teams">
+                                  Online: Microsoft Teams
+                                </SelectItem>
+                                <SelectItem value="office">
+                                  On-site: Office location
+                                </SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -306,16 +421,50 @@ export default function RoomBuilder() {
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <Label>Panel Members</Label>
-                            <Button type="button" variant="outline" size="sm" onClick={() => setFormData((p) => ({ ...p, panelMembers: [...p.panelMembers, ""] }))}>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() =>
+                                setFormData((p) => ({
+                                  ...p,
+                                  panelMembers: [...p.panelMembers, ""],
+                                }))
+                              }
+                            >
                               <Plus className="h-4 w-4 mr-1" /> Add Member
                             </Button>
                           </div>
                           <div className="space-y-2">
                             {formData.panelMembers.map((member, index) => (
                               <div key={index} className="flex gap-2">
-                                <Input placeholder="Name, Role, Contact (optional)" value={member} onChange={(e) => setFormData((p) => ({ ...p, panelMembers: p.panelMembers.map((m, i) => (i === index ? e.target.value : m)) }))} />
+                                <Input
+                                  placeholder="Name, Role, Contact (optional)"
+                                  value={member}
+                                  onChange={(e) =>
+                                    setFormData((p) => ({
+                                      ...p,
+                                      panelMembers: p.panelMembers.map(
+                                        (m, i) =>
+                                          i === index ? e.target.value : m,
+                                      ),
+                                    }))
+                                  }
+                                />
                                 {formData.panelMembers.length > 1 && (
-                                  <Button type="button" variant="outline" size="sm" onClick={() => setFormData((p) => ({ ...p, panelMembers: p.panelMembers.filter((_, i) => i !== index) }))}>
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                      setFormData((p) => ({
+                                        ...p,
+                                        panelMembers: p.panelMembers.filter(
+                                          (_, i) => i !== index,
+                                        ),
+                                      }))
+                                    }
+                                  >
                                     <X className="h-4 w-4" />
                                   </Button>
                                 )}
@@ -325,55 +474,150 @@ export default function RoomBuilder() {
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="candidateInstructions">Candidate Instructions</Label>
-                          <Textarea id="candidateInstructions" placeholder="Notes and requirements for candidates" value={formData.candidateInstructions} onChange={(e) => setFormData((p) => ({ ...p, candidateInstructions: e.target.value }))} rows={3} />
+                          <Label htmlFor="candidateInstructions">
+                            Candidate Instructions
+                          </Label>
+                          <Textarea
+                            id="candidateInstructions"
+                            placeholder="Notes and requirements for candidates"
+                            value={formData.candidateInstructions}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                candidateInstructions: e.target.value,
+                              }))
+                            }
+                            rows={3}
+                          />
                         </div>
 
                         {/* Evaluation Criteria */}
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <Label>Evaluation Criteria</Label>
-                            <Button type="button" variant="outline" size="sm" onClick={() => setFormData((p) => ({ ...p, evaluationCriteria: [...p.evaluationCriteria, ""] }))}>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() =>
+                                setFormData((p) => ({
+                                  ...p,
+                                  evaluationCriteria: [
+                                    ...p.evaluationCriteria,
+                                    "",
+                                  ],
+                                }))
+                              }
+                            >
                               <Plus className="h-4 w-4 mr-1" /> Add Criteria
                             </Button>
                           </div>
                           <div className="space-y-2">
-                            {formData.evaluationCriteria.map((criteria, index) => (
-                              <div key={index} className="flex gap-2">
-                                <Input placeholder="Skills or attributes being tested" value={criteria} onChange={(e) => setFormData((p) => ({ ...p, evaluationCriteria: p.evaluationCriteria.map((c, i) => (i === index ? e.target.value : c)) }))} />
-                                {formData.evaluationCriteria.length > 1 && (
-                                  <Button type="button" variant="outline" size="sm" onClick={() => setFormData((p) => ({ ...p, evaluationCriteria: p.evaluationCriteria.filter((_, i) => i !== index) }))}>
-                                    <X className="h-4 w-4" />
-                                  </Button>
-                                )}
-                              </div>
-                            ))}
+                            {formData.evaluationCriteria.map(
+                              (criteria, index) => (
+                                <div key={index} className="flex gap-2">
+                                  <Input
+                                    placeholder="Skills or attributes being tested"
+                                    value={criteria}
+                                    onChange={(e) =>
+                                      setFormData((p) => ({
+                                        ...p,
+                                        evaluationCriteria:
+                                          p.evaluationCriteria.map((c, i) =>
+                                            i === index ? e.target.value : c,
+                                          ),
+                                      }))
+                                    }
+                                  />
+                                  {formData.evaluationCriteria.length > 1 && (
+                                    <Button
+                                      type="button"
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() =>
+                                        setFormData((p) => ({
+                                          ...p,
+                                          evaluationCriteria:
+                                            p.evaluationCriteria.filter(
+                                              (_, i) => i !== index,
+                                            ),
+                                        }))
+                                      }
+                                    >
+                                      <X className="h-4 w-4" />
+                                    </Button>
+                                  )}
+                                </div>
+                              ),
+                            )}
                           </div>
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="scoringRubric">Scoring Rubric (Optional)</Label>
-                          <Textarea id="scoringRubric" placeholder="Structured scoring categories and criteria" value={formData.scoringRubric} onChange={(e) => setFormData((p) => ({ ...p, scoringRubric: e.target.value }))} rows={4} />
+                          <Label htmlFor="scoringRubric">
+                            Scoring Rubric (Optional)
+                          </Label>
+                          <Textarea
+                            id="scoringRubric"
+                            placeholder="Structured scoring categories and criteria"
+                            value={formData.scoringRubric}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                scoringRubric: e.target.value,
+                              }))
+                            }
+                            rows={4}
+                          />
                         </div>
 
                         <div className="space-y-2">
                           <Label htmlFor="attachments">Attachments</Label>
                           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                             <Upload className="h-8 w-8 mx-auto text-gray-400 mb-2" />
-                            <p className="text-sm text-gray-600 mb-2">Upload documents, case studies, or test files</p>
-                            <input type="file" id="attachments" className="hidden" onChange={(e) => setFormData((p) => ({ ...p, attachments: e.target.files?.[0] || null }))} />
-                            <Button type="button" variant="outline" onClick={() => document.getElementById("attachments")?.click()}>
+                            <p className="text-sm text-gray-600 mb-2">
+                              Upload documents, case studies, or test files
+                            </p>
+                            <input
+                              type="file"
+                              id="attachments"
+                              className="hidden"
+                              onChange={(e) =>
+                                setFormData((p) => ({
+                                  ...p,
+                                  attachments: e.target.files?.[0] || null,
+                                }))
+                              }
+                            />
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() =>
+                                document.getElementById("attachments")?.click()
+                              }
+                            >
                               Choose File
                             </Button>
-                            {formData.attachments && <p className="text-sm text-green-600 mt-2">Selected: {formData.attachments.name}</p>}
+                            {formData.attachments && (
+                              <p className="text-sm text-green-600 mt-2">
+                                Selected: {formData.attachments.name}
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <DialogFooter className="gap-2">
-                      <Button variant="outline" onClick={handleCancel}>Cancel</Button>
-                      <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700">Save Room</Button>
+                      <Button variant="outline" onClick={handleCancel}>
+                        Cancel
+                      </Button>
+                      <Button
+                        onClick={handleSave}
+                        className="bg-blue-600 hover:bg-blue-700"
+                      >
+                        Save Room
+                      </Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
@@ -386,26 +630,47 @@ export default function RoomBuilder() {
             <Card className="border-gray-200">
               <CardContent className="p-5 space-y-4">
                 <div>
-                  <h2 className="text-base font-semibold text-gray-900">{selectedRoom?.name}</h2>
-                  <p className="text-sm text-gray-600">{selectedRoom?.description}</p>
+                  <h2 className="text-base font-semibold text-gray-900">
+                    {selectedRoom?.name}
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    {selectedRoom?.description}
+                  </p>
                 </div>
 
                 <Separator />
 
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-semibold">Interview Steps</h3>
-                  <span className="text-xs text-gray-500">{selectedRoom?.steps.length} steps</span>
+                  <span className="text-xs text-gray-500">
+                    {selectedRoom?.steps.length} steps
+                  </span>
                 </div>
 
                 <div className="space-y-2">
                   {selectedRoom?.steps.map((step) => (
-                    <div key={step.id} className="border border-gray-200 rounded-md p-3">
+                    <div
+                      key={step.id}
+                      className="border border-gray-200 rounded-md p-3"
+                    >
                       <div className="flex items-start justify-between gap-2">
-                        <div className="text-sm font-medium text-gray-900">{step.title}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {step.title}
+                        </div>
                         <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="text-[10px] px-2 py-0.5 border-gray-300 text-gray-700">{step.duration}</Badge>
-                          <Badge variant="outline" className="text-[10px] px-2 py-0.5 border-blue-200 text-blue-700 bg-blue-50">
-                            {step.locationType === "Online" && step.platform ? `Online (${step.platform})` : step.locationType}
+                          <Badge
+                            variant="outline"
+                            className="text-[10px] px-2 py-0.5 border-gray-300 text-gray-700"
+                          >
+                            {step.duration}
+                          </Badge>
+                          <Badge
+                            variant="outline"
+                            className="text-[10px] px-2 py-0.5 border-blue-200 text-blue-700 bg-blue-50"
+                          >
+                            {step.locationType === "Online" && step.platform
+                              ? `Online (${step.platform})`
+                              : step.locationType}
                           </Badge>
                         </div>
                       </div>
@@ -419,8 +684,15 @@ export default function RoomBuilder() {
                 <div className="pt-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-gray-600">Progress</span>
-                    <div className="flex-1"><Progress value={progressValue} className="h-1.5 bg-gray-100" /></div>
-                    <span className="text-xs text-gray-600 min-w-[2rem] text-right">{progressValue}%</span>
+                    <div className="flex-1">
+                      <Progress
+                        value={progressValue}
+                        className="h-1.5 bg-gray-100"
+                      />
+                    </div>
+                    <span className="text-xs text-gray-600 min-w-[2rem] text-right">
+                      {progressValue}%
+                    </span>
                   </div>
                 </div>
               </CardContent>

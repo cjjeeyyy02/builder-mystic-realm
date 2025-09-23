@@ -245,7 +245,8 @@ export default function ActivationView() {
 
   // Reminder modal state
   const [showReminderModal, setShowReminderModal] = useState(false);
-  const [selectedEmployeeForReminder, setSelectedEmployeeForReminder] = useState<Employee | null>(null);
+  const [selectedEmployeeForReminder, setSelectedEmployeeForReminder] =
+    useState<Employee | null>(null);
   const [reminderMessage, setReminderMessage] = useState("");
 
   // Update Status modal state
@@ -536,7 +537,9 @@ export default function ActivationView() {
                       >
                         <div className="flex flex-col">
                           <span>{employee.name}</span>
-                          <span className="text-xs text-muted-foreground">Job ID: {employee.jobId}</span>
+                          <span className="text-xs text-muted-foreground">
+                            Job ID: {employee.jobId}
+                          </span>
                         </div>
                       </TableCell>
                       <TableCell
@@ -1079,26 +1082,38 @@ export default function ActivationView() {
           </Dialog>
 
           {/* Send Reminder Modal */}
-          <Dialog open={showReminderModal} onOpenChange={(open) => {
-            setShowReminderModal(open);
-            if (!open) {
-              setSelectedEmployeeForReminder(null);
-              setReminderMessage("");
-            }
-          }}>
+          <Dialog
+            open={showReminderModal}
+            onOpenChange={(open) => {
+              setShowReminderModal(open);
+              if (!open) {
+                setSelectedEmployeeForReminder(null);
+                setReminderMessage("");
+              }
+            }}
+          >
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle className="text-sm font-semibold">Send Reminder</DialogTitle>
-                <DialogDescription>Send a reminder to the candidate to complete their activation process</DialogDescription>
+                <DialogTitle className="text-sm font-semibold">
+                  Send Reminder
+                </DialogTitle>
+                <DialogDescription>
+                  Send a reminder to the candidate to complete their activation
+                  process
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 text-xs">
                 <div>
                   <div className="text-xs font-semibold">Candidate Name</div>
-                  <div className="text-sm">{selectedEmployeeForReminder?.name || "-"}</div>
+                  <div className="text-sm">
+                    {selectedEmployeeForReminder?.name || "-"}
+                  </div>
                 </div>
                 <div>
                   <div className="text-xs font-semibold">Applied Position</div>
-                  <div className="text-sm">{selectedEmployeeForReminder?.appliedJobRole || "-"}</div>
+                  <div className="text-sm">
+                    {selectedEmployeeForReminder?.appliedJobRole || "-"}
+                  </div>
                 </div>
                 <div>
                   <label className="block mb-1 font-medium">
@@ -1129,7 +1144,12 @@ export default function ActivationView() {
                     const name = selectedEmployeeForReminder?.name;
                     setShowReminderModal(false);
                     setSelectedEmployeeForReminder(null);
-                    toast({ title: "Reminder sent", description: name ? `Reminder sent to ${name}` : undefined });
+                    toast({
+                      title: "Reminder sent",
+                      description: name
+                        ? `Reminder sent to ${name}`
+                        : undefined,
+                    });
                     setReminderMessage("");
                   }}
                 >
