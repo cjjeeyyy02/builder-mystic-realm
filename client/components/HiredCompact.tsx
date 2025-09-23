@@ -104,6 +104,7 @@ export default function HiredCompact() {
       c.name,
       c.position,
       formatMDY(c.joiningDate),
+      formatMDY(c.dateAdded),
       c.stage,
     ]);
     const csv = [
