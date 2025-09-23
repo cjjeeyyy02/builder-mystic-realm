@@ -553,9 +553,9 @@ export default function ScreeningView() {
                             </div>
                             <div
                               className="text-[12px] text-gray-500 truncate"
-                              title={candidate.location}
+                              title={`Job ID: ${String(candidate.id).padStart(3,'0')}`}
                             >
-                              {candidate.location}
+                              Job ID: {String(candidate.id).padStart(3,'0')}
                             </div>
                           </div>
                         </div>
