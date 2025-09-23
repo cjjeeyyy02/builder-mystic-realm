@@ -764,10 +764,12 @@ export default function ActivationView() {
                             )}
                             <span className="flex items-center gap-1">
                               {item.title}
-                              <button
-                                type="button"
+                              <span
+                                role="button"
+                                tabIndex={0}
                                 className="text-gray-500 hover:text-gray-900"
-                                onClick={() => {
+                                onClick={(e) => {
+                                  e.stopPropagation();
                                   const newTitle =
                                     prompt("Edit item name", item.title) ||
                                     item.title;
@@ -785,10 +787,23 @@ export default function ActivationView() {
                                     return copy;
                                   });
                                 }}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    (e as any).stopPropagation();
+                                    const newTitle = prompt('Edit item name', item.title) || item.title;
+                                    setChecklistMap((prev) => {
+                                      const copy = { ...prev } as typeof prev;
+                                      const arr = copy[selectedEmployeeForChecklist!.jobId].map((it) => it.id === item.id ? { ...it, title: newTitle } : it);
+                                      copy[selectedEmployeeForChecklist!.jobId] = arr;
+                                      return copy;
+                                    });
+                                  }
+                                }}
                                 aria-label="Edit item name"
                               >
                                 <Edit className="w-3 h-3" />
-                              </button>
+                              </span>
                             </span>
                           </div>
                         </AccordionTrigger>
