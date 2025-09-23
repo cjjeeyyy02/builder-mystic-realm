@@ -99,7 +99,7 @@ export default function HiredCompact() {
   }, [search, stageFilter]);
 
   const exportCSV = () => {
-    const headers = ["Candidate", "Applied Position", "Joining Date", "Stage"];
+    const headers = ["Candidate", "Applied Position", "Joining Date", "Date Added", "Stage"];
     const rows = candidates.map((c) => [
       c.name,
       c.position,
