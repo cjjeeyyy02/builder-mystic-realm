@@ -1029,6 +1029,13 @@ Google India`
     return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
   };
 
+  const getNextRoundName = (candidate: InterviewCandidate) => {
+    const nextId = candidate.missingRounds && candidate.missingRounds.length > 0 ? candidate.missingRounds[0] : null;
+    if (!nextId) return "—";
+    const r = rounds.find(r => r.id === nextId);
+    return r ? r.roundName : nextId;
+  };
+
   // Export a single candidate's interview card details as CSV
   const exportCandidateCard = (cand: InterviewCandidate) => {
     const headers = [
@@ -2042,6 +2049,10 @@ Google India`
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-gray-500">Current Round:</span>
                               <span className="text-xs font-medium text-blue-600 truncate ml-2">{c.currentRound}</span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <span className="text-[11px] text-gray-500">Next Round:</span>
+                              <span className="text-[11px] text-gray-600 truncate ml-2">{getNextRoundName(c)}</span>
                             </div>
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-gray-500">Interview Progress:</span>
