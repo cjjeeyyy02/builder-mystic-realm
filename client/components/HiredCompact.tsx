@@ -75,6 +75,7 @@ const sample: HiredCandidate[] = [
     name: "Sofia Rossi",
     position: "Data Analyst",
     joiningDate: "2025-07-20",
+    dateAdded: "2025-07-15",
     stage: "Pre-Onboarding",
   },
 ];
