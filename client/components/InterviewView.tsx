@@ -5754,7 +5754,9 @@ Google India"
                           ...s,
                           date: scheduleForm.date,
                           time: scheduleForm.time,
-                          interviewer: scheduleForm.interviewer,
+                          interviewer: (scheduleForm.interviewerNames && scheduleForm.interviewerNames.length > 0)
+                            ? scheduleForm.interviewerNames.join(", ")
+                            : scheduleForm.interviewer,
                         }
                       : s,
                   );
