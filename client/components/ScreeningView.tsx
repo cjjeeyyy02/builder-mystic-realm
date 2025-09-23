@@ -577,7 +577,10 @@ export default function ScreeningView() {
                         {formatPhone(candidate.phone)}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
-                        {statusText}
+                        <Badge variant={getStatusVariant(candidate.status)} className="gap-1 px-2 py-1 text-xs">
+                          {getStatusIcon(candidate.status)}
+                          {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                        </Badge>
                       </td>
                       <td className="py-3 px-3 text-center">
                         <ActionComponent
@@ -636,12 +639,11 @@ export default function ScreeningView() {
                       <h3 className="font-semibold text-foreground text-sm leading-tight">
                         {candidate.name}
                       </h3>
-                      <div className="text-xs text-gray-700">
-                        {candidate.status === "approved"
-                          ? "Approved"
-                          : candidate.status === "reject"
-                            ? "Rejected"
-                            : "Pending"}
+                      <div className="text-xs">
+                        <Badge variant={getStatusVariant(candidate.status)} className="gap-1 px-2 py-0.5 text-[10px]">
+                          {getStatusIcon(candidate.status)}
+                          {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                        </Badge>
                       </div>
                     </div>
                     <div>
