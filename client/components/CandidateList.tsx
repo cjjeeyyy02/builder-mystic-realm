@@ -91,10 +91,17 @@ const candidates: Candidate[] = [
     stage: "screening",
     applicationStatus: "open",
     isSelected: false,
-    summary: "Experienced operations professional with 5+ years in supply chain management and process optimization. Proven track record of improving efficiency and reducing costs.",
+    summary:
+      "Experienced operations professional with 5+ years in supply chain management and process optimization. Proven track record of improving efficiency and reducing costs.",
     experience: "5 years",
     education: "Bachelor's in Business Administration, University of Hyderabad",
-    skills: ["Supply Chain Management", "Process Optimization", "Data Analysis", "Project Management", "Microsoft Excel"],
+    skills: [
+      "Supply Chain Management",
+      "Process Optimization",
+      "Data Analysis",
+      "Project Management",
+      "Microsoft Excel",
+    ],
     certifications: ["Six Sigma Green Belt", "PMP Certification"],
     previousCompany: "Tech Solutions India Pvt Ltd",
     salaryExpectation: "₹8-10 LPA",
@@ -118,10 +125,17 @@ const candidates: Candidate[] = [
     stage: "interview",
     applicationStatus: "open",
     isSelected: false,
-    summary: "Detail-oriented operations specialist with expertise in logistics and inventory management. Strong analytical skills and team leadership experience.",
+    summary:
+      "Detail-oriented operations specialist with expertise in logistics and inventory management. Strong analytical skills and team leadership experience.",
     experience: "3 years",
     education: "Master's in Operations Management, IIT Hyderabad",
-    skills: ["Logistics Management", "Inventory Control", "Team Leadership", "SQL", "Tableau"],
+    skills: [
+      "Logistics Management",
+      "Inventory Control",
+      "Team Leadership",
+      "SQL",
+      "Tableau",
+    ],
     certifications: ["APICS CSCP", "Google Analytics"],
     previousCompany: "Global Logistics Corp",
     salaryExpectation: "₹6-8 LPA",
@@ -275,8 +289,13 @@ function getMainStatusColor(status: string): string {
   }
 }
 
-export default function CandidateList({ searchQuery = "", selectedStage = "all" }: CandidateListProps) {
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+export default function CandidateList({
+  searchQuery = "",
+  selectedStage = "all",
+}: CandidateListProps) {
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+    null,
+  );
   const [showProfile, setShowProfile] = useState(false);
 
   const handleViewProfile = (candidate: Candidate) => {
@@ -286,12 +305,14 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
 
   // Filter candidates based on search query and selected stage
   const filteredCandidates = candidates.filter((candidate) => {
-    const matchesSearch = searchQuery === "" ||
+    const matchesSearch =
+      searchQuery === "" ||
       candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       candidate.position.toLowerCase().includes(searchQuery.toLowerCase()) ||
       candidate.email.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesStage = selectedStage === "all" || candidate.stage === selectedStage;
+    const matchesStage =
+      selectedStage === "all" || candidate.stage === selectedStage;
 
     return matchesSearch && matchesStage;
   });
@@ -307,140 +328,179 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
         </p>
         {selectedStage !== "all" && (
           <Badge variant="outline" className="text-xs">
-            {selectedStage.charAt(0).toUpperCase() + selectedStage.slice(1)} Stage
+            {selectedStage.charAt(0).toUpperCase() + selectedStage.slice(1)}{" "}
+            Stage
           </Badge>
         )}
       </div>
 
       {/* Candidates Grid - Professional Clean Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {filteredCandidates.length > 0 ? filteredCandidates.map((candidate) => (
-          <Card
-            key={candidate.id}
-            className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
-              candidate.isSelected
-                ? "ring-2 ring-primary/20 shadow-lg"
-                : ""
-            }`}
-          >
-            <CardContent className="p-4">
-              <div className="space-y-3">
-                {/* Header with Avatar and Name */}
-                <div className="flex items-start gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-border">
-                    <User className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Candidate:</div>
-                    <div className="font-semibold text-foreground text-sm">{candidate.name}</div>
-                  </div>
-                </div>
-
-                {/* Applied Position */}
-                <div>
-                  <div className="text-xs text-muted-foreground font-medium mb-0.5">Applied Position:</div>
-                  <div className="font-medium text-foreground text-sm">{candidate.position}</div>
-                </div>
-
-                {/* Details Grid */}
-                <div className="grid grid-cols-2 gap-2">
-                  {/* Work Type */}
-                  <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Type:</div>
-                    <Badge
-                      variant="secondary"
-                      className={`text-xs ${getDepartmentColor(candidate.workType)}`}
-                    >
-                      {candidate.workType}
-                    </Badge>
-                  </div>
-
-                  {/* Applied Date */}
-                  <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Applied:</div>
-                    <div className="flex items-center gap-1 text-foreground text-xs">
-                      <Calendar className="w-3 h-3 text-muted-foreground" />
-                      {candidate.appliedDate}
+        {filteredCandidates.length > 0 ? (
+          filteredCandidates.map((candidate) => (
+            <Card
+              key={candidate.id}
+              className={`border-0 shadow-sm hover:shadow-md transition-all duration-200 ${
+                candidate.isSelected ? "ring-2 ring-primary/20 shadow-lg" : ""
+              }`}
+            >
+              <CardContent className="p-4">
+                <div className="space-y-3">
+                  {/* Header with Avatar and Name */}
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-border">
+                      <User className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Candidate:
+                      </div>
+                      <div className="font-semibold text-foreground text-sm">
+                        {candidate.name}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Application Start */}
+                  {/* Applied Position */}
                   <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Start:</div>
-                    <div className="flex items-center gap-1 text-foreground text-xs">
-                      <Clock className="w-3 h-3 text-muted-foreground" />
-                      {candidate.applicationStart}
+                    <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                      Applied Position:
+                    </div>
+                    <div className="font-medium text-foreground text-sm">
+                      {candidate.position}
                     </div>
                   </div>
 
-                  {/* Application Close */}
-                  <div>
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Close:</div>
-                    <div className="flex items-center gap-1 text-foreground text-xs">
-                      <Clock className="w-3 h-3 text-muted-foreground" />
-                      {candidate.applicationEnd}
+                  {/* Details Grid */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {/* Work Type */}
+                    <div>
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Type:
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className={`text-xs ${getDepartmentColor(candidate.workType)}`}
+                      >
+                        {candidate.workType}
+                      </Badge>
+                    </div>
+
+                    {/* Applied Date */}
+                    <div>
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Applied:
+                      </div>
+                      <div className="flex items-center gap-1 text-foreground text-xs">
+                        <Calendar className="w-3 h-3 text-muted-foreground" />
+                        {candidate.appliedDate}
+                      </div>
+                    </div>
+
+                    {/* Application Start */}
+                    <div>
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Start:
+                      </div>
+                      <div className="flex items-center gap-1 text-foreground text-xs">
+                        <Clock className="w-3 h-3 text-muted-foreground" />
+                        {candidate.applicationStart}
+                      </div>
+                    </div>
+
+                    {/* Application Close */}
+                    <div>
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Close:
+                      </div>
+                      <div className="flex items-center gap-1 text-foreground text-xs">
+                        <Clock className="w-3 h-3 text-muted-foreground" />
+                        {candidate.applicationEnd}
+                      </div>
+                    </div>
+
+                    {/* Location */}
+                    <div className="col-span-2">
+                      <div className="text-xs text-muted-foreground font-medium mb-0.5">
+                        Location:
+                      </div>
+                      <div className="flex items-center gap-1 text-foreground text-xs">
+                        <MapPin className="w-3 h-3 text-muted-foreground" />
+                        {candidate.companyLocation}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Location */}
-                  <div className="col-span-2">
-                    <div className="text-xs text-muted-foreground font-medium mb-0.5">Location:</div>
-                    <div className="flex items-center gap-1 text-foreground text-xs">
-                      <MapPin className="w-3 h-3 text-muted-foreground" />
-                      {candidate.companyLocation}
+                  {/* Status Section */}
+                  <div className="pt-1.5 border-t border-border space-y-2">
+                    {/* Application Status */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground font-medium">
+                        Status:
+                      </span>
+                      <Badge
+                        variant="outline"
+                        className={`text-xs font-medium ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                      >
+                        {candidate.applicationStatus === "open" ? (
+                          <CheckCircle className="w-3 h-3 mr-0.5" />
+                        ) : (
+                          <X className="w-3 h-3 mr-0.5" />
+                        )}
+                        {candidate.applicationStatus.charAt(0).toUpperCase() +
+                          candidate.applicationStatus.slice(1)}
+                      </Badge>
                     </div>
-                  </div>
-                </div>
 
-                {/* Status Section */}
-                <div className="pt-1.5 border-t border-border space-y-2">
-                  {/* Application Status */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground font-medium">Status:</span>
-                    <Badge
+                    {/* Main Status */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground font-medium">
+                        Stage:
+                      </span>
+                      <Badge
+                        variant="outline"
+                        className={`text-xs font-medium ${getMainStatusColor(candidate.status)}`}
+                      >
+                        {getStatusIcon(candidate.status)}
+                        <span className="ml-0.5">
+                          {candidate.status === "hired"
+                            ? "Hired"
+                            : candidate.status.charAt(0).toUpperCase() +
+                              candidate.status.slice(1)}
+                        </span>
+                      </Badge>
+                    </div>
+
+                    {/* Action Button */}
+                    <Button
+                      size="sm"
                       variant="outline"
-                      className={`text-xs font-medium ${getApplicationStatusColor(candidate.applicationStatus)}`}
+                      className="w-full text-xs font-medium h-7"
+                      onClick={() => handleViewProfile(candidate)}
                     >
-                      {candidate.applicationStatus === "open" ? <CheckCircle className="w-3 h-3 mr-0.5" /> : <X className="w-3 h-3 mr-0.5" />}
-                      {candidate.applicationStatus.charAt(0).toUpperCase() + candidate.applicationStatus.slice(1)}
-                    </Badge>
+                      <Eye className="w-3 h-3 mr-1" />
+                      View Profile
+                    </Button>
                   </div>
-
-                  {/* Main Status */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground font-medium">Stage:</span>
-                    <Badge
-                      variant="outline"
-                      className={`text-xs font-medium ${getMainStatusColor(candidate.status)}`}
-                    >
-                      {getStatusIcon(candidate.status)}
-                      <span className="ml-0.5">{candidate.status === "hired" ? "Hired" : candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}</span>
-                    </Badge>
-                  </div>
-
-                  {/* Action Button */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="w-full text-xs font-medium h-7"
-                    onClick={() => handleViewProfile(candidate)}
-                  >
-                    <Eye className="w-3 h-3 mr-1" />
-                    View Profile
-                  </Button>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        )) : (
+              </CardContent>
+            </Card>
+          ))
+        ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-12 text-center">
             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
               <FileText className="w-8 h-8 text-gray-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">No candidates found</h3>
+            <h3 className="text-lg font-semibold text-gray-600 mb-2">
+              No candidates found
+            </h3>
             <p className="text-gray-500 max-w-sm">
-              {searchQuery ? `No candidates match "${searchQuery}"` : `No candidates in ${selectedStage} stage`}
-              {searchQuery && selectedStage !== "all" && ` in ${selectedStage} stage`}
+              {searchQuery
+                ? `No candidates match "${searchQuery}"`
+                : `No candidates in ${selectedStage} stage`}
+              {searchQuery &&
+                selectedStage !== "all" &&
+                ` in ${selectedStage} stage`}
             </p>
           </div>
         )}
@@ -462,8 +522,12 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <h2 className="text-xl font-bold">{selectedCandidate.name}</h2>
-                    <p className="text-gray-600">{selectedCandidate.position}</p>
+                    <h2 className="text-xl font-bold">
+                      {selectedCandidate.name}
+                    </h2>
+                    <p className="text-gray-600">
+                      {selectedCandidate.position}
+                    </p>
                   </div>
                   <div className="ml-auto">
                     <Badge
@@ -471,7 +535,11 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                       className={`text-sm ${getStatusBadgeClasses(selectedCandidate.status)}`}
                     >
                       {getStatusIcon(selectedCandidate.status)}
-                      <span className="ml-1">{selectedCandidate.status === "reject" ? "rejected" : selectedCandidate.status}</span>
+                      <span className="ml-1">
+                        {selectedCandidate.status === "reject"
+                          ? "rejected"
+                          : selectedCandidate.status}
+                      </span>
                     </Badge>
                   </div>
                 </DialogTitle>
@@ -483,21 +551,29 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                   <Card>
                     <CardContent className="p-4 text-center">
                       <Briefcase className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                      <div className="font-semibold">{selectedCandidate.experience}</div>
+                      <div className="font-semibold">
+                        {selectedCandidate.experience}
+                      </div>
                       <div className="text-sm text-gray-600">Experience</div>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="p-4 text-center">
                       <MapPin className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                      <div className="font-semibold">{selectedCandidate.workType}</div>
-                      <div className="text-sm text-gray-600">Work Preference</div>
+                      <div className="font-semibold">
+                        {selectedCandidate.workType}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Work Preference
+                      </div>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="p-4 text-center">
                       <Calendar className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-                      <div className="font-semibold">{selectedCandidate.availability}</div>
+                      <div className="font-semibold">
+                        {selectedCandidate.availability}
+                      </div>
                       <div className="text-sm text-gray-600">Availability</div>
                     </CardContent>
                   </Card>
@@ -514,21 +590,29 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
                           <Mail className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm">{selectedCandidate.email}</span>
+                          <span className="text-sm">
+                            {selectedCandidate.email}
+                          </span>
                         </div>
                         <div className="flex items-center gap-3">
                           <Phone className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm">{selectedCandidate.phone}</span>
+                          <span className="text-sm">
+                            {selectedCandidate.phone}
+                          </span>
                         </div>
                         <div className="flex items-center gap-3">
                           <MapPin className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm">{selectedCandidate.companyLocation}</span>
+                          <span className="text-sm">
+                            {selectedCandidate.companyLocation}
+                          </span>
                         </div>
                       </div>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
                           <Building className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm">{selectedCandidate.previousCompany}</span>
+                          <span className="text-sm">
+                            {selectedCandidate.previousCompany}
+                          </span>
                         </div>
                         <div className="flex items-center gap-3">
                           <Globe className="w-4 h-4 text-gray-500" />
@@ -558,8 +642,12 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                 {selectedCandidate.summary && (
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-4">Professional Summary</h3>
-                      <p className="text-gray-700 leading-relaxed">{selectedCandidate.summary}</p>
+                      <h3 className="text-lg font-semibold mb-4">
+                        Professional Summary
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        {selectedCandidate.summary}
+                      </p>
                     </CardContent>
                   </Card>
                 )}
@@ -573,88 +661,128 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                           <GraduationCap className="w-5 h-5" />
                           Education
                         </h3>
-                        <p className="text-gray-700">{selectedCandidate.education}</p>
+                        <p className="text-gray-700">
+                          {selectedCandidate.education}
+                        </p>
                       </CardContent>
                     </Card>
                   )}
 
-                  {selectedCandidate.skills && selectedCandidate.skills.length > 0 && (
+                  {selectedCandidate.skills &&
+                    selectedCandidate.skills.length > 0 && (
+                      <Card>
+                        <CardContent className="p-6">
+                          <h3 className="text-lg font-semibold mb-4">Skills</h3>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedCandidate.skills.map((skill, index) => (
+                              <Badge
+                                key={index}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+                </div>
+
+                {/* Certifications */}
+                {selectedCandidate.certifications &&
+                  selectedCandidate.certifications.length > 0 && (
                     <Card>
                       <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold mb-4">Skills</h3>
+                        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                          <Award className="w-5 h-5" />
+                          Certifications
+                        </h3>
                         <div className="flex flex-wrap gap-2">
-                          {selectedCandidate.skills.map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {skill}
-                            </Badge>
-                          ))}
+                          {selectedCandidate.certifications.map(
+                            (cert, index) => (
+                              <Badge
+                                key={index}
+                                variant="outline"
+                                className="text-sm"
+                              >
+                                {cert}
+                              </Badge>
+                            ),
+                          )}
                         </div>
                       </CardContent>
                     </Card>
                   )}
-                </div>
-
-                {/* Certifications */}
-                {selectedCandidate.certifications && selectedCandidate.certifications.length > 0 && (
-                  <Card>
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <Award className="w-5 h-5" />
-                        Certifications
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedCandidate.certifications.map((cert, index) => (
-                          <Badge key={index} variant="outline" className="text-sm">
-                            {cert}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
 
                 {/* Application Details */}
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold mb-4">Application Details</h3>
+                    <h3 className="text-lg font-semibold mb-4">
+                      Application Details
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-3">
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Application Stage</label>
+                          <label className="text-sm font-medium text-gray-600">
+                            Application Stage
+                          </label>
                           <div className="mt-1">
                             <Badge variant="secondary" className="text-sm">
-                              {selectedCandidate.stage.charAt(0).toUpperCase() + selectedCandidate.stage.slice(1)}
+                              {selectedCandidate.stage.charAt(0).toUpperCase() +
+                                selectedCandidate.stage.slice(1)}
                             </Badge>
                           </div>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Applied Date</label>
-                          <p className="mt-1 text-sm">{selectedCandidate.appliedDate}</p>
+                          <label className="text-sm font-medium text-gray-600">
+                            Applied Date
+                          </label>
+                          <p className="mt-1 text-sm">
+                            {selectedCandidate.appliedDate}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Application Period</label>
+                          <label className="text-sm font-medium text-gray-600">
+                            Application Period
+                          </label>
                           <p className="mt-1 text-sm">
-                            {selectedCandidate.applicationStart} - {selectedCandidate.applicationEnd}
+                            {selectedCandidate.applicationStart} -{" "}
+                            {selectedCandidate.applicationEnd}
                           </p>
                         </div>
                       </div>
                       <div className="space-y-3">
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Salary Expectation</label>
-                          <p className="mt-1 text-sm">{selectedCandidate.salaryExpectation}</p>
+                          <label className="text-sm font-medium text-gray-600">
+                            Salary Expectation
+                          </label>
+                          <p className="mt-1 text-sm">
+                            {selectedCandidate.salaryExpectation}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Work Preference</label>
-                          <p className="mt-1 text-sm">{selectedCandidate.workType}</p>
+                          <label className="text-sm font-medium text-gray-600">
+                            Work Preference
+                          </label>
+                          <p className="mt-1 text-sm">
+                            {selectedCandidate.workType}
+                          </p>
                         </div>
                         <div>
-                          <label className="text-sm font-medium text-gray-600">Current Status</label>
+                          <label className="text-sm font-medium text-gray-600">
+                            Current Status
+                          </label>
                           <div className="mt-1">
                             <Badge
-                              variant={getStatusVariant(selectedCandidate.status)}
+                              variant={getStatusVariant(
+                                selectedCandidate.status,
+                              )}
                               className={`text-sm ${getStatusBadgeClasses(selectedCandidate.status)}`}
                             >
-                              {selectedCandidate.status === "reject" ? "rejected" : selectedCandidate.status}
+                              {selectedCandidate.status === "reject"
+                                ? "rejected"
+                                : selectedCandidate.status}
                             </Badge>
                           </div>
                         </div>
@@ -672,19 +800,28 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {selectedCandidate.resumeUrl && (
-                        <Button variant="outline" className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          className="flex items-center gap-2"
+                        >
                           <Download className="w-4 h-4" />
                           Resume
                         </Button>
                       )}
                       {selectedCandidate.coverLetterUrl && (
-                        <Button variant="outline" className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          className="flex items-center gap-2"
+                        >
                           <Download className="w-4 h-4" />
                           Cover Letter
                         </Button>
                       )}
                       {selectedCandidate.portfolioUrl && (
-                        <Button variant="outline" className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          className="flex items-center gap-2"
+                        >
                           <ExternalLink className="w-4 h-4" />
                           Portfolio
                         </Button>
@@ -693,7 +830,6 @@ export default function CandidateList({ searchQuery = "", selectedStage = "all" 
                   </CardContent>
                 </Card>
               </div>
-
             </>
           )}
         </DialogContent>

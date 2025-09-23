@@ -32,11 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -75,7 +71,7 @@ import {
   ChevronDown,
   Grid,
   List,
-  Phone
+  Phone,
 } from "lucide-react";
 
 interface InterviewCandidate {
@@ -83,7 +79,10 @@ interface InterviewCandidate {
   applicantName: string;
   appliedPosition: string;
   department: string;
-  currentRound: "Technical Assessment Round 1" | "Technical Round 2" | "Non Technical Round 2";
+  currentRound:
+    | "Technical Assessment Round 1"
+    | "Technical Round 2"
+    | "Non Technical Round 2";
   status: "in-progress" | "completed" | "pending";
   email?: string;
   phone?: string;
@@ -91,13 +90,17 @@ interface InterviewCandidate {
   missingRounds?: string[];
 }
 
-
 interface InterviewRound {
   id: string;
   roundHeader: string;
   roundName: string;
   roundType: "technical" | "non-technical" | "final";
-  interviewMode: "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment";
+  interviewMode:
+    | "online-assessment"
+    | "video-call"
+    | "in-person"
+    | "oral-assessment"
+    | "group-assessment";
   testDescription?: string;
   attachedFiles: string[];
   scheduledDate: string;
@@ -354,10 +357,30 @@ const roundTemplates: RoundTemplate[] = [
     name: "Software Engineer Template",
     description: "Complete interview process for software engineering roles",
     rounds: [
-      { roundName: "Technical Screening", roundType: "technical", interviewMode: "online-assessment", order: 1 },
-      { roundName: "System Design", roundType: "technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Behavioral Interview", roundType: "non-technical", interviewMode: "video-call", order: 3 },
-      { roundName: "Final Interview", roundType: "final", interviewMode: "in-person", order: 4 },
+      {
+        roundName: "Technical Screening",
+        roundType: "technical",
+        interviewMode: "online-assessment",
+        order: 1,
+      },
+      {
+        roundName: "System Design",
+        roundType: "technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Behavioral Interview",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 3,
+      },
+      {
+        roundName: "Final Interview",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 4,
+      },
     ],
   },
   {
@@ -365,9 +388,24 @@ const roundTemplates: RoundTemplate[] = [
     name: "Product Manager Template",
     description: "Interview process for product management roles",
     rounds: [
-      { roundName: "Product Case Study", roundType: "non-technical", interviewMode: "video-call", order: 1 },
-      { roundName: "Strategy Discussion", roundType: "non-technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Executive Review", roundType: "final", interviewMode: "in-person", order: 3 },
+      {
+        roundName: "Product Case Study",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 1,
+      },
+      {
+        roundName: "Strategy Discussion",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Executive Review",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 3,
+      },
     ],
   },
   {
@@ -375,13 +413,27 @@ const roundTemplates: RoundTemplate[] = [
     name: "Designer Template",
     description: "Interview process for design roles",
     rounds: [
-      { roundName: "Portfolio Review", roundType: "non-technical", interviewMode: "video-call", order: 1 },
-      { roundName: "Design Challenge", roundType: "technical", interviewMode: "video-call", order: 2 },
-      { roundName: "Team Fit Interview", roundType: "final", interviewMode: "in-person", order: 3 },
+      {
+        roundName: "Portfolio Review",
+        roundType: "non-technical",
+        interviewMode: "video-call",
+        order: 1,
+      },
+      {
+        roundName: "Design Challenge",
+        roundType: "technical",
+        interviewMode: "video-call",
+        order: 2,
+      },
+      {
+        roundName: "Team Fit Interview",
+        roundType: "final",
+        interviewMode: "in-person",
+        order: 3,
+      },
     ],
   },
 ];
-
 
 function getStatusColor(status: string): string {
   switch (status) {
@@ -415,12 +467,11 @@ function getDepartmentColor(department: string): string {
   }
 }
 
-
 function formatMDYSlash(dateStr: string): string {
   const d = new Date(dateStr);
   if (!isNaN(d.getTime())) {
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
     const yyyy = d.getFullYear();
     return `${mm}/${dd}/${yyyy}`;
   }
@@ -436,8 +487,8 @@ function formatMDYSlash(dateStr: string): string {
 function formatMDYDash(dateStr: string): string {
   const d = new Date(dateStr);
   if (!isNaN(d.getTime())) {
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
     const yyyy = d.getFullYear();
     return `${mm}-${dd}-${yyyy}`;
   }
@@ -449,52 +500,65 @@ function formatMDYDash(dateStr: string): string {
 }
 
 function formatPhoneUS(raw?: string) {
-  const digits = String(raw || '').replace(/\D/g, '');
-  const area = digits.slice(0,3).padEnd(3, ' ');
-  const mid = digits.slice(3,6).padEnd(3, ' ');
-  const last = digits.slice(6,9).padEnd(3, ' ');
+  const digits = String(raw || "").replace(/\D/g, "");
+  const area = digits.slice(0, 3).padEnd(3, " ");
+  const mid = digits.slice(3, 6).padEnd(3, " ");
+  const last = digits.slice(6, 9).padEnd(3, " ");
   return `+1 (${area}) ${mid} - ${last}`.trim();
 }
 
 export default function InterviewView() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setShowTimelineSheet(false);
         setShowCandidateDetailsModal(false);
       }
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
   // Main Panel States
   const [activeMainTab, setActiveMainTab] = useState("interview-status");
 
   // Rounds Room States
-  const [activeRoundType, setActiveRoundType] = useState<"technical" | "non-technical" | "final">("technical");
-  const [rounds, setRounds] = useState<InterviewRound[]>(defaultInterviewRounds);
-  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(null);
+  const [activeRoundType, setActiveRoundType] = useState<
+    "technical" | "non-technical" | "final"
+  >("technical");
+  const [rounds, setRounds] = useState<InterviewRound[]>(
+    defaultInterviewRounds,
+  );
+  const [selectedRound, setSelectedRound] = useState<InterviewRound | null>(
+    null,
+  );
   const [showRoundModal, setShowRoundModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   // Assignment States
   const [showBulkAssignModal, setShowBulkAssignModal] = useState(false);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
-  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] = useState<string[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<RoundTemplate | null>(null);
+  const [selectedCandidatesForAssignment, setSelectedCandidatesForAssignment] =
+    useState<string[]>([]);
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<RoundTemplate | null>(null);
   const [bulkSelectedRounds, setBulkSelectedRounds] = useState<string[]>([]);
 
   // Search and Filter States
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredCandidates, setFilteredCandidates] = useState(interviewCandidates);
-  const [assignmentFilter, setAssignmentFilter] = useState<"all" | "missing" | "partial" | "complete">("all");
-  const [viewMode, setViewMode] = useState<"table" | "calendar" | "card">("table");
+  const [filteredCandidates, setFilteredCandidates] =
+    useState(interviewCandidates);
+  const [assignmentFilter, setAssignmentFilter] = useState<
+    "all" | "missing" | "partial" | "complete"
+  >("all");
+  const [viewMode, setViewMode] = useState<"table" | "calendar" | "card">(
+    "table",
+  );
   // Calendar view state and helpers
   const [calendarDate, setCalendarDate] = useState(new Date());
   const formatDate = (d: Date) => {
     const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${y}-${m}-${day}`;
   };
   const getCalendarDays = (date: Date) => {
@@ -512,9 +576,14 @@ export default function InterviewView() {
     }
     return days;
   };
-  const calendarDays = useMemo(() => getCalendarDays(calendarDate), [calendarDate]);
-  const [calendarView, setCalendarView] = useState<'day' | 'week' | 'month'>('month');
-  const [calendarSearch, setCalendarSearch] = useState('');
+  const calendarDays = useMemo(
+    () => getCalendarDays(calendarDate),
+    [calendarDate],
+  );
+  const [calendarView, setCalendarView] = useState<"day" | "week" | "month">(
+    "month",
+  );
+  const [calendarSearch, setCalendarSearch] = useState("");
 
   // Calendar events and editor state
   type CalendarEvent = {
@@ -523,7 +592,7 @@ export default function InterviewView() {
     organizer: string;
     attendees: string[];
     start: string; // ISO
-    end: string;   // ISO
+    end: string; // ISO
     allDay?: boolean;
     location?: string;
     description?: string;
@@ -531,15 +600,21 @@ export default function InterviewView() {
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
   const [showEventPanel, setShowEventPanel] = useState(false);
   const [eventDraft, setEventDraft] = useState<CalendarEvent | null>(null);
-  const openEventPanel = (draft: CalendarEvent) => { setEventDraft(draft); setShowEventPanel(true); };
-  const closeEventPanel = () => { setShowEventPanel(false); setEventDraft(null); };
+  const openEventPanel = (draft: CalendarEvent) => {
+    setEventDraft(draft);
+    setShowEventPanel(true);
+  };
+  const closeEventPanel = () => {
+    setShowEventPanel(false);
+    setEventDraft(null);
+  };
 
   const getStartOfWorkWeek = (d: Date) => {
     const date = new Date(d);
     const day = date.getDay();
     const diffToMonday = (day + 6) % 7;
     date.setDate(date.getDate() - diffToMonday);
-    date.setHours(0,0,0,0);
+    date.setHours(0, 0, 0, 0);
     return date;
   };
 
@@ -552,8 +627,8 @@ export default function InterviewView() {
     for (let h = WORK_HOURS_START; h < WORK_HOURS_END; h++) {
       for (let m = 0; m < 60; m += SLOT_MINUTES) {
         const hour12 = ((h + 11) % 12) + 1;
-        const ampm = h < 12 ? 'AM' : 'PM';
-        const mm = String(m).padStart(2, '0');
+        const ampm = h < 12 ? "AM" : "PM";
+        const mm = String(m).padStart(2, "0");
         slots.push(`${hour12}:${mm} ${ampm}`);
       }
     }
@@ -564,40 +639,58 @@ export default function InterviewView() {
   const [selDayIdx, setSelDayIdx] = useState<number | null>(null);
   const [selStartIdx, setSelStartIdx] = useState<number | null>(null);
   const [selEndIdx, setSelEndIdx] = useState<number | null>(null);
-  const resetSelection = () => { setIsSelecting(false); setSelDayIdx(null); setSelStartIdx(null); setSelEndIdx(null); };
+  const resetSelection = () => {
+    setIsSelecting(false);
+    setSelDayIdx(null);
+    setSelStartIdx(null);
+    setSelEndIdx(null);
+  };
   const commitSelectionToDraft = (weekStart: Date) => {
     if (selDayIdx == null || selStartIdx == null) return;
     const endIdx = selEndIdx != null ? selEndIdx : selStartIdx;
     const start = new Date(weekStart);
     start.setDate(weekStart.getDate() + selDayIdx);
-    const startHour = WORK_HOURS_START + Math.floor(selStartIdx * SLOT_MINUTES / 60);
+    const startHour =
+      WORK_HOURS_START + Math.floor((selStartIdx * SLOT_MINUTES) / 60);
     const startMinute = (selStartIdx * SLOT_MINUTES) % 60;
     start.setHours(startHour, startMinute, 0, 0);
 
     const end = new Date(weekStart);
     end.setDate(weekStart.getDate() + selDayIdx);
-    const endHour = WORK_HOURS_START + Math.floor((endIdx + 1) * SLOT_MINUTES / 60);
+    const endHour =
+      WORK_HOURS_START + Math.floor(((endIdx + 1) * SLOT_MINUTES) / 60);
     const endMinute = ((endIdx + 1) * SLOT_MINUTES) % 60;
     end.setHours(endHour, endMinute, 0, 0);
 
     openEventPanel({
       id: `draft-${Date.now()}`,
-      title: '',
-      organizer: '',
+      title: "",
+      organizer: "",
       attendees: [],
       start: start.toISOString(),
       end: end.toISOString(),
       allDay: false,
-      location: '',
-      description: ''
+      location: "",
+      description: "",
     });
   };
   // Build events map by date from rounds and interviewCandidates
   const eventsByDate = useMemo(() => {
-    const map: Record<string, { candidateName: string; appliedPosition: string; roundName: string; status: string; time?: string; }[]> = {};
-    const candidateById = Object.fromEntries(interviewCandidates.map(c => [c.id, c]));
-    rounds.forEach(r => {
-      (r.candidates || []).forEach(cid => {
+    const map: Record<
+      string,
+      {
+        candidateName: string;
+        appliedPosition: string;
+        roundName: string;
+        status: string;
+        time?: string;
+      }[]
+    > = {};
+    const candidateById = Object.fromEntries(
+      interviewCandidates.map((c) => [c.id, c]),
+    );
+    rounds.forEach((r) => {
+      (r.candidates || []).forEach((cid) => {
         const c = candidateById[cid];
         if (!c) return;
         const key = r.scheduledDate;
@@ -607,13 +700,12 @@ export default function InterviewView() {
           appliedPosition: c.appliedPosition,
           roundName: r.roundName,
           status: c.status,
-          time: r.scheduledTime
+          time: r.scheduledTime,
         });
       });
     });
     return map;
   }, [rounds]);
-
 
   // New Rounds Room Interface States
   const [searchCandidates, setSearchCandidates] = useState("");
@@ -633,19 +725,20 @@ export default function InterviewView() {
     scheduledTime: "",
     roundDetails: "One-On-One Discussion with the Marketing Manager",
     submissionDeadline: "",
-    sendRound: "Applicant, Group of Applicants, Job Role"
+    sendRound: "Applicant, Group of Applicants, Job Role",
   });
 
   // Step Type Enable/Disable States
   const [roundTypeEnabled, setRoundTypeEnabled] = useState({
     technical: true,
     "non-technical": true,
-    final: true
+    final: true,
   });
 
   // Email Screen States
   const [showEmailScreen, setShowEmailScreen] = useState(false);
-  const [showRoundsEmailInterface, setShowRoundsEmailInterface] = useState(false);
+  const [showRoundsEmailInterface, setShowRoundsEmailInterface] =
+    useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [emailSearch, setEmailSearch] = useState("");
   const [showBulkActions, setShowBulkActions] = useState(false);
@@ -674,7 +767,7 @@ If none of the available times work for you, or if you run into any issues while
 Best regards,
 Kayle Jenny
 HR Associate
-Google India`
+Google India`,
   });
 
   // Function to render message with clickable links
@@ -691,11 +784,11 @@ Google India`
             className="text-blue-600 hover:text-blue-800 underline font-medium transition-colors duration-200"
             onClick={(e) => {
               e.preventDefault();
-              if (part.includes('schedule-interview-slot')) {
+              if (part.includes("schedule-interview-slot")) {
                 // Navigate to scheduling page
-                window.location.href = '/schedule-interview';
+                window.location.href = "/schedule-interview";
               } else {
-                window.open(part, '_blank');
+                window.open(part, "_blank");
               }
             }}
           >
@@ -714,41 +807,46 @@ Google India`
         id: "1",
         applicantName: "Sarah Mitchell",
         position: "Senior Developer",
-        subject: "Application for Senior Developer - Request for Interview Scheduling",
-        preview: "Thank you for considering my application. I'm available for the interview...",
+        subject:
+          "Application for Senior Developer - Request for Interview Scheduling",
+        preview:
+          "Thank you for considering my application. I'm available for the interview...",
         timestamp: "2 hours ago",
         checked: false,
-        priority: "high"
+        priority: "high",
       },
       {
         id: "2",
         applicantName: "Jaya Mishra",
         position: "Senior Developer",
         subject: "Proposed Interview Time - Availability Confirmation",
-        preview: "I would like to confirm my availability for the interview scheduled...",
+        preview:
+          "I would like to confirm my availability for the interview scheduled...",
         timestamp: "4 hours ago",
         checked: false,
-        priority: "normal"
+        priority: "normal",
       },
       {
         id: "3",
         applicantName: "Mark Johnson",
         position: "Graphic Designer",
         subject: "Portfolio Submission and Interview Request",
-        preview: "Please find attached my portfolio. I'm excited about the opportunity...",
+        preview:
+          "Please find attached my portfolio. I'm excited about the opportunity...",
         timestamp: "6 hours ago",
         checked: false,
-        priority: "normal"
+        priority: "normal",
       },
       {
         id: "4",
         applicantName: "Emily Chen",
         position: "UX Designer",
         subject: "Thank you for the interview - Next steps inquiry",
-        preview: "Thank you for the wonderful interview yesterday. I wanted to follow up...",
+        preview:
+          "Thank you for the wonderful interview yesterday. I wanted to follow up...",
         timestamp: "1 day ago",
         checked: false,
-        priority: "low"
+        priority: "low",
       },
       {
         id: "5",
@@ -758,8 +856,8 @@ Google India`
         preview: "I have completed the technical assessment as requested...",
         timestamp: "2 days ago",
         checked: false,
-        priority: "high"
-      }
+        priority: "high",
+      },
     ],
     sent: [
       {
@@ -767,9 +865,10 @@ Google India`
         applicantName: "Jaya Mishra",
         position: "Senior Developer",
         subject: "Interview Invitation - Technical Round",
-        preview: "We are pleased to invite you for the technical interview round...",
+        preview:
+          "We are pleased to invite you for the technical interview round...",
         timestamp: "3 hours ago",
-        checked: false
+        checked: false,
       },
       {
         id: "s2",
@@ -778,7 +877,7 @@ Google India`
         subject: "Interview Confirmation and Meeting Details",
         preview: "This email confirms your interview scheduled for tomorrow...",
         timestamp: "1 day ago",
-        checked: false
+        checked: false,
       },
       {
         id: "s3",
@@ -787,8 +886,8 @@ Google India`
         subject: "Welcome to AI2AIM - Offer Letter Attached",
         preview: "Congratulations! We are delighted to extend an offer...",
         timestamp: "3 days ago",
-        checked: false
-      }
+        checked: false,
+      },
     ],
     spam: [
       {
@@ -798,7 +897,7 @@ Google India`
         subject: "Urgent: Claim Your Prize Now!",
         preview: "You have won a million dollars! Click here to claim...",
         timestamp: "1 week ago",
-        checked: false
+        checked: false,
       },
       {
         id: "sp2",
@@ -807,9 +906,9 @@ Google India`
         subject: "Investment Opportunity - Limited Time",
         preview: "Make money fast with our investment scheme...",
         timestamp: "2 weeks ago",
-        checked: false
-      }
-    ]
+        checked: false,
+      },
+    ],
   };
 
   // Form States
@@ -817,7 +916,12 @@ Google India`
     roundHeader: "",
     roundName: "",
     roundType: "technical" as "technical" | "non-technical" | "final",
-    interviewMode: "online-assessment" as "online-assessment" | "video-call" | "in-person" | "oral-assessment" | "group-assessment",
+    interviewMode: "online-assessment" as
+      | "online-assessment"
+      | "video-call"
+      | "in-person"
+      | "oral-assessment"
+      | "group-assessment",
     testDescription: "",
     scheduledDate: "",
     scheduledTime: "",
@@ -834,16 +938,24 @@ Google India`
 
     // Apply search filter
     if (query.trim()) {
-      candidates = candidates.filter(candidate => {
-        const searchTerms = query.toLowerCase().split(' ');
-        const candidateText = `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
+      candidates = candidates.filter((candidate) => {
+        const searchTerms = query.toLowerCase().split(" ");
+        const candidateText =
+          `${candidate.applicantName} ${candidate.email} ${candidate.appliedPosition} ${candidate.department}`.toLowerCase();
 
-        return searchTerms.every(term => {
-          return candidateText.includes(term) ||
-                 candidateText.split(' ').some(word =>
-                   word.startsWith(term) ||
-                   word.includes(term.substring(0, Math.max(2, term.length - 1)))
-                 );
+        return searchTerms.every((term) => {
+          return (
+            candidateText.includes(term) ||
+            candidateText
+              .split(" ")
+              .some(
+                (word) =>
+                  word.startsWith(term) ||
+                  word.includes(
+                    term.substring(0, Math.max(2, term.length - 1)),
+                  ),
+              )
+          );
         });
       });
     }
@@ -851,34 +963,47 @@ Google India`
     // Apply assignment filter
     switch (filter) {
       case "missing":
-        candidates = candidates.filter(c => !c.assignedRounds || c.assignedRounds.length === 0);
+        candidates = candidates.filter(
+          (c) => !c.assignedRounds || c.assignedRounds.length === 0,
+        );
         break;
       case "partial":
-        candidates = candidates.filter(c => c.missingRounds && c.missingRounds.length > 0 && c.assignedRounds && c.assignedRounds.length > 0);
+        candidates = candidates.filter(
+          (c) =>
+            c.missingRounds &&
+            c.missingRounds.length > 0 &&
+            c.assignedRounds &&
+            c.assignedRounds.length > 0,
+        );
         break;
       case "complete":
-        candidates = candidates.filter(c => !c.missingRounds || c.missingRounds.length === 0);
+        candidates = candidates.filter(
+          (c) => !c.missingRounds || c.missingRounds.length === 0,
+        );
         break;
     }
 
     setFilteredCandidates(candidates);
   };
 
-  const handleAssignmentFilterChange = (filter: "all" | "missing" | "partial" | "complete") => {
+  const handleAssignmentFilterChange = (
+    filter: "all" | "missing" | "partial" | "complete",
+  ) => {
     setAssignmentFilter(filter);
     filterCandidates(searchQuery, filter);
   };
 
   // Get filtered rounds based on active type
   const getFilteredRounds = () => {
-    return rounds.filter(round => round.roundType === activeRoundType);
+    return rounds.filter((round) => round.roundType === activeRoundType);
   };
 
   // CRUD Operations
   const handleCreateRound = () => {
     const newRound: InterviewRound = {
       id: `${activeRoundType}-${Date.now()}`,
-      roundHeader: roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
+      roundHeader:
+        roundForm.roundHeader || `Round ${getFilteredRounds().length + 1}`,
       roundName: roundForm.roundName,
       roundType: activeRoundType,
       interviewMode: roundForm.interviewMode,
@@ -890,7 +1015,7 @@ Google India`
       candidates: [],
     };
 
-    setRounds(prev => [...prev, newRound]);
+    setRounds((prev) => [...prev, newRound]);
     resetForm();
     setShowRoundModal(false);
   };
@@ -898,11 +1023,11 @@ Google India`
   const handleUpdateRound = () => {
     if (!selectedRound) return;
 
-    setRounds(prev => prev.map(round =>
-      round.id === selectedRound.id
-        ? { ...round, ...roundForm }
-        : round
-    ));
+    setRounds((prev) =>
+      prev.map((round) =>
+        round.id === selectedRound.id ? { ...round, ...roundForm } : round,
+      ),
+    );
 
     resetForm();
     setSelectedRound(null);
@@ -911,7 +1036,7 @@ Google India`
   };
 
   const handleDeleteRound = (roundId: string) => {
-    setRounds(prev => prev.filter(round => round.id !== roundId));
+    setRounds((prev) => prev.filter((round) => round.id !== roundId));
   };
 
   const handleEditRound = (round: InterviewRound) => {
@@ -950,30 +1075,37 @@ Google India`
   };
 
   const handleCandidateSelectionToggle = (candidateId: string) => {
-    setSelectedCandidatesForAssignment(prev =>
+    setSelectedCandidatesForAssignment((prev) =>
       prev.includes(candidateId)
-        ? prev.filter(id => id !== candidateId)
-        : [...prev, candidateId]
+        ? prev.filter((id) => id !== candidateId)
+        : [...prev, candidateId],
     );
   };
 
   const handleRoundSelectionToggle = (roundId: string) => {
-    setBulkSelectedRounds(prev =>
+    setBulkSelectedRounds((prev) =>
       prev.includes(roundId)
-        ? prev.filter(id => id !== roundId)
-        : [...prev, roundId]
+        ? prev.filter((id) => id !== roundId)
+        : [...prev, roundId],
     );
   };
 
   const handleBulkAssignmentSave = () => {
     // Update rounds to include selected candidates
-    setRounds(prev => prev.map(round => {
-      if (bulkSelectedRounds.includes(round.id)) {
-        const newCandidates = [...new Set([...round.candidates, ...selectedCandidatesForAssignment])];
-        return { ...round, candidates: newCandidates };
-      }
-      return round;
-    }));
+    setRounds((prev) =>
+      prev.map((round) => {
+        if (bulkSelectedRounds.includes(round.id)) {
+          const newCandidates = [
+            ...new Set([
+              ...round.candidates,
+              ...selectedCandidatesForAssignment,
+            ]),
+          ];
+          return { ...round, candidates: newCandidates };
+        }
+        return round;
+      }),
+    );
 
     // Reset states
     setShowBulkAssignModal(false);
@@ -988,10 +1120,11 @@ Google India`
   };
 
   const applyTemplate = () => {
-    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0) return;
+    if (!selectedTemplate || selectedCandidatesForAssignment.length === 0)
+      return;
 
     // Create rounds from template if they don't exist
-    const newRounds = selectedTemplate.rounds.map(templateRound => ({
+    const newRounds = selectedTemplate.rounds.map((templateRound) => ({
       id: `${templateRound.roundType}-${Date.now()}-${templateRound.order}`,
       roundHeader: `Round ${templateRound.order}`,
       roundName: templateRound.roundName,
@@ -1005,7 +1138,7 @@ Google India`
       candidates: selectedCandidatesForAssignment,
     }));
 
-    setRounds(prev => [...prev, ...newRounds]);
+    setRounds((prev) => [...prev, ...newRounds]);
     setShowTemplateModal(false);
     setSelectedTemplate(null);
     setSelectedCandidatesForAssignment([]);
@@ -1013,12 +1146,12 @@ Google India`
 
   // Get candidate details by ID
   const getCandidateById = (id: string) => {
-    return interviewCandidates.find(candidate => candidate.id === id);
+    return interviewCandidates.find((candidate) => candidate.id === id);
   };
 
   // Get assigned rounds for a candidate
   const getAssignedRounds = (candidateId: string) => {
-    return rounds.filter(round => round.candidates.includes(candidateId));
+    return rounds.filter((round) => round.candidates.includes(candidateId));
   };
 
   // Get round progress for a candidate
@@ -1026,27 +1159,35 @@ Google India`
     const assigned = candidate.assignedRounds?.length || 0;
     const missing = candidate.missingRounds?.length || 0;
     const total = assigned + missing;
-    return { assigned, missing, total, completion: total > 0 ? (assigned / total) * 100 : 0 };
+    return {
+      assigned,
+      missing,
+      total,
+      completion: total > 0 ? (assigned / total) * 100 : 0,
+    };
   };
 
   const getNextRoundName = (candidate: InterviewCandidate) => {
-    const nextId = candidate.missingRounds && candidate.missingRounds.length > 0 ? candidate.missingRounds[0] : null;
+    const nextId =
+      candidate.missingRounds && candidate.missingRounds.length > 0
+        ? candidate.missingRounds[0]
+        : null;
     if (!nextId) return "—";
-    const r = rounds.find(r => r.id === nextId);
+    const r = rounds.find((r) => r.id === nextId);
     return r ? r.roundName : nextId;
   };
 
   // Export a single candidate's interview card details as CSV
   const exportCandidateCard = (cand: InterviewCandidate) => {
     const headers = [
-      'ID',
-      'Name',
-      'Applied Position',
-      'Department',
-      'Current Round',
-      'Status',
-      'Email',
-      'Phone'
+      "ID",
+      "Name",
+      "Applied Position",
+      "Department",
+      "Current Round",
+      "Status",
+      "Email",
+      "Phone",
     ];
     const row = [
       cand.id,
@@ -1055,16 +1196,21 @@ Google India`
       cand.department,
       cand.currentRound,
       cand.status,
-      cand.email || '',
-      cand.phone || ''
+      cand.email || "",
+      cand.phone || "",
     ];
-    const csv = [headers.join(','), row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const csv = [
+      headers.join(","),
+      row.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","),
+    ].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    const safeName = cand.applicantName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    a.download = `interview_${safeName || 'candidate'}_${cand.id}.csv`;
+    const safeName = cand.applicantName
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-");
+    a.download = `interview_${safeName || "candidate"}_${cand.id}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -1074,31 +1220,36 @@ Google India`
   // Export all cards (card view) to CSV
   const exportCardViewCSV = () => {
     const headers = [
-      'ID',
-      'Name',
-      'Applied Position',
-      'Department',
-      'Current Round',
-      'Status',
-      'Email',
-      'Phone'
+      "ID",
+      "Name",
+      "Applied Position",
+      "Department",
+      "Current Round",
+      "Status",
+      "Email",
+      "Phone",
     ];
-    const rows = interviewCandidates.map(c => [
+    const rows = interviewCandidates.map((c) => [
       c.id,
       c.applicantName,
       c.appliedPosition,
       c.department,
       c.currentRound,
       c.status,
-      c.email || '',
-      c.phone || ''
+      c.email || "",
+      c.phone || "",
     ]);
-    const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const csv = [
+      headers.join(","),
+      ...rows.map((r) =>
+        r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","),
+      ),
+    ].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'interview_card_view.csv';
+    a.download = "interview_card_view.csv";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -1119,7 +1270,10 @@ Google India`
 
   // Track confirmed decisions for button styling
   const [confirmedDecisions, setConfirmedDecisions] = useState<{
-    [key: string]: { decision: "YES" | "MAYBE" | "NO"; type: "round" | "final" }
+    [key: string]: {
+      decision: "YES" | "MAYBE" | "NO";
+      type: "round" | "final";
+    };
   }>({});
 
   // Track selected round for each candidate
@@ -1141,23 +1295,22 @@ Google India`
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (!target.closest('.dropdown-container')) {
+      if (!target.closest(".dropdown-container")) {
         setShowCandidatesDropdown(false);
         setShowCountryDropdown(false);
         setShowJobRoleDropdown(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
 
   // Recruitment email handlers
   const handleEmailDelete = (emailId: string) => {
     console.log("Deleting recruitment email:", emailId);
     // Remove from selected emails if it was selected
-    setSelectedEmails(prev => prev.filter(id => id !== emailId));
+    setSelectedEmails((prev) => prev.filter((id) => id !== emailId));
   };
 
   const handleComposeEmail = () => {
@@ -1186,7 +1339,7 @@ Google India`
   const searchRecruitmentEmails = (query: string, emailList: any[]) => {
     if (!query.trim()) return emailList;
 
-    return emailList.filter(email => {
+    return emailList.filter((email) => {
       const searchTerm = query.toLowerCase();
       return (
         email.applicantName.toLowerCase().includes(searchTerm) ||
@@ -1202,7 +1355,7 @@ Google India`
     if (selectedEmails.length === emailList.length) {
       setSelectedEmails([]);
     } else {
-      setSelectedEmails(emailList.map(email => email.id));
+      setSelectedEmails(emailList.map((email) => email.id));
     }
   };
 
@@ -1219,29 +1372,39 @@ Google India`
   };
 
   const handleBulkSendTemplate = () => {
-    console.log("Sending interview template to selected applicants:", selectedEmails);
+    console.log(
+      "Sending interview template to selected applicants:",
+      selectedEmails,
+    );
     setSelectedEmails([]);
     setShowBulkActions(false);
   };
 
   // Decision confirmation handlers
-  const handleDecisionClick = (candidateId: string, candidateName: string, decision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+  const handleDecisionClick = (
+    candidateId: string,
+    candidateName: string,
+    decision: "YES" | "MAYBE" | "NO",
+    type: "round" | "final",
+  ) => {
     setSelectedDecision({ candidateId, candidateName, decision, type });
     setShowDecisionModal(true);
   };
 
   const handleConfirmDecision = () => {
     if (selectedDecision) {
-      console.log(`Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`);
+      console.log(
+        `Decision confirmed: ${selectedDecision.decision} for ${selectedDecision.candidateName} (${selectedDecision.type})`,
+      );
 
       // Save the confirmed decision for button styling
       const decisionKey = `${selectedDecision.candidateId}-${selectedDecision.type}`;
-      setConfirmedDecisions(prev => ({
+      setConfirmedDecisions((prev) => ({
         ...prev,
         [decisionKey]: {
           decision: selectedDecision.decision,
-          type: selectedDecision.type
-        }
+          type: selectedDecision.type,
+        },
       }));
 
       setShowDecisionModal(false);
@@ -1255,7 +1418,11 @@ Google India`
   };
 
   // Helper function to get button styles based on confirmed decisions
-  const getButtonStyles = (candidateId: string, buttonDecision: "YES" | "MAYBE" | "NO", type: "round" | "final") => {
+  const getButtonStyles = (
+    candidateId: string,
+    buttonDecision: "YES" | "MAYBE" | "NO",
+    type: "round" | "final",
+  ) => {
     const decisionKey = `${candidateId}-${type}`;
     const confirmedDecision = confirmedDecisions[decisionKey];
 
@@ -1285,7 +1452,8 @@ Google India`
   };
 
   // Candidate Details Modal States
-  const [showCandidateDetailsModal, setShowCandidateDetailsModal] = useState(false);
+  const [showCandidateDetailsModal, setShowCandidateDetailsModal] =
+    useState(false);
   const [selectedCandidateDetails, setSelectedCandidateDetails] = useState<{
     id: string;
     applicantName: string;
@@ -1311,7 +1479,10 @@ Google India`
   } | null>(null);
 
   // Menu action handlers
-  const handleViewCandidateDetails = (candidateId: string, candidateName: string) => {
+  const handleViewCandidateDetails = (
+    candidateId: string,
+    candidateName: string,
+  ) => {
     // Mock candidate data based on ID
     const candidateDetails = {
       id: candidateId,
@@ -1320,9 +1491,9 @@ Google India`
       department: "Engineering",
       currentRound: "System Design Interview",
       status: "in-progress",
-      email: `${candidateName.toLowerCase().replace(' ', '.')}@example.com`,
+      email: `${candidateName.toLowerCase().replace(" ", ".")}@example.com`,
       phone: "(555) 234-5678",
-      roomId: `ROOM-${candidateId.padStart(3, '0')}`,
+      roomId: `ROOM-${candidateId.padStart(3, "0")}`,
       reviewRoom: "https://zoom.us/j/123456789",
       assignedInterviewers: ["David Wilson", "Lisa Chen"],
       interviewSteps: [
@@ -1330,11 +1501,13 @@ Google India`
           id: "step1",
           title: "Technical Interview",
           interviewer: "David Wilson, Tech Lead",
-          description: "Assessment of technical skills and problem-solving abilities",
+          description:
+            "Assessment of technical skills and problem-solving abilities",
           date: "2023-05-20",
           time: "10:00 AM",
           status: "Completed",
-          remarks: "Strong technical skills, especially in React and TypeScript. Solved all problems efficiently."
+          remarks:
+            "Strong technical skills, especially in React and TypeScript. Solved all problems efficiently.",
         },
         {
           id: "step2",
@@ -1344,9 +1517,9 @@ Google India`
           date: "2023-05-22",
           time: "2:00 PM",
           status: "Scheduled",
-          remarks: ""
-        }
-      ]
+          remarks: "",
+        },
+      ],
     };
 
     setTimeout(() => {
@@ -1360,32 +1533,33 @@ Google India`
   // Timeline Management Side Sheet States
   const [showTimelineSheet, setShowTimelineSheet] = useState(false);
   const [expandedSteps, setExpandedSteps] = useState<string[]>([]);
-  const [selectedCandidateForTimeline, setSelectedCandidateForTimeline] = useState<{
-    id: string;
-    name: string;
-    position: string;
-    reviewRoom: string;
-    interviewers: string[];
-    steps: Array<{
+  const [selectedCandidateForTimeline, setSelectedCandidateForTimeline] =
+    useState<{
       id: string;
-      title: string;
-      date: string;
-      time: string;
-      interviewer: string;
-      status: "Pending" | "Completed" | "In Progress";
-      schedule?: string;
-      notes?: string;
-      typeOfInterview?: string;
-      duration?: string;
-      remarks?: string;
-      score?: number;
-      history?: Array<{
+      name: string;
+      position: string;
+      reviewRoom: string;
+      interviewers: string[];
+      steps: Array<{
+        id: string;
+        title: string;
         date: string;
-        action: string;
-        details: string;
+        time: string;
+        interviewer: string;
+        status: "Pending" | "Completed" | "In Progress";
+        schedule?: string;
+        notes?: string;
+        typeOfInterview?: string;
+        duration?: string;
+        remarks?: string;
+        score?: number;
+        history?: Array<{
+          date: string;
+          action: string;
+          details: string;
+        }>;
       }>;
-    }>;
-  } | null>(null);
+    } | null>(null);
 
   // Timeline action modals state
   const [selectedStepId, setSelectedStepId] = useState<string | null>(null);
@@ -1393,20 +1567,37 @@ Google India`
   const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [showStepEditor, setShowStepEditor] = useState(false);
   const [editingStepId, setEditingStepId] = useState<string | null>(null);
-  const [stepForm, setStepForm] = useState({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
+  const [stepForm, setStepForm] = useState({
+    title: "",
+    typeOfInterview: "technical",
+    interviewer: "",
+    duration: "",
+    notes: "",
+  });
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
   const [showRemarkScoreModal, setShowRemarkScoreModal] = useState(false);
 
   // Forms
   const [reminderMessage, setReminderMessage] = useState("");
-  const [scheduleForm, setScheduleForm] = useState({ date: "", time: "", interviewer: "" });
-  const [remarkForm, setRemarkForm] = useState<{ result: string; score: string; remarks: string }>({ result: "", score: "", remarks: "" });
+  const [scheduleForm, setScheduleForm] = useState({
+    date: "",
+    time: "",
+    interviewer: "",
+  });
+  const [remarkForm, setRemarkForm] = useState<{
+    result: string;
+    score: string;
+    remarks: string;
+  }>({ result: "", score: "", remarks: "" });
 
   const { toast } = useToast();
 
   const currentStep = () => {
     if (!selectedCandidateForTimeline || !selectedStepId) return null;
-    return selectedCandidateForTimeline.steps.find(s => s.id === selectedStepId) || null;
+    return (
+      selectedCandidateForTimeline.steps.find((s) => s.id === selectedStepId) ||
+      null
+    );
   };
 
   const handleManageTimeline = (candidateId: string, candidateName: string) => {
@@ -1426,11 +1617,21 @@ Google India`
           interviewer: "Alice",
           status: "Pending" as const,
           schedule: "Technical coding assessment - 90 minutes",
-          notes: "Focus on React, JavaScript fundamentals, and problem-solving approach. Candidate should demonstrate clean code practices.",
+          notes:
+            "Focus on React, JavaScript fundamentals, and problem-solving approach. Candidate should demonstrate clean code practices.",
           history: [
-            { date: "2023-08-19", action: "Scheduled", details: "Interview scheduled with Alice for technical assessment" },
-            { date: "2023-08-18", action: "Assigned", details: "Technical round assigned to candidate" }
-          ]
+            {
+              date: "2023-08-19",
+              action: "Scheduled",
+              details:
+                "Interview scheduled with Alice for technical assessment",
+            },
+            {
+              date: "2023-08-18",
+              action: "Assigned",
+              details: "Technical round assigned to candidate",
+            },
+          ],
         },
         {
           id: "step2",
@@ -1440,13 +1641,22 @@ Google India`
           interviewer: "Bob",
           status: "Pending" as const,
           schedule: "System design discussion - 60 minutes",
-          notes: "Evaluate architectural thinking, scalability considerations, and communication skills. Present a real-world scenario.",
+          notes:
+            "Evaluate architectural thinking, scalability considerations, and communication skills. Present a real-world scenario.",
           history: [
-            { date: "2023-08-19", action: "Scheduled", details: "System design round scheduled with Bob" },
-            { date: "2023-08-18", action: "Assigned", details: "System design round assigned to candidate" }
-          ]
-        }
-      ]
+            {
+              date: "2023-08-19",
+              action: "Scheduled",
+              details: "System design round scheduled with Bob",
+            },
+            {
+              date: "2023-08-18",
+              action: "Assigned",
+              details: "System design round assigned to candidate",
+            },
+          ],
+        },
+      ],
     };
 
     setTimeout(() => {
@@ -1459,13 +1669,12 @@ Google India`
   };
 
   const toggleStepExpansion = (stepId: string) => {
-    setExpandedSteps(prev =>
+    setExpandedSteps((prev) =>
       prev.includes(stepId)
-        ? prev.filter(id => id !== stepId)
-        : [...prev, stepId]
+        ? prev.filter((id) => id !== stepId)
+        : [...prev, stepId],
     );
   };
-
 
   return (
     <div className="space-y-3">
@@ -1515,7 +1724,13 @@ Google India`
                   >
                     <Calendar className="w-4 h-4" />
                   </Button>
-                  <Button size="sm" variant="outline" className="ml-1" onClick={exportCardViewCSV} title="Export">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="ml-1"
+                    onClick={exportCardViewCSV}
+                    title="Export"
+                  >
                     <Download className="w-4 h-4 mr-1" /> Export
                   </Button>
                 </div>
@@ -1526,370 +1741,686 @@ Google India`
                 <Card className="p-0 border border-gray-200 rounded-none">
                   <CardContent className="p-0">
                     <Table className="w-full text-sm">
-                    <TableHeader>
-                      <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">JOB ID</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">NAME</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32 whitespace-nowrap">COUNTRY</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">APPLIED POSITION</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">CURRENT ROUND</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">NEXT ROUND</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900">INTERVIEW PROGRESS</TableHead>
-                        <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">ACTION</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">001</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Jaya Sharma</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">India</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Senior Developer</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
-                        <TableCell className="px-3 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
+                      <TableHeader>
+                        <TableRow className="text-left text-[13px] text-gray-900 border-b">
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                            JOB ID
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">
+                            NAME
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900 w-32 whitespace-nowrap">
+                            COUNTRY
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                            APPLIED POSITION
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                            CURRENT ROUND
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                            NEXT ROUND
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
+                            INTERVIEW PROGRESS
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">
+                            ACTION
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            001
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            Jaya Sharma
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
+                            India
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Senior Developer
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Managerial - 4/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Human Resources - 5/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3">
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{ width: "90%" }}
+                                ></div>
+                              </div>
+                              <span className="text-xs font-medium">90%</span>
                             </div>
-                            <span className="text-xs font-medium">90%</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="px-3 py-3 align-middle text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('001', 'Jaya Sharma')}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Interview Steps
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('001', 'Jaya Sharma')}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Steps
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
+                          </TableCell>
+                          <TableCell className="px-3 py-3 align-middle text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      "001",
+                                      "Jaya Sharma",
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Interview Steps
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline("001", "Jaya Sharma")
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
 
-                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">002</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Mark Robinson</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">USA</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Graphic Designer</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Managerial - 4/5</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
-                        <TableCell className="px-3 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
+                        <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            002
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            Mark Robinson
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
+                            USA
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Graphic Designer
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Managerial - 4/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Human Resources - 5/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3">
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{ width: "90%" }}
+                                ></div>
+                              </div>
+                              <span className="text-xs font-medium">90%</span>
                             </div>
-                            <span className="text-xs font-medium">90%</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="px-3 py-3 align-middle text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('002', 'Mark Robinson')}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Interview Steps
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('002', 'Mark Robinson')}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Steps
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
+                          </TableCell>
+                          <TableCell className="px-3 py-3 align-middle text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      "002",
+                                      "Mark Robinson",
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Interview Steps
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline("002", "Mark Robinson")
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
 
-                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">003</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">John Carter</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">USA</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Content writer</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">NO ROUNDS</TableCell>
-                        <TableCell className="px-3 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '100%'}}></div>
+                        <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            003
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            John Carter
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
+                            USA
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Content writer
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Human Resources - 5/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            NO ROUNDS
+                          </TableCell>
+                          <TableCell className="px-3 py-3">
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{ width: "100%" }}
+                                ></div>
+                              </div>
+                              <span className="text-xs font-medium">100%</span>
                             </div>
-                            <span className="text-xs font-medium">100%</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="px-3 py-3 align-middle text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('003', 'John Carter')}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Interview Steps
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('003', 'John Carter')}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Steps
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
+                          </TableCell>
+                          <TableCell className="px-3 py-3 align-middle text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      "003",
+                                      "John Carter",
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Interview Steps
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline("003", "John Carter")
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
 
-                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">004</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Sara Ahmed</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">Europe</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Copywriter</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Editing Test - 4/5</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Human Resources - 5/5</TableCell>
-                        <TableCell className="px-3 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '90%'}}></div>
+                        <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            004
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            Sara Ahmed
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
+                            Europe
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Copywriter
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Editing Test - 4/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Human Resources - 5/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3">
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{ width: "90%" }}
+                                ></div>
+                              </div>
+                              <span className="text-xs font-medium">90%</span>
                             </div>
-                            <span className="text-xs font-medium">90%</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="px-3 py-3 align-middle text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('004', 'Sara Ahmed')}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Interview Steps
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('004', 'Sara Ahmed')}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Steps
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
+                          </TableCell>
+                          <TableCell className="px-3 py-3 align-middle text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      "004",
+                                      "Sara Ahmed",
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Interview Steps
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline("004", "Sara Ahmed")
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
 
-                      <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">005</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">Shruti Kapoor</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">India</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Sale Associate</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Culture Test - 3/5</TableCell>
-                        <TableCell className="px-3 py-3 text-[14px] text-gray-900">Case Study Debate - 4/5</TableCell>
-                        <TableCell className="px-3 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div className="bg-blue-600 h-2 rounded-full" style={{width: '70%'}}></div>
+                        <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            005
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            Shruti Kapoor
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
+                            India
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Sale Associate
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Culture Test - 3/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            Case Study Debate - 4/5
+                          </TableCell>
+                          <TableCell className="px-3 py-3">
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{ width: "70%" }}
+                                ></div>
+                              </div>
+                              <span className="text-xs font-medium">70%</span>
                             </div>
-                            <span className="text-xs font-medium">70%</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="px-3 py-3 align-middle text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onSelect={() => handleViewCandidateDetails('005', 'Shruti Kapoor')}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Interview Steps
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => handleManageTimeline('005', 'Shruti Kapoor')}>
-                                <Calendar className="mr-2 h-4 w-4" />
-                                Manage Interview Steps
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-
-
-
-
-                    </TableBody>
+                          </TableCell>
+                          <TableCell className="px-3 py-3 align-middle text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      "005",
+                                      "Shruti Kapoor",
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Interview Steps
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline("005", "Shruti Kapoor")
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
                     </Table>
                   </CardContent>
                 </Card>
-) : (
-                viewMode === "calendar" ? (
-                  /* Calendar View */
-                  <div className="bg-white border rounded-none text-[12px] max-h-[520px] overflow-auto">
-                    {/* Top Filter Bar */}
-                    <div className="flex items-center justify-between p-2 border-b">
-                      <div className="flex items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCalendarDate(prev => {
+              ) : viewMode === "calendar" ? (
+                /* Calendar View */
+                <div className="bg-white border rounded-none text-[12px] max-h-[520px] overflow-auto">
+                  {/* Top Filter Bar */}
+                  <div className="flex items-center justify-between p-2 border-b">
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          setCalendarDate((prev) => {
                             const d = new Date(prev);
-                            if (calendarView === 'month') return new Date(d.getFullYear(), d.getMonth() - 1, 1);
-                            if (calendarView === 'week') { d.setDate(d.getDate() - 7); return d; }
-                            d.setDate(d.getDate() - 1); return d;
-                          })}
-                        >
-                          <ArrowLeft className="w-4 h-4" />
-                        </Button>
-                        <div className="text-sm font-semibold">
-                          {calendarView === 'month' ? (
-                            calendarDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })
-                          ) : calendarView === 'week' ? (
-                            (() => {
-                              const start = new Date(calendarDate);
-                              start.setDate(start.getDate() - start.getDay());
-                              const end = new Date(start);
-                              end.setDate(start.getDate() + 6);
-                              return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
-                            })()
-                          ) : (
-                            calendarDate.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
-                          )}
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCalendarDate(prev => {
+                            if (calendarView === "month")
+                              return new Date(
+                                d.getFullYear(),
+                                d.getMonth() - 1,
+                                1,
+                              );
+                            if (calendarView === "week") {
+                              d.setDate(d.getDate() - 7);
+                              return d;
+                            }
+                            d.setDate(d.getDate() - 1);
+                            return d;
+                          })
+                        }
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                      <div className="text-sm font-semibold">
+                        {calendarView === "month"
+                          ? calendarDate.toLocaleString(undefined, {
+                              month: "long",
+                              year: "numeric",
+                            })
+                          : calendarView === "week"
+                            ? (() => {
+                                const start = new Date(calendarDate);
+                                start.setDate(start.getDate() - start.getDay());
+                                const end = new Date(start);
+                                end.setDate(start.getDate() + 6);
+                                return `${start.toLocaleDateString(undefined, { month: "short", day: "numeric" })} - ${end.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}`;
+                              })()
+                            : calendarDate.toLocaleDateString(undefined, {
+                                weekday: "short",
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          setCalendarDate((prev) => {
                             const d = new Date(prev);
-                            if (calendarView === 'month') return new Date(d.getFullYear(), d.getMonth() + 1, 1);
-                            if (calendarView === 'week') { d.setDate(d.getDate() + 7); return d; }
-                            d.setDate(d.getDate() + 1); return d;
-                          })}
-                        >
-                          <ArrowRight className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="ml-1" onClick={() => setCalendarDate(new Date())}>Today</Button>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Select value={calendarView} onValueChange={(v) => setCalendarView(v as any)}>
-                          <SelectTrigger className="h-7 w-[110px]">
-                            <SelectValue placeholder="View" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="day">Day</SelectItem>
-                            <SelectItem value="week">Week</SelectItem>
-                            <SelectItem value="month">Month</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                            if (calendarView === "month")
+                              return new Date(
+                                d.getFullYear(),
+                                d.getMonth() + 1,
+                                1,
+                              );
+                            if (calendarView === "week") {
+                              d.setDate(d.getDate() + 7);
+                              return d;
+                            }
+                            d.setDate(d.getDate() + 1);
+                            return d;
+                          })
+                        }
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="ml-1"
+                        onClick={() => setCalendarDate(new Date())}
+                      >
+                        Today
+                      </Button>
                     </div>
+                    <div className="flex items-center gap-2">
+                      <Select
+                        value={calendarView}
+                        onValueChange={(v) => setCalendarView(v as any)}
+                      >
+                        <SelectTrigger className="h-7 w-[110px]">
+                          <SelectValue placeholder="View" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="day">Day</SelectItem>
+                          <SelectItem value="week">Week</SelectItem>
+                          <SelectItem value="month">Month</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
-                    {/* Headers (Month/Week) */}
-                    {(calendarView === 'month' || calendarView === 'week') && (
-                      <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-1 border-b">
-                        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
+                  {/* Headers (Month/Week) */}
+                  {(calendarView === "month" || calendarView === "week") && (
+                    <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-600 py-1 border-b">
+                      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                        (d) => (
                           <div key={d}>{d}</div>
-                        ))}
-                      </div>
-                    )}
+                        ),
+                      )}
+                    </div>
+                  )}
 
-                    {/* Calendar Content */}
-                    {calendarView === 'month' && (
-                      <div className="grid grid-cols-7 gap-px bg-gray-200">
-                        {calendarDays.map((day) => {
-                          const isOtherMonth = day.getMonth() !== calendarDate.getMonth();
-                          const events = (eventsByDate[formatDate(day)] || []).filter(evt => {
-                            const q = calendarSearch.trim().toLowerCase();
-                            if (!q) return true;
-                            return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
-                          });
+                  {/* Calendar Content */}
+                  {calendarView === "month" && (
+                    <div className="grid grid-cols-7 gap-px bg-gray-200">
+                      {calendarDays.map((day) => {
+                        const isOtherMonth =
+                          day.getMonth() !== calendarDate.getMonth();
+                        const events = (
+                          eventsByDate[formatDate(day)] || []
+                        ).filter((evt) => {
+                          const q = calendarSearch.trim().toLowerCase();
+                          if (!q) return true;
                           return (
-                            <div key={day.toISOString()} className={`min-h-[90px] bg-white p-1 ${isOtherMonth ? 'bg-gray-50 text-gray-400' : ''}`}>
-                              <div className="text-[10px] font-medium mb-1">{day.getDate()}</div>
-                              <div className="space-y-1">
-                                {events.map((evt, idx) => {
-                                  const c = evt.status?.toLowerCase();
-                                  const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
-                                  return (
-                                    <div key={idx} className={`border ${color} rounded-none px-1 py-0.5`}>
-                                      <div className="text-[10px] font-semibold truncate">{evt.candidateName}</div>
-                                      <div className="text-[10px] truncate">{evt.appliedPosition}</div>
-                                      <div className="text-[10px] opacity-80 truncate">{evt.roundName}</div>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
+                            evt.candidateName.toLowerCase().includes(q) ||
+                            evt.appliedPosition.toLowerCase().includes(q) ||
+                            evt.roundName.toLowerCase().includes(q)
                           );
-                        })}
-                      </div>
-                    )}
+                        });
+                        return (
+                          <div
+                            key={day.toISOString()}
+                            className={`min-h-[90px] bg-white p-1 ${isOtherMonth ? "bg-gray-50 text-gray-400" : ""}`}
+                          >
+                            <div className="text-[10px] font-medium mb-1">
+                              {day.getDate()}
+                            </div>
+                            <div className="space-y-1">
+                              {events.map((evt, idx) => {
+                                const c = evt.status?.toLowerCase();
+                                const color =
+                                  c === "approved" || c === "completed"
+                                    ? "border-green-200 bg-green-50 text-green-800"
+                                    : c === "pending"
+                                      ? "border-amber-200 bg-amber-50 text-amber-800"
+                                      : c === "rejected"
+                                        ? "border-red-200 bg-red-50 text-red-800"
+                                        : "border-blue-200 bg-blue-50 text-blue-800";
+                                return (
+                                  <div
+                                    key={idx}
+                                    className={`border ${color} rounded-none px-1 py-0.5`}
+                                  >
+                                    <div className="text-[10px] font-semibold truncate">
+                                      {evt.candidateName}
+                                    </div>
+                                    <div className="text-[10px] truncate">
+                                      {evt.appliedPosition}
+                                    </div>
+                                    <div className="text-[10px] opacity-80 truncate">
+                                      {evt.roundName}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
 
-                    {calendarView === 'week' && (() => {
+                  {calendarView === "week" &&
+                    (() => {
                       const weekStart = getStartOfWorkWeek(calendarDate);
-                      const days = Array.from({ length: 5 }, (_, i) => new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + i));
+                      const days = Array.from(
+                        { length: 5 },
+                        (_, i) =>
+                          new Date(
+                            weekStart.getFullYear(),
+                            weekStart.getMonth(),
+                            weekStart.getDate() + i,
+                          ),
+                      );
                       return (
                         <div className="border-t">
                           <div className="grid grid-cols-6 text-xs font-medium text-gray-600 border-b">
                             <div className="p-2"></div>
                             {days.map((d, idx) => (
-                              <div key={idx} className="p-2 text-center">{d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+                              <div key={idx} className="p-2 text-center">
+                                {d.toLocaleDateString(undefined, {
+                                  weekday: "short",
+                                  month: "short",
+                                  day: "numeric",
+                                })}
+                              </div>
                             ))}
                           </div>
                           <div
                             className="grid grid-cols-6 relative"
-                            onMouseLeave={() => { if (isSelecting) { commitSelectionToDraft(weekStart); resetSelection(); } }}
-                            onMouseUp={() => { if (isSelecting) { commitSelectionToDraft(weekStart); resetSelection(); } }}
+                            onMouseLeave={() => {
+                              if (isSelecting) {
+                                commitSelectionToDraft(weekStart);
+                                resetSelection();
+                              }
+                            }}
+                            onMouseUp={() => {
+                              if (isSelecting) {
+                                commitSelectionToDraft(weekStart);
+                                resetSelection();
+                              }
+                            }}
                           >
                             <div className="border-r bg-gray-50">
                               {timeSlots.map((t, idx) => (
-                                <div key={idx} className={`h-8 text-[10px] text-right pr-2 ${t.includes(':00') ? 'font-medium text-gray-600' : 'text-gray-400'}`}>{t}</div>
+                                <div
+                                  key={idx}
+                                  className={`h-8 text-[10px] text-right pr-2 ${t.includes(":00") ? "font-medium text-gray-600" : "text-gray-400"}`}
+                                >
+                                  {t}
+                                </div>
                               ))}
                             </div>
                             {days.map((d, dayIdx) => (
-                              <div key={dayIdx} className="border-r last:border-r-0 relative">
-                                {isSelecting && selDayIdx === dayIdx && selStartIdx != null && (
+                              <div
+                                key={dayIdx}
+                                className="border-r last:border-r-0 relative"
+                              >
+                                {isSelecting &&
+                                  selDayIdx === dayIdx &&
+                                  selStartIdx != null &&
                                   (() => {
-                                    const from = Math.min(selStartIdx!, selEndIdx ?? selStartIdx!);
-                                    const to = Math.max(selStartIdx!, selEndIdx ?? selStartIdx!);
+                                    const from = Math.min(
+                                      selStartIdx!,
+                                      selEndIdx ?? selStartIdx!,
+                                    );
+                                    const to = Math.max(
+                                      selStartIdx!,
+                                      selEndIdx ?? selStartIdx!,
+                                    );
                                     const top = from * 32;
                                     const height = (to - from + 1) * 32;
-                                    return <div className="absolute left-1 right-1 bg-purple-200/60 rounded-md" style={{ top, height }} />
-                                  })()
-                                )}
+                                    return (
+                                      <div
+                                        className="absolute left-1 right-1 bg-purple-200/60 rounded-md"
+                                        style={{ top, height }}
+                                      />
+                                    );
+                                  })()}
                                 {timeSlots.map((t, slotIdx) => (
                                   <div
                                     key={slotIdx}
                                     className="h-8 border-b hover:bg-purple-50 cursor-crosshair"
-                                    onMouseDown={() => { setIsSelecting(true); setSelDayIdx(dayIdx); setSelStartIdx(slotIdx); setSelEndIdx(slotIdx); }}
-                                    onMouseEnter={() => { if (isSelecting && selDayIdx === dayIdx) setSelEndIdx(slotIdx); }}
-                                    onClick={() => { if (!isSelecting) { setSelDayIdx(dayIdx); setSelStartIdx(slotIdx); setSelEndIdx(slotIdx); commitSelectionToDraft(weekStart); resetSelection(); } }}
+                                    onMouseDown={() => {
+                                      setIsSelecting(true);
+                                      setSelDayIdx(dayIdx);
+                                      setSelStartIdx(slotIdx);
+                                      setSelEndIdx(slotIdx);
+                                    }}
+                                    onMouseEnter={() => {
+                                      if (isSelecting && selDayIdx === dayIdx)
+                                        setSelEndIdx(slotIdx);
+                                    }}
+                                    onClick={() => {
+                                      if (!isSelecting) {
+                                        setSelDayIdx(dayIdx);
+                                        setSelStartIdx(slotIdx);
+                                        setSelEndIdx(slotIdx);
+                                        commitSelectionToDraft(weekStart);
+                                        resetSelection();
+                                      }
+                                    }}
                                   />
                                 ))}
-                                {calendarEvents.filter(ev => {
-                                  const evStart = new Date(ev.start);
-                                  return evStart.getFullYear() === d.getFullYear() && evStart.getMonth() === d.getMonth() && evStart.getDate() === d.getDate();
-                                }).map(ev => {
-                                  const evStart = new Date(ev.start);
-                                  const evEnd = new Date(ev.end);
-                                  const startIdx = ((evStart.getHours() - WORK_HOURS_START) * 60 + evStart.getMinutes()) / SLOT_MINUTES;
-                                  const endIdx = Math.max(startIdx + 1, ((evEnd.getHours() - WORK_HOURS_START) * 60 + evEnd.getMinutes()) / SLOT_MINUTES);
-                                  const top = Math.max(0, startIdx * 32);
-                                  const height = Math.max(32, (endIdx - startIdx) * 32);
-                                  return (
-                                    <div key={ev.id} className="absolute left-1 right-1 bg-purple-100 border border-purple-200 rounded-md px-2 py-1 shadow-sm overflow-hidden"
-                                      style={{ top, height }}
-                                      onClick={() => openEventPanel(ev)}
-                                    >
-                                      <div className="text-[11px] font-semibold text-purple-800 truncate">{ev.title || '(No title)'}</div>
-                                      <div className="text-[10px] text-purple-700 truncate">{ev.organizer}</div>
-                                    </div>
-                                  );
-                                })}
+                                {calendarEvents
+                                  .filter((ev) => {
+                                    const evStart = new Date(ev.start);
+                                    return (
+                                      evStart.getFullYear() ===
+                                        d.getFullYear() &&
+                                      evStart.getMonth() === d.getMonth() &&
+                                      evStart.getDate() === d.getDate()
+                                    );
+                                  })
+                                  .map((ev) => {
+                                    const evStart = new Date(ev.start);
+                                    const evEnd = new Date(ev.end);
+                                    const startIdx =
+                                      ((evStart.getHours() - WORK_HOURS_START) *
+                                        60 +
+                                        evStart.getMinutes()) /
+                                      SLOT_MINUTES;
+                                    const endIdx = Math.max(
+                                      startIdx + 1,
+                                      ((evEnd.getHours() - WORK_HOURS_START) *
+                                        60 +
+                                        evEnd.getMinutes()) /
+                                        SLOT_MINUTES,
+                                    );
+                                    const top = Math.max(0, startIdx * 32);
+                                    const height = Math.max(
+                                      32,
+                                      (endIdx - startIdx) * 32,
+                                    );
+                                    return (
+                                      <div
+                                        key={ev.id}
+                                        className="absolute left-1 right-1 bg-purple-100 border border-purple-200 rounded-md px-2 py-1 shadow-sm overflow-hidden"
+                                        style={{ top, height }}
+                                        onClick={() => openEventPanel(ev)}
+                                      >
+                                        <div className="text-[11px] font-semibold text-purple-800 truncate">
+                                          {ev.title || "(No title)"}
+                                        </div>
+                                        <div className="text-[10px] text-purple-700 truncate">
+                                          {ev.organizer}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
                               </div>
                             ))}
                           </div>
@@ -1897,101 +2428,192 @@ Google India`
                       );
                     })()}
 
-                    {calendarView === 'day' && (
-                      <div className="p-2 border-t">
-                        <div className="text-xs font-medium text-gray-600 mb-2">{calendarDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                        {(() => {
-                          const dayEvents = (eventsByDate[formatDate(calendarDate)] || []).filter(evt => {
-                            const q = calendarSearch.trim().toLowerCase();
-                            if (!q) return true;
-                            return evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q);
-                          });
-                          const parseToIndex = (timeStr?: string) => {
-                            if (!timeStr) return 0;
-                            try {
-                              let h = 0, m = 0;
-                              const t = timeStr.trim();
-                              const ampm = /(am|pm)$/i.test(t) ? t.slice(-2).toUpperCase() : '';
-                              const nums = t.replace(/[^0-9:]/g, '').split(':');
-                              h = parseInt(nums[0] || '0', 10);
-                              m = parseInt(nums[1] || '0', 10);
-                              if (ampm) {
-                                if (ampm === 'PM' && h !== 12) h += 12;
-                                if (ampm === 'AM' && h === 12) h = 0;
-                              }
-                              const start = WORK_HOURS_START * 60;
-                              const total = h * 60 + m;
-                              return Math.max(0, Math.min(Math.floor((total - start) / SLOT_MINUTES), timeSlots.length - 1));
-                            } catch { return 0; }
-                          };
-                          const totalSlots = timeSlots.length;
-                          return (
-                            <div className="grid grid-cols-[64px,1fr] gap-2">
-                              {/* Time labels */}
-                              <div className="divide-y">
-                                {timeSlots.map((t, i) => (
-                                  <div key={i} className="h-8 pr-1 text-right text-[10px] text-gray-500">{i % 2 === 0 ? t : ''}</div>
-                                ))}
-                              </div>
-                              {/* Timeline with events */}
-                              <div className="relative">
-                                {/* slot lines */}
-                                <div>
-                                  {Array.from({ length: totalSlots }).map((_, i) => (
-                                    <div key={i} className="h-8 border-b last:border-b-0" />
-                                  ))}
-                                </div>
-                                {/* events positioned by time */}
-                                {dayEvents.map((evt, idx) => {
-                                  const c = evt.status?.toLowerCase();
-                                  const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
-                                  const startIdx = parseToIndex(evt.time);
-                                  const topPx = startIdx * 32; // 8*4 tailwind h-8 approximated to 32px
-                                  const heightPx = 32; // default 30min slot
-                                  return (
-                                    <div key={idx} className={`absolute left-2 right-2 border ${color} rounded-md px-2 py-1 shadow-sm`}
-                                      style={{ top: `${topPx}px`, height: `${heightPx}px` }}>
-                                      <div className="flex items-center justify-between">
-                                        <div className="text-xs font-semibold truncate">{evt.candidateName}</div>
-                                        {evt.time && (<div className="text-[11px] text-gray-600 ml-2 whitespace-nowrap">{evt.time}</div>)}
-                                      </div>
-                                      <div className="text-[11px] truncate">{evt.appliedPosition}</div>
-                                      <div className="text-[11px] opacity-80 truncate">{evt.roundName}</div>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          );
-                        })()}
+                  {calendarView === "day" && (
+                    <div className="p-2 border-t">
+                      <div className="text-xs font-medium text-gray-600 mb-2">
+                        {calendarDate.toLocaleDateString(undefined, {
+                          weekday: "long",
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
                       </div>
-                    )}
+                      {(() => {
+                        const dayEvents = (
+                          eventsByDate[formatDate(calendarDate)] || []
+                        ).filter((evt) => {
+                          const q = calendarSearch.trim().toLowerCase();
+                          if (!q) return true;
+                          return (
+                            evt.candidateName.toLowerCase().includes(q) ||
+                            evt.appliedPosition.toLowerCase().includes(q) ||
+                            evt.roundName.toLowerCase().includes(q)
+                          );
+                        });
+                        const parseToIndex = (timeStr?: string) => {
+                          if (!timeStr) return 0;
+                          try {
+                            let h = 0,
+                              m = 0;
+                            const t = timeStr.trim();
+                            const ampm = /(am|pm)$/i.test(t)
+                              ? t.slice(-2).toUpperCase()
+                              : "";
+                            const nums = t.replace(/[^0-9:]/g, "").split(":");
+                            h = parseInt(nums[0] || "0", 10);
+                            m = parseInt(nums[1] || "0", 10);
+                            if (ampm) {
+                              if (ampm === "PM" && h !== 12) h += 12;
+                              if (ampm === "AM" && h === 12) h = 0;
+                            }
+                            const start = WORK_HOURS_START * 60;
+                            const total = h * 60 + m;
+                            return Math.max(
+                              0,
+                              Math.min(
+                                Math.floor((total - start) / SLOT_MINUTES),
+                                timeSlots.length - 1,
+                              ),
+                            );
+                          } catch {
+                            return 0;
+                          }
+                        };
+                        const totalSlots = timeSlots.length;
+                        return (
+                          <div className="grid grid-cols-[64px,1fr] gap-2">
+                            {/* Time labels */}
+                            <div className="divide-y">
+                              {timeSlots.map((t, i) => (
+                                <div
+                                  key={i}
+                                  className="h-8 pr-1 text-right text-[10px] text-gray-500"
+                                >
+                                  {i % 2 === 0 ? t : ""}
+                                </div>
+                              ))}
+                            </div>
+                            {/* Timeline with events */}
+                            <div className="relative">
+                              {/* slot lines */}
+                              <div>
+                                {Array.from({ length: totalSlots }).map(
+                                  (_, i) => (
+                                    <div
+                                      key={i}
+                                      className="h-8 border-b last:border-b-0"
+                                    />
+                                  ),
+                                )}
+                              </div>
+                              {/* events positioned by time */}
+                              {dayEvents.map((evt, idx) => {
+                                const c = evt.status?.toLowerCase();
+                                const color =
+                                  c === "approved" || c === "completed"
+                                    ? "border-green-200 bg-green-50 text-green-800"
+                                    : c === "pending"
+                                      ? "border-amber-200 bg-amber-50 text-amber-800"
+                                      : c === "rejected"
+                                        ? "border-red-200 bg-red-50 text-red-800"
+                                        : "border-blue-200 bg-blue-50 text-blue-800";
+                                const startIdx = parseToIndex(evt.time);
+                                const topPx = startIdx * 32; // 8*4 tailwind h-8 approximated to 32px
+                                const heightPx = 32; // default 30min slot
+                                return (
+                                  <div
+                                    key={idx}
+                                    className={`absolute left-2 right-2 border ${color} rounded-md px-2 py-1 shadow-sm`}
+                                    style={{
+                                      top: `${topPx}px`,
+                                      height: `${heightPx}px`,
+                                    }}
+                                  >
+                                    <div className="flex items-center justify-between">
+                                      <div className="text-xs font-semibold truncate">
+                                        {evt.candidateName}
+                                      </div>
+                                      {evt.time && (
+                                        <div className="text-[11px] text-gray-600 ml-2 whitespace-nowrap">
+                                          {evt.time}
+                                        </div>
+                                      )}
+                                    </div>
+                                    <div className="text-[11px] truncate">
+                                      {evt.appliedPosition}
+                                    </div>
+                                    <div className="text-[11px] opacity-80 truncate">
+                                      {evt.roundName}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
 
-                    {false && (() => {
+                  {false &&
+                    (() => {
                       const dates = Object.keys(eventsByDate).sort();
                       const q = calendarSearch.trim().toLowerCase();
                       return (
                         <div className="divide-y">
-                          {dates.map(dateStr => {
+                          {dates.map((dateStr) => {
                             const day = new Date(dateStr);
-                            const events = (eventsByDate[dateStr] || []).filter(evt => !q || evt.candidateName.toLowerCase().includes(q) || evt.appliedPosition.toLowerCase().includes(q) || evt.roundName.toLowerCase().includes(q));
+                            const events = (eventsByDate[dateStr] || []).filter(
+                              (evt) =>
+                                !q ||
+                                evt.candidateName.toLowerCase().includes(q) ||
+                                evt.appliedPosition.toLowerCase().includes(q) ||
+                                evt.roundName.toLowerCase().includes(q),
+                            );
                             if (events.length === 0) return null;
                             return (
                               <div key={dateStr} className="p-3">
-                                <div className="text-xs font-semibold text-gray-700 mb-2">{day.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                                <div className="text-xs font-semibold text-gray-700 mb-2">
+                                  {day.toLocaleDateString(undefined, {
+                                    weekday: "short",
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                  })}
+                                </div>
                                 <div className="space-y-1">
                                   {events.map((evt, idx) => {
                                     const c = evt.status?.toLowerCase();
-                                    const color = c === 'approved' || c === 'completed' ? 'border-green-200 bg-green-50 text-green-800' : c === 'pending' ? 'border-amber-200 bg-amber-50 text-amber-800' : c === 'rejected' ? 'border-red-200 bg-red-50 text-red-800' : 'border-blue-200 bg-blue-50 text-blue-800';
+                                    const color =
+                                      c === "approved" || c === "completed"
+                                        ? "border-green-200 bg-green-50 text-green-800"
+                                        : c === "pending"
+                                          ? "border-amber-200 bg-amber-50 text-amber-800"
+                                          : c === "rejected"
+                                            ? "border-red-200 bg-red-50 text-red-800"
+                                            : "border-blue-200 bg-blue-50 text-blue-800";
                                     return (
-                                      <div key={idx} className={`border ${color} rounded-none px-2 py-1`}>
-                                <div className="flex items-center justify-between">
-                                  <div className="text-xs font-semibold">{evt.candidateName}</div>
-                                  {evt.time && (<div className="text-[11px] text-gray-600 ml-2">{evt.time}</div>)}
-                                </div>
-                                <div className="text-[11px]">{evt.appliedPosition}</div>
-                                <div className="text-[11px] opacity-80">{evt.roundName}</div>
-                              </div>
+                                      <div
+                                        key={idx}
+                                        className={`border ${color} rounded-none px-2 py-1`}
+                                      >
+                                        <div className="flex items-center justify-between">
+                                          <div className="text-xs font-semibold">
+                                            {evt.candidateName}
+                                          </div>
+                                          {evt.time && (
+                                            <div className="text-[11px] text-gray-600 ml-2">
+                                              {evt.time}
+                                            </div>
+                                          )}
+                                        </div>
+                                        <div className="text-[11px]">
+                                          {evt.appliedPosition}
+                                        </div>
+                                        <div className="text-[11px] opacity-80">
+                                          {evt.roundName}
+                                        </div>
+                                      </div>
                                     );
                                   })}
                                 </div>
@@ -2001,74 +2623,119 @@ Google India`
                         </div>
                       );
                     })()}
-                  </div>
-                ) : (
-                  /* Card View */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {filteredCandidates.slice(0, 5).map((c) => (
-                      <Card key={c.id} className="p-3 border border-gray-200 hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30">
-                        <CardContent className="p-0 sm:p-0 space-y-3">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
+                </div>
+              ) : (
+                /* Card View */
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {filteredCandidates.slice(0, 5).map((c) => (
+                    <Card
+                      key={c.id}
+                      className="p-3 border border-gray-200 hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary/30"
+                    >
+                      <CardContent className="p-0 sm:p-0 space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
                               <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
-                                {c.applicantName.split(' ').map(n=>n[0]).join('')}
+                                {c.applicantName
+                                  .split(" ")
+                                  .map((n) => n[0])
+                                  .join("")}
                               </AvatarFallback>
                             </Avatar>
                             <div>
-                              <p className="font-semibold text-sm">{c.applicantName}</p>
-                              <p className="text-xs text-gray-500">Job ID: {c.id}</p>
-                            </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                                    <MoreVertical className="h-4 w-4" />
-                                  </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                  <DropdownMenuItem onSelect={() => handleViewCandidateDetails(c.id, c.applicantName)}>
-                                    <Eye className="mr-2 h-4 w-4" />
-                                    View Details
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem onSelect={() => handleManageTimeline(c.id, c.applicantName)}>
-                                    <Calendar className="mr-2 h-4 w-4" />
-                                    Manage Interview Steps
-                                  </DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
+                              <p className="font-semibold text-sm">
+                                {c.applicantName}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                Job ID: {c.id}
+                              </p>
                             </div>
                           </div>
+                          <div className="flex items-center gap-2">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                >
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleViewCandidateDetails(
+                                      c.id,
+                                      c.applicantName,
+                                    )
+                                  }
+                                >
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  View Details
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    handleManageTimeline(c.id, c.applicantName)
+                                  }
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  Manage Interview Steps
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
+                        </div>
 
-                          <div className="space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-500">Applied Role:</span>
-                              <span className="text-xs font-medium truncate ml-2">{c.appliedPosition}</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-500">Current Round:</span>
-                              <span className="text-xs font-medium text-blue-600 truncate ml-2">{c.currentRound}</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-[11px] text-gray-500">Next Round:</span>
-                              <span className="text-[11px] text-gray-600 truncate ml-2">{getNextRoundName(c)}</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-500">Interview Progress:</span>
-                              <div className="flex items-center gap-2 ml-2 w-24">
-                                <div className="flex-1 bg-gray-200 rounded-full h-2">
-                                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${Math.round(getRoundProgress(c).completion)}%` }} />
-                                </div>
-                                <span className="text-xs font-medium">{Math.round(getRoundProgress(c).completion)}%</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
+                              Applied Role:
+                            </span>
+                            <span className="text-xs font-medium truncate ml-2">
+                              {c.appliedPosition}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
+                              Current Round:
+                            </span>
+                            <span className="text-xs font-medium text-blue-600 truncate ml-2">
+                              {c.currentRound}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-[11px] text-gray-500">
+                              Next Round:
+                            </span>
+                            <span className="text-[11px] text-gray-600 truncate ml-2">
+                              {getNextRoundName(c)}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
+                              Interview Progress:
+                            </span>
+                            <div className="flex items-center gap-2 ml-2 w-24">
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-600 h-2 rounded-full"
+                                  style={{
+                                    width: `${Math.round(getRoundProgress(c).completion)}%`,
+                                  }}
+                                />
                               </div>
+                              <span className="text-xs font-medium">
+                                {Math.round(getRoundProgress(c).completion)}%
+                              </span>
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                )
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               )}
             </div>
           )}
@@ -2076,59 +2743,182 @@ Google India`
           {/* Event Editor Side Panel */}
           {showEventPanel && (
             <>
-              <div className="fixed inset-0 bg-black/40 z-50" onClick={closeEventPanel} />
+              <div
+                className="fixed inset-0 bg-black/40 z-50"
+                onClick={closeEventPanel}
+              />
               <div className="fixed right-0 top-0 h-full w-[380px] bg-white z-50 shadow-xl flex flex-col">
                 <div className="p-4 border-b flex items-center justify-between">
                   <div className="text-sm font-semibold">Event Details</div>
-                  <Button variant="ghost" size="sm" onClick={closeEventPanel}>Close</Button>
+                  <Button variant="ghost" size="sm" onClick={closeEventPanel}>
+                    Close
+                  </Button>
                 </div>
                 <div className="p-4 space-y-3 text-sm overflow-auto">
                   <div>
-                    <label className="block text-xs font-medium mb-1">Title</label>
-                    <Input placeholder="Add a title" value={eventDraft?.title || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, title: e.target.value } : prev)} />
+                    <label className="block text-xs font-medium mb-1">
+                      Title
+                    </label>
+                    <Input
+                      placeholder="Add a title"
+                      value={eventDraft?.title || ""}
+                      onChange={(e) =>
+                        setEventDraft((prev) =>
+                          prev ? { ...prev, title: e.target.value } : prev,
+                        )
+                      }
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1">Invite attendees</label>
-                    <Input placeholder="name1@example.com, name2@example.com" value={(eventDraft?.attendees || []).join(', ')} onChange={(e) => setEventDraft(prev => prev ? { ...prev, attendees: e.target.value.split(',').map(s => s.trim()).filter(Boolean) } : prev)} />
+                    <label className="block text-xs font-medium mb-1">
+                      Invite attendees
+                    </label>
+                    <Input
+                      placeholder="name1@example.com, name2@example.com"
+                      value={(eventDraft?.attendees || []).join(", ")}
+                      onChange={(e) =>
+                        setEventDraft((prev) =>
+                          prev
+                            ? {
+                                ...prev,
+                                attendees: e.target.value
+                                  .split(",")
+                                  .map((s) => s.trim())
+                                  .filter(Boolean),
+                              }
+                            : prev,
+                        )
+                      }
+                    />
                   </div>
                   <div className="grid grid-cols-1 gap-3">
                     <div>
                       <label className="block text-xs font-medium">Start</label>
-                      <Input type="datetime-local" value={eventDraft ? new Date(eventDraft.start).toISOString().slice(0,16) : ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, start: new Date(e.target.value).toISOString() } : prev)} />
+                      <Input
+                        type="datetime-local"
+                        value={
+                          eventDraft
+                            ? new Date(eventDraft.start)
+                                .toISOString()
+                                .slice(0, 16)
+                            : ""
+                        }
+                        onChange={(e) =>
+                          setEventDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  start: new Date(e.target.value).toISOString(),
+                                }
+                              : prev,
+                          )
+                        }
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-medium">End</label>
-                      <Input type="datetime-local" value={eventDraft ? new Date(eventDraft.end).toISOString().slice(0,16) : ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, end: new Date(e.target.value).toISOString() } : prev)} />
+                      <Input
+                        type="datetime-local"
+                        value={
+                          eventDraft
+                            ? new Date(eventDraft.end)
+                                .toISOString()
+                                .slice(0, 16)
+                            : ""
+                        }
+                        onChange={(e) =>
+                          setEventDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  end: new Date(e.target.value).toISOString(),
+                                }
+                              : prev,
+                          )
+                        }
+                      />
                     </div>
                     <div className="flex items-center gap-2 pt-1">
-                      <Switch checked={!!eventDraft?.allDay} onCheckedChange={(v) => setEventDraft(prev => prev ? { ...prev, allDay: v } : prev)} />
+                      <Switch
+                        checked={!!eventDraft?.allDay}
+                        onCheckedChange={(v) =>
+                          setEventDraft((prev) =>
+                            prev ? { ...prev, allDay: v } : prev,
+                          )
+                        }
+                      />
                       <span className="text-xs text-gray-700">All day</span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1">Room/Location</label>
-                    <Input placeholder="Add location" value={eventDraft?.location || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, location: e.target.value } : prev)} />
+                    <label className="block text-xs font-medium mb-1">
+                      Room/Location
+                    </label>
+                    <Input
+                      placeholder="Add location"
+                      value={eventDraft?.location || ""}
+                      onChange={(e) =>
+                        setEventDraft((prev) =>
+                          prev ? { ...prev, location: e.target.value } : prev,
+                        )
+                      }
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1">Organizer</label>
-                    <Input placeholder="Enter organizer name" value={eventDraft?.organizer || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, organizer: e.target.value } : prev)} />
+                    <label className="block text-xs font-medium mb-1">
+                      Organizer
+                    </label>
+                    <Input
+                      placeholder="Enter organizer name"
+                      value={eventDraft?.organizer || ""}
+                      onChange={(e) =>
+                        setEventDraft((prev) =>
+                          prev ? { ...prev, organizer: e.target.value } : prev,
+                        )
+                      }
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1">Description</label>
-                    <Textarea rows={4} placeholder="Add description" value={eventDraft?.description || ''} onChange={(e) => setEventDraft(prev => prev ? { ...prev, description: e.target.value } : prev)} />
+                    <label className="block text-xs font-medium mb-1">
+                      Description
+                    </label>
+                    <Textarea
+                      rows={4}
+                      placeholder="Add description"
+                      value={eventDraft?.description || ""}
+                      onChange={(e) =>
+                        setEventDraft((prev) =>
+                          prev
+                            ? { ...prev, description: e.target.value }
+                            : prev,
+                        )
+                      }
+                    />
                   </div>
                 </div>
                 <div className="p-4 border-t flex items-center justify-end gap-2">
-                  <Button variant="outline" onClick={closeEventPanel}>Discard</Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => {
-                    if (!eventDraft) return;
-                    setCalendarEvents(prev => {
-                      const exists = prev.some(ev => ev.id === eventDraft.id);
-                      if (exists) return prev.map(ev => ev.id === eventDraft.id ? eventDraft : ev);
-                      return [...prev, eventDraft];
-                    });
-                    closeEventPanel();
-                  }}>Save</Button>
+                  <Button variant="outline" onClick={closeEventPanel}>
+                    Discard
+                  </Button>
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={() => {
+                      if (!eventDraft) return;
+                      setCalendarEvents((prev) => {
+                        const exists = prev.some(
+                          (ev) => ev.id === eventDraft.id,
+                        );
+                        if (exists)
+                          return prev.map((ev) =>
+                            ev.id === eventDraft.id ? eventDraft : ev,
+                          );
+                        return [...prev, eventDraft];
+                      });
+                      closeEventPanel();
+                    }}
+                  >
+                    Save
+                  </Button>
                 </div>
               </div>
             </>
@@ -2187,14 +2977,25 @@ Google India`
                     </Button>
                     <span className="text-xs text-gray-600">1-50 of 1,263</span>
                     <div className="flex items-center gap-1">
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600"
+                      >
                         ���
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600"
+                      >
                         ▶
                       </Button>
                     </div>
-                    <Button variant="outline" className="h-8 w-8 p-0 rounded-full border-gray-300">
+                    <Button
+                      variant="outline"
+                      className="h-8 w-8 p-0 rounded-full border-gray-300"
+                    >
                       <span className="text-sm">👤</span>
                     </Button>
                   </div>
@@ -2206,13 +3007,21 @@ Google India`
                     {/* Template Navigation */}
                     <div className="flex items-center justify-center p-4 border-b bg-gray-50">
                       <div className="flex items-center gap-3">
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-gray-200"
+                        >
                           <span className="text-gray-600">←</span>
                         </Button>
                         <span className="text-xs font-medium text-gray-900 px-3 py-1 bg-white border border-gray-300 rounded-md">
                           NEUTRAL TEMPLATE 1
                         </span>
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-gray-200">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-gray-200"
+                        >
                           <span className="text-gray-600">→</span>
                         </Button>
                       </div>
@@ -2221,14 +3030,22 @@ Google India`
                     {/* Email Form - REPLACED WITH SIMPLE LIST */}
                     <div className="divide-y divide-gray-200">
                       {emailData.map((email) => (
-                        <div key={email.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 group">
+                        <div
+                          key={email.id}
+                          className="flex items-center gap-3 p-3 hover:bg-gray-50 group"
+                        >
                           <Checkbox
                             checked={selectedEmails.includes(email.id)}
                             onCheckedChange={(checked) => {
                               if (checked) {
-                                setSelectedEmails(prev => [...prev, email.id]);
+                                setSelectedEmails((prev) => [
+                                  ...prev,
+                                  email.id,
+                                ]);
                               } else {
-                                setSelectedEmails(prev => prev.filter(id => id !== email.id));
+                                setSelectedEmails((prev) =>
+                                  prev.filter((id) => id !== email.id),
+                                );
                               }
                             }}
                             className="scale-90"
@@ -2252,8 +3069,12 @@ Google India`
                     <div className="bg-gray-50 border-b border-gray-200 px-3 py-2">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-sm font-semibold text-gray-800">Email Templates</h3>
-                          <p className="text-xs text-gray-600">Interview Communication</p>
+                          <h3 className="text-sm font-semibold text-gray-800">
+                            Email Templates
+                          </h3>
+                          <p className="text-xs text-gray-600">
+                            Interview Communication
+                          </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <Button
@@ -2320,10 +3141,17 @@ Google India`
                     <div className="p-2 space-y-1">
                       {/* Email Form */}
                       <div className="flex items-center py-1 border-b border-gray-100">
-                        <label className="text-xs font-medium text-gray-700 w-10">To</label>
+                        <label className="text-xs font-medium text-gray-700 w-10">
+                          To
+                        </label>
                         <Input
                           value={emailForm.to}
-                          onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                          onChange={(e) =>
+                            setEmailForm((prev) => ({
+                              ...prev,
+                              to: e.target.value,
+                            }))
+                          }
                           className="flex-1 h-6 text-xs border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="jayamishra@gmail.com"
                         />
@@ -2331,11 +3159,18 @@ Google India`
 
                       {/* Subject Field */}
                       <div className="flex items-center py-1 border-b border-gray-100">
-                        <label className="text-xs font-medium text-gray-700 w-10">Subject</label>
+                        <label className="text-xs font-medium text-gray-700 w-10">
+                          Subject
+                        </label>
                         <div className="flex-1 flex items-center gap-1">
                           <Input
                             value={emailForm.subject}
-                            onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                            onChange={(e) =>
+                              setEmailForm((prev) => ({
+                                ...prev,
+                                subject: e.target.value,
+                              }))
+                            }
                             className="flex-1 h-6 text-xs border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Proposed Interview Time – Jaya Mishra"
                           />
@@ -2355,7 +3190,12 @@ Google India`
                         <div className="border border-gray-300 rounded-md bg-white">
                           <Textarea
                             value={emailForm.message}
-                            onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                            onChange={(e) =>
+                              setEmailForm((prev) => ({
+                                ...prev,
+                                message: e.target.value,
+                              }))
+                            }
                             className="w-full h-32 text-xs border-0 resize-none p-2 leading-normal focus:ring-0 focus:border-transparent"
                             placeholder="Hi Jaya Mishra,
 
@@ -2410,26 +3250,35 @@ Google India"
 
           {/* Rounds Review content moved to separate page/component */}
 
-
           {/* Professional Email Interface with Enhanced Design */}
           {activeMainTab === "rounds-room" && showRoundsEmailInterface && (
             <div className="bg-white shadow-2xl border border-gray-200 rounded-2xl h-full flex overflow-hidden">
               {/* Enhanced Left Sidebar - Email Templates */}
-              <div className={`${emailSidebarCollapsed ? 'w-14' : 'w-84'} border-r border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col transition-all duration-500 ease-in-out`}>
+              <div
+                className={`${emailSidebarCollapsed ? "w-14" : "w-84"} border-r border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col transition-all duration-500 ease-in-out`}
+              >
                 {/* Premium Header with Toggle */}
                 <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50 shadow-md flex items-center justify-between">
-                  <div className={`${emailSidebarCollapsed ? 'hidden' : 'block'}`}>
+                  <div
+                    className={`${emailSidebarCollapsed ? "hidden" : "block"}`}
+                  >
                     <div className="flex items-center gap-2 mb-1">
                       <Mail className="w-4 h-4 text-green-600" />
-                      <h3 className="font-semibold text-gray-800 text-base">Email Templates</h3>
+                      <h3 className="font-semibold text-gray-800 text-base">
+                        Email Templates
+                      </h3>
                     </div>
-                    <p className="text-xs text-gray-600 ml-6">Professional Interview Communications</p>
+                    <p className="text-xs text-gray-600 ml-6">
+                      Professional Interview Communications
+                    </p>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-7 w-7 p-0 rounded-lg hover:bg-green-100 hover:text-green-700 flex-shrink-0 transition-all duration-200 border border-gray-300"
-                    onClick={() => setEmailSidebarCollapsed(!emailSidebarCollapsed)}
+                    onClick={() =>
+                      setEmailSidebarCollapsed(!emailSidebarCollapsed)
+                    }
                   >
                     {emailSidebarCollapsed ? (
                       <ArrowRight className="w-3 h-3 text-gray-600" />
@@ -2444,13 +3293,23 @@ Google India"
                   <div className="p-4 border-b border-gray-200 bg-white">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                       <div className="flex items-center justify-center gap-4">
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300"
+                        >
                           <ArrowLeft className="w-3 h-3 text-green-600" />
                         </Button>
                         <div className="bg-white rounded-md px-3 py-1 shadow-sm border border-green-300">
-                          <span className="text-xs font-medium text-green-800">NEUTRAL TEMPLATE</span>
+                          <span className="text-xs font-medium text-green-800">
+                            NEUTRAL TEMPLATE
+                          </span>
                         </div>
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 rounded-md hover:bg-green-100 border border-green-300"
+                        >
                           <ArrowRight className="w-3 h-3 text-green-600" />
                         </Button>
                       </div>
@@ -2475,12 +3334,22 @@ Google India"
                     />
                   </div>
                   <div className="flex items-center gap-5">
-                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-md">1-50 of 1,263 emails</span>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-md">
+                      1-50 of 1,263 emails
+                    </span>
                     <div className="flex items-center gap-1 bg-white border border-gray-300 rounded-lg p-0.5 shadow-sm">
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md"
+                      >
                         <ArrowLeft className="w-3 h-3" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-100 rounded-md"
+                      >
                         <ArrowRight className="w-3 h-3" />
                       </Button>
                     </div>
@@ -2531,13 +3400,21 @@ Google India"
                 <div className="px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-green-200">
                   <div className="flex items-center justify-center">
                     <div className="flex items-center gap-4 bg-white rounded-xl p-3 shadow-lg border-2 border-green-200">
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-lg hover:bg-green-100">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 rounded-lg hover:bg-green-100"
+                      >
                         <ArrowLeft className="w-4 h-4 text-green-600" />
                       </Button>
                       <span className="text-sm font-bold text-green-800 px-4 py-1 bg-green-100 rounded-lg">
                         NEUTRAL TEMPLATE 1
                       </span>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-lg hover:bg-green-100">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 rounded-lg hover:bg-green-100"
+                      >
                         <ArrowRight className="w-4 h-4 text-green-600" />
                       </Button>
                     </div>
@@ -2555,7 +3432,12 @@ Google India"
                       </label>
                       <Input
                         value={emailForm.to}
-                        onChange={(e) => setEmailForm(prev => ({...prev, to: e.target.value}))}
+                        onChange={(e) =>
+                          setEmailForm((prev) => ({
+                            ...prev,
+                            to: e.target.value,
+                          }))
+                        }
                         className="flex-1 h-9 border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white rounded-lg text-sm shadow-sm"
                         placeholder="Enter recipient email address..."
                       />
@@ -2569,7 +3451,12 @@ Google India"
                       </label>
                       <Input
                         value={emailForm.subject}
-                        onChange={(e) => setEmailForm(prev => ({...prev, subject: e.target.value}))}
+                        onChange={(e) =>
+                          setEmailForm((prev) => ({
+                            ...prev,
+                            subject: e.target.value,
+                          }))
+                        }
                         className="flex-1 h-9 border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 bg-white rounded-lg text-sm shadow-sm"
                         placeholder="Enter email subject line..."
                       />
@@ -2589,14 +3476,19 @@ Google India"
                           className="h-8 px-3 text-xs font-medium border-gray-300 text-gray-600 hover:bg-gray-50"
                         >
                           <Edit3 className="w-3 h-3 mr-1" />
-                          {isEditingMessage ? 'Preview' : 'Edit'}
+                          {isEditingMessage ? "Preview" : "Edit"}
                         </Button>
                       </div>
                       <div className="bg-white rounded-lg border border-gray-300 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-500/20 shadow-md overflow-hidden">
                         {isEditingMessage ? (
                           <Textarea
                             value={emailForm.message}
-                            onChange={(e) => setEmailForm(prev => ({...prev, message: e.target.value}))}
+                            onChange={(e) =>
+                              setEmailForm((prev) => ({
+                                ...prev,
+                                message: e.target.value,
+                              }))
+                            }
                             className="w-full h-96 text-sm border-0 rounded-xl p-6 leading-relaxed focus:ring-0 focus:border-0 bg-white resize-none"
                             placeholder="Compose your professional email message here..."
                           />
@@ -2633,7 +3525,7 @@ Google India"
                       <div className="flex items-center gap-4">
                         <Button
                           onClick={() => {
-                            console.log('Sharing email template or content');
+                            console.log("Sharing email template or content");
                             // Handle share functionality here
                           }}
                           variant="outline"
@@ -2696,28 +3588,57 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b">
-                        <TableHead className="text-left font-medium text-foreground py-1 text-xs">JOB ID</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">DATE</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">NAME</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">COUNTRY</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">APPLIED POSITION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">ROUNDS DECISION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">FINAL DECISION</TableHead>
-                        <TableHead className="font-medium text-foreground py-1 text-xs">ACTION</TableHead>
+                        <TableHead className="text-left font-medium text-foreground py-1 text-xs">
+                          JOB ID
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          DATE
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          NAME
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          COUNTRY
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          APPLIED POSITION
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          ROUNDS
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          ROUNDS DECISION
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          FINAL DECISION
+                        </TableHead>
+                        <TableHead className="font-medium text-foreground py-1 text-xs">
+                          ACTION
+                        </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">001</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          001
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Jaya</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">Senior Developer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Senior Developer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["001"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "001": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "001": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2725,28 +3646,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("001", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "MAYBE", "round")}
-                              className={getButtonStyles("001", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "001",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("001", "NO", "round")}
                             >
                               NO
@@ -2756,13 +3717,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("001", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("001", "Jaya", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "001",
+                                  "Jaya",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("001", "NO", "final")}
                             >
                               REJECT
@@ -2777,15 +3752,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">002</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          002
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Mark</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">Graphic Designer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Graphic Designer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["002"]?.toString() || "2"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "002": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "002": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2793,28 +3779,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("002", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "MAYBE", "round")}
-                              className={getButtonStyles("002", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "002",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("002", "NO", "round")}
                             >
                               NO
@@ -2824,13 +3850,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("002", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("002", "Mark", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "002",
+                                  "Mark",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("002", "NO", "final")}
                             >
                               REJECT
@@ -2845,15 +3885,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">003</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          003
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">John</TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">Content Writer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Content Writer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["003"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "003": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "003": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2861,28 +3912,68 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "YES", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "YES",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("003", "YES", "round")}
                             >
                               YES
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "MAYBE", "round")}
-                              className={getButtonStyles("003", "MAYBE", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "MAYBE",
+                                  "round",
+                                )
+                              }
+                              className={getButtonStyles(
+                                "003",
+                                "MAYBE",
+                                "round",
+                              )}
                             >
                               MAYBE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "NO", "round")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "NO",
+                                  "round",
+                                )
+                              }
                               className={getButtonStyles("003", "NO", "round")}
                             >
                               NO
@@ -2892,13 +3983,27 @@ Google India"
                         <TableCell className="py-2">
                           <div className="flex items-center gap-1">
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "YES", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "YES",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("003", "YES", "final")}
                             >
                               APPROVE
                             </Button>
                             <Button
-                              onClick={() => handleDecisionClick("003", "John", "NO", "final")}
+                              onClick={() =>
+                                handleDecisionClick(
+                                  "003",
+                                  "John",
+                                  "NO",
+                                  "final",
+                                )
+                              }
                               className={getButtonStyles("003", "NO", "final")}
                             >
                               REJECT
@@ -2913,15 +4018,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">004</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          004
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Sara</TableCell>
                         <TableCell className="py-2 text-xs">Europe</TableCell>
-                        <TableCell className="py-2 text-xs">Copywriter</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Copywriter
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["004"]?.toString() || "4"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "004": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "004": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2929,9 +4045,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -2966,15 +4097,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">005</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          005
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Shruti</TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">Sale Associate</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Sale Associate
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["005"]?.toString() || "5"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "005": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "005": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -2982,9 +4124,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -3019,15 +4176,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">006</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          006
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Robin</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">AI Engineer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          AI Engineer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["006"]?.toString() || "2"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "006": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "006": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -3035,9 +4203,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -3072,15 +4255,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">007</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          007
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Kayle</TableCell>
                         <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">ML Engineer</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          ML Engineer
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["007"]?.toString() || "1"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "007": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "007": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -3088,9 +4282,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -3125,15 +4334,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">008</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          008
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Vali</TableCell>
                         <TableCell className="py-2 text-xs">China</TableCell>
-                        <TableCell className="py-2 text-xs">Data Analyst</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Data Analyst
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["008"]?.toString() || "3"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "008": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "008": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -3141,9 +4361,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -3178,15 +4413,26 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">009</TableCell>
-                        <TableCell className="py-2 text-xs">8/14/2025</TableCell>
+                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
+                          009
+                        </TableCell>
+                        <TableCell className="py-2 text-xs">
+                          8/14/2025
+                        </TableCell>
                         <TableCell className="py-2 text-xs">Anne</TableCell>
                         <TableCell className="py-2 text-xs">Canada</TableCell>
-                        <TableCell className="py-2 text-xs">Finance Analyst</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          Finance Analyst
+                        </TableCell>
                         <TableCell className="py-2">
                           <Select
                             value={selectedRounds["009"]?.toString() || "3"}
-                            onValueChange={(value) => setSelectedRounds(prev => ({...prev, "009": parseInt(value)}))}
+                            onValueChange={(value) =>
+                              setSelectedRounds((prev) => ({
+                                ...prev,
+                                "009": parseInt(value),
+                              }))
+                            }
                           >
                             <SelectTrigger className="w-24 h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 font-medium shadow-sm rounded">
                               <SelectValue>
@@ -3194,9 +4440,24 @@ Google India"
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="shadow-lg border border-gray-200 rounded-md">
-                              <SelectItem value="1" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 1</SelectItem>
-                              <SelectItem value="2" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 2</SelectItem>
-                              <SelectItem value="3" className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50">STEP 3</SelectItem>
+                              <SelectItem
+                                value="1"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 1
+                              </SelectItem>
+                              <SelectItem
+                                value="2"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 2
+                              </SelectItem>
+                              <SelectItem
+                                value="3"
+                                className="text-xs font-medium hover:bg-blue-50 focus:bg-blue-50"
+                              >
+                                STEP 3
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>
@@ -3238,7 +4499,6 @@ Google India"
         </div>
       </div>
 
-
       {/* Decision Confirmation Modal */}
       <Dialog open={showDecisionModal} onOpenChange={setShowDecisionModal}>
         <DialogContent className="w-96 max-w-sm">
@@ -3250,21 +4510,22 @@ Google India"
           <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-4">
             <div className="text-center space-y-4">
               <p className="text-sm text-gray-700">
-                {selectedDecision ? (
-                  selectedDecision.type === "final" ? (
-                    selectedDecision.decision === "NO" ?
-                      "Are you sure you want to reject this candidate?" :
-                      "Are you sure you want to approve this candidate?"
-                  ) : (
-                    "Would you like to proceed with this candidate?"
-                  )
-                ) : (
-                  "Would you like to proceed with this candidate?"
-                )}
+                {selectedDecision
+                  ? selectedDecision.type === "final"
+                    ? selectedDecision.decision === "NO"
+                      ? "Are you sure you want to reject this candidate?"
+                      : "Are you sure you want to approve this candidate?"
+                    : "Would you like to proceed with this candidate?"
+                  : "Would you like to proceed with this candidate?"}
               </p>
               {selectedDecision && (
                 <p className="text-xs text-gray-600">
-                  {selectedDecision.candidateName} - {selectedDecision.decision} ({selectedDecision.type === "round" ? "Round Decision" : "Final Decision"})
+                  {selectedDecision.candidateName} - {selectedDecision.decision}{" "}
+                  (
+                  {selectedDecision.type === "round"
+                    ? "Round Decision"
+                    : "Final Decision"}
+                  )
                 </p>
               )}
               <div className="flex items-center justify-center gap-3 mt-4">
@@ -3306,7 +4567,12 @@ Google India"
                 </label>
                 <Input
                   value={roundForm.roundHeader}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundHeader: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      roundHeader: e.target.value,
+                    }))
+                  }
                   placeholder="e.g., Round 1, Round 2"
                 />
               </div>
@@ -3316,7 +4582,12 @@ Google India"
                 </label>
                 <Input
                   value={roundForm.roundName}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, roundName: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      roundName: e.target.value,
+                    }))
+                  }
                   placeholder="e.g., Technical Assessment"
                 />
               </div>
@@ -3329,7 +4600,9 @@ Google India"
                 </label>
                 <Select
                   value={roundForm.roundType}
-                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, roundType: value }))}
+                  onValueChange={(value: any) =>
+                    setRoundForm((prev) => ({ ...prev, roundType: value }))
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -3347,17 +4620,25 @@ Google India"
                 </label>
                 <Select
                   value={roundForm.interviewMode}
-                  onValueChange={(value: any) => setRoundForm(prev => ({ ...prev, interviewMode: value }))}
+                  onValueChange={(value: any) =>
+                    setRoundForm((prev) => ({ ...prev, interviewMode: value }))
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="online-assessment">Online Assessment</SelectItem>
+                    <SelectItem value="online-assessment">
+                      Online Assessment
+                    </SelectItem>
                     <SelectItem value="video-call">Video Call</SelectItem>
                     <SelectItem value="in-person">In-Person</SelectItem>
-                    <SelectItem value="oral-assessment">Oral Assessment</SelectItem>
-                    <SelectItem value="group-assessment">Group Assessment</SelectItem>
+                    <SelectItem value="oral-assessment">
+                      Oral Assessment
+                    </SelectItem>
+                    <SelectItem value="group-assessment">
+                      Group Assessment
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -3369,7 +4650,12 @@ Google India"
               </label>
               <Textarea
                 value={roundForm.testDescription}
-                onChange={(e) => setRoundForm(prev => ({ ...prev, testDescription: e.target.value }))}
+                onChange={(e) =>
+                  setRoundForm((prev) => ({
+                    ...prev,
+                    testDescription: e.target.value,
+                  }))
+                }
                 placeholder="Optional description of the test associated with the round"
                 rows={3}
               />
@@ -3383,7 +4669,12 @@ Google India"
                 <Input
                   type="date"
                   value={roundForm.scheduledDate}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledDate: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      scheduledDate: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div>
@@ -3393,7 +4684,12 @@ Google India"
                 <Input
                   type="time"
                   value={roundForm.scheduledTime}
-                  onChange={(e) => setRoundForm(prev => ({ ...prev, scheduledTime: e.target.value }))}
+                  onChange={(e) =>
+                    setRoundForm((prev) => ({
+                      ...prev,
+                      scheduledTime: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
@@ -3405,8 +4701,12 @@ Google India"
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Upload test documents or files</p>
-                <p className="text-xs text-gray-500 mt-1">DOC, PDF, Excel, JPG, PNG, MP4, MP5</p>
+                <p className="text-sm text-gray-600">
+                  Upload test documents or files
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  DOC, PDF, Excel, JPG, PNG, MP4, MP5
+                </p>
               </div>
             </div>
           </div>
@@ -3417,7 +4717,11 @@ Google India"
             </Button>
             <Button
               onClick={isEditing ? handleUpdateRound : handleCreateRound}
-              disabled={!roundForm.roundName || !roundForm.scheduledDate || !roundForm.scheduledTime}
+              disabled={
+                !roundForm.roundName ||
+                !roundForm.scheduledDate ||
+                !roundForm.scheduledTime
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               {isEditing ? "Save Round" : "Add Round"}
@@ -3430,9 +4734,7 @@ Google India"
       <Dialog open={showBulkAssignModal} onOpenChange={setShowBulkAssignModal}>
         <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
-              Bulk Assign Rounds to Candidates
-            </DialogTitle>
+            <DialogTitle>Bulk Assign Rounds to Candidates</DialogTitle>
             <DialogDescription>
               Select candidates and rounds to create bulk assignments.
             </DialogDescription>
@@ -3441,7 +4743,10 @@ Google India"
           <div className="grid grid-cols-2 gap-6">
             {/* Candidates Selection */}
             <div>
-              <h3 className="font-semibold mb-4">Select Candidates ({selectedCandidatesForAssignment.length} selected)</h3>
+              <h3 className="font-semibold mb-4">
+                Select Candidates ({selectedCandidatesForAssignment.length}{" "}
+                selected)
+              </h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {interviewCandidates.map((candidate) => (
                   <div
@@ -3449,12 +4754,19 @@ Google India"
                     className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50"
                   >
                     <Checkbox
-                      checked={selectedCandidatesForAssignment.includes(candidate.id)}
-                      onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
+                      checked={selectedCandidatesForAssignment.includes(
+                        candidate.id,
+                      )}
+                      onCheckedChange={() =>
+                        handleCandidateSelectionToggle(candidate.id)
+                      }
                     />
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                       <span className="text-primary font-medium text-xs">
-                        {candidate.applicantName.split(' ').map(n => n[0]).join('')}
+                        {candidate.applicantName
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -3480,7 +4792,9 @@ Google India"
 
             {/* Rounds Selection */}
             <div>
-              <h3 className="font-semibold mb-4">Select Rounds ({bulkSelectedRounds.length} selected)</h3>
+              <h3 className="font-semibold mb-4">
+                Select Rounds ({bulkSelectedRounds.length} selected)
+              </h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {rounds.map((round) => (
                   <div
@@ -3489,7 +4803,9 @@ Google India"
                   >
                     <Checkbox
                       checked={bulkSelectedRounds.includes(round.id)}
-                      onCheckedChange={() => handleRoundSelectionToggle(round.id)}
+                      onCheckedChange={() =>
+                        handleRoundSelectionToggle(round.id)
+                      }
                     />
                     <div className="flex-1">
                       <div className="font-semibold text-foreground text-sm">
@@ -3507,7 +4823,9 @@ Google India"
                         {round.candidates.length} assigned
                       </Badge>
                       <Badge
-                        variant={round.status === "completed" ? "default" : "secondary"}
+                        variant={
+                          round.status === "completed" ? "default" : "secondary"
+                        }
                         className="text-xs"
                       >
                         {round.status}
@@ -3520,23 +4838,39 @@ Google India"
           </div>
 
           {/* Summary */}
-          {selectedCandidatesForAssignment.length > 0 && bulkSelectedRounds.length > 0 && (
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <h4 className="font-medium text-blue-800 mb-2">Assignment Summary</h4>
-              <p className="text-sm text-blue-700">
-                You are about to assign <strong>{bulkSelectedRounds.length} rounds</strong> to <strong>{selectedCandidatesForAssignment.length} candidates</strong>.
-                This will create {selectedCandidatesForAssignment.length * bulkSelectedRounds.length} new assignments.
-              </p>
-            </div>
-          )}
+          {selectedCandidatesForAssignment.length > 0 &&
+            bulkSelectedRounds.length > 0 && (
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h4 className="font-medium text-blue-800 mb-2">
+                  Assignment Summary
+                </h4>
+                <p className="text-sm text-blue-700">
+                  You are about to assign{" "}
+                  <strong>{bulkSelectedRounds.length} rounds</strong> to{" "}
+                  <strong>
+                    {selectedCandidatesForAssignment.length} candidates
+                  </strong>
+                  . This will create{" "}
+                  {selectedCandidatesForAssignment.length *
+                    bulkSelectedRounds.length}{" "}
+                  new assignments.
+                </p>
+              </div>
+            )}
 
           <DialogFooter className="flex gap-2">
-            <Button variant="outline" onClick={() => setShowBulkAssignModal(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setShowBulkAssignModal(false)}
+            >
               Cancel
             </Button>
             <Button
               onClick={handleBulkAssignmentSave}
-              disabled={selectedCandidatesForAssignment.length === 0 || bulkSelectedRounds.length === 0}
+              disabled={
+                selectedCandidatesForAssignment.length === 0 ||
+                bulkSelectedRounds.length === 0
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <UserPlus className="w-4 h-4 mr-2" />
@@ -3552,7 +4886,8 @@ Google India"
           <DialogHeader>
             <DialogTitle>Use Round Templates</DialogTitle>
             <DialogDescription>
-              Apply pre-defined round templates to streamline your interview process.
+              Apply pre-defined round templates to streamline your interview
+              process.
             </DialogDescription>
           </DialogHeader>
 
@@ -3574,22 +4909,32 @@ Google India"
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-sm">{template.name}</h4>
-                          <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                          <h4 className="font-semibold text-sm">
+                            {template.name}
+                          </h4>
+                          <p className="text-sm text-gray-600 mb-3">
+                            {template.description}
+                          </p>
                           <div className="flex flex-wrap gap-2">
                             {template.rounds.map((round, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge
+                                key={index}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {round.order}. {round.roundName}
                               </Badge>
                             ))}
                           </div>
                         </div>
                         <div className="flex items-center">
-                          <div className={`w-4 h-4 rounded-full border-2 ${
-                            selectedTemplate?.id === template.id 
-                              ? "border-primary bg-primary" 
-                              : "border-gray-300"
-                          }`}>
+                          <div
+                            className={`w-4 h-4 rounded-full border-2 ${
+                              selectedTemplate?.id === template.id
+                                ? "border-primary bg-primary"
+                                : "border-gray-300"
+                            }`}
+                          >
                             {selectedTemplate?.id === template.id && (
                               <Check className="w-2 h-2 text-white m-0.5" />
                             )}
@@ -3605,22 +4950,33 @@ Google India"
             {/* Candidate Selection for Template */}
             {selectedTemplate && (
               <div>
-                <h3 className="font-semibold mb-4">Select Candidates for Template</h3>
+                <h3 className="font-semibold mb-4">
+                  Select Candidates for Template
+                </h3>
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {interviewCandidates.map((candidate) => (
                     <div
                       key={candidate.id}
                       className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      onClick={() => handleCandidateSelectionToggle(candidate.id)}
+                      onClick={() =>
+                        handleCandidateSelectionToggle(candidate.id)
+                      }
                     >
                       <Checkbox
-                        checked={selectedCandidatesForAssignment.includes(candidate.id)}
-                        onCheckedChange={() => handleCandidateSelectionToggle(candidate.id)}
+                        checked={selectedCandidatesForAssignment.includes(
+                          candidate.id,
+                        )}
+                        onCheckedChange={() =>
+                          handleCandidateSelectionToggle(candidate.id)
+                        }
                         onClick={(e) => e.stopPropagation()}
                       />
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                         <span className="text-primary font-medium text-xs">
-                          {candidate.applicantName.split(" ").map((n) => n[0]).join("")}
+                          {candidate.applicantName
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
                         </span>
                       </div>
                       <div className="flex-1">
@@ -3640,16 +4996,24 @@ Google India"
             {/* Template Preview */}
             {selectedTemplate && (
               <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-medium mb-3">Template Preview: {selectedTemplate.name}</h4>
+                <h4 className="font-medium mb-3">
+                  Template Preview: {selectedTemplate.name}
+                </h4>
                 <div className="space-y-2">
                   {selectedTemplate.rounds.map((round, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-medium text-xs">{round.order}</span>
+                        <span className="text-primary font-medium text-xs">
+                          {round.order}
+                        </span>
                       </div>
                       <div className="flex-1">
-                        <div className="text-sm font-medium">{round.roundName}</div>
-                        <div className="text-xs text-gray-500">{round.roundType} • {round.interviewMode}</div>
+                        <div className="text-sm font-medium">
+                          {round.roundName}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {round.roundType} • {round.interviewMode}
+                        </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-gray-400" />
                     </div>
@@ -3660,16 +5024,22 @@ Google India"
           </div>
 
           <DialogFooter className="flex gap-2">
-            <Button variant="outline" onClick={() => {
-              setShowTemplateModal(false);
-              setSelectedTemplate(null);
-              setSelectedCandidatesForAssignment([]);
-            }}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowTemplateModal(false);
+                setSelectedTemplate(null);
+                setSelectedCandidatesForAssignment([]);
+              }}
+            >
               Cancel
             </Button>
             <Button
               onClick={applyTemplate}
-              disabled={!selectedTemplate || selectedCandidatesForAssignment.length === 0}
+              disabled={
+                !selectedTemplate ||
+                selectedCandidatesForAssignment.length === 0
+              }
               className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
             >
               <Copy className="w-4 h-4 mr-2" />
@@ -3678,7 +5048,6 @@ Google India"
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
 
       {/* Timeline Management Side Sheet */}
       {showTimelineSheet && (
@@ -3690,9 +5059,11 @@ Google India"
           />
 
           {/* Side Sheet */}
-          <div className={`fixed right-0 top-0 h-full w-[45%] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-            showTimelineSheet ? 'translate-x-0' : 'translate-x-full'
-          }`}>
+          <div
+            className={`fixed right-0 top-0 h-full w-[45%] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+              showTimelineSheet ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
             {selectedCandidateForTimeline && (
               <div className="flex flex-col h-full">
                 {/* Fixed Header */}
@@ -3700,9 +5071,7 @@ Google India"
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md uppercase tracking-wide">
-                          
-                        </span>
+                        <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md uppercase tracking-wide"></span>
                         <div className="ml-auto flex items-center gap-2">
                           <Button
                             variant="outline"
@@ -3710,7 +5079,13 @@ Google India"
                             className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
                             onClick={() => {
                               setEditingStepId(null);
-                              setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
+                              setStepForm({
+                                title: "",
+                                typeOfInterview: "technical",
+                                interviewer: "",
+                                duration: "",
+                                notes: "",
+                              });
                               setShowStepEditor(true);
                             }}
                           >
@@ -3746,23 +5121,31 @@ Google India"
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 mb-6">
                       <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
-                      <h2 className="text-lg font-semibold text-gray-900">Interview Steps</h2>
+                      <h2 className="text-lg font-semibold text-gray-900">
+                        Interview Steps
+                      </h2>
                     </div>
 
                     {selectedCandidateForTimeline.steps.map((step, index) => (
-                      <div key={step.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                      <div
+                        key={step.id}
+                        className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                      >
                         {/* Step Header - Clickable */}
                         <div className="flex items-center justify-between p-4 bg-gray-50">
                           <div className="flex items-center gap-3 flex-1">
                             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                              <span className="text-blue-700 font-semibold text-sm">{index + 1}</span>
+                              <span className="text-blue-700 font-semibold text-sm">
+                                {index + 1}
+                              </span>
                             </div>
                             <div className="space-y-1">
                               <h3 className="text-base font-medium text-gray-900">
                                 {step.title}
                               </h3>
                               <p className="text-sm text-gray-600">
-                                {formatMDYDash(step.date)} at {step.time} • Interviewer: {step.interviewer}
+                                {formatMDYDash(step.date)} at {step.time} •
+                                Interviewer: {step.interviewer}
                               </p>
                             </div>
                           </div>
@@ -3770,14 +5153,16 @@ Google India"
                             <Badge
                               variant="outline"
                               className={`text-xs px-2 py-1 ${
-                                step.status === 'Pending' ? 'bg-orange-50 text-orange-700 border-orange-200' :
-                                step.status === 'Completed' ? 'bg-green-50 text-green-700 border-green-200' :
-                                'bg-blue-50 text-blue-700 border-blue-200'
+                                step.status === "Pending"
+                                  ? "bg-orange-50 text-orange-700 border-orange-200"
+                                  : step.status === "Completed"
+                                    ? "bg-green-50 text-green-700 border-green-200"
+                                    : "bg-blue-50 text-blue-700 border-blue-200"
                               }`}
                             >
                               {step.status}
                             </Badge>
-                                                      </div>
+                          </div>
                         </div>
 
                         {/* Expanded Content */}
@@ -3797,41 +5182,79 @@ Google India"
 
                               {/* Step Actions */}
                               <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
-                                {!(step.date) && (
-                                  <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                    setSelectedStepId(step.id);
-                                    const first = selectedCandidateForTimeline?.interviewers?.[0] || "";
-                                    setScheduleForm({ date: "", time: "", interviewer: first });
-                                    setShowScheduleModal(true);
-                                  }}>
+                                {!step.date && (
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-xs"
+                                    onClick={() => {
+                                      setSelectedStepId(step.id);
+                                      const first =
+                                        selectedCandidateForTimeline
+                                          ?.interviewers?.[0] || "";
+                                      setScheduleForm({
+                                        date: "",
+                                        time: "",
+                                        interviewer: first,
+                                      });
+                                      setShowScheduleModal(true);
+                                    }}
+                                  >
                                     <Calendar className="w-3 h-3 mr-1" />
                                     Schedule Interview
                                   </Button>
                                 )}
                                 {step.date && (
-                                  <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                    setSelectedStepId(step.id);
-                                    setScheduleForm({ date: step.date || "", time: step.time || "", interviewer: step.interviewer || "" });
-                                    setShowRescheduleModal(true);
-                                  }}>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-xs"
+                                    onClick={() => {
+                                      setSelectedStepId(step.id);
+                                      setScheduleForm({
+                                        date: step.date || "",
+                                        time: step.time || "",
+                                        interviewer: step.interviewer || "",
+                                      });
+                                      setShowRescheduleModal(true);
+                                    }}
+                                  >
                                     <Edit3 className="w-3 h-3 mr-1" />
                                     Reschedule Interview
                                   </Button>
                                 )}
-                                <Button variant="outline" size="sm" className="text-xs" disabled={!step.date} onClick={() => {
-                                  if (!step.date) return;
-                                  setSelectedStepId(step.id);
-                                  setRemarkForm({ result: "", score: step.score != null ? String(step.score) : "", remarks: step.remarks || "" });
-                                  setShowRemarkScoreModal(true);
-                                }}>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-xs"
+                                  disabled={!step.date}
+                                  onClick={() => {
+                                    if (!step.date) return;
+                                    setSelectedStepId(step.id);
+                                    setRemarkForm({
+                                      result: "",
+                                      score:
+                                        step.score != null
+                                          ? String(step.score)
+                                          : "",
+                                      remarks: step.remarks || "",
+                                    });
+                                    setShowRemarkScoreModal(true);
+                                  }}
+                                >
                                   <MessageSquare className="w-3 h-3 mr-1" />
                                   Submit Interview Results
                                 </Button>
-                                <Button variant="outline" size="sm" className="text-xs" onClick={() => {
-                                  setSelectedStepId(step.id);
-                                  setReminderMessage("");
-                                  setShowReminderModal(true);
-                                }}>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-xs"
+                                  onClick={() => {
+                                    setSelectedStepId(step.id);
+                                    setReminderMessage("");
+                                    setShowReminderModal(true);
+                                  }}
+                                >
                                   <Mail className="w-3 h-3 mr-1" />
                                   Send Reminder
                                 </Button>
@@ -3869,8 +5292,7 @@ Google India"
                       </Button>
                     </div>
                   </div>
-
-                                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -3881,25 +5303,54 @@ Google India"
       <Dialog open={showReminderModal} onOpenChange={setShowReminderModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Mail className="w-4 h-4" /> Send Reminder</DialogTitle>
-            <DialogDescription>Send a reminder to the candidate or panel member.</DialogDescription>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2">
+              <Mail className="w-4 h-4" /> Send Reminder
+            </DialogTitle>
+            <DialogDescription>
+              Send a reminder to the candidate or panel member.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
             <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
-              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
-              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              <div className="font-medium text-gray-900">
+                {selectedCandidateForTimeline?.name}
+              </div>
+              <div className="text-gray-600">
+                {selectedCandidateForTimeline?.position}
+              </div>
               {currentStep() && (
-                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+                <div className="text-gray-600 mt-1">
+                  Step: {currentStep()!.title}
+                </div>
               )}
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Message</label>
-              <Textarea rows={4} value={reminderMessage} onChange={(e) => setReminderMessage(e.target.value)} placeholder="Type your reminder message" />
+              <label className="block text-xs font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <Textarea
+                rows={4}
+                value={reminderMessage}
+                onChange={(e) => setReminderMessage(e.target.value)}
+                placeholder="Type your reminder message"
+              />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowReminderModal(false)}>Cancel</Button>
-            <Button onClick={() => { setShowReminderModal(false); toast({ title: "Reminder sent successfully" }); }}>Send</Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowReminderModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                setShowReminderModal(false);
+                toast({ title: "Reminder sent successfully" });
+              }}
+            >
+              Send
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -3908,30 +5359,62 @@ Google India"
       <Dialog open={showStepEditor} onOpenChange={setShowStepEditor}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">{editingStepId ? 'Edit Interview Step' : 'Add Interview Step'}</DialogTitle>
-            <DialogDescription>Define the interview step details.</DialogDescription>
+            <DialogTitle className="text-sm font-semibold">
+              {editingStepId ? "Edit Interview Step" : "Add Interview Step"}
+            </DialogTitle>
+            <DialogDescription>
+              Define the interview step details.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-6 text-xs">
             {/* Basic Info */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold border-b pb-2">Basic Info</h3>
+              <h3 className="text-sm font-semibold border-b pb-2">
+                Basic Info
+              </h3>
               <div className="space-y-2">
-                <label className="block text-xs font-medium text-gray-700">Step Name</label>
-                <Input value={stepForm.title} onChange={(e) => setStepForm({ ...stepForm, title: e.target.value })} placeholder="e.g., Technical Interview" />
+                <label className="block text-xs font-medium text-gray-700">
+                  Step Name
+                </label>
+                <Input
+                  value={stepForm.title}
+                  onChange={(e) =>
+                    setStepForm({ ...stepForm, title: e.target.value })
+                  }
+                  placeholder="e.g., Technical Interview"
+                />
               </div>
               <div className="space-y-2">
-                <label className="block text-xs font-medium text-gray-700">Notes</label>
-                <Textarea rows={3} value={stepForm.notes} onChange={(e) => setStepForm({ ...stepForm, notes: e.target.value })} placeholder="Additional information" />
+                <label className="block text-xs font-medium text-gray-700">
+                  Notes
+                </label>
+                <Textarea
+                  rows={3}
+                  value={stepForm.notes}
+                  onChange={(e) =>
+                    setStepForm({ ...stepForm, notes: e.target.value })
+                  }
+                  placeholder="Additional information"
+                />
               </div>
             </div>
 
             {/* Step Details */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold border-b pb-2">Step Details</h3>
+              <h3 className="text-sm font-semibold border-b pb-2">
+                Step Details
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-2">
-                  <label className="block text-xs font-medium text-gray-700">Type of Interview</label>
-                  <Select value={stepForm.typeOfInterview} onValueChange={(v) => setStepForm({ ...stepForm, typeOfInterview: v })}>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Type of Interview
+                  </label>
+                  <Select
+                    value={stepForm.typeOfInterview}
+                    onValueChange={(v) =>
+                      setStepForm({ ...stepForm, typeOfInterview: v })
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
@@ -3943,32 +5426,77 @@ Google India"
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-xs font-medium text-gray-700">Interviewer</label>
-                  <Input value={stepForm.interviewer} onChange={(e) => setStepForm({ ...stepForm, interviewer: e.target.value })} placeholder="e.g., Alice" />
+                  <label className="block text-xs font-medium text-gray-700">
+                    Interviewer
+                  </label>
+                  <Input
+                    value={stepForm.interviewer}
+                    onChange={(e) =>
+                      setStepForm({ ...stepForm, interviewer: e.target.value })
+                    }
+                    placeholder="e.g., Alice"
+                  />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-xs font-medium text-gray-700">Duration</label>
-                  <Input value={stepForm.duration} onChange={(e) => setStepForm({ ...stepForm, duration: e.target.value })} placeholder="e.g., 60 mins" />
+                  <label className="block text-xs font-medium text-gray-700">
+                    Duration
+                  </label>
+                  <Input
+                    value={stepForm.duration}
+                    onChange={(e) =>
+                      setStepForm({ ...stepForm, duration: e.target.value })
+                    }
+                    placeholder="e.g., 60 mins"
+                  />
                 </div>
               </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowStepEditor(false)}>Cancel</Button>
-            <Button onClick={() => {
-              if (!selectedCandidateForTimeline) return setShowStepEditor(false);
-              setSelectedCandidateForTimeline(prev => {
-                if (!prev) return prev;
-                if (editingStepId) {
-                  const steps = prev.steps.map(s => s.id === editingStepId ? { ...s, title: stepForm.title, interviewer: stepForm.interviewer, notes: stepForm.notes, typeOfInterview: stepForm.typeOfInterview, duration: stepForm.duration } : s);
-                  return { ...prev, steps };
-                }
-                const nextIndex = prev.steps.length + 1;
-                const newStep = { id: `step-${Date.now()}`, title: stepForm.title || `Step ${nextIndex}: New Interview`, date: "", time: "", interviewer: stepForm.interviewer, status: 'Pending' as const, schedule: '', notes: stepForm.notes, typeOfInterview: stepForm.typeOfInterview, duration: stepForm.duration };
-                return { ...prev, steps: [...prev.steps, newStep] };
-              });
-              setShowStepEditor(false);
-            }}>Save</Button>
+            <Button variant="outline" onClick={() => setShowStepEditor(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                if (!selectedCandidateForTimeline)
+                  return setShowStepEditor(false);
+                setSelectedCandidateForTimeline((prev) => {
+                  if (!prev) return prev;
+                  if (editingStepId) {
+                    const steps = prev.steps.map((s) =>
+                      s.id === editingStepId
+                        ? {
+                            ...s,
+                            title: stepForm.title,
+                            interviewer: stepForm.interviewer,
+                            notes: stepForm.notes,
+                            typeOfInterview: stepForm.typeOfInterview,
+                            duration: stepForm.duration,
+                          }
+                        : s,
+                    );
+                    return { ...prev, steps };
+                  }
+                  const nextIndex = prev.steps.length + 1;
+                  const newStep = {
+                    id: `step-${Date.now()}`,
+                    title: stepForm.title || `Step ${nextIndex}: New Interview`,
+                    date: "",
+                    time: "",
+                    interviewer: stepForm.interviewer,
+                    status: "Pending" as const,
+                    schedule: "",
+                    notes: stepForm.notes,
+                    typeOfInterview: stepForm.typeOfInterview,
+                    duration: stepForm.duration,
+                  };
+                  return { ...prev, steps: [...prev.steps, newStep] };
+                });
+                setShowStepEditor(false);
+              }}
+            >
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -3976,54 +5504,113 @@ Google India"
       <Dialog open={showScheduleModal} onOpenChange={setShowScheduleModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Calendar className="w-4 h-4" /> Schedule Interview</DialogTitle>
-            <DialogDescription>Set the interview schedule for this step.</DialogDescription>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2">
+              <Calendar className="w-4 h-4" /> Schedule Interview
+            </DialogTitle>
+            <DialogDescription>
+              Set the interview schedule for this step.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
             <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
-              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
-              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              <div className="font-medium text-gray-900">
+                {selectedCandidateForTimeline?.name}
+              </div>
+              <div className="text-gray-600">
+                {selectedCandidateForTimeline?.position}
+              </div>
               {currentStep() && (
-                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+                <div className="text-gray-600 mt-1">
+                  Step: {currentStep()!.title}
+                </div>
               )}
             </div>
             <div className="grid grid-cols-1 gap-3">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
-                <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatMDYDash(scheduleForm.date) : '-'}</div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Date
+                </label>
+                <Input
+                  type="date"
+                  value={scheduleForm.date}
+                  onChange={(e) =>
+                    setScheduleForm({ ...scheduleForm, date: e.target.value })
+                  }
+                />
+                <div className="text-[11px] text-gray-500 mt-1">
+                  Selected (mm-dd-yyyy):{" "}
+                  {scheduleForm.date ? formatMDYDash(scheduleForm.date) : "-"}
+                </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
-                <Input type="time" value={scheduleForm.time} onChange={(e) => setScheduleForm({ ...scheduleForm, time: e.target.value })} />
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Time
+                </label>
+                <Input
+                  type="time"
+                  value={scheduleForm.time}
+                  onChange={(e) =>
+                    setScheduleForm({ ...scheduleForm, time: e.target.value })
+                  }
+                />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
-                <Select value={scheduleForm.interviewer} onValueChange={(v) => setScheduleForm({ ...scheduleForm, interviewer: v })}>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Interviewer
+                </label>
+                <Select
+                  value={scheduleForm.interviewer}
+                  onValueChange={(v) =>
+                    setScheduleForm({ ...scheduleForm, interviewer: v })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select interviewer" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(selectedCandidateForTimeline?.interviewers || []).map((iv) => (
-                      <SelectItem key={iv} value={iv}>{iv}</SelectItem>
-                    ))}
+                    {(selectedCandidateForTimeline?.interviewers || []).map(
+                      (iv) => (
+                        <SelectItem key={iv} value={iv}>
+                          {iv}
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowScheduleModal(false)}>Cancel</Button>
-            <Button onClick={() => {
-              if (!selectedCandidateForTimeline || !selectedStepId) return setShowScheduleModal(false);
-              setSelectedCandidateForTimeline(prev => {
-                if (!prev) return prev;
-                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, date: scheduleForm.date, time: scheduleForm.time, interviewer: scheduleForm.interviewer } : s);
-                return { ...prev, steps };
-              });
-              setShowScheduleModal(false);
-              toast({ title: "Interview scheduled successfully" });
-            }}>Save</Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowScheduleModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                if (!selectedCandidateForTimeline || !selectedStepId)
+                  return setShowScheduleModal(false);
+                setSelectedCandidateForTimeline((prev) => {
+                  if (!prev) return prev;
+                  const steps = prev.steps.map((s) =>
+                    s.id === selectedStepId
+                      ? {
+                          ...s,
+                          date: scheduleForm.date,
+                          time: scheduleForm.time,
+                          interviewer: scheduleForm.interviewer,
+                        }
+                      : s,
+                  );
+                  return { ...prev, steps };
+                });
+                setShowScheduleModal(false);
+                toast({ title: "Interview scheduled successfully" });
+              }}
+            >
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -4031,76 +5618,155 @@ Google India"
       <Dialog open={showRescheduleModal} onOpenChange={setShowRescheduleModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><Edit3 className="w-4 h-4" /> Reschedule Interview</DialogTitle>
-            <DialogDescription>Update the existing interview schedule for this step.</DialogDescription>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2">
+              <Edit3 className="w-4 h-4" /> Reschedule Interview
+            </DialogTitle>
+            <DialogDescription>
+              Update the existing interview schedule for this step.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
             <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
-              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
-              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              <div className="font-medium text-gray-900">
+                {selectedCandidateForTimeline?.name}
+              </div>
+              <div className="text-gray-600">
+                {selectedCandidateForTimeline?.position}
+              </div>
               {currentStep() && (
-                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+                <div className="text-gray-600 mt-1">
+                  Step: {currentStep()!.title}
+                </div>
               )}
             </div>
             <div className="grid grid-cols-1 gap-3">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Date</label>
-                <Input type="date" value={scheduleForm.date} onChange={(e) => setScheduleForm({ ...scheduleForm, date: e.target.value })} />
-                <div className="text-[11px] text-gray-500 mt-1">Selected (mm-dd-yyyy): {scheduleForm.date ? formatMDYDash(scheduleForm.date) : '-'}</div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Date
+                </label>
+                <Input
+                  type="date"
+                  value={scheduleForm.date}
+                  onChange={(e) =>
+                    setScheduleForm({ ...scheduleForm, date: e.target.value })
+                  }
+                />
+                <div className="text-[11px] text-gray-500 mt-1">
+                  Selected (mm-dd-yyyy):{" "}
+                  {scheduleForm.date ? formatMDYDash(scheduleForm.date) : "-"}
+                </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Time</label>
-                <Input type="time" value={scheduleForm.time} onChange={(e) => setScheduleForm({ ...scheduleForm, time: e.target.value })} />
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Time
+                </label>
+                <Input
+                  type="time"
+                  value={scheduleForm.time}
+                  onChange={(e) =>
+                    setScheduleForm({ ...scheduleForm, time: e.target.value })
+                  }
+                />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Interviewer</label>
-                <Select value={scheduleForm.interviewer} onValueChange={(v) => setScheduleForm({ ...scheduleForm, interviewer: v })}>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Interviewer
+                </label>
+                <Select
+                  value={scheduleForm.interviewer}
+                  onValueChange={(v) =>
+                    setScheduleForm({ ...scheduleForm, interviewer: v })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select interviewer" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(selectedCandidateForTimeline?.interviewers || []).map((iv) => (
-                      <SelectItem key={iv} value={iv}>{iv}</SelectItem>
-                    ))}
+                    {(selectedCandidateForTimeline?.interviewers || []).map(
+                      (iv) => (
+                        <SelectItem key={iv} value={iv}>
+                          {iv}
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowRescheduleModal(false)}>Cancel</Button>
-            <Button onClick={() => {
-              if (!selectedCandidateForTimeline || !selectedStepId) return setShowRescheduleModal(false);
-              setSelectedCandidateForTimeline(prev => {
-                if (!prev) return prev;
-                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, date: scheduleForm.date, time: scheduleForm.time, interviewer: scheduleForm.interviewer } : s);
-                return { ...prev, steps };
-              });
-              setShowRescheduleModal(false);
-              toast({ title: "Interview rescheduled successfully" });
-            }}>Update</Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowRescheduleModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                if (!selectedCandidateForTimeline || !selectedStepId)
+                  return setShowRescheduleModal(false);
+                setSelectedCandidateForTimeline((prev) => {
+                  if (!prev) return prev;
+                  const steps = prev.steps.map((s) =>
+                    s.id === selectedStepId
+                      ? {
+                          ...s,
+                          date: scheduleForm.date,
+                          time: scheduleForm.time,
+                          interviewer: scheduleForm.interviewer,
+                        }
+                      : s,
+                  );
+                  return { ...prev, steps };
+                });
+                setShowRescheduleModal(false);
+                toast({ title: "Interview rescheduled successfully" });
+              }}
+            >
+              Update
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <Dialog open={showRemarkScoreModal} onOpenChange={setShowRemarkScoreModal}>
+      <Dialog
+        open={showRemarkScoreModal}
+        onOpenChange={setShowRemarkScoreModal}
+      >
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold flex items-center gap-2"><FileText className="w-4 h-4" /> Submit Interview Results</DialogTitle>
-            <DialogDescription>Confirm and Submit your Interview Assessment</DialogDescription>
+            <DialogTitle className="text-sm font-semibold flex items-center gap-2">
+              <FileText className="w-4 h-4" /> Submit Interview Results
+            </DialogTitle>
+            <DialogDescription>
+              Confirm and Submit your Interview Assessment
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-xs">
             <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
-              <div className="font-medium text-gray-900">{selectedCandidateForTimeline?.name}</div>
-              <div className="text-gray-600">{selectedCandidateForTimeline?.position}</div>
+              <div className="font-medium text-gray-900">
+                {selectedCandidateForTimeline?.name}
+              </div>
+              <div className="text-gray-600">
+                {selectedCandidateForTimeline?.position}
+              </div>
               {currentStep() && (
-                <div className="text-gray-600 mt-1">Step: {currentStep()!.title}</div>
+                <div className="text-gray-600 mt-1">
+                  Step: {currentStep()!.title}
+                </div>
               )}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Results</label>
-                <Select value={remarkForm.result} onValueChange={(v) => setRemarkForm({ ...remarkForm, result: v })}>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Results
+                </label>
+                <Select
+                  value={remarkForm.result}
+                  onValueChange={(v) =>
+                    setRemarkForm({ ...remarkForm, result: v })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select result" />
                   </SelectTrigger>
@@ -4111,37 +5777,80 @@ Google India"
                 </Select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Score</label>
-                <Input type="number" inputMode="numeric" pattern="[0-9]*" min="0" max="100" value={remarkForm.score} onChange={(e) => setRemarkForm({ ...remarkForm, score: e.target.value })} placeholder="e.g., 85" />
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Score
+                </label>
+                <Input
+                  type="number"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  min="0"
+                  max="100"
+                  value={remarkForm.score}
+                  onChange={(e) =>
+                    setRemarkForm({ ...remarkForm, score: e.target.value })
+                  }
+                  placeholder="e.g., 85"
+                />
               </div>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Remarks</label>
-              <Textarea rows={4} value={remarkForm.remarks} onChange={(e) => setRemarkForm({ ...remarkForm, remarks: e.target.value })} placeholder="Enter remarks here..." />
+              <label className="block text-xs font-medium text-gray-700 mb-1">
+                Remarks
+              </label>
+              <Textarea
+                rows={4}
+                value={remarkForm.remarks}
+                onChange={(e) =>
+                  setRemarkForm({ ...remarkForm, remarks: e.target.value })
+                }
+                placeholder="Enter remarks here..."
+              />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowRemarkScoreModal(false)}>Cancel</Button>
-            <Button onClick={() => {
-              if (!selectedCandidateForTimeline || !selectedStepId) return setShowRemarkScoreModal(false);
-              const scoreNum = remarkForm.score ? Number(remarkForm.score) : undefined;
-              setSelectedCandidateForTimeline(prev => {
-                if (!prev) return prev;
-                const steps = prev.steps.map(s => s.id === selectedStepId ? { ...s, remarks: remarkForm.remarks, score: scoreNum } : s);
-                return { ...prev, steps };
-              });
-              setShowRemarkScoreModal(false);
-              toast({ title: "Remark & score submitted successfully" });
-            }}>Submit</Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowRemarkScoreModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                if (!selectedCandidateForTimeline || !selectedStepId)
+                  return setShowRemarkScoreModal(false);
+                const scoreNum = remarkForm.score
+                  ? Number(remarkForm.score)
+                  : undefined;
+                setSelectedCandidateForTimeline((prev) => {
+                  if (!prev) return prev;
+                  const steps = prev.steps.map((s) =>
+                    s.id === selectedStepId
+                      ? { ...s, remarks: remarkForm.remarks, score: scoreNum }
+                      : s,
+                  );
+                  return { ...prev, steps };
+                });
+                setShowRemarkScoreModal(false);
+                toast({ title: "Remark & score submitted successfully" });
+              }}
+            >
+              Submit
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* Candidate Details Modal */}
-      <Dialog open={showCandidateDetailsModal} onOpenChange={setShowCandidateDetailsModal}>
+      <Dialog
+        open={showCandidateDetailsModal}
+        onOpenChange={setShowCandidateDetailsModal}
+      >
         <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-sm font-semibold">Interview Details</DialogTitle>
+            <DialogTitle className="text-sm font-semibold">
+              Interview Details
+            </DialogTitle>
           </DialogHeader>
 
           {selectedCandidateDetails && (
@@ -4167,7 +5876,6 @@ Google India"
                       </p>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -4177,17 +5885,23 @@ Google India"
                   <div className="space-y-3">
                     {/* Contact Information */}
                     <div>
-                      <h3 className="text-xs font-semibold text-gray-900 mb-2">Contact Information</h3>
+                      <h3 className="text-xs font-semibold text-gray-900 mb-2">
+                        Contact Information
+                      </h3>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Mail className="h-3 w-3 text-gray-400" />
                           <span className="text-xs font-medium">Email:</span>
-                          <span className="text-xs text-gray-700">{selectedCandidateDetails.email}</span>
+                          <span className="text-xs text-gray-700">
+                            {selectedCandidateDetails.email}
+                          </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <Phone className="h-3 w-3 text-gray-400" />
                           <span className="text-xs font-medium">Phone:</span>
-                          <span className="text-xs text-gray-700">{formatPhoneUS(selectedCandidateDetails.phone)}</span>
+                          <span className="text-xs text-gray-700">
+                            {formatPhoneUS(selectedCandidateDetails.phone)}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -4198,66 +5912,77 @@ Google India"
               {/* Interview Steps Section */}
               <Card>
                 <CardContent className="p-3">
-                  <h3 className="text-xs font-semibold text-gray-900 mb-2">Interview Steps</h3>
+                  <h3 className="text-xs font-semibold text-gray-900 mb-2">
+                    Interview Steps
+                  </h3>
                   <div className="space-y-2">
-                    {selectedCandidateDetails.interviewSteps.map((step, index) => (
-                      <div key={step.id} className="border border-gray-200 rounded-lg p-2 relative">
-                        {/* Status Badge (top-right corner) */}
-                        <div className="absolute top-2 right-2">
-                          <Badge
-                            className={
-                              step.status === 'Completed'
-                                ? 'bg-green-100 text-green-800 border-green-200 text-xs px-1.5 py-0.5'
-                                : 'bg-gray-100 text-gray-800 border-gray-200 text-xs px-1.5 py-0.5'
-                            }
-                          >
-                            {step.status}
-                          </Badge>
-                        </div>
-
-                        {/* Step Header */}
-                        <div className="mb-2 pr-16">
-                          <h4 className="text-xs font-semibold text-gray-900 mb-0.5">
-                            {index + 1}. {step.title}
-                          </h4>
-                          <p className="text-xs text-gray-600 font-medium">
-                            Interviewer: {step.interviewer}
-                          </p>
-                        </div>
-
-                        {/* Description */}
-                        <div className="mb-2">
-                          <p className="text-xs text-gray-700">
-                            Description: "{step.description}"
-                          </p>
-                        </div>
-
-                        {/* Date & Time */}
-                        <div className="mb-2">
-                          <div className="flex items-center gap-1 text-xs text-gray-600">
-                            <Calendar className="h-3 w-3" />
-                            <span>{formatMDYSlash(step.date)} at {step.time}</span>
+                    {selectedCandidateDetails.interviewSteps.map(
+                      (step, index) => (
+                        <div
+                          key={step.id}
+                          className="border border-gray-200 rounded-lg p-2 relative"
+                        >
+                          {/* Status Badge (top-right corner) */}
+                          <div className="absolute top-2 right-2">
+                            <Badge
+                              className={
+                                step.status === "Completed"
+                                  ? "bg-green-100 text-green-800 border-green-200 text-xs px-1.5 py-0.5"
+                                  : "bg-gray-100 text-gray-800 border-gray-200 text-xs px-1.5 py-0.5"
+                              }
+                            >
+                              {step.status}
+                            </Badge>
                           </div>
-                        </div>
 
-                        {/* Remarks (only if available) */}
-                        {step.remarks && (
-                          <div className="mt-2 p-2 bg-gray-50 rounded-md">
-                            <p className="text-xs font-medium text-gray-700 mb-0.5">Remarks:</p>
-                            <p className="text-xs text-gray-600">"{step.remarks}"</p>
+                          {/* Step Header */}
+                          <div className="mb-2 pr-16">
+                            <h4 className="text-xs font-semibold text-gray-900 mb-0.5">
+                              {index + 1}. {step.title}
+                            </h4>
+                            <p className="text-xs text-gray-600 font-medium">
+                              Interviewer: {step.interviewer}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                    ))}
+
+                          {/* Description */}
+                          <div className="mb-2">
+                            <p className="text-xs text-gray-700">
+                              Description: "{step.description}"
+                            </p>
+                          </div>
+
+                          {/* Date & Time */}
+                          <div className="mb-2">
+                            <div className="flex items-center gap-1 text-xs text-gray-600">
+                              <Calendar className="h-3 w-3" />
+                              <span>
+                                {formatMDYSlash(step.date)} at {step.time}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Remarks (only if available) */}
+                          {step.remarks && (
+                            <div className="mt-2 p-2 bg-gray-50 rounded-md">
+                              <p className="text-xs font-medium text-gray-700 mb-0.5">
+                                Remarks:
+                              </p>
+                              <p className="text-xs text-gray-600">
+                                "{step.remarks}"
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ),
+                    )}
                   </div>
                 </CardContent>
               </Card>
-
             </div>
           )}
         </DialogContent>
       </Dialog>
-
-   </div>
- );
+    </div>
+  );
 }
