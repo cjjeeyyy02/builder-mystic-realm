@@ -85,6 +85,7 @@ interface InterviewCandidate {
     | "Technical Round 2"
     | "Non Technical Round 2";
   status: "in-progress" | "completed" | "pending";
+  dateAdded?: string;
   email?: string;
   phone?: string;
   assignedRounds?: string[];
