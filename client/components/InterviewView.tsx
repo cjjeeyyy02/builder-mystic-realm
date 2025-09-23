@@ -1801,7 +1801,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Senior Developer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">8/14/2025</TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            8/14/2025
+                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Managerial - 4/5
                           </TableCell>
@@ -1877,7 +1879,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Graphic Designer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">8/14/2025</TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            8/14/2025
+                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Managerial - 4/5
                           </TableCell>
@@ -1953,7 +1957,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Content writer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">8/14/2025</TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            8/14/2025
+                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Human Resources - 5/5
                           </TableCell>
@@ -2029,7 +2035,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Copywriter
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">8/14/2025</TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            8/14/2025
+                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Editing Test - 4/5
                           </TableCell>
@@ -2105,7 +2113,9 @@ Google India`,
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Sale Associate
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">8/14/2025</TableCell>
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
+                            8/14/2025
+                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Culture Test - 3/5
                           </TableCell>

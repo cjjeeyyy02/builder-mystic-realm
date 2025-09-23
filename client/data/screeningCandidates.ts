@@ -40,23 +40,33 @@ export const screeningCandidates: ScreeningCandidate[] = [
     status: "pending",
     dateAdded: "08/10/2025",
     resumeUrl: "/documents/emily-rodriguez-resume.pdf",
-    summary: "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
+    summary:
+      "Creative UX Designer with 5+ years of experience in designing user-centered digital experiences. Proficient in design thinking, user research, and prototyping.",
     education: "Master's in Human-Computer Interaction, Stanford University",
     workHistory: [
       {
         company: "TechCorp Solutions",
         position: "Senior UX Designer",
         duration: "2022 - Present",
-        description: "Led design for mobile banking app used by 2M+ users. Improved user satisfaction by 40% through redesign initiative."
+        description:
+          "Led design for mobile banking app used by 2M+ users. Improved user satisfaction by 40% through redesign initiative.",
       },
       {
         company: "Design Studio Inc",
         position: "UX Designer",
         duration: "2020 - 2022",
-        description: "Designed web applications for e-commerce clients. Conducted user research and usability testing."
-      }
+        description:
+          "Designed web applications for e-commerce clients. Conducted user research and usability testing.",
+      },
     ],
-    skills: ["Figma", "Sketch", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+    skills: [
+      "Figma",
+      "Sketch",
+      "Adobe XD",
+      "User Research",
+      "Prototyping",
+      "Design Systems",
+    ],
     certifications: ["Google UX Design Certificate", "Adobe Certified Expert"],
     location: "San Francisco, CA",
     salaryExpectation: "$95,000 - $110,000",
@@ -74,23 +84,34 @@ export const screeningCandidates: ScreeningCandidate[] = [
     status: "pending",
     dateAdded: "08/10/2025",
     resumeUrl: "/documents/david-kim-resume.pdf",
-    summary: "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
+    summary:
+      "Experienced Backend Developer with expertise in scalable systems design and microservices architecture. Strong background in cloud technologies and API development.",
     education: "Bachelor's in Computer Science, UC Berkeley",
     workHistory: [
       {
         company: "CloudTech Inc",
         position: "Senior Backend Developer",
         duration: "2021 - Present",
-        description: "Architected microservices handling 10M+ requests daily. Reduced system latency by 60% through optimization."
+        description:
+          "Architected microservices handling 10M+ requests daily. Reduced system latency by 60% through optimization.",
       },
       {
         company: "StartupXYZ",
         position: "Backend Developer",
         duration: "2019 - 2021",
-        description: "Built RESTful APIs and implemented real-time features using WebSocket technology."
-      }
+        description:
+          "Built RESTful APIs and implemented real-time features using WebSocket technology.",
+      },
     ],
-    skills: ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Redis", "GraphQL"],
+    skills: [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Redis",
+      "GraphQL",
+    ],
     certifications: ["AWS Solutions Architect", "Google Cloud Professional"],
     location: "Seattle, WA",
     salaryExpectation: "$120,000 - $140,000",
@@ -108,10 +129,16 @@ export const screeningCandidates: ScreeningCandidate[] = [
     status: "pending",
     dateAdded: "08/10/2025",
     resumeUrl: "/documents/carlos-mendez-resume.pdf",
-    summary: "Data Scientist experienced with production ML systems and data engineering.",
+    summary:
+      "Data Scientist experienced with production ML systems and data engineering.",
     education: "M.S. in Data Science, NYU",
     workHistory: [
-      { company: "InsightAI", position: "Data Scientist", duration: "2020 - Present", description: "Productionized ML models and built data pipelines." }
+      {
+        company: "InsightAI",
+        position: "Data Scientist",
+        duration: "2020 - Present",
+        description: "Productionized ML models and built data pipelines.",
+      },
     ],
     skills: ["Python", "PyTorch", "SQL", "ETL"],
     certifications: [],
@@ -131,10 +158,17 @@ export const screeningCandidates: ScreeningCandidate[] = [
     status: "pending",
     dateAdded: "08/10/2025",
     resumeUrl: "/documents/maya-singh-resume.pdf",
-    summary: "QA Engineer with experience in automation, integration testing, and CI/CD.",
+    summary:
+      "QA Engineer with experience in automation, integration testing, and CI/CD.",
     education: "B.S. in Information Systems, Georgia Tech",
     workHistory: [
-      { company: "QualityWorks", position: "QA Engineer", duration: "2021 - Present", description: "Implemented automated test suites and reduced regression time." }
+      {
+        company: "QualityWorks",
+        position: "QA Engineer",
+        duration: "2021 - Present",
+        description:
+          "Implemented automated test suites and reduced regression time.",
+      },
     ],
     skills: ["Selenium", "Cypress", "Jest"],
     certifications: [],
@@ -154,10 +188,16 @@ export const screeningCandidates: ScreeningCandidate[] = [
     status: "pending",
     dateAdded: "08/10/2025",
     resumeUrl: "/documents/sofia-rossi-resume.pdf",
-    summary: "Product Designer with cross-functional experience in UX and visual design.",
+    summary:
+      "Product Designer with cross-functional experience in UX and visual design.",
     education: "B.A. in Design, Politecnico di Milano",
     workHistory: [
-      { company: "StudioX", position: "Product Designer", duration: "2018 - Present", description: "Led cross-platform design initiatives." }
+      {
+        company: "StudioX",
+        position: "Product Designer",
+        duration: "2018 - Present",
+        description: "Led cross-platform design initiatives.",
+      },
     ],
     skills: ["Figma", "Prototyping", "Design Systems"],
     certifications: [],
