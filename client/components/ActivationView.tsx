@@ -405,13 +405,7 @@ export default function ActivationView() {
                   </div>
 
                   <div className="mt-3">
-                    <div className={isDarkMode ? 'bg-gray-700 h-2 w-full' : 'bg-gray-200 h-2 w-full'}>
-                      <div
-                        className={`bg-blue-600 h-2`}
-                        style={{ width: `${employee.activationProgress}%` }}
-                      />
-                    </div>
-                    <div className={`mt-1 text-xs font-medium ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>{employee.activationProgress}%</div>
+                    {renderProgressBar(employee.activationProgress)}
                   </div>
                 </div>
               ))}
