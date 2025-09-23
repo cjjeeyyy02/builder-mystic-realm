@@ -217,11 +217,10 @@ export default function RoomBuilder() {
             <div className="flex items-center justify-between mb-2">
               <div>
                 <h1 className="text-xl font-semibold text-gray-900">Room Builder</h1>
-                <p className="text-xs text-muted-foreground">Editing: {selectedRoom?.name}</p>
+                <p className="text-xs text-muted-foreground">Room: {selectedRoom?.name}</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button size="sm" variant="outline" className="h-8 px-3 text-xs">Edit Mode</Button>
-                <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
+                                <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
                   <DialogTrigger asChild>
                     <Button size="sm" className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">
                       + Create Room
