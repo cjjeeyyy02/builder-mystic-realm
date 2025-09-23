@@ -1764,6 +1764,9 @@ Google India`,
                             APPLIED POSITION
                           </TableHead>
                           <TableHead className="py-2 px-3 font-semibold">
+                            DATE ADDED
+                          </TableHead>
+                          <TableHead className="py-2 px-3 font-semibold">
                             CURRENT ROUND
                           </TableHead>
                           <TableHead className="py-2 px-3 font-semibold">
