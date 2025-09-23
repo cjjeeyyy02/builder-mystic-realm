@@ -338,12 +338,12 @@ function CreateChecklistForm({
           </div>
 
           <div className="flex gap-3 pt-6 border-t border-gray-100 mt-6">
+            <Button variant="outline" onClick={onCancel} className="flex-1">
+              Cancel
+            </Button>
             <Button onClick={onSave} className="flex-1 bg-blue-600 hover:bg-blue-700">
               <Save className="h-4 w-4 mr-2" />
               Create Checklist
-            </Button>
-            <Button variant="outline" onClick={onCancel} className="flex-1">
-              Cancel
             </Button>
           </div>
         </CardContent>
