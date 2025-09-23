@@ -41,6 +41,7 @@ import {
   List,
   Grid,
   XCircle,
+  User,
 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
@@ -535,11 +536,14 @@ export default function ActivationView() {
                           isDarkMode ? "text-gray-200" : "text-gray-900"
                         }`}
                       >
-                        <div className="flex flex-col">
-                          <span>{employee.name}</span>
-                          <span className="text-xs text-muted-foreground">
-                            Job ID: {employee.jobId}
-                          </span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                            <User className="w-4 h-4 text-primary" />
+                          </div>
+                          <div className="flex flex-col">
+                            <span>{employee.name}</span>
+                            <span className="text-xs text-muted-foreground">Job ID: {employee.jobId}</span>
+                          </div>
                         </div>
                       </TableCell>
                       <TableCell
