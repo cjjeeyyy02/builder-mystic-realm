@@ -18,6 +18,7 @@ interface HiredCandidate {
   name: string;
   position: string;
   joiningDate: string; // yyyy-mm-dd or mm-dd-yyyy
+  dateAdded: string;
   stage: "Pre-Onboarding" | "Orientation" | "Integration";
 }
 
