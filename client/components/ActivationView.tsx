@@ -87,6 +87,7 @@ interface Employee {
   name: string;
   appliedJobRole: string;
   joiningDate: string;
+  dateAdded: string;
   filesUploaded: string;
   activationProgress: number;
   finalDecision: "ACTIVATE EMPLOYEE" | "EMPLOYEE ACTIVATED";
