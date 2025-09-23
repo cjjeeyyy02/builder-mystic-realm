@@ -1745,9 +1745,6 @@ Google India`,
                     <Table className="w-full text-sm">
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-900 border-b">
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900">
-                            JOB ID
-                          </TableHead>
                           <TableHead className="py-2 px-3 font-semibold text-gray-900 w-40 whitespace-nowrap">
                             NAME
                           </TableHead>
@@ -1773,11 +1770,11 @@ Google India`,
                       </TableHeader>
                       <TableBody>
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
-                            001
-                          </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            Jaya Sharma
+                            <div className="flex flex-col">
+                              <span>Jaya Sharma</span>
+                              <span className="text-xs text-muted-foreground">Job ID: 001</span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
                             India
@@ -3590,9 +3587,6 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b">
-                        <TableHead className="text-left font-medium text-foreground py-1 text-xs">
-                          JOB ID
-                        </TableHead>
                         <TableHead className="font-medium text-foreground py-1 text-xs">
                           DATE
                         </TableHead>
@@ -3621,13 +3615,15 @@ Google India"
                     </TableHeader>
                     <TableBody>
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          001
-                        </TableCell>
                         <TableCell className="py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Jaya</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          <div className="flex flex-col">
+                            <span>Jaya</span>
+                            <span className="text-[10px] text-muted-foreground">Job ID: 001</span>
+                          </div>
+                        </TableCell>
                         <TableCell className="py-2 text-xs">India</TableCell>
                         <TableCell className="py-2 text-xs">
                           Senior Developer
@@ -3754,13 +3750,15 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
-                          002
-                        </TableCell>
                         <TableCell className="py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Mark</TableCell>
+                        <TableCell className="py-2 text-xs">
+                          <div className="flex flex-col">
+                            <span>Mark</span>
+                            <span className="text-[10px] text-muted-foreground">Job ID: 002</span>
+                          </div>
+                        </TableCell>
                         <TableCell className="py-2 text-xs">USA</TableCell>
                         <TableCell className="py-2 text-xs">
                           Graphic Designer
