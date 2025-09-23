@@ -2762,6 +2762,14 @@ Google India`,
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-gray-500">
+                              Date Added:
+                            </span>
+                            <span className="text-xs font-medium truncate ml-2">
+                              {c.dateAdded}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
                               Current Round:
                             </span>
                             <span className="text-xs font-medium text-blue-600 truncate ml-2">
