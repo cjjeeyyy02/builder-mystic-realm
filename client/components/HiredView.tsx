@@ -581,28 +581,28 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                 <TableHead className="w-16 text-left py-2 px-3">
                   S. NO
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   NAME
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   ROLE
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   DEPT
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   EXPECTED DOJ
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   EMPLOYMENT
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   LOCATION
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   CONFIRMED DOJ
                 </TableHead>
-                <TableHead className="py-2 px-3">
+                <TableHead className="py-2 px-3 font-semibold">
                   ACTIONS
                 </TableHead>
               </TableRow>
