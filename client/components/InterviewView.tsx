@@ -3703,14 +3703,28 @@ Google India"
                         <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md uppercase tracking-wide">
                           
                         </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setShowTimelineSheet(false)}
-                          className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600 hover:bg-white rounded-full ml-auto"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
+                        <div className="ml-auto flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
+                            onClick={() => {
+                              setEditingStepId(null);
+                              setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
+                              setShowStepEditor(true);
+                            }}
+                          >
+                            + Add Interview Step
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setShowTimelineSheet(false)}
+                            className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600 hover:bg-white rounded-full"
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
 
                       <h1 className="text-xl font-bold text-gray-900 mb-1">
@@ -3831,18 +3845,27 @@ Google India"
 
                   {/* Footer */}
                   <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex justify-end">
+                    <div className="flex items-center justify-between">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-8 px-3 text-xs border-blue-600 text-blue-700 hover:bg-blue-50"
+                        className="h-8 px-3 text-xs border-red-600 text-red-700 hover:bg-red-50"
                         onClick={() => {
-                          setEditingStepId(null);
-                          setStepForm({ title: "", typeOfInterview: "technical", interviewer: "", duration: "", notes: "" });
-                          setShowStepEditor(true);
+                          setShowTimelineSheet(false);
+                          toast({ title: "Candidate rejected" });
                         }}
                       >
-                        + Add Interview Step
+                        Reject Candidate
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                        onClick={() => {
+                          setShowTimelineSheet(false);
+                          toast({ title: "Proceeded to Activation" });
+                        }}
+                      >
+                        Proceed to Activation
                       </Button>
                     </div>
                   </div>
