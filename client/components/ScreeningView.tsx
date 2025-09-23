@@ -513,7 +513,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap">CANDIDATE</th>
                   <th className="py-2 px-3 whitespace-nowrap">APPLIED POSITION</th>
                   <th className="py-2 pl-3 pr-6 whitespace-nowrap">TOTAL EXPERIENCE</th>
-                  <th className="py-2 pl-6 pr-3 whitespace-nowrap">EMAIL</th>
+                  <th className="py-2 pl-6 pr-3 whitespace-nowrap text-center">EMAIL</th>
                   <th className="py-2 px-3 whitespace-nowrap">PHONE NUMBER</th>
                   <th className="py-2 px-3 whitespace-nowrap">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap">STATUS</th>
