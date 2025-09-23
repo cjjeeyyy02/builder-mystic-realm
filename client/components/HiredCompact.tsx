@@ -270,7 +270,7 @@ export default function HiredCompact() {
                       </tr>
                       {expandedId === c.id && (
                         <tr className="border-b">
-                          <td colSpan={5} className="bg-gray-50">
+                          <td colSpan={6} className="bg-gray-50">
                             <div className="p-3 border-t">
                               <OnboardingTimeline />
                             </div>
