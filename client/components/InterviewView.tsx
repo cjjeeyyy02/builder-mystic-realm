@@ -5679,27 +5679,59 @@ Google India"
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">
-                  Interviewer
+                  Interviewers
                 </label>
-                <Select
-                  value={scheduleForm.interviewer}
-                  onValueChange={(v) =>
-                    setScheduleForm({ ...scheduleForm, interviewer: v })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select interviewer" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {(selectedCandidateForTimeline?.interviewers || []).map(
-                      (iv) => (
-                        <SelectItem key={iv} value={iv}>
-                          {iv}
-                        </SelectItem>
-                      ),
-                    )}
-                  </SelectContent>
-                </Select>
+                <div className="min-h-[38px] w-full rounded-md border border-input bg-background px-2 py-1 flex flex-wrap gap-1">
+                  {scheduleForm.interviewerNames.map((name, idx) => (
+                    <span key={`${name}-${idx}`} className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 border px-2 py-0.5 text-xs">
+                      {name}
+                      <button
+                        type="button"
+                        className="ml-1 text-gray-500 hover:text-gray-700"
+                        onClick={() => {
+                          const next = scheduleForm.interviewerNames.filter((_, i) => i !== idx);
+                          setScheduleForm({ ...scheduleForm, interviewerNames: next });
+                        }}
+                        aria-label={`Remove ${name}`}
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                  <input
+                    className="flex-1 min-w-[120px] bg-transparent outline-none text-xs py-1"
+                    placeholder={scheduleForm.interviewerNames.length ? "Add another" : "Type a name and press Enter"}
+                    value={scheduleForm.interviewerInput}
+                    onChange={(e) => setScheduleForm({ ...scheduleForm, interviewerInput: e.target.value })}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === ",") {
+                        e.preventDefault();
+                        const raw = scheduleForm.interviewerInput.trim();
+                        if (!raw) return;
+                        const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+                        const set = new Set(scheduleForm.interviewerNames);
+                        parts.forEach((p) => set.add(p));
+                        setScheduleForm({ ...scheduleForm, interviewerNames: Array.from(set), interviewerInput: "" });
+                      } else if (e.key === "Backspace" && !scheduleForm.interviewerInput && scheduleForm.interviewerNames.length) {
+                        const next = scheduleForm.interviewerNames.slice(0, -1);
+                        setScheduleForm({ ...scheduleForm, interviewerNames: next });
+                      }
+                    }}
+                    onBlur={() => {
+                      const raw = scheduleForm.interviewerInput.trim();
+                      if (!raw) return;
+                      const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+                      const set = new Set(scheduleForm.interviewerNames);
+                      parts.forEach((p) => set.add(p));
+                      setScheduleForm({ ...scheduleForm, interviewerNames: Array.from(set), interviewerInput: "" });
+                    }}
+                  />
+                </div>
+                {selectedCandidateForTimeline?.interviewers?.length ? (
+                  <div className="mt-1 text-[11px] text-muted-foreground">
+                    Suggestions: {selectedCandidateForTimeline.interviewers.join(", ")}
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
