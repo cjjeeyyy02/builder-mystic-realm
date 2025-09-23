@@ -286,8 +286,8 @@ export default function HiredView() {
               <div className="space-y-4">
                 {/* Header with Avatar and Status */}
                 <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
-                    <User className="w-5 h-5 text-emerald-600" />
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                    <span className="text-base font-medium text-white">{employee.candidateName.split(" ").map(n=>n[0]).slice(0,2).join("")}</span>
                   </div>
                   <Badge
                     variant="outline"
