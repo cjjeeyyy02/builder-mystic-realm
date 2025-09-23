@@ -672,12 +672,12 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                     {candidate.serialNo}
                   </TableCell>
                   <TableCell className="py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                        <User className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                        <span className="text-xs font-medium text-white">{candidate.name.split(" ").map(n=>n[0]).slice(0,2).join("")}</span>
                       </div>
-                      <div className="font-semibold text-foreground">
-                        {candidate.name}
+                      <div className="leading-tight min-w-0">
+                        <div className="text-[14px] font-medium text-gray-900">{candidate.name}</div>
                       </div>
                     </div>
                   </TableCell>
