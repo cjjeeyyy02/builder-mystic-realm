@@ -502,16 +502,16 @@ export default function ActivationView() {
                     <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
-                    <TableHead className="py-2 px-3">
+                    <TableHead className="py-2 px-3 font-semibold">
                       APPLIED POSITION
                     </TableHead>
                     <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3">
+                    <TableHead className="py-2 px-3 font-semibold">
                       FILES UPLOADED
                     </TableHead>
-                    <TableHead className="py-2 px-3">
+                    <TableHead className="py-2 px-3 font-semibold">
                       ACTIVATION PROGRESS
                     </TableHead>
                     <TableHead className="py-2 px-3 text-center">
