@@ -1757,9 +1757,7 @@ Google India`,
                           <TableHead className="py-2 px-3 font-semibold w-40 whitespace-nowrap">
                             CANDIDATE
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold w-32 whitespace-nowrap">
-                            COUNTRY
-                          </TableHead>
+
                           <TableHead className="py-2 px-3 font-semibold">
                             APPLIED POSITION
                           </TableHead>
@@ -1799,9 +1797,7 @@ Google India`,
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
-                            India
-                          </TableCell>
+
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Senior Developer
                           </TableCell>
@@ -1877,9 +1873,7 @@ Google India`,
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
-                            USA
-                          </TableCell>
+
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Graphic Designer
                           </TableCell>
@@ -1955,9 +1949,7 @@ Google India`,
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
-                            USA
-                          </TableCell>
+
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Content writer
                           </TableCell>
@@ -2033,9 +2025,7 @@ Google India`,
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
-                            Europe
-                          </TableCell>
+
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Copywriter
                           </TableCell>
@@ -2111,9 +2101,7 @@ Google India`,
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
-                            India
-                          </TableCell>
+
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900">
                             Sale Associate
                           </TableCell>
