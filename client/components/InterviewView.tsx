@@ -1836,11 +1836,11 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
-                            002
-                          </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            Mark Robinson
+                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            <div className="flex flex-col">
+                              <span>Mark Robinson</span>
+                              <span className="text-xs text-muted-foreground">Job ID: 002</span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
                             USA
@@ -1902,11 +1902,11 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
-                            003
-                          </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            John Carter
+                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            <div className="flex flex-col">
+                              <span>John Carter</span>
+                              <span className="text-xs text-muted-foreground">Job ID: 003</span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
                             USA
@@ -1968,11 +1968,11 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
-                            004
-                          </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            Sara Ahmed
+                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            <div className="flex flex-col">
+                              <span>Sara Ahmed</span>
+                              <span className="text-xs text-muted-foreground">Job ID: 004</span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
                             Europe
@@ -2034,11 +2034,11 @@ Google India`,
                         </TableRow>
 
                         <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900">
-                            005
-                          </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
-                            Shruti Kapoor
+                                                    <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-40 whitespace-nowrap">
+                            <div className="flex flex-col">
+                              <span>Shruti Kapoor</span>
+                              <span className="text-xs text-muted-foreground">Job ID: 005</span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-3 py-3 text-[14px] text-gray-900 w-32 whitespace-nowrap">
                             India
