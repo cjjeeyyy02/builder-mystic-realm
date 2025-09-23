@@ -749,6 +749,16 @@ export default function ActivationView() {
                       </div>
                     </div>
                     <div>
+                      <div className="text-muted-foreground">Date Added</div>
+                      <div
+                        className={
+                          isDarkMode ? "text-gray-300" : "text-gray-700"
+                        }
+                      >
+                        {formatDateMDY(employee.dateAdded)}
+                      </div>
+                    </div>
+                    <div>
                       <div className="text-muted-foreground">
                         Files Uploaded
                       </div>
