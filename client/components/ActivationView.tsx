@@ -669,14 +669,21 @@ export default function ActivationView() {
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div>
-                      <div className="text-[11px] text-muted-foreground">
-                        JOB ID
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                        <span className="text-xs font-medium text-white">
+                          {employee.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .slice(0, 2)
+                            .join("")}
+                        </span>
                       </div>
-                      <div
-                        className={`text-sm font-semibold ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}
-                      >
-                        {employee.jobId}
+                      <div>
+                        <div className={`text-sm font-semibold ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}>
+                          {employee.name}
+                        </div>
+                        <div className="text-xs text-muted-foreground">Job ID: {employee.jobId}</div>
                       </div>
                     </div>
                     <DropdownMenu>
@@ -727,14 +734,8 @@ export default function ActivationView() {
                   </div>
 
                   <div className="mt-2">
-                    <div
-                      className={`text-sm font-semibold ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}
-                    >
-                      {employee.name}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {employee.appliedJobRole}
-                    </div>
+                    <div className="text-xs text-muted-foreground">Applied Role</div>
+                    <div className={`text-sm font-medium ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}>{employee.appliedJobRole}</div>
                   </div>
 
                   <div className="mt-3 grid grid-cols-3 gap-2 text-xs">

@@ -627,16 +627,30 @@ export default function ScreeningView() {
             >
               <CardContent className="p-3">
                 <div className="space-y-4">
-                  {/* Header with Avatar and Status */}
+                  {/* Header with Avatar, Name and Status */}
                   <div className="flex items-start justify-between">
-                    <Avatar className="h-10 w-10 flex-shrink-0">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold text-sm">
-                        {candidate.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-10 w-10 flex-shrink-0">
+                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold text-sm">
+                          {candidate.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm leading-tight">{candidate.name}</h3>
+                        <div className="text-xs">
+                          <Badge
+                            variant={getStatusVariant(candidate.status)}
+                            className={`gap-1 px-2 py-0.5 text-[10px] ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
+                          >
+                            {candidate.status !== "pending" && getStatusIcon(candidate.status)}
+                            {candidate.status === "approved" ? "Approved" : candidate.status === "reject" ? "Rejected" : "Pending"}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
                     <ActionComponent
                       candidateId={candidate.id}
                       candidate={candidate}
@@ -651,25 +665,6 @@ export default function ScreeningView() {
 
                   {/* Candidate Info */}
                   <div className="space-y-2">
-                    <div>
-                      <h3 className="font-semibold text-foreground text-sm leading-tight">
-                        {candidate.name}
-                      </h3>
-                      <div className="text-xs">
-                        <Badge
-                          variant={getStatusVariant(candidate.status)}
-                          className={`gap-1 px-2 py-0.5 text-[10px] ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
-                        >
-                          {candidate.status !== "pending" &&
-                            getStatusIcon(candidate.status)}
-                          {candidate.status === "approved"
-                            ? "Approved"
-                            : candidate.status === "reject"
-                              ? "Rejected"
-                              : "Pending"}
-                        </Badge>
-                      </div>
-                    </div>
                     <div>
                       <div className="text-xs text-muted-foreground font-medium">
                         Applied Position:

@@ -293,16 +293,28 @@ export default function HiredView() {
           >
             <CardContent className="p-4">
               <div className="space-y-4">
-                {/* Header with Avatar and Status */}
+                {/* Header with Avatar, Name and Status */}
                 <div className="flex items-start justify-between">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
-                    <span className="text-base font-medium text-white">
-                      {employee.candidateName
-                        .split(" ")
-                        .map((n) => n[0])
-                        .slice(0, 2)
-                        .join("")}
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                      <span className="text-base font-medium text-white">
+                        {employee.candidateName
+                          .split(" ")
+                          .map((n) => n[0])
+                          .slice(0, 2)
+                          .join("")}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground text-sm">
+                        {employee.candidateName}
+                      </div>
+                      {employee.employeeId && (
+                        <div className="text-xs text-muted-foreground">
+                          ID: {employee.employeeId}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <Badge
                     variant="outline"
@@ -312,18 +324,7 @@ export default function HiredView() {
                   </Badge>
                 </div>
 
-                {/* Employee Info */}
                 <div className="space-y-2">
-                  <div>
-                    <div className="font-semibold text-foreground text-sm">
-                      {employee.candidateName}
-                    </div>
-                    {employee.employeeId && (
-                      <div className="text-xs text-muted-foreground">
-                        ID: {employee.employeeId}
-                      </div>
-                    )}
-                  </div>
                   <div>
                     <div className="text-xs text-muted-foreground font-medium">
                       Applied Position:
