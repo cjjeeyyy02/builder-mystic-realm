@@ -466,7 +466,6 @@ export default function ScreeningView() {
                 "Name",
                 "Country",
                 "Position",
-                "Total Experience",
                 "Date Added",
                 "Status",
               ];
@@ -474,7 +473,6 @@ export default function ScreeningView() {
                 c.name,
                 getCountry(c.location),
                 c.position,
-                c.totalExperience,
                 c.dateAdded,
                 c.status,
               ]);
@@ -508,12 +506,11 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[22%]" />
+                <col className="w-[26%]" />
                 <col className="w-[12%]" />
-                <col className="w-[24%]" />
+                <col className="w-[30%]" />
                 <col className="w-[12%]" />
                 <col className="w-[12%]" />
-                <col className="w-[10%]" />
                 <col className="w-[8%]" />
               </colgroup>
               <thead>
@@ -522,9 +519,6 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap text-left">COUNTRY</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">
                     APPLIED POSITION
-                  </th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center">
-                    TOTAL EXPERIENCE
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">STATUS</th>
@@ -579,9 +573,6 @@ export default function ScreeningView() {
                         title={candidate.position}
                       >
                         {candidate.position}
-                      </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900 text-center">
-                        {candidate.totalExperience}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
                         {candidate.dateAdded}
@@ -688,18 +679,6 @@ export default function ScreeningView() {
                     </div>
                   </div>
 
-                  {/* Experience */}
-                  <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    <div className="text-xs">
-                      <div className="text-muted-foreground">
-                        Total Experience
-                      </div>
-                      <div className="font-semibold text-foreground">
-                        {candidate.totalExperience}
-                      </div>
-                    </div>
-                  </div>
 
                 </div>
               </CardContent>
