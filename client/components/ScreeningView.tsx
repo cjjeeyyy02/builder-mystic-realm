@@ -629,8 +629,8 @@ export default function ScreeningView() {
                 <div className="space-y-4">
                   {/* Header with Avatar and Status */}
                   <div className="flex items-start justify-between">
-                    <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
-                      <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
+                    <Avatar className="h-10 w-10 flex-shrink-0">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold text-sm">
                         {candidate.name
                           .split(" ")
                           .map((n) => n[0])
