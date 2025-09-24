@@ -510,16 +510,16 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
                     <TableHead className="py-2 px-3 font-semibold">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
                       DATE ADDED
                     </TableHead>
                     <TableHead className="py-2 px-3 font-semibold">
@@ -528,7 +528,7 @@ export default function ActivationView() {
                     <TableHead className="py-2 px-3 font-semibold">
                       ACTIVATION PROGRESS
                     </TableHead>
-                    <TableHead className="py-2 px-3 text-center">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
                       ACTION
                     </TableHead>
                   </TableRow>
