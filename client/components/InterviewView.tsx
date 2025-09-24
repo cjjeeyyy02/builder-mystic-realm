@@ -1754,26 +1754,26 @@ Google India`,
                     <Table className="w-full text-sm">
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-left w-40 whitespace-nowrap">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left w-40 whitespace-nowrap">
                             CANDIDATE
                           </TableHead>
 
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             DATE ADDED
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             INTERVIEW PROGRESS
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -3665,28 +3665,28 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           DATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           CANDIDATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-center">
                           ACTION
                         </TableHead>
                       </TableRow>
