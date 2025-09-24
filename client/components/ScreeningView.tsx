@@ -546,7 +546,7 @@ export default function ScreeningView() {
                       key={candidate.id}
                       className="border-b hover:bg-gray-50"
                     >
-                      <td className="py-2 px-2 align-middle">
+                      <td className="py-2 px-3 align-middle">
                         <div className="flex items-center gap-2">
                           <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
                             <span className="text-xs font-medium text-white">
@@ -569,22 +569,22 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
                         {getCountry(candidate.location)}
                       </td>
                       <td
-                        className="py-2 px-2 text-[14px] text-gray-900 truncate text-center align-middle"
+                        className="py-2 px-3 text-[14px] text-gray-900 truncate text-center align-middle"
                         title={candidate.position}
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
                         {candidate.totalExperience}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
                         {candidate.dateAdded}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
                         <Badge
                           variant={getStatusVariant(candidate.status)}
                           className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
@@ -598,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-2 px-2 text-center align-middle">
+                      <td className="py-2 px-3 text-center align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
