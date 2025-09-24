@@ -2704,8 +2704,8 @@ Google India`,
                       <CardContent className="p-0 sm:p-0 space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <Avatar className="h-10 w-10 flex-shrink-0 ring-1 ring-primary/10">
-                              <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/20 text-primary font-semibold text-sm">
+                            <Avatar className="h-10 w-10 flex-shrink-0">
+                              <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold text-sm">
                                 {c.applicantName
                                   .split(" ")
                                   .map((n) => n[0])
