@@ -1331,9 +1331,6 @@ export default function JobPosting() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-sm font-semibold mb-3">
-                  Manage Job Posting
-                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <div className="flex items-center justify-between">
