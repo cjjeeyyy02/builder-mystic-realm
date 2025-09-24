@@ -518,7 +518,7 @@ export default function ScreeningView() {
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
-                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">CANDIDATE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black"><span className="ml-8">CANDIDATE</span></th>
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">COUNTRY</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">
                     APPLIED POSITION
