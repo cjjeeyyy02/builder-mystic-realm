@@ -518,15 +518,15 @@ export default function ScreeningView() {
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">CANDIDATE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">COUNTRY</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">
+                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle font-bold text-gray-900">CANDIDATE</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">COUNTRY</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">TOTAL EXPERIENCE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">DATE ADDED</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">STATUS</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">ACTION</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">TOTAL EXPERIENCE</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">DATE ADDED</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">STATUS</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">ACTION</th>
                 </tr>
               </thead>
               <tbody>
