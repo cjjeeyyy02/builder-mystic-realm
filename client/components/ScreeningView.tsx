@@ -508,12 +508,12 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[20%]" />
+                <col className="w-[19%]" />
+                <col className="w-[11%]" />
+                <col className="w-[21%]" />
                 <col className="w-[12%]" />
-                <col className="w-[20%]" />
-                <col className="w-[10%]" />
                 <col className="w-[13%]" />
-                <col className="w-[13%]" />
+                <col className="w-[12%]" />
                 <col className="w-[12%]" />
               </colgroup>
               <thead>
