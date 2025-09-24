@@ -592,7 +592,7 @@ export default function ActivationView() {
                         {formatDateMDY(employee.dateAdded)}
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 align-middle text-center ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 align-middle text-left ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
