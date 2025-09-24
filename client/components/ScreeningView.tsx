@@ -756,6 +756,14 @@ export default function ScreeningView() {
                           <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
                           <span>{formatPhone(selectedCandidate.phone)}</span>
                         </div>
+                        <div className="flex items-center gap-2">
+                          <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
+                          <span>{selectedCandidate.totalExperience}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
+                          <span>{selectedCandidate.location}</span>
+                        </div>
                         <div className="flex items-center gap-2 sm:col-span-2">
                           <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" />
                           <span>{selectedCandidate.salaryExpectation}</span>
