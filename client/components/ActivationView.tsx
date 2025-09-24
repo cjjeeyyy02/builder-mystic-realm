@@ -510,7 +510,7 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                    <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left align-middle whitespace-nowrap">
                       <span className="ml-8">CANDIDATE</span>
                     </TableHead>
                     <TableHead className="py-2 px-3 font-bold text-black text-left">
