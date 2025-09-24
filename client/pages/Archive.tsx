@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -311,11 +310,7 @@ export default function Archive() {
                     <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
                     <td className="py-3 pr-4 text-gray-700 truncate">{r.appliedPosition}</td>
                     <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.applicationDate}</td>
-                    <td className="py-3 pr-4">
-                      <Badge variant="outline" className={`px-2 py-0.5 text-xs font-medium ${statusChipClass(r.status)}`}>
-                        {r.status}
-                      </Badge>
-                    </td>
+                    <td className="py-3 pr-4 text-gray-800">{r.status}</td>
                     <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.archiveDate}</td>
                   </tr>
                 ))}
