@@ -502,7 +502,6 @@ export default function ScreeningView() {
                 <col className="w-[16%]" />
                 <col className="w-[16%]" />
                 <col className="w-[10%]" />
-                <col className="w-[18%]" />
                 <col className="w-[14%]" />
                 <col className="w-[10%]" />
                 <col className="w-[8%]" />
@@ -516,9 +515,6 @@ export default function ScreeningView() {
                   </th>
                   <th className="py-2 pl-3 pr-6 whitespace-nowrap">
                     TOTAL EXPERIENCE
-                  </th>
-                  <th className="py-2 pl-6 pr-3 whitespace-nowrap text-center">
-                    EMAIL
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap">PHONE NUMBER</th>
                   <th className="py-2 px-3 whitespace-nowrap">DATE ADDED</th>
@@ -574,12 +570,6 @@ export default function ScreeningView() {
                       </td>
                       <td className="py-3 pl-3 pr-6 text-[14px] text-gray-900">
                         {candidate.totalExperience}
-                      </td>
-                      <td
-                        className="py-3 pl-6 pr-3 text-[14px] text-gray-900 truncate"
-                        title={candidate.email}
-                      >
-                        {candidate.email}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
                         {formatPhone(candidate.phone)}
@@ -704,12 +694,6 @@ export default function ScreeningView() {
 
                   {/* Contact Info */}
                   <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Mail className="w-3 h-3 flex-shrink-0 text-primary/70" />
-                      <span className="font-medium truncate">
-                        {candidate.email}
-                      </span>
-                    </div>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Phone className="w-3 h-3 flex-shrink-0 text-primary/70" />
                       <span className="font-medium">
