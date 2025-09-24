@@ -133,23 +133,6 @@ export default function CandidateDetails() {
         <div className="flex flex-col xl:flex-row gap-3 xl:gap-4">
           {/* Main Panel */}
           <div className="flex-1 space-y-3">
-            {/* Quick Info Bar */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 bg-gray-50 rounded-md border border-gray-200">
-              {merged.totalExperience && (
-                <div className="text-center">
-                  <Briefcase className="w-4 h-4 text-blue-600 mx-auto mb-1" />
-                  <div className="font-semibold text-xs sm:text-sm">{merged.totalExperience}</div>
-                  <div className="text-xs text-gray-600">Total Experience</div>
-                </div>
-              )}
-              {merged.location && (
-                <div className="text-center">
-                  <MapPin className="w-4 h-4 text-green-600 mx-auto mb-1" />
-                  <div className="font-semibold text-xs sm:text-sm">{merged.location}</div>
-                  <div className="text-xs text-gray-600">Location</div>
-                </div>
-              )}
-            </div>
 
             {/* Candidate Details */}
             <Card>
@@ -167,6 +150,24 @@ export default function CandidateDetails() {
                     <Phone className="w-4 h-4 text-gray-500" />
                     <span>{merged.phone}</span>
                   </div>
+                  {merged.totalExperience && (
+                    <div className="flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-gray-500" />
+                      <div>
+                        <div className="font-medium">{merged.totalExperience}</div>
+                        <div className="text-[11px] text-gray-500">Total Experience</div>
+                      </div>
+                    </div>
+                  )}
+                  {merged.location && (
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-gray-500" />
+                      <div>
+                        <div className="font-medium">{merged.location}</div>
+                        <div className="text-[11px] text-gray-500">Location</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
