@@ -1758,22 +1758,22 @@ Google India`,
                             CANDIDATE
                           </TableHead>
 
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             DATE ADDED
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             INTERVIEW PROGRESS
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-center">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -1798,19 +1798,19 @@ Google India`,
                             </div>
                           </TableCell>
 
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Senior Developer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             8/14/2025
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Managerial - 4/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Human Resources - 5/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-center">
+                          <TableCell className="px-3 py-3 text-left">
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-gray-200 rounded-full h-2">
                                 <div
@@ -1821,7 +1821,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-center">
+                          <TableCell className="px-3 py-3 align-middle text-left">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1876,19 +1876,19 @@ Google India`,
                             </div>
                           </TableCell>
 
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Graphic Designer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             8/14/2025
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Managerial - 4/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Human Resources - 5/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-center">
+                          <TableCell className="px-3 py-3 text-left">
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-gray-200 rounded-full h-2">
                                 <div
@@ -1899,7 +1899,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-center">
+                          <TableCell className="px-3 py-3 align-middle text-left">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1954,19 +1954,19 @@ Google India`,
                             </div>
                           </TableCell>
 
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Content writer
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             8/14/2025
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Human Resources - 5/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             NO ROUNDS
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-center">
+                          <TableCell className="px-3 py-3 text-left">
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-gray-200 rounded-full h-2">
                                 <div
@@ -1977,7 +1977,7 @@ Google India`,
                               <span className="text-xs font-medium">100%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-center">
+                          <TableCell className="px-3 py-3 align-middle text-left">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -2032,19 +2032,19 @@ Google India`,
                             </div>
                           </TableCell>
 
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Copywriter
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             8/14/2025
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Editing Test - 4/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Human Resources - 5/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-center">
+                          <TableCell className="px-3 py-3 text-left">
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-gray-200 rounded-full h-2">
                                 <div
@@ -2055,7 +2055,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-center">
+                          <TableCell className="px-3 py-3 align-middle text-left">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -2110,19 +2110,19 @@ Google India`,
                             </div>
                           </TableCell>
 
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Sale Associate
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             8/14/2025
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Culture Test - 3/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-center">
+                          <TableCell className="px-3 py-3 text-[14px] text-gray-900 text-left">
                             Case Study Debate - 4/5
                           </TableCell>
-                          <TableCell className="px-3 py-3 text-center">
+                          <TableCell className="px-3 py-3 text-left">
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-gray-200 rounded-full h-2">
                                 <div
@@ -2133,7 +2133,7 @@ Google India`,
                               <span className="text-xs font-medium">70%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-center">
+                          <TableCell className="px-3 py-3 align-middle text-left">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -3665,28 +3665,28 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           DATE
                         </TableHead>
                         <TableHead className="py-2 px-3 font-bold text-black text-left">
                           CANDIDATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-center">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left">
                           ACTION
                         </TableHead>
                       </TableRow>
