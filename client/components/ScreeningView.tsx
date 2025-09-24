@@ -466,6 +466,7 @@ export default function ScreeningView() {
                 "Name",
                 "Country",
                 "Position",
+                "Total Experience",
                 "Date Added",
                 "Status",
               ];
@@ -473,6 +474,7 @@ export default function ScreeningView() {
                 c.name,
                 getCountry(c.location),
                 c.position,
+                c.totalExperience,
                 c.dateAdded,
                 c.status,
               ]);
@@ -506,11 +508,12 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[26%]" />
+                <col className="w-[22%]" />
                 <col className="w-[12%]" />
-                <col className="w-[30%]" />
+                <col className="w-[24%]" />
                 <col className="w-[12%]" />
                 <col className="w-[12%]" />
+                <col className="w-[10%]" />
                 <col className="w-[8%]" />
               </colgroup>
               <thead>
@@ -520,6 +523,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap text-left">
                     APPLIED POSITION
                   </th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center">TOTAL EXPERIENCE</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">STATUS</th>
                   <th className="py-2 px-3 whitespace-nowrap text-center">ACTION</th>
@@ -542,7 +546,7 @@ export default function ScreeningView() {
                       key={candidate.id}
                       className="border-b hover:bg-gray-50"
                     >
-                      <td className="py-3 px-3">
+                      <td className="py-3 px-3 align-middle">
                         <div className="flex items-center gap-2">
                           <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
                             <span className="text-xs font-medium text-white">
@@ -565,19 +569,22 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                      <td className="py-3 px-3 text-[14px] text-gray-900 align-middle">
                         {getCountry(candidate.location)}
                       </td>
                       <td
-                        className="py-3 px-3 text-[14px] text-gray-900 truncate"
+                        className="py-3 px-3 text-[14px] text-gray-900 truncate align-middle"
                         title={candidate.position}
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                      <td className="py-3 px-3 text-[14px] text-gray-900 text-center">
+                        {candidate.totalExperience}
+                      </td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900 align-middle">
                         {candidate.dateAdded}
                       </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                      <td className="py-3 px-3 text-[14px] text-gray-900 align-middle">
                         <Badge
                           variant={getStatusVariant(candidate.status)}
                           className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
@@ -591,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-3 px-3 text-center">
+                      <td className="py-3 px-3 text-center align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
