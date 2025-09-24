@@ -510,11 +510,11 @@ export default function ScreeningView() {
               <colgroup>
                 <col className="w-[20%]" />
                 <col className="w-[12%]" />
-                <col className="w-[24%]" />
-                <col className="w-[10%]" />
+                <col className="w-[22%]" />
+                <col className="w-[11%]" />
                 <col className="w-[12%]" />
                 <col className="w-[12%]" />
-                <col className="w-[10%]" />
+                <col className="w-[11%]" />
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
@@ -526,7 +526,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">TOTAL EXPERIENCE</th>
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">DATE ADDED</th>
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">STATUS</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">ACTION</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">ACTION</th>
                 </tr>
               </thead>
               <tbody>
@@ -598,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-2 px-2 text-center align-middle">
+                      <td className="py-2 px-2 text-left align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
