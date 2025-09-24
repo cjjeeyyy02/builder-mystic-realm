@@ -548,6 +548,10 @@ export default function OnboardingOverview() {
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
+                                <DropdownMenuItem onSelect={() => { /* open application history view for this candidate in future */ }} className="flex items-center gap-2 cursor-pointer">
+                                  <Clock className="w-4 h-4" />
+                                  Application History
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </div>
