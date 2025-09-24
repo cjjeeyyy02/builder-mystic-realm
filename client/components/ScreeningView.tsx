@@ -517,7 +517,7 @@ export default function ScreeningView() {
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap">STATUS</th>
-                  <th className="py-2 px-3 whitespace-nowrap">ACTION</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center">ACTION</th>
                 </tr>
               </thead>
               <tbody>
