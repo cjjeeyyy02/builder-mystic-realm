@@ -519,14 +519,14 @@ export default function ScreeningView() {
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">CANDIDATE</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">COUNTRY</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">COUNTRY</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">TOTAL EXPERIENCE</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">DATE ADDED</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">STATUS</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">ACTION</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">TOTAL EXPERIENCE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">DATE ADDED</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">STATUS</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">ACTION</th>
                 </tr>
               </thead>
               <tbody>
@@ -569,22 +569,22 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-left align-middle">
                         {getCountry(candidate.location)}
                       </td>
                       <td
-                        className="py-2 px-3 text-[14px] text-gray-900 truncate text-center align-middle"
+                        className="py-2 px-3 text-[14px] text-gray-900 truncate text-left align-middle"
                         title={candidate.position}
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-left align-middle">
                         {candidate.totalExperience}
                       </td>
-                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-left align-middle">
                         {candidate.dateAdded}
                       </td>
-                      <td className="py-2 px-3 text-[14px] text-gray-900 text-center align-middle">
+                      <td className="py-2 px-3 text-[14px] text-gray-900 text-left align-middle">
                         <Badge
                           variant={getStatusVariant(candidate.status)}
                           className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
@@ -598,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-2 px-3 text-center align-middle">
+                      <td className="py-2 px-3 text-left align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
