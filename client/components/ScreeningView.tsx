@@ -1157,8 +1157,9 @@ export default function ScreeningView() {
               Reject Candidate
             </Button>
             <Button
+              size="sm"
               onClick={handleStatusProceed}
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-green-600 hover:bg-green-700 text-xs"
             >
               <Check className="w-4 h-4 mr-2" />
               Approve for Next Round
