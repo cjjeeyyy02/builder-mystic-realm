@@ -510,11 +510,11 @@ export default function ScreeningView() {
               <colgroup>
                 <col className="w-[20%]" />
                 <col className="w-[12%]" />
-                <col className="w-[22%]" />
-                <col className="w-[11%]" />
+                <col className="w-[20%]" />
+                <col className="w-[10%]" />
+                <col className="w-[13%]" />
+                <col className="w-[13%]" />
                 <col className="w-[12%]" />
-                <col className="w-[12%]" />
-                <col className="w-[11%]" />
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
