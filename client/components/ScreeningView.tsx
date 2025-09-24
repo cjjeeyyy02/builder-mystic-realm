@@ -1149,8 +1149,9 @@ export default function ScreeningView() {
           <DialogFooter className="gap-2">
             <Button
               variant="destructive"
+              size="sm"
               onClick={handleStatusReject}
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-red-600 hover:bg-red-700 text-xs"
             >
               <X className="w-4 h-4 mr-2" />
               Reject Candidate
