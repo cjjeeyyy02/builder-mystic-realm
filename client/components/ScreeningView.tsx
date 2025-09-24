@@ -513,7 +513,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 px-3 whitespace-nowrap">
+                  <th className="py-2 px-3 whitespace-nowrap text-center">
                     TOTAL EXPERIENCE
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap">PHONE NUMBER</th>
@@ -568,7 +568,7 @@ export default function ScreeningView() {
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                      <td className="py-3 px-3 text-[14px] text-gray-900 text-center">
                         {candidate.totalExperience}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
