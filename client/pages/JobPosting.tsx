@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Plus,
   Edit,
@@ -37,6 +37,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import {
   Dialog,
@@ -224,6 +225,13 @@ export default function JobPosting() {
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"active" | "archived">("active");
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const tab = (searchParams.get("tab") || "").toLowerCase();
+    if (tab === "archived" || tab === "active") {
+      setActiveTab(tab as "active" | "archived");
+    }
+  }, [searchParams]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
