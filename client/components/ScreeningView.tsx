@@ -508,15 +508,15 @@ export default function ScreeningView() {
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
-                  <th className="py-2 px-3 whitespace-nowrap">CANDIDATE</th>
-                  <th className="py-2 px-3 whitespace-nowrap">
+                  <th className="py-2 px-3 whitespace-nowrap text-left">CANDIDATE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left">
                     APPLIED POSITION
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap text-center">
                     TOTAL EXPERIENCE
                   </th>
-                  <th className="py-2 px-3 whitespace-nowrap">DATE ADDED</th>
-                  <th className="py-2 px-3 whitespace-nowrap">STATUS</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left">DATE ADDED</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left">STATUS</th>
                   <th className="py-2 px-3 whitespace-nowrap text-center">ACTION</th>
                 </tr>
               </thead>
