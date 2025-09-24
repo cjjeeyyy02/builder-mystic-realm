@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -225,6 +225,32 @@ export default function OnboardingOverview() {
   const navigate = useNavigate();
   const [showApplicationHistory, setShowApplicationHistory] = useState(false);
   const [historyCandidate, setHistoryCandidate] = useState<PipelineCandidate | null>(null);
+  const [historyData, setHistoryData] = useState<CandidateHistory | null>(null);
+
+  useEffect(() => {
+    if (!showApplicationHistory || !historyCandidate) return;
+    try {
+      const key = `candidate-history:${historyCandidate.id}`;
+      const raw = window.localStorage.getItem(key);
+      const parsed = raw ? (JSON.parse(raw) as CandidateHistory) : null;
+      const merged: CandidateHistory = {
+        jobId: historyCandidate.jobId,
+        applicationDate: historyCandidate.appliedDate,
+        applicationMethod: historyCandidate.applicationMethod,
+        screening: parsed?.screening || undefined,
+        interview: parsed?.interview || undefined,
+        activation: parsed?.activation || undefined,
+        hired: parsed?.hired || undefined,
+      };
+      setHistoryData(merged);
+    } catch {
+      setHistoryData({
+        jobId: historyCandidate.jobId,
+        applicationDate: historyCandidate.appliedDate,
+        applicationMethod: historyCandidate.applicationMethod,
+      });
+    }
+  }, [showApplicationHistory, historyCandidate]);
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
   const [jobFilter, setJobFilter] = useState("all");
@@ -611,7 +637,7 @@ export default function OnboardingOverview() {
 
     {/* Application History Modal */}
     <Dialog open={showApplicationHistory} onOpenChange={setShowApplicationHistory}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-base font-semibold">Application History</DialogTitle>
           <DialogDescription className="text-xs">Detailed timeline of the candidate's application across stages.</DialogDescription>
@@ -640,19 +666,19 @@ export default function OnboardingOverview() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date Added</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.dateAdded) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.dateAdded ? formatDateMDY(historyData.screening.dateAdded) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Status</div>
-                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.status || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.status || "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Approved Date</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.approvedDate) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.approvedDate ? formatDateMDY(historyData.screening.approvedDate) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Approved By</div>
-                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.approvedBy || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.approvedBy || "—"}</div>
                 </div>
               </div>
             </div>
@@ -663,16 +689,16 @@ export default function OnboardingOverview() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date Added</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.dateAdded) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
                 </div>
               </div>
               {/* Steps */}
-              {((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
+              {((historyData?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
                 <div key={idx} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="sm:col-span-3 font-medium text-gray-900">{step.label || `Step ${idx + 1}`}</div>
                   <div>
                     <div className="text-xs text-gray-600">Interview Date</div>
-                    <div className="font-medium text-gray-900">{formatDateMDY(step.interviewDate || "") || "—"}</div>
+                    <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
                   </div>
                   <div>
                     <div className="text-xs text-gray-600">Interviewer Name</div>
@@ -683,11 +709,11 @@ export default function OnboardingOverview() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date moved to Activation</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.movedToActivationDate) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Approved by</div>
-                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.movedApprovedBy || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
                 </div>
               </div>
             </div>
@@ -698,15 +724,15 @@ export default function OnboardingOverview() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date Added</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.dateAdded) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.dateAdded ? formatDateMDY(historyData.activation.dateAdded) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Activation Confirmed Date</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.activationConfirmedDate) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.activationConfirmedDate ? formatDateMDY(historyData.activation.activationConfirmedDate) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Approved by</div>
-                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.approvedBy || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.approvedBy || "—"}</div>
                 </div>
               </div>
             </div>
@@ -717,22 +743,22 @@ export default function OnboardingOverview() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date Added</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.dateAdded) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.dateAdded ? formatDateMDY(historyData.hired.dateAdded) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Orientation Stage Completed</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.orientationCompletedDate) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.orientationCompletedDate ? formatDateMDY(historyData.hired.orientationCompletedDate) : "—"}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-600">Integration Stage Completed</div>
-                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.integrationCompletedDate) || "") || "—"}</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.integrationCompletedDate ? formatDateMDY(historyData.hired.integrationCompletedDate) : "—"}</div>
                 </div>
               </div>
             </div>
           </div>
         )}
         <DialogFooter>
-          <Button variant="outline" onClick={() => setShowApplicationHistory(false)}>Close</Button>
+          <Button variant="outline" onClick={() => { setShowApplicationHistory(false); setHistoryCandidate(null); setHistoryData(null); }}>Close</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
