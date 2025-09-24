@@ -1755,7 +1755,7 @@ Google India`,
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-600 border-b">
                           <TableHead className="py-2 px-3 font-bold text-black text-left w-40 whitespace-nowrap">
-                            CANDIDATE
+                            <span className="ml-9">CANDIDATE</span>
                           </TableHead>
 
                           <TableHead className="py-2 px-3 font-bold text-black text-left">
@@ -3669,7 +3669,7 @@ Google India"
                           DATE
                         </TableHead>
                         <TableHead className="py-2 px-3 font-bold text-black text-left">
-                          CANDIDATE
+                          <span className="ml-8">CANDIDATE</span>
                         </TableHead>
                         <TableHead className="py-2 px-3 font-bold text-black text-left">
                           COUNTRY
