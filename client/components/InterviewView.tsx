@@ -1754,26 +1754,26 @@ Google India`,
                     <Table className="w-full text-sm">
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                          <TableHead className="py-2 px-3 font-semibold w-40 whitespace-nowrap">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900 w-40 whitespace-nowrap">
                             CANDIDATE
                           </TableHead>
 
-                          <TableHead className="py-2 px-3 font-semibold">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900">
                             DATE ADDED
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900">
                             INTERVIEW PROGRESS
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-semibold text-gray-900 text-center">
+                          <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -3665,28 +3665,28 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           DATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           CANDIDATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-semibold">
+                        <TableHead className="py-2 px-3 font-bold text-gray-900">
                           ACTION
                         </TableHead>
                       </TableRow>
