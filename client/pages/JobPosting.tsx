@@ -478,12 +478,6 @@ export default function JobPosting() {
 
             <div className="flex items-center gap-4">
               <button
-                onClick={() => setActiveTab("archived")}
-                className="h-10 px-4 rounded-md text-sm font-medium border border-gray-300 text-gray-700 bg-transparent"
-              >
-                Archive
-              </button>
-              <button
                 onClick={openCreate}
                 className="h-10 px-4 rounded-md text-sm font-bold bg-green-600 text-white flex items-center gap-2"
               >
