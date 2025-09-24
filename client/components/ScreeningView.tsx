@@ -242,6 +242,15 @@ const formatPhone = (raw: string) => {
   return `+1 (${area}) ${mid} - ${last}`.trim();
 };
 
+const getCountry = (location?: string) => {
+  if (!location) return "-";
+  const parts = String(location).split(",").map((s) => s.trim()).filter(Boolean);
+  if (!parts.length) return "-";
+  const last = parts[parts.length - 1];
+  if (/^[A-Z]{2}$/.test(last)) return "USA";
+  return last;
+};
+
 export default function ScreeningView() {
   const navigate = useNavigate();
   const [candidates, setCandidates] =
@@ -455,18 +464,18 @@ export default function ScreeningView() {
             onClick={() => {
               const headers = [
                 "Name",
+                "Country",
                 "Position",
                 "Total Experience",
-                "Email",
-                "Phone",
+                "Date Added",
                 "Status",
               ];
               const rows = filteredCandidates.map((c) => [
                 c.name,
+                getCountry(c.location),
                 c.position,
                 c.totalExperience,
-                c.email,
-                c.phone,
+                c.dateAdded,
                 c.status,
               ]);
               const csv = [
@@ -499,16 +508,18 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
+                <col className="w-[20%]" />
+                <col className="w-[10%]" />
                 <col className="w-[24%]" />
-                <col className="w-[24%]" />
-                <col className="w-[14%]" />
-                <col className="w-[16%]" />
                 <col className="w-[12%]" />
+                <col className="w-[14%]" />
+                <col className="w-[10%]" />
                 <col className="w-[10%]" />
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
                   <th className="py-2 px-3 whitespace-nowrap text-left">CANDIDATE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-left">COUNTRY</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left">
                     APPLIED POSITION
                   </th>
@@ -559,6 +570,9 @@ export default function ScreeningView() {
                             </div>
                           </div>
                         </div>
+                      </td>
+                      <td className="py-3 px-3 text-[14px] text-gray-900">
+                        {getCountry(candidate.location)}
                       </td>
                       <td
                         className="py-3 px-3 text-[14px] text-gray-900 truncate"
