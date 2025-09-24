@@ -1755,7 +1755,7 @@ Google India`,
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-600 border-b">
                           <TableHead className="py-2 px-3 font-bold text-black text-left align-middle w-40 whitespace-nowrap">
-                            <span className="ml-9">CANDIDATE</span>
+                            CANDIDATE
                           </TableHead>
 
                           <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
