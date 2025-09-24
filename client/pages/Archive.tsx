@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useSidebar } from "@/contexts/SidebarContext";
+import Layout from "@/components/Layout";
 import { Search } from "lucide-react";
 
 // Types
@@ -235,272 +235,185 @@ export default function Archive() {
     [rows, selectedJobId],
   );
 
-  const { sidebarCollapsed } = useSidebar();
-  const containerWidthClass = sidebarCollapsed ? "max-w-screen-2xl" : "max-w-screen-xl";
-
   return (
-    <div className={`mx-auto w-full ${containerWidthClass} px-2 sm:px-3 lg:px-4 space-y-3 transition-all`}>
-      {/* Filters */}
-      <Card className="p-0 border border-gray-200 rounded-lg shadow-sm">
-        <CardContent className="p-3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+    <Layout>
+      <div className="archive space-y-5">
+        {/* Page Title */}
+        <h1 className="text-3xl font-semibold text-foreground">Archive</h1>
+
+        {/* Controls Row */}
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search Job ID or Candidate Name"
-                className="pl-10 h-8 text-xs sm:text-sm"
+                className="w-[280px] h-10 rounded-md pl-10"
               />
             </div>
 
-            <div className="w-full">
-              <Select
-                value={positionFilter}
-                onValueChange={(v) => setPositionFilter(v)}
-              >
-                <SelectTrigger className="w-full h-8 text-xs sm:text-sm">
-                  <SelectValue placeholder="Applied Position" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All positions</SelectItem>
-                  {positions.map((p) => (
-                    <SelectItem key={p} value={p}>
-                      {p}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
+              <SelectTrigger className="w-56 h-10 rounded-md text-sm">
+                <SelectValue placeholder="Applied Position" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All positions</SelectItem>
+                {positions.map((p) => (
+                  <SelectItem key={p} value={p}>
+                    {p}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-            <div className="w-full">
-              <Select
-                value={statusFilter}
-                onValueChange={(v) => setStatusFilter(v as any)}
-              >
-                <SelectTrigger className="w-full h-8 text-xs sm:text-sm">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All statuses</SelectItem>
-                  <SelectItem value="Screening">Screening</SelectItem>
-                  <SelectItem value="Interview">Interview</SelectItem>
-                  <SelectItem value="Activation">Activation</SelectItem>
-                  <SelectItem value="Rejected">Rejected</SelectItem>
-                  <SelectItem value="Hired">Hired</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
+              <SelectTrigger className="w-44 h-10 rounded-md text-sm">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="Screening">Screening</SelectItem>
+                <SelectItem value="Interview">Interview</SelectItem>
+                <SelectItem value="Activation">Activation</SelectItem>
+                <SelectItem value="Rejected">Rejected</SelectItem>
+                <SelectItem value="Hired">Hired</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Table */}
-      <Card className="p-0 border border-gray-200 rounded-lg shadow-sm">
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table className="w-full text-xs sm:text-sm">
-              <TableHeader>
-                <TableRow className="text-left text-[12px] sm:text-[13px] text-gray-600 border-b">
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
-                    Job ID
-                  </TableHead>
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
-                    Candidate Name
-                  </TableHead>
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
-                    Applied Position
-                  </TableHead>
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
-                    Application Date
-                  </TableHead>
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
-                    Status
-                  </TableHead>
-                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
-                    Archive Date
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+        {/* Table */}
+        <Card className="w-full p-4">
+          <div className="overflow-auto">
+            <table className="w-full text-sm table-auto border-collapse mx-auto" style={{ maxWidth: "1200px" }}>
+              <thead>
+                <tr className="text-left text-xs text-muted-foreground border-b">
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job ID</th>
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Candidate Name</th>
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Applied Position</th>
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Application Date</th>
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
+                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
+                </tr>
+              </thead>
+              <tbody>
                 {filtered.map((r) => (
-                  <TableRow
+                  <tr
                     key={r.jobId}
-                    className={`border-b last:border-b-0 hover:bg-gray-50 cursor-pointer ${
+                    className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
                       selectedJobId === r.jobId ? "bg-blue-50/50" : ""
                     }`}
                     onClick={() => setSelectedJobId(r.jobId)}
                   >
-                    <TableCell className="px-2 py-2 align-middle font-medium text-gray-900 whitespace-nowrap">
-                      {r.jobId}
-                    </TableCell>
-                    <TableCell className="px-2 py-2 align-middle text-gray-800 truncate">
-                      {r.candidateName}
-                    </TableCell>
-                    <TableCell className="px-2 py-2 align-middle text-gray-700 truncate">
-                      {r.appliedPosition}
-                    </TableCell>
-                    <TableCell className="px-2 py-2 align-middle text-gray-700 whitespace-nowrap">
-                      {r.applicationDate}
-                    </TableCell>
-                    <TableCell className="px-2 py-2 align-middle">
-                      <Badge
-                        variant="outline"
-                        className={`px-2 py-0.5 text-[10px] sm:text-xs font-medium ${statusChipClass(
-                          r.status,
-                        )}`}
-                      >
+                    <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{r.jobId}</td>
+                    <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
+                    <td className="py-3 pr-4 text-gray-700 truncate">{r.appliedPosition}</td>
+                    <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.applicationDate}</td>
+                    <td className="py-3 pr-4">
+                      <Badge variant="outline" className={`px-2 py-0.5 text-xs font-medium ${statusChipClass(r.status)}`}>
                         {r.status}
                       </Badge>
-                    </TableCell>
-                    <TableCell className="px-2 py-2 align-middle text-gray-700 whitespace-nowrap">
-                      {r.archiveDate}
-                    </TableCell>
-                  </TableRow>
+                    </td>
+                    <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.archiveDate}</td>
+                  </tr>
                 ))}
 
                 {filtered.length === 0 && (
-                  <TableRow>
-                    <TableCell
-                      colSpan={6}
-                      className="px-3 py-6 text-center text-sm text-gray-500"
-                    >
+                  <tr>
+                    <td colSpan={6} className="px-3 py-6 text-center text-sm text-gray-500">
                       No results found.
-                    </TableCell>
-                  </TableRow>
+                    </td>
+                  </tr>
                 )}
-              </TableBody>
-            </Table>
+              </tbody>
+            </table>
           </div>
-        </CardContent>
-      </Card>
+        </Card>
 
-      {/* Details Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {/* Left Column */}
-        <div className="space-y-3 min-h-0">
-          {/* Screening Details */}
-          <Card className="border border-gray-200 rounded-lg shadow-sm">
-            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
-                Screening Details
-              </h3>
-              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                <Detail label="Date Added" value={selected?.screening?.dateAdded} />
-                <Detail label="Status" value={selected?.screening?.status} />
-                <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
-                <Detail label="Approved By" value={selected?.screening?.approvedBy} />
-              </div>
-            </CardContent>
-          </Card>
+        {/* Details Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Left Column */}
+          <div className="space-y-4 min-h-0">
+            <Card className="shadow-sm border-gray-200">
+              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <Detail label="Date Added" value={selected?.screening?.dateAdded} />
+                  <Detail label="Status" value={selected?.screening?.status} />
+                  <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
+                  <Detail label="Approved By" value={selected?.screening?.approvedBy} />
+                </div>
+              </CardContent>
+            </Card>
 
-          {/* Activation Details */}
-          <Card className="border border-gray-200 rounded-lg shadow-sm">
-            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
-                Activation Details
-              </h3>
-              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                <Detail label="Date Added" value={selected?.activation?.dateAdded} />
-                <Detail
-                  label="Activation Confirmed Date"
-                  value={selected?.activation?.activationConfirmedDate}
-                />
-                <Detail label="Approved By" value={selected?.activation?.approvedBy} />
-              </div>
-            </CardContent>
-          </Card>
+            <Card className="shadow-sm border-gray-200">
+              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <Detail label="Date Added" value={selected?.activation?.dateAdded} />
+                  <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
+                  <Detail label="Approved By" value={selected?.activation?.approvedBy} />
+                </div>
+              </CardContent>
+            </Card>
 
-          {/* Hired Details */}
-          <Card className="border border-gray-200 rounded-lg shadow-sm">
-            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">Hired Details</h3>
-              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                <Detail label="Date Added" value={selected?.hired?.dateAdded} />
-                <Detail
-                  label="Orientation Stage Completed"
-                  value={selected?.hired?.orientationStageCompleted}
-                />
-                <Detail
-                  label="Integration Stage Completed"
-                  value={selected?.hired?.integrationStageCompleted}
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+            <Card className="shadow-sm border-gray-200">
+              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <Detail label="Date Added" value={selected?.hired?.dateAdded} />
+                  <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
+                  <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-        {/* Right Column */}
-        <div className="space-y-3 min-h-0">
-          <Card className="border border-gray-200 rounded-lg shadow-sm">
-            <CardContent className="p-3 space-y-3 max-h-[40vh] overflow-y-auto">
-              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
-                Interview Details
-              </h3>
+          {/* Right Column */}
+          <div className="space-y-4 min-h-0">
+            <Card className="shadow-sm border-gray-200">
+              <CardContent className="p-4 space-y-3 max-h-[40vh] overflow-y-auto">
+                <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
 
-              <Accordion type="multiple" className="w-full">
-                <AccordionItem value="step1">
-                  <AccordionTrigger className="text-xs sm:text-sm font-medium">Step 1</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                      <Detail
-                        label="Interview Type"
-                        value={selected?.interview?.steps?.[0]?.interviewType}
-                      />
-                      <Detail
-                        label="Interview Date"
-                        value={selected?.interview?.steps?.[0]?.interviewDate}
-                      />
-                      <Detail
-                        label="Interviewer Name"
-                        value={selected?.interview?.steps?.[0]?.interviewerName}
-                      />
-                      <Detail
-                        label="Interview Result"
-                        value={selected?.interview?.steps?.[0]?.interviewResult}
-                      />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                <Accordion type="multiple" className="w-full">
+                  <AccordionItem value="step1">
+                    <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Interview Type" value={selected?.interview?.steps?.[0]?.interviewType} />
+                        <Detail label="Interview Date" value={selected?.interview?.steps?.[0]?.interviewDate} />
+                        <Detail label="Interviewer Name" value={selected?.interview?.steps?.[0]?.interviewerName} />
+                        <Detail label="Interview Result" value={selected?.interview?.steps?.[0]?.interviewResult} />
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                <AccordionItem value="step2">
-                  <AccordionTrigger className="text-xs sm:text-sm font-medium">Step 2</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                      <Detail
-                        label="Interview Type"
-                        value={selected?.interview?.steps?.[1]?.interviewType}
-                      />
-                      <Detail
-                        label="Interview Date"
-                        value={selected?.interview?.steps?.[1]?.interviewDate}
-                      />
-                      <Detail
-                        label="Interviewer Name"
-                        value={selected?.interview?.steps?.[1]?.interviewerName}
-                      />
-                      <Detail
-                        label="Interview Result"
-                        value={selected?.interview?.steps?.[1]?.interviewResult}
-                      />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+                  <AccordionItem value="step2">
+                    <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Interview Type" value={selected?.interview?.steps?.[1]?.interviewType} />
+                        <Detail label="Interview Date" value={selected?.interview?.steps?.[1]?.interviewDate} />
+                        <Detail label="Interviewer Name" value={selected?.interview?.steps?.[1]?.interviewerName} />
+                        <Detail label="Interview Result" value={selected?.interview?.steps?.[1]?.interviewResult} />
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
 
-              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                <Detail label="Date Added" value={selected?.interview?.dateAdded} />
-                <Detail
-                  label="Date Moved to Activation"
-                  value={selected?.interview?.dateMovedToActivation}
-                />
-                <Detail label="Approved By" value={selected?.interview?.approvedBy} />
-              </div>
-            </CardContent>
-          </Card>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <Detail label="Date Added" value={selected?.interview?.dateAdded} />
+                  <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
+                  <Detail label="Approved By" value={selected?.interview?.approvedBy} />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
