@@ -499,13 +499,12 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[21%]" />
-                <col className="w-[21%]" />
-                <col className="w-[12%]" />
+                <col className="w-[24%]" />
+                <col className="w-[24%]" />
+                <col className="w-[14%]" />
                 <col className="w-[16%]" />
                 <col className="w-[12%]" />
-                <col className="w-[9%]" />
-                <col className="w-[9%]" />
+                <col className="w-[10%]" />
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
@@ -516,7 +515,6 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap text-center">
                     TOTAL EXPERIENCE
                   </th>
-                  <th className="py-2 px-3 whitespace-nowrap">PHONE NUMBER</th>
                   <th className="py-2 px-3 whitespace-nowrap">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap">STATUS</th>
                   <th className="py-2 px-3 whitespace-nowrap">ACTION</th>
@@ -570,9 +568,6 @@ export default function ScreeningView() {
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900 text-center">
                         {candidate.totalExperience}
-                      </td>
-                      <td className="py-3 px-3 text-[14px] text-gray-900">
-                        {formatPhone(candidate.phone)}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
                         {candidate.dateAdded}
@@ -692,15 +687,6 @@ export default function ScreeningView() {
                     </div>
                   </div>
 
-                  {/* Contact Info */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Phone className="w-3 h-3 flex-shrink-0 text-primary/70" />
-                      <span className="font-medium">
-                        {formatPhone(candidate.phone)}
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
             </Card>
