@@ -1181,7 +1181,7 @@ Google India`,
       candidate.missingRounds && candidate.missingRounds.length > 0
         ? candidate.missingRounds[0]
         : null;
-    if (!nextId) return "—";
+    if (!nextId) return "���";
     const r = rounds.find((r) => r.id === nextId);
     return r ? r.roundName : nextId;
   };
@@ -3669,7 +3669,7 @@ Google India"
                           DATE
                         </TableHead>
                         <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
-                          <span className="ml-8">CANDIDATE</span>
+                          CANDIDATE
                         </TableHead>
                         <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           COUNTRY
