@@ -61,6 +61,41 @@ interface PipelineCandidate {
   appliedDate: string;
   location: string;
   avatar?: string;
+  applicationMethod?: string;
+}
+
+interface CandidateHistoryStep {
+  label: string; // e.g., "Step 1 - Interview Type"
+  interviewDate?: string;
+  interviewerName?: string;
+}
+
+interface CandidateHistory {
+  jobId: string;
+  applicationDate?: string;
+  applicationMethod?: string;
+  screening?: {
+    dateAdded?: string;
+    status?: string;
+    approvedDate?: string;
+    approvedBy?: string;
+  };
+  interview?: {
+    dateAdded?: string;
+    steps?: CandidateHistoryStep[];
+    movedToActivationDate?: string;
+    movedApprovedBy?: string;
+  };
+  activation?: {
+    dateAdded?: string;
+    activationConfirmedDate?: string;
+    approvedBy?: string;
+  };
+  hired?: {
+    dateAdded?: string;
+    orientationCompletedDate?: string;
+    integrationCompletedDate?: string;
+  };
 }
 
 // Mock data with candidates across all pipeline stages
@@ -188,6 +223,8 @@ const allCandidates: PipelineCandidate[] = [
 
 export default function OnboardingOverview() {
   const navigate = useNavigate();
+  const [showApplicationHistory, setShowApplicationHistory] = useState(false);
+  const [historyCandidate, setHistoryCandidate] = useState<PipelineCandidate | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
   const [jobFilter, setJobFilter] = useState("all");
@@ -548,7 +585,7 @@ export default function OnboardingOverview() {
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => { console.log(`Open application history for ${candidate.name} (${candidate.id})`); }} className="flex items-center gap-2 cursor-pointer">
+                                <DropdownMenuItem onSelect={() => { setHistoryCandidate(candidate); setShowApplicationHistory(true); }} className="flex items-center gap-2 cursor-pointer">
                                   <Clock className="w-4 h-4" />
                                   Application History
                                 </DropdownMenuItem>
@@ -572,6 +609,133 @@ export default function OnboardingOverview() {
         </Card>
       </div>
 
+    {/* Application History Modal */}
+    <Dialog open={showApplicationHistory} onOpenChange={setShowApplicationHistory}>
+      <DialogContent className="sm:max-w-2xl">
+        <DialogHeader>
+          <DialogTitle className="text-base font-semibold">Application History</DialogTitle>
+          <DialogDescription className="text-xs">Detailed timeline of the candidate's application across stages.</DialogDescription>
+        </DialogHeader>
+        {historyCandidate && (
+          <div className="space-y-4 text-sm">
+            {/* Header Info */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 rounded-md bg-gray-50">
+              <div>
+                <div className="text-xs text-gray-600">Job ID</div>
+                <div className="font-medium text-gray-900">{historyCandidate.jobId}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-600">Application Date</div>
+                <div className="font-medium text-gray-900">{formatDateMDY(historyCandidate.appliedDate)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-600">Application Method</div>
+                <div className="font-medium text-gray-900">{historyCandidate.applicationMethod || "—"}</div>
+              </div>
+            </div>
+
+            {/* Section 1: Screening Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">1. Screening Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.dateAdded) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Status</div>
+                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.status || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved Date</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.approvedDate) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved By</div>
+                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.screening?.approvedBy || "—"}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Interview Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">2. Interview Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.dateAdded) || "") || "—"}</div>
+                </div>
+              </div>
+              {/* Steps */}
+              {((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
+                <div key={idx} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="sm:col-span-3 font-medium text-gray-900">{step.label || `Step ${idx + 1}`}</div>
+                  <div>
+                    <div className="text-xs text-gray-600">Interview Date</div>
+                    <div className="font-medium text-gray-900">{formatDateMDY(step.interviewDate || "") || "—"}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-600">Interviewer Name</div>
+                    <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
+                  </div>
+                </div>
+              ))}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date moved to Activation</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.movedToActivationDate) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved by</div>
+                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.interview?.movedApprovedBy || "—"}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3: Activation Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">3. Activation Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.dateAdded) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Activation Confirmed Date</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.activationConfirmedDate) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved by</div>
+                  <div className="font-medium text-gray-900">{JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.activation?.approvedBy || "—"}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 4: Hired Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">4. Hired Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.dateAdded) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Orientation Stage Completed</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.orientationCompletedDate) || "") || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Integration Stage Completed</div>
+                  <div className="font-medium text-gray-900">{formatDateMDY((JSON.parse(window.localStorage.getItem(`candidate-history:${historyCandidate.id}`) || "null")?.hired?.integrationCompletedDate) || "") || "—"}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setShowApplicationHistory(false)}>Close</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
     </Layout>
   );
 }
