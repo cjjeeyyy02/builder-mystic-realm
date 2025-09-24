@@ -511,15 +511,15 @@ export default function ActivationView() {
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
                     <TableHead className="py-2 px-3 font-bold text-black text-left align-middle whitespace-nowrap">
-                      <span className="ml-8">CANDIDATE</span>
+                      CANDIDATE
                     </TableHead>
                     <TableHead className="py-2 px-3 font-bold text-black text-left">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left align-middle whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left align-middle whitespace-nowrap">
                       DATE ADDED
                     </TableHead>
                     <TableHead className="py-2 px-3 font-bold text-black text-left">
