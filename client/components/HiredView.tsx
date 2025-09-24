@@ -668,7 +668,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                 <TableHead className="w-16 text-left py-2 px-3 text-black font-bold">
                   S. NO
                 </TableHead>
-                <TableHead className="py-2 px-3 text-black font-bold text-left">NAME</TableHead>
+                <TableHead className="py-2 px-3 text-black font-bold text-left"><span className="ml-8">NAME</span></TableHead>
                 <TableHead className="py-2 px-3 text-black font-bold text-left">ROLE</TableHead>
                 <TableHead className="py-2 px-3 text-black font-bold text-left">DEPT</TableHead>
                 <TableHead className="py-2 px-3 text-black font-bold text-left">
