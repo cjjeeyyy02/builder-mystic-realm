@@ -513,7 +513,7 @@ export default function ActivationView() {
                     <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left">
                       APPLIED POSITION
                     </TableHead>
                     <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
@@ -522,13 +522,13 @@ export default function ActivationView() {
                     <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
                       DATE ADDED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left">
                       FILES UPLOADED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left">
                       ACTIVATION PROGRESS
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-black text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left">
                       ACTION
                     </TableHead>
                   </TableRow>
@@ -571,21 +571,21 @@ export default function ActivationView() {
                         </div>
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle text-center ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle text-left ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
                         {employee.appliedJobRole}
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-left ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
                         {formatDateMDY(employee.joiningDate)}
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-left ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
@@ -598,11 +598,11 @@ export default function ActivationView() {
                       >
                         {employee.filesUploaded}
                       </TableCell>
-                      <TableCell className="px-3 py-3 align-middle text-center">
+                      <TableCell className="px-3 py-3 align-middle text-left">
                         {renderProgressBar(employee.activationProgress)}
                       </TableCell>
-                      <TableCell className="px-3 py-3 align-middle text-center">
-                        <div className="flex items-center justify-center">
+                      <TableCell className="px-3 py-3 align-middle text-left">
+                        <div className="flex items-center justify-start">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button
