@@ -1754,26 +1754,26 @@ Google India`,
                     <Table className="w-full text-sm">
                       <TableHeader>
                         <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                          <TableHead className="py-2 px-3 font-bold text-black text-left w-40 whitespace-nowrap">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle w-40 whitespace-nowrap">
                             <span className="ml-9">CANDIDATE</span>
                           </TableHead>
 
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             APPLIED POSITION
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             DATE ADDED
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             CURRENT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             NEXT ROUND
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             INTERVIEW PROGRESS
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left">
+                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -3665,38 +3665,38 @@ Google India"
                   <Table>
                     <TableHeader>
                       <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           DATE
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           <span className="ml-8">CANDIDATE</span>
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           COUNTRY
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           APPLIED POSITION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           ROUNDS
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           ROUNDS DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           FINAL DECISION
                         </TableHead>
-                        <TableHead className="py-2 px-3 font-bold text-black text-left">
+                        <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                           ACTION
                         </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           <div className="flex items-center gap-2">
                             <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
                               <span className="text-xs font-medium text-white">
@@ -3713,11 +3713,11 @@ Google India"
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">India</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Senior Developer
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["001"]?.toString() || "1"}
                             onValueChange={(value) =>
@@ -3754,7 +3754,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -3801,7 +3801,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -3831,7 +3831,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -3839,10 +3839,10 @@ Google India"
                       </TableRow>
 
                       <TableRow className="border-b last:border-b-0 hover:bg-gray-50">
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           <div className="flex items-center gap-2">
                             <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
                               <span className="text-xs font-medium text-white">
@@ -3859,11 +3859,11 @@ Google India"
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">USA</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Graphic Designer
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["002"]?.toString() || "2"}
                             onValueChange={(value) =>
@@ -3900,7 +3900,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -3947,7 +3947,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -3977,7 +3977,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -3988,15 +3988,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           003
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">John</TableCell>
-                        <TableCell className="py-2 text-xs">USA</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">John</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">USA</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Content Writer
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["003"]?.toString() || "1"}
                             onValueChange={(value) =>
@@ -4033,7 +4033,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -4080,7 +4080,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button
                               onClick={() =>
@@ -4110,7 +4110,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4121,15 +4121,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           004
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Sara</TableCell>
-                        <TableCell className="py-2 text-xs">Europe</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Sara</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">Europe</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Copywriter
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["004"]?.toString() || "4"}
                             onValueChange={(value) =>
@@ -4166,7 +4166,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4179,7 +4179,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4189,7 +4189,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4200,15 +4200,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           005
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Shruti</TableCell>
-                        <TableCell className="py-2 text-xs">India</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Shruti</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">India</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Sale Associate
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["005"]?.toString() || "5"}
                             onValueChange={(value) =>
@@ -4245,7 +4245,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4258,7 +4258,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4268,7 +4268,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4279,15 +4279,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           006
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Robin</TableCell>
-                        <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Robin</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">Russia</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           AI Engineer
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["006"]?.toString() || "2"}
                             onValueChange={(value) =>
@@ -4324,7 +4324,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4337,7 +4337,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4347,7 +4347,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4358,15 +4358,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           007
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Kayle</TableCell>
-                        <TableCell className="py-2 text-xs">Russia</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Kayle</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">Russia</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           ML Engineer
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["007"]?.toString() || "1"}
                             onValueChange={(value) =>
@@ -4403,7 +4403,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4416,7 +4416,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4426,7 +4426,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4437,15 +4437,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           008
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Vali</TableCell>
-                        <TableCell className="py-2 text-xs">China</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Vali</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">China</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Data Analyst
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["008"]?.toString() || "3"}
                             onValueChange={(value) =>
@@ -4482,7 +4482,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4495,7 +4495,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4505,7 +4505,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
@@ -4516,15 +4516,15 @@ Google India"
                         <TableCell className="text-left px-3 py-2 text-[13px] font-medium text-gray-600">
                           009
                         </TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">
                           8/14/2025
                         </TableCell>
-                        <TableCell className="py-2 text-xs">Anne</TableCell>
-                        <TableCell className="py-2 text-xs">Canada</TableCell>
-                        <TableCell className="py-2 text-xs">
+                        <TableCell className="px-3 py-2 text-xs">Anne</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">Canada</TableCell>
+                        <TableCell className="px-3 py-2 text-xs">
                           Finance Analyst
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Select
                             value={selectedRounds["009"]?.toString() || "3"}
                             onValueChange={(value) =>
@@ -4561,7 +4561,7 @@ Google India"
                             </SelectContent>
                           </Select>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               YES
@@ -4574,7 +4574,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <div className="flex items-center gap-1">
                             <Button className="bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 h-6 px-3 text-xs font-medium rounded-md transition-all duration-200 shadow-sm">
                               APPROVE
@@ -4584,7 +4584,7 @@ Google India"
                             </Button>
                           </div>
                         </TableCell>
-                        <TableCell className="py-2">
+                        <TableCell className="px-3 py-2">
                           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white h-5 px-2 text-xs rounded">
                             EMAIL
                           </Button>
