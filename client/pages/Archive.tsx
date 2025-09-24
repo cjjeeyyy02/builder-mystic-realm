@@ -17,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useSidebar } from "@/contexts/SidebarContext";
 import { Search } from "lucide-react";
 
 // Types
@@ -233,148 +235,157 @@ export default function Archive() {
     [rows, selectedJobId],
   );
 
+  const { sidebarCollapsed } = useSidebar();
+  const containerWidthClass = sidebarCollapsed ? "max-w-screen-2xl" : "max-w-screen-xl";
+
   return (
-    <div className="space-y-3">
+    <div className={`mx-auto w-full ${containerWidthClass} px-2 sm:px-3 lg:px-4 space-y-3 transition-all`}>
       {/* Filters */}
-      <Card className="p-0 border border-gray-200 rounded-none">
+      <Card className="p-0 border border-gray-200 rounded-lg shadow-sm">
         <CardContent className="p-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative w-64 max-w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search Job ID or Candidate Name"
-                className="pl-10 h-8 text-sm"
+                className="pl-10 h-8 text-xs sm:text-sm"
               />
             </div>
 
-            <Select
-              value={positionFilter}
-              onValueChange={(v) => setPositionFilter(v)}
-            >
-              <SelectTrigger className="w-56 h-8 text-sm">
-                <SelectValue placeholder="Applied Position" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All positions</SelectItem>
-                {positions.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {p}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="w-full">
+              <Select
+                value={positionFilter}
+                onValueChange={(v) => setPositionFilter(v)}
+              >
+                <SelectTrigger className="w-full h-8 text-xs sm:text-sm">
+                  <SelectValue placeholder="Applied Position" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All positions</SelectItem>
+                  {positions.map((p) => (
+                    <SelectItem key={p} value={p}>
+                      {p}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-            <Select
-              value={statusFilter}
-              onValueChange={(v) => setStatusFilter(v as any)}
-            >
-              <SelectTrigger className="w-44 h-8 text-sm">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All statuses</SelectItem>
-                <SelectItem value="Screening">Screening</SelectItem>
-                <SelectItem value="Interview">Interview</SelectItem>
-                <SelectItem value="Activation">Activation</SelectItem>
-                <SelectItem value="Rejected">Rejected</SelectItem>
-                <SelectItem value="Hired">Hired</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="w-full">
+              <Select
+                value={statusFilter}
+                onValueChange={(v) => setStatusFilter(v as any)}
+              >
+                <SelectTrigger className="w-full h-8 text-xs sm:text-sm">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All statuses</SelectItem>
+                  <SelectItem value="Screening">Screening</SelectItem>
+                  <SelectItem value="Interview">Interview</SelectItem>
+                  <SelectItem value="Activation">Activation</SelectItem>
+                  <SelectItem value="Rejected">Rejected</SelectItem>
+                  <SelectItem value="Hired">Hired</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Table */}
-      <Card className="p-0 border border-gray-200 rounded-none">
+      <Card className="p-0 border border-gray-200 rounded-lg shadow-sm">
         <CardContent className="p-0">
-          <Table className="w-full text-sm">
-            <TableHeader>
-              <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
-                  Job ID
-                </TableHead>
-                <TableHead className="py-2 px-3 font-bold text-black text-left">
-                  Candidate Name
-                </TableHead>
-                <TableHead className="py-2 px-3 font-bold text-black text-left">
-                  Applied Position
-                </TableHead>
-                <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
-                  Application Date
-                </TableHead>
-                <TableHead className="py-2 px-3 font-bold text-black text-left">
-                  Status
-                </TableHead>
-                <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
-                  Archive Date
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filtered.map((r) => (
-                <TableRow
-                  key={r.jobId}
-                  className={`border-b last:border-b-0 hover:bg-gray-50 cursor-pointer ${
-                    selectedJobId === r.jobId ? "bg-blue-50/50" : ""
-                  }`}
-                  onClick={() => setSelectedJobId(r.jobId)}
-                >
-                  <TableCell className="px-3 py-3 align-middle text-sm font-medium text-gray-900">
-                    {r.jobId}
-                  </TableCell>
-                  <TableCell className="px-3 py-3 align-middle text-gray-800">
-                    {r.candidateName}
-                  </TableCell>
-                  <TableCell className="px-3 py-3 align-middle text-gray-700">
-                    {r.appliedPosition}
-                  </TableCell>
-                  <TableCell className="px-3 py-3 align-middle text-gray-700">
-                    {r.applicationDate}
-                  </TableCell>
-                  <TableCell className="px-3 py-3 align-middle">
-                    <Badge
-                      variant="outline"
-                      className={`px-2 py-0.5 text-xs font-medium ${statusChipClass(
-                        r.status,
-                      )}`}
-                    >
-                      {r.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="px-3 py-3 align-middle text-gray-700">
-                    {r.archiveDate}
-                  </TableCell>
+          <div className="overflow-x-auto">
+            <Table className="w-full text-xs sm:text-sm">
+              <TableHeader>
+                <TableRow className="text-left text-[12px] sm:text-[13px] text-gray-600 border-b">
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
+                    Job ID
+                  </TableHead>
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
+                    Candidate Name
+                  </TableHead>
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
+                    Applied Position
+                  </TableHead>
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
+                    Application Date
+                  </TableHead>
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left">
+                    Status
+                  </TableHead>
+                  <TableHead className="py-1.5 px-2 font-bold text-black text-left whitespace-nowrap">
+                    Archive Date
+                  </TableHead>
                 </TableRow>
-              ))}
-
-              {filtered.length === 0 && (
-                <TableRow>
-                  <TableCell
-                    colSpan={6}
-                    className="px-3 py-6 text-center text-sm text-gray-500"
+              </TableHeader>
+              <TableBody>
+                {filtered.map((r) => (
+                  <TableRow
+                    key={r.jobId}
+                    className={`border-b last:border-b-0 hover:bg-gray-50 cursor-pointer ${
+                      selectedJobId === r.jobId ? "bg-blue-50/50" : ""
+                    }`}
+                    onClick={() => setSelectedJobId(r.jobId)}
                   >
-                    No results found.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+                    <TableCell className="px-2 py-2 align-middle font-medium text-gray-900 whitespace-nowrap">
+                      {r.jobId}
+                    </TableCell>
+                    <TableCell className="px-2 py-2 align-middle text-gray-800 truncate">
+                      {r.candidateName}
+                    </TableCell>
+                    <TableCell className="px-2 py-2 align-middle text-gray-700 truncate">
+                      {r.appliedPosition}
+                    </TableCell>
+                    <TableCell className="px-2 py-2 align-middle text-gray-700 whitespace-nowrap">
+                      {r.applicationDate}
+                    </TableCell>
+                    <TableCell className="px-2 py-2 align-middle">
+                      <Badge
+                        variant="outline"
+                        className={`px-2 py-0.5 text-[10px] sm:text-xs font-medium ${statusChipClass(
+                          r.status,
+                        )}`}
+                      >
+                        {r.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="px-2 py-2 align-middle text-gray-700 whitespace-nowrap">
+                      {r.archiveDate}
+                    </TableCell>
+                  </TableRow>
+                ))}
+
+                {filtered.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={6}
+                      className="px-3 py-6 text-center text-sm text-gray-500"
+                    >
+                      No results found.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
       {/* Details Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Left Column */}
-        <div className="space-y-3">
+        <div className="space-y-3 min-h-0">
           {/* Screening Details */}
-          <Card className="border border-gray-200">
-            <CardContent className="p-3 space-y-2">
-              <h3 className="text-sm font-semibold text-gray-900">
+          <Card className="border border-gray-200 rounded-lg shadow-sm">
+            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
                 Screening Details
               </h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                 <Detail label="Date Added" value={selected?.screening?.dateAdded} />
                 <Detail label="Status" value={selected?.screening?.status} />
                 <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
@@ -384,12 +395,12 @@ export default function Archive() {
           </Card>
 
           {/* Activation Details */}
-          <Card className="border border-gray-200">
-            <CardContent className="p-3 space-y-2">
-              <h3 className="text-sm font-semibold text-gray-900">
+          <Card className="border border-gray-200 rounded-lg shadow-sm">
+            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
                 Activation Details
               </h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                 <Detail label="Date Added" value={selected?.activation?.dateAdded} />
                 <Detail
                   label="Activation Confirmed Date"
@@ -401,10 +412,10 @@ export default function Archive() {
           </Card>
 
           {/* Hired Details */}
-          <Card className="border border-gray-200">
-            <CardContent className="p-3 space-y-2">
-              <h3 className="text-sm font-semibold text-gray-900">Hired Details</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
+          <Card className="border border-gray-200 rounded-lg shadow-sm">
+            <CardContent className="p-3 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">Hired Details</h3>
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                 <Detail label="Date Added" value={selected?.hired?.dateAdded} />
                 <Detail
                   label="Orientation Stage Completed"
@@ -420,65 +431,64 @@ export default function Archive() {
         </div>
 
         {/* Right Column */}
-        <div className="space-y-3">
-          <Card className="border border-gray-200">
-            <CardContent className="p-3 space-y-3">
-              <h3 className="text-sm font-semibold text-gray-900">
+        <div className="space-y-3 min-h-0">
+          <Card className="border border-gray-200 rounded-lg shadow-sm">
+            <CardContent className="p-3 space-y-3 max-h-[40vh] overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
                 Interview Details
               </h3>
 
-              {/* Step 1 */}
-              <div className="border rounded p-2">
-                <h4 className="text-xs font-semibold text-gray-800 mb-2">
-                  Step 1
-                </h4>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail
-                    label="Interview Type"
-                    value={selected?.interview?.steps?.[0]?.interviewType}
-                  />
-                  <Detail
-                    label="Interview Date"
-                    value={selected?.interview?.steps?.[0]?.interviewDate}
-                  />
-                  <Detail
-                    label="Interviewer Name"
-                    value={selected?.interview?.steps?.[0]?.interviewerName}
-                  />
-                  <Detail
-                    label="Interview Result"
-                    value={selected?.interview?.steps?.[0]?.interviewResult}
-                  />
-                </div>
-              </div>
+              <Accordion type="multiple" className="w-full">
+                <AccordionItem value="step1">
+                  <AccordionTrigger className="text-xs sm:text-sm font-medium">Step 1</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                      <Detail
+                        label="Interview Type"
+                        value={selected?.interview?.steps?.[0]?.interviewType}
+                      />
+                      <Detail
+                        label="Interview Date"
+                        value={selected?.interview?.steps?.[0]?.interviewDate}
+                      />
+                      <Detail
+                        label="Interviewer Name"
+                        value={selected?.interview?.steps?.[0]?.interviewerName}
+                      />
+                      <Detail
+                        label="Interview Result"
+                        value={selected?.interview?.steps?.[0]?.interviewResult}
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
 
-              {/* Step 2 */}
-              <div className="border rounded p-2">
-                <h4 className="text-xs font-semibold text-gray-800 mb-2">
-                  Step 2
-                </h4>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail
-                    label="Interview Type"
-                    value={selected?.interview?.steps?.[1]?.interviewType}
-                  />
-                  <Detail
-                    label="Interview Date"
-                    value={selected?.interview?.steps?.[1]?.interviewDate}
-                  />
-                  <Detail
-                    label="Interviewer Name"
-                    value={selected?.interview?.steps?.[1]?.interviewerName}
-                  />
-                  <Detail
-                    label="Interview Result"
-                    value={selected?.interview?.steps?.[1]?.interviewResult}
-                  />
-                </div>
-              </div>
+                <AccordionItem value="step2">
+                  <AccordionTrigger className="text-xs sm:text-sm font-medium">Step 2</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                      <Detail
+                        label="Interview Type"
+                        value={selected?.interview?.steps?.[1]?.interviewType}
+                      />
+                      <Detail
+                        label="Interview Date"
+                        value={selected?.interview?.steps?.[1]?.interviewDate}
+                      />
+                      <Detail
+                        label="Interviewer Name"
+                        value={selected?.interview?.steps?.[1]?.interviewerName}
+                      />
+                      <Detail
+                        label="Interview Result"
+                        value={selected?.interview?.steps?.[1]?.interviewResult}
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
 
-              {/* Extra fields */}
-              <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                 <Detail label="Date Added" value={selected?.interview?.dateAdded} />
                 <Detail
                   label="Date Moved to Activation"
