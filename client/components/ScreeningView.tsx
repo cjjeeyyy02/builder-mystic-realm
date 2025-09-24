@@ -718,25 +718,6 @@ export default function ScreeningView() {
               <div className="flex flex-col xl:flex-row gap-3 xl:gap-4 h-[calc(95vh-180px)] overflow-hidden">
                 {/* Main Panel - Resume Content */}
                 <div className="flex-1 overflow-y-auto space-y-2 sm:space-y-3 px-3 sm:px-4 xl:pr-3">
-                  {/* Quick Info Bar */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2 p-2 sm:p-2 bg-gray-50 rounded-md border border-gray-200">
-                    <div className="text-center">
-                      <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">
-                        {selectedCandidate.totalExperience}
-                      </div>
-                      <div className="text-xs text-gray-600">
-                        Total Experience
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mx-auto mb-1" />
-                      <div className="font-semibold text-xs sm:text-sm">
-                        {selectedCandidate.location}
-                      </div>
-                      <div className="text-xs text-gray-600">Location</div>
-                    </div>
-                  </div>
 
                   {/* Contact Information */}
                   <Card>
