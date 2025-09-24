@@ -509,10 +509,10 @@ export default function ScreeningView() {
             <table className="w-full text-sm table-fixed">
               <colgroup>
                 <col className="w-[19%]" />
+                <col className="w-[17%]" />
+                <col className="w-[17%]" />
                 <col className="w-[11%]" />
-                <col className="w-[21%]" />
                 <col className="w-[12%]" />
-                <col className="w-[13%]" />
                 <col className="w-[12%]" />
                 <col className="w-[12%]" />
               </colgroup>
