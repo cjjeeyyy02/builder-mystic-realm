@@ -981,7 +981,7 @@ export default function ScreeningView() {
                             handleStatusChange(selectedCandidate.id, "approved")
                           }
                         >
-                          <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                          
                           Approve for Next Round
                         </Button>
                         <Button
@@ -1000,7 +1000,7 @@ export default function ScreeningView() {
                             handleStatusChange(selectedCandidate.id, "reject")
                           }
                         >
-                          <X className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                          
                           Reject Application
                         </Button>
                       </div>
@@ -1139,7 +1139,7 @@ export default function ScreeningView() {
               onClick={handleStatusReject}
               className="bg-red-600 hover:bg-red-700 text-xs"
             >
-              <X className="w-4 h-4 mr-2" />
+              
               Reject Candidate
             </Button>
             <Button
@@ -1147,7 +1147,7 @@ export default function ScreeningView() {
               onClick={handleStatusProceed}
               className="bg-green-600 hover:bg-green-700 text-xs"
             >
-              <Check className="w-4 h-4 mr-2" />
+              
               Approve for Next Round
             </Button>
           </DialogFooter>
