@@ -466,7 +466,6 @@ export default function ScreeningView() {
                 "Name",
                 "Country",
                 "Position",
-                "Total Experience",
                 "Date Added",
                 "Status",
               ];
@@ -474,7 +473,6 @@ export default function ScreeningView() {
                 c.name,
                 getCountry(c.location),
                 c.position,
-                c.totalExperience,
                 c.dateAdded,
                 c.status,
               ]);
@@ -508,12 +506,11 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
-                <col className="w-[24%]" />
-                <col className="w-[11%]" />
-                <col className="w-[20%]" />
-                <col className="w-[13%]" />
-                <col className="w-[13%]" />
-                <col className="w-[11%]" />
+                <col className="w-[26%]" />
+                <col className="w-[12%]" />
+                <col className="w-[30%]" />
+                <col className="w-[14%]" />
+                <col className="w-[10%]" />
                 <col className="w-[8%]" />
               </colgroup>
               <thead>
@@ -523,7 +520,6 @@ export default function ScreeningView() {
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">TOTAL EXPERIENCE</th>
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">DATE ADDED</th>
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">STATUS</th>
                   <th className="py-2 px-2 whitespace-nowrap text-center align-middle">ACTION</th>
@@ -577,9 +573,6 @@ export default function ScreeningView() {
                         title={candidate.position}
                       >
                         {candidate.position}
-                      </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
-                        {candidate.totalExperience}
                       </td>
                       <td className="py-2 px-2 text-[14px] text-gray-900 align-middle">
                         {candidate.dateAdded}
