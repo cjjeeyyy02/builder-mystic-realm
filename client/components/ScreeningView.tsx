@@ -1148,29 +1148,19 @@ export default function ScreeningView() {
           </div>
           <DialogFooter className="gap-2">
             <Button
-              variant="outline"
-              onClick={() => {
-                setShowUpdateStatusModal(false);
-                setStatusCandidate(null);
-                setStatusNotes("");
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
               variant="destructive"
               onClick={handleStatusReject}
               className="bg-red-600 hover:bg-red-700"
             >
               <X className="w-4 h-4 mr-2" />
-              Reject
+              Reject Candidate
             </Button>
             <Button
               onClick={handleStatusProceed}
               className="bg-green-600 hover:bg-green-700"
             >
               <Check className="w-4 h-4 mr-2" />
-              Proceed
+              Approve for Next Round
             </Button>
           </DialogFooter>
         </DialogContent>
