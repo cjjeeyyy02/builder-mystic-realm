@@ -519,14 +519,14 @@ export default function ScreeningView() {
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
                   <th className="py-2 px-2 whitespace-nowrap text-left align-middle">CANDIDATE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">COUNTRY</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">COUNTRY</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">
                     APPLIED POSITION
                   </th>
                   <th className="py-2 px-2 whitespace-nowrap text-center align-middle">TOTAL EXPERIENCE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">DATE ADDED</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">STATUS</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle">ACTION</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">DATE ADDED</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">STATUS</th>
+                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle">ACTION</th>
                 </tr>
               </thead>
               <tbody>
@@ -569,22 +569,22 @@ export default function ScreeningView() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 align-middle">
+                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
                         {getCountry(candidate.location)}
                       </td>
                       <td
-                        className="py-2 px-2 text-[14px] text-gray-900 truncate align-middle"
+                        className="py-2 px-2 text-[14px] text-gray-900 truncate text-center align-middle"
                         title={candidate.position}
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 align-middle">
+                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
                         {candidate.totalExperience}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 align-middle">
+                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
                         {candidate.dateAdded}
                       </td>
-                      <td className="py-2 px-2 text-[14px] text-gray-900 align-middle">
+                      <td className="py-2 px-2 text-[14px] text-gray-900 text-center align-middle">
                         <Badge
                           variant={getStatusVariant(candidate.status)}
                           className={`gap-1 px-2 py-1 text-xs ${candidate.status === "approved" ? "bg-green-600 text-white hover:bg-green-700 border-green-600" : ""}`}
@@ -598,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-2 px-2 text-left align-middle">
+                      <td className="py-2 px-2 text-center align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
