@@ -32,6 +32,7 @@ import ChecklistBuilder from "./pages/ChecklistBuilder";
 import RoomBuilder from "./pages/RoomBuilder";
 import CandidateDetails from "./pages/CandidateDetails";
 import OnboardingOverview from "./pages/OnboardingOverview";
+import Archive from "./pages/Archive";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/hiring-pipeline" element={<HiringPipeline />} />
           <Route path="/checklist-builder" element={<ChecklistBuilder />} />
           <Route path="/room-builder" element={<RoomBuilder />} />
+          <Route path="/archive" element={<Archive />} />
           <Route path="/candidate-details/:candidateId" element={<CandidateDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
