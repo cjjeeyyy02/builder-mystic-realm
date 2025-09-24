@@ -510,22 +510,22 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
                       DATE ADDED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
                       FILES UPLOADED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-semibold">
+                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
                       ACTIVATION PROGRESS
                     </TableHead>
                     <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
@@ -544,7 +544,7 @@ export default function ActivationView() {
                       }`}
                     >
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
                           isDarkMode ? "text-gray-200" : "text-gray-900"
                         }`}
                       >
@@ -571,21 +571,21 @@ export default function ActivationView() {
                         </div>
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 truncate align-middle text-center ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
                         {employee.appliedJobRole}
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
                         {formatDateMDY(employee.joiningDate)}
                       </TableCell>
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
                           isDarkMode ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
@@ -598,7 +598,7 @@ export default function ActivationView() {
                       >
                         {employee.filesUploaded}
                       </TableCell>
-                      <TableCell className="px-3 py-3 align-middle">
+                      <TableCell className="px-3 py-3 align-middle text-center">
                         {renderProgressBar(employee.activationProgress)}
                       </TableCell>
                       <TableCell className="px-3 py-3 align-middle text-center">
