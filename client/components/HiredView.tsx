@@ -665,25 +665,25 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
           <Table>
             <TableHeader>
               <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                <TableHead className="w-16 text-left py-2 px-3">
+                <TableHead className="w-16 text-center py-2 px-3 text-black font-bold">
                   S. NO
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">NAME</TableHead>
-                <TableHead className="py-2 px-3 font-semibold">ROLE</TableHead>
-                <TableHead className="py-2 px-3 font-semibold">DEPT</TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
+                <TableHead className="py-2 px-3 text-black font-bold text-left">NAME</TableHead>
+                <TableHead className="py-2 px-3 text-black font-bold text-center">ROLE</TableHead>
+                <TableHead className="py-2 px-3 text-black font-bold text-center">DEPT</TableHead>
+                <TableHead className="py-2 px-3 text-black font-bold text-center">
                   EXPECTED DOJ
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
+                <TableHead className="py-2 px-3 text-black font-bold text-center">
                   EMPLOYMENT
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
+                <TableHead className="py-2 px-3 text-black font-bold text-center">
                   LOCATION
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
+                <TableHead className="py-2 px-3 text-black font-bold text-center">
                   CONFIRMED DOJ
                 </TableHead>
-                <TableHead className="py-2 px-3 font-semibold">
+                <TableHead className="py-2 px-3 text-black font-bold text-center">
                   ACTIONS
                 </TableHead>
               </TableRow>
@@ -715,12 +715,12 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <div className="font-medium text-foreground">
                       {candidate.role}
                     </div>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <Badge
                       variant="secondary"
                       className={`font-medium ${getDepartmentColor(candidate.department)}`}
@@ -728,13 +728,13 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                       {candidate.department}
                     </Badge>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <div className="flex items-center gap-2 text-foreground font-medium">
                       <Calendar className="w-4 h-4 text-muted-foreground" />
                       {candidate.expectedDOJ}
                     </div>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <Badge
                       variant="outline"
                       className={`font-medium ${getEmploymentColor(candidate.employment)}`}
@@ -742,13 +742,13 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                       {candidate.employment}
                     </Badge>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <div className="flex items-center gap-2 text-foreground">
                       <MapPin className="w-4 h-4 text-muted-foreground" />
                       <span className="text-sm">{candidate.location}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     {candidate.confirmedDOJ ? (
                       <div className="flex items-center gap-2 text-foreground font-medium">
                         <Clock className="w-4 h-4 text-muted-foreground" />
@@ -760,7 +760,7 @@ function DecisionRoomView({ onBack }: DecisionRoomViewProps) {
                       </span>
                     )}
                   </TableCell>
-                  <TableCell className="py-4">
+                  <TableCell className="py-4 text-center">
                     <div className="flex items-center gap-2 justify-center">
                       {candidate.status === "pending" ? (
                         <>
