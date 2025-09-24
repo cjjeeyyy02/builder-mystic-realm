@@ -499,13 +499,13 @@ export default function ScreeningView() {
           <div className="overflow-auto">
             <table className="w-full text-sm table-fixed">
               <colgroup>
+                <col className="w-[21%]" />
+                <col className="w-[21%]" />
+                <col className="w-[12%]" />
                 <col className="w-[16%]" />
-                <col className="w-[16%]" />
-                <col className="w-[10%]" />
-                <col className="w-[14%]" />
-                <col className="w-[10%]" />
-                <col className="w-[8%]" />
-                <col className="w-[8%]" />
+                <col className="w-[12%]" />
+                <col className="w-[9%]" />
+                <col className="w-[9%]" />
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
@@ -513,7 +513,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 pl-3 pr-6 whitespace-nowrap">
+                  <th className="py-2 px-3 whitespace-nowrap">
                     TOTAL EXPERIENCE
                   </th>
                   <th className="py-2 px-3 whitespace-nowrap">PHONE NUMBER</th>
@@ -568,7 +568,7 @@ export default function ScreeningView() {
                       >
                         {candidate.position}
                       </td>
-                      <td className="py-3 pl-3 pr-6 text-[14px] text-gray-900">
+                      <td className="py-3 px-3 text-[14px] text-gray-900">
                         {candidate.totalExperience}
                       </td>
                       <td className="py-3 px-3 text-[14px] text-gray-900">
