@@ -518,15 +518,15 @@ export default function ScreeningView() {
               </colgroup>
               <thead>
                 <tr className="text-left text-[13px] text-gray-600 border-b">
-                  <th className="py-2 px-2 whitespace-nowrap text-left align-middle font-bold text-gray-900">CANDIDATE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">COUNTRY</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">
+                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">CANDIDATE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">COUNTRY</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">
                     APPLIED POSITION
                   </th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">TOTAL EXPERIENCE</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">DATE ADDED</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">STATUS</th>
-                  <th className="py-2 px-2 whitespace-nowrap text-center align-middle font-bold text-gray-900">ACTION</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">TOTAL EXPERIENCE</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">DATE ADDED</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">STATUS</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">ACTION</th>
                 </tr>
               </thead>
               <tbody>

@@ -510,25 +510,25 @@ export default function ActivationView() {
               <Table className="w-full text-sm">
                 <TableHeader>
                   <TableRow className="text-left text-[13px] text-gray-600 border-b">
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-left whitespace-nowrap">
                       CANDIDATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center">
                       APPLIED POSITION
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
                       JOINING DATE
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center whitespace-nowrap">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center whitespace-nowrap">
                       DATE ADDED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center">
                       FILES UPLOADED
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center">
                       ACTIVATION PROGRESS
                     </TableHead>
-                    <TableHead className="py-2 px-3 font-bold text-gray-900 text-center">
+                    <TableHead className="py-2 px-3 font-bold text-black text-center">
                       ACTION
                     </TableHead>
                   </TableRow>
@@ -544,7 +544,7 @@ export default function ActivationView() {
                       }`}
                     >
                       <TableCell
-                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-center ${
+                        className={`text-[14px] px-3 py-3 transition-colors duration-300 whitespace-nowrap align-middle text-left ${
                           isDarkMode ? "text-gray-200" : "text-gray-900"
                         }`}
                       >
