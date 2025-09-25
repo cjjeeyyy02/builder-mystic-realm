@@ -633,28 +633,6 @@ export default function Archive() {
                   </Card>
 
                   <Card className="shadow-sm border-gray-200">
-                    <CardContent className="p-4 space-y-2">
-                      <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <Detail label="Date Added" value={selected?.activation?.dateAdded} />
-                        <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
-                        <Detail label="Approved By" value={selected?.activation?.approvedBy} />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="shadow-sm border-gray-200">
-                    <CardContent className="p-4 space-y-2">
-                      <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <Detail label="Date Added" value={selected?.hired?.dateAdded} />
-                        <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
-                        <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="shadow-sm border-gray-200">
                     <CardContent className="p-4 space-y-3">
                       <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
                       <Accordion type="multiple" className="w-full">
@@ -687,6 +665,28 @@ export default function Archive() {
                         <Detail label="Date Added" value={selected?.interview?.dateAdded} />
                         <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
                         <Detail label="Approved By" value={selected?.interview?.approvedBy} />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-2">
+                      <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.activation?.dateAdded} />
+                        <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
+                        <Detail label="Approved By" value={selected?.activation?.approvedBy} />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-2">
+                      <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.hired?.dateAdded} />
+                        <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
+                        <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
                       </div>
                     </CardContent>
                   </Card>
