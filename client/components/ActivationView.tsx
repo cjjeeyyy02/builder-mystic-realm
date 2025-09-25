@@ -601,8 +601,8 @@ export default function ActivationView() {
                       <TableCell className="px-3 py-3 align-middle text-left">
                         {renderProgressBar(employee.activationProgress)}
                       </TableCell>
-                      <TableCell className="px-3 py-3 align-middle text-left">
-                        <div className="flex items-center justify-start">
+                      <TableCell className="px-3 py-3 align-middle text-center">
+                        <div className="flex items-center justify-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button
