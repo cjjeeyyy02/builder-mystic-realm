@@ -209,9 +209,6 @@ export default function CandidateDetails() {
                       <Briefcase className="w-4 h-4" />
                       Work Experience
                     </h3>
-                    {merged.totalExperience && (
-                      <span className="text-xs text-gray-600">{merged.totalExperience}</span>
-                    )}
                   </div>
                   <div className="space-y-2 sm:space-y-3">
                     {merged.workHistory.map((job, index) => (
