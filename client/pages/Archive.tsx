@@ -265,6 +265,18 @@ function formatToMDYInput(value: string): string {
   return [mm, dd, yyyy].filter((s) => s.length > 0).join("-");
 }
 
+function normalizeToISODate(input?: string): string {
+  if (!input) return "";
+  const mdy = input.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (mdy) {
+    const [_, mm, dd, yyyy] = mdy;
+    return `${yyyy}-${mm}-${dd}`;
+  }
+  const iso = input.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return input;
+  return input;
+}
+
 export default function Archive() {
   const [activeTab, setActiveTab] = useState<"candidate" | "job">("candidate");
 
@@ -428,22 +440,20 @@ export default function Archive() {
               <span className="text-sm text-gray-600">Date Range</span>
               <div className="flex items-center gap-2">
                 <Input
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={10}
-                  placeholder="mm-dd-yyyy"
-                  value={fromDate}
-                  onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
+                  type="date"
+                  value={normalizeToISODate(fromDate)}
+                  onChange={(e) => setFromDate(e.target.value)}
+                  onFocus={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
+                  onClick={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
                   className="h-9 w-28 md:w-32 rounded-md text-sm"
                   aria-label="From date"
                 />
                 <Input
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={10}
-                  placeholder="mm-dd-yyyy"
-                  value={toDate}
-                  onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
+                  type="date"
+                  value={normalizeToISODate(toDate)}
+                  onChange={(e) => setToDate(e.target.value)}
+                  onFocus={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
+                  onClick={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
                   className="h-9 w-28 md:w-32 rounded-md text-sm"
                   aria-label="To date"
                 />
