@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -384,7 +385,7 @@ export default function Archive() {
 
         {/* Controls Row */}
         {activeTab === "candidate" ? (
-          <div className="flex flex-wrap items-end gap-4 mb-2">
+          <div className="flex flex-wrap items-center gap-4 mb-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
@@ -448,6 +449,12 @@ export default function Archive() {
                 />
               </div>
             </div>
+            <Button
+              size="sm"
+              className="ml-4 h-9 px-4 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white rounded-md text-sm font-medium"
+            >
+              Export
+            </Button>
           </div>
         ) : (
           <div className="flex items-start justify-between mb-2">
