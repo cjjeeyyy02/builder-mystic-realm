@@ -502,6 +502,7 @@ export default function Archive() {
                       <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
                       <td className="py-3 pr-4 text-gray-700 truncate">{r.appliedPosition}</td>
                       <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.applicationDate}</td>
+                      <td className="py-3 pr-4 text-gray-700 truncate">{r.applicationChannel || '-'}</td>
                       <td className="py-3 pr-4 text-gray-800">{r.status}</td>
                       <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.archiveDate}</td>
                     </tr>
