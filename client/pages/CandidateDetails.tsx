@@ -309,6 +309,9 @@ export default function CandidateDetails() {
                       <Download className="w-4 h-4 mr-2" />
                       Download Resume
                     </Button>
+                    <Button variant="destructive" size="sm" className="w-full justify-start text-xs sm:text-sm h-8 px-3" onClick={() => setShowWithdrawModal(true)}>
+                      Withdraw Application
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
