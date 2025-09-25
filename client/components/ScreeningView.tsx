@@ -785,9 +785,6 @@ export default function ScreeningView() {
                               <Briefcase className="w-4 h-4" />
                               Work Experience
                             </h3>
-                            <span className="text-xs text-gray-600">
-                              {selectedCandidate.totalExperience}
-                            </span>
                           </div>
                           <div className="space-y-2 sm:space-y-3">
                             {selectedCandidate.workHistory.map((job, index) => (
