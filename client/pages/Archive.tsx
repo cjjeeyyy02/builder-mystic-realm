@@ -296,17 +296,22 @@ export default function Archive() {
 
   const filteredCandidates = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const from = parseToDate(fromDate);
+    const to = parseToDate(toDate);
     return rows.filter((r) => {
       const matchesQuery = !q
         ? true
         : r.jobId.toLowerCase().includes(q) ||
-          r.candidateName.toLowerCase().includes(q);
-      const matchesPos =
-        positionFilter === "all" || r.appliedPosition === positionFilter;
+          r.candidateName.toLowerCase().includes(q) ||
+          (r.archiveDate || "").toLowerCase().includes(q);
+      const matchesPos = positionFilter === "all" || r.appliedPosition === positionFilter;
       const matchesStatus = statusFilter === "all" || r.status === statusFilter;
-      return matchesQuery && matchesPos && matchesStatus;
+      const ad = parseToDate(r.archiveDate);
+      const matchesFrom = !from || (ad && ad >= from);
+      const matchesTo = !to || (ad && ad <= to);
+      return matchesQuery && matchesPos && matchesStatus && matchesFrom && matchesTo;
     });
-  }, [rows, query, positionFilter, statusFilter]);
+  }, [rows, query, positionFilter, statusFilter, fromDate, toDate]);
 
   const selected = useMemo(
     () => rows.find((r) => r.jobId === selectedJobId) || null,
