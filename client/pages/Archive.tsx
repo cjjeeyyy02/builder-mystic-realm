@@ -240,6 +240,22 @@ function formatDateMDY(dateStr?: string) {
   return dateStr;
 }
 
+function parseToDate(input?: string): Date | null {
+  if (!input) return null;
+  const mdy = input.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (mdy) {
+    const [_, mm, dd, yyyy] = mdy;
+    return new Date(Number(yyyy), Number(mm) - 1, Number(dd));
+    }
+  const iso = input.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) {
+    const [_, yyyy, mm, dd] = iso;
+    return new Date(Number(yyyy), Number(mm) - 1, Number(dd));
+  }
+  const d = new Date(input);
+  return isNaN(d.getTime()) ? null : d;
+}
+
 export default function Archive() {
   const [activeTab, setActiveTab] = useState<"candidate" | "job">("candidate");
 
