@@ -384,77 +384,66 @@ export default function Archive() {
 
         {/* Controls Row */}
         {activeTab === "candidate" ? (
-          <div className="flex items-start justify-between mb-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search Job ID or Candidate"
-                  className="w-48 h-9 rounded-md pl-10 text-sm"
-                />
-              </div>
-
-              <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
-                <SelectTrigger className="w-40 h-9 rounded-md text-sm">
-                  <SelectValue placeholder="Applied Position" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All positions</SelectItem>
-                  {positions.map((p) => (
-                    <SelectItem key={p} value={p}>
-                      {p}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
-                <SelectTrigger className="w-36 h-9 rounded-md text-sm">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All statuses</SelectItem>
-                  <SelectItem value="Screening">Screening</SelectItem>
-                  <SelectItem value="Interview">Interview</SelectItem>
-                  <SelectItem value="Activation">Activation</SelectItem>
-                  <SelectItem value="Rejected">Rejected</SelectItem>
-                  <SelectItem value="Hired">Hired</SelectItem>
-                </SelectContent>
-              </Select>
+          <div className="flex flex-wrap items-end gap-4 mb-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search Job ID or Candidate"
+                className="w-48 h-9 rounded-md pl-10 text-sm"
+              />
             </div>
-            <div className="ml-auto flex flex-col items-start gap-1">
-              <label className="text-[11px] text-gray-500">Date Range</label>
-              <div className="flex items-end gap-2">
-                <div className="flex flex-col">
-                  <label className="text-[11px] text-gray-500 mb-1">From</label>
-                  <Input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={10}
-                    placeholder="mm-dd-yyyy"
-                    value={fromDate}
-                    onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
-                    className="h-9 w-32 rounded-md text-sm"
-                    aria-label="From date"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="text-[11px] text-gray-500 mb-1">To</label>
-                  <Input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={10}
-                    placeholder="mm-dd-yyyy"
-                    value={toDate}
-                    onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
-                    className="h-9 w-32 rounded-md text-sm"
-                    aria-label="To date"
-                  />
-                </div>
-              </div>
-            </div>
+
+            <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
+              <SelectTrigger className="w-40 h-9 rounded-md text-sm">
+                <SelectValue placeholder="Applied Position" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All positions</SelectItem>
+                {positions.map((p) => (
+                  <SelectItem key={p} value={p}>
+                    {p}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
+              <SelectTrigger className="w-36 h-9 rounded-md text-sm">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="Screening">Screening</SelectItem>
+                <SelectItem value="Interview">Interview</SelectItem>
+                <SelectItem value="Activation">Activation</SelectItem>
+                <SelectItem value="Rejected">Rejected</SelectItem>
+                <SelectItem value="Hired">Hired</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <span className="text-xs text-gray-600">Date Range</span>
+            <Input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              placeholder="mm-dd-yyyy"
+              value={fromDate}
+              onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
+              className="h-9 w-28 md:w-32 rounded-md text-sm"
+              aria-label="From date"
+            />
+            <Input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              placeholder="mm-dd-yyyy"
+              value={toDate}
+              onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
+              className="h-9 w-28 md:w-32 rounded-md text-sm"
+              aria-label="To date"
+            />
           </div>
         ) : (
           <div className="flex items-start justify-between mb-2">
