@@ -1773,7 +1773,7 @@ Google India`,
                           <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
                             INTERVIEW PROGRESS
                           </TableHead>
-                          <TableHead className="py-2 px-3 font-bold text-black text-left align-middle">
+                          <TableHead className="py-2 px-3 font-bold text-black text-center align-middle">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -1821,7 +1821,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-left">
+                          <TableCell className="px-3 py-3 align-middle text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1899,7 +1899,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-left">
+                          <TableCell className="px-3 py-3 align-middle text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1977,7 +1977,7 @@ Google India`,
                               <span className="text-xs font-medium">100%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-left">
+                          <TableCell className="px-3 py-3 align-middle text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -2055,7 +2055,7 @@ Google India`,
                               <span className="text-xs font-medium">90%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-left">
+                          <TableCell className="px-3 py-3 align-middle text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -2133,7 +2133,7 @@ Google India`,
                               <span className="text-xs font-medium">70%</span>
                             </div>
                           </TableCell>
-                          <TableCell className="px-3 py-3 align-middle text-left">
+                          <TableCell className="px-3 py-3 align-middle text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
