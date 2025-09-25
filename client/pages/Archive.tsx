@@ -247,6 +247,7 @@ export default function Archive() {
   );
   const [rows, setRows] = useState<CandidateArchive[]>(initialCandidates);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
+  const [candidateSheetOpen, setCandidateSheetOpen] = useState(false);
 
   // Job Posting tab state
   const [jobQuery, setJobQuery] = useState("");
