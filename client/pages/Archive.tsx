@@ -481,6 +481,7 @@ export default function Archive() {
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">Candidate</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">Applied Position</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">Application Date</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Application Channel</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
                   </tr>
