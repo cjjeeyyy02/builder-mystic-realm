@@ -526,7 +526,7 @@ export default function ScreeningView() {
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">COUNTRY</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">DATE ADDED</th>
                   <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">STATUS</th>
-                  <th className="py-2 px-3 whitespace-nowrap text-left align-middle font-bold text-black">ACTION</th>
+                  <th className="py-2 px-3 whitespace-nowrap text-center align-middle font-bold text-black">ACTION</th>
                 </tr>
               </thead>
               <tbody>
@@ -598,7 +598,7 @@ export default function ScreeningView() {
                               : "Pending"}
                         </Badge>
                       </td>
-                      <td className="py-2 px-3 text-left align-middle">
+                      <td className="py-2 px-3 text-center align-middle">
                         <ActionComponent
                           candidateId={candidate.id}
                           candidate={candidate}
