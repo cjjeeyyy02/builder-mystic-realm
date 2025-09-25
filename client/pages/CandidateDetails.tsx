@@ -324,61 +324,62 @@ export default function CandidateDetails() {
 
             {/* Withdraw Application Modal */}
             <Dialog open={showWithdrawModal} onOpenChange={setShowWithdrawModal}>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Withdraw Candidate Application</DialogTitle>
-                  <DialogDescription>
-                    Provide a reason for withdrawing this candidate's application.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Reason for Withdrawal</label>
-                    <Select value={withdrawReason} onValueChange={setWithdrawReason}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a reason" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Candidate Declined Offer">Candidate Declined Offer</SelectItem>
-                        <SelectItem value="Candidate Unresponsive">Candidate Unresponsive</SelectItem>
-                        <SelectItem value="Failed Screening">Failed Screening</SelectItem>
-                        <SelectItem value="Other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  {withdrawReason === "Other" && (
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Custom Reason</label>
-                      <Textarea
-                        value={otherReason}
-                        onChange={(e) => setOtherReason(e.target.value)}
-                        placeholder="Enter a custom reason"
-                        className="min-h-[80px]"
-                      />
-                    </div>
-                  )}
-                </div>
-                <DialogFooter>
-                  <Button variant="outline" onClick={() => setShowWithdrawModal(false)}>Cancel</Button>
-                  <Button
-                    onClick={() => {
-                      if (!candidateId) return setShowWithdrawModal(false);
-                      const reason = withdrawReason === "Other" ? (otherReason.trim() || "Other") : (withdrawReason || "Other");
-                      try {
-                        window.localStorage.setItem(
-                          `candidate-withdrawn:${candidateId}`,
-                          JSON.stringify({ withdrawn: true, reason, at: new Date().toISOString() })
-                        );
-                      } catch {}
-                      setShowWithdrawModal(false);
-                    }}
-                    disabled={!withdrawReason || (withdrawReason === "Other" && !otherReason.trim())}
-                  >
-                    Confirm Withdraw
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+        <DialogContent className="sm:max-w-md bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-gray-900">Withdraw Candidate Application</DialogTitle>
+            <DialogDescription className="text-sm text-gray-600">
+              Provide a reason for withdrawing this candidate's application.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-800 mb-1">Reason for Withdrawal</label>
+              <Select value={withdrawReason} onValueChange={setWithdrawReason}>
+                <SelectTrigger className="rounded-lg border border-gray-200">
+                  <SelectValue placeholder="Select a reason" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Candidate Declined Offer">Candidate Declined Offer</SelectItem>
+                  <SelectItem value="Candidate Unresponsive">Candidate Unresponsive</SelectItem>
+                  <SelectItem value="Failed Screening">Failed Screening</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {withdrawReason === "Other" && (
+              <div>
+                <label className="block text-sm font-medium text-gray-800 mb-1">Custom Reason</label>
+                <Textarea
+                  value={otherReason}
+                  onChange={(e) => setOtherReason(e.target.value)}
+                  placeholder="Enter a custom reason"
+                  className="min-h-[100px] rounded-lg border border-gray-200 placeholder:text-gray-400"
+                />
+              </div>
+            )}
+          </div>
+          <DialogFooter className="flex items-center justify-end gap-2 pt-2">
+            <Button variant="outline" className="border-gray-300 text-gray-800" onClick={() => setShowWithdrawModal(false)}>Cancel</Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={() => {
+                if (!candidateId) return setShowWithdrawModal(false);
+                const reason = withdrawReason === "Other" ? (otherReason.trim() || "Other") : (withdrawReason || "Other");
+                try {
+                  window.localStorage.setItem(
+                    `candidate-withdrawn:${candidateId}`,
+                    JSON.stringify({ withdrawn: true, reason, at: new Date().toISOString() })
+                  );
+                } catch {}
+                setShowWithdrawModal(false);
+              }}
+              disabled={!withdrawReason || (withdrawReason === "Other" && !otherReason.trim())}
+            >
+              Confirm Withdraw
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
             {/* Screening Notes */}
             <Card>
