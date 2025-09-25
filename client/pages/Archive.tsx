@@ -416,6 +416,16 @@ export default function Archive() {
                 </SelectContent>
               </Select>
             </div>
+            <div className="ml-auto flex items-end gap-3">
+              <div className="flex flex-col">
+                <label className="text-[11px] text-gray-500 mb-1">From</label>
+                <Input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="h-10 rounded-md" />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-[11px] text-gray-500 mb-1">To</label>
+                <Input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="h-10 rounded-md" />
+              </div>
+            </div>
           </div>
         ) : (
           <div className="flex items-start justify-between mb-2">
