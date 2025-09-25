@@ -256,6 +256,14 @@ function parseToDate(input?: string): Date | null {
   return isNaN(d.getTime()) ? null : d;
 }
 
+function formatToMDYInput(value: string): string {
+  const digits = value.replace(/[^0-9]/g, "").slice(0, 8);
+  const mm = digits.slice(0, 2);
+  const dd = digits.slice(2, 4);
+  const yyyy = digits.slice(4, 8);
+  return [mm, dd, yyyy].filter((s) => s.length > 0).join("-");
+}
+
 export default function Archive() {
   const [activeTab, setActiveTab] = useState<"candidate" | "job">("candidate");
 
@@ -384,12 +392,12 @@ export default function Archive() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search Job ID or Candidate"
-                  className="w-[280px] h-10 rounded-md pl-10"
+                  className="w-48 h-9 rounded-md pl-10 text-sm"
                 />
               </div>
 
               <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
-                <SelectTrigger className="w-56 h-10 rounded-md text-sm">
+                <SelectTrigger className="w-40 h-9 rounded-md text-sm">
                   <SelectValue placeholder="Applied Position" />
                 </SelectTrigger>
                 <SelectContent>
@@ -403,7 +411,7 @@ export default function Archive() {
               </Select>
 
               <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
-                <SelectTrigger className="w-44 h-10 rounded-md text-sm">
+                <SelectTrigger className="w-36 h-9 rounded-md text-sm">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -416,14 +424,35 @@ export default function Archive() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="ml-auto flex items-end gap-3">
-              <div className="flex flex-col">
-                <label className="text-[11px] text-gray-500 mb-1">From</label>
-                <Input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="h-10 rounded-md" />
-              </div>
-              <div className="flex flex-col">
-                <label className="text-[11px] text-gray-500 mb-1">To</label>
-                <Input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="h-10 rounded-md" />
+            <div className="ml-auto flex flex-col items-start gap-1">
+              <label className="text-[11px] text-gray-500">Date Range</label>
+              <div className="flex items-end gap-2">
+                <div className="flex flex-col">
+                  <label className="text-[11px] text-gray-500 mb-1">From</label>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={10}
+                    placeholder="mm-dd-yyyy"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
+                    className="h-9 w-32 rounded-md text-sm"
+                    aria-label="From date"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-[11px] text-gray-500 mb-1">To</label>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={10}
+                    placeholder="mm-dd-yyyy"
+                    value={toDate}
+                    onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
+                    className="h-9 w-32 rounded-md text-sm"
+                    aria-label="To date"
+                  />
+                </div>
               </div>
             </div>
           </div>
