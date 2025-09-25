@@ -78,6 +78,7 @@ const initialCandidates: CandidateArchive[] = [
     candidateName: "Alex Johnson",
     appliedPosition: "Frontend Developer",
     applicationDate: "08-02-2025",
+    applicationChannel: "Indeed",
     status: "Screening",
     archiveDate: "08-10-2025",
     screening: {
