@@ -12,7 +12,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import Layout from "@/components/Layout";
-import { Search } from "lucide-react";
+import { Search, Download } from "lucide-react";
 
 // Types
 export type CandidateStatus =
@@ -449,11 +449,14 @@ export default function Archive() {
                 />
               </div>
             </div>
+            <div className="flex-1" />
             <Button
               size="sm"
-              className="ml-4 h-9 px-4 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white rounded-md text-sm font-medium"
+              variant="outline"
+              className="h-9 px-4 text-sm font-medium"
+              title="Export"
             >
-              Export
+              <Download className="w-4 h-4 mr-1" /> Export
             </Button>
           </div>
         ) : (
