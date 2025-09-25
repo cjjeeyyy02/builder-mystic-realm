@@ -610,12 +610,14 @@ export default function Archive() {
                       }`}
                       onClick={() => setSelectedJobPostingId(j.jobId)}
                     >
-                      <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{j.jobId}</td>
-                      <td className="py-3 pr-4 text-gray-800 truncate">{j.title}</td>
-                      <td className="py-3 pr-4 text-gray-700 truncate">{j.department}</td>
-                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{j.location}</td>
-                      <td className="py-3 pr-4 text-gray-800">{j.status}</td>
-                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{formatDateMDY(j.archiveDate)}</td>
+                      <td className="py-3 pr-4">{j.jobId}</td>
+                      <td className="py-3 pr-4">
+                        <div className="font-medium">{j.title}</div>
+                      </td>
+                      <td className="py-3 pr-4">{j.department}</td>
+                      <td className="py-3 pr-4">{j.location}</td>
+                      <td className="py-3 pr-4">{j.status}</td>
+                      <td className="py-3 pr-4">{formatDateMDY(j.archiveDate)}</td>
                     </tr>
                   ))}
 
