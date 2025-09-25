@@ -423,27 +423,31 @@ export default function Archive() {
               </SelectContent>
             </Select>
 
-            <span className="text-xs text-gray-600">Date Range</span>
-            <Input
-              type="text"
-              inputMode="numeric"
-              maxLength={10}
-              placeholder="mm-dd-yyyy"
-              value={fromDate}
-              onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
-              className="h-9 w-28 md:w-32 rounded-md text-sm"
-              aria-label="From date"
-            />
-            <Input
-              type="text"
-              inputMode="numeric"
-              maxLength={10}
-              placeholder="mm-dd-yyyy"
-              value={toDate}
-              onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
-              className="h-9 w-28 md:w-32 rounded-md text-sm"
-              aria-label="To date"
-            />
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">Date Range</span>
+              <div className="flex items-center gap-2">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={10}
+                  placeholder="mm-dd-yyyy"
+                  value={fromDate}
+                  onChange={(e) => setFromDate(formatToMDYInput(e.target.value))}
+                  className="h-9 w-28 md:w-32 rounded-md text-sm"
+                  aria-label="From date"
+                />
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={10}
+                  placeholder="mm-dd-yyyy"
+                  value={toDate}
+                  onChange={(e) => setToDate(formatToMDYInput(e.target.value))}
+                  className="h-9 w-28 md:w-32 rounded-md text-sm"
+                  aria-label="To date"
+                />
+              </div>
+            </div>
           </div>
         ) : (
           <div className="flex items-start justify-between mb-2">
