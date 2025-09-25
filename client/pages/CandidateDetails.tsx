@@ -322,6 +322,64 @@ export default function CandidateDetails() {
               </Card>
             )}
 
+            {/* Withdraw Application Modal */}
+            <Dialog open={showWithdrawModal} onOpenChange={setShowWithdrawModal}>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Withdraw Candidate Application</DialogTitle>
+                  <DialogDescription>
+                    Provide a reason for withdrawing this candidate's application.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Reason for Withdrawal</label>
+                    <Select value={withdrawReason} onValueChange={setWithdrawReason}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a reason" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Candidate Declined Offer">Candidate Declined Offer</SelectItem>
+                        <SelectItem value="Candidate Unresponsive">Candidate Unresponsive</SelectItem>
+                        <SelectItem value="Failed Screening">Failed Screening</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {withdrawReason === "Other" && (
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Custom Reason</label>
+                      <Textarea
+                        value={otherReason}
+                        onChange={(e) => setOtherReason(e.target.value)}
+                        placeholder="Enter a custom reason"
+                        className="min-h-[80px]"
+                      />
+                    </div>
+                  )}
+                </div>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setShowWithdrawModal(false)}>Cancel</Button>
+                  <Button
+                    onClick={() => {
+                      if (!candidateId) return setShowWithdrawModal(false);
+                      const reason = withdrawReason === "Other" ? (otherReason.trim() || "Other") : (withdrawReason || "Other");
+                      try {
+                        window.localStorage.setItem(
+                          `candidate-withdrawn:${candidateId}`,
+                          JSON.stringify({ withdrawn: true, reason, at: new Date().toISOString() })
+                        );
+                      } catch {}
+                      setShowWithdrawModal(false);
+                    }}
+                    disabled={!withdrawReason || (withdrawReason === "Other" && !otherReason.trim())}
+                  >
+                    Confirm Withdraw
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
             {/* Screening Notes */}
             <Card>
               <CardContent className="p-4">
