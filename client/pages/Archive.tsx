@@ -322,6 +322,10 @@ export default function Archive() {
                   key={tab.id}
                   onClick={() => {
                     setActiveTab(tab.id as typeof activeTab);
+                    if (tab.id === "job") {
+                      setSelectedJobId(null);
+                      setCandidateSheetOpen(false);
+                    }
                     window.location.hash = tab.id;
                   }}
                   aria-current={isActive ? "page" : undefined}
@@ -449,7 +453,10 @@ export default function Archive() {
                       className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
                         selectedJobId === r.jobId ? "bg-blue-50/50" : ""
                       }`}
-                      onClick={() => setSelectedJobId(r.jobId)}
+                      onClick={() => {
+                        setSelectedJobId(r.jobId);
+                        setCandidateSheetOpen(true);
+                      }}
                     >
                       <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{r.jobId}</td>
                       <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
@@ -512,87 +519,98 @@ export default function Archive() {
           </div>
         </Card>
 
-        {/* Details Grid (Candidate tab only) */}
+        {/* Candidate Details Side Sheet */}
         {activeTab === "candidate" && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Left Column */}
-            <div className="space-y-4 min-h-0">
-              <Card className="shadow-sm border-gray-200">
-                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                  <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <Detail label="Date Added" value={selected?.screening?.dateAdded} />
-                    <Detail label="Status" value={selected?.screening?.status} />
-                    <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
-                    <Detail label="Approved By" value={selected?.screening?.approvedBy} />
-                  </div>
-                </CardContent>
-              </Card>
+          <Sheet open={candidateSheetOpen} onOpenChange={(open) => {
+            setCandidateSheetOpen(open);
+            if (!open) return; // keep selection until closed
+          }}>
+            <SheetContent side="right" className="w-full max-w-[40vw] md:max-w-[38vw] lg:max-w-[35vw]">
+              <div className="h-full flex flex-col">
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold text-foreground">Candidate Details</h2>
+                  {selected && (
+                    <div className="text-sm text-muted-foreground mt-1">
+                      {selected.candidateName} • {selected.appliedPosition}
+                    </div>
+                  )}
+                </div>
 
-              <Card className="shadow-sm border-gray-200">
-                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                  <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <Detail label="Date Added" value={selected?.activation?.dateAdded} />
-                    <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
-                    <Detail label="Approved By" value={selected?.activation?.approvedBy} />
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="flex-1 overflow-y-auto pr-1 space-y-4">
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-2">
+                      <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.screening?.dateAdded} />
+                        <Detail label="Status" value={selected?.screening?.status} />
+                        <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
+                        <Detail label="Approved By" value={selected?.screening?.approvedBy} />
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card className="shadow-sm border-gray-200">
-                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                  <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <Detail label="Date Added" value={selected?.hired?.dateAdded} />
-                    <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
-                    <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-2">
+                      <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.activation?.dateAdded} />
+                        <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
+                        <Detail label="Approved By" value={selected?.activation?.approvedBy} />
+                      </div>
+                    </CardContent>
+                  </Card>
 
-            {/* Right Column */}
-            <div className="space-y-4 min-h-0">
-              <Card className="shadow-sm border-gray-200">
-                <CardContent className="p-4 space-y-3 max-h-[40vh] overflow-y-auto">
-                  <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-2">
+                      <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.hired?.dateAdded} />
+                        <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
+                        <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
+                      </div>
+                    </CardContent>
+                  </Card>
 
-                  <Accordion type="multiple" className="w-full">
-                    <AccordionItem value="step1">
-                      <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
-                      <AccordionContent>
-                        <div className="grid grid-cols-2 gap-2 text-sm">
-                          <Detail label="Interview Type" value={selected?.interview?.steps?.[0]?.interviewType} />
-                          <Detail label="Interview Date" value={selected?.interview?.steps?.[0]?.interviewDate} />
-                          <Detail label="Interviewer Name" value={selected?.interview?.steps?.[0]?.interviewerName} />
-                          <Detail label="Interview Result" value={selected?.interview?.steps?.[0]?.interviewResult} />
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
+                  <Card className="shadow-sm border-gray-200">
+                    <CardContent className="p-4 space-y-3">
+                      <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
+                      <Accordion type="multiple" className="w-full">
+                        <AccordionItem value="step1">
+                          <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
+                          <AccordionContent>
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              <Detail label="Interview Type" value={selected?.interview?.steps?.[0]?.interviewType} />
+                              <Detail label="Interview Date" value={selected?.interview?.steps?.[0]?.interviewDate} />
+                              <Detail label="Interviewer Name" value={selected?.interview?.steps?.[0]?.interviewerName} />
+                              <Detail label="Interview Result" value={selected?.interview?.steps?.[0]?.interviewResult} />
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
 
-                    <AccordionItem value="step2">
-                      <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
-                      <AccordionContent>
-                        <div className="grid grid-cols-2 gap-2 text-sm">
-                          <Detail label="Interview Type" value={selected?.interview?.steps?.[1]?.interviewType} />
-                          <Detail label="Interview Date" value={selected?.interview?.steps?.[1]?.interviewDate} />
-                          <Detail label="Interviewer Name" value={selected?.interview?.steps?.[1]?.interviewerName} />
-                          <Detail label="Interview Result" value={selected?.interview?.steps?.[1]?.interviewResult} />
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                        <AccordionItem value="step2">
+                          <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
+                          <AccordionContent>
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              <Detail label="Interview Type" value={selected?.interview?.steps?.[1]?.interviewType} />
+                              <Detail label="Interview Date" value={selected?.interview?.steps?.[1]?.interviewDate} />
+                              <Detail label="Interviewer Name" value={selected?.interview?.steps?.[1]?.interviewerName} />
+                              <Detail label="Interview Result" value={selected?.interview?.steps?.[1]?.interviewResult} />
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
 
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <Detail label="Date Added" value={selected?.interview?.dateAdded} />
-                    <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
-                    <Detail label="Approved By" value={selected?.interview?.approvedBy} />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <Detail label="Date Added" value={selected?.interview?.dateAdded} />
+                        <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
+                        <Detail label="Approved By" value={selected?.interview?.approvedBy} />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         )}
       </div>
     </Layout>
