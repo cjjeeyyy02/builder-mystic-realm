@@ -1,13 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -67,7 +59,17 @@ interface CandidateArchive {
   };
 }
 
-// Sample data
+interface JobPostingArchive {
+  jobId: string;
+  title: string;
+  department: string;
+  location: string;
+  status: "Archived" | "Closed" | "Draft" | "Active";
+  datePosted: string; // MM-DD-YYYY or YYYY-MM-DD acceptable
+  archiveDate: string; // MM-DD-YYYY
+}
+
+// Sample data - Candidates
 const initialCandidates: CandidateArchive[] = [
   {
     jobId: "001",
@@ -186,22 +188,57 @@ const initialCandidates: CandidateArchive[] = [
   },
 ];
 
-const statusChipClass = (status: CandidateStatus) => {
-  switch (status) {
-    case "Screening":
-      return "bg-blue-100 text-blue-700 border-blue-200";
-    case "Interview":
-      return "bg-purple-100 text-purple-700 border-purple-200";
-    case "Activation":
-      return "bg-amber-100 text-amber-700 border-amber-200";
-    case "Rejected":
-      return "bg-red-100 text-red-700 border-red-200";
-    case "Hired":
-      return "bg-green-100 text-green-700 border-green-200";
+// Sample data - Job Postings (Archived)
+const initialJobPostings: JobPostingArchive[] = [
+  {
+    jobId: "J-1003",
+    title: "DevOps Engineer",
+    department: "Infrastructure",
+    location: "Dublin, Ireland",
+    status: "Archived",
+    datePosted: "2025-05-10",
+    archiveDate: "08-15-2025",
+  },
+  {
+    jobId: "J-1005",
+    title: "QA Automation Engineer",
+    department: "Engineering",
+    location: "Austin, TX, United States",
+    status: "Archived",
+    datePosted: "2025-06-22",
+    archiveDate: "08-12-2025",
+  },
+  {
+    jobId: "J-1006",
+    title: "Marketing Specialist",
+    department: "Marketing",
+    location: "Remote",
+    status: "Archived",
+    datePosted: "2025-04-02",
+    archiveDate: "08-01-2025",
+  },
+];
+
+function formatDateMDY(dateStr?: string) {
+  if (!dateStr) return "";
+  const mdy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (mdy) return dateStr;
+  const ymd = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (ymd) return `${ymd[2]}-${ymd[3]}-${ymd[1]}`;
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
   }
-};
+  return dateStr;
+}
 
 export default function Archive() {
+  const [activeTab, setActiveTab] = useState<"candidate" | "job">("candidate");
+
+  // Candidate tab state
   const [query, setQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<"all" | CandidateStatus>(
@@ -210,12 +247,30 @@ export default function Archive() {
   const [rows, setRows] = useState<CandidateArchive[]>(initialCandidates);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
+  // Job Posting tab state
+  const [jobQuery, setJobQuery] = useState("");
+  const [jobDepartmentFilter, setJobDepartmentFilter] = useState<string>("all");
+  const [jobStatusFilter, setJobStatusFilter] = useState<string>("all");
+  const [jobRows, setJobRows] = useState<JobPostingArchive[]>(initialJobPostings);
+  const [selectedJobPostingId, setSelectedJobPostingId] = useState<string | null>(null);
+
+  // Support URL hash (optional) for tab deep link
+  useEffect(() => {
+    const applyHash = () => {
+      const h = window.location.hash.replace('#','');
+      if (h === 'job' || h === 'candidate') setActiveTab(h as any);
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
+  }, []);
+
   const positions = useMemo(() => {
     const set = new Set(rows.map((r) => r.appliedPosition));
     return Array.from(set).sort();
   }, [rows]);
 
-  const filtered = useMemo(() => {
+  const filteredCandidates = useMemo(() => {
     const q = query.trim().toLowerCase();
     return rows.filter((r) => {
       const matchesQuery = !q
@@ -234,179 +289,311 @@ export default function Archive() {
     [rows, selectedJobId],
   );
 
+  const jobDepartments = useMemo(() => {
+    const set = new Set(jobRows.map((j) => j.department).filter(Boolean));
+    return Array.from(set).sort();
+  }, [jobRows]);
+
+  const filteredJobs = useMemo(() => {
+    const q = jobQuery.trim().toLowerCase();
+    return jobRows.filter((j) => {
+      const matchesQuery = !q
+        ? true
+        : j.jobId.toLowerCase().includes(q) || j.title.toLowerCase().includes(q);
+      const matchesDept = jobDepartmentFilter === 'all' || j.department === jobDepartmentFilter;
+      const matchesStatus = jobStatusFilter === 'all' || j.status === jobStatusFilter;
+      return matchesQuery && matchesDept && matchesStatus;
+    });
+  }, [jobRows, jobQuery, jobDepartmentFilter, jobStatusFilter]);
+
   return (
     <Layout>
       <div className="archive space-y-5">
-        {/* Page Title */}
-        <h1 className="text-3xl font-semibold text-foreground">Archive</h1>
+        {/* Tabbed Header */}
+        <div className="w-full">
+          <nav className="flex items-center gap-8 border-b border-gray-200 pb-1">
+            {[
+              { id: "candidate", label: "Candidate" },
+              { id: "job", label: "Job Posting" },
+            ].map((tab) => {
+              const isActive = activeTab === (tab.id as typeof activeTab);
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id as typeof activeTab);
+                    window.location.hash = tab.id;
+                  }}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`group relative pb-3 text-base tracking-tight transition-colors duration-150 ${
+                    isActive
+                      ? "text-blue-700 font-semibold"
+                      : "text-gray-600 hover:text-gray-800 font-medium"
+                  }`}
+                >
+                  <span className="whitespace-nowrap">{tab.label}</span>
+                  {isActive && (
+                    <span className="pointer-events-none absolute left-0 -bottom-px h-0.5 w-full bg-blue-600" />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
 
         {/* Controls Row */}
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search Job ID or Candidate Name"
-                className="w-[280px] h-10 rounded-md pl-10"
-              />
+        {activeTab === "candidate" ? (
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search Job ID or Candidate Name"
+                  className="w-[280px] h-10 rounded-md pl-10"
+                />
+              </div>
+
+              <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
+                <SelectTrigger className="w-56 h-10 rounded-md text-sm">
+                  <SelectValue placeholder="Applied Position" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All positions</SelectItem>
+                  {positions.map((p) => (
+                    <SelectItem key={p} value={p}>
+                      {p}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
+                <SelectTrigger className="w-44 h-10 rounded-md text-sm">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All statuses</SelectItem>
+                  <SelectItem value="Screening">Screening</SelectItem>
+                  <SelectItem value="Interview">Interview</SelectItem>
+                  <SelectItem value="Activation">Activation</SelectItem>
+                  <SelectItem value="Rejected">Rejected</SelectItem>
+                  <SelectItem value="Hired">Hired</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-
-            <Select value={positionFilter} onValueChange={(v) => setPositionFilter(v)}>
-              <SelectTrigger className="w-56 h-10 rounded-md text-sm">
-                <SelectValue placeholder="Applied Position" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All positions</SelectItem>
-                {positions.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {p}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
-              <SelectTrigger className="w-44 h-10 rounded-md text-sm">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All statuses</SelectItem>
-                <SelectItem value="Screening">Screening</SelectItem>
-                <SelectItem value="Interview">Interview</SelectItem>
-                <SelectItem value="Activation">Activation</SelectItem>
-                <SelectItem value="Rejected">Rejected</SelectItem>
-                <SelectItem value="Hired">Hired</SelectItem>
-              </SelectContent>
-            </Select>
           </div>
-        </div>
+        ) : (
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  value={jobQuery}
+                  onChange={(e) => setJobQuery(e.target.value)}
+                  placeholder="Search Job ID or Title"
+                  className="w-[280px] h-10 rounded-md pl-10"
+                />
+              </div>
+
+              <Select value={jobDepartmentFilter} onValueChange={(v) => setJobDepartmentFilter(v)}>
+                <SelectTrigger className="w-56 h-10 rounded-md text-sm">
+                  <SelectValue placeholder="Department" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All departments</SelectItem>
+                  {jobDepartments.map((d) => (
+                    <SelectItem key={d} value={d}>
+                      {d}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={jobStatusFilter} onValueChange={(v) => setJobStatusFilter(v)}>
+                <SelectTrigger className="w-44 h-10 rounded-md text-sm">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All statuses</SelectItem>
+                  <SelectItem value="Archived">Archived</SelectItem>
+                  <SelectItem value="Closed">Closed</SelectItem>
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="Draft">Draft</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        )}
 
         {/* Table */}
         <Card className="w-full p-4">
           <div className="overflow-auto">
-            <table className="w-full text-sm table-auto border-collapse mx-auto" style={{ maxWidth: "1200px" }}>
-              <thead>
-                <tr className="text-left text-xs text-muted-foreground border-b">
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job ID</th>
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Candidate Name</th>
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Applied Position</th>
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Application Date</th>
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
-                  <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((r) => (
-                  <tr
-                    key={r.jobId}
-                    className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
-                      selectedJobId === r.jobId ? "bg-blue-50/50" : ""
-                    }`}
-                    onClick={() => setSelectedJobId(r.jobId)}
-                  >
-                    <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{r.jobId}</td>
-                    <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
-                    <td className="py-3 pr-4 text-gray-700 truncate">{r.appliedPosition}</td>
-                    <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.applicationDate}</td>
-                    <td className="py-3 pr-4 text-gray-800">{r.status}</td>
-                    <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.archiveDate}</td>
+            {activeTab === "candidate" ? (
+              <table className="w-full text-sm table-auto border-collapse mx-auto" style={{ maxWidth: "1200px" }}>
+                <thead>
+                  <tr className="text-left text-xs text-muted-foreground border-b">
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job ID</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Candidate Name</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Applied Position</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Application Date</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {filteredCandidates.map((r) => (
+                    <tr
+                      key={r.jobId}
+                      className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
+                        selectedJobId === r.jobId ? "bg-blue-50/50" : ""
+                      }`}
+                      onClick={() => setSelectedJobId(r.jobId)}
+                    >
+                      <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{r.jobId}</td>
+                      <td className="py-3 pr-4 text-gray-800 truncate">{r.candidateName}</td>
+                      <td className="py-3 pr-4 text-gray-700 truncate">{r.appliedPosition}</td>
+                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.applicationDate}</td>
+                      <td className="py-3 pr-4 text-gray-800">{r.status}</td>
+                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{r.archiveDate}</td>
+                    </tr>
+                  ))}
 
-                {filtered.length === 0 && (
-                  <tr>
-                    <td colSpan={6} className="px-3 py-6 text-center text-sm text-gray-500">
-                      No results found.
-                    </td>
+                  {filteredCandidates.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="px-3 py-6 text-center text-sm text-gray-500">
+                        No results found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            ) : (
+              <table className="w-full text-sm table-auto border-collapse mx-auto" style={{ maxWidth: "1200px" }}>
+                <thead>
+                  <tr className="text-left text-xs text-muted-foreground border-b">
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job ID</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job Title</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Department</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Location</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredJobs.map((j) => (
+                    <tr
+                      key={j.jobId}
+                      className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
+                        selectedJobPostingId === j.jobId ? "bg-blue-50/50" : ""
+                      }`}
+                      onClick={() => setSelectedJobPostingId(j.jobId)}
+                    >
+                      <td className="py-3 pr-4 font-medium text-gray-900 whitespace-nowrap">{j.jobId}</td>
+                      <td className="py-3 pr-4 text-gray-800 truncate">{j.title}</td>
+                      <td className="py-3 pr-4 text-gray-700 truncate">{j.department}</td>
+                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{j.location}</td>
+                      <td className="py-3 pr-4 text-gray-800">{j.status}</td>
+                      <td className="py-3 pr-4 text-gray-700 whitespace-nowrap">{formatDateMDY(j.archiveDate)}</td>
+                    </tr>
+                  ))}
+
+                  {filteredJobs.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="px-3 py-6 text-center text-sm text-gray-500">
+                        No results found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            )}
           </div>
         </Card>
 
-        {/* Details Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Left Column */}
-          <div className="space-y-4 min-h-0">
-            <Card className="shadow-sm border-gray-200">
-              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail label="Date Added" value={selected?.screening?.dateAdded} />
-                  <Detail label="Status" value={selected?.screening?.status} />
-                  <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
-                  <Detail label="Approved By" value={selected?.screening?.approvedBy} />
-                </div>
-              </CardContent>
-            </Card>
+        {/* Details Grid (Candidate tab only) */}
+        {activeTab === "candidate" && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Left Column */}
+            <div className="space-y-4 min-h-0">
+              <Card className="shadow-sm border-gray-200">
+                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                  <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Detail label="Date Added" value={selected?.screening?.dateAdded} />
+                    <Detail label="Status" value={selected?.screening?.status} />
+                    <Detail label="Approved Date" value={selected?.screening?.approvedDate} />
+                    <Detail label="Approved By" value={selected?.screening?.approvedBy} />
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="shadow-sm border-gray-200">
-              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail label="Date Added" value={selected?.activation?.dateAdded} />
-                  <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
-                  <Detail label="Approved By" value={selected?.activation?.approvedBy} />
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="shadow-sm border-gray-200">
+                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                  <h3 className="text-base font-semibold text-gray-900">Activation Details</h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Detail label="Date Added" value={selected?.activation?.dateAdded} />
+                    <Detail label="Activation Confirmed Date" value={selected?.activation?.activationConfirmedDate} />
+                    <Detail label="Approved By" value={selected?.activation?.approvedBy} />
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="shadow-sm border-gray-200">
-              <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
-                <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail label="Date Added" value={selected?.hired?.dateAdded} />
-                  <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
-                  <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="shadow-sm border-gray-200">
+                <CardContent className="p-4 space-y-2 max-h-64 md:max-h-72 overflow-y-auto">
+                  <h3 className="text-base font-semibold text-gray-900">Hired Details</h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Detail label="Date Added" value={selected?.hired?.dateAdded} />
+                    <Detail label="Orientation Stage Completed" value={selected?.hired?.orientationStageCompleted} />
+                    <Detail label="Integration Stage Completed" value={selected?.hired?.integrationStageCompleted} />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-4 min-h-0">
+              <Card className="shadow-sm border-gray-200">
+                <CardContent className="p-4 space-y-3 max-h-[40vh] overflow-y-auto">
+                  <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
+
+                  <Accordion type="multiple" className="w-full">
+                    <AccordionItem value="step1">
+                      <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <Detail label="Interview Type" value={selected?.interview?.steps?.[0]?.interviewType} />
+                          <Detail label="Interview Date" value={selected?.interview?.steps?.[0]?.interviewDate} />
+                          <Detail label="Interviewer Name" value={selected?.interview?.steps?.[0]?.interviewerName} />
+                          <Detail label="Interview Result" value={selected?.interview?.steps?.[0]?.interviewResult} />
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="step2">
+                      <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <Detail label="Interview Type" value={selected?.interview?.steps?.[1]?.interviewType} />
+                          <Detail label="Interview Date" value={selected?.interview?.steps?.[1]?.interviewDate} />
+                          <Detail label="Interviewer Name" value={selected?.interview?.steps?.[1]?.interviewerName} />
+                          <Detail label="Interview Result" value={selected?.interview?.steps?.[1]?.interviewResult} />
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Detail label="Date Added" value={selected?.interview?.dateAdded} />
+                    <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
+                    <Detail label="Approved By" value={selected?.interview?.approvedBy} />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-
-          {/* Right Column */}
-          <div className="space-y-4 min-h-0">
-            <Card className="shadow-sm border-gray-200">
-              <CardContent className="p-4 space-y-3 max-h-[40vh] overflow-y-auto">
-                <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
-
-                <Accordion type="multiple" className="w-full">
-                  <AccordionItem value="step1">
-                    <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <Detail label="Interview Type" value={selected?.interview?.steps?.[0]?.interviewType} />
-                        <Detail label="Interview Date" value={selected?.interview?.steps?.[0]?.interviewDate} />
-                        <Detail label="Interviewer Name" value={selected?.interview?.steps?.[0]?.interviewerName} />
-                        <Detail label="Interview Result" value={selected?.interview?.steps?.[0]?.interviewResult} />
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="step2">
-                    <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <Detail label="Interview Type" value={selected?.interview?.steps?.[1]?.interviewType} />
-                        <Detail label="Interview Date" value={selected?.interview?.steps?.[1]?.interviewDate} />
-                        <Detail label="Interviewer Name" value={selected?.interview?.steps?.[1]?.interviewerName} />
-                        <Detail label="Interview Result" value={selected?.interview?.steps?.[1]?.interviewResult} />
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <Detail label="Date Added" value={selected?.interview?.dateAdded} />
-                  <Detail label="Date Moved to Activation" value={selected?.interview?.dateMovedToActivation} />
-                  <Detail label="Approved By" value={selected?.interview?.approvedBy} />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        )}
       </div>
     </Layout>
   );
