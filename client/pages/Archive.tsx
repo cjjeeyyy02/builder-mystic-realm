@@ -510,7 +510,7 @@ export default function Archive() {
 
                   {filteredCandidates.length === 0 && (
                     <tr>
-                      <td colSpan={6} className="px-3 py-6 text-center text-sm text-gray-500">
+                      <td colSpan={7} className="px-3 py-6 text-center text-sm text-gray-500">
                         No results found.
                       </td>
                     </tr>
