@@ -65,11 +65,14 @@ interface CandidateArchive {
 interface JobPostingArchive {
   jobId: string;
   title: string;
-  department: string;
+  company: string;
   location: string;
+  workplaceType: "on-site" | "remote" | "hybrid";
+  employmentType: "full-time" | "part-time" | "contract" | "temporary" | "internship";
   status: "Archived" | "Closed" | "Draft" | "Active";
   datePosted: string; // MM-DD-YYYY or YYYY-MM-DD acceptable
   archiveDate: string; // MM-DD-YYYY
+  department?: string; // kept for filtering compatibility
 }
 
 // Sample data - Candidates
@@ -199,8 +202,11 @@ const initialJobPostings: JobPostingArchive[] = [
   {
     jobId: "J-1003",
     title: "DevOps Engineer",
+    company: "AI2AIM",
     department: "Infrastructure",
     location: "Dublin, Ireland",
+    workplaceType: "hybrid",
+    employmentType: "full-time",
     status: "Archived",
     datePosted: "2025-05-10",
     archiveDate: "08-15-2025",
@@ -208,8 +214,11 @@ const initialJobPostings: JobPostingArchive[] = [
   {
     jobId: "J-1005",
     title: "QA Automation Engineer",
+    company: "AI2AIM",
     department: "Engineering",
     location: "Austin, TX, United States",
+    workplaceType: "on-site",
+    employmentType: "full-time",
     status: "Archived",
     datePosted: "2025-06-22",
     archiveDate: "08-12-2025",
@@ -217,8 +226,11 @@ const initialJobPostings: JobPostingArchive[] = [
   {
     jobId: "J-1006",
     title: "Marketing Specialist",
+    company: "AI2AIM",
     department: "Marketing",
     location: "Remote",
+    workplaceType: "remote",
+    employmentType: "full-time",
     status: "Archived",
     datePosted: "2025-04-02",
     archiveDate: "08-01-2025",
@@ -516,12 +528,14 @@ export default function Archive() {
               className="h-9 px-4 text-sm font-medium"
               title="Export"
               onClick={() => {
-                const headers = ["Job ID", "Job Title", "Department", "Location", "Status", "Archive Date"];
+                const headers = ["Job ID", "Job Title", "Company/Employer", "Location", "Workplace Type", "Employment Type", "Status", "Archive Date"];
                 const rows = filteredJobs.map((j) => [
                   j.jobId,
                   j.title,
-                  j.department,
+                  j.company,
                   j.location,
+                  j.workplaceType,
+                  j.employmentType,
                   j.status,
                   formatDateMDY(j.archiveDate),
                 ]);
@@ -593,12 +607,14 @@ export default function Archive() {
               <table className="w-full text-sm table-auto border-collapse mx-auto" style={{ maxWidth: "1200px" }}>
                 <thead>
                   <tr className="text-left text-xs text-muted-foreground border-b">
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job ID</th>
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Job Title</th>
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Department</th>
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Location</th>
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Status</th>
-                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">Archive Date</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">JOB ID</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">JOB TITLE</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">COMPANY/EMPLOYER</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">LOCATION</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">WORKPLACE TYPE</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">EMPLOYMENT TYPE</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">STATUS</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">ARCHIVE DATE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -614,8 +630,10 @@ export default function Archive() {
                       <td className="py-3 pr-4">
                         <div className="font-medium">{j.title}</div>
                       </td>
-                      <td className="py-3 pr-4">{j.department}</td>
+                      <td className="py-3 pr-4">{j.company}</td>
                       <td className="py-3 pr-4">{j.location}</td>
+                      <td className="py-3 pr-4 capitalize">{j.workplaceType}</td>
+                      <td className="py-3 pr-4 capitalize">{j.employmentType}</td>
                       <td className="py-3 pr-4">{j.status}</td>
                       <td className="py-3 pr-4">{formatDateMDY(j.archiveDate)}</td>
                     </tr>
