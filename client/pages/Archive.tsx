@@ -383,7 +383,7 @@ export default function Archive() {
                 <Input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search Job ID or Candidate Name"
+                  placeholder="Search Job ID or Candidate"
                   className="w-[280px] h-10 rounded-md pl-10"
                 />
               </div>
