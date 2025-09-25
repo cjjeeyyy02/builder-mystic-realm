@@ -470,7 +470,7 @@ export default function Archive() {
             </Button>
           </div>
         ) : (
-          <div className="flex items-start justify-between mb-2">
+          <div className="flex flex-wrap items-center gap-4 mb-2">
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -509,6 +509,36 @@ export default function Archive() {
                 </SelectContent>
               </Select>
             </div>
+            <div className="flex-1" />
+            <Button
+              size="sm"
+              variant="outline"
+              className="h-9 px-4 text-sm font-medium"
+              title="Export"
+              onClick={() => {
+                const headers = ["Job ID", "Job Title", "Department", "Location", "Status", "Archive Date"];
+                const rows = filteredJobs.map((j) => [
+                  j.jobId,
+                  j.title,
+                  j.department,
+                  j.location,
+                  j.status,
+                  formatDateMDY(j.archiveDate),
+                ]);
+                const csv = [headers.join(","), ...rows.map((r) => r.map((v) => `"${String(v).replace(/\"/g, '""')}"`).join(","))].join("\n");
+                const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "archived_job_postings.csv";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              }}
+            >
+              <Download className="w-4 h-4 mr-1" /> Export
+            </Button>
           </div>
         )}
 
