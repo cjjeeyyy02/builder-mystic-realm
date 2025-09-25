@@ -34,6 +34,7 @@ interface CandidateArchive {
   candidateName: string;
   appliedPosition: string;
   applicationDate: string; // MM-DD-YYYY
+  applicationChannel?: string; // e.g., Indeed, LinkedIn, Company Website
   status: CandidateStatus;
   archiveDate: string; // MM-DD-YYYY
   screening?: {
