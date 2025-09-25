@@ -589,7 +589,13 @@ export default function OnboardingOverview() {
 
                         <TableCell className="px-3 py-2">
                           <div className="text-xs text-gray-900">
-                            {candidate.stage.charAt(0).toUpperCase() + candidate.stage.slice(1)}
+                            {(() => {
+                              try {
+                                const w = window.localStorage.getItem(`candidate-withdrawn:${candidate.id}`);
+                                if (w) return "Withdrawn";
+                              } catch {}
+                              return candidate.stage.charAt(0).toUpperCase() + candidate.stage.slice(1);
+                            })()}
                           </div>
                         </TableCell>
                         
