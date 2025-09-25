@@ -25,7 +25,10 @@ export default function CandidateDetails() {
   const { candidateId } = useParams();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
-  
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+  const [withdrawReason, setWithdrawReason] = useState<string>("");
+  const [otherReason, setOtherReason] = useState<string>("");
+
   const candidate = getCandidateById(candidateId || "1");
   const screeningMatch: ScreeningCandidate | undefined = useMemo(() => screeningCandidates.find(c => c.id === (candidateId || "")), [candidateId]);
   const merged = useMemo(() => ({
