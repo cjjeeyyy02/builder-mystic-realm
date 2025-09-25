@@ -114,6 +114,7 @@ const initialCandidates: CandidateArchive[] = [
     candidateName: "Priya Patel",
     appliedPosition: "Data Analyst",
     applicationDate: "08-01-2025",
+    applicationChannel: "LinkedIn",
     status: "Rejected",
     archiveDate: "08-06-2025",
     screening: {
