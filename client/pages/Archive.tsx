@@ -445,7 +445,7 @@ export default function Archive() {
                   onChange={(e) => setFromDate(e.target.value)}
                   onFocus={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
                   onClick={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
-                  className="h-9 w-28 md:w-32 rounded-md text-sm"
+                  className="h-9 w-40 rounded-md text-sm"
                   aria-label="From date"
                 />
                 <Input
@@ -454,7 +454,7 @@ export default function Archive() {
                   onChange={(e) => setToDate(e.target.value)}
                   onFocus={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
                   onClick={(e) => { const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void }; el.showPicker?.(); }}
-                  className="h-9 w-28 md:w-32 rounded-md text-sm"
+                  className="h-9 w-40 rounded-md text-sm"
                   aria-label="To date"
                 />
               </div>
