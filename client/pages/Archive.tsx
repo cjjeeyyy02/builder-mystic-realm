@@ -394,6 +394,15 @@ export default function Archive() {
     }
   }, [jobFormOpen, selectedJobPosting]);
 
+  const parseLocationParts = (loc?: string) => {
+    const parts = String(loc || "").split(",").map((s) => s.trim()).filter(Boolean);
+    const city = parts[0] || "";
+    const province = parts[1] || "";
+    const country = parts[2] || "";
+    return { city, province, country };
+  };
+  const locParts = useMemo(() => parseLocationParts(jobForm.location), [jobForm.location]);
+
   return (
     <Layout>
       <div className="archive space-y-5">
@@ -794,6 +803,18 @@ export default function Archive() {
                   <Input value={jobForm.location} readOnly disabled />
                 </div>
                 <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">City</label>
+                  <Input value={locParts.city} readOnly disabled />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Province/State</label>
+                  <Input value={locParts.province} readOnly disabled />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Country</label>
+                  <Input value={locParts.country} readOnly disabled />
+                </div>
+                <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Workplace Type</label>
                   <Select value={jobForm.workplaceType} disabled>
                     <SelectTrigger className="h-9">
@@ -824,6 +845,31 @@ export default function Archive() {
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-700 mb-1">Job Description</label>
                   <Textarea value={jobForm.description} readOnly disabled className="min-h-[140px]" />
+                </div>
+                <div className="sm:col-span-2">
+                  <div className="text-sm font-semibold text-gray-900 mb-2">Additional Details</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Job ID</label>
+                      <Input value={selectedJobPosting?.jobId || ""} readOnly disabled />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Department</label>
+                      <Input value={selectedJobPosting?.department || ""} readOnly disabled />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Status</label>
+                      <Input value={selectedJobPosting?.status || ""} readOnly disabled />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Date Posted</label>
+                      <Input value={formatDateMDY(selectedJobPosting?.datePosted || "")} readOnly disabled />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">Archive Date</label>
+                      <Input value={formatDateMDY(selectedJobPosting?.archiveDate || "")} readOnly disabled />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
