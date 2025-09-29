@@ -788,6 +788,9 @@ export default function Archive() {
         {/* Job Posting Create/Edit Modal */}
         <Dialog open={jobFormOpen} onOpenChange={setJobFormOpen}>
           <DialogContent className="sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-base font-semibold">Job Details</DialogTitle>
+              </DialogHeader>
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
