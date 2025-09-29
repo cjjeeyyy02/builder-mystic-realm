@@ -10,9 +10,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+    import { Sheet, SheetContent } from "@/components/ui/sheet";
+    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+    import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/Layout";
-import { Search, Download } from "lucide-react";
+import { Search, Download, X } from "lucide-react";
 
 // Types
 export type CandidateStatus =
@@ -310,6 +312,15 @@ export default function Archive() {
   const [jobStatusFilter, setJobStatusFilter] = useState<string>("all");
   const [jobRows, setJobRows] = useState<JobPostingArchive[]>(initialJobPostings);
   const [selectedJobPostingId, setSelectedJobPostingId] = useState<string | null>(null);
+  const [jobFormOpen, setJobFormOpen] = useState(false);
+  const [jobForm, setJobForm] = useState<{ title: string; company: string; location: string; workplaceType: "on-site" | "remote" | "hybrid"; employmentType: "full-time" | "part-time" | "contract" | "temporary" | "internship"; description: string }>({
+    title: "",
+    company: "",
+    location: "",
+    workplaceType: "on-site",
+    employmentType: "full-time",
+    description: "",
+  });
 
   // Support URL hash (optional) for tab deep link
   useEffect(() => {
@@ -367,6 +378,21 @@ export default function Archive() {
       return matchesQuery && matchesDept && matchesStatus;
     });
   }, [jobRows, jobQuery, jobDepartmentFilter, jobStatusFilter]);
+
+  const selectedJobPosting = useMemo(() => jobRows.find(j => j.jobId === selectedJobPostingId) || null, [jobRows, selectedJobPostingId]);
+
+  useEffect(() => {
+    if (jobFormOpen && selectedJobPosting) {
+      setJobForm({
+        title: selectedJobPosting.title || "",
+        company: selectedJobPosting.company || "",
+        location: selectedJobPosting.location || "",
+        workplaceType: selectedJobPosting.workplaceType,
+        employmentType: selectedJobPosting.employmentType,
+        description: "",
+      });
+    }
+  }, [jobFormOpen, selectedJobPosting]);
 
   return (
     <Layout>
@@ -624,7 +650,7 @@ export default function Archive() {
                       className={`border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer ${
                         selectedJobPostingId === j.jobId ? "bg-blue-50/50" : ""
                       }`}
-                      onClick={() => setSelectedJobPostingId(j.jobId)}
+                      onClick={() => { setSelectedJobPostingId(j.jobId); setJobFormOpen(true); }}
                     >
                       <td className="py-3 pr-4">{j.jobId}</td>
                       <td className="py-3 pr-4">
@@ -749,6 +775,75 @@ export default function Archive() {
             </SheetContent>
           </Sheet>
         )}
+
+        {/* Job Posting Create/Edit Modal */}
+        <Dialog open={jobFormOpen} onOpenChange={setJobFormOpen}>
+          <DialogContent className="sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button
+              aria-label="Close"
+              className="absolute top-3 right-3 p-2 rounded-md hover:bg-gray-100"
+              onClick={() => setJobFormOpen(false)}
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <DialogHeader>
+              <DialogTitle className="text-base font-semibold">Create New Job Posting</DialogTitle>
+              <DialogDescription className="text-xs">Fill in the details below to create a new job posting.</DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Job Title</label>
+                  <Input value={jobForm.title} onChange={(e) => setJobForm({ ...jobForm, title: e.target.value })} />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Company/Employer</label>
+                  <Input value={jobForm.company} onChange={(e) => setJobForm({ ...jobForm, company: e.target.value })} />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Location</label>
+                  <Input value={jobForm.location} onChange={(e) => setJobForm({ ...jobForm, location: e.target.value })} />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Workplace Type</label>
+                  <Select value={jobForm.workplaceType} onValueChange={(v: any) => setJobForm({ ...jobForm, workplaceType: v })}>
+                    <SelectTrigger className="h-9">
+                      <SelectValue placeholder="Select workplace type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="on-site">On-site</SelectItem>
+                      <SelectItem value="remote">Remote</SelectItem>
+                      <SelectItem value="hybrid">Hybrid</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Employment Type</label>
+                  <Select value={jobForm.employmentType} onValueChange={(v: any) => setJobForm({ ...jobForm, employmentType: v })}>
+                    <SelectTrigger className="h-9">
+                      <SelectValue placeholder="Select employment type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="full-time">Full-time</SelectItem>
+                      <SelectItem value="part-time">Part-time</SelectItem>
+                      <SelectItem value="contract">Contract</SelectItem>
+                      <SelectItem value="temporary">Temporary</SelectItem>
+                      <SelectItem value="internship">Internship</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Job Description</label>
+                  <Textarea value={jobForm.description} onChange={(e) => setJobForm({ ...jobForm, description: e.target.value })} className="min-h-[140px]" />
+                </div>
+              </div>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setJobFormOpen(false)}>Close</Button>
+              <Button onClick={() => setJobFormOpen(false)}>Save</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </Layout>
   );
