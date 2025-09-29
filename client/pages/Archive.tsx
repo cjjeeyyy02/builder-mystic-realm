@@ -779,30 +779,23 @@ export default function Archive() {
         {/* Job Posting Create/Edit Modal */}
         <Dialog open={jobFormOpen} onOpenChange={setJobFormOpen}>
           <DialogContent className="sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <button
-              aria-label="Close"
-              className="absolute top-3 right-3 p-2 rounded-md hover:bg-gray-100"
-              onClick={() => setJobFormOpen(false)}
-            >
-              <X className="w-4 h-4" />
-            </button>
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Job Title</label>
-                  <Input value={jobForm.title} onChange={(e) => setJobForm({ ...jobForm, title: e.target.value })} />
+                  <Input value={jobForm.title} readOnly disabled />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Company/Employer</label>
-                  <Input value={jobForm.company} onChange={(e) => setJobForm({ ...jobForm, company: e.target.value })} />
+                  <Input value={jobForm.company} readOnly disabled />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Location</label>
-                  <Input value={jobForm.location} onChange={(e) => setJobForm({ ...jobForm, location: e.target.value })} />
+                  <Input value={jobForm.location} readOnly disabled />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Workplace Type</label>
-                  <Select value={jobForm.workplaceType} onValueChange={(v: any) => setJobForm({ ...jobForm, workplaceType: v })}>
+                  <Select value={jobForm.workplaceType} disabled>
                     <SelectTrigger className="h-9">
                       <SelectValue placeholder="Select workplace type" />
                     </SelectTrigger>
@@ -815,7 +808,7 @@ export default function Archive() {
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Employment Type</label>
-                  <Select value={jobForm.employmentType} onValueChange={(v: any) => setJobForm({ ...jobForm, employmentType: v })}>
+                  <Select value={jobForm.employmentType} disabled>
                     <SelectTrigger className="h-9">
                       <SelectValue placeholder="Select employment type" />
                     </SelectTrigger>
@@ -830,14 +823,10 @@ export default function Archive() {
                 </div>
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-700 mb-1">Job Description</label>
-                  <Textarea value={jobForm.description} onChange={(e) => setJobForm({ ...jobForm, description: e.target.value })} className="min-h-[140px]" />
+                  <Textarea value={jobForm.description} readOnly disabled className="min-h-[140px]" />
                 </div>
               </div>
             </div>
-            <DialogFooter>
-              <Button variant="outline" onClick={() => setJobFormOpen(false)}>Close</Button>
-              <Button onClick={() => setJobFormOpen(false)}>Save</Button>
-            </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
