@@ -982,7 +982,7 @@ export default function ScreeningView() {
                           }
                         >
                           
-                          Reject Application
+                          Reject Candidate
                         </Button>
                       </div>
                     </CardContent>
