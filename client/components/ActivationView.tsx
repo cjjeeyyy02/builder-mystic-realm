@@ -734,7 +734,7 @@ export default function ActivationView() {
                   </div>
 
                   <div className="mt-2">
-                    <div className="text-xs text-muted-foreground">Applied Role</div>
+                    <div className="text-xs text-muted-foreground">Applied Position</div>
                     <div className={`text-sm font-medium ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}>{employee.appliedJobRole}</div>
                   </div>
 
