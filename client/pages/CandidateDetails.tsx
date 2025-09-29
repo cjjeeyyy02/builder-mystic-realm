@@ -109,7 +109,7 @@ export default function CandidateDetails() {
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Interview List
+            Back to Overview Dashboard
           </Button>
         </div>
 
