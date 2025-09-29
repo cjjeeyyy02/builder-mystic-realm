@@ -774,7 +774,8 @@ export default function ActivationView() {
                   </div>
 
                   <div className="mt-3">
-                    {renderProgressBar(employee.activationProgress)}
+                    <div className="text-xs text-muted-foreground">Activation Progress</div>
+                    <div className="mt-1">{renderProgressBar(employee.activationProgress)}</div>
                   </div>
                 </div>
               ))}
