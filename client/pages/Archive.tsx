@@ -778,7 +778,7 @@ export default function Archive() {
 
         {/* Job Posting Create/Edit Modal */}
         <Dialog open={jobFormOpen} onOpenChange={setJobFormOpen}>
-          <DialogContent className="sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
+          <DialogContent className="sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <button
               aria-label="Close"
               className="absolute top-3 right-3 p-2 rounded-md hover:bg-gray-100"
@@ -786,10 +786,6 @@ export default function Archive() {
             >
               <X className="w-4 h-4" />
             </button>
-            <DialogHeader>
-              <DialogTitle className="text-base font-semibold">Create New Job Posting</DialogTitle>
-              <DialogDescription className="text-xs">Fill in the details below to create a new job posting.</DialogDescription>
-            </DialogHeader>
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
