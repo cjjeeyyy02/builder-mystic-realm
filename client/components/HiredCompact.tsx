@@ -347,6 +347,10 @@ export default function HiredCompact() {
                     <span className="font-medium text-gray-900">Joining:</span>{" "}
                     {formatMDY(c.joiningDate)}
                   </div>
+                  <div className="mb-1">
+                    <span className="font-medium text-gray-900">Date Added:</span>{" "}
+                    {formatMDY(c.dateAdded)}
+                  </div>
                   <div>
                     <span className="font-medium text-gray-900">Stage:</span>{" "}
                     {c.stage === "Pre-Onboarding" ? "Orientation" : c.stage}
