@@ -670,6 +670,10 @@ export default function Archive() {
                 </div>
 
                 <div className="flex-1 overflow-y-auto pr-1 space-y-4">
+                  <div>
+                    <div className="text-base font-semibold text-gray-900">Application History</div>
+                    <div className="text-sm text-muted-foreground">Detailed timeline of candidates application across stages</div>
+                  </div>
                   <Card className="shadow-sm border-gray-200">
                     <CardContent className="p-4 space-y-2">
                       <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
