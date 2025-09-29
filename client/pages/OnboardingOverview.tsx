@@ -226,6 +226,9 @@ export default function OnboardingOverview() {
   const [showApplicationHistory, setShowApplicationHistory] = useState(false);
   const [historyCandidate, setHistoryCandidate] = useState<PipelineCandidate | null>(null);
   const [historyData, setHistoryData] = useState<CandidateHistory | null>(null);
+  const [showApplicationDetail, setShowApplicationDetail] = useState(false);
+  const [detailCandidate, setDetailCandidate] = useState<PipelineCandidate | null>(null);
+  const [detailHistoryData, setDetailHistoryData] = useState<CandidateHistory | null>(null);
 
   useEffect(() => {
     if (!showApplicationHistory || !historyCandidate) return;
@@ -251,6 +254,31 @@ export default function OnboardingOverview() {
       });
     }
   }, [showApplicationHistory, historyCandidate]);
+
+  useEffect(() => {
+    if (!showApplicationDetail || !detailCandidate) return;
+    try {
+      const key = `candidate-history:${detailCandidate.id}`;
+      const raw = window.localStorage.getItem(key);
+      const parsed = raw ? (JSON.parse(raw) as CandidateHistory) : null;
+      const merged: CandidateHistory = {
+        jobId: detailCandidate.jobId,
+        applicationDate: detailCandidate.appliedDate,
+        applicationMethod: detailCandidate.applicationMethod,
+        screening: parsed?.screening || undefined,
+        interview: parsed?.interview || undefined,
+        activation: parsed?.activation || undefined,
+        hired: parsed?.hired || undefined,
+      };
+      setDetailHistoryData(merged);
+    } catch {
+      setDetailHistoryData({
+        jobId: detailCandidate.jobId,
+        applicationDate: detailCandidate.appliedDate,
+        applicationMethod: detailCandidate.applicationMethod,
+      });
+    }
+  }, [showApplicationDetail, detailCandidate]);
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState("all");
   const [jobFilter, setJobFilter] = useState("all");
@@ -613,7 +641,7 @@ export default function OnboardingOverview() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end" className="w-56">
-                                <DropdownMenuItem onSelect={() => { try { window.localStorage.setItem(`candidate-profile:${candidate.id}`, JSON.stringify({ applicantName: candidate.name, appliedPosition: candidate.position, email: candidate.email, phone: candidate.phone, location: candidate.location, roomId: `ROOM-${candidate.id.toString().padStart(3,'0')}`, reviewRoom: undefined, interviewSteps: [] })); } catch {} navigate(`/candidate-details/${candidate.id}`); }} className="flex items-center gap-2 cursor-pointer">
+                                <DropdownMenuItem onSelect={() => { setDetailCandidate(candidate); setShowApplicationDetail(true); }} className="flex items-center gap-2 cursor-pointer">
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
@@ -640,6 +668,91 @@ export default function OnboardingOverview() {
           </CardContent>
         </Card>
       </div>
+
+    {/* Application Detail Modal */}
+    <Dialog open={showApplicationDetail} onOpenChange={setShowApplicationDetail}>
+      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
+        <div className="space-y-4">
+          <Card>
+            <CardContent className="p-4 space-y-1">
+              <h3 className="text-base font-semibold text-gray-900">Candidate Info</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div>
+                  <div className="text-xs text-gray-600">Name</div>
+                  <div className="font-medium text-gray-900">{detailCandidate?.name || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Applied Position</div>
+                  <div className="font-medium text-gray-900">{detailCandidate?.position || "—"}</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div>
+            <div className="text-base font-semibold text-gray-900">Application History</div>
+            <div className="text-sm text-muted-foreground">Detailed timeline of the candidate's application across stages.</div>
+          </div>
+
+          <Card>
+            <CardContent className="p-4 space-y-2">
+              <h3 className="text-base font-semibold text-gray-900">Screening Details</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.screening?.dateAdded ? formatDateMDY(detailHistoryData.screening.dateAdded) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Status</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.screening?.status || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved Date</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.screening?.approvedDate ? formatDateMDY(detailHistoryData.screening.approvedDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved By</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.screening?.approvedBy || "—"}</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4 space-y-2">
+              <h3 className="text-base font-semibold text-gray-900">Interview Details</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.interview?.dateAdded ? formatDateMDY(detailHistoryData.interview.dateAdded) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Date Moved to Activation</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.interview?.movedToActivationDate ? formatDateMDY(detailHistoryData.interview.movedToActivationDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved By</div>
+                  <div className="font-medium text-gray-900">{detailHistoryData?.interview?.movedApprovedBy || "—"}</div>
+                </div>
+              </div>
+              {((detailHistoryData?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
+                <div key={idx} className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                  <div className="sm:col-span-2 font-medium text-gray-900">{step.label || `Step ${idx + 1}`}</div>
+                  <div>
+                    <div className="text-xs text-gray-600">Interview Date</div>
+                    <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-600">Interviewer Name</div>
+                    <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      </DialogContent>
+    </Dialog>
 
     {/* Application History Modal */}
     <Dialog open={showApplicationHistory} onOpenChange={setShowApplicationHistory}>
