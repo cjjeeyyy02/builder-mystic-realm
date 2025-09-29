@@ -44,6 +44,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Dialog, DialogTrigger, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -811,20 +812,28 @@ export default function OnboardingOverview() {
                   <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
                 </div>
               </div>
-              {/* Steps */}
-              {((historyData?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
-                <div key={idx} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="sm:col-span-3 font-medium text-gray-900">{step.label || `Step ${idx + 1}`}</div>
-                  <div>
-                    <div className="text-xs text-gray-600">Interview Date</div>
-                    <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-600">Interviewer Name</div>
-                    <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
-                  </div>
-                </div>
-              ))}
+              {/* Steps Dropdown */}
+              <Accordion type="multiple" className="w-full">
+                {((historyData?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
+                  <AccordionItem key={idx} value={`step-${idx + 1}`}>
+                    <AccordionTrigger className="text-sm font-medium">
+                      {step.label || `Step ${idx + 1}`}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Date</div>
+                          <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Interviewer Name</div>
+                          <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-gray-600">Date moved to Activation</div>
