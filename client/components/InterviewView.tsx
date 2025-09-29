@@ -2760,7 +2760,7 @@ Google India`,
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-gray-500">
-                              Applied Role:
+                              Applied Position:
                             </span>
                             <span className="text-xs font-medium truncate ml-2">
                               {c.appliedPosition}
@@ -2779,7 +2779,7 @@ Google India`,
                               Current Round:
                             </span>
                             <span className="text-xs font-medium text-blue-600 truncate ml-2">
-                              {c.currentRound}
+                              {(() => { const rp = getRoundProgress(c); return `${c.currentRound}${rp.total ? ` - ${rp.assigned}/${rp.total}` : ""}`; })()}
                             </span>
                           </div>
                           <div className="flex items-center justify-between">
@@ -2787,7 +2787,7 @@ Google India`,
                               Next Round:
                             </span>
                             <span className="text-[11px] text-gray-600 truncate ml-2">
-                              {getNextRoundName(c)}
+                              {(() => { const rp = getRoundProgress(c); const idx = rp.total ? Math.min(rp.assigned + 1, rp.total) : null; return `${getNextRoundName(c)}${rp.total ? ` - ${idx}/${rp.total}` : ""}`; })()}
                             </span>
                           </div>
                           <div className="flex items-center justify-between">
