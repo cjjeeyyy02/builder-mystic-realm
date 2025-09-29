@@ -673,11 +673,24 @@ export default function ScreeningView() {
                         {candidate.position}
                       </p>
                     </div>
+                    <div className="text-xs text-gray-500">
+                      Job ID: {String(candidate.id).padStart(3, "0")}
+                    </div>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Calendar className="w-3 h-3 flex-shrink-0 text-primary/70" />
                       <span className="font-medium">
                         Date Added: {candidate.dateAdded}
                       </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <div className="text-muted-foreground">Total Experience</div>
+                        <div className="text-foreground font-medium">{candidate.totalExperience}</div>
+                      </div>
+                      <div>
+                        <div className="text-muted-foreground">Country</div>
+                        <div className="text-foreground font-medium">{getCountry(candidate.location)}</div>
+                      </div>
                     </div>
                   </div>
 
