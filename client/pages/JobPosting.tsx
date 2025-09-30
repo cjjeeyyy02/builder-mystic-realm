@@ -258,17 +258,22 @@ export default function JobPosting() {
   // Manage modal state
   const [showManageModal, setShowManageModal] = useState(false);
   const [manageJob, setManageJob] = useState<Job | null>(null);
-  const [manageForm, setManageForm] = useState<{
-    title: string;
-    department: string;
-    location: string;
-    status: Job["status"];
-    datePosted: string;
-  }>({
+  const [manageForm, setManageForm] = useState({
     title: "",
-    department: "",
+    company: "",
     location: "",
-    status: "Draft",
+    workplaceType: "on-site" as Job["workplaceType"],
+    description: "",
+    employmentType: "full-time" as Job["employmentType"],
+    department: "",
+    seniorityLevel: undefined as Job["seniorityLevel"],
+    qualifications: "",
+    salary: "",
+    applicationMethods: "",
+    closingDate: "",
+    perksAndBenefits: "",
+    screeningQuestions: [] as string[],
+    status: "Draft" as Job["status"],
     datePosted: "",
   });
 
