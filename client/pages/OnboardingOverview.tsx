@@ -584,7 +584,8 @@ export default function OnboardingOverview() {
                     return (
                       <TableRow
                         key={candidate.id}
-                        className={`hover:bg-blue-50/60 transition-colors duration-200 ${
+                        onClick={() => { setDetailCandidate(candidate); setShowApplicationDetail(true); }}
+                        className={`hover:bg-blue-50/60 transition-colors duration-200 cursor-pointer ${
                           index % 2 === 0 ? 'bg-white' : 'bg-gray-50/20'
                         }`}
                       >
@@ -639,6 +640,7 @@ export default function OnboardingOverview() {
                                   size="sm"
                                   className="h-8 w-8 p-0"
                                   aria-label="Open actions"
+                                  onClick={(e) => e.stopPropagation()}
                                 >
                                   <MoreVertical className="h-4 w-4" />
                                 </Button>
