@@ -228,6 +228,13 @@ export default function OnboardingOverview() {
   const navigate = useNavigate();
   const [showApplicationHistory, setShowApplicationHistory] = useState(false);
   const [historyCandidate, setHistoryCandidate] = useState<PipelineCandidate | null>(null);
+
+  const openApplicationHistory = (candidate: PipelineCandidate) => {
+    setShowApplicationDetail(false);
+    setDetailCandidate(null);
+    setHistoryCandidate(candidate);
+    setShowApplicationHistory(true);
+  };
   const [historyData, setHistoryData] = useState<CandidateHistory | null>(null);
   const [showApplicationDetail, setShowApplicationDetail] = useState(false);
   const [detailCandidate, setDetailCandidate] = useState<PipelineCandidate | null>(null);
@@ -668,7 +675,7 @@ export default function OnboardingOverview() {
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => { setTimeout(() => { setHistoryCandidate(candidate); setShowApplicationHistory(true); }, 0); }} className="flex items-center gap-2 cursor-pointer">
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => openApplicationHistory(candidate), 0); }} className="flex items-center gap-2 cursor-pointer">
                                   <Clock className="w-4 h-4" />
                                   Application History
                                 </DropdownMenuItem>
