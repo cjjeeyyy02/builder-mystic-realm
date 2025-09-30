@@ -610,8 +610,7 @@ export default function OnboardingOverview() {
                     return (
                       <TableRow
                         key={candidate.id}
-                        onClick={() => viewCandidate(candidate)}
-                        className={`hover:bg-blue-50/60 transition-colors duration-200 cursor-pointer ${
+                        className={`hover:bg-blue-50/60 transition-colors duration-200 ${
                           index % 2 === 0 ? 'bg-white' : 'bg-gray-50/20'
                         }`}
                       >
