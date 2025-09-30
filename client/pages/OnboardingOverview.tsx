@@ -44,6 +44,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Dialog, DialogTrigger, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -225,6 +226,41 @@ const allCandidates: PipelineCandidate[] = [
 
 export default function OnboardingOverview() {
   const navigate = useNavigate();
+  const [showApplicationHistory, setShowApplicationHistory] = useState(false);
+  const [historyCandidate, setHistoryCandidate] = useState<PipelineCandidate | null>(null);
+  const [historyData, setHistoryData] = useState<CandidateHistory | null>(null);
+
+  const openApplicationHistory = (candidate: PipelineCandidate) => {
+    setShowApplicationDetail(false);
+    setDetailCandidate(null);
+    setHistoryCandidate(candidate);
+    setShowApplicationHistory(true);
+  };
+
+  useEffect(() => {
+    if (!showApplicationHistory || !historyCandidate) return;
+    try {
+      const key = `candidate-history:${historyCandidate.id}`;
+      const raw = window.localStorage.getItem(key);
+      const parsed = raw ? (JSON.parse(raw) as CandidateHistory) : null;
+      const merged: CandidateHistory = {
+        jobId: historyCandidate.jobId,
+        applicationDate: historyCandidate.appliedDate,
+        applicationMethod: historyCandidate.applicationMethod,
+        screening: parsed?.screening || undefined,
+        interview: parsed?.interview || undefined,
+        activation: parsed?.activation || undefined,
+        hired: parsed?.hired || undefined,
+      };
+      setHistoryData(merged);
+    } catch {
+      setHistoryData({
+        jobId: historyCandidate.jobId,
+        applicationDate: historyCandidate.appliedDate,
+        applicationMethod: historyCandidate.applicationMethod,
+      });
+    }
+  }, [showApplicationHistory, historyCandidate]);
   const [showApplicationDetail, setShowApplicationDetail] = useState(false);
   const [detailCandidate, setDetailCandidate] = useState<PipelineCandidate | null>(null);
   const [detailHistoryData, setDetailHistoryData] = useState<CandidateHistory | null>(null);
@@ -640,6 +676,10 @@ export default function OnboardingOverview() {
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => openApplicationHistory(candidate), 0); }} className="flex items-center gap-2 cursor-pointer">
+                                  <Clock className="w-4 h-4" />
+                                  Application History
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </div>
@@ -745,6 +785,152 @@ export default function OnboardingOverview() {
             </CardContent>
           </Card>
         </div>
+      </DialogContent>
+    </Dialog>
+
+    {/* Application History Modal */}
+    <Dialog open={showApplicationHistory} onOpenChange={setShowApplicationHistory}>
+      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-base font-semibold">Application History</DialogTitle>
+          <DialogDescription className="text-xs">Detailed timeline of the candidate's application across stages.</DialogDescription>
+        </DialogHeader>
+        {historyCandidate && (
+          <div className="space-y-4 text-sm">
+            {/* Header Info */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 rounded-md bg-gray-50">
+              <div>
+                <div className="text-xs text-gray-600">Job ID</div>
+                <div className="font-medium text-gray-900">{historyCandidate.jobId}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-600">Application Date</div>
+                <div className="font-medium text-gray-900">{formatDateMDY(historyCandidate.appliedDate)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-600">Application Method</div>
+                <div className="font-medium text-gray-900">{historyCandidate.applicationMethod || "—"}</div>
+              </div>
+            </div>
+
+            {/* Section 1: Screening Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">1. Screening Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.dateAdded ? formatDateMDY(historyData.screening.dateAdded) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Status</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.status || "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved Date</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.approvedDate ? formatDateMDY(historyData.screening.approvedDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved By</div>
+                  <div className="font-medium text-gray-900">{historyData?.screening?.approvedBy || "—"}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Interview Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">2. Interview Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
+                </div>
+              </div>
+              {/* Steps Dropdown */}
+              <Accordion type="multiple" className="w-full">
+                {(((historyData?.interview?.steps) && historyData.interview.steps.length > 0) ? historyData.interview.steps : [{ label: "Step 1" }]).slice(0, 5).map((step: any, idx: number) => (
+                  <AccordionItem key={idx} value={`step-${idx + 1}`}>
+                    <AccordionTrigger className="text-sm font-medium">
+                      {step.label || `Step ${idx + 1}`}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Type</div>
+                          <div className="font-medium text-gray-900">{step.interviewType || "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Date</div>
+                          <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Interviewer Name</div>
+                          <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Result</div>
+                          <div className="font-medium text-gray-900">{step.interviewResult || "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Date Added</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Date Moved to Activation</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
+                        </div>
+                        <div className="sm:col-span-2">
+                          <div className="text-xs text-gray-600">Approved By</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Section 3: Activation Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">3. Activation Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.dateAdded ? formatDateMDY(historyData.activation.dateAdded) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Activation Confirmed Date</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.activationConfirmedDate ? formatDateMDY(historyData.activation.activationConfirmedDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved by</div>
+                  <div className="font-medium text-gray-900">{historyData?.activation?.approvedBy || "—"}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 4: Hired Details */}
+            <div className="space-y-2">
+              <div className="font-semibold text-gray-900">4. Hired Details</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-xs text-gray-600">Date Added</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.dateAdded ? formatDateMDY(historyData.hired.dateAdded) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Orientation Stage Completed</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.orientationCompletedDate ? formatDateMDY(historyData.hired.orientationCompletedDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Integration Stage Completed</div>
+                  <div className="font-medium text-gray-900">{historyData?.hired?.integrationCompletedDate ? formatDateMDY(historyData.hired.integrationCompletedDate) : "—"}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        <DialogFooter>
+          <Button variant="outline" onClick={() => { setShowApplicationHistory(false); setHistoryCandidate(null); setHistoryData(null); }}>Close</Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
 
