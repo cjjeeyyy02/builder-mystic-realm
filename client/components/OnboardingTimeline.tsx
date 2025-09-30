@@ -228,7 +228,7 @@ export default function OnboardingTimeline() {
                       <tr key={item.id} className="border-b last:border-b-0">
                         <td className="py-1 px-2 align-top w-[70%]">
                           <div className="flex items-center gap-1">
-                            <span className="text-[14px] font-medium text-gray-900">
+                            <span className="text-[13px] font-normal leading-tight text-gray-900">
                               {item.title}
                             </span>
                             <span
@@ -283,7 +283,7 @@ export default function OnboardingTimeline() {
                               <Edit className="w-4 h-4" />
                             </span>
                           </div>
-                          <div className="text-[14px] text-gray-600 mt-0.5">
+                          <div className="text-[12px] text-[#8A8A8A] mt-0.5 leading-tight">
                             Date Completed:{" "}
                             {item.dateCompleted
                               ? formatDateMDY(item.dateCompleted)
