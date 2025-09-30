@@ -1411,124 +1411,136 @@ export default function JobPosting() {
 
         {/* Manage Job Posting Modal */}
         <Dialog open={showManageModal} onOpenChange={setShowManageModal}>
-          <DialogContent className="max-w-2xl w-full rounded-[12px] p-6">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[12px] p-6 shadow-lg">
             <DialogHeader>
-              <DialogTitle>Manage Job Posting</DialogTitle>
+              <DialogTitle className="text-xl font-semibold">Update Job Posting</DialogTitle>
+              <DialogDescription>Modify the details of your job posting.</DialogDescription>
             </DialogHeader>
 
             <div className="space-y-6">
-              <div>
+              {/* Required Fields Section */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Required Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div className="flex items-center justify-between">
-                      <Label className="text-sm">Job Title</Label>
-                    </div>
-                    <Input
-                      className="mt-1"
-                      value={manageForm.title}
-                      onChange={(e) =>
-                        setManageForm((p) => ({ ...p, title: e.target.value }))
-                      }
-                    />
+                    <Label htmlFor="edit-title">Job Title *</Label>
+                    <Input id="edit-title" value={manageForm.title} onChange={(e) => setManageForm((p) => ({ ...p, title: e.target.value }))} className="mt-1" />
                   </div>
                   <div>
-                    <div className="flex items-center justify-between">
-                      <Label className="text-sm">Department</Label>
-                    </div>
-                    <Input
-                      className="mt-1"
-                      value={manageForm.department}
-                      onChange={(e) =>
-                        setManageForm((p) => ({
-                          ...p,
-                          department: e.target.value,
-                        }))
-                      }
-                    />
+                    <Label htmlFor="edit-company">Company / Employer *</Label>
+                    <Input id="edit-company" value={manageForm.company} onChange={(e) => setManageForm((p) => ({ ...p, company: e.target.value }))} className="mt-1" />
                   </div>
+                </div>
+                <div>
+                  <Label htmlFor="edit-location">Location (City, Province, Country) *</Label>
+                  <Input id="edit-location" value={manageForm.location} onChange={(e) => setManageForm((p) => ({ ...p, location: e.target.value }))} className="mt-1" />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div className="flex items-center justify-between">
-                      <Label className="text-sm">Location</Label>
-                    </div>
-                    <Input
-                      className="mt-1"
-                      value={manageForm.location}
-                      onChange={(e) =>
-                        setManageForm((p) => ({
-                          ...p,
-                          location: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <Label className="text-sm">Status</Label>
-                    </div>
-                    <Select
-                      value={manageForm.status}
-                      onValueChange={(v) =>
-                        setManageForm((p) => ({
-                          ...p,
-                          status: v as Job["status"],
-                        }))
-                      }
-                    >
-                      <SelectTrigger className="mt-1">
-                        <SelectValue />
-                      </SelectTrigger>
+                    <Label htmlFor="edit-workplaceType">Workplace Type *</Label>
+                    <Select value={manageForm.workplaceType} onValueChange={(v) => setManageForm((p) => ({ ...p, workplaceType: v as Job["workplaceType"] }))}>
+                      <SelectTrigger className="mt-1"><SelectValue placeholder="Select workplace type" /></SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Draft">Draft</SelectItem>
-                        <SelectItem value="Active">Active</SelectItem>
-                        <SelectItem value="Closed">Closed</SelectItem>
-                        <SelectItem value="Archived">Archived</SelectItem>
+                        <SelectItem value="on-site">On-site</SelectItem>
+                        <SelectItem value="remote">Remote</SelectItem>
+                        <SelectItem value="hybrid">Hybrid</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between">
-                      <Label className="text-sm">Date Posted</Label>
-                    </div>
-                    <Input
-                      className="mt-1"
-                      type="date"
-                      value={manageForm.datePosted}
-                      onChange={(e) =>
-                        setManageForm((p) => ({
-                          ...p,
-                          datePosted: e.target.value,
-                        }))
-                      }
-                    />
+                    <Label htmlFor="edit-employmentType">Employment Type *</Label>
+                    <Select value={manageForm.employmentType} onValueChange={(v) => setManageForm((p) => ({ ...p, employmentType: v as Job["employmentType"] }))}>
+                      <SelectTrigger className="mt-1"><SelectValue placeholder="Select employment type" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="full-time">Full-time</SelectItem>
+                        <SelectItem value="part-time">Part-time</SelectItem>
+                        <SelectItem value="contract">Contract</SelectItem>
+                        <SelectItem value="temporary">Temporary</SelectItem>
+                        <SelectItem value="internship">Internship</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
+                </div>
+                <div>
+                  <Label htmlFor="edit-description">Job Description *</Label>
+                  <Textarea id="edit-description" value={manageForm.description} onChange={(e) => setManageForm((p) => ({ ...p, description: e.target.value }))} rows={4} className="mt-1" />
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-sm font-semibold mb-3">
-                  View Applications
-                </h3>
-                <Card>
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div className="text-sm text-muted-foreground">
-                      Applicants
-                    </div>
-                    <div className="text-lg font-semibold">
-                      {manageJob?.applicants ?? 0}
-                    </div>
-                  </CardContent>
-                </Card>
+              {/* Optional Fields Section */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Additional Details (Optional)</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="edit-department">Department</Label>
+                    <Input id="edit-department" value={manageForm.department} onChange={(e) => setManageForm((p) => ({ ...p, department: e.target.value }))} className="mt-1" />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-seniority">Seniority Level</Label>
+                    <Select value={manageForm.seniorityLevel || ""} onValueChange={(v) => setManageForm((p) => ({ ...p, seniorityLevel: (v || undefined) as Job["seniorityLevel"] }))}>
+                      <SelectTrigger className="mt-1"><SelectValue placeholder="Select seniority level" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="entry-level">Entry Level</SelectItem>
+                        <SelectItem value="junior">Junior</SelectItem>
+                        <SelectItem value="mid-level">Mid Level</SelectItem>
+                        <SelectItem value="senior">Senior</SelectItem>
+                        <SelectItem value="manager">Manager</SelectItem>
+                        <SelectItem value="director">Director</SelectItem>
+                        <SelectItem value="executive">Executive</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="edit-qualifications">Required / Preferred Qualifications</Label>
+                  <Textarea id="edit-qualifications" value={manageForm.qualifications} onChange={(e) => setManageForm((p) => ({ ...p, qualifications: e.target.value }))} rows={3} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="edit-salary">Salary or Compensation Range</Label>
+                  <Input id="edit-salary" value={manageForm.salary} onChange={(e) => setManageForm((p) => ({ ...p, salary: e.target.value }))} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="edit-applicationMethods">Application Methods / How to Apply</Label>
+                  <Input id="edit-applicationMethods" value={manageForm.applicationMethods} onChange={(e) => setManageForm((p) => ({ ...p, applicationMethods: e.target.value }))} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="edit-closingDate">Application Deadline</Label>
+                  <Input id="edit-closingDate" type="date" value={manageForm.closingDate} onChange={(e) => setManageForm((p) => ({ ...p, closingDate: e.target.value }))} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="edit-perks">Job Perks, Benefits, Company Culture</Label>
+                  <Textarea id="edit-perks" value={manageForm.perksAndBenefits} onChange={(e) => setManageForm((p) => ({ ...p, perksAndBenefits: e.target.value }))} rows={3} className="mt-1" />
+                </div>
+                <div>
+                  <Label>Screening Questions (to filter candidates)</Label>
+                  <div className="space-y-2 mt-1">
+                    <Input value={manageForm.screeningQuestions[0] || ""} onChange={(e) => setManageForm((p) => { const arr = [...(p.screeningQuestions || [])]; arr[0] = e.target.value; return { ...p, screeningQuestions: arr }; })} placeholder="Question 1 (optional)" />
+                    <Input value={manageForm.screeningQuestions[1] || ""} onChange={(e) => setManageForm((p) => { const arr = [...(p.screeningQuestions || [])]; arr[1] = e.target.value; return { ...p, screeningQuestions: arr }; })} placeholder="Question 2 (optional)" />
+                    <Input value={manageForm.screeningQuestions[2] || ""} onChange={(e) => setManageForm((p) => { const arr = [...(p.screeningQuestions || [])]; arr[2] = e.target.value; return { ...p, screeningQuestions: arr }; })} placeholder="Question 3 (optional)" />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="edit-status">Publication Status</Label>
+                  <Select value={manageForm.status || "Draft"} onValueChange={(v) => setManageForm((p) => ({ ...p, status: v as Job["status"] }))}>
+                    <SelectTrigger className="mt-1"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Draft">Save as Draft</SelectItem>
+                      <SelectItem value="Active">Publish Immediately</SelectItem>
+                      <SelectItem value="Closed">Closed</SelectItem>
+                      <SelectItem value="Archived">Archived</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="edit-datePosted">Date Posted</Label>
+                  <Input id="edit-datePosted" type="date" value={manageForm.datePosted} onChange={(e) => setManageForm((p) => ({ ...p, datePosted: e.target.value }))} className="mt-1" />
+                </div>
               </div>
             </div>
 
-            <DialogFooter className="flex items-center justify-end gap-2 pt-2">
-              <Button
-                variant="outline"
-                onClick={() => setShowManageModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button onClick={handleSaveManage}>Save Changes</Button>
+            <DialogFooter className="flex items-center justify-end gap-3 pt-4 border-t">
+              <Button variant="outline" type="button" onClick={() => setShowManageModal(false)}>Cancel</Button>
+              <Button type="button" className="bg-green-600 hover:bg-green-700 text-white" onClick={handleSaveManage}>Save / Update</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
