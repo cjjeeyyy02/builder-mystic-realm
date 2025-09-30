@@ -412,8 +412,19 @@ export default function JobPosting() {
     setManageJob(job);
     setManageForm({
       title: job.title,
-      department: job.department || "",
+      company: job.company,
       location: job.location,
+      workplaceType: job.workplaceType,
+      description: job.description,
+      employmentType: job.employmentType,
+      department: job.department || "",
+      seniorityLevel: job.seniorityLevel,
+      qualifications: job.qualifications || "",
+      salary: job.salary || "",
+      applicationMethods: job.applicationMethods || "",
+      closingDate: job.closingDate || "",
+      perksAndBenefits: job.perksAndBenefits || "",
+      screeningQuestions: job.screeningQuestions || [],
       status: job.status || "Draft",
       datePosted: job.datePosted || "",
     });
