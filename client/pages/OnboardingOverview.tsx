@@ -664,7 +664,7 @@ export default function OnboardingOverview() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end" className="w-56">
-                                <DropdownMenuItem onSelect={() => { setDetailCandidate(candidate); setShowApplicationDetail(true); }} className="flex items-center gap-2 cursor-pointer">
+                                <DropdownMenuItem onSelect={() => { setTimeout(() => viewCandidate(candidate), 0); }} className="flex items-center gap-2 cursor-pointer">
                                   <FileText className="w-4 h-4" />
                                   View Candidate Detail
                                 </DropdownMenuItem>
