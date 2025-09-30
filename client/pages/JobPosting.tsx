@@ -409,6 +409,11 @@ export default function JobPosting() {
   };
 
   const handleOpenManage = (job: Job) => {
+    // Close other modals to ensure only one is open
+    setShowJobDetailsModal(false);
+    setShowPlugHireModal(false);
+    setArchiveConfirmFor(null);
+
     setManageJob(job);
     setManageForm({
       title: job.title,
@@ -458,6 +463,11 @@ export default function JobPosting() {
   };
 
   const handleViewDetails = (job: Job) => {
+    // Close other modals first
+    setShowManageModal(false);
+    setShowPlugHireModal(false);
+    setArchiveConfirmFor(null);
+
     setJobToView(job);
     setShowJobDetailsModal(true);
     setAuditLog((prev) => [
@@ -471,6 +481,11 @@ export default function JobPosting() {
   };
 
   const handleViewApplication = (job: Job) => {
+    // Close other modals first
+    setShowJobDetailsModal(false);
+    setShowManageModal(false);
+    setArchiveConfirmFor(null);
+
     console.log("Viewing applications for job:", job.title);
     setAuditLog((prev) => [
       {
