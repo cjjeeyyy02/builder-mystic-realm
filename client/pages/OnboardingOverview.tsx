@@ -395,6 +395,24 @@ export default function OnboardingOverview() {
 
 
 
+  const viewCandidate = (candidate: PipelineCandidate) => {
+    try {
+      window.localStorage.setItem(
+        `candidate-profile:${candidate.id}`,
+        JSON.stringify({
+          id: candidate.id,
+          applicantName: candidate.name,
+          appliedPosition: candidate.position,
+          email: candidate.email,
+          phone: candidate.phone,
+          location: candidate.location,
+          interviewSteps: [],
+        })
+      );
+    } catch {}
+    navigate(`/candidate-details/${candidate.id}`);
+  };
+
   return (
     <Layout>
       <div className="onboarding-corporate space-y-6">
