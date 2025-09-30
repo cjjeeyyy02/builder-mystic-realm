@@ -340,12 +340,10 @@ export default function HiredCompact() {
                 </div>
                 <div className="text-xs text-gray-600">
                   <div className="mb-1">
-                    <span className="font-medium text-gray-900">Position:</span>{" "}
-                    {c.position}
+                    <span className="font-medium text-gray-900">Applied Position:</span> {c.position}
                   </div>
                   <div className="mb-1">
-                    <span className="font-medium text-gray-900">Joining:</span>{" "}
-                    {formatMDY(c.joiningDate)}
+                    <span className="font-medium text-gray-900">Joining Date:</span> {formatMDY(c.joiningDate)}
                   </div>
                   <div className="mb-1">
                     <span className="font-medium text-gray-900">Date Added:</span>{" "}
