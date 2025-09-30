@@ -576,7 +576,8 @@ export default function JobPosting() {
                       {paginatedJobs.map((job) => (
                         <tr
                           key={job.id}
-                          className="border-b last:border-b-0 hover:bg-gray-100 transition"
+                          onClick={() => handleViewDetails(job)}
+                          className="border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer"
                         >
                           <td className="py-3 pr-4">{job.id}</td>
                           <td className="py-3 pr-4">
@@ -589,7 +590,15 @@ export default function JobPosting() {
                             {formatDateMDY(job.datePosted)}
                           </td>
                           <td className="py-3 pr-4 text-center">
-                            {job.applicants ?? 0}
+                            <button
+                              className="underline text-blue-600 hover:text-blue-700"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleViewDetails(job);
+                              }}
+                            >
+                              {job.applicants ?? 0}
+                            </button>
                           </td>
                           <td className="py-3 pr-4">
                             <DropdownMenu>
@@ -598,6 +607,7 @@ export default function JobPosting() {
                                   size="sm"
                                   variant="ghost"
                                   className="h-8 w-8 p-0"
+                                  onClick={(e) => e.stopPropagation()}
                                 >
                                   <MoreVertical className="w-4 h-4" />
                                 </Button>
