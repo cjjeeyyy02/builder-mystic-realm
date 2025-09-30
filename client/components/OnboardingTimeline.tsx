@@ -218,16 +218,16 @@ export default function OnboardingTimeline() {
               <div className="border border-gray-200 rounded-md overflow-hidden">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-left text-[13px] text-gray-600 border-b">
-                      <th className="py-2 px-3">TASK</th>
-                      <th className="py-2 px-3 text-center">COMPLETED</th>
+                    <tr className="text-left text-[13px] text-gray-700 font-semibold border-b">
+                      <th className="py-1 px-2 text-[13px] font-semibold">TASK</th>
+                      <th className="py-1 px-2 text-center text-[13px] font-semibold">COMPLETED</th>
                     </tr>
                   </thead>
                   <tbody>
                     {section.items.slice(0, 5).map((item) => (
                       <tr key={item.id} className="border-b last:border-b-0">
-                        <td className="py-2 px-3 align-top w-[70%]">
-                          <div className="flex items-center gap-2">
+                        <td className="py-1 px-2 align-top w-[70%]">
+                          <div className="flex items-center gap-1">
                             <span className="text-[14px] font-medium text-gray-900">
                               {item.title}
                             </span>
@@ -283,16 +283,16 @@ export default function OnboardingTimeline() {
                               <Edit className="w-4 h-4" />
                             </span>
                           </div>
-                          <div className="text-[12px] text-gray-500 mt-0.5">
+                          <div className="text-[14px] text-gray-600 mt-0.5">
                             Date Completed:{" "}
                             {item.dateCompleted
                               ? formatDateMDY(item.dateCompleted)
                               : "-"}
                           </div>
                         </td>
-                        <td className="py-2 px-3 align-middle w-[30%]">
+                        <td className="py-1 px-2 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
-                            <CircleCheckbox
+                            <CircleCheckbox className="h-4 w-4"
                               checked={item.completed}
                               onCheckedChange={(v) =>
                                 markItem(section.id, item.id, Boolean(v))
