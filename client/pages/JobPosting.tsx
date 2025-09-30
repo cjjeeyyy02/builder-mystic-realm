@@ -424,6 +424,8 @@ export default function JobPosting() {
     // Close other modals to ensure only one is open
     setShowJobDetailsModal(false);
     setShowPlugHireModal(false);
+    setShowUpdateModal(false);
+    setShowCreateModal(false);
     setArchiveConfirmFor(null);
 
     setManageJob(job);
@@ -660,29 +662,29 @@ export default function JobPosting() {
                                   <MoreVertical className="w-4 h-4" />
                                 </Button>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
+                              <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
                                 <DropdownMenuItem
-                                  onSelect={() => {
-                                    setTimeout(() => handleOpenManage(job), 0);
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleOpenManage(job);
                                   }}
                                 >
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                  onSelect={() => {
-                                    setTimeout(
-                                      () => handleViewApplication(job),
-                                      0,
-                                    );
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleViewApplication(job);
                                   }}
                                 >
                                   <FileText className="w-4 h-4 mr-2" />
                                   View Applications ({job.applicants ?? 0})
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                  onSelect={() => {
-                                    setTimeout(() => confirmArchive(job), 0);
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    confirmArchive(job);
                                   }}
                                 >
                                   <Archive className="w-4 h-4 mr-2" />
@@ -743,24 +745,24 @@ export default function JobPosting() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onSelect={() => {
-                                setTimeout(() => handleOpenManage(job), 0);
+                              onClick={() => {
+                                handleOpenManage(job);
                               }}
                             >
                               <Edit className="w-4 h-4 mr-2" />
                               Manage Job Posting
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onSelect={() => {
-                                setTimeout(() => handleViewApplication(job), 0);
+                              onClick={() => {
+                                handleViewApplication(job);
                               }}
                             >
                               <FileText className="w-4 h-4 mr-2" />
                               View Applications ({job.applicants ?? 0})
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onSelect={() => {
-                                setTimeout(() => confirmArchive(job), 0);
+                              onClick={() => {
+                                confirmArchive(job);
                               }}
                             >
                               <Archive className="w-4 h-4 mr-2" />
