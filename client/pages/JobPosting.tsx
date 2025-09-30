@@ -591,7 +591,7 @@ export default function JobPosting() {
                           </td>
                           <td className="py-3 pr-4 text-center">
                             <button
-                              className="underline text-blue-600 hover:text-blue-700"
+                              className="underline text-black hover:text-black"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleViewDetails(job);
