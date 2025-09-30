@@ -258,6 +258,17 @@ export default function JobPosting() {
   // Manage modal state
   const [showManageModal, setShowManageModal] = useState(false);
   const [manageJob, setManageJob] = useState<Job | null>(null);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
+  const closeAllModals = () => {
+    setShowCreateModal(false);
+    setShowUpdateModal(false);
+    setShowJobDetailsModal(false);
+    setShowPlugHireModal(false);
+    setArchiveConfirmFor(null);
+    setShowManageModal(false);
+    setOpenMenuId(null);
+  };
 
   // Ensure only one modal visible when Manage opens
   useEffect(() => {
@@ -316,6 +327,7 @@ export default function JobPosting() {
   const smallFormFieldsCount = 8; // for modal quick create
 
   const openCreate = () => {
+    closeAllModals();
     if (smallFormFieldsCount <= 10) {
       setShowCreateModal(true);
     } else {
@@ -351,6 +363,7 @@ export default function JobPosting() {
   };
 
   const handleOpenUpdate = (job: Job) => {
+    closeAllModals();
     if (formFieldsCount <= 10) {
       setJobToEdit(job);
       setShowUpdateModal(true);
@@ -385,6 +398,7 @@ export default function JobPosting() {
   };
 
   const confirmArchive = (job: Job) => {
+    closeAllModals();
     setArchiveConfirmFor(job);
   };
 
@@ -422,11 +436,7 @@ export default function JobPosting() {
 
   const handleOpenManage = (job: Job) => {
     // Close other modals to ensure only one is open
-    setShowJobDetailsModal(false);
-    setShowPlugHireModal(false);
-    setShowUpdateModal(false);
-    setShowCreateModal(false);
-    setArchiveConfirmFor(null);
+    closeAllModals();
 
     setManageJob(job);
     setManageForm({
@@ -478,9 +488,7 @@ export default function JobPosting() {
 
   const handleViewDetails = (job: Job) => {
     // Close other modals first
-    setShowManageModal(false);
-    setShowPlugHireModal(false);
-    setArchiveConfirmFor(null);
+    closeAllModals();
 
     setJobToView(job);
     setShowJobDetailsModal(true);
@@ -496,9 +504,7 @@ export default function JobPosting() {
 
   const handleViewApplication = (job: Job) => {
     // Close other modals first
-    setShowJobDetailsModal(false);
-    setShowManageModal(false);
-    setArchiveConfirmFor(null);
+    closeAllModals();
 
     console.log("Viewing applications for job:", job.title);
     setAuditLog((prev) => [
@@ -510,6 +516,11 @@ export default function JobPosting() {
       ...prev,
     ]);
     setShowPlugHireModal(true);
+  };
+
+  const handleRowClick = (job: Job) => {
+    if (openMenuId) return;
+    handleViewDetails(job);
   };
 
   return (
@@ -632,11 +643,11 @@ export default function JobPosting() {
                       {paginatedJobs.map((job) => (
                         <tr
                           key={job.id}
-                          onClick={() => handleViewDetails(job)}
+                          onClick={() => handleRowClick(job)}
                           className="border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer"
                         >
-                          <td className="py-3 pr-4 cursor-pointer" onClick={() => handleViewDetails(job)}>{job.id}</td>
-                          <td className="py-3 pr-4 cursor-pointer" onClick={() => handleViewDetails(job)}>
+                          <td className="py-3 pr-4">{job.id}</td>
+                          <td className="py-3 pr-4">
                             <div className="font-medium">{job.title}</div>
                           </td>
                           <td className="py-3 pr-4">{job.department}</td>
@@ -651,7 +662,7 @@ export default function JobPosting() {
                             </span>
                           </td>
                           <td className="py-3 pr-4">
-                            <DropdownMenu>
+                            <DropdownMenu open={openMenuId === job.id} onOpenChange={(open) => setOpenMenuId(open ? job.id : null)}>
                               <DropdownMenuTrigger asChild>
                                 <Button
                                   size="sm"
@@ -730,7 +741,7 @@ export default function JobPosting() {
                               "No integrations"}
                           </div>
                         </div>
-                        <DropdownMenu>
+                        <DropdownMenu open={openMenuId === job.id} onOpenChange={(open) => setOpenMenuId(open ? job.id : null)}>
                           <DropdownMenuTrigger asChild>
                             <Button
                               size="sm"
