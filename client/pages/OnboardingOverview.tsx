@@ -675,6 +675,9 @@ export default function OnboardingOverview() {
     {/* Application Detail Modal */}
     <Dialog open={showApplicationDetail} onOpenChange={setShowApplicationDetail}>
       <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-base font-semibold">Candidate Details</DialogTitle>
+        </DialogHeader>
         <div className="space-y-4">
           <Card>
             <CardContent className="p-4 space-y-1">
