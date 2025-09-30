@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import CircleCheckbox from "@/components/ui/circle-checkbox";
 import { Edit } from "lucide-react";
@@ -200,20 +199,17 @@ export default function OnboardingTimeline() {
   const allDone = totals.total > 0 && totals.total === totals.complete;
 
   return (
-    <div className="onboarding-corporate space-y-6">
-      <Accordion type="multiple" className="space-y-6">
+    <div className="onboarding-corporate space-y-3">
+      <Accordion type="multiple" className="space-y-2">
         {sections.map((section) => (
-          <AccordionItem key={section.id} value={section.id}>
-            <AccordionTrigger className="text-base font-medium">
-              <div className="flex items-center gap-2">
-                {section.title}
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {section.items.filter((i) => i.completed).length}/
-                  {section.items.length}
-                </Badge>
+          <AccordionItem key={section.id} value={section.id} className="border rounded-md">
+            <AccordionTrigger className="text-[14px] font-medium py-1 px-2">
+              <div className="flex items-center justify-between gap-2 w-full">
+                <span className="text-[14px] text-gray-900">{section.title}</span>
+                <span className="ml-auto text-[14px] text-gray-700">{section.items.filter((i) => i.completed).length}/{section.items.length}</span>
               </div>
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="px-2">
               {section.description && (
                 <p className="text-sm text-muted-foreground mb-3">
                   {section.description}
@@ -230,7 +226,7 @@ export default function OnboardingTimeline() {
                   <tbody>
                     {section.items.slice(0, 5).map((item) => (
                       <tr key={item.id} className="border-b last:border-b-0">
-                        <td className="py-3 px-3 align-top w-[70%]">
+                        <td className="py-2 px-3 align-top w-[70%]">
                           <div className="flex items-center gap-2">
                             <span className="text-[14px] font-medium text-gray-900">
                               {item.title}
@@ -287,14 +283,14 @@ export default function OnboardingTimeline() {
                               <Edit className="w-4 h-4" />
                             </span>
                           </div>
-                          <div className="text-[12px] text-gray-500 mt-1">
+                          <div className="text-[12px] text-gray-500 mt-0.5">
                             Date Completed:{" "}
                             {item.dateCompleted
                               ? formatDateMDY(item.dateCompleted)
                               : "-"}
                           </div>
                         </td>
-                        <td className="py-3 px-3 align-middle w-[30%]">
+                        <td className="py-2 px-3 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
                             <CircleCheckbox
                               checked={item.completed}
