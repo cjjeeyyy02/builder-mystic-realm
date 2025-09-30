@@ -1571,7 +1571,7 @@ export default function JobPosting() {
 
             <DialogFooter className="flex items-center justify-end gap-3 pt-4 border-t">
               <Button variant="outline" type="button" onClick={() => setShowManageModal(false)}>Cancel</Button>
-              <Button type="button" className="bg-green-600 hover:bg-green-700 text-white" onClick={handleSaveManage}>Save / Update</Button>
+              <Button type="button" className="bg-green-600 hover:bg-green-700 text-white" onClick={handleSaveManage}>Save</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
