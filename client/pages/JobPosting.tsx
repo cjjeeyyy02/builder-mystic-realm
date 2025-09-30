@@ -1535,33 +1535,39 @@ export default function JobPosting() {
               {/* Job Information */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Location
-                  </Label>
-                  <p className="text-sm text-gray-900 mt-1">
-                    {jobToView?.location}
-                  </p>
+                  <Label className="text-sm font-medium text-gray-700">Job ID</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.id || "—"}</p>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Job Type
-                  </Label>
-                  <p className="text-sm text-gray-900 mt-1">
-                    {jobToView?.jobType}
-                  </p>
+                  <Label className="text-sm font-medium text-gray-700">Job Title</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.title || "—"}</p>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Salary Range
-                  </Label>
-                  <p className="text-sm text-gray-900 mt-1">
-                    {jobToView?.salary}
-                  </p>
+                  <Label className="text-sm font-medium text-gray-700">Department</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.department || "—"}</p>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Status
-                  </Label>
+                  <Label className="text-sm font-medium text-gray-700">Company / Employer</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.company || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Location</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.location || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Employment Type</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.employmentType || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Workplace Type</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.workplaceType || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Seniority Level</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.seniorityLevel || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Status</Label>
                   <div className="mt-1">
                     <span
                       className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${
@@ -1572,25 +1578,17 @@ export default function JobPosting() {
                             : "bg-gray-100 text-gray-800"
                       }`}
                     >
-                      {jobToView?.status}
+                      {jobToView?.status || "—"}
                     </span>
                   </div>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Date Posted
-                  </Label>
-                  <p className="text-sm text-gray-900 mt-1">
-                    {jobToView ? formatDateMDY(jobToView.datePosted) : ""}
-                  </p>
+                  <Label className="text-sm font-medium text-gray-700">Date Posted</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView ? formatDateMDY(jobToView.datePosted) : ""}</p>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Applicants
-                  </Label>
-                  <p className="text-sm text-gray-900 mt-1">
-                    {jobToView?.applicants ?? 0}
-                  </p>
+                  <Label className="text-sm font-medium text-gray-700">Salary Range</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.salary || "—"}</p>
                 </div>
               </div>
 
