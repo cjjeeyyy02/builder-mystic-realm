@@ -258,6 +258,18 @@ export default function JobPosting() {
   // Manage modal state
   const [showManageModal, setShowManageModal] = useState(false);
   const [manageJob, setManageJob] = useState<Job | null>(null);
+
+  // Ensure only one modal visible when Manage opens
+  useEffect(() => {
+    if (showManageModal) {
+      setShowJobDetailsModal(false);
+      setShowPlugHireModal(false);
+      setShowUpdateModal(false);
+      setShowCreateModal(false);
+      setArchiveConfirmFor(null);
+    }
+  }, [showManageModal]);
+
   const [manageForm, setManageForm] = useState({
     title: "",
     company: "",
