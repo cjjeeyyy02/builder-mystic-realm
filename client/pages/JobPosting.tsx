@@ -662,29 +662,26 @@ export default function JobPosting() {
                                   <MoreVertical className="w-4 h-4" />
                                 </Button>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+                              <DropdownMenuContent align="end">
                                 <DropdownMenuItem
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleOpenManage(job);
+                                  onSelect={() => {
+                                    setTimeout(() => handleOpenManage(job), 0);
                                   }}
                                 >
                                   <Edit className="w-4 h-4 mr-2" />
                                   Manage Job Posting
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleViewApplication(job);
+                                  onSelect={() => {
+                                    setTimeout(() => handleViewApplication(job), 0);
                                   }}
                                 >
                                   <FileText className="w-4 h-4 mr-2" />
                                   View Applications ({job.applicants ?? 0})
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    confirmArchive(job);
+                                  onSelect={() => {
+                                    setTimeout(() => confirmArchive(job), 0);
                                   }}
                                 >
                                   <Archive className="w-4 h-4 mr-2" />
@@ -745,24 +742,24 @@ export default function JobPosting() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onClick={() => {
-                                handleOpenManage(job);
+                              onSelect={() => {
+                                setTimeout(() => handleOpenManage(job), 0);
                               }}
                             >
                               <Edit className="w-4 h-4 mr-2" />
                               Manage Job Posting
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => {
-                                handleViewApplication(job);
+                              onSelect={() => {
+                                setTimeout(() => handleViewApplication(job), 0);
                               }}
                             >
                               <FileText className="w-4 h-4 mr-2" />
                               View Applications ({job.applicants ?? 0})
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => {
-                                confirmArchive(job);
+                              onSelect={() => {
+                                setTimeout(() => confirmArchive(job), 0);
                               }}
                             >
                               <Archive className="w-4 h-4 mr-2" />
