@@ -838,54 +838,71 @@ export default function OnboardingOverview() {
             {/* Section 2: Interview Details */}
             <div className="space-y-2">
               <div className="font-semibold text-gray-900">2. Interview Details</div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Steps Dropdown: Exactly two steps */}
+              <Accordion type="multiple" className="w-full">
+                <AccordionItem value="step-1">
+                  <AccordionTrigger className="text-sm font-medium">Step 1</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Type</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[0]?.interviewType || "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Date</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[0]?.interviewDate ? formatDateMDY(historyData.interview.steps![0].interviewDate) : "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interviewer Name</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[0]?.interviewerName || "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Result</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[0]?.interviewResult || "—"}</div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="step-2">
+                  <AccordionTrigger className="text-sm font-medium">Step 2</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Type</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[1]?.interviewType || "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Date</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[1]?.interviewDate ? formatDateMDY(historyData.interview.steps![1].interviewDate) : "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interviewer Name</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[1]?.interviewerName || "—"}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-600">Interview Result</div>
+                        <div className="font-medium text-gray-900">{historyData?.interview?.steps?.[1]?.interviewResult || "—"}</div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              {/* Footer info below Step 2 */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
                 <div>
                   <div className="text-xs text-gray-600">Date Added</div>
                   <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
                 </div>
+                <div>
+                  <div className="text-xs text-gray-600">Date Moved to Activation</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-600">Approved By</div>
+                  <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
+                </div>
               </div>
-              {/* Steps Dropdown */}
-              <Accordion type="multiple" className="w-full">
-                {(((historyData?.interview?.steps) && historyData.interview.steps.length > 0) ? historyData.interview.steps : [{ label: "Step 1" }]).slice(0, 5).map((step: any, idx: number) => (
-                  <AccordionItem key={idx} value={`step-${idx + 1}`}>
-                    <AccordionTrigger className="text-sm font-medium">
-                      {step.label || `Step ${idx + 1}`}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-                        <div>
-                          <div className="text-xs text-gray-600">Interview Type</div>
-                          <div className="font-medium text-gray-900">{step.interviewType || "—"}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-600">Interview Date</div>
-                          <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-600">Interviewer Name</div>
-                          <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-600">Interview Result</div>
-                          <div className="font-medium text-gray-900">{step.interviewResult || "—"}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-600">Date Added</div>
-                          <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-600">Date Moved to Activation</div>
-                          <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
-                        </div>
-                        <div className="sm:col-span-2">
-                          <div className="text-xs text-gray-600">Approved By</div>
-                          <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
             </div>
 
             {/* Section 3: Activation Details */}
