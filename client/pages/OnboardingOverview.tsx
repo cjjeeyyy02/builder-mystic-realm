@@ -820,7 +820,11 @@ export default function OnboardingOverview() {
                       {step.label || `Step ${idx + 1}`}
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Type</div>
+                          <div className="font-medium text-gray-900">{step.interviewType || "—"}</div>
+                        </div>
                         <div>
                           <div className="text-xs text-gray-600">Interview Date</div>
                           <div className="font-medium text-gray-900">{step.interviewDate ? formatDateMDY(step.interviewDate) : "—"}</div>
@@ -828,6 +832,10 @@ export default function OnboardingOverview() {
                         <div>
                           <div className="text-xs text-gray-600">Interviewer Name</div>
                           <div className="font-medium text-gray-900">{step.interviewerName || "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Interview Result</div>
+                          <div className="font-medium text-gray-900">{step.interviewResult || "—"}</div>
                         </div>
                       </div>
                     </AccordionContent>
