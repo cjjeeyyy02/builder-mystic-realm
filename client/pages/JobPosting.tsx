@@ -630,11 +630,10 @@ export default function JobPosting() {
                       {paginatedJobs.map((job) => (
                         <tr
                           key={job.id}
-                          onClick={() => handleViewDetails(job)}
-                          className="border-b last:border-b-0 hover:bg-gray-100 transition cursor-pointer"
+                          className="border-b last:border-b-0 hover:bg-gray-100 transition"
                         >
-                          <td className="py-3 pr-4">{job.id}</td>
-                          <td className="py-3 pr-4">
+                          <td className="py-3 pr-4 cursor-pointer" onClick={() => handleViewDetails(job)}>{job.id}</td>
+                          <td className="py-3 pr-4 cursor-pointer" onClick={() => handleViewDetails(job)}>
                             <div className="font-medium">{job.title}</div>
                           </td>
                           <td className="py-3 pr-4">{job.department}</td>
@@ -668,8 +667,9 @@ export default function JobPosting() {
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
                                 <DropdownMenuItem
-                                  onSelect={() => {
-                                    setTimeout(() => handleOpenManage(job), 0);
+                                  onSelect={(e) => {
+                                    e.preventDefault();
+                                    handleOpenManage(job);
                                   }}
                                 >
                                   <Edit className="w-4 h-4 mr-2" />
@@ -749,8 +749,9 @@ export default function JobPosting() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onSelect={() => {
-                                setTimeout(() => handleOpenManage(job), 0);
+                              onSelect={(e) => {
+                                e.preventDefault();
+                                handleOpenManage(job);
                               }}
                             >
                               <Edit className="w-4 h-4 mr-2" />
