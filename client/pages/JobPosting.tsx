@@ -1511,7 +1511,7 @@ export default function JobPosting() {
           open={showJobDetailsModal}
           onOpenChange={setShowJobDetailsModal}
         >
-          <DialogContent className="max-w-2xl w-full rounded-[12px] p-6">
+          <DialogContent className="max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-[12px] p-6">
             <DialogHeader>
               <div className="flex items-start justify-between w-full">
                 <div>
