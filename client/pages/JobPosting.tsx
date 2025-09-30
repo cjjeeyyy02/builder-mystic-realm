@@ -17,6 +17,7 @@ import {
   Mail,
   Eye,
   FileText,
+  Download,
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import {
@@ -484,6 +485,53 @@ export default function JobPosting() {
                 <Plus className="w-4 h-4" />
                 Create Job
               </button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-10 px-4 rounded-md text-sm font-medium flex items-center gap-2"
+                title="Export"
+                onClick={() => {
+                  const headers = [
+                    "Job ID",
+                    "Job Title",
+                    "Company/Employer",
+                    "Department",
+                    "Location",
+                    "Workplace Type",
+                    "Employment Type",
+                    "Status",
+                    "Date Posted",
+                    "Applicants",
+                  ];
+                  const rows = filteredJobs.map((j) => [
+                    j.id,
+                    j.title,
+                    j.company,
+                    j.department || "",
+                    j.location,
+                    j.workplaceType,
+                    j.employmentType,
+                    j.status || "",
+                    formatDateMDY(j.datePosted || ""),
+                    String(j.applicants ?? 0),
+                  ]);
+                  const csv = [
+                    headers.join(","),
+                    ...rows.map((r) => r.map((v) => `"${String(v).replace(/\"/g, '""')}"`).join(",")),
+                  ].join("\n");
+                  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "job_postings.csv";
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+                }}
+              >
+                <Download className="w-4 h-4" /> Export
+              </Button>
             </div>
           </div>
 
