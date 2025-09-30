@@ -1594,55 +1594,48 @@ export default function JobPosting() {
 
               {/* Job Description */}
               <div>
-                <Label className="text-sm font-medium text-gray-700">
-                  Description
-                </Label>
+                <Label className="text-sm font-medium text-gray-700">Job Description</Label>
                 <p className="text-sm text-gray-900 mt-2 leading-relaxed">
-                  {jobToView?.description || "No description available."}
+                  {jobToView?.description || "—"}
                 </p>
               </div>
 
-              {/* Integrations */}
+              {/* Job Requirements */}
               <div>
-                <Label className="text-sm font-medium text-gray-700">
-                  Integrations
-                </Label>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {jobToView?.integrations &&
-                  jobToView.integrations.length > 0 ? (
-                    jobToView.integrations.map((integration, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
-                      >
-                        {integration}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-sm text-gray-500">
-                      No integrations configured
-                    </span>
-                  )}
+                <Label className="text-sm font-medium text-gray-700">Job Requirements</Label>
+                <p className="text-sm text-gray-900 mt-2 leading-relaxed">
+                  {jobToView?.qualifications || "—"}
+                </p>
+              </div>
+
+              {/* Additional Details */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Application Methods</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.applicationMethods || "—"}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Application Deadline</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.closingDate ? formatDateMDY(jobToView.closingDate) : "—"}</p>
+                </div>
+                <div className="col-span-2">
+                  <Label className="text-sm font-medium text-gray-700">Perks & Benefits</Label>
+                  <p className="text-sm text-gray-900 mt-1">{jobToView?.perksAndBenefits || "—"}</p>
                 </div>
               </div>
-            </div>
 
-            <DialogFooter className="flex items-center justify-end gap-3 pt-4">
-              <Button
-                variant="outline"
-                onClick={() => setShowJobDetailsModal(false)}
-              >
-                Close
-              </Button>
-              <Button
-                onClick={() => {
-                  setShowJobDetailsModal(false);
-                  if (jobToView) handleOpenUpdate(jobToView);
-                }}
-              >
-                Edit Job
-              </Button>
-            </DialogFooter>
+              {/* Screening Questions */}
+              {jobToView?.screeningQuestions && jobToView.screeningQuestions.length > 0 && (
+                <div>
+                  <Label className="text-sm font-medium text-gray-700">Screening Questions</Label>
+                  <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-gray-900">
+                    {jobToView.screeningQuestions.map((q, i) => (
+                      <li key={i}>{q}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </DialogContent>
         </Dialog>
       </div>
