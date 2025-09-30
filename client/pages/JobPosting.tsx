@@ -1522,12 +1522,6 @@ export default function JobPosting() {
                     {jobToView?.company} • {jobToView?.department}
                   </DialogDescription>
                 </div>
-                <button
-                  onClick={() => setShowJobDetailsModal(false)}
-                  className="p-2 rounded-md hover:bg-gray-100"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
             </DialogHeader>
 
