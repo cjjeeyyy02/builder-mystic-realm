@@ -602,7 +602,7 @@ export default function OnboardingOverview() {
                     return (
                       <TableRow
                         key={candidate.id}
-                        onClick={() => { setDetailCandidate(candidate); setShowApplicationDetail(true); }}
+                        onClick={() => viewCandidate(candidate)}
                         className={`hover:bg-blue-50/60 transition-colors duration-200 cursor-pointer ${
                           index % 2 === 0 ? 'bg-white' : 'bg-gray-50/20'
                         }`}
