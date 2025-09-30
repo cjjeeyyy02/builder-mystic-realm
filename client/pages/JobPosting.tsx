@@ -667,9 +667,8 @@ export default function JobPosting() {
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
                                 <DropdownMenuItem
-                                  onSelect={(e) => {
-                                    e.preventDefault();
-                                    handleOpenManage(job);
+                                  onSelect={() => {
+                                    setTimeout(() => handleOpenManage(job), 0);
                                   }}
                                 >
                                   <Edit className="w-4 h-4 mr-2" />
@@ -749,9 +748,8 @@ export default function JobPosting() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onSelect={(e) => {
-                                e.preventDefault();
-                                handleOpenManage(job);
+                              onSelect={() => {
+                                setTimeout(() => handleOpenManage(job), 0);
                               }}
                             >
                               <Edit className="w-4 h-4 mr-2" />
