@@ -203,7 +203,7 @@ export default function OnboardingTimeline() {
       <Accordion type="multiple" className="space-y-2">
         {sections.map((section) => (
           <AccordionItem key={section.id} value={section.id} className="border rounded-md">
-            <AccordionTrigger className="text-[14px] font-medium py-1 px-2">
+            <AccordionTrigger className="text-[14px] font-bold py-1 px-2">
               <div className="flex items-center justify-between gap-2 w-full">
                 <span className="text-[14px] text-gray-900">{section.title}</span>
                 <span className="ml-auto text-[14px] text-gray-700">{section.items.filter((i) => i.completed).length}/{section.items.length}</span>
@@ -218,17 +218,17 @@ export default function OnboardingTimeline() {
               <div className="border border-gray-200 rounded-md overflow-hidden">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-left text-[13px] text-gray-700 font-semibold border-b">
-                      <th className="py-1 px-2 text-[13px] font-semibold">TASK</th>
-                      <th className="py-1 px-2 text-center text-[13px] font-semibold">COMPLETED</th>
+                    <tr className="text-left text-[13px] text-gray-700 font-semibold border-b leading-tight">
+                      <th className="py-1.5 px-2 text-[13px] font-semibold">TASK</th>
+                      <th className="py-1.5 px-2 text-center text-[13px] font-semibold">COMPLETED</th>
                     </tr>
                   </thead>
                   <tbody>
                     {section.items.slice(0, 5).map((item) => (
                       <tr key={item.id} className="border-b last:border-b-0">
-                        <td className="py-1 px-2 align-top w-[70%]">
+                        <td className="py-1.5 px-2 align-top w-[70%]">
                           <div className="flex items-center gap-1">
-                            <span className="text-[13px] font-normal leading-tight text-gray-900">
+                            <span className="text-[12px] font-normal leading-tight text-gray-900">
                               {item.title}
                             </span>
                             <span
@@ -283,16 +283,16 @@ export default function OnboardingTimeline() {
                               <Edit className="w-4 h-4" />
                             </span>
                           </div>
-                          <div className="text-[12px] text-[#8A8A8A] mt-0.5 leading-tight">
+                          <div className="text-[10px] text-[#8A8A8A] mt-0.5 leading-tight">
                             Date Completed:{" "}
                             {item.dateCompleted
                               ? formatDateMDY(item.dateCompleted)
                               : "-"}
                           </div>
                         </td>
-                        <td className="py-1 px-2 align-middle w-[30%]">
+                        <td className="py-1.5 px-2 align-middle w-[30%]">
                           <div className="w-full flex items-center justify-center">
-                            <CircleCheckbox className="h-4 w-4"
+                            <CircleCheckbox className="h-3.5 w-3.5"
                               checked={item.completed}
                               onCheckedChange={(v) =>
                                 markItem(section.id, item.id, Boolean(v))
