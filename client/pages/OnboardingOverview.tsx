@@ -67,8 +67,10 @@ interface PipelineCandidate {
 
 interface CandidateHistoryStep {
   label: string; // e.g., "Step 1 - Interview Type"
+  interviewType?: string;
   interviewDate?: string;
   interviewerName?: string;
+  interviewResult?: string;
 }
 
 interface CandidateHistory {
@@ -814,13 +816,13 @@ export default function OnboardingOverview() {
               </div>
               {/* Steps Dropdown */}
               <Accordion type="multiple" className="w-full">
-                {((historyData?.interview?.steps) || []).slice(0, 5).map((step: any, idx: number) => (
+                {(((historyData?.interview?.steps) && historyData.interview.steps.length > 0) ? historyData.interview.steps : [{ label: "Step 1" }]).slice(0, 5).map((step: any, idx: number) => (
                   <AccordionItem key={idx} value={`step-${idx + 1}`}>
                     <AccordionTrigger className="text-sm font-medium">
                       {step.label || `Step ${idx + 1}`}
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                         <div>
                           <div className="text-xs text-gray-600">Interview Type</div>
                           <div className="font-medium text-gray-900">{step.interviewType || "—"}</div>
@@ -837,21 +839,23 @@ export default function OnboardingOverview() {
                           <div className="text-xs text-gray-600">Interview Result</div>
                           <div className="font-medium text-gray-900">{step.interviewResult || "—"}</div>
                         </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Date Added</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.dateAdded ? formatDateMDY(historyData.interview.dateAdded) : "—"}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-600">Date Moved to Activation</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
+                        </div>
+                        <div className="sm:col-span-2">
+                          <div className="text-xs text-gray-600">Approved By</div>
+                          <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <div className="text-xs text-gray-600">Date moved to Activation</div>
-                  <div className="font-medium text-gray-900">{historyData?.interview?.movedToActivationDate ? formatDateMDY(historyData.interview.movedToActivationDate) : "—"}</div>
-                </div>
-                <div>
-                  <div className="text-xs text-gray-600">Approved by</div>
-                  <div className="font-medium text-gray-900">{historyData?.interview?.movedApprovedBy || "—"}</div>
-                </div>
-              </div>
             </div>
 
             {/* Section 3: Activation Details */}
