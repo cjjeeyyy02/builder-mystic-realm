@@ -886,62 +886,51 @@ export default function EmployeeProfile({
                 Add New Skill
               </Button>
             </div>
-            <div className="space-y-4">
-              {skills.map((skill, index) => (
-                <Card key={index} className="border border-border">
-                  <CardContent className="p-4">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          Skill Name
-                        </label>
-                        <p className="font-semibold text-foreground">
-                          {skill.name}
-                        </p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          Experience
-                        </label>
-                        <p className="text-foreground">{skill.experience}</p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          Skill Level
-                        </label>
-                        <div className="mt-1">
-                          <Badge
-                            variant="secondary"
-                            className={
-                              skill.level === "Expert"
-                                ? "bg-green-100 text-green-700"
-                                : skill.level === "Advanced"
-                                  ? "bg-blue-100 text-blue-700"
-                                  : skill.level === "Intermediate"
-                                    ? "bg-yellow-100 text-yellow-700"
-                                    : "bg-gray-100 text-gray-700"
-                            }
-                          >
-                            {skill.level}
-                          </Badge>
+            <div className="border rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-sm font-medium">Skill Name</TableHead>
+                    <TableHead className="text-sm font-medium">Experience (Years)</TableHead>
+                    <TableHead className="text-sm font-medium">Skill Level</TableHead>
+                    <TableHead className="text-right text-sm font-medium">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {skills.map((skill, index) => (
+                    <TableRow key={index}>
+                      <TableCell className="px-3 py-2 text-sm">{skill.name}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{skill.experience}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">
+                        <Badge
+                          variant="secondary"
+                          className={
+                            skill.level === "Expert"
+                              ? "text-xs px-2 py-0.5 rounded-md bg-green-100 text-green-700"
+                              : skill.level === "Advanced"
+                                ? "text-xs px-2 py-0.5 rounded-md bg-blue-100 text-blue-700"
+                                : skill.level === "Intermediate"
+                                  ? "text-xs px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-700"
+                                  : "text-xs px-2 py-0.5 rounded-md bg-gray-100 text-gray-700"
+                          }
+                        >
+                          {skill.level}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="px-3 py-2 text-sm">
+                        <div className="flex justify-end gap-1">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Edit skill">
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Delete skill">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
                         </div>
-                      </div>
-                      <div className="flex gap-2">
-                        {skill.editable && (
-                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                        )}
-                        {skill.endorsable && (
-                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
-                            <Award className="w-3 h-3" />
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         );
