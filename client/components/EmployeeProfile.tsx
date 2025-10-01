@@ -1689,67 +1689,37 @@ export default function EmployeeProfile({
                 </Button>
               </div>
 
-              <div className="space-y-4">
-                {leaveHistory.map((leave) => (
-                  <Card key={leave.id} className="border border-border rounded-xl shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Leave Period
-                          </label>
-                          <p className="font-semibold text-foreground">
-                            {leave.leavePeriod}
-                          </p>
-                        </div>
-
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Approved By
-                          </label>
-                          <p className="text-foreground">
-                            {leave.approvedBy || "N/A"}
-                          </p>
-                        </div>
-
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Leave Status
-                          </label>
-                          <div className="mt-1">
-                            <Badge
-                              variant="outline"
-                              className={getLeaveStatusColor(leave.leaveStatus)}
-                            >
-                              {leave.leaveStatus}
-                            </Badge>
+              <div className="border rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gray-50">
+                      <TableHead className="text-sm font-medium">Leave Type</TableHead>
+                      <TableHead className="text-sm font-medium">Duration</TableHead>
+                      <TableHead className="text-sm font-medium">Total Days</TableHead>
+                      <TableHead className="text-sm font-medium">Status</TableHead>
+                      <TableHead className="text-right text-sm font-medium">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {leaveHistory.map((leave) => (
+                      <TableRow key={leave.id}>
+                        <TableCell className="px-3 py-2 text-sm">{leave.leaveType}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">{leave.leavePeriod}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">{leave.numberOfDays}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">
+                          <Badge variant="outline" className={getLeaveStatusColor(leave.leaveStatus)}>{leave.leaveStatus}</Badge>
+                        </TableCell>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex justify-end">
+                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="View Request">
+                              <Eye className="w-4 h-4" />
+                            </Button>
                           </div>
-                        </div>
-
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Number of Days
-                          </label>
-                          <p className="text-foreground font-semibold">
-                            {leave.numberOfDays}{" "}
-                            {leave.numberOfDays === 1 ? "day" : "days"}
-                          </p>
-                        </div>
-
-                        <div className="flex gap-2">
-                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
-                            <Eye className="w-3 h-3 mr-1" />
-                            View
-                          </Button>
-                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
-                            <Edit className="w-3 h-3 mr-1" />
-                            Edit
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
 
               {/* Leave Summary */}
