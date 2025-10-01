@@ -1909,137 +1909,46 @@ export default function EmployeeProfile({
               </Button>
             </div>
 
-            {/* Documents List */}
-            <div className="space-y-4">
-              {employeeDocuments.map((document) => (
-                <Card key={document.id} className="border border-border">
-                  <CardContent className="p-4">
-                    <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
-                      {/* Document Title */}
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          Document Title
-                        </label>
-                        <p className="font-semibold text-foreground">
-                          {document.documentTitle}
-                        </p>
-                      </div>
-
-                      {/* File Type */}
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          File Type
-                        </label>
-                        <div className="mt-1">
-                          <Badge
-                            variant="outline"
-                            className="bg-blue-50 text-blue-700 border-blue-200"
-                          >
-                            {document.fileType}
-                          </Badge>
+            {/* Documents Table */}
+            <div className="border rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-sm font-medium">Document Title</TableHead>
+                    <TableHead className="text-sm font-medium">File Type</TableHead>
+                    <TableHead className="text-sm font-medium">File Size</TableHead>
+                    <TableHead className="text-sm font-medium">Upload Date</TableHead>
+                    <TableHead className="text-right text-sm font-medium">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {employeeDocuments.map((document) => (
+                    <TableRow key={document.id}>
+                      <TableCell className="px-3 py-2 text-sm">{document.documentTitle}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{document.fileType}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{document.fileSize}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{formatDate(document.uploadDate)}</TableCell>
+                      <TableCell className="px-3 py-2">
+                        <div className="flex justify-end gap-1">
+                          {document.canPreview && (
+                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Preview">
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                          )}
+                          {document.canDownload && (
+                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Download">
+                              <Download className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-red-600" aria-label="Delete">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
                         </div>
-                      </div>
-
-                      {/* File Size */}
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          File Size
-                        </label>
-                        <p className="text-foreground">{document.fileSize}</p>
-                      </div>
-
-                      {/* Upload Date */}
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
-                          Upload Date
-                        </label>
-                        <p className="text-foreground">
-                          {formatDate(document.uploadDate)}
-                        </p>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex flex-wrap gap-2">
-                        {/* Preview Button */}
-                        {document.canPreview && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() =>
-                              handleDocumentAction(
-                                "preview",
-                                document.id,
-                                document.documentTitle,
-                              )
-                            }
-                            className="flex items-center gap-1"
-                          >
-                            <Eye className="w-3 h-3" />
-                            Preview
-                          </Button>
-                        )}
-
-                        {/* Download Button */}
-                        {document.canDownload && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() =>
-                              handleDocumentAction(
-                                "download",
-                                document.id,
-                                document.documentTitle,
-                              )
-                            }
-                            className="flex items-center gap-1"
-                          >
-                            <Download className="w-3 h-3" />
-                            Download
-                          </Button>
-                        )}
-                      </div>
-
-                      {/* Additional Actions */}
-                      <div className="flex gap-2">
-                        {/* Share Button */}
-                        {document.canShare && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() =>
-                              handleDocumentAction(
-                                "share",
-                                document.id,
-                                document.documentTitle,
-                              )
-                            }
-                            className="flex items-center gap-1"
-                          >
-                            <Share className="w-3 h-3" />
-                            Share
-                          </Button>
-                        )}
-
-                        {/* Delete Button */}
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() =>
-                            handleDocumentAction(
-                              "delete",
-                              document.id,
-                              document.documentTitle,
-                            )
-                          }
-                          className="flex items-center gap-1 text-red-600 border-red-200 hover:bg-red-50"
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         );
