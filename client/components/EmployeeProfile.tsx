@@ -464,9 +464,7 @@ export default function EmployeeProfile({
                     <Textarea placeholder="Full residential address" />
                   ) : (
                     <p className="text-foreground">
-                      123 Main Street, Apt 4B
-                      <br />
-                      San Francisco, CA 94102
+                      123 – 1350 Foothills Blvd, Prince George, British Columbia, Canada
                     </p>
                   )}
                 </div>
@@ -1493,7 +1491,7 @@ export default function EmployeeProfile({
           },
           {
             id: "2",
-            leavePeriod: "01-08-2024 ��� 01-12-2024",
+            leavePeriod: "01-08-2024 – 01-12-2024",
             approvedBy: "Michael Rodriguez",
             leaveStatus: "Approved",
             numberOfDays: 5,
