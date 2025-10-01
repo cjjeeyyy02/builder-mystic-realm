@@ -2380,7 +2380,7 @@ export default function EmployeeProfile({
       </div>
 
       {/* Employee Details Header */}
-      <Card className="border-0 shadow-sm">
+      <Card className="border-0 shadow-sm sticky top-0 z-20 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <CardContent className="p-8">
           <div className="flex items-start gap-8">
             {/* Profile Picture/Initials */}
