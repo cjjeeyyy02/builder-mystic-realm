@@ -312,12 +312,9 @@ export default function Records() {
                     <Building className="w-3 h-3 mr-1" />
                     {employee.department}
                   </Badge>
-                  <Badge
-                    variant="outline"
-                    className={`font-medium ${getStatusColor(employee.status)}`}
-                  >
+                  <div className="font-medium text-muted-foreground">
                     {employee.status}
-                  </Badge>
+                  </div>
                 </div>
               </div>
             </div>
@@ -426,12 +423,7 @@ export default function Records() {
                   <div className="text-xs text-gray-900">{employee.email}</div>
                 </TableCell>
                 <TableCell className="px-3 py-2">
-                  <Badge
-                    variant="outline"
-                    className={`text-xs ${getStatusColor(employee.status)}`}
-                  >
-                    {employee.status}
-                  </Badge>
+                  <div className="text-xs text-gray-900">{employee.status}</div>
                 </TableCell>
                 <TableCell className="px-3 py-2">
                   <div className="text-xs text-gray-900">
