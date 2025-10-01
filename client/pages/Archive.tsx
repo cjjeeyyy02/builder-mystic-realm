@@ -727,8 +727,8 @@ export default function Archive() {
                     )}
                   </div>
                   {selected && (
-                    <Button variant="outline" size="sm" onClick={downloadSelectedResume}>
-                      <Download className="w-4 h-4 mr-1" /> Download Resume
+                    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={downloadSelectedResume} aria-label="Download Resume" title="Download Resume">
+                      <Download className="w-4 h-4" />
                     </Button>
                   )}
                 </div>
