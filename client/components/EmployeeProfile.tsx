@@ -906,12 +906,6 @@ export default function EmployeeProfile({
                       </div>
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">
-                          Endorsements
-                        </label>
-                        <p className="text-foreground">{skill.endorsements}</p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">
                           Skill Level
                         </label>
                         <div className="mt-1">
