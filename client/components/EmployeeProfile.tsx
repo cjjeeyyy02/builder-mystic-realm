@@ -458,7 +458,7 @@ export default function EmployeeProfile({
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-gray-900 mb-2">
-                    Address
+                    Address Information
                   </label>
                   {isEditing ? (
                     <Textarea placeholder="Full residential address" />
@@ -1493,7 +1493,7 @@ export default function EmployeeProfile({
           },
           {
             id: "2",
-            leavePeriod: "01-08-2024 – 01-12-2024",
+            leavePeriod: "01-08-2024 ��� 01-12-2024",
             approvedBy: "Michael Rodriguez",
             leaveStatus: "Approved",
             numberOfDays: 5,
