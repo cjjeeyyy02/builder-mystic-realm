@@ -415,6 +415,16 @@ export default function EmployeeProfile({
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-gray-900 mb-2">
+                    Middle Name
+                  </label>
+                  {isEditing ? (
+                    <Input defaultValue="" placeholder="" />
+                  ) : (
+                    <p className="text-foreground">—</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">
                     Last Name
                   </label>
                   {isEditing ? (
@@ -1507,7 +1517,7 @@ export default function EmployeeProfile({
           },
           {
             id: "4",
-            leavePeriod: "05-10-2024 – 05-14-2024",
+            leavePeriod: "05-10-2024 ��� 05-14-2024",
             approvedBy: "",
             leaveStatus: "Rejected",
             numberOfDays: 5,
