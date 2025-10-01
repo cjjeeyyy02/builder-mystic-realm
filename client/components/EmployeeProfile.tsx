@@ -591,6 +591,14 @@ export default function EmployeeProfile({
                           className="pl-10"
                         />
                       </div>
+                      <div className="relative">
+                        <MapPin className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <Input
+                          placeholder="Home Address"
+                          defaultValue="123 – 1350 Foothills Blvd, Prince George, British Columbia, Canada"
+                          className="pl-10"
+                        />
+                      </div>
                     </div>
                   ) : (
                     <div className="text-foreground space-y-2">
@@ -1517,7 +1525,7 @@ export default function EmployeeProfile({
           },
           {
             id: "4",
-            leavePeriod: "05-10-2024 ��� 05-14-2024",
+            leavePeriod: "05-10-2024 – 05-14-2024",
             approvedBy: "",
             leaveStatus: "Rejected",
             numberOfDays: 5,
