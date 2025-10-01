@@ -381,6 +381,28 @@ export default function Archive() {
 
   const selectedJobPosting = useMemo(() => jobRows.find(j => j.jobId === selectedJobPostingId) || null, [jobRows, selectedJobPostingId]);
 
+  const downloadSelectedResume = () => {
+    if (!selected) return;
+    const lines = [
+      `Candidate: ${selected.candidateName}`,
+      `Applied Position: ${selected.appliedPosition}`,
+      `Job ID: ${selected.jobId}`,
+      `Application Date: ${selected.applicationDate}`,
+      selected.applicationChannel ? `Application Channel: ${selected.applicationChannel}` : undefined,
+      "",
+      "This is a placeholder resume. Replace with actual resume content when available.",
+    ].filter(Boolean) as string[];
+    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${selected.candidateName.replace(/\s+/g, "_")}_resume.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   useEffect(() => {
     if (jobFormOpen && selectedJobPosting) {
       setJobForm({
@@ -695,12 +717,19 @@ export default function Archive() {
           }}>
             <SheetContent side="right" className="w-full max-w-[40vw] md:max-w-[38vw] lg:max-w-[35vw]">
               <div className="h-full flex flex-col">
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold text-foreground">Candidate Details</h2>
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <h2 className="text-lg font-semibold text-foreground">Candidate Details</h2>
+                    {selected && (
+                      <div className="text-sm text-muted-foreground mt-1">
+                        {selected.candidateName} • {selected.appliedPosition}
+                      </div>
+                    )}
+                  </div>
                   {selected && (
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {selected.candidateName} • {selected.appliedPosition}
-                    </div>
+                    <Button variant="outline" size="sm" onClick={downloadSelectedResume}>
+                      <Download className="w-4 h-4 mr-1" /> Download Resume
+                    </Button>
                   )}
                 </div>
 
