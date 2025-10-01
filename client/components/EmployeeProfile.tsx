@@ -965,118 +965,43 @@ export default function EmployeeProfile({
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Compensation Information</h3>
 
-            {/* Current Compensation */}
-            <Card className="border-0 rounded-xl shadow-sm bg-blue-50">
-              <CardContent className="p-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground">
-                      Base Salary
-                    </label>
-                    <p className="text-2xl font-bold text-foreground">
-                      $95,000
-                    </p>
-                    <p className="text-sm text-muted-foreground">per month</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground">
-                      Last Review
-                    </label>
-                    <p className="text-lg font-semibold text-foreground">
-                      01-15-2023
-                    </p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground">
-                      Next Review
-                    </label>
-                    <p className="text-lg font-semibold text-foreground">
-                      01-15-2024
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Compensation History */}
-            <div>
-              <h4 className="text-md font-semibold mb-4">
-                Compensation History
-              </h4>
-              <div className="space-y-4">
-                {compensationHistory.map((record, index) => (
-                  <Card key={index} className="border border-border">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-sm">
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Date of Change
-                          </label>
-                          <p className="text-foreground">{record.date}</p>
+            {/* Compensation Table */}
+            <div className="border rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-sm font-medium">Compensation Type</TableHead>
+                    <TableHead className="text-sm font-medium">Amount</TableHead>
+                    <TableHead className="text-sm font-medium">Effective Date</TableHead>
+                    <TableHead className="text-sm font-medium">Status</TableHead>
+                    <TableHead className="text-right text-sm font-medium">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {compensationHistory.map((record, index) => (
+                    <TableRow key={index}>
+                      <TableCell className="px-3 py-2 text-sm">{record.source}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{record.salaryAmount}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{record.date}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">
+                        <Badge variant="outline" className={index === 0 ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-50 text-gray-700 border-gray-200"}>
+                          {index === 0 ? "Active" : "Past"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="px-3 py-2">
+                        <div className="flex justify-end gap-1">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Edit">
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="View History">
+                            <Eye className="w-4 h-4" />
+                          </Button>
                         </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Amount
-                          </label>
-                          <p className="text-green-600 font-semibold">
-                            {record.amount}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Salary Amount
-                          </label>
-                          <p className="text-foreground font-semibold">
-                            {record.salaryAmount}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Change Amount
-                          </label>
-                          <p className="text-foreground">
-                            {record.changeAmount}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Change %
-                          </label>
-                          <p className="text-foreground">
-                            {record.changePercent}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Type
-                          </label>
-                          <p className="text-foreground">{record.type}</p>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-3 pt-3 border-t">
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Source
-                          </label>
-                          <p className="text-foreground">{record.source}</p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Currency
-                          </label>
-                          <p className="text-foreground">{record.currency}</p>
-                        </div>
-                        <div>
-                          <label className="font-medium text-muted-foreground">
-                            Job Title
-                          </label>
-                          <p className="text-foreground">{record.jobTitle}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         );
