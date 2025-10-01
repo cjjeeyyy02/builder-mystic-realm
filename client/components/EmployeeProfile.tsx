@@ -1088,88 +1088,39 @@ export default function EmployeeProfile({
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Performance Reviews</h3>
 
-            <div className="space-y-4">
-              {performanceReviews.map((review) => (
-                <Card key={review.id} className="border border-border">
-                  <CardContent className="p-0">
-                    <div
-                      className="p-4 cursor-pointer hover:bg-muted/30 transition-colors"
-                      onClick={() => toggleQuarter(review.id)}
-                    >
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">
-                          {review.quarter}
-                        </h4>
-                        <div className="flex items-center gap-4">
-                          <Badge className="bg-blue-100 text-blue-700">
-                            Overall: {review.overallRating}
-                          </Badge>
-                          {expandedQuarters.includes(review.id) ? (
-                            <ChevronUp className="w-5 h-5" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5" />
-                          )}
+            <div className="border rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-sm font-medium">Review Period</TableHead>
+                    <TableHead className="text-sm font-medium">Reviewer Name</TableHead>
+                    <TableHead className="text-sm font-medium">Rating</TableHead>
+                    <TableHead className="text-sm font-medium">Comments / Notes</TableHead>
+                    <TableHead className="text-right text-sm font-medium">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {performanceReviews.map((review) => (
+                    <TableRow key={review.id}>
+                      <TableCell className="px-3 py-2 text-sm">{review.quarter}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">—</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{review.overallRating}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">
+                        {review.managerFeedback.length > 80
+                          ? `${review.managerFeedback.slice(0, 80)}…`
+                          : review.managerFeedback}
+                      </TableCell>
+                      <TableCell className="px-3 py-2">
+                        <div className="flex justify-end">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="View Details">
+                            <Eye className="w-4 h-4" />
+                          </Button>
                         </div>
-                      </div>
-                    </div>
-
-                    {expandedQuarters.includes(review.id) && (
-                      <div className="px-4 pb-4 border-t">
-                        {/* Goals & Objectives */}
-                        <div className="mt-4">
-                          <h5 className="font-semibold mb-3 flex items-center gap-2">
-                            <Target className="w-4 h-4" />
-                            Goals & Objectives
-                          </h5>
-                          <div className="space-y-3">
-                            {review.goals.map((goal) => (
-                              <div
-                                key={goal.id}
-                                className="flex items-center justify-between p-3 bg-muted/20 rounded-lg"
-                              >
-                                <div className="flex-1">
-                                  <p className="font-medium">
-                                    Goal {goal.id}: {goal.title}
-                                  </p>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                  <Badge
-                                    variant="outline"
-                                    className={
-                                      goal.status === "Completed"
-                                        ? "bg-green-50 text-green-700 border-green-200"
-                                        : goal.status === "In Progress"
-                                          ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                                          : "bg-gray-50 text-gray-700 border-gray-200"
-                                    }
-                                  >
-                                    {goal.status}
-                                  </Badge>
-                                  <span className="text-sm font-medium min-w-[60px]">
-                                    {goal.rating}
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Manager Feedback */}
-                        <div className="mt-6">
-                          <h5 className="font-semibold mb-3">
-                            Manager Feedback
-                          </h5>
-                          <div className="p-4 bg-blue-50 rounded-lg">
-                            <p className="text-foreground leading-relaxed">
-                              {review.managerFeedback}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         );
