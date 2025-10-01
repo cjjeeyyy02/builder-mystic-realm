@@ -1359,65 +1359,41 @@ export default function EmployeeProfile({
                 </Button>
               </div>
 
-              <div className="space-y-4">
-                {trainingRecords.map((training) => (
-                  <Card key={training.id} className="border border-border rounded-xl shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Training Name
-                          </label>
-                          <p className="font-semibold text-foreground">
-                            {training.trainingName}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Training Provider
-                          </label>
-                          <p className="text-foreground">
-                            {training.trainingProvider}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Status
-                          </label>
-                          <div className="mt-1">
-                            <Badge
-                              variant="outline"
-                              className={getStatusColor(training.status)}
-                            >
-                              {training.status}
-                            </Badge>
+              <div className="border rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gray-50">
+                      <TableHead className="text-sm font-medium">Training Title</TableHead>
+                      <TableHead className="text-sm font-medium">Provider / Instructor</TableHead>
+                      <TableHead className="text-sm font-medium">Date Completed</TableHead>
+                      <TableHead className="text-sm font-medium">Status</TableHead>
+                      <TableHead className="text-right text-sm font-medium">Certificate</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {trainingRecords.map((training) => (
+                      <TableRow key={training.id}>
+                        <TableCell className="px-3 py-2 text-sm">{training.trainingName}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">{training.trainingProvider}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">{formatTrainingDate(training.completionDate)}</TableCell>
+                        <TableCell className="px-3 py-2 text-sm">
+                          <Badge variant="outline" className={getStatusColor(training.status)}>{training.status}</Badge>
+                        </TableCell>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex justify-end">
+                            {training.status === "Completed" ? (
+                              <Button size="sm" variant="ghost" className="h-8 w-8 p-0" aria-label="Download Certificate">
+                                <Download className="w-4 h-4" />
+                              </Button>
+                            ) : (
+                              <span className="text-sm text-muted-foreground">—</span>
+                            )}
                           </div>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Score
-                          </label>
-                          <p className="text-foreground">
-                            {training.score ? `${training.score}%` : "N/A"}
-                          </p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">
-                            Completion Date
-                          </label>
-                          <p className="text-foreground">
-                            {formatTrainingDate(training.completionDate)}
-                          </p>
-                        </div>
-                        <div className="flex gap-2">
-                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </div>
 
