@@ -75,6 +75,7 @@ interface JobPostingArchive {
   datePosted: string; // MM-DD-YYYY or YYYY-MM-DD acceptable
   archiveDate: string; // MM-DD-YYYY
   department?: string; // kept for filtering compatibility
+  applicants?: string[];
 }
 
 // Sample data - Candidates
@@ -212,6 +213,7 @@ const initialJobPostings: JobPostingArchive[] = [
     status: "Archived",
     datePosted: "2025-05-10",
     archiveDate: "08-15-2025",
+    applicants: ["Alex Johnson", "Priya Patel", "Liam Johnson"],
   },
   {
     jobId: "J-1005",
@@ -224,6 +226,7 @@ const initialJobPostings: JobPostingArchive[] = [
     status: "Archived",
     datePosted: "2025-06-22",
     archiveDate: "08-12-2025",
+    applicants: ["Emily Rodriguez", "David Kim"],
   },
   {
     jobId: "J-1006",
@@ -236,6 +239,7 @@ const initialJobPostings: JobPostingArchive[] = [
     status: "Archived",
     datePosted: "2025-04-02",
     archiveDate: "08-01-2025",
+    applicants: ["Sofia Rossi"],
   },
 ];
 
@@ -670,6 +674,7 @@ export default function Archive() {
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">LOCATION</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">WORKPLACE TYPE</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">EMPLOYMENT TYPE</th>
+                    <th className="py-2 pr-4 font-bold uppercase text-gray-900">APPLICANTS</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">STATUS</th>
                     <th className="py-2 pr-4 font-bold uppercase text-gray-900">ARCHIVE DATE</th>
                   </tr>
@@ -691,6 +696,16 @@ export default function Archive() {
                       <td className="py-3 pr-4">{j.location}</td>
                       <td className="py-3 pr-4 capitalize">{j.workplaceType}</td>
                       <td className="py-3 pr-4 capitalize">{j.employmentType}</td>
+                      <td className="py-3 pr-4">
+                        {Array.isArray(j.applicants) && j.applicants.length ? (
+                          <span className="block truncate text-gray-700">
+                            {j.applicants.slice(0, 3).join(", ")}
+                            {j.applicants.length > 3 ? ` +${j.applicants.length - 3} more` : ""}
+                          </span>
+                        ) : (
+                          "-"
+                        )}
+                      </td>
                       <td className="py-3 pr-4">{j.status}</td>
                       <td className="py-3 pr-4">{formatDateMDY(j.archiveDate)}</td>
                     </tr>
