@@ -889,7 +889,7 @@ export default function EmployeeProfile({
               {skills.map((skill, index) => (
                 <Card key={index} className="border border-border">
                   <CardContent className="p-4">
-                    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">
                           Skill Name
