@@ -830,7 +830,7 @@ export default function EmployeeProfile({
 
                 <div>
                   <h4 className="font-semibold mb-3">Organization Chart</h4>
-                  <Button size="sm" className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">View Organization Chart</Button>
+                  <Button size="sm" className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white h-8 px-3 text-sm">View Organization Chart</Button>
                   <p className="text-xs text-muted-foreground mt-2">Click to see your position in the company hierarchy or explore other departments.</p>
                 </div>
               </div>
@@ -843,12 +843,12 @@ export default function EmployeeProfile({
                 <table className="w-full text-sm">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Company Name</th>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Position</th>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Duration</th>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Location</th>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Employment Type</th>
-                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Reason for Leaving</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Company Name</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Position</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Duration</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Location</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Employment Type</th>
+                      <th className="h-10 px-4 text-left align-middle text-sm font-medium text-muted-foreground">Reason for Leaving</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -857,12 +857,12 @@ export default function EmployeeProfile({
                       { company: "Globex Inc", position: "Assistant", duration: "2016 – 2018", location: "Vancouver, BC", type: "Contract", reason: "End of contract" },
                     ].map((row, idx) => (
                       <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"}>
-                        <td className="p-3">{row.company}</td>
-                        <td className="p-3">{row.position}</td>
-                        <td className="p-3">{row.duration}</td>
-                        <td className="p-3">{row.location}</td>
-                        <td className="p-3">{row.type}</td>
-                        <td className="p-3">{row.reason}</td>
+                        <td className="px-3 py-2">{row.company}</td>
+                        <td className="px-3 py-2">{row.position}</td>
+                        <td className="px-3 py-2">{row.duration}</td>
+                        <td className="px-3 py-2">{row.location}</td>
+                        <td className="px-3 py-2">{row.type}</td>
+                        <td className="px-3 py-2">{row.reason}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -878,7 +878,7 @@ export default function EmployeeProfile({
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Skills Summary</h3>
               <Button
-                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white h-8 px-3 text-sm"
                 onClick={() => setShowSkillModal(true)}
               >
                 <Plus className="w-4 h-4 mr-2" />
@@ -927,12 +927,12 @@ export default function EmployeeProfile({
                       </div>
                       <div className="flex gap-2">
                         {skill.editable && (
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
                             <Edit className="w-3 h-3" />
                           </Button>
                         )}
                         {skill.endorsable && (
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
                             <Award className="w-3 h-3" />
                           </Button>
                         )}
@@ -976,8 +976,8 @@ export default function EmployeeProfile({
             <h3 className="text-lg font-semibold">Compensation Information</h3>
 
             {/* Current Compensation */}
-            <Card className="border-0 shadow-sm bg-blue-50">
-              <CardContent className="p-6">
+            <Card className="border-0 rounded-xl shadow-sm bg-blue-50">
+              <CardContent className="p-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
                     <label className="text-sm font-medium text-muted-foreground">
@@ -1361,7 +1361,7 @@ export default function EmployeeProfile({
                   Training
                 </h3>
                 <Button
-                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white h-8 px-3 text-sm"
                   onClick={() => setShowTrainingModal(true)}
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -1371,8 +1371,8 @@ export default function EmployeeProfile({
 
               <div className="space-y-4">
                 {trainingRecords.map((training) => (
-                  <Card key={training.id} className="border border-border">
-                    <CardContent className="p-6">
+                  <Card key={training.id} className="border border-border rounded-xl shadow-sm">
+                    <CardContent className="p-4">
                       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">
@@ -1420,7 +1420,7 @@ export default function EmployeeProfile({
                           </p>
                         </div>
                         <div className="flex gap-2">
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
                             <Edit className="w-3 h-3" />
                           </Button>
                         </div>
@@ -1440,8 +1440,8 @@ export default function EmployeeProfile({
 
               <div className="space-y-4">
                 {certifications.map((cert) => (
-                  <Card key={cert.id} className="border border-border">
-                    <CardContent className="p-6">
+                  <Card key={cert.id} className="border border-border rounded-xl shadow-sm">
+                    <CardContent className="p-4">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {/* Certification Info */}
                         <div className="space-y-4">
@@ -1609,8 +1609,8 @@ export default function EmployeeProfile({
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="border border-border">
-                  <CardContent className="p-6 text-center">
+                <Card className="border border-border rounded-xl shadow-sm">
+                  <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-blue-600 mb-2">
                       {attendanceData.totalWorkingDays}
                     </div>
@@ -1620,8 +1620,8 @@ export default function EmployeeProfile({
                   </CardContent>
                 </Card>
 
-                <Card className="border border-border">
-                  <CardContent className="p-6 text-center">
+                <Card className="border border-border rounded-xl shadow-sm">
+                  <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-green-600 mb-2">
                       {attendanceData.daysPresent}
                     </div>
@@ -1631,8 +1631,8 @@ export default function EmployeeProfile({
                   </CardContent>
                 </Card>
 
-                <Card className="border border-border">
-                  <CardContent className="p-6 text-center">
+                <Card className="border border-border rounded-xl shadow-sm">
+                  <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-red-600 mb-2">
                       {attendanceData.daysAbsent}
                     </div>
@@ -1642,8 +1642,8 @@ export default function EmployeeProfile({
                   </CardContent>
                 </Card>
 
-                <Card className="border border-border">
-                  <CardContent className="p-6 text-center">
+                <Card className="border border-border rounded-xl shadow-sm">
+                  <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-orange-600 mb-2">
                       {attendanceData.lateArrivals}
                     </div>
@@ -1663,8 +1663,8 @@ export default function EmployeeProfile({
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="border border-border bg-blue-50">
-                  <CardContent className="p-6">
+                <Card className="border border-border rounded-xl shadow-sm bg-blue-50">
+                  <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <div className="text-sm font-medium text-muted-foreground">
@@ -1684,8 +1684,8 @@ export default function EmployeeProfile({
                   </CardContent>
                 </Card>
 
-                <Card className="border border-border bg-green-50">
-                  <CardContent className="p-6">
+                <Card className="border border-border rounded-xl shadow-sm bg-green-50">
+                  <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <div className="text-sm font-medium text-muted-foreground">
@@ -1715,7 +1715,7 @@ export default function EmployeeProfile({
                   Leave History
                 </h3>
                 <Button
-                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white h-8 px-3 text-sm"
                   onClick={() => setShowLeaveModal(true)}
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -1725,8 +1725,8 @@ export default function EmployeeProfile({
 
               <div className="space-y-4">
                 {leaveHistory.map((leave) => (
-                  <Card key={leave.id} className="border border-border">
-                    <CardContent className="p-6">
+                  <Card key={leave.id} className="border border-border rounded-xl shadow-sm">
+                    <CardContent className="p-4">
                       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
                         <div>
                           <label className="text-sm font-medium text-muted-foreground">
@@ -1771,11 +1771,11 @@ export default function EmployeeProfile({
                         </div>
 
                         <div className="flex gap-2">
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
                             <Eye className="w-3 h-3 mr-1" />
                             View
                           </Button>
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="outline" className="h-8 px-3 text-sm">
                             <Edit className="w-3 h-3 mr-1" />
                             Edit
                           </Button>
@@ -1787,8 +1787,8 @@ export default function EmployeeProfile({
               </div>
 
               {/* Leave Summary */}
-              <Card className="border border-border bg-muted/30 mt-6">
-                <CardContent className="p-6">
+              <Card className="border border-border rounded-xl shadow-sm bg-muted/30 mt-6">
+                <CardContent className="p-4">
                   <h4 className="font-semibold mb-4">Leave Summary (2024)</h4>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                     <div className="text-center">
@@ -1911,7 +1911,7 @@ export default function EmployeeProfile({
                 Employee Documents ({employeeDocuments.length})
               </h3>
               <Button
-                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
+                className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white h-8 px-3 text-sm"
                 onClick={() => setShowDocumentModal(true)}
               >
                 <Upload className="w-4 h-4 mr-2" />
@@ -1923,7 +1923,7 @@ export default function EmployeeProfile({
             <div className="space-y-4">
               {employeeDocuments.map((document) => (
                 <Card key={document.id} className="border border-border">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                       {/* Document Title */}
                       <div>
@@ -2077,8 +2077,8 @@ export default function EmployeeProfile({
 
             {/* Account Settings */}
             <div className="space-y-6">
-              <Card className="border border-border">
-                <CardContent className="p-6">
+              <Card className="border border-border rounded-xl shadow-sm">
+                <CardContent className="p-4">
                   <h4 className="font-semibold mb-6">Account Settings</h4>
 
                   <div className="space-y-6">
@@ -2129,8 +2129,8 @@ export default function EmployeeProfile({
               </Card>
 
               {/* Security Actions */}
-              <Card className="border border-border">
-                <CardContent className="p-6">
+              <Card className="border border-border rounded-xl shadow-sm">
+                <CardContent className="p-4">
                   <h4 className="font-semibold mb-6">Security Actions</h4>
 
                   <div className="space-y-4">
@@ -2168,8 +2168,8 @@ export default function EmployeeProfile({
               </Card>
 
               {/* Current Security Status */}
-              <Card className="border border-border bg-muted/30">
-                <CardContent className="p-6">
+              <Card className="border border-border rounded-xl shadow-sm bg-muted/30">
+                <CardContent className="p-4">
                   <h4 className="font-semibold mb-4">
                     Current Security Status
                   </h4>
@@ -2294,7 +2294,7 @@ export default function EmployeeProfile({
             <div className="space-y-4">
               {auditChangeLog.map((entry) => (
                 <Card key={entry.id} className="border border-border">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                       {/* Description of change */}
                       <div className="lg:col-span-2">
@@ -2338,8 +2338,8 @@ export default function EmployeeProfile({
             </div>
 
             {/* Summary Card */}
-            <Card className="border border-border bg-muted/30">
-              <CardContent className="p-6">
+            <Card className="border border-border rounded-xl shadow-sm bg-muted/30">
+              <CardContent className="p-4">
                 <h4 className="font-semibold mb-4">Change Log Summary</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
@@ -2376,7 +2376,7 @@ export default function EmployeeProfile({
 
       default:
         return (
-          <Card className="border-0 shadow-sm">
+          <Card className="border-0 rounded-xl shadow-sm">
             <CardContent className="p-12 text-center">
               <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                 {(() => {
@@ -2417,26 +2417,26 @@ export default function EmployeeProfile({
             <>
               <Button
                 onClick={handleSave}
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-green-600 hover:bg-green-700 text-white h-8 px-3 text-sm"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save Changes
               </Button>
-              <Button variant="outline" onClick={handleCancel}>
+              <Button variant="outline" onClick={handleCancel} className="text-sm px-3 py-1.5 h-8">
                 <X className="w-4 h-4 mr-2" />
                 Cancel
               </Button>
             </>
           ) : (
             <>
-              <Button variant="outline" onClick={() => setIsEditing(true)}>
+              <Button variant="outline" onClick={() => setIsEditing(true)} className="text-sm px-3 py-1.5 h-8">
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Profile
               </Button>
               <Button
                 variant="outline"
                 onClick={handleOffboarding}
-                className="text-red-600 border-red-200 hover:bg-red-50"
+                className="text-sm px-3 py-1.5 h-8 text-red-600 border-red-200 hover:bg-red-50"
               >
                 <UserMinus className="w-4 h-4 mr-2" />
                 Offboarding Employee
@@ -2447,8 +2447,8 @@ export default function EmployeeProfile({
       </div>
 
       {/* Employee Details Header */}
-      <Card className="border-0 shadow-sm sticky top-0 z-20 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <CardContent className="p-8">
+      <Card className="border-0 rounded-xl shadow-sm sticky top-0 z-20 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <CardContent className="p-4">
           <div className="flex items-start gap-8">
             {/* Profile Picture/Initials */}
             <div className="flex-shrink-0">
@@ -2465,17 +2465,17 @@ export default function EmployeeProfile({
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-2xl font-bold text-foreground">
+                    <h2 className="text-xl font-bold text-foreground">
                       {employee.fullName}
                     </h2>
                     <Badge
                       variant="outline"
-                      className={`font-bold ${getStatusColor(employee.status)}`}
+                      className={`font-bold text-xs px-2 py-0.5 rounded-md ${getStatusColor(employee.status)}`}
                     >
                       {employee.status}
                     </Badge>
                   </div>
-                  <p className="text-lg text-muted-foreground font-medium">
+                  <p className="text-base text-muted-foreground font-medium">
                     {employee.jobTitle}
                   </p>
                 </div>
@@ -2508,7 +2508,7 @@ export default function EmployeeProfile({
                     <Badge
                       key={index}
                       variant="secondary"
-                      className="bg-blue-50 text-blue-700"
+                      className="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded-md"
                     >
                       {skill}
                     </Badge>
@@ -2548,7 +2548,7 @@ export default function EmployeeProfile({
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant={activeTab === tab.id ? "default" : "ghost"}
-            className="flex items-center gap-2 text-sm font-medium px-4 py-2 whitespace-nowrap"
+            className="flex items-center gap-2 text-sm font-medium px-3 py-1.5 h-8 whitespace-nowrap"
           >
             <tab.icon className="w-4 h-4" />
             {tab.label}
@@ -2557,8 +2557,8 @@ export default function EmployeeProfile({
       </div>
 
       {/* Tab Content */}
-      <Card className="border-0 shadow-sm">
-        <CardContent className="p-8">{renderTabContent()}</CardContent>
+      <Card className="border-0 rounded-xl shadow-sm">
+        <CardContent className="p-4">{renderTabContent()}</CardContent>
       </Card>
 
       {/* Training/Certification Modal */}
