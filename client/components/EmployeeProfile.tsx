@@ -811,6 +811,63 @@ export default function EmployeeProfile({
                   )}
                 </div>
               </div>
+              {/* Right Side Panel: Position History & Org Chart */}
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold mb-3">Position History</h4>
+                  <div className="space-y-3">
+                    {[
+                      { title: "Senior Analyst", range: "Jan 2022 – Aug 2023", note: "Promoted" },
+                      { title: "HR Assistant", range: "Jun 2020 – Dec 2021", note: "Transfer" },
+                    ].map((item, idx) => (
+                      <div key={idx} className="p-3 rounded-md border bg-white shadow-sm">
+                        <div className="font-medium text-foreground">{item.title}</div>
+                        <div className="text-xs text-muted-foreground">{item.range} • {item.note}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3">Organization Chart</h4>
+                  <Button size="sm" className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">View Organization Chart</Button>
+                  <p className="text-xs text-muted-foreground mt-2">Click to see your position in the company hierarchy or explore other departments.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Previous Work History */}
+            <div className="mt-6">
+              <h4 className="text-md font-semibold mb-3">Previous Work History</h4>
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Company Name</th>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Position</th>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Duration</th>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Location</th>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Employment Type</th>
+                      <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Reason for Leaving</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { company: "Acme Corp", position: "Analyst", duration: "2018 – 2020", location: "Toronto, ON", type: "Full-Time", reason: "Career growth" },
+                      { company: "Globex Inc", position: "Assistant", duration: "2016 – 2018", location: "Vancouver, BC", type: "Contract", reason: "End of contract" },
+                    ].map((row, idx) => (
+                      <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"}>
+                        <td className="p-3">{row.company}</td>
+                        <td className="p-3">{row.position}</td>
+                        <td className="p-3">{row.duration}</td>
+                        <td className="p-3">{row.location}</td>
+                        <td className="p-3">{row.type}</td>
+                        <td className="p-3">{row.reason}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         );
