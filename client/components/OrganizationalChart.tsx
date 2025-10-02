@@ -44,6 +44,7 @@ import {
   ZoomOut,
   RotateCcw,
 } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface OrgEmployee {
   id: string;
@@ -243,7 +244,6 @@ export default function OrganizationalChart({
   const [employees, setEmployees] = useState(organizationalData);
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [showAddReportModal, setShowAddReportModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<OrgEmployee | null>(
     null,
@@ -391,15 +391,6 @@ export default function OrganizationalChart({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => handleEditEmployee(employee)}
-                  className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
-                >
-                  <Edit className="w-3 h-3 mr-1" />
-                  Edit
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
                   onClick={() => handleAddReport(employee)}
                   className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
                 >
@@ -461,14 +452,6 @@ export default function OrganizationalChart({
               <Button
                 size="sm"
                 variant="secondary"
-                onClick={() => handleEditEmployee(employee)}
-                className="bg-white/90 hover:bg-white shadow-md"
-              >
-                <Edit className="w-3 h-3" />
-              </Button>
-              <Button
-                size="sm"
-                variant="secondary"
                 onClick={() => handleAddReport(employee)}
                 className="bg-white/90 hover:bg-white shadow-md"
               >
@@ -522,10 +505,6 @@ export default function OrganizationalChart({
     setShowViewModal(true);
   };
 
-  const handleEditEmployee = (employee: OrgEmployee) => {
-    setSelectedEmployee(employee);
-    setShowEditModal(true);
-  };
 
   const handleZoomIn = () => {
     setZoomLevel((prev) => Math.min(prev + 0.2, 2));
@@ -709,7 +688,7 @@ export default function OrganizationalChart({
                   className="whitespace-nowrap"
                 >
                   <X className="w-4 h-4 mr-2" />
-                  List View
+                  Table View
                 </Button>
               )}
             </div>
@@ -723,14 +702,48 @@ export default function OrganizationalChart({
           {viewMode === "hierarchical" ? (
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold">List View</h2>
+                <h2 className="text-xl font-semibold">Table View</h2>
                 <div className="text-sm text-muted-foreground">
                   {filteredEmployees.length} employees
                 </div>
               </div>
-              {getRootEmployees().map((employee) =>
-                renderHierarchicalNode(employee),
-              )}
+              <div className="border rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gray-50">
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Name</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Position</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Department</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Email</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Phone</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Location</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Manager</TableHead>
+                      <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Reports</TableHead>
+                      <TableHead className="text-right text-xs font-bold text-gray-900 uppercase tracking-wider">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredEmployees.map((emp) => (
+                      <TableRow key={emp.id} className="hover:bg-blue-50/60 transition-colors duration-200">
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900 font-medium">{emp.fullName}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.position}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.department}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.email}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.phone}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.location}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{employees.find(e => e.id === emp.managerId)?.fullName || "-"}</div></TableCell>
+                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.directReports.length}</div></TableCell>
+                        <TableCell className="px-3 py-2 text-right">
+                          <Button variant="outline" size="sm" onClick={() => setViewMode("chart")} className="h-7 px-2 text-xs">
+                            <Eye className="w-3 h-3 mr-1" />
+                            View Chart
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
           ) : (
             <div className="h-full">
@@ -988,17 +1001,7 @@ export default function OrganizationalChart({
               )}
 
               <div className="flex gap-3 pt-4 border-t">
-                <Button
-                  onClick={() => {
-                    setShowViewModal(false);
-                    setShowEditModal(true);
-                  }}
-                  className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white"
-                >
-                  <Edit className="w-4 h-4 mr-2" />
-                  Edit Employee
-                </Button>
-                <Button
+                  <Button
                   variant="outline"
                   onClick={() => setShowViewModal(false)}
                 >
@@ -1010,129 +1013,6 @@ export default function OrganizationalChart({
         </DialogContent>
       </Dialog>
 
-      {/* Edit Employee Modal */}
-      <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
-        <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Edit Employee</DialogTitle>
-          </DialogHeader>
-          {selectedEmployee && (
-            <div className="space-y-6 pt-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <Input defaultValue={selectedEmployee.fullName} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Position <span className="text-red-500">*</span>
-                  </label>
-                  <Input defaultValue={selectedEmployee.position} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Department <span className="text-red-500">*</span>
-                  </label>
-                  <Select defaultValue={selectedEmployee.department}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Executive">Executive</SelectItem>
-                      <SelectItem value="Engineering">Engineering</SelectItem>
-                      <SelectItem value="Finance">Finance</SelectItem>
-                      <SelectItem value="Marketing">Marketing</SelectItem>
-                      <SelectItem value="Human Resources">
-                        Human Resources
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Reports To
-                  </label>
-                  <Select defaultValue={selectedEmployee.managerId || "none"}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select manager" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="none">No Manager</SelectItem>
-                      {employees
-                        .filter((emp) => emp.id !== selectedEmployee.id)
-                        .map((emp) => (
-                          <SelectItem key={emp.id} value={emp.id}>
-                            {emp.fullName} - {emp.position}
-                          </SelectItem>
-                        ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email <span className="text-red-500">*</span>
-                  </label>
-                  <Input type="email" defaultValue={selectedEmployee.email} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone
-                  </label>
-                  <Input defaultValue={selectedEmployee.phone} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Location
-                  </label>
-                  <Input defaultValue={selectedEmployee.location} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Employee ID
-                  </label>
-                  <Input
-                    defaultValue={selectedEmployee.id}
-                    disabled
-                    className="bg-gray-50"
-                  />
-                </div>
-              </div>
-
-              <div className="text-sm text-muted-foreground bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <p>
-                  <strong>Note:</strong> Changes to employee hierarchy may
-                  affect direct reports and organizational structure. Please
-                  review carefully before saving.
-                </p>
-              </div>
-
-              <div className="flex gap-3 pt-4 border-t">
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                  <Edit className="w-4 h-4 mr-2" />
-                  Save Changes
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowEditModal(false);
-                    setShowViewModal(true);
-                  }}
-                >
-                  Back to View
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setShowEditModal(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
 
       {/* Add Report Modal */}
       <Dialog open={showAddReportModal} onOpenChange={setShowAddReportModal}>
