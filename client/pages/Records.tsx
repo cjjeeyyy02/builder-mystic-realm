@@ -234,6 +234,7 @@ export default function Records() {
     { id: "employee-records", label: "Employee Records", icon: Users },
     { id: "org-chart", label: "Organization Chart", icon: Users },
     { id: "documents", label: "Document Center", icon: FolderOpen },
+    { id: "department-management", label: "Department Management", icon: Building },
     { id: "config", label: "System Configuration", icon: Settings },
   ];
 
@@ -281,6 +282,20 @@ export default function Records() {
     () => employeeData.filter((e) => e.status === "On Leave").length,
     [],
   );
+
+  const departmentAggregates = useMemo(() => {
+    const map = new Map<string, { total: number; active: number; onLeave: number; inactive: number }>();
+    for (const e of employeeData) {
+      const key = e.department;
+      const current = map.get(key) || { total: 0, active: 0, onLeave: 0, inactive: 0 };
+      current.total += 1;
+      if (e.status === "Active") current.active += 1;
+      else if (e.status === "On Leave") current.onLeave += 1;
+      else if (e.status === "Inactive") current.inactive += 1;
+      map.set(key, current);
+    }
+    return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  }, []);
 
   const renderEmployeeCard = (employee: Employee) => {
     return (
@@ -382,7 +397,7 @@ export default function Records() {
                 Company Email
               </TableHead>
               <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                Employment Status
+                Status
               </TableHead>
               <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Joining Date
@@ -408,9 +423,6 @@ export default function Records() {
                 <TableCell className="px-3 py-2">
                   <div className="text-xs text-gray-900 font-medium truncate">
                     {employee.fullName}
-                  </div>
-                  <div className="text-[11px] text-gray-500 truncate">
-                    {employee.location}
                   </div>
                 </TableCell>
                 <TableCell className="px-3 py-2">
@@ -516,9 +528,6 @@ export default function Records() {
 
             {/* Search, Filters and Actions */}
             <Card>
-              <CardHeader>
-                <CardTitle className="text-base font-medium">Employee Records</CardTitle>
-              </CardHeader>
               <CardContent>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4 items-start sm:items-center">
                   <div className="relative w-full sm:w-72 md:w-96">
@@ -546,7 +555,7 @@ export default function Records() {
                     </Select>
                     <Select value={statusFilter} onValueChange={setStatusFilter}>
                       <SelectTrigger className="w-full sm:w-[180px] h-8 text-xs">
-                        <SelectValue placeholder="Employment Status" />
+                        <SelectValue placeholder="Status" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Status</SelectItem>
@@ -579,7 +588,7 @@ export default function Records() {
                     </div>
                     <Button variant="outline" className="h-8 px-3 text-xs" onClick={() => {
                       const headers = [
-                        "Employee ID","Name","Role","Department","Company Email","Employment Status","Joining Date",
+                        "Employee ID","Name","Role","Department","Company Email","Status","Joining Date",
                       ];
                       const escapeCsv = (val: any) => String(val ?? "").replace(/"/g, '""').replace(/\n/g, ' ');
                       const rows = filteredEmployees.map(e => [
@@ -650,6 +659,43 @@ export default function Records() {
         setShowSystemConfig(true);
         return null;
 
+      case "department-management":
+        return (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base font-medium">Departments</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="border rounded-lg overflow-hidden">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-gray-50">
+                        <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Department</TableHead>
+                        <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Total Employees</TableHead>
+                        <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Active</TableHead>
+                        <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">On Leave</TableHead>
+                        <TableHead className="text-xs font-bold text-gray-900 uppercase tracking-wider">Inactive</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {departmentAggregates.map(([dept, stats]) => (
+                        <TableRow key={dept} className="hover:bg-blue-50/60 transition-colors duration-200">
+                          <TableCell className="px-3 py-2"><div className="text-xs text-gray-900 font-medium">{dept}</div></TableCell>
+                          <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{stats.total}</div></TableCell>
+                          <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{stats.active}</div></TableCell>
+                          <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{stats.onLeave}</div></TableCell>
+                          <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{stats.inactive}</div></TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -709,13 +755,16 @@ export default function Records() {
     <Layout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-semibold text-foreground">Employee Records</h1>
+          <div>
+            <h1 className="text-3xl font-semibold text-foreground">Employee Records</h1>
+            <p className="text-sm text-gray-500">Centralized employee records management and organizational tools</p>
+          </div>
           <div className="flex items-center gap-3">
             <Button
               variant="outline"
               onClick={() => {
                 const headers = [
-                  "Employee ID","Name","Role","Department","Company Email","Employment Status","Joining Date",
+                  "Employee ID","Name","Role","Department","Company Email","Status","Joining Date",
                 ];
                 const escapeCsv = (val: any) => String(val ?? "").replace(/"/g, '""').replace(/\n/g, ' ');
                 const rows = employeeData.map(e => [
