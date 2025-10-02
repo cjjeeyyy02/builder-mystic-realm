@@ -700,8 +700,7 @@ export default function OrganizationalChart({
         <CardContent className="p-6">
           {viewMode === "hierarchical" ? (
             <div className="space-y-4">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold">Table View</h2>
+              <div className="flex items-center justify-end mb-6">
                 <div className="text-sm text-muted-foreground">
                   {filteredEmployees.length} employees
                 </div>
