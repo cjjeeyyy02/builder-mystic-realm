@@ -2168,9 +2168,9 @@ export default function EmployeeProfile({
       </div>
 
       {/* Employee Details Header */}
-      <Card className="border-0 rounded-xl shadow-sm">
-        <CardContent className="p-4">
-          <div className="flex items-start gap-8">
+      <Card className="border-0 rounded-md shadow-sm">
+        <CardContent className="p-3">
+          <div className="flex items-start gap-4">
             {/* Profile Picture/Initials */}
             <div className="flex-shrink-0">
               <div className="w-24 h-24 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
@@ -2183,10 +2183,10 @@ export default function EmployeeProfile({
             {/* Employee Information */}
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Column 1 - Basic Info */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-xl font-bold text-foreground">
+                    <h2 className="text-lg font-semibold text-foreground">
                       {employee.fullName}
                     </h2>
                     <Badge
@@ -2196,12 +2196,12 @@ export default function EmployeeProfile({
                       {employee.status}
                     </Badge>
                   </div>
-                  <p className="text-base text-muted-foreground font-medium">
+                  <p className="text-sm text-gray-500">
                     {employee.jobTitle}
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1 leading-tight">
                   <div className="flex items-center gap-2 text-sm">
                     <Mail className="w-4 h-4 text-muted-foreground" />
                     <span>{employee.email}</span>
@@ -2222,9 +2222,9 @@ export default function EmployeeProfile({
               </div>
 
               {/* Column 2 - Skills */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h3 className="font-semibold text-foreground">Skills</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 max-h-12 overflow-hidden">
                   {employee.skills.map((skill, index) => (
                     <Badge
                       key={index}
@@ -2238,21 +2238,21 @@ export default function EmployeeProfile({
               </div>
 
               {/* Column 3 - Employee ID & Join Date */}
-              <div className="space-y-6">
-                <div className="text-center bg-muted/30 rounded-lg p-4">
-                  <div className="text-sm text-muted-foreground font-medium">
+              <div className="space-y-3">
+                <div className="text-right bg-muted/30 rounded-md p-3">
+                  <div className="text-xs text-gray-500">
                     Employee ID
                   </div>
-                  <div className="text-lg font-bold text-foreground">
+                  <div className="text-sm font-semibold text-foreground">
                     {employee.employeeId}
                   </div>
                 </div>
 
-                <div className="text-center bg-muted/30 rounded-lg p-4">
-                  <div className="text-sm text-muted-foreground font-medium">
+                <div className="text-right bg-muted/30 rounded-md p-3">
+                  <div className="text-xs text-gray-500">
                     Joined
                   </div>
-                  <div className="text-lg font-bold text-foreground">
+                  <div className="text-sm font-semibold text-foreground">
                     {formatDate(employee.joinDate)}
                   </div>
                 </div>
