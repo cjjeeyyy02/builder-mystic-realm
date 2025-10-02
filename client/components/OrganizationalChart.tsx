@@ -32,7 +32,6 @@ import {
   X,
   Plus,
   Eye,
-  Edit,
   UserMinus,
   MoreVertical,
   Building,
