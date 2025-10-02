@@ -381,11 +381,11 @@ export default function OrganizationalChart({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => handleViewEmployee(employee)}
+                  onClick={() => setViewMode("chart")}
                   className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
                 >
                   <Eye className="w-3 h-3 mr-1" />
-                  View Chart Mode
+                  View Chart
                 </Button>
                 <Button
                   variant="outline"
