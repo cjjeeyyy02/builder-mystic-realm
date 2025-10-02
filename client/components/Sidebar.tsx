@@ -223,8 +223,8 @@ export default function Sidebar({
                       <div className="pl-10">
                                                 <Link to="/job-posting" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Job Posting</Link>
                         <Link to="/hiring-pipeline" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Recruitment Pipeline</Link>
-                        <Link to="/checklist-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Checklist Builder</Link>
-                        <Link to="/room-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Room Builder</Link>
+                        <Link to="/checklist-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Onboarding Checklist Builder</Link>
+                        <Link to="/room-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Interview Builder</Link>
                         <Link to="/archive" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Archive</Link>
                       </div>
                     </div>
