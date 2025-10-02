@@ -42,6 +42,8 @@ import {
   Plus,
   FileCheck,
   Shield,
+  Grid3X3,
+  List,
 } from "lucide-react";
 
 interface Document {
@@ -221,6 +223,8 @@ const documentTypes = [
   "Audit Report"
 ];
 
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
 export default function DocumentCenter({ onBack }: DocumentCenterProps) {
   const [documents] = useState(sampleDocuments);
   const [searchTerm, setSearchTerm] = useState("");
@@ -229,7 +233,7 @@ export default function DocumentCenter({ onBack }: DocumentCenterProps) {
   const [statusFilter, setStatusFilter] = useState("all");
   const [complianceFilter, setComplianceFilter] = useState("all");
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [viewMode, setViewMode] = useState<"table" | "card">("table");
 
   // Filter documents
   const filteredDocuments = documents.filter((doc) => {
@@ -599,12 +603,105 @@ export default function DocumentCenter({ onBack }: DocumentCenterProps) {
         <div className="text-sm text-muted-foreground">
           {filteredDocuments.length} documents found
         </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant={viewMode === "table" ? "default" : "ghost"}
+            className="h-8 px-3 text-xs"
+            onClick={() => setViewMode("table")}
+          >
+            <List className="w-4 h-4 mr-1" /> Table view
+          </Button>
+          <Button
+            variant={viewMode === "card" ? "default" : "ghost"}
+            className="h-8 px-3 text-xs"
+            onClick={() => setViewMode("card")}
+          >
+            <Grid3X3 className="w-4 h-4 mr-1" /> Card view
+          </Button>
+        </div>
       </div>
 
-      {/* Documents List */}
-      <div className="space-y-4">
-        {filteredDocuments.map(renderDocumentCard)}
-      </div>
+      {/* Documents */}
+      {viewMode === "table" ? (
+        <div className="w-full max-w-full bg-white border rounded-md shadow-sm overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-gray-50">
+                <TableHead className="text-sm font-semibold text-gray-600">Title</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">Type</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">Category</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">Department</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">Uploaded</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">File Size</TableHead>
+                <TableHead className="text-sm font-semibold text-gray-600">Status</TableHead>
+                <TableHead className="text-right text-sm font-semibold text-gray-600">Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredDocuments.map((doc) => (
+                <TableRow key={doc.id} className="hover:bg-blue-50/60 transition-colors duration-200">
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900 font-medium">{doc.title}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900">{doc.type}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900">{doc.category}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900">{doc.department}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900">{new Date(doc.uploadDate).toLocaleDateString()}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <div className="text-xs text-gray-900">{doc.fileSize}</div>
+                  </TableCell>
+                  <TableCell className="px-3 py-2">
+                    <Badge variant="outline" className={`text-xs ${getStatusColor(doc.status)}`}>
+                      {getStatusIcon(doc.status)}
+                      <span className="ml-1 capitalize">{doc.status.replace('_',' ')}</span>
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="px-3 py-2 text-right">
+                    <div className="flex items-center gap-2 justify-end">
+                      <Button variant="outline" size="sm" onClick={() => handleDocumentAction("view", doc.id)} className="h-7 px-2 text-xs">
+                        <Eye className="w-3 h-3 mr-1" /> View
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => handleDocumentAction("download", doc.id)} className="h-7 px-2 text-xs">
+                        <Download className="w-3 h-3 mr-1" /> Download
+                      </Button>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="outline" size="sm" className="h-7 px-2 text-xs">
+                            <MoreVertical className="w-3 h-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem onClick={() => handleDocumentAction("share", doc.id)}>
+                            <Share className="w-3 h-3 mr-2" /> Share
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleDocumentAction("edit", doc.id)}>
+                            <FileText className="w-3 h-3 mr-2" /> Edit Details
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleDocumentAction("delete", doc.id)} className="text-red-600">
+                            <Trash2 className="w-3 h-3 mr-2" /> Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredDocuments.map(renderDocumentCard)}
+        </div>
+      )}
 
       {/* No Results */}
       {filteredDocuments.length === 0 && (
