@@ -666,12 +666,6 @@ export default function DocumentCenter({ onBack }: DocumentCenterProps) {
                   </TableCell>
                   <TableCell className="px-3 py-2 text-right">
                     <div className="flex items-center gap-2 justify-end">
-                      <Button variant="outline" size="sm" onClick={() => handleDocumentAction("view", doc.id)} className="h-7 px-2 text-xs">
-                        <Eye className="w-3 h-3 mr-1" /> View
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => handleDocumentAction("download", doc.id)} className="h-7 px-2 text-xs">
-                        <Download className="w-3 h-3 mr-1" /> Download
-                      </Button>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="outline" size="sm" className="h-7 px-2 text-xs">
@@ -679,6 +673,12 @@ export default function DocumentCenter({ onBack }: DocumentCenterProps) {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
+                          <DropdownMenuItem onClick={() => handleDocumentAction("view", doc.id)}>
+                            <Eye className="w-3 h-3 mr-2" /> View
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleDocumentAction("download", doc.id)}>
+                            <Download className="w-3 h-3 mr-2" /> Download
+                          </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => handleDocumentAction("share", doc.id)}>
                             <Share className="w-3 h-3 mr-2" /> Share
                           </DropdownMenuItem>
