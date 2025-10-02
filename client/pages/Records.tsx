@@ -36,7 +36,6 @@ import {
   Users,
   FolderOpen,
   Settings,
-  Download,
   UserPlus,
   UserMinus,
 } from "lucide-react";
@@ -586,38 +585,6 @@ export default function Records() {
                         <Grid3X3 className="w-4 h-4" />
                       </Button>
                     </div>
-                    <Button variant="outline" className="h-8 px-3 text-xs" onClick={() => {
-                      const headers = [
-                        "Employee ID","Name","Role","Department","Company Email","Status","Joining Date",
-                      ];
-                      const escapeCsv = (val: any) => String(val ?? "").replace(/"/g, '""').replace(/\n/g, ' ');
-                      const rows = filteredEmployees.map(e => [
-                        e.employeeId,
-                        e.fullName,
-                        e.jobTitle,
-                        e.department,
-                        e.email,
-                        e.status,
-                        formatDateMDY(e.joinDate),
-                      ].map(v => `"${escapeCsv(v)}"`).join(","));
-                      const csv = [headers.join(","), ...rows].join("\n");
-                      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-                      const url = URL.createObjectURL(blob);
-                      const link = document.createElement("a");
-                      link.href = url;
-                      link.download = "employee_records.csv";
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                      URL.revokeObjectURL(url);
-                    }}>
-                      <Download className="w-4 h-4 mr-2" />
-                      Export
-                    </Button>
-                    <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
-                      <User className="w-4 h-4 mr-2" />
-                      Add Employee
-                    </Button>
                   </div>
                 </div>
 
@@ -758,43 +725,6 @@ export default function Records() {
           <div>
             <h1 className="text-3xl font-semibold text-foreground">Employee Records</h1>
             <p className="text-sm text-gray-500">Centralized employee records management and organizational tools</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              onClick={() => {
-                const headers = [
-                  "Employee ID","Name","Role","Department","Company Email","Status","Joining Date",
-                ];
-                const escapeCsv = (val: any) => String(val ?? "").replace(/"/g, '""').replace(/\n/g, ' ');
-                const rows = employeeData.map(e => [
-                  e.employeeId,
-                  e.fullName,
-                  e.jobTitle,
-                  e.department,
-                  e.email,
-                  e.status,
-                  formatDateMDY(e.joinDate),
-                ].map(v => `"${escapeCsv(v)}"`).join(","));
-                const csv = [headers.join(","), ...rows].join("\n");
-                const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = "employee_records.csv";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
-              }}
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
-            <Button className="bg-[#0065F8] hover:bg-[#0065F8]/90 text-white">
-              <User className="w-4 h-4 mr-2" />
-              Add Employee
-            </Button>
           </div>
         </div>
 
