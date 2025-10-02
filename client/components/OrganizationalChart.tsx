@@ -43,7 +43,6 @@ import {
   ZoomOut,
   RotateCcw,
 } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface OrgEmployee {
   id: string;
@@ -609,8 +608,8 @@ export default function OrganizationalChart({
       </div>
 
       {/* Search and Filter Panel */}
-      <Card className="border bg-white rounded-md shadow-sm">
-        <CardContent className="p-3">
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -687,7 +686,7 @@ export default function OrganizationalChart({
                   className="whitespace-nowrap"
                 >
                   <X className="w-4 h-4 mr-2" />
-                  Table View
+                  List View
                 </Button>
               )}
             </div>
@@ -696,52 +695,19 @@ export default function OrganizationalChart({
       </Card>
 
       {/* Organizational Chart Content */}
-      <Card className="border bg-white rounded-md shadow-sm">
-        <CardContent className="p-3">
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-6">
           {viewMode === "hierarchical" ? (
             <div className="space-y-4">
-              <div className="flex items-center justify-end mb-2">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold">List View</h2>
                 <div className="text-sm text-muted-foreground">
                   {filteredEmployees.length} employees
                 </div>
               </div>
-              <div className="w-full max-w-full bg-white border rounded-md shadow-sm overflow-hidden">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-gray-50">
-                      <TableHead className="text-sm font-semibold text-gray-600">Name</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Position</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Department</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Email</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Phone</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Location</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Manager</TableHead>
-                      <TableHead className="text-sm font-semibold text-gray-600">Reports</TableHead>
-                      <TableHead className="text-right text-xs font-bold text-gray-900 uppercase tracking-wider">Action</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredEmployees.map((emp) => (
-                      <TableRow key={emp.id} className="hover:bg-blue-50/60 transition-colors duration-200">
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900 font-medium">{emp.fullName}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.position}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.department}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.email}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.phone}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.location}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{employees.find(e => e.id === emp.managerId)?.fullName || "-"}</div></TableCell>
-                        <TableCell className="px-3 py-2"><div className="text-xs text-gray-900">{emp.directReports.length}</div></TableCell>
-                        <TableCell className="px-3 py-2 text-right">
-                          <Button variant="outline" size="sm" onClick={() => setViewMode("chart")} className="h-7 px-2 text-xs">
-                            <Eye className="w-3 h-3 mr-1" />
-                            View Chart
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
+              {getRootEmployees().map((employee) =>
+                renderHierarchicalNode(employee),
+              )}
             </div>
           ) : (
             <div className="h-full">
