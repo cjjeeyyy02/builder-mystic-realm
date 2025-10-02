@@ -606,17 +606,21 @@ export default function DocumentCenter({ onBack }: DocumentCenterProps) {
         <div className="flex items-center gap-2">
           <Button
             variant={viewMode === "table" ? "default" : "ghost"}
-            className="h-8 px-3 text-xs"
+            className="h-8 w-8 p-0"
             onClick={() => setViewMode("table")}
+            aria-label="Table view"
+            title="Table view"
           >
-            <List className="w-4 h-4 mr-1" /> Table view
+            <List className="w-4 h-4" />
           </Button>
           <Button
             variant={viewMode === "card" ? "default" : "ghost"}
-            className="h-8 px-3 text-xs"
+            className="h-8 w-8 p-0"
             onClick={() => setViewMode("card")}
+            aria-label="Card view"
+            title="Card view"
           >
-            <Grid3X3 className="w-4 h-4 mr-1" /> Card view
+            <Grid3X3 className="w-4 h-4" />
           </Button>
         </div>
       </div>
