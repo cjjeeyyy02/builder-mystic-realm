@@ -221,11 +221,11 @@ export default function Sidebar({
 
                     <div className={`overflow-hidden transition-all duration-300 ${expandedOnboarding ? 'max-h-64 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
                       <div className="pl-10">
-                                                <Link to="/job-posting" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Job Posting</Link>
+                        <Link to="/job-posting" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Job Posting</Link>
                         <Link to="/hiring-pipeline" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Recruitment Pipeline</Link>
-                        <Link to="/checklist-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Onboarding Checklist Builder</Link>
-                        <Link to="/room-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Interview Builder</Link>
-                        <Link to="/archive" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Archive</Link>
+                        <Link to="/checklist-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Setup Onboarding Checklist</Link>
+                        <Link to="/room-builder" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Setup Interview</Link>
+                        <Link to="/archive" onClick={onClose} className="block text-sm text-gray-700 hover:text-black py-2">Archive Management</Link>
                       </div>
                     </div>
                   </div>
